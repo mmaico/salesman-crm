@@ -1,0 +1,8 @@
+<html>
+<header>
+    <title>Salesman</title>
+</header>
+<body>
+<h4>#{data.message}</h4>
+</body>
+</html>
