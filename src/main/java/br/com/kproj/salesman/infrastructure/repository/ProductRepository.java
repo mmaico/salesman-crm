@@ -1,6 +1,6 @@
-package br.com.kproj.salesman.register.infrastructure.repository;
+package br.com.kproj.salesman.infrastructure.repository;
 
-import br.com.kproj.salesman.register.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;

@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.register.application;
 
 import br.com.kproj.salesman.Application;
-import br.com.kproj.salesman.register.infrastructure.entity.Client;
-import br.com.kproj.salesman.register.infrastructure.entity.Project;
-import br.com.kproj.salesman.register.infrastructure.entity.User;
-import br.com.kproj.salesman.register.infrastructure.entity.Vendor;
+import br.com.kproj.salesman.infrastructure.entity.Client;
+import br.com.kproj.salesman.infrastructure.entity.Project;
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.Vendor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

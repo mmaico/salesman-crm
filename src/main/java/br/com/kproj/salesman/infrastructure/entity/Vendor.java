@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

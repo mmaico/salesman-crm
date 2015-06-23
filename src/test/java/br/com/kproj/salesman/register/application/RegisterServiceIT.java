@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application;
 
 import br.com.kproj.salesman.Application;
-import br.com.kproj.salesman.register.infrastructure.entity.*;
+import br.com.kproj.salesman.infrastructure.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

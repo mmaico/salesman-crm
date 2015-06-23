@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.register.application;
 
-import br.com.kproj.salesman.register.infrastructure.entity.*;
-import br.com.kproj.salesman.register.infrastructure.repository.ClientRepository;
-import br.com.kproj.salesman.register.infrastructure.repository.ProjectRepository;
-import br.com.kproj.salesman.register.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.register.infrastructure.repository.VendorRepository;
+import br.com.kproj.salesman.infrastructure.entity.*;
+import br.com.kproj.salesman.infrastructure.repository.ClientRepository;
+import br.com.kproj.salesman.infrastructure.repository.ProjectRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
