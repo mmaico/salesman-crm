@@ -31,14 +31,12 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Client register(Client client) {
-//        Client.validate(client);
         final User user = userRepository.save(client.getUser());
         return clientRepository.save(new Client(client.getName(), user));
     }
 
     @Override
     public Product register(Project project) {
-//        Project.validate(project);
         return projectRepository.save(project);
     }
 
