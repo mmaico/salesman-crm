@@ -6,34 +6,30 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class User {
+public class User extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private final Long id;
+
     private final String login, password;
 
     public User() {
-        id = null;
+        setId(null);
         login = null;
         password = null;
     }
 
     public User(Long id) {
-        this.id = id;
+        setId(null);
         login = null;
         password = null;
     }
 
     public User(String login, String password) {
-        id = null;
+        setId(null);
         this.login = login;
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
+
 
     public String getLogin() {
         return login;
@@ -46,7 +42,7 @@ public class User {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(getId());
         sb.append(", login='").append(login).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append('}');

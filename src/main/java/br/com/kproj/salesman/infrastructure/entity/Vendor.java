@@ -6,11 +6,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 @Entity
-public class Vendor implements Accessor {
+public class Vendor extends AbstractEntity implements Accessor {
 
-    @Id
-    @GeneratedValue
-    private final Long id;
+
     @NotNull
     private final String name;
     @OneToOne
@@ -21,33 +19,29 @@ public class Vendor implements Accessor {
     private Collection<Project> saleableProjects;
 
     public Vendor() {
-        id = null;
+        setId(null);
         name = null;
         user = null;
         initCollections();
     }
 
     public Vendor(Long id) {
-        this.id = id;
+        setId(id);
         initCollections();
         name = null;
         user = null;
     }
 
     public Vendor(String name, User user) {
-        id = null;
+        setId(null);
         initCollections();
         this.name = name;
         this.user = user;
     }
 
     private void initCollections() {
-        clients = new HashSet<>(3);
-        saleableProjects = new HashSet<>(3);
-    }
-
-    public Long getId() {
-        return id;
+        clients = new HashSet<Client>(3);
+        saleableProjects = new HashSet<Project>(3);
     }
 
     public Iterable<Client> getClients() {

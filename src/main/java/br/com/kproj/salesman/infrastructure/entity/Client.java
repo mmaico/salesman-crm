@@ -8,11 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-public class Client implements Accessor {
-
-    @Id
-    @GeneratedValue
-    private final Long id;
+public class Client extends AbstractEntity implements Accessor {
 
     @NotNull
     private final String name;
@@ -21,19 +17,19 @@ public class Client implements Accessor {
     private final User user;
 
     public Client() {
-        id = null;
+        setId(null);
         name = null;
         user = null;
     }
 
     public Client(Long id) {
-        this.id = id;
+        setId(id);
         name = null;
         user = null;
     }
 
     public Client(String name, User user) {
-        id = null;
+        setId(null);
         this.name = name;
         this.user = user;
     }
@@ -48,10 +44,6 @@ public class Client implements Accessor {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -64,7 +56,7 @@ public class Client implements Accessor {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Client{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(getId());
         sb.append(", name='").append(name).append('\'');
         sb.append(", user=").append(user);
         sb.append('}');

@@ -8,11 +8,8 @@ import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
-public abstract class Product {
+public abstract class Product extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    protected final Long id;
 
     @ManyToOne
     protected final Client client;
@@ -20,19 +17,15 @@ public abstract class Product {
     protected final SalesTemperature temperature;
 
     public Product() {
-        id = null;
+        setId(null);
         client = null;
         temperature = null;
     }
 
     public Product(final Long id, final Client client, final SalesTemperature temperature) {
-        this.id = id;
+        this.setId(id);
         this.temperature = temperature;
         this.client = client;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public SalesTemperature getTemperature() {
@@ -46,7 +39,7 @@ public abstract class Product {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(getId());
         sb.append(", client=").append(client);
         sb.append(", temperature=").append(temperature);
         sb.append('}');
@@ -58,11 +51,11 @@ public abstract class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(id, product.id);
+        return Objects.equals(getId(), product.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }
