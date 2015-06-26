@@ -17,9 +17,7 @@ public class RegisterServiceImpl implements RegisterService {
     private final UserRepository userRepository;
 
     @Autowired
-    public RegisterServiceImpl(
-            ClientRepository clientRepository,
-            ProjectRepository projectRepository,
+    public RegisterServiceImpl(ClientRepository clientRepository,ProjectRepository projectRepository,
             VendorRepository vendorRepository,
             UserRepository userRepository
     ) {

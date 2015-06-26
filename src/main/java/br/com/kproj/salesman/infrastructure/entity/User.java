@@ -9,27 +9,18 @@ import java.util.Objects;
 public class User extends AbstractEntity {
 
 
-    private final String login, password;
+    private String login, password;
 
-    public User() {
-        setId(null);
-        login = null;
-        password = null;
-    }
+    public User() {}
 
     public User(Long id) {
-        setId(null);
-        login = null;
-        password = null;
+        setId(id);
     }
 
     public User(String login, String password) {
-        setId(null);
         this.login = login;
         this.password = password;
     }
-
-
 
     public String getLogin() {
         return login;
@@ -37,6 +28,14 @@ public class User extends AbstractEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

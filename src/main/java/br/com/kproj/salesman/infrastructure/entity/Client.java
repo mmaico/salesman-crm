@@ -11,25 +11,16 @@ import java.util.Objects;
 public class Client extends AbstractEntity implements Accessor {
 
     @NotNull
-    private final String name;
+    private String name;
+
+    private String tradingName;
+
 
     @OneToOne
-    private final User user;
+    private User user;
 
-    public Client() {
-        setId(null);
-        name = null;
-        user = null;
-    }
-
-    public Client(Long id) {
-        setId(id);
-        name = null;
-        user = null;
-    }
-
+    public Client() {}
     public Client(String name, User user) {
-        setId(null);
         this.name = name;
         this.user = user;
     }
@@ -53,6 +44,18 @@ public class Client extends AbstractEntity implements Accessor {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTradingName(String tradingName) {
+        this.tradingName = tradingName;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Client{");
@@ -63,16 +66,4 @@ public class Client extends AbstractEntity implements Accessor {
         return sb.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(name, client.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }
