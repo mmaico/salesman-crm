@@ -28,16 +28,13 @@ public class ClientControllerIT {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    @Autowired
-    private ClientController clientController;
-
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void shouldSaveClient() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "test name")
