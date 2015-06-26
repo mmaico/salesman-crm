@@ -18,6 +18,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+/**
+ * Test to {@link br.com.kproj.salesman.register.view.ClientController}
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -41,7 +44,18 @@ public class ClientControllerIT {
                 .param("tradingName", "nome fantasia")
                 .param("user.login", "login-test")
                 .param("user.password", "123456")
-        ).andExpect(status().isOk());
+        ).andExpect(status().isOk())
+            .andExpect(view().name("client"));
+    }
 
+    @Test
+    public void shouldSaveAndAddClientInContext() throws Exception {
+
+        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "test name")
+                        .param("tradingName", "nome fantasia")
+                        .param("user.login", "login-test")
+                        .param("user.password", "123456")
+        ).andExpect(model().attributeExists("client"));
     }
 }
