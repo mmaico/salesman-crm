@@ -58,4 +58,14 @@ public class ClientControllerIT {
                         .param("user.password", "123456")
         ).andExpect(model().attributeExists("client"));
     }
+
+    @Test
+    public void shouldReturnErrorWhenClientNotHaveName() throws Exception {
+
+        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("tradingName", "nome fantasia")
+                        .param("user.login", "login-test")
+                        .param("user.password", "123456")
+        ).andExpect(status().isBadRequest()).andExpect(model());
+    }
 }

@@ -4,15 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Client extends AbstractEntity implements Accessor {
 
-    @NotNull
+    @NotNull @Min(2) @Max(30)
     private String name;
 
+    @Size(max = 30)
     private String tradingName;
 
 
