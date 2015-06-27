@@ -20,7 +20,10 @@ public class RegisterServiceIT {
 
     @Test
     public void shouldRegisterClient() {
-        final Client client = registerService.register(new Client("Client1 Client", new User("client1", "client1password")));
+        Company company = new Company();
+        company.setUser(new User("client1", "client1password"));
+        company.setName("Client1 Client");
+        final Client client = registerService.register(company);
         assertThat(client, notNullValue());
         assertThat(client.getId(), notNullValue());
     }

@@ -29,8 +29,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Client register(Client client) {
-        final User user = userRepository.save(client.getUser());
-        return clientRepository.save(new Client(client.getName(), user));
+        userRepository.save(client.getUser());
+        return clientRepository.save(client);
     }
 
     @Override

@@ -40,8 +40,9 @@ public class ClientControllerIT {
     public void shouldSaveClient() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("type", "company")
                 .param("name", "test name")
-                .param("tradingName", "nome fantasia")
+                .param("company.tradingName", "nome fantasia")
                 .param("user.login", "login-test")
                 .param("user.password", "123456")
         ).andExpect(status().isOk())
@@ -52,8 +53,9 @@ public class ClientControllerIT {
     public void shouldSaveAndAddClientInContext() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("type", "company")
                         .param("name", "test name")
-                        .param("tradingName", "nome fantasia")
+                        .param("company.tradingName", "nome fantasia")
                         .param("user.login", "login-test")
                         .param("user.password", "123456")
         ).andExpect(model().attributeExists("client"));
@@ -84,8 +86,9 @@ public class ClientControllerIT {
     public void shouldReturnErrorWhenClientTradingnameGreaterThan30Characters() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("type", "company")
                         .param("name", "Client Name")
-                        .param("tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
+                        .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
                         .param("user.login", "login-test")
                         .param("user.password", "123456")
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
