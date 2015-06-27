@@ -75,6 +75,7 @@ public class ClientControllerIT {
     public void shouldReturnErrorWhenClientNameLessThan2Characters() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("type", "company")
                         .param("name", "t")
                         .param("tradingName", "nome fantasia")
                         .param("user.login", "login-test")

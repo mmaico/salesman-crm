@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
 import java.util.Objects;
 
 @Entity
@@ -13,7 +13,8 @@ import java.util.Objects;
 @DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
 public abstract class Client extends AbstractEntity implements Accessor {
 
-    @NotNull @Size(min = 2, max = 30)
+    @NotNull
+    @Size(min = 2, max = 30, message = "company.name")
     private String name;
 
     @OneToOne

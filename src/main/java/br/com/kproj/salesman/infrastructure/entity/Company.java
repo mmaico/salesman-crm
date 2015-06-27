@@ -8,10 +8,10 @@ import javax.validation.constraints.Size;
 @DiscriminatorValue("company")
 public class Company extends Client {
 
-    @Size(max = 30)
+    @Size(max = 30, message = "company.invalid.trandingname")
     private String tradingName;
 
-    @Size(max = 15)
+    @Size(max = 15, message = "company.invalid.cnpj")
     private String cnpj;
 
     private String ie;
