@@ -40,6 +40,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-ws")
     runtime("com.h2database:h2")
+    compile("com.google.guava:guava:18.0")
+    compile("commons-beanutils:commons-beanutils:1.9.2")
+
 //    runtime("mysql:mysql-connector-java")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
