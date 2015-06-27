@@ -10,6 +10,7 @@ import org.springframework.validation.Validator;
 
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
+import java.text.MessageFormat;
 
 @Component
 public class IndividualValidator implements Validator, InitializingBean {
@@ -26,7 +27,7 @@ public class IndividualValidator implements Validator, InitializingBean {
     @Override
     public void validate(Object target, Errors errors) {
         validator.validate(target).forEach(error ->
-                errors.rejectValue("individual." + error.getPropertyPath().toString(), error.getMessage()) );
+                errors.rejectValue(MessageFormat.format("individual.{0}", error.getPropertyPath().toString()), error.getMessage()));
     }
 
     @Override
