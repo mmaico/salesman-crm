@@ -13,7 +13,7 @@ import java.util.Objects;
 @Entity
 public class Client extends AbstractEntity implements Accessor {
 
-    @NotNull @Min(2) @Max(30)
+    @NotNull @Size(min = 2, max = 30)
     private String name;
 
     @Size(max = 30)

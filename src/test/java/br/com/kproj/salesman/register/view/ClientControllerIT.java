@@ -66,6 +66,28 @@ public class ClientControllerIT {
                         .param("tradingName", "nome fantasia")
                         .param("user.login", "login-test")
                         .param("user.password", "123456")
-        ).andExpect(status().isBadRequest()).andExpect(model());
+        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
+    }
+
+    @Test
+    public void shouldReturnErrorWhenClientNameLessThan2Characters() throws Exception {
+
+        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "t")
+                        .param("tradingName", "nome fantasia")
+                        .param("user.login", "login-test")
+                        .param("user.password", "123456")
+        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
+    }
+
+    @Test
+    public void shouldReturnErrorWhenClientTradingnameGreaterThan30Characters() throws Exception {
+
+        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "Client Name")
+                        .param("tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
+                        .param("user.login", "login-test")
+                        .param("user.password", "123456")
+        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
     }
 }
