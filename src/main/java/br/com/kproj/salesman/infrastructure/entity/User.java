@@ -1,23 +1,24 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class User extends AbstractEntity {
+public class User extends Identifiable {
 
 
     private String login, password;
 
-    public User() {}
+    public User() {
+        super();
+    }
 
     public User(Long id) {
-        setId(id);
+        super(id);
     }
 
     public User(String login, String password) {
+        super();
         this.login = login;
         this.password = password;
     }
@@ -26,12 +27,12 @@ public class User extends AbstractEntity {
         return login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {

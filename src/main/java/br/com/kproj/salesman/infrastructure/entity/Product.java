@@ -1,14 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
-public abstract class Product extends AbstractEntity {
+public abstract class Product extends Identifiable {
 
 
     @ManyToOne
@@ -17,13 +15,13 @@ public abstract class Product extends AbstractEntity {
     protected final SalesTemperature temperature;
 
     public Product() {
-        setId(null);
+        super();
         client = null;
         temperature = null;
     }
 
     public Product(final Long id, final Client client, final SalesTemperature temperature) {
-        this.setId(id);
+        super(id);
         this.temperature = temperature;
         this.client = client;
     }
