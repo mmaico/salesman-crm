@@ -18,10 +18,9 @@ public class ClientDTO extends Client {
 
     private String type;
 
+    private Individual individual = new Individual();
 
-    private Individual individual = null;
-
-    private Company company = null;
+    private Company company = new Company();
 
     public String getType() {
         return type;

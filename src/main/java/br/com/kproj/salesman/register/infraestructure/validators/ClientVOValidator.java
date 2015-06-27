@@ -3,6 +3,7 @@ package br.com.kproj.salesman.register.infraestructure.validators;
 import br.com.kproj.salesman.infrastructure.helpers.ReflectionsUtils;
 import br.com.kproj.salesman.register.view.dto.ClientDTO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -17,12 +18,16 @@ public class ClientVOValidator implements Validator {
 
     private static final String COMPANY = "company";
     private static final String INDIVIDUAL = "individual";
-    Map<String, Validator> validators = new HashMap<>();
 
-    {
-        validators.put(COMPANY, new CompanyValidator());
-        validators.put(INDIVIDUAL, new IndividualValidator());
+
+    private Map<String, Validator> validators = new HashMap<>();
+
+    @Autowired
+    public ClientVOValidator(CompanyValidator companyValidator, IndividualValidator individualValidator) {
+        validators.put(COMPANY, companyValidator);
+        validators.put(INDIVIDUAL, individualValidator);
     }
+
 
     @Override
     public boolean supports(Class<?> paramClass) {
@@ -34,7 +39,8 @@ public class ClientVOValidator implements Validator {
 
         ClientDTO clientDTO = (ClientDTO) target;
         Validator validator = validators.get(clientDTO.getType());
-        validator.validate(target, errors);
+
+        ValidationUtils.invokeValidator(validator, clientDTO.getClient(), errors);
 
     }
 }

@@ -7,8 +7,7 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 
 @Configuration
-@EnableLoadTimeWeaving(aspectjWeaving= EnableLoadTimeWeaving.AspectJWeaving.ENABLED)
+//@EnableLoadTimeWeaving
 @EnableSpringConfigured
-@EnableAspectJAutoProxy
 public class SpringConfig {
 }

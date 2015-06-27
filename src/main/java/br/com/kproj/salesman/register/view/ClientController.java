@@ -29,21 +29,21 @@ public class ClientController {
     @Autowired
     private ClientVOValidator validator;
 
-    @InitBinder
+    @InitBinder(value = "clientDTO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping("client/save")
-    public ModelAndView save(@Validated @ModelAttribute ClientDTO client, BindingResult bindingResult, Model model) {
+    public ModelAndView save(@Validated @ModelAttribute ClientDTO clientVO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        Client clientSaved = service.register(client.getClient());
-
+        Client clientSaved = service.register(clientVO.getClient());
         model.addAttribute("client", clientSaved);
+
         return new ModelAndView("client");
     }
 }

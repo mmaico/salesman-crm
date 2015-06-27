@@ -65,6 +65,7 @@ public class ClientControllerIT {
     public void shouldReturnErrorWhenClientNotHaveName() throws Exception {
 
         mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("type", "company")
                         .param("tradingName", "nome fantasia")
                         .param("user.login", "login-test")
                         .param("user.password", "123456")

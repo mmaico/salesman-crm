@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 import javax.validation.*;
 import java.util.Set;
 
-@Configurable
+@Component
 public class CompanyValidator implements Validator, InitializingBean {
 
     private javax.validation.Validator validator;
@@ -23,15 +23,21 @@ public class CompanyValidator implements Validator, InitializingBean {
 
     @Override
     public void validate(Object target, Errors errors) {
-        validator.validate(target).forEach(error ->
-                errors.rejectValue("error", error.getMessage()) );
+        Set<ConstraintViolation<Object>> constraints = validator.validate(target);
+
+        constraints.forEach(error ->
+                errors.rejectValue("company." + error.getPropertyPath().toString(), error.getMessage()));
+
+
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
-    }
+    public void afterPropertiesSet(){
+        try {
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            this.validator = factory.getValidator();
+        } catch(Exception e) {}
 
+    }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
-@Configurable
+@Component
 public class IndividualValidator implements Validator, InitializingBean {
 
     private javax.validation.Validator validator;
@@ -25,12 +25,15 @@ public class IndividualValidator implements Validator, InitializingBean {
     @Override
     public void validate(Object target, Errors errors) {
         validator.validate(target).forEach(error ->
-                errors.rejectValue("error", error.getMessage()) );
+                errors.rejectValue("individual." + error.getPropertyPath().toString(), error.getMessage()) );
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
+    public void afterPropertiesSet()  {
+        try {
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            this.validator = factory.getValidator();
+        } catch(Exception e) {}
+
     }
 }
