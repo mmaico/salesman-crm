@@ -12,7 +12,7 @@ public abstract class Product extends Identifiable {
     @ManyToOne
     protected final Client client;
 
-    protected final SalesTemperature temperature;
+    protected final SaleTemperature temperature;
 
     public Product() {
         super();
@@ -20,13 +20,13 @@ public abstract class Product extends Identifiable {
         temperature = null;
     }
 
-    public Product(final Long id, final Client client, final SalesTemperature temperature) {
+    public Product(final Long id, final Client client, final SaleTemperature temperature) {
         super(id);
         this.temperature = temperature;
         this.client = client;
     }
 
-    public SalesTemperature getTemperature() {
+    public SaleTemperature getTemperature() {
         return temperature;
     }
 
