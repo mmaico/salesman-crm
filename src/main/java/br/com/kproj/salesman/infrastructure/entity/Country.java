@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
-import com.google.common.base.Objects;
-
 import javax.persistence.Entity;
 
 @Entity
@@ -25,11 +23,5 @@ public class Country extends Identifiable {
         return code;
     }
 
-    @Override
-    public String toString() {
-        return Objects.toStringHelper(this)
-                .add("name", name)
-                .add("code", code)
-                .toString();
-    }
+    
 }

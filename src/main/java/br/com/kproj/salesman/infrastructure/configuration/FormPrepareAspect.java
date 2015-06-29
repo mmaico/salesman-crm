@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.configuration;
 
-import br.com.kproj.salesman.infrastructure.entity.AbstractEntity;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -41,12 +41,12 @@ public class FormPrepareAspect {
                     String operation = ((ModelAttribute)annotation).value();
                     Object value = args[i];
                     if (CREATE.getOperation().equalsIgnoreCase(operation)) {
-                        if (value instanceof AbstractEntity) {
-                            normalizeEntityRequest.doNestedReference((AbstractEntity)value);
+                        if (value instanceof Identifiable) {
+                            normalizeEntityRequest.doNestedReference((Identifiable)value);
                         }
                     } else if (UPDATE.getOperation().equalsIgnoreCase(operation)) {
-                        if (value instanceof AbstractEntity) {
-                            normalizeEntityRequest.addFieldsToUpdate((AbstractEntity)value);
+                        if (value instanceof Identifiable) {
+                            normalizeEntityRequest.addFieldsToUpdate((Identifiable)value);
                         }
                     }
                 }
