@@ -3,13 +3,16 @@ package br.com.kproj.salesman.infrastructure.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import java.util.List;
+
 
 @Entity
 @Table(name = "clients")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
-public class Client extends AbstractEntity implements Accessor {
+
+public abstract class Client extends Identifiable implements Accessor {
 
     @NotNull
     @Size(min = 2, max = 30, message = "company.name")
@@ -18,17 +21,27 @@ public class Client extends AbstractEntity implements Accessor {
     @OneToOne
     private User user;
 
+
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "client")
     protected List<Contact> contacts;
 
-    public Client() {}
+
+    public Client() {
+        super();
+    }
+
     public Client(String name, User user) {
+        super();
         this.name = name;
         this.user = user;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -38,10 +51,6 @@ public class Client extends AbstractEntity implements Accessor {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Contact> getContacts() {

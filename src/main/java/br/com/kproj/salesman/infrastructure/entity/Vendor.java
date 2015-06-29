@@ -1,13 +1,14 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashSet;
 
 @Entity
-public class Vendor extends AbstractEntity implements Accessor {
-
+public class Vendor extends Identifiable implements Accessor {
 
     @NotNull
     private final String name;
@@ -19,29 +20,29 @@ public class Vendor extends AbstractEntity implements Accessor {
     private Collection<Project> saleableProjects;
 
     public Vendor() {
-        setId(null);
+        super();
         name = null;
         user = null;
         initCollections();
     }
 
     public Vendor(Long id) {
-        setId(id);
+        super(id);
         initCollections();
         name = null;
         user = null;
     }
 
     public Vendor(String name, User user) {
-        setId(null);
+        super();
         initCollections();
         this.name = name;
         this.user = user;
     }
 
     private void initCollections() {
-        clients = new HashSet<Client>(3);
-        saleableProjects = new HashSet<Project>(3);
+        clients = new HashSet<>(3);
+        saleableProjects = new HashSet<>(3);
     }
 
     public Iterable<Client> getClients() {

@@ -1,51 +1,77 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import javax.persistence.Entity;
 
-public class Address {
+@Entity
+public class Address extends Identifiable {
 
-    private String zipCode;
-    private String street;
-    private String complement;
-    private String district;
-    private String number;
+    private final String code;
+    private final String street;
+    private final String complement;
+    private final String number;
 
-    public String getZipCode() {
-        return zipCode;
+    public Address() {
+        super();
+        code = null;
+        street = null;
+        complement = null;
+        number = null;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public Address(Long id) {
+        super(id);
+        code = null;
+        street = null;
+        complement = null;
+        number = null;
+    }
+
+    public Address(String code) {
+        super();
+        this.code = code;
+        street = null;
+        complement = null;
+        number = null;
+    }
+
+    public Address(String code, String street, String number) {
+        this.code = code;
+        this.street = street;
+        this.number = number;
+        complement = null;
+    }
+
+    public Address(String code, String street, String number, String complement) {
+        this.code = code;
+        this.street = street;
+        this.number = number;
+        this.complement = complement;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getComplement() {
         return complement;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
     }
 
     public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Address{");
+        sb.append("number='").append(number).append('\'');
+        sb.append(", code='").append(code).append('\'');
+        sb.append(", street='").append(street).append('\'');
+        sb.append(", complement='").append(complement).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

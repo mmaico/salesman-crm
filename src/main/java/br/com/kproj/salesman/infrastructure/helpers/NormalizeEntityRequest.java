@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
-import br.com.kproj.salesman.infrastructure.entity.AbstractEntity;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.azeckoski.reflectutils.ReflectUtils;
@@ -21,7 +21,7 @@ public class NormalizeEntityRequest {
 
 	private Log log = LogFactory.getLog(NormalizeEntityRequest.class);
 	
-	public void  doNestedReference(AbstractEntity entity) {
+	public void  doNestedReference(Identifiable entity) {
 		try {
 			doNestedReference(entity, null);
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class NormalizeEntityRequest {
 
 
 	@SuppressWarnings("rawtypes")
-	public void addFieldsToUpdate(AbstractEntity entity) {
+	public void addFieldsToUpdate(Identifiable entity) {
 		
 		Set<String> keyParams = getRequest();
 		
@@ -61,7 +61,7 @@ public class NormalizeEntityRequest {
 	 * 
 	 */
 	@SuppressWarnings("rawtypes")
-	private void doObjectReference(AbstractEntity entity, String path) {
+	private void doObjectReference(Identifiable entity, String path) {
 	
 		int firstIndexOf = path.indexOf(".");
         String prefix = path.substring(0, firstIndexOf);
@@ -72,8 +72,8 @@ public class NormalizeEntityRequest {
         
         if (suffix.matches(".+\\..+")) {
         	Object object = ReflectUtils.getInstance().getFieldValue(entity, prefix);
-        	if (object instanceof AbstractEntity) {
-        		doObjectReference((AbstractEntity)object, suffix);
+        	if (object instanceof Identifiable) {
+        		doObjectReference((Identifiable)object, suffix);
         	}
         }	
         
@@ -99,9 +99,8 @@ public class NormalizeEntityRequest {
         	
         	if (parent != null) {
                 
-                if (field.getType() != null && AbstractEntity.class.isAssignableFrom(field.getType()) && ((AbstractEntity) target).getId() == null) {
+                if (field.getType() != null && Identifiable.class.isAssignableFrom(field.getType()) && ((Identifiable) target).getId() == null) {
 
-                    //if (field.getType().equals(parent.getClass()) ) {
                     if (field.getType().isInstance(parent)) {
                         ReflectUtils.getInstance().setFieldValue(target, field.getName(), parent);
                         continue;
@@ -111,14 +110,14 @@ public class NormalizeEntityRequest {
             
             Object nestedObject = ReflectUtils.getInstance().getFieldValue(target, field.getName());
             
-            if (nestedObject instanceof AbstractEntity) {
+            if (nestedObject instanceof Identifiable) {
             	doNestedReference(nestedObject, target);
             } else if (nestedObject instanceof Iterable) {
                 @SuppressWarnings("rawtypes")
                 Iterable items = (Iterable)nestedObject;
                 
                 for (Object item : items) {
-                    if (item instanceof AbstractEntity) {
+                    if (item instanceof Identifiable) {
                     	doNestedReference(item, target);
                     } else {
                         break;
