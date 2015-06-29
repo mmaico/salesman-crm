@@ -41,10 +41,13 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-ws")
     runtime("com.h2database:h2")
     compile("com.google.guava:guava:18.0")
+    compile("org.azeckoski:reflectutils:0.9.20")
+
     compile("commons-beanutils:commons-beanutils:1.9.2")
     compile("org.springframework:spring-agent:2.5.6.SEC03")
 
 //    runtime("mysql:mysql-connector-java")
+    testCompile("org.mockito:mockito-all:1.10.9")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

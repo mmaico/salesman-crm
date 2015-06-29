@@ -3,10 +3,9 @@ package br.com.kproj.salesman.infrastructure.entity;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.springframework.data.domain.Persistable;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @MappedSuperclass
 public class AbstractEntity implements Persistable<Long> {
@@ -15,6 +14,10 @@ public class AbstractEntity implements Persistable<Long> {
     @GeneratedValue
     @Column(name="id")
     private Long id;
+
+    @Transient
+    private Set<String> fields = new HashSet<String>();
+
 
     @Override
     public Long getId() {
@@ -28,6 +31,10 @@ public class AbstractEntity implements Persistable<Long> {
     @Override
     public boolean isNew() {
         return this.id == null;
+    }
+
+    public void addFields(String fieldName) {
+        fields.add(fieldName);
     }
 
     @Override
@@ -47,6 +54,10 @@ public class AbstractEntity implements Persistable<Long> {
 
         AbstractEntity other = (AbstractEntity) obj;
         return new EqualsBuilder().append(this.id, other.id).isEquals();
+    }
+
+    public Set<String> getFields() {
+        return this.fields;
     }
 
     @Override

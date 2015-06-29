@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.register.infraestructure.validators;
 
-import br.com.kproj.salesman.infrastructure.helpers.ReflectionsUtils;
 import br.com.kproj.salesman.register.view.dto.ClientDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;

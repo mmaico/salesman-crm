@@ -3,7 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,6 +20,9 @@ public class Contact extends AbstractEntity {
     private String position;
 
     private String phone;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Client client;
 
     public String getName() {
         return name;
@@ -50,5 +54,13 @@ public class Contact extends AbstractEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
