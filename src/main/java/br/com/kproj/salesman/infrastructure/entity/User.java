@@ -1,13 +1,22 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 public class User extends Identifiable {
 
+    @NotNull(message = "user.login")
+    private String login;
 
-    private String login, password;
+    @NotNull(message = "user.password")
+    private String password;
+
+    @NotNull(message = "user.name")
+    private String name;
+
+    private String lastname;
 
     public User() {
         super();
@@ -37,6 +46,14 @@ public class User extends Identifiable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

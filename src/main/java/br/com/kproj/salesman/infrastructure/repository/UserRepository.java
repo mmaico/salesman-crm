@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends BaseRepository<User, Long> {
 }
