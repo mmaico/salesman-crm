@@ -8,6 +8,6 @@ public interface RegisterService {
 
     Product register(Project product);
 
-    Vendor register(Vendor client);
+    User register(User user);
 
 }

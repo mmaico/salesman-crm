@@ -1,49 +1,25 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import com.google.common.collect.Lists;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.HashSet;
 
 @Entity
 public class Vendor extends Identifiable implements Accessor {
 
     @NotNull
-    private final String name;
+    private  String name;
     @OneToOne
-    private final User user;
+    private  User user;
     @OneToMany
-    private Collection<Client> clients;
+    private Collection<Client> clients = Lists.newArrayList();
     @OneToMany
-    private Collection<Project> saleableProjects;
+    private Collection<Project> saleableProjects = Lists.newArrayList();
 
-    public Vendor() {
-        super();
-        name = null;
-        user = null;
-        initCollections();
-    }
-
-    public Vendor(Long id) {
-        super(id);
-        initCollections();
-        name = null;
-        user = null;
-    }
-
-    public Vendor(String name, User user) {
-        super();
-        initCollections();
-        this.name = name;
-        this.user = user;
-    }
-
-    private void initCollections() {
-        clients = new HashSet<>(3);
-        saleableProjects = new HashSet<>(3);
-    }
 
     public Iterable<Client> getClients() {
         return clients;
@@ -54,17 +30,27 @@ public class Vendor extends Identifiable implements Accessor {
     }
 
     public void addClient(Client client) {
-        if (clients == null) {
-            throw new IllegalStateException("clients collection was not created");
-        }
         clients.add(client);
     }
 
     public void addSaleableProject(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("projects collection was not created");
-        }
         saleableProjects.add(project);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setClients(Collection<Client> clients) {
+        this.clients = clients;
+    }
+
+    public void setSaleableProjects(Collection<Project> saleableProjects) {
+        this.saleableProjects = saleableProjects;
     }
 
     public String getName() {

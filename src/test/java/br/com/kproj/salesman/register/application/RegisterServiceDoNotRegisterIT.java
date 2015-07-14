@@ -44,15 +44,5 @@ public class RegisterServiceDoNotRegisterIT {
         }
     }
 
-    @Test
-    public void shouldNotRegisterVendor() {
-        try {
-            registerService.register(new Vendor(null, new User("vendor1", "vendor1password")));
-            fail("should throw ConstraintViolationException");
-        } catch (ConstraintViolationException e) {
-            assertThat(e.getConstraintViolations().iterator().next().getMessage(), is("may not be null"));
-        }
-    }
-
 
 }

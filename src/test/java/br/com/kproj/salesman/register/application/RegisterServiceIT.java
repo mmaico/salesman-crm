@@ -35,11 +35,4 @@ public class RegisterServiceIT {
         assertThat(product.getId(), notNullValue());
     }
 
-    @Test
-    public void shouldRegisterVendor() {
-        final Vendor vendor = registerService.register(new Vendor("Vendor1 Vendor", new User("vendor1", "vendor1password")));
-        assertThat(vendor, notNullValue());
-        assertThat(vendor.getId(), notNullValue());
-    }
-
 }
