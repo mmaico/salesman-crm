@@ -5,6 +5,8 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.io.Serializable;
+
 @NoRepositoryBean
-public interface BaseRepository<T, Serializable> extends CrudRepository<T, Long>, QueryDslPredicateExecutor<T> {
+public interface BaseRepository<T, ID extends Serializable> extends CrudRepository<T, ID>, QueryDslPredicateExecutor<T> {
 }
