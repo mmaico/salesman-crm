@@ -1,3 +1,4 @@
+
 buildscript {
     ext {
         springBootVersion = '1.2.5.RELEASE'
@@ -28,6 +29,31 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    querydslapt
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java", "src/main/generated"]
+        }
+    }
+}
+
+buildscript {
+    ext {
+        springBootVersion = '1.2.4.RELEASE'
+        querydslVersion = '3.6.5'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE")
+    }
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -53,8 +79,27 @@ dependencies {
     testCompile("org.mockito:mockito-all:1.10.9")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
-}
+    querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion") {
+        exclude module: "guava"
+    }
+    compile("com.mysema.querydsl:querydsl-jpa:${querydslVersion}") {
+        exclude module: "guava"
+        exclude module: 'querydsl-core'
+    }
 
+    compile("com.mysema.querydsl:querydsl-collections:${querydslVersion}") {
+        exclude module: "guava"
+        exclude module: 'querydsl-codegen'
+    }
+
+    compile("com.mysema.querydsl:querydsl-core:${querydslVersion}") {
+        exclude module: "cglib"
+    }
+
+    compile("com.mysema.querydsl:querydsl-codegen:${querydslVersion}") {
+        exclude module: 'querydsl-core'
+    }
+}
 
 eclipse {
     classpath {
@@ -65,4 +110,31 @@ eclipse {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
+    classpath = configurations.compile + configurations.querydslapt
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor"
+    ]
+}
+
+generateQueryDSL() {
+    source = project.sourceSets.main.java
+    destinationDir = file("src/main/generated")
+}
+
+compileJava {
+    source = fileTree("src/main/java") + fileTree("src/main/generated")
+}
+
+clean {
+    delete fileTree("src/main/generated/")
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/generated')
+    }
 }
