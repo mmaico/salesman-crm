@@ -3,9 +3,12 @@ package br.com.kproj.salesman.register.view;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.register.application.RegisterService;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.register.application.UserService;
 import br.com.kproj.salesman.register.infraestructure.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     @Autowired
-    private RegisterService service;
+    private UserService service;
 
     @Autowired
     private UserValidator validator;
@@ -33,7 +36,7 @@ public class UserController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping("/user/save")
+    @RequestMapping("/users/save")
     public ModelAndView save(@ModelAttribute @Validated User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -45,4 +48,17 @@ public class UserController {
         model.addAttribute(userRegistered);
         return new ModelAndView("user");
     }
+
+    @RequestMapping("/users/list")
+    public ModelAndView list(@PageableDefault(page=0, size=15)Pageable pageable, Model model) {
+
+        Pager pager = Pager.binding(pageable);
+
+        Iterable<User> result = this.service.findAll(pager);
+
+        model.addAttribute("users", result);
+        return new ModelAndView("user");
+    }
+
+
 }

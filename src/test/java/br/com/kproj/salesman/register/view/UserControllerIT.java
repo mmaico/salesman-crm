@@ -12,7 +12,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -37,7 +41,7 @@ public class UserControllerIT {
     @Test
     public void shouldSaveUser() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("login", "userLogin")
                 .param("password", "pass123")
                 .param("name", "Bob")
@@ -49,7 +53,7 @@ public class UserControllerIT {
     @Test
     public void shouldAddUserSavedInContext() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("login", "userLogin")
                         .param("password", "pass123")
                         .param("name", "Bob")
@@ -61,7 +65,7 @@ public class UserControllerIT {
     @Test
     public void shouldReturnErrorsWhenInvalidLogin() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("password", "pass123")
                         .param("name", "Bob")
                         .param("lastname", "Stark")
@@ -71,7 +75,7 @@ public class UserControllerIT {
     @Test
     public void shouldReturnErrorsWhenInvalidPassword() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("login", "boblogin")
                         .param("name", "Bob")
                         .param("lastname", "Stark")
@@ -81,11 +85,21 @@ public class UserControllerIT {
     @Test
     public void shouldReturnErrorsWhenInvalidName() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("login", "boblogin")
                         .param("password", "pass123")
                         .param("lastname", "Stark")
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
+    }
+
+    @Test
+    public void shouldListUserRegistered() throws Exception {
+
+        ModelAndView modelAndView = mockMvc.perform(get("/users/list")).andExpect(status().isOk())
+                .andReturn().getModelAndView();
+
+
+        assertThat(modelAndView.getViewName(), is("user"));
     }
 
 

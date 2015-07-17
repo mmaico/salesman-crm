@@ -12,7 +12,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -37,7 +41,7 @@ public class ClientControllerIT {
     @Test
     public void shouldSaveClient() throws Exception {
 
-        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("type", "company")
                 .param("name", "test name")
                 .param("company.tradingName", "nome fantasia")
@@ -50,7 +54,7 @@ public class ClientControllerIT {
     @Test
     public void shouldSaveAndAddClientInContext() throws Exception {
 
-        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "test name")
                         .param("company.tradingName", "nome fantasia")
@@ -62,7 +66,7 @@ public class ClientControllerIT {
     @Test
     public void shouldReturnErrorWhenClientNotHaveName() throws Exception {
 
-        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("tradingName", "nome fantasia")
                         .param("user.login", "login-test")
@@ -73,7 +77,7 @@ public class ClientControllerIT {
     @Test
     public void shouldReturnErrorWhenClientNameLessThan2Characters() throws Exception {
 
-        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "t")
                         .param("tradingName", "nome fantasia")
@@ -85,7 +89,7 @@ public class ClientControllerIT {
     @Test
     public void shouldReturnErrorWhenClientTradingnameGreaterThan30Characters() throws Exception {
 
-        mockMvc.perform(post("/client/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "Client Name")
                         .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
@@ -93,6 +97,19 @@ public class ClientControllerIT {
                         .param("user.password", "123456")
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
     }
+
+
+    @Test
+    public void shouldListClientRegisted() throws Exception {
+
+        ModelAndView modelAndView = mockMvc.perform(get("/clients/list")).andExpect(status().isOk())
+                .andReturn().getModelAndView();
+
+
+        assertThat(modelAndView.getViewName(), is("client"));
+    }
+
+
 
 
 }

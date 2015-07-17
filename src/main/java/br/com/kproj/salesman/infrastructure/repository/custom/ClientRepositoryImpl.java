@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.repository.custom;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Client;
+import br.com.kproj.salesman.infrastructure.entity.QClient;
 import br.com.kproj.salesman.infrastructure.repository.GenericCustomRepository;
 import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.Predicate;
@@ -18,6 +19,6 @@ public class ClientRepositoryImpl implements ClientRepositoryCustom {
 
     @Override
     public Page<Client> findAll(Predicate predicate, Pageable page, OrderSpecifier[] orders) {
-        return null; // genericCustomRepository.findAll(null, page, orders);
+        return genericCustomRepository.findAll(QClient.client, predicate, page, orders);
     }
 }
