@@ -42,8 +42,8 @@ public class UserControllerIT {
     public void shouldSaveUser() throws Exception {
 
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("login", "userLogin")
-                .param("password", "pass123")
+                .param("login", "bobstark")
+                .param("password", "1234")
                 .param("name", "Bob")
                 .param("lastname", "Stark")
         ).andExpect(status().isOk())
@@ -54,8 +54,8 @@ public class UserControllerIT {
     public void shouldAddUserSavedInContext() throws Exception {
 
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("login", "userLogin")
-                        .param("password", "pass123")
+                        .param("login", "bobstark")
+                        .param("password", "1234")
                         .param("name", "Bob")
                         .param("lastname", "Stark")
         ).andExpect(status().isOk())
@@ -63,31 +63,11 @@ public class UserControllerIT {
     }
 
     @Test
-    public void shouldReturnErrorsWhenInvalidLogin() throws Exception {
-
-        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("password", "pass123")
-                        .param("name", "Bob")
-                        .param("lastname", "Stark")
-        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenInvalidPassword() throws Exception {
-
-        mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("login", "boblogin")
-                        .param("name", "Bob")
-                        .param("lastname", "Stark")
-        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
-    }
-
-    @Test
     public void shouldReturnErrorsWhenInvalidName() throws Exception {
 
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("login", "boblogin")
-                        .param("password", "pass123")
+                        .param("login", "bobstark")
+                        .param("password", "1234")
                         .param("lastname", "Stark")
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
     }

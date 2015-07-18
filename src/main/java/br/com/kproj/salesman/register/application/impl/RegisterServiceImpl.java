@@ -34,7 +34,6 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Client register(Client client) {
-        userService.save(client.getUser());
         return clientService.save(client);
     }
 

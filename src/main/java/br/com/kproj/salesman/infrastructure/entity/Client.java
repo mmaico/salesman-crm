@@ -12,15 +12,11 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
 
-public abstract class Client extends Identifiable implements Accessor {
+public abstract class Client extends Identifiable {
 
     @NotNull
     @Size(min = 2, max = 30, message = "company.name")
     private String name;
-
-    @OneToOne
-    private User user;
-
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "client")
     protected List<Contact> contacts;
@@ -30,10 +26,9 @@ public abstract class Client extends Identifiable implements Accessor {
         super();
     }
 
-    public Client(String name, User user) {
+    public Client(String name) {
         super();
         this.name = name;
-        this.user = user;
     }
 
     public String getName() {
@@ -42,15 +37,6 @@ public abstract class Client extends Identifiable implements Accessor {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Contact> getContacts() {
@@ -66,7 +52,6 @@ public abstract class Client extends Identifiable implements Accessor {
         final StringBuilder sb = new StringBuilder("Client{");
         sb.append("id=").append(getId());
         sb.append(", name='").append(name).append('\'');
-        sb.append(", user=").append(user);
         sb.append('}');
         return sb.toString();
     }

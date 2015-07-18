@@ -25,7 +25,6 @@ public class RegisterServiceDoNotRegisterIT {
     public void shouldNotRegisterClient() {
         try {
             Individual individual = new Individual();
-            individual.setUser(new User("client1", "client1password"));
             individual.setName(null);
             registerService.register(individual);
             fail("should throw ConstraintViolationException");
