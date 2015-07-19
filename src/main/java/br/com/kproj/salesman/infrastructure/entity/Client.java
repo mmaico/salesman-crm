@@ -11,8 +11,7 @@ import java.util.List;
 @Table(name = "clients")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
-
-public abstract class Client extends Identifiable {
+public class Client extends Identifiable {
 
     @NotNull
     @Size(min = 2, max = 30, message = "company.name")
@@ -21,6 +20,7 @@ public abstract class Client extends Identifiable {
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "client")
     protected List<Contact> contacts;
 
+    private Boolean active = Boolean.TRUE;
 
     public Client() {
         super();
@@ -45,6 +45,14 @@ public abstract class Client extends Identifiable {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override

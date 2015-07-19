@@ -11,6 +11,8 @@ import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import static org.apache.commons.lang.StringUtils.isBlank;
+
 @Component
 public class UserValidator implements Validator, InitializingBean {
 
@@ -23,7 +25,14 @@ public class UserValidator implements Validator, InitializingBean {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Set<ConstraintViolation<Object>> constraints = validator.validate(target);
+        User user = (User) target;
+        Set<ConstraintViolation<Object>> constraints = validator.validate(user);
+
+        if (user.isNew()) {
+            if (isBlank(user.getPassword()) || isBlank(user.getPasswordConfirm())
+                    || !user.getPassword().equals(user.getPasswordConfirm()))
+            errors.rejectValue("password", "Senha invalida");
+        }
 
         constraints.forEach(error ->
                 errors.rejectValue(error.getPropertyPath().toString(), error.getMessage()));

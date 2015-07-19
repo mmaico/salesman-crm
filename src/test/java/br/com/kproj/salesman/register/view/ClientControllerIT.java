@@ -45,8 +45,6 @@ public class ClientControllerIT {
                 .param("type", "company")
                 .param("name", "test name")
                 .param("company.tradingName", "nome fantasia")
-                .param("user.login", "login-test")
-                .param("user.password", "123456")
         ).andExpect(status().isOk())
             .andExpect(view().name("client"));
     }

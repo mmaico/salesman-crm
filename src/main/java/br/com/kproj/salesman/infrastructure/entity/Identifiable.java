@@ -13,7 +13,7 @@ public class Identifiable implements Persistable<Long> {
     @Id
     @GeneratedValue
     @Column(name="id")
-    protected final Long id;
+    protected Long id;
 
     @Transient
     private Set<String> fields = new HashSet<String>();
@@ -29,6 +29,10 @@ public class Identifiable implements Persistable<Long> {
     @Override
     public Long getId() {
         return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

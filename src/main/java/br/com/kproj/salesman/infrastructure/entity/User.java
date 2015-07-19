@@ -1,7 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,10 +18,16 @@ public class User extends Identifiable {
     @NotNull(message = "user.password")
     private String password;
 
+    @Transient
+    private String passwordConfirm;
+
     @NotNull(message = "user.name")
     private String name;
 
     private String lastname;
+
+    @Transient
+    private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
     public User() {
         super();
@@ -54,6 +65,22 @@ public class User extends Identifiable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @Override

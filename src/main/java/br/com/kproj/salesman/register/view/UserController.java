@@ -13,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -36,8 +33,21 @@ public class UserController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping("/users/save")
+    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute @Validated User user, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult.getAllErrors());
+        }
+        normalizeEntityRequest.addFieldsToUpdate(user);
+        User userRegistered = service.register(user);
+
+        model.addAttribute(userRegistered);
+        return new ModelAndView("user");
+    }
+
+    @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
+    public ModelAndView update(@ModelAttribute @Validated User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());

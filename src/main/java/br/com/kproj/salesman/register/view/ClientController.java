@@ -14,13 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController(value = "/")
+@RestController
 public class ClientController {
 
     @Autowired
@@ -37,21 +34,33 @@ public class ClientController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping("clients/save")
+    @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute @Validated  ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.doNestedReference(clientDTO);
+        normalizeEntityRequest.doNestedReference(clientDTO.getClient());
         Client clientSaved = service.register(clientDTO.getClient());
 
         model.addAttribute("client", clientSaved);
-
         return new ModelAndView("client");
     }
 
-    @RequestMapping(value="clients/list")
+    @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
+    public ModelAndView update(@ModelAttribute @Validated  ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult.getAllErrors());
+        }
+        normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
+        Client clientSaved = service.register(clientDTO.getClient());
+
+        model.addAttribute("client", clientSaved);
+        return new ModelAndView("client");
+    }
+
+    @RequestMapping(value="/clients/list")
     public ModelAndView list(@PageableDefault(page=0, size=15)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 

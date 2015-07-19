@@ -62,7 +62,7 @@ dependencies {
         exclude group: 'org.springframework.data'
     }
     compile("org.springframework.boot:spring-boot-starter-remote-shell")
-//    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-velocity")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
