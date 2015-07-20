@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.register.view.dto;
 
 
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
 
-public class ClientDTO extends Person {
+public class ProviderDTO extends Person {
 
     private static final String COMPANY = "company";
     private static final String INDIVIDUAL = "individual";
@@ -41,7 +41,7 @@ public class ClientDTO extends Person {
         this.company = company;
     }
 
-    public Person getClient() {
+    public Person getProvider() {
         if (COMPANY.equals(this.getType())) {
             ReflectionsHelper.copyProperties(this.company, this);
             return this.company;

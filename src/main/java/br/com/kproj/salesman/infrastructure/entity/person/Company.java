@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.person;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("company")
-public class Company extends Client {
+public class Company extends Person {
 
     @Size(max = 30, message = "company.invalid.trandingname")
     private String tradingName;

@@ -1,8 +1,7 @@
 package br.com.kproj.salesman.register.infraestructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.Company;
+import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.*;
 import org.springframework.validation.Validator;

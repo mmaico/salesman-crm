@@ -78,6 +78,8 @@ dependencies {
 //    runtime("mysql:mysql-connector-java")
     testCompile("org.mockito:mockito-all:1.10.19")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.dbunit:dbunit:2.5.1")
+
 
     querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion") {
         exclude module: "guava"

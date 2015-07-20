@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.person;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("individual")
-public class Individual extends Client {
+public class Individual extends Person {
 
 
     private String cpf;

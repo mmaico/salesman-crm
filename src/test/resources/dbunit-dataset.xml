@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <profile id="1" name="Cliente Pessoa Juridica"/>
+    <profile id="2" name="Cliente Pessoa fisica"/>
+    <profile id="3" name="Fornecedor Pessoa Jurifica"/>
+    <profile id="4" name="Fornecedor Pessoa fisica"/>
+</dataset>

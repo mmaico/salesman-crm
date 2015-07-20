@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.infraestructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.Individual;
+import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;

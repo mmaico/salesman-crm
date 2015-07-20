@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import com.google.common.collect.Lists;
 
 import javax.persistence.Entity;
@@ -16,24 +17,24 @@ public class Vendor extends Identifiable implements Accessor {
     @OneToOne
     private  User user;
     @OneToMany
-    private Collection<Client> clients = Lists.newArrayList();
+    private Collection<Person> clients = Lists.newArrayList();
     @OneToMany
-    private Collection<Project> saleableProjects = Lists.newArrayList();
+    private Collection<Service> saleableProjects = Lists.newArrayList();
 
 
-    public Iterable<Client> getClients() {
+    public Iterable<Person> getClients() {
         return clients;
     }
 
-    public Iterable<Project> getSaleableProjects() {
+    public Iterable<Service> getSaleableProjects() {
         return saleableProjects;
     }
 
-    public void addClient(Client client) {
+    public void addClient(Person client) {
         clients.add(client);
     }
 
-    public void addSaleableProject(Project project) {
+    public void addSaleableProject(Service project) {
         saleableProjects.add(project);
     }
 
@@ -45,11 +46,11 @@ public class Vendor extends Identifiable implements Accessor {
         this.user = user;
     }
 
-    public void setClients(Collection<Client> clients) {
+    public void setClients(Collection<Person> clients) {
         this.clients = clients;
     }
 
-    public void setSaleableProjects(Collection<Project> saleableProjects) {
+    public void setSaleableProjects(Collection<Service> saleableProjects) {
         this.saleableProjects = saleableProjects;
     }
 

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Company;
+import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import com.google.common.collect.Sets;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class NormalizeEntityRequestTest {
 		
 		normalize.doNestedReference(company);
 
-		assertThat(company.getContacts().get(0).getClient(), sameInstance(company));
+		assertThat(company.getContacts().get(0).getPerson(), sameInstance(company));
 	}
 	
 

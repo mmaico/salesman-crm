@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application;
 
 import br.com.kproj.salesman.Application;
-import br.com.kproj.salesman.infrastructure.entity.*;
+import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +33,7 @@ public class RegisterServiceDoNotRegisterIT {
         }
     }
 
-    @Test
-    public void shouldNotRegisterProject() {
-        try {
-            registerService.register(new Project());
-            fail("should throw ConstraintViolationException");
-        } catch (ConstraintViolationException e) {
-            assertThat(e.getConstraintViolations().iterator().next().getMessage(), is("may not be null"));
-        }
-    }
+
 
 
 }

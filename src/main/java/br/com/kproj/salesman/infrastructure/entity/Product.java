@@ -1,44 +1,36 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
-import javax.persistence.ManyToOne;
+import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class Product extends Identifiable {
 
+    private String name;
 
-    @ManyToOne
-    protected final Client client;
+    private String description;
 
-    protected final SaleTemperature temperature;
-
-    public Product() {
-        super();
-        client = null;
-        temperature = null;
-    }
-
-    public Product(final Long id, final Client client, final SaleTemperature temperature) {
-        super(id);
-        this.temperature = temperature;
-        this.client = client;
-    }
+    @Enumerated(EnumType.STRING)
+    protected SaleTemperature temperature;
 
     public SaleTemperature getTemperature() {
         return temperature;
     }
 
-    public Client getClient() {
-        return client;
+    public Product(){}
+    public Product(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
         sb.append("id=").append(getId());
-        sb.append(", client=").append(client);
         sb.append(", temperature=").append(temperature);
         sb.append('}');
         return sb.toString();

@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class Contact extends Identifiable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Client client;
+    private Person person;
 
     public String getName() {
         return name;
@@ -48,12 +49,12 @@ public class Contact extends Identifiable {
         this.phone = phone;
     }
 
-    public Client getClient() {
-        return client;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public void setName(String name) {

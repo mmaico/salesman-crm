@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.ClientService;
+import br.com.kproj.salesman.register.application.ProviderService;
 import br.com.kproj.salesman.register.infraestructure.validators.ClientVOValidator;
-import br.com.kproj.salesman.register.view.dto.ClientDTO;
+import br.com.kproj.salesman.register.view.dto.ProviderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class ClientController {
+public class ProviderController {
 
     @Autowired
-    private ClientService service;
+    private ProviderService service;
 
     @Autowired
     private ClientVOValidator validator;
@@ -34,33 +34,33 @@ public class ClientController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "/providers/save", method = RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.doNestedReference(clientDTO.getClient());
-        Person clientSaved = service.register(clientDTO.getClient());
+        normalizeEntityRequest.doNestedReference(providerDTO.getProvider());
+        Person clientSaved = service.register(providerDTO.getProvider());
 
         model.addAttribute("client", clientSaved);
         return new ModelAndView("client");
     }
 
-    @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "/providers/save", method = RequestMethod.PUT)
+    public ModelAndView update(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
-        Person clientSaved = service.register(clientDTO.getClient());
+        normalizeEntityRequest.addFieldsToUpdate(providerDTO.getProvider());
+        Person clientSaved = service.register(providerDTO.getProvider());
 
-        model.addAttribute("client", clientSaved);
-        return new ModelAndView("client");
+        model.addAttribute("provider", clientSaved);
+        return new ModelAndView("provider");
     }
 
-    @RequestMapping(value="/clients/list")
+    @RequestMapping(value="/providers/list")
     public ModelAndView list(@PageableDefault(page=0, size=15)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 

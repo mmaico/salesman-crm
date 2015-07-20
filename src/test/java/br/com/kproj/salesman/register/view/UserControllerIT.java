@@ -44,6 +44,7 @@ public class UserControllerIT {
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("login", "bobstark")
                 .param("password", "1234")
+                .param("passwordConfirm", "1234")
                 .param("name", "Bob")
                 .param("lastname", "Stark")
         ).andExpect(status().isOk())
@@ -56,6 +57,7 @@ public class UserControllerIT {
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("login", "bobstark")
                         .param("password", "1234")
+                        .param("passwordConfirm", "1234")
                         .param("name", "Bob")
                         .param("lastname", "Stark")
         ).andExpect(status().isOk())
@@ -68,6 +70,7 @@ public class UserControllerIT {
         mockMvc.perform(post("/users/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("login", "bobstark")
                         .param("password", "1234")
+                        .param("passwordConfirm", "1234")
                         .param("lastname", "Stark")
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
     }

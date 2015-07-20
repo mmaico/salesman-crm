@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.repository.custom;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Client;
-import br.com.kproj.salesman.infrastructure.entity.QClient;
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.QPerson;
 import br.com.kproj.salesman.infrastructure.repository.GenericCustomRepository;
 import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.Predicate;
@@ -12,13 +12,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientRepositoryImpl implements ClientRepositoryCustom {
+public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
     @Autowired
     private GenericCustomRepository genericCustomRepository;
 
     @Override
-    public Page<Client> findAll(Predicate predicate, Pageable page, OrderSpecifier[] orders) {
-        return genericCustomRepository.findAll(QClient.client, predicate, page, orders);
+    public Page<Person> findAll(Predicate predicate, Pageable page, OrderSpecifier[] orders) {
+        return genericCustomRepository.findAll(QPerson.person, predicate, page, orders);
     }
 }

@@ -1,4 +1,7 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.person;
+
+import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,25 +11,31 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "clients")
+@Table(name = "persons")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
-public class Client extends Identifiable {
+@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+public class Person extends Identifiable {
 
     @NotNull
-    @Size(min = 2, max = 30, message = "company.name")
+    @Size(min = 2, max = 30, message = "name")
     private String name;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy = "client")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "person")
     protected List<Contact> contacts;
 
+    @NotNull
     private Boolean active = Boolean.TRUE;
 
-    public Client() {
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="profile_id")
+    @NotNull
+    private Profile profile;
+
+    public Person() {
         super();
     }
 
-    public Client(String name) {
+    public Person(String name) {
         super();
         this.name = name;
     }
@@ -55,11 +64,20 @@ public class Client extends Identifiable {
         this.active = active;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Client{");
+        final StringBuilder sb = new StringBuilder("Person{");
         sb.append("id=").append(getId());
         sb.append(", name='").append(name).append('\'');
+        sb.append(", profile='").append(profile).append('\'');
         sb.append('}');
         return sb.toString();
     }
