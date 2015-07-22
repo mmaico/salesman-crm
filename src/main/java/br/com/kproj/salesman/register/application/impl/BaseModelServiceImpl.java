@@ -5,12 +5,15 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.register.application.ModelService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
 import java.util.Iterator;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -40,6 +43,17 @@ public abstract class BaseModelServiceImpl<T extends Identifiable> implements Mo
 
     public Iterable<T> findAll(Pageable pager) {
         return getRepository().findAll(pager);
+    }
+    
+    public Optional<T> getOne(Long id) {
+    	
+    	if (id == null) {
+    		return Optional.empty();
+    	}
+    	
+    	T entity = getRepository().findOne(id);
+    	
+    	return Optional.ofNullable(entity);
     }
 
     public abstract BaseRepository<T, Long> getRepository();

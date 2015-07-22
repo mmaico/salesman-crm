@@ -26,9 +26,10 @@ public class ClientServiceImpl extends BaseModelServiceImpl<Person> implements C
         domainService.verifyPreconditionToSave(client);
         return super.save(client);
     }
+    
 
     @Override
-    public BaseRepository getRepository() {
+    public BaseRepository<Person, Long> getRepository() {
         return this.clientRepository;
     }
 

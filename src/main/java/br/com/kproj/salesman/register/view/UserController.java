@@ -1,11 +1,15 @@
 package br.com.kproj.salesman.register.view;
 
+import java.util.Optional;
+
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.UserService;
 import br.com.kproj.salesman.register.infraestructure.validators.UserValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -67,6 +71,15 @@ public class UserController {
         Iterable<User> result = this.service.findAll(pager);
 
         model.addAttribute("users", result);
+        return new ModelAndView("user");
+    }
+    
+    @RequestMapping(value="/users/{userId}")
+    public ModelAndView viewInfo(Long userId, Model model) {
+        
+        Optional<User> result = this.service.getOne(userId);
+
+        model.addAttribute("user", result.get());
         return new ModelAndView("user");
     }
 

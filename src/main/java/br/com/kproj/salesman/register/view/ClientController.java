@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
+import java.util.Optional;
+
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -7,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ClientService;
 import br.com.kproj.salesman.register.infraestructure.validators.ClientVOValidator;
 import br.com.kproj.salesman.register.view.dto.ClientDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -67,6 +70,15 @@ public class ClientController {
         Iterable<Person> result = this.service.findAll(pager);
 
         model.addAttribute("clients", result);
+        return new ModelAndView("client");
+    }
+    
+    @RequestMapping(value="/clients/{clientId}")
+    public ModelAndView viewInfo(Long clientId, Model model) {
+        
+        Optional<Person> result = this.service.getOne(clientId);
+
+        model.addAttribute("client", result.get());
         return new ModelAndView("client");
     }
 }
