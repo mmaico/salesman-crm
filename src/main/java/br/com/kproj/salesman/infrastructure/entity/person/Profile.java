@@ -17,6 +17,7 @@ public class Profile extends Identifiable {
 	
 	private String name;
 
+    public Profile() {}
 	public Profile(Long id) {
 		this.setId(id);
 	}
@@ -29,10 +30,6 @@ public class Profile extends Identifiable {
         this.name = name;
     }
 
-    public Profile getClientCompany() {
-
-        return null;
-    }
 
     @Override
     public String toString() {

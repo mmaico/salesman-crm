@@ -29,7 +29,7 @@ public class ProviderController {
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
 
-    @InitBinder(value = "clientDTO")
+    @InitBinder(value = "providerDTO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
@@ -38,7 +38,7 @@ public class ProviderController {
     public ModelAndView save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
+            throw new ValidationException(bindingResult.getFieldErrors());
         }
         normalizeEntityRequest.doNestedReference(providerDTO.getProvider());
         Person clientSaved = service.register(providerDTO.getProvider());
@@ -51,7 +51,7 @@ public class ProviderController {
     public ModelAndView update(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
+            throw new ValidationException(bindingResult.getFieldErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(providerDTO.getProvider());
         Person clientSaved = service.register(providerDTO.getProvider());

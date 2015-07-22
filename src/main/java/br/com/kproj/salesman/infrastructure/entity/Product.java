@@ -1,11 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
-import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
+import org.springframework.format.annotation.NumberFormat;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -15,23 +14,64 @@ public abstract class Product extends Identifiable {
 
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    protected SaleTemperature temperature;
+    private Boolean active;
 
-    public SaleTemperature getTemperature() {
-        return temperature;
-    }
+    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
+    private BigDecimal price;
+
+    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#,###.##")
+    private BigDecimal priceCost;
 
     public Product(){}
     public Product(String name) {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getPriceCost() {
+        return priceCost;
+    }
+
+    public void setPriceCost(BigDecimal priceCost) {
+        this.priceCost = priceCost;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
         sb.append("id=").append(getId());
-        sb.append(", temperature=").append(temperature);
+        sb.append(", name=").append(name);
         sb.append('}');
         return sb.toString();
     }

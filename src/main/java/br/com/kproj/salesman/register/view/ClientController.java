@@ -38,7 +38,7 @@ public class ClientController {
     public ModelAndView save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
+            throw new ValidationException(bindingResult.getFieldErrors());
         }
         normalizeEntityRequest.doNestedReference(clientDTO.getClient());
         Person clientSaved = service.register(clientDTO.getClient());
@@ -51,7 +51,7 @@ public class ClientController {
     public ModelAndView update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
+            throw new ValidationException(bindingResult.getFieldErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
         Person clientSaved = service.register(clientDTO.getClient());
