@@ -23,7 +23,7 @@ public class ProviderServiceImpl extends BaseModelServiceImpl<Person> implements
     }
 
     @Override
-    public BaseRepository getRepository() {
+    public BaseRepository<Person, Long> getRepository() {
         return this.providerRepository;
     }
 

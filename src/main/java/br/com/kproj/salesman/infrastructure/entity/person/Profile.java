@@ -10,8 +10,17 @@ import javax.persistence.Table;
 @Table(name =  "profile")
 public class Profile extends Identifiable {
 
-    private String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private String name;
 
+	public Profile(Long id) {
+		this.setId(id);
+	}
+	
     public String getName() {
         return name;
     }
@@ -22,18 +31,6 @@ public class Profile extends Identifiable {
 
     public Profile getClientCompany() {
 
-        return null;
-    }
-
-    public Profile getClientIndividual() {
-        return null;
-    }
-
-    public Profile getProviderCompany() {
-        return null;
-    }
-
-    public Profile getProviderIndividual() {
         return null;
     }
 

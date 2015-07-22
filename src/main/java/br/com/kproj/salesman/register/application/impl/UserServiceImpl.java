@@ -23,7 +23,7 @@ public class UserServiceImpl extends BaseModelServiceImpl<User> implements UserS
     }
 
     @Override
-    public BaseRepository getRepository() {
+    public BaseRepository<User, Long> getRepository() {
         return userRepository;
     }
 
