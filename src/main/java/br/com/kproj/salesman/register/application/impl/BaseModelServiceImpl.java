@@ -1,19 +1,17 @@
 package br.com.kproj.salesman.register.application.impl;
 
 
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.register.application.ModelService;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-
-import java.util.Iterator;
-import java.util.Optional;
 
 @Transactional
 @Service
