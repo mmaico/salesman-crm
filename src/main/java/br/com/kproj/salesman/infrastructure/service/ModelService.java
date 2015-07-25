@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.application;
+package br.com.kproj.salesman.infrastructure.service;
 
 
 import java.util.Optional;

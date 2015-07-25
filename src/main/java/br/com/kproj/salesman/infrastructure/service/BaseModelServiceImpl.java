@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.application.impl;
+package br.com.kproj.salesman.infrastructure.service;
 
 
 import java.util.Optional;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.register.application.ModelService;
+import br.com.kproj.salesman.infrastructure.service.ModelService;
 
 @Transactional
 @Service
