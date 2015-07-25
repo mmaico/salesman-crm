@@ -1,7 +1,5 @@
 package br.com.kproj.salesman.register.infraestructure.validators;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
-
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -9,38 +7,32 @@ import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.kproj.salesman.register.view.dto.UserVO;
+import br.com.kproj.salesman.infrastructure.entity.Product;
 
 @Component
-public class UserValidator implements Validator, InitializingBean {
+public class ProductValidator implements Validator, InitializingBean {
 
     private javax.validation.Validator validator;
-    
-    @Autowired
-    private AvatarValidator avatarValidator;
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return UserVO.class.equals(clazz);
+        return Product.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-    	UserVO user = (UserVO) target;
-        Set<ConstraintViolation<Object>> constraints = validator.validate(user);
-
-        if (user.isNew()) {
-            if (isBlank(user.getPassword()) || isBlank(user.getPasswordConfirm())
-                    || !user.getPassword().equals(user.getPasswordConfirm()))
-            errors.rejectValue("password", "Senha invalida");
-        }
+    	Product product = (Product) target;
+        Set<ConstraintViolation<Object>> constraints = validator.validate(product);
         
-        avatarValidator.validate(user.getAvatarFile(), errors);
+        if (product.getActive()) {
+        	if (product.getPrice() == null) {
+        		errors.reject("price", "product.ative.without.price");
+        	}
+        }
         
         constraints.forEach(error ->
                 errors.rejectValue(error.getPropertyPath().toString(), error.getMessage()));

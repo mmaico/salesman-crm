@@ -4,4 +4,8 @@
     <profile id="2" name="Cliente Pessoa fisica"/>
     <profile id="3" name="Fornecedor Pessoa Jurifica"/>
     <profile id="4" name="Fornecedor Pessoa fisica"/>
+    
+    <user_profile id="1" name="admin"/>
+    <user_profile id="2" name="Financeiro"/>
+    <user_profile id="3" name="Diretor"/>
 </dataset>

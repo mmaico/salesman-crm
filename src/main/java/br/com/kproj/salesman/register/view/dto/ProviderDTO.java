@@ -55,7 +55,7 @@ public class ProviderDTO extends Person {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ClientDTO{");
+        final StringBuilder sb = new StringBuilder("ProviderDTO{");
         sb.append(", type='").append(type).append('\'');
         sb.append(", individual=").append(individual);
         sb.append(", company=").append(company);
