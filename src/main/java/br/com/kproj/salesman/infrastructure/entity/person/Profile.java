@@ -1,13 +1,11 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
 
+import javax.persistence.Entity;
+
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 @Entity
-@Table(name =  "profile")
 public class Profile extends Identifiable {
 
     /**

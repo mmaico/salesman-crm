@@ -2,9 +2,16 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +19,12 @@ import java.util.Objects;
 @Entity
 public class User extends Identifiable {
 
-    @NotNull(message = "user.login")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 282685797677443589L;
+
+	@NotNull(message = "user.login")
     private String login;
 
     @NotNull(message = "user.password")
@@ -25,6 +37,16 @@ public class User extends Identifiable {
     private String name;
 
     private String lastname;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="profile_id")
+    @NotNull
+    private UserProfile profile;
+    
+    @Basic(fetch = FetchType.LAZY)
+	@Column(name = "avatar", length = 200000)
+	@Lob
+	private byte[] avatar;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -82,8 +104,24 @@ public class User extends Identifiable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+    
+    public UserProfile getProfile() {
+		return profile;
+	}
 
-    @Override
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
+	}
+	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+
+	@Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
         sb.append("id=").append(getId());

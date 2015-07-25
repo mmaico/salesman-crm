@@ -8,7 +8,11 @@ import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
 
 public class ClientDTO extends Person {
 
-    private static final String COMPANY = "company";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3425800714823005608L;
+	private static final String COMPANY = "company";
     private static final String INDIVIDUAL = "individual";
 
     private String type;

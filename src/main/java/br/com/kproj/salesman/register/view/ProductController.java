@@ -21,7 +21,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ProductService;
-import br.com.kproj.salesman.register.infraestructure.validators.UserValidator;
+import br.com.kproj.salesman.register.infraestructure.validators.ProductValidator;
 
 @RestController
 public class ProductController {
@@ -30,14 +30,15 @@ public class ProductController {
     private ProductService service;
 
     @Autowired
-    private UserValidator validator;
+    private ProductValidator validator;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
 
-    @InitBinder(value = "product")
+    @InitBinder(value = {"product"})
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
+        
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
@@ -85,6 +86,5 @@ public class ProductController {
         model.addAttribute("product", result.get());
         return new ModelAndView("product");
     }
-
 
 }

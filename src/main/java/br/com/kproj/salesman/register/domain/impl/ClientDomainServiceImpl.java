@@ -14,10 +14,9 @@ public class ClientDomainServiceImpl implements ClientDomainService {
 
 	@Override
 	public void verifyPreconditionToSave(Person person) {
-		
-		if(person.getProfile() == null ||
-                !person.getProfile().equals(INDIVIDUAL_CLIENT)
-                || !person.getProfile().equals(COMPANY_CLIENT)) {
+
+		if(!INDIVIDUAL_CLIENT.get().equals(person.getProfile()) &&
+				!COMPANY_CLIENT.get().equals(person.getProfile())) {
 			throw new ValidationException("client.without.profile");
 		}
 		

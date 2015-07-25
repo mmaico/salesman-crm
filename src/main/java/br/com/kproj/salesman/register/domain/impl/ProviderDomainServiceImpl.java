@@ -1,13 +1,14 @@
 package br.com.kproj.salesman.register.domain.impl;
 
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.register.domain.ProviderDomainService;
-import org.springframework.stereotype.Service;
+import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_PROVIDER;
+import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.INDIVIDUAL_PROVIDER;
 
 import javax.validation.ValidationException;
 
-import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_PROVIDER;
-import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.INDIVIDUAL_PROVIDER;
+import org.springframework.stereotype.Service;
+
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.register.domain.ProviderDomainService;
 
 @Service
 public class ProviderDomainServiceImpl implements ProviderDomainService {
@@ -15,9 +16,8 @@ public class ProviderDomainServiceImpl implements ProviderDomainService {
 	@Override
 	public void verifyPreconditionToSave(Person person) {
 		
-		if(person.getProfile() == null ||
-                !person.getProfile().equals(INDIVIDUAL_PROVIDER)
-                || !person.getProfile().equals(COMPANY_PROVIDER)) {
+		if(!INDIVIDUAL_PROVIDER.get().equals(person.getProfile()) &&
+				!COMPANY_PROVIDER.get().equals(person.getProfile())) {
 			throw new ValidationException("provider.without.profile");
 		}
 		

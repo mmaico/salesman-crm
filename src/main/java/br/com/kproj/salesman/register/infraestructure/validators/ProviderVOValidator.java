@@ -1,15 +1,15 @@
 package br.com.kproj.salesman.register.infraestructure.validators;
 
-import br.com.kproj.salesman.register.view.dto.ClientDTO;
-import br.com.kproj.salesman.register.view.dto.ProviderDTO;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import java.util.HashMap;
-import java.util.Map;
+import br.com.kproj.salesman.register.view.dto.ProviderDTO;
 
 
 @Component
@@ -30,7 +30,7 @@ public class ProviderVOValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> paramClass) {
-        return ClientDTO.class.equals(paramClass);
+        return ProviderDTO.class.equals(paramClass);
     }
 
     @Override

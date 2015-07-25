@@ -1,20 +1,39 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
-import org.springframework.format.annotation.NumberFormat;
-
-import javax.persistence.MappedSuperclass;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@MappedSuperclass
-public abstract class Product extends Identifiable {
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.NumberFormat;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+public class Product extends Identifiable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2422314617985187903L;
+
+	@NotNull
     private String name;
 
     private String description;
-
-    private Boolean active;
+    
+    @NotNull
+    private Boolean active = Boolean.FALSE;
 
     @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
     private BigDecimal price;
@@ -66,8 +85,8 @@ public abstract class Product extends Identifiable {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-    @Override
+    
+	@Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
         sb.append("id=").append(getId());
