@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.exceptions;
 
-import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 import java.util.List;
 import java.util.Set;
@@ -16,8 +16,8 @@ public class ValidationException extends RuntimeException {
 	
 	private Set<String> errors;
 
-    public ValidationException(List<FieldError> errors) {
-        this.errors = errors.stream().map(FieldError::getField).collect(Collectors.toSet());
+    public ValidationException(List<ObjectError> errors) {
+        this.errors = errors.stream().map(ObjectError::getDefaultMessage).collect(Collectors.toSet());
     }
 
     public ValidationException(Set<String> errors) {

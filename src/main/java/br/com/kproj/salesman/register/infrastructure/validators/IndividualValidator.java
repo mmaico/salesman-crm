@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.infraestructure.validators;
+package br.com.kproj.salesman.register.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import org.slf4j.Logger;

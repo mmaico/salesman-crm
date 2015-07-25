@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
@@ -16,12 +17,12 @@ public class BusinessProposal extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="person_id")
-    @NotNull
+    @NotNull(message = "business.proposal.person.required")
     private Person person;
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    @NotNull
+    @NotNull(message = "business.proposal.vendor.required")
     private User vendor;
 
     private String careOf;
@@ -33,9 +34,11 @@ public class BusinessProposal extends Identifiable {
     private String introduction;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @Valid
     private List<ProposalProductItem> productItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @Valid
     private List<ProposalPaymentItem> paymentItems;
 
     public Person getPerson() {

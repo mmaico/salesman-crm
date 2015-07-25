@@ -1,10 +1,12 @@
 package br.com.kproj.salesman.register.view;
 
-import java.io.IOException;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletResponse;
-
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.register.application.UserService;
+import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
+import br.com.kproj.salesman.register.view.dto.UserVO;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -13,22 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.UserService;
-import br.com.kproj.salesman.register.infraestructure.validators.UserValidator;
-import br.com.kproj.salesman.register.view.dto.UserVO;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -51,7 +44,7 @@ public class UserController {
     public ModelAndView save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, @ModelAttribute("file") MultipartFile file, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         
         User user = userVO.getUser();
@@ -66,7 +59,7 @@ public class UserController {
     public ModelAndView update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         
         User user = userVO.getUser();

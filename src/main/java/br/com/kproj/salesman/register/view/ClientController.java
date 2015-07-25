@@ -1,15 +1,12 @@
 package br.com.kproj.salesman.register.view;
 
-import java.util.Optional;
-
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ClientService;
-import br.com.kproj.salesman.register.infraestructure.validators.ClientVOValidator;
+import br.com.kproj.salesman.register.infrastructure.validators.ClientVOValidator;
 import br.com.kproj.salesman.register.view.dto.ClientDTO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @RestController
 public class ClientController {
@@ -41,7 +40,7 @@ public class ClientController {
     public ModelAndView save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.doNestedReference(clientDTO.getClient());
         Person clientSaved = service.register(clientDTO.getClient());
@@ -54,7 +53,7 @@ public class ClientController {
     public ModelAndView update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
         Person clientSaved = service.register(clientDTO.getClient());

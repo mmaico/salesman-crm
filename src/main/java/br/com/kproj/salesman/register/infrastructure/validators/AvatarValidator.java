@@ -1,20 +1,18 @@
-package br.com.kproj.salesman.register.infraestructure.validators;
+package br.com.kproj.salesman.register.infrastructure.validators;
 
-import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
-
-import java.io.IOException;
-import java.util.Set;
-
-import org.springframework.beans.factory.InitializingBean;
+import com.google.common.collect.Sets;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.common.collect.Sets;
+import java.io.IOException;
+import java.util.Set;
+
+import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
 
 @Component
-public class AvatarValidator implements Validator, InitializingBean {
+public class AvatarValidator implements Validator {
 
 	private static final Integer MAX_SIZE = 1024;
 	private final Set<String> mimeTypes = Sets.newHashSet("image/png", "image/jpeg", "image/gif");
@@ -53,8 +51,4 @@ public class AvatarValidator implements Validator, InitializingBean {
     	
     }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		
-	}
 }

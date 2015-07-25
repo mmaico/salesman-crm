@@ -1,7 +1,11 @@
 package br.com.kproj.salesman.register.view;
 
-import java.util.Optional;
-
+import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.register.application.ProductService;
+import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -9,19 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.kproj.salesman.infrastructure.entity.Product;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.ProductService;
-import br.com.kproj.salesman.register.infraestructure.validators.ProductValidator;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -45,7 +40,7 @@ public class ProductController {
     public ModelAndView save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(product);
         Product productRegistered = service.register(product);
@@ -58,7 +53,7 @@ public class ProductController {
     public ModelAndView update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getFieldErrors());
+            throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(product);
         Product productRegistered = service.register(product);

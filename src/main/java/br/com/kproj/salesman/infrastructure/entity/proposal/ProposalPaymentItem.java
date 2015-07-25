@@ -15,10 +15,10 @@ public class ProposalPaymentItem extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    @NotNull
+    @NotNull(message = "proposal.payment.datedue.is.invalid")
     private Date dateDue;
 
-    @NotNull
+    @NotNull(message = "proposal.payment.value.is.invalid")
     private BigDecimal value;
 
     private String observation;
