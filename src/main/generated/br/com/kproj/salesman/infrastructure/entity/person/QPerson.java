@@ -53,7 +53,7 @@ public class QPerson extends EntityPathBase<Person> {
 
     public QPerson(Class<? extends Person> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.profile = inits.isInitialized("profile") ? new QProfile(forProperty("profile"), inits.get("profile")) : null;
+        this.profile = inits.isInitialized("profile") ? new QProfile(forProperty("profile")) : null;
     }
 
 }

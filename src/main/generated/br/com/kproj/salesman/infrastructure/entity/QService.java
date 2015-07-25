@@ -22,6 +22,9 @@ public class QService extends EntityPathBase<Service> {
     public final QProduct _super = new QProduct(this);
 
     //inherited
+    public final BooleanPath active = _super.active;
+
+    //inherited
     public final StringPath description = _super.description;
 
     //inherited
@@ -31,7 +34,10 @@ public class QService extends EntityPathBase<Service> {
     public final StringPath name = _super.name;
 
     //inherited
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = _super.temperature;
+    public final NumberPath<java.math.BigDecimal> price = _super.price;
+
+    //inherited
+    public final NumberPath<java.math.BigDecimal> priceCost = _super.priceCost;
 
     public QService(String variable) {
         super(Service.class, forVariable(variable));

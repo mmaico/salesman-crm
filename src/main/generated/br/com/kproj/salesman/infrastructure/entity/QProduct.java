@@ -12,7 +12,7 @@ import com.mysema.query.types.Path;
 /**
  * QProduct is a Querydsl query type for Product
  */
-@Generated("com.mysema.query.codegen.SupertypeSerializer")
+@Generated("com.mysema.query.codegen.EntitySerializer")
 public class QProduct extends EntityPathBase<Product> {
 
     private static final long serialVersionUID = 1797724128L;
@@ -21,6 +21,8 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
+    public final BooleanPath active = createBoolean("active");
+
     public final StringPath description = createString("description");
 
     //inherited
@@ -28,7 +30,9 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final StringPath name = createString("name");
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature.class);
+    public final NumberPath<java.math.BigDecimal> price = createNumber("price", java.math.BigDecimal.class);
+
+    public final NumberPath<java.math.BigDecimal> priceCost = createNumber("priceCost", java.math.BigDecimal.class);
 
     public QProduct(String variable) {
         super(Product.class, forVariable(variable));
