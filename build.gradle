@@ -84,6 +84,7 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.dbunit:dbunit:2.5.1")
     testCompile("com.github.springtestdbunit:spring-test-dbunit:1.2.1")
+    testCompile("org.powermock:powermock-mockito-release-full:1.6.2")
     
 
     querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion") {

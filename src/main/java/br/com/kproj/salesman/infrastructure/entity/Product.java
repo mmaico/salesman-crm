@@ -1,21 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
-
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -44,6 +35,9 @@ public class Product extends Identifiable {
     public Product(){}
     public Product(String name) {
         this.name = name;
+    }
+    public Product(Long id) {
+        this.id = id;
     }
 
     public String getName() {

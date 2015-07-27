@@ -8,8 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 @Entity
 @Table(name = "business_proposal")
@@ -40,6 +43,20 @@ public class BusinessProposal extends Identifiable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
     @Valid
     private List<ProposalPaymentItem> paymentItems;
+
+    public BigDecimal getTotal() {
+
+        if (isEmptySafe(this.getProductItems())) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal total = this.getProductItems()
+                .stream()
+                .map(e -> e.getPrice().multiply(new BigDecimal(e.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return total;
+    }
 
     public Person getPerson() {
         return person;

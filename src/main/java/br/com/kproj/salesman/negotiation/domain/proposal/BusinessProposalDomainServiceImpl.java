@@ -1,12 +1,12 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.service.impl;
+package br.com.kproj.salesman.negotiation.domain.proposal;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
-import br.com.kproj.salesman.negotiation.domain.proposal.service.BusinessProposalDomainService;
+import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
+import br.com.kproj.salesman.negotiation.domain.proposal.product.ProductItemPersistBusinessRules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,26 +27,29 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<BusinessProposal>> rules = new HashMap<>();
+    @Autowired
+    private ProductItemPersistBusinessRules productIService;
 
+    @Autowired
+    private PaymentItemPersistBusinessRules paymentService;
+
+    Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
     {
-        rules.put(description("proposal.verify.valid.client"), (BusinessProposal bp) -> !bp.getPerson().isNew()
-                                                            && clientReposiory.exists(bp.getPerson().getId()));
-        rules.put(description("proposal.verify.valid.vendor"), (BusinessProposal bp) -> !bp.getVendor().isNew()
-                                                            && userRepository.exists(bp.getVendor().getId()));
+        persistRules.put(description("proposal.verify.valid.client"), (bp) -> !(bp).getPerson().isNew() && clientReposiory.exists((bp).getPerson().getId()));
+        persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(bp).getVendor().isNew() && userRepository.exists((bp).getVendor().getId()));
+        persistRules.put(description("proposal.verify.valid.product.items"), (bp) -> productIService.verifyRules(bp));
+        persistRules.put(description("proposal.verify.valid.payment.items"), (bp) -> paymentService.verifyRules(bp));
     }
 
 
     @Override
     public void checkBusinessRulesFor(BusinessProposal businessProposal) {
 
-        Set<String> violations = rules.entrySet()
+        Set<String> violations = persistRules.entrySet()
                 .stream()
                 .filter(e -> e.getValue().check(businessProposal))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
-
-
     }
 }

@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.service;
+package br.com.kproj.salesman.negotiation.domain.proposal;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 
