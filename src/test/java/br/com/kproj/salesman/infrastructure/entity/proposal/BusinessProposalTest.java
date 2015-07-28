@@ -30,6 +30,18 @@ public class BusinessProposalTest {
         assertThat(total, is(new BigDecimal(25)));
     }
 
+    @Test
+    public void shouldReturnTotalToPay() {
+
+        List<ProposalPaymentItem> paymentItems = getPaymentItems();
+        businessProposal.setPaymentItems(paymentItems);
+
+        BigDecimal total = businessProposal.getTotalToPay();
+
+        assertThat(total, is(new BigDecimal(11)));
+    }
+
+    
     private List<ProposalProductItem> getProductItems() {
         ProposalProductItem itemOne = new ProposalProductItem();
         itemOne.setPrice(BigDecimal.TEN);
@@ -38,6 +50,16 @@ public class BusinessProposalTest {
         itemTwo.setPrice(BigDecimal.ONE);
         itemTwo.setQuantity(5);
 
+        return Lists.newArrayList(itemOne, itemTwo);
+    }
+    
+    private List<ProposalPaymentItem> getPaymentItems() {
+    	ProposalPaymentItem itemOne = new ProposalPaymentItem();
+        itemOne.setValue(BigDecimal.TEN);
+        
+        ProposalPaymentItem itemTwo = new ProposalPaymentItem();
+        itemTwo.setValue(BigDecimal.ONE);
+        
         return Lists.newArrayList(itemOne, itemTwo);
     }
 

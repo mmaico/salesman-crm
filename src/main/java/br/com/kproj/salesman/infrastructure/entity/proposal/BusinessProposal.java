@@ -18,7 +18,12 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 @Table(name = "business_proposal")
 public class BusinessProposal extends Identifiable {
 
-    @ManyToOne
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3466031805155434986L;
+
+	@ManyToOne
     @JoinColumn(name="person_id")
     @NotNull(message = "business.proposal.person.required")
     private Person person;
@@ -57,6 +62,22 @@ public class BusinessProposal extends Identifiable {
 
         return total;
     }
+
+    public BigDecimal getTotalToPay() {
+
+        if (isEmptySafe(this.getPaymentItems())) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal totaToPay = this.getPaymentItems()
+                .stream()
+                .map(e -> e.getValue())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return totaToPay;
+    }
+
+    
 
     public Person getPerson() {
         return person;

@@ -1,37 +1,60 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.payment.impl;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
-import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
-import org.springframework.stereotype.Service;
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
+import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isEquals;
+import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNumberEqualsZero;
+import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNumberGreaterThanZero;
+import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import org.springframework.stereotype.Service;
+
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
 
 @Service
 public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBusinessRules {
 
     private Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
     {
-        persistRules.put(description("proposal.verify.payment.is.free"),
-                (bp) -> isEmptySafe(bp.getPaymentItems()) || BigDecimal.ZERO.compareTo(bp.getTotal()) > 0);
-
+        persistRules.put(description("proposal.verify.payment.invalid.total"),
+                (bp) -> !isEmptySafe(bp.getPaymentItems()) && isNumberEqualsZero(bp.getTotal()));
+        
+        persistRules.put(description("proposal.verify.payment.invalid.payment"),
+                (bp) -> isEmptySafe(bp.getPaymentItems()) && isNumberGreaterThanZero(bp.getTotal()));
+        
+        persistRules.put(description("proposal.verify.total.payment.is.diferent.from.total.products"),
+                (bp) -> !isEquals(bp.getTotal(), bp.getTotalToPay()));
+        
+        persistRules.put(description("proposal.verify.payment.has.item.with.value.zero"),
+                (bp) -> bp.getPaymentItems() != null && !bp.getPaymentItems().stream()
+    			.filter(e -> isNumberEqualsZero(e.getValue())).collect(Collectors.toList()).isEmpty());
     }
 
+    /**
+     *  1 - Se payment nao for vazio e o total for igual a zero (erro) OK
+     *  2 - Se o total for diferente de zero e payment for vazio (erro) OK
+     *  3 - Se o total de payment for diferente do total da dos produtos(erro)
+     *  4 - Se existir payment item com valor zerado (erro)
+     */
     public Boolean verifyRules(BusinessProposal businessProposal) {
 
-        /**
-         *  1 - Se payment nao for vazio e o total for igual a zero (erro)
-         *  2 - Se to total for igual a zero e payment nao for vazio (erro)
-         *  3 - Se o total de payment for diferente do total da dos produtos(erro)
-         *  4 - Se existir payment item com valor zerado (erro)
-         */
+    	
+    	Set<String> violations = persistRules.entrySet()
+                .stream()
+                .filter(e -> e.getValue().check(businessProposal))
+                .map(Map.Entry::getKey).collect(Collectors.toSet());
+    	
+        hasErrors(violations).throwing(ValidationException.class);        
 
-        return Boolean.FALSE;
+        return violations.isEmpty();
     }
 }

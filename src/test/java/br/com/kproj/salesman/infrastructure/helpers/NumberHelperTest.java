@@ -13,7 +13,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class NumberHelperTest {
 
 
-
     @Test
     public void shouldReturnTrueWhenValueGreaterOrEqualsZero() {
         BigDecimal value = BigDecimal.ZERO;
@@ -30,6 +29,24 @@ public class NumberHelperTest {
         Boolean notNegativeNumber = NumberHelper.isNotNegativeNumber(value);
 
         assertThat(notNegativeNumber, Matchers.is(Boolean.FALSE));
+    }
+    
+    @Test
+    public void shouldReturnTrueWhenValueIsGreaterThanZero() {
+        BigDecimal value = BigDecimal.TEN;
+
+        Boolean numberGreaterZero = NumberHelper.isNumberGreaterThanZero(value);
+
+        assertThat(numberGreaterZero, Matchers.is(Boolean.TRUE));
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenValueIsZero() {
+        BigDecimal value = BigDecimal.ZERO;
+
+        Boolean numberGreaterZero = NumberHelper.isNumberGreaterThanZero(value);
+
+        assertThat(numberGreaterZero, Matchers.is(Boolean.FALSE));
     }
 
 
