@@ -37,6 +37,7 @@ public class ProposalProductItem extends Identifiable {
     private Integer quantity = 0;
 
     @ManyToOne
+    @JoinColumn(name="business_proposal_id")
     private BusinessProposal businessProposal;
 
     public Product getProduct() {

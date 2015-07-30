@@ -19,6 +19,7 @@ public class ProposalPaymentItem extends Identifiable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "proposal.payment.datedue.is.invalid")
+    @Column(name="date_due")
     private Date dateDue;
 
     @NotNull(message = "proposal.payment.value.is.invalid")
@@ -27,6 +28,7 @@ public class ProposalPaymentItem extends Identifiable {
     private String observation;
 
     @ManyToOne
+    @JoinColumn(name="business_proposal_id")
     private BusinessProposal businessProposal;
 
     public Date getDateDue() {

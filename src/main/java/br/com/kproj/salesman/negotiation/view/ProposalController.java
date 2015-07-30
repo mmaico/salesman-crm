@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class NegotiationController {
+public class ProposalController {
 
     @Autowired
     private NegotiationService service;

@@ -19,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
- * Test to {@link br.com.kproj.salesman.negotiation.view.NegotiationController}
+ * Test to {@link br.com.kproj.salesman.negotiation.view.ProposalController}
  */
-public class NegotiationControllerTest extends AbstractIntegrationTest {
+public class ProposalControllerTest extends AbstractIntegrationTest {
 
     private MockMvc mockMvc;
 

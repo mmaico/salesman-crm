@@ -4,11 +4,28 @@
     <profile id="2" name="Cliente Pessoa fisica"/>
     <profile id="3" name="Fornecedor Pessoa Jurifica"/>
     <profile id="4" name="Fornecedor Pessoa fisica"/>
-    
+
+
     <user_profile id="1" name="admin"/>
     <user_profile id="2" name="Financeiro"/>
     <user_profile id="3" name="Diretor"/>
-    
+    <user_profile id="4" name="Vendedor"/>
+
+    <user id="1" login="mmaico" password="1234" name="Maico" profile_id="4"/>
+
     <product id="1" name="product 1" active="true"/>
     <product id="2" name="product 2" active="true"/>
+
+
+    <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
+
+    <business_proposal id="1" person_id="1" user_id="1"/>
+
+    <proposal_product_item id="1" product_id="2" price="400.00" quantity="3" business_proposal_id="1"/>
+    <proposal_product_item id="2" product_id="1" price="100.00" quantity="2" business_proposal_id="1"/>
+
+    <proposal_payment_item id="1" date_due="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
+    <proposal_payment_item id="2" date_due="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
+
+
 </dataset>
