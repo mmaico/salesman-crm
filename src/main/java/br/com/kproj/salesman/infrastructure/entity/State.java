@@ -3,7 +3,9 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 public class State extends Identifiable {
 
-    private String name;
+	private static final long serialVersionUID = -4669203195062744653L;
+	
+	private String name;
 
     public State() {
         super();

@@ -8,4 +8,7 @@
     <user_profile id="1" name="admin"/>
     <user_profile id="2" name="Financeiro"/>
     <user_profile id="3" name="Diretor"/>
+    
+    <product id="1" name="product 1" active="true"/>
+    <product id="2" name="product 2" active="true"/>
 </dataset>

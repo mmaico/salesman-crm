@@ -37,8 +37,8 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     {
         persistRules.put(description("proposal.verify.valid.client"), (bp) -> !(bp).getPerson().isNew() && clientReposiory.exists((bp).getPerson().getId()));
         persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(bp).getVendor().isNew() && userRepository.exists((bp).getVendor().getId()));
-        persistRules.put(description("proposal.verify.valid.product.items"), (bp) -> productIService.verifyRules(bp));
-        persistRules.put(description("proposal.verify.valid.payment.items"), (bp) -> paymentService.verifyRules(bp));
+        persistRules.put(description("proposal.verify.valid.product.items"), (bp) -> !productIService.verifyRules(bp));
+        persistRules.put(description("proposal.verify.valid.payment.items"), (bp) -> !paymentService.verifyRules(bp));
     }
 
 

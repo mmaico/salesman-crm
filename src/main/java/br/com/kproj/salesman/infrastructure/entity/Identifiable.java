@@ -10,7 +10,9 @@ import java.util.Set;
 @MappedSuperclass
 public class Identifiable implements Persistable<Long> {
 
-    @Id
+	private static final long serialVersionUID = 8213025865912695435L;
+
+	@Id
     @GeneratedValue
     @Column(name="id")
     protected Long id;

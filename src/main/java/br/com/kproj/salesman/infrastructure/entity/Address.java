@@ -5,18 +5,13 @@ import javax.persistence.Entity;
 @Entity
 public class Address extends Identifiable {
 
-    private final String code;
-    private final String street;
-    private final String complement;
-    private final String number;
+	private static final long serialVersionUID = 2011235325379126884L;
+	private String code;
+    private String street;
+    private String complement;
+    private String number;
 
-    public Address() {
-        super();
-        code = null;
-        street = null;
-        complement = null;
-        number = null;
-    }
+    public Address() {}
 
     public Address(Long id) {
         super(id);

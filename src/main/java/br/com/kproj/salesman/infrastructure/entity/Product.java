@@ -9,8 +9,9 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+@Table(name="product")
 public class Product extends Identifiable {
 
 	/**

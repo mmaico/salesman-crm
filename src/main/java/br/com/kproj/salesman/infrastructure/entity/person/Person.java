@@ -16,7 +16,9 @@ import java.util.List;
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
 public class Person extends Identifiable {
 
-    @NotNull
+	private static final long serialVersionUID = -6416371282639932944L;
+
+	@NotNull
     @Size(min = 2, max = 30, message = "name")
     private String name;
 

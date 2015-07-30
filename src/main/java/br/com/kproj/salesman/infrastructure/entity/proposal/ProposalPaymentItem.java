@@ -2,13 +2,16 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="proposal_payment_item")
 public class ProposalPaymentItem extends Identifiable {

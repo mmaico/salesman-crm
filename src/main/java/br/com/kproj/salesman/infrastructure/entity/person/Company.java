@@ -8,7 +8,9 @@ import javax.validation.constraints.Size;
 @DiscriminatorValue("company")
 public class Company extends Person {
 
-    @Size(max = 30, message = "company.invalid.trandingname")
+	private static final long serialVersionUID = 4479758448493548647L;
+
+	@Size(max = 30, message = "company.invalid.trandingname")
     private String tradingName;
 
     @Size(max = 15, message = "company.invalid.cnpj")

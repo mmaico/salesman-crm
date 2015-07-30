@@ -12,31 +12,33 @@ import java.util.Collection;
 @Entity
 public class Vendor extends Identifiable implements Accessor {
 
-    @NotNull
+	private static final long serialVersionUID = -3180042500512825616L;
+	
+	@NotNull
     private  String name;
     @OneToOne
     private  User user;
     @OneToMany
     private Collection<Person> clients = Lists.newArrayList();
-    @OneToMany
-    private Collection<Service> saleableProjects = Lists.newArrayList();
+//    @OneToMany
+//    private Collection<Service> saleableProjects = Lists.newArrayList();
 
 
     public Iterable<Person> getClients() {
         return clients;
     }
 
-    public Iterable<Service> getSaleableProjects() {
-        return saleableProjects;
-    }
+//    public Iterable<Service> getSaleableProjects() {
+//        return saleableProjects;
+//    }
 
     public void addClient(Person client) {
         clients.add(client);
     }
 
-    public void addSaleableProject(Service project) {
-        saleableProjects.add(project);
-    }
+//    public void addSaleableProject(Service project) {
+//        saleableProjects.add(project);
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -50,9 +52,9 @@ public class Vendor extends Identifiable implements Accessor {
         this.clients = clients;
     }
 
-    public void setSaleableProjects(Collection<Service> saleableProjects) {
-        this.saleableProjects = saleableProjects;
-    }
+//    public void setSaleableProjects(Collection<Service> saleableProjects) {
+//        this.saleableProjects = saleableProjects;
+//    }
 
     public String getName() {
         return name;

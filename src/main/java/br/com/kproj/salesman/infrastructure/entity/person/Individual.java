@@ -8,8 +8,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("individual")
 public class Individual extends Person {
 
-
-    private String cpf;
+	private static final long serialVersionUID = -1209371318871861717L;
+	
+	private String cpf;
 
     public String getCpf() {
         return cpf;

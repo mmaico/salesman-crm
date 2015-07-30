@@ -5,6 +5,6 @@ import br.com.kproj.salesman.infrastructure.service.ModelService;
 
 public interface NegotiationService  extends ModelService<BusinessProposal> {
 
-    public BusinessProposal register(BusinessProposal businessProposal);
+    BusinessProposal register(BusinessProposal businessProposal);
 
 }

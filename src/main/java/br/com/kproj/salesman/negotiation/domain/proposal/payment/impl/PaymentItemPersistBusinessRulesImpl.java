@@ -38,13 +38,7 @@ public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBu
                 (bp) -> bp.getPaymentItems() != null && !bp.getPaymentItems().stream()
     			.filter(e -> isNumberEqualsZero(e.getValue())).collect(Collectors.toList()).isEmpty());
     }
-
-    /**
-     *  1 - Se payment nao for vazio e o total for igual a zero (erro) OK
-     *  2 - Se o total for diferente de zero e payment for vazio (erro) OK
-     *  3 - Se o total de payment for diferente do total da dos produtos(erro)
-     *  4 - Se existir payment item com valor zerado (erro)
-     */
+    
     public Boolean verifyRules(BusinessProposal businessProposal) {
 
     	

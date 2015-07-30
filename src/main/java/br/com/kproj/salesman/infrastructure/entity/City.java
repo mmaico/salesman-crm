@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 @Entity
 public class City extends Identifiable {
 
-    private final String name;
+	private static final long serialVersionUID = 7816210670472377067L;
+	
+	private final String name;
 
     public City(String name) {
         super();

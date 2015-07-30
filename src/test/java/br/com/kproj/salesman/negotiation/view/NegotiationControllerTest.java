@@ -50,7 +50,7 @@ public class NegotiationControllerTest extends AbstractIntegrationTest {
                         .param("productItems[1].price", "300.0")
                         .param("productItems[1].quantity", "1")
                         .param("paymentItems[0].dateDue", "10/02/2017")
-                        .param("paymentItems[0].value", "50.0")
+                        .param("paymentItems[0].value", "900.00")
         ).andExpect(status().isOk())
                 .andExpect(view().name("negotiation"));
     }

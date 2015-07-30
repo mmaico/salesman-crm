@@ -10,13 +10,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 @Entity
 @Table(name="proposal_product_item")
 public class ProposalProductItem extends Identifiable {
 
-    @ManyToOne
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3881704814612452364L;
+
+	@ManyToOne
     @JoinColumn(name="product_id")
     @NotNull(message = "proposal.product.is.invalid")
     private Product product;

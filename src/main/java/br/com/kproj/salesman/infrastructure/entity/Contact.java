@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 @Entity
 public class Contact extends Identifiable {
 
-    @NotNull @Size(min = 2, max = 30)
+	private static final long serialVersionUID = -7486201820229036695L;
+
+	@NotNull @Size(min = 2, max = 30)
     private String name;
 
     @Email
