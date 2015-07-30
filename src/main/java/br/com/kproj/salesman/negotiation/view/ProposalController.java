@@ -30,7 +30,7 @@ public class ProposalController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/negotiations/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute @Validated BusinessProposal businessProposal,
                              BindingResult bindingResult, Model model) {
 
@@ -40,8 +40,22 @@ public class ProposalController {
         normalizeEntityRequest.doNestedReference(businessProposal);
         BusinessProposal newBusinessProposal = service.register(businessProposal);
 
-        model.addAttribute("negotiation", newBusinessProposal);
-        return new ModelAndView("negotiation");
+        model.addAttribute("proposal", newBusinessProposal);
+        return new ModelAndView("proposal");
+    }
+
+    @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
+    public ModelAndView update(@ModelAttribute @Validated BusinessProposal businessProposal,
+                             BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult.getAllErrors());
+        }
+        normalizeEntityRequest.addFieldsToUpdate(businessProposal);
+        BusinessProposal newBusinessProposal = service.register(businessProposal);
+
+        model.addAttribute("proposal", newBusinessProposal);
+        return new ModelAndView("proposal");
     }
 
 
