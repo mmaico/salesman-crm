@@ -1,16 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="contact")
 public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
