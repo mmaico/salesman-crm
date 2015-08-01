@@ -1,24 +1,20 @@
 package br.com.kproj.salesman.negotiation.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import org.dbunit.DatabaseUnitException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -26,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test to {@link br.com.kproj.salesman.negotiation.view.ProposalController}
  */
+@Component
 public class ProposalControllerTest extends AbstractIntegrationTest {
 
     private MockMvc mockMvc;
@@ -48,7 +45,7 @@ public class ProposalControllerTest extends AbstractIntegrationTest {
 
         mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("person.id", "1")
-                        .param("vendor.id", "2")
+                        .param("vendor.id", "1")
                         .param("careOf", "Jose Luiz")
                         .param("deliveryForeCast", "10/02/2018")
                         .param("productItems[0].product.id", "1")
@@ -86,7 +83,7 @@ public class ProposalControllerTest extends AbstractIntegrationTest {
     public void shouldReturnErrorWhenProductItemNotHaveDateDue() throws Exception {
 
         mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("vendor.id", "2")
+                        .param("vendor.id", "1")
                         .param("person.id", "1")
                         .param("careOf", "Jose Luiz")
                         .param("deliveryForeCast", "10/02/2018")
@@ -101,9 +98,8 @@ public class ProposalControllerTest extends AbstractIntegrationTest {
                 .andExpect(model().attributeExists("errors"));
     }
 
-    @Transactional
     @Test
-    public void shouldUpdateProductPrice() throws Exception {
+    public void shouldReturnErrorWhenAddPaymentWithDiferentValuesBetweenPaymentsAndProducts() throws Exception {
 
         mockMvc.perform(put("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", "1")
@@ -122,13 +118,9 @@ public class ProposalControllerTest extends AbstractIntegrationTest {
                         .param("paymentItems[0].id", "1")
                         .param("paymentItems[0].dateDue", "10/02/2017")
                         .param("paymentItems[0].value", "700.00")
-        ).andExpect(status().isOk())
-                .andExpect(view().name("proposal"));
+        ).andExpect(status().isBadRequest())
+                .andExpect(model().attributeExists("errors"));
 
-        BusinessProposal result = repository.findOne(1l);
-
-        assertThat(result.getProductItems().get(0).getPrice(), is(new BigDecimal("200.00")));
-        assertThat(result.getPaymentItems().get(0).getValue(), is(new BigDecimal("800.00")));
     }
 
 
