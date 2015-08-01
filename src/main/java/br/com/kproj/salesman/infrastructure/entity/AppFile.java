@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import br.com.kproj.salesman.infrastructure.helpers.files.MimetypeUtils;
+
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -20,9 +20,11 @@ public class AppFile extends Identifiable {
 	
 	@Column(name="mime_type")
 	private String mimeType;
-	
-	@Column(name="size")
+
 	private Long size;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creation;
 	
 	@Transient
 	private byte[] file;
@@ -49,21 +51,18 @@ public class AppFile extends Identifiable {
 		this.mimeType = mimeType;
 	}
 
-	public String getExtension() {
-		
-		if (originalName == null || originalName.isEmpty())
-			return "notDefined";
-		
-		String[] split = originalName.split("\\.");
-		
-		if (split.length  < 2) {
-			return "notDefined";
-		}
-		
-		return split[split.length -1];
-	}
+    public Date getCreation() {
+        return creation;
+    }
 
-	
+    public void setCreation(Date creation) {
+        this.creation = creation;
+    }
+
+    public String getExtension() {
+        return MimetypeUtils.findExtension(this.mimeType);
+    }
+
 	public byte[] getFile() {
 		return file;
 	}
