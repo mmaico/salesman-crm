@@ -1,7 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline;
 
-/**
- * Created by marcelomaicodejesus on 8/1/15.
- */
-public class Timeline {
+
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="timeline")
+public class Timeline extends Identifiable {
+
 }

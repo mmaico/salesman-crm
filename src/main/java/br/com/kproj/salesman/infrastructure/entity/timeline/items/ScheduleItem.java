@@ -12,8 +12,10 @@ import java.util.Date;
 public class ScheduleItem extends TimelineItem {
 
     private String title;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 

@@ -3,6 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
+import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Media(name="timelines")
 @Table(name="timeline_item")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
@@ -25,6 +28,7 @@ public class TimelineItem extends Identifiable {
     @JoinTable(name="timeline_item_files", joinColumns=@JoinColumn(name="timeline_item_id"),
             inverseJoinColumns=@JoinColumn(name="appfile_id"))
     @OrderBy("creation ASC")
+    @MediaStorage(name="files")
     private List<AppFile> files;
 
     public String getDescription() {
