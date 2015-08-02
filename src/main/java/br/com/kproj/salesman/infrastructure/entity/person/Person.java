@@ -42,6 +42,11 @@ public class Person extends Identifiable {
         this.name = name;
     }
 
+    public Person(Long id) {
+        super();
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

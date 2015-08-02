@@ -15,7 +15,7 @@ import java.util.List;
 @Media(name="timelines")
 @Table(name="timeline_item")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name="type_item", discriminatorType=DiscriminatorType.STRING)
 public class TimelineItem extends Identifiable {
 
     private String description;

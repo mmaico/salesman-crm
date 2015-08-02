@@ -26,6 +26,10 @@ public class Contact extends Identifiable {
     private String phone;
 
     public Contact() {}
+
+    public Contact(Long id) {
+        this.id = id;
+    }
     public Contact(String name, String email, String phone) {
         super();
         this.name = name;

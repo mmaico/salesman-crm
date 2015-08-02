@@ -2,8 +2,10 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "country")
 public class Country extends Identifiable {
 
 	private static final long serialVersionUID = -4605033776183043079L;

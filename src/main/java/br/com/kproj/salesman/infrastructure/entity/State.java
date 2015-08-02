@@ -1,6 +1,11 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "state")
 public class State extends Identifiable {
 
 	private static final long serialVersionUID = -4669203195062744653L;

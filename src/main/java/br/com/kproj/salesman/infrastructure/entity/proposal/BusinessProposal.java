@@ -49,6 +49,10 @@ public class BusinessProposal extends Identifiable {
     @Valid
     private List<ProposalPaymentItem> paymentItems;
 
+    public BusinessProposal(){}
+    public BusinessProposal(Long id) {
+        this.id = id;
+    }
     public BigDecimal getTotal() {
 
         if (isEmptySafe(this.getProductItems())) {
