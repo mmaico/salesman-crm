@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
+import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
@@ -24,6 +25,9 @@ public class Person extends Identifiable {
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "person")
     protected List<Contact> contacts;
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "addresses")
+    protected List<Address> addresses;
 
     @NotNull
     private Boolean active = Boolean.TRUE;
@@ -77,6 +81,14 @@ public class Person extends Identifiable {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override

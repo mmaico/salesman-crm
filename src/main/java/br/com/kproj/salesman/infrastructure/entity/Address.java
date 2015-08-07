@@ -8,45 +8,25 @@ import javax.persistence.Table;
 public class Address extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;
-	private String code;
+	private String postalCode;
     private String street;
     private String complement;
     private String number;
+    private String district;
 
     public Address() {}
 
     public Address(Long id) {
         super(id);
-        code = null;
+        postalCode = null;
         street = null;
         complement = null;
         number = null;
     }
 
-    public Address(String code) {
-        super();
-        this.code = code;
-        street = null;
-        complement = null;
-        number = null;
-    }
 
-    public Address(String code, String street, String number) {
-        this.code = code;
-        this.street = street;
-        this.number = number;
-        complement = null;
-    }
-
-    public Address(String code, String street, String number, String complement) {
-        this.code = code;
-        this.street = street;
-        this.number = number;
-        this.complement = complement;
-    }
-
-    public String getCode() {
-        return code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
     public String getStreet() {
@@ -61,11 +41,35 @@ public class Address extends Identifiable {
         return number;
     }
 
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Address{");
         sb.append("number='").append(number).append('\'');
-        sb.append(", code='").append(code).append('\'');
+        sb.append(", code='").append(postalCode).append('\'');
         sb.append(", street='").append(street).append('\'');
         sb.append(", complement='").append(complement).append('\'');
         sb.append('}');

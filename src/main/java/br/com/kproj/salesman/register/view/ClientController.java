@@ -72,10 +72,10 @@ public class ClientController {
         return new ModelAndView("/clients/list");
     }
 
-    @RequestMapping(value="/clients/new")
+    @RequestMapping(value="/clients/create")
     public ModelAndView newClient() {
 
-        return new ModelAndView("/clients/edit");
+        return new ModelAndView("/clients/newClient");
     }
     
     @RequestMapping(value="/clients/{clientId}")

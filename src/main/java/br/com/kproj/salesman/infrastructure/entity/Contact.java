@@ -25,6 +25,8 @@ public class Contact extends Identifiable {
 
     private String phone;
 
+    private String position;
+
     public Contact() {}
 
     public Contact(Long id) {
@@ -71,5 +73,13 @@ public class Contact extends Identifiable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
