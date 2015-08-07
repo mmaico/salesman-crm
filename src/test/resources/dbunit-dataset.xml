@@ -21,6 +21,7 @@
     <persons id="2" name="Pedro Terra Nova" active="true" profile_id="1" type="company"/>
 
     <contact id="1" name="Jose luiz" email="jose@jose.com" phone="89838839"/>
+    <contact id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387"/>
 
     <business_proposal id="1" person_id="1" user_id="1"/>
 

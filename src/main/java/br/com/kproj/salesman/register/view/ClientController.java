@@ -69,7 +69,13 @@ public class ClientController {
         Iterable<Person> result = this.service.findAll(pager);
 
         model.addAttribute("clients", result);
-        return new ModelAndView("client");
+        return new ModelAndView("/clients/list");
+    }
+
+    @RequestMapping(value="/clients/new")
+    public ModelAndView newClient() {
+
+        return new ModelAndView("/clients/edit");
     }
     
     @RequestMapping(value="/clients/{clientId}")
@@ -77,7 +83,7 @@ public class ClientController {
         
         Optional<Person> result = this.service.getOne(clientId);
 
-        model.addAttribute("client", result.get());
+        model.addAttribute("client", result.isPresent() ? result.get(): null);
         return new ModelAndView("client");
     }
 }
