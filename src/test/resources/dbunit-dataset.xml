@@ -5,13 +5,7 @@
     <profile id="3" name="Fornecedor Pessoa Jurifica"/>
     <profile id="4" name="Fornecedor Pessoa fisica"/>
 
-
-    <user_profile id="1" name="admin"/>
-    <user_profile id="2" name="Financeiro"/>
-    <user_profile id="3" name="Diretor"/>
-    <user_profile id="4" name="Vendedor"/>
-
-    <user id="1" login="mmaico" password="1234" name="Maico" profile_id="4"/>
+    <user id="1" login="mmaico" password="1234" name="Maico"/>
 
     <product id="1" name="product 1" active="true"/>
     <product id="2" name="product 2" active="true"/>

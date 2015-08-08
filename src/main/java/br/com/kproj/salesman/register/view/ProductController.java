@@ -6,6 +6,8 @@ import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ProductService;
 import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
+
 
 @RestController
 public class ProductController {

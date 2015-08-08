@@ -35,7 +35,7 @@ public class Person extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="profile_id")
     @NotNull
-    private Profile profile;
+    private PersonProfile profile;
 
     public Person() {
         super();
@@ -75,11 +75,11 @@ public class Person extends Identifiable {
         this.active = active;
     }
 
-    public Profile getProfile() {
+    public PersonProfile getProfile() {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
+    public void setProfile(PersonProfile profile) {
         this.profile = profile;
     }
 

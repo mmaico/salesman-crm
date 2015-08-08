@@ -32,11 +32,6 @@ public class User extends Identifiable {
 
     private String lastname;
     
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="profile_id")
-    @NotNull
-    private UserProfile profile;
-    
     @Basic(fetch = FetchType.LAZY)
 	@Column(name = "avatar", length = 200000)
 	@Lob
@@ -98,14 +93,6 @@ public class User extends Identifiable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    
-    public UserProfile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(UserProfile profile) {
-		this.profile = profile;
-	}
 	
 	public byte[] getAvatar() {
 		return avatar;

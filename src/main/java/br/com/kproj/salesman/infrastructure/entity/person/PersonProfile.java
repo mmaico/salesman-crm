@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 @Entity
-public class Profile extends Identifiable {
+public class PersonProfile extends Identifiable {
 
     /**
 	 * 
@@ -15,9 +15,13 @@ public class Profile extends Identifiable {
 	
 	private String name;
 
-    public Profile() {}
-	public Profile(Long id) {
+    public PersonProfile() {}
+	public PersonProfile(Long id) {
 		this.setId(id);
+	}
+	public PersonProfile(Long id, String name) {
+		this.setId(id);
+		this.name = name;
 	}
 	
     public String getName() {

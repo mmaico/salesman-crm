@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.repository.predicates;
 
 import java.util.Collection;
 
-import br.com.kproj.salesman.infrastructure.entity.person.Profile;
+import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import br.com.kproj.salesman.infrastructure.entity.person.QPerson;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
@@ -18,8 +18,8 @@ public class PersonPredicate {
 		
 		BooleanExpression expression = qPerson.id.isNotNull();
 		
-		Filter<Profile> profileFilter = filter.findFilter("profile");
-		Filter<Collection<Profile>> profilesFilter = filter.findFilter("profiles");
+		Filter<PersonProfile> profileFilter = filter.findFilter("profile");
+		Filter<Collection<PersonProfile>> profilesFilter = filter.findFilter("profiles");
 		Filter<Boolean> statusFilter = filter.findFilter("status");
 		
 		if (!profileFilter.isNullObject()) {

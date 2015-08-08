@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
 @Table(name="product")
 public class Product extends Identifiable {
 
@@ -27,10 +25,11 @@ public class Product extends Identifiable {
     @NotNull
     private Boolean active = Boolean.FALSE;
 
+    @NotNull
     @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
     private BigDecimal price;
 
-    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#,###.##")
+    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
     private BigDecimal priceCost;
 
     public Product(){}

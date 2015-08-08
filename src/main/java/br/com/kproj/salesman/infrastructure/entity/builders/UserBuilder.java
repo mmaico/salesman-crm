@@ -24,6 +24,21 @@ public class UserBuilder extends AbstractBuilder<User>  {
 		return this;
 	}
 	
+	public UserBuilder withName(String name) {
+		this.entity.setName(name);
+		return this;
+	}
+	
+	public UserBuilder withLastname(String lastname) {
+		this.entity.setLastname(lastname);
+		return this;
+	}
+	
+	public UserBuilder withAvatar(byte[] avatar) {
+		this.entity.setAvatar(avatar);
+		return this;
+	}
+	
 	public static UserBuilder createUser(Long id) {
 		return new UserBuilder(id);
 	}

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.Application;
-import br.com.kproj.salesman.infrastructure.entity.person.Profile;
+import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class PersonRepositoryTest {
 
     @Test
     public void shouldSaveProfile() {
-        Profile profile = new Profile();
+        PersonProfile profile = new PersonProfile();
         profile.setName("Cliente Pessoa Fisica");
         profile.setId(1l);
 
-        Profile result = repository.save(profile);
+        PersonProfile result = repository.save(profile);
 
         assertThat(result.getId(), is(1l));
     }
