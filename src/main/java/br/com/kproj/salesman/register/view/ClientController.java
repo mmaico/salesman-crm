@@ -10,6 +10,8 @@ import br.com.kproj.salesman.register.view.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +39,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -46,11 +48,12 @@ public class ClientController {
         Person clientSaved = service.register(clientDTO.getClient());
 
         model.addAttribute("client", clientSaved);
-        return new ModelAndView("client");
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -59,7 +62,8 @@ public class ClientController {
         Person clientSaved = service.register(clientDTO.getClient());
 
         model.addAttribute("client", clientSaved);
-        return new ModelAndView("client");
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value="/clients/list")
@@ -79,11 +83,11 @@ public class ClientController {
     }
     
     @RequestMapping(value="/clients/{clientId}")
-    public ModelAndView viewInfo(Long clientId, Model model) {
+    public ModelAndView viewInfo(@PathVariable Long clientId, Model model) {
         
         Optional<Person> result = this.service.getOne(clientId);
 
         model.addAttribute("client", result.isPresent() ? result.get(): null);
-        return new ModelAndView("client");
+        return new ModelAndView("/clients/edit");
     }
 }

@@ -23,10 +23,10 @@ public class Person extends Identifiable {
     @Size(min = 2, max = 30, message = "name")
     private String name;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy = "person")
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
     protected List<Contact> contacts;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy = "addresses")
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
     protected List<Address> addresses;
 
     @NotNull

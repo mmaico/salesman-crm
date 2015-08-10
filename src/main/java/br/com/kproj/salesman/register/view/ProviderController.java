@@ -10,6 +10,8 @@ import br.com.kproj.salesman.register.view.dto.ProviderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +39,7 @@ public class ProviderController {
     }
 
     @RequestMapping(value = "/providers/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -46,11 +48,11 @@ public class ProviderController {
         Person clientSaved = service.register(providerDTO.getProvider());
 
         model.addAttribute("provider", clientSaved);
-        return new ModelAndView("provider");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/providers/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -59,7 +61,7 @@ public class ProviderController {
         Person clientSaved = service.register(providerDTO.getProvider());
 
         model.addAttribute("provider", clientSaved);
-        return new ModelAndView("provider");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value="/providers/list")
@@ -69,7 +71,13 @@ public class ProviderController {
         Iterable<Person> result = this.service.findAll(pager);
 
         model.addAttribute("providers", result);
-        return new ModelAndView("provider");
+        return new ModelAndView("/providers/list");
+    }
+
+    @RequestMapping(value="/providers/create")
+    public ModelAndView newProvider() {
+
+        return new ModelAndView("/providers/newProvider");
     }
     
     @RequestMapping(value="/providers/{providerId}")
@@ -77,7 +85,7 @@ public class ProviderController {
         
         Optional<Person> result = this.service.getOne(providerId);
 
-        model.addAttribute("provider", result.get());
-        return new ModelAndView("provider");
+        model.addAttribute("provider", result.isPresent() ? result.get(): null);
+        return new ModelAndView("/providers/edit");
     }
 }

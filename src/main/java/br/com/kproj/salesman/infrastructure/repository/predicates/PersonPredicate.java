@@ -1,15 +1,14 @@
 package br.com.kproj.salesman.infrastructure.repository.predicates;
 
-import java.util.Collection;
-
 import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import br.com.kproj.salesman.infrastructure.entity.person.QPerson;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
-
 import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.Predicate;
 import com.mysema.query.types.expr.BooleanExpression;
+
+import java.util.Collection;
 
 public class PersonPredicate {
 
@@ -27,7 +26,7 @@ public class PersonPredicate {
 		}
 		
 		if (!profilesFilter.isNullObject()) {
-			expression = expression.and(qPerson.profile.in(profilesFilter.getObject()));
+            expression = expression.and(qPerson.profile.in(profilesFilter.getObject()));
 		}
 		
 		if (!statusFilter.isNullObject()) {

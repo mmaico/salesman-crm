@@ -1,6 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +17,9 @@ public class Address extends Identifiable {
     private String complement;
     private String number;
     private String district;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Person person;
 
     public Address() {}
 
@@ -63,6 +70,14 @@ public class Address extends Identifiable {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
