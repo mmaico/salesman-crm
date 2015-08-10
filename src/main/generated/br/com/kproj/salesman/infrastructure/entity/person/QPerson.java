@@ -26,6 +26,8 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final BooleanPath active = createBoolean("active");
 
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses = this.<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress>createList("addresses", br.com.kproj.salesman.infrastructure.entity.Address.class, br.com.kproj.salesman.infrastructure.entity.QAddress.class, PathInits.DIRECT2);
+
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact> contacts = this.<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact>createList("contacts", br.com.kproj.salesman.infrastructure.entity.Contact.class, br.com.kproj.salesman.infrastructure.entity.QContact.class, PathInits.DIRECT2);
 
     //inherited
@@ -33,7 +35,7 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final StringPath name = createString("name");
 
-    public final QProfile profile;
+    public final QPersonProfile profile;
 
     public QPerson(String variable) {
         this(Person.class, forVariable(variable), INITS);
@@ -53,7 +55,7 @@ public class QPerson extends EntityPathBase<Person> {
 
     public QPerson(Class<? extends Person> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.profile = inits.isInitialized("profile") ? new QProfile(forProperty("profile")) : null;
+        this.profile = inits.isInitialized("profile") ? new QPersonProfile(forProperty("profile")) : null;
     }
 
 }

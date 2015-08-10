@@ -35,6 +35,8 @@ public class QContact extends EntityPathBase<Contact> {
 
     public final StringPath phone = createString("phone");
 
+    public final StringPath position = createString("position");
+
     public QContact(String variable) {
         this(Contact.class, forVariable(variable), INITS);
     }

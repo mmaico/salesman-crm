@@ -27,6 +27,9 @@ public class QCompany extends EntityPathBase<Company> {
     //inherited
     public final BooleanPath active;
 
+    //inherited
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses;
+
     public final StringPath ccm = createString("ccm");
 
     public final StringPath cnpj = createString("cnpj");
@@ -43,7 +46,7 @@ public class QCompany extends EntityPathBase<Company> {
     public final StringPath name;
 
     // inherited
-    public final QProfile profile;
+    public final QPersonProfile profile;
 
     public final StringPath tradingName = createString("tradingName");
 
@@ -67,6 +70,7 @@ public class QCompany extends EntityPathBase<Company> {
         super(type, metadata, inits);
         this._super = new QPerson(type, metadata, inits);
         this.active = _super.active;
+        this.addresses = _super.addresses;
         this.contacts = _super.contacts;
         this.id = _super.id;
         this.name = _super.name;

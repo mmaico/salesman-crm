@@ -24,6 +24,8 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
+    public final br.com.kproj.salesman.infrastructure.entity.QContact contact;
+
     //inherited
     public final NumberPath<Long> id = _super.id;
 
@@ -51,6 +53,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public QTimeline(Class<? extends Timeline> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContact(forProperty("contact"), inits.get("contact")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
     }
