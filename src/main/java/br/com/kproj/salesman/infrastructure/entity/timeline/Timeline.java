@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="timeline")
+@Table(name="timelines")
 public class Timeline extends Identifiable {
 
 

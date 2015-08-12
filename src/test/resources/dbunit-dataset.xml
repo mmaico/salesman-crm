@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <profile id="1" name="Cliente Pessoa Juridica"/>
-    <profile id="2" name="Cliente Pessoa fisica"/>
-    <profile id="3" name="Fornecedor Pessoa Jurifica"/>
-    <profile id="4" name="Fornecedor Pessoa fisica"/>
+    <person_profiles id="1" name="Cliente Pessoa Juridica"/>
+    <person_profiles id="2" name="Cliente Pessoa fisica"/>
+    <person_profiles id="3" name="Fornecedor Pessoa Jurifica"/>
+    <person_profiles id="4" name="Fornecedor Pessoa fisica"/>
 
-    <user id="1" login="mmaico" password="1234" name="Maico"/>
+    <users id="1" login="mmaico" password="1234" name="Maico"/>
 
-    <product id="1" name="product 1" active="true"/>
-    <product id="2" name="product 2" active="true"/>
+    <products id="1" name="product 1" active="true" price="30.0"/>
+    <products id="2" name="product 2" active="true" price="10.0"/>
 
 
     <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
     <persons id="2" name="Pedro Terra Nova" active="true" profile_id="1" type="company"/>
 
-    <contact id="1" name="Jose luiz" email="jose@jose.com" phone="89838839"/>
-    <contact id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387"/>
+    <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839"/>
+    <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387"/>
 
     <business_proposal id="1" person_id="1" user_id="1"/>
 
@@ -25,9 +25,9 @@
     <proposal_payment_item id="1" date_due="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" date_due="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
 
-    <timeline id="1" person_id="1"/>
-    <timeline id="3" business_proposal_id="1"/>
-    <timeline id="4" contact_id="2"/>
+    <timelines id="1" person_id="1"/>
+    <timelines id="3" business_proposal_id="1"/>
+    <timelines id="4" contact_id="2"/>
 
 
 </dataset>

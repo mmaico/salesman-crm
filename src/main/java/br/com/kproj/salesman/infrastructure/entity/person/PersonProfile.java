@@ -4,8 +4,10 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="person_profiles")
 public class PersonProfile extends Identifiable {
 
     /**

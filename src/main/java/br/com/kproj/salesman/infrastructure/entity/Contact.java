@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="contact")
+@Table(name="contacts")
 public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;

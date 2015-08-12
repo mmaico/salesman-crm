@@ -1,17 +1,6 @@
 package br.com.kproj.salesman.register.view;
 
-import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_CLIENT;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
-import java.io.IOException;
-import java.sql.SQLException;
-
+import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.dbunit.DatabaseUnitException;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +11,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_CLIENT;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test to {@link br.com.kproj.salesman.register.view.ClientController}
@@ -50,21 +47,9 @@ public class ClientControllerIT extends AbstractIntegrationTest {
                 .param("name", "test name")
                 .param("profile.id", COMPANY_CLIENT.get().getId().toString())
                 .param("company.tradingName", "nome fantasia")
-        ).andExpect(status().isOk())
-            .andExpect(view().name("client"));
+        ).andExpect(status().isOk());
     }
 
-    @Test
-    public void shouldSaveAndAddClientInContext() throws Exception {
-
-        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("type", "company")
-                        .param("name", "test name")
-                        .param("company.tradingName", "nome fantasia")
-                        .param("profile.id", COMPANY_CLIENT.get().getId().toString())
-        ).andExpect(model().attributeExists("client"));
-        
-    }
 
     @Test
     public void shouldReturnErrorWhenClientNotHaveName() throws Exception {
@@ -73,7 +58,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
                         .param("type", "company")
                         .param("tradingName", "nome fantasia")
                         .param("profile.id", "1")
-        ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
+        ).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -104,7 +89,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("client"));
+        assertThat(modelAndView.getViewName(), is("/clients/list"));
     }
 
 

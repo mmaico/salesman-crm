@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infra;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
@@ -17,6 +18,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
+@TestPropertySource(locations="classpath:test.properties")
 @TestExecutionListeners({
 	DependencyInjectionTestExecutionListener.class,
     DirtiesContextTestExecutionListener.class,
