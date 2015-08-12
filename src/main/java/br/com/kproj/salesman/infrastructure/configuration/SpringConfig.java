@@ -16,10 +16,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 @ComponentScan("br.com.kproj")
 public class SpringConfig extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter {
 
+    /**
+     * TODO: colocar resource location do properties.
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/view-resource/**")
-                   .addResourceLocations("file:/Users/marcelomaicodejesus/workspace_salesman/facility/");
+                   .addResourceLocations("file:/opt/templates/");
     }
 }
