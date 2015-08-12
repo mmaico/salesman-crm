@@ -11,6 +11,8 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -41,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, @ModelAttribute("file") MultipartFile file, Model model) {
+    public  @ResponseBody ResponseEntity save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, @ModelAttribute("file") MultipartFile file, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -52,11 +54,11 @@ public class UserController {
         User userRegistered = service.register(user);
 
         model.addAttribute(userRegistered);
-        return new ModelAndView("user");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -67,7 +69,7 @@ public class UserController {
         User userRegistered = service.register(user);
 
         model.addAttribute(userRegistered);
-        return new ModelAndView("user");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/users/list")
@@ -78,7 +80,7 @@ public class UserController {
         Iterable<User> result = this.service.findAll(pager);
 
         model.addAttribute("users", result);
-        return new ModelAndView("user");
+        return new ModelAndView("/users/list");
     }
     
     @RequestMapping(value="/users/{userId}")
@@ -87,7 +89,13 @@ public class UserController {
         Optional<User> result = this.service.getOne(userId);
 
         model.addAttribute("user", result.get());
-        return new ModelAndView("user");
+        return new ModelAndView("/users/edit");
+    }
+
+    @RequestMapping(value="/users/create")
+    public ModelAndView newUser() {
+
+        return new ModelAndView("/users/newUser");
     }
     
     @RequestMapping("/users/{id}/avatar")

@@ -1,13 +1,6 @@
 package br.com.kproj.salesman.register.view;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
+import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +10,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Test to {@link ProductController}
@@ -43,8 +41,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
                 .param("active", "true")
                 .param("price", "56.45")
                 .param("priceCost", "30.10")
-        ).andExpect(status().isOk())
-            .andExpect(view().name("product"));
+        ).andExpect(status().isOk());
     }
     
     @Test
@@ -78,7 +75,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("product"));
+        assertThat(modelAndView.getViewName(), is("/products/list"));
     }
 
 

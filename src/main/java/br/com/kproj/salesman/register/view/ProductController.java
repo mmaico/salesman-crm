@@ -11,6 +11,8 @@ import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -40,29 +42,29 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    public @ResponseBody
+    ResponseEntity save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(product);
-        Product productRegistered = service.register(product);
+        service.register(product);
 
-        model.addAttribute(productRegistered);
-        return new ModelAndView("product");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    public @ResponseBody
+    ResponseEntity update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(product);
-        Product productRegistered = service.register(product);
+        service.register(product);
 
-        model.addAttribute(productRegistered);
-        return new ModelAndView("product");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/products/list")
@@ -73,7 +75,7 @@ public class ProductController {
         Iterable<Product> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
-        return new ModelAndView("product");
+        return new ModelAndView("/products/list");
     }
     
     @RequestMapping(value="/products/{productId}")
@@ -82,7 +84,13 @@ public class ProductController {
         Optional<Product> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.get());
-        return new ModelAndView("product");
+        return new ModelAndView("/products/edit");
+    }
+
+    @RequestMapping(value="/products/create")
+    public ModelAndView newProduct() {
+
+        return new ModelAndView("/products/newProduct");
     }
 
 }

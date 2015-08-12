@@ -1,15 +1,6 @@
 package br.com.kproj.salesman.register.view;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
-import java.io.InputStream;
-
+import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +11,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
+import java.io.InputStream;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test to {@link UserController}
@@ -47,23 +44,9 @@ public class UserControllerIT extends AbstractIntegrationTest {
                 .param("name", "Bob")
                 .param("lastname", "Stark")
                 .param("profile.id", "1")
-        ).andExpect(status().isOk())
-            .andExpect(view().name("user"));
+        ).andExpect(status().isOk());
     }
 
-    @Test
-    public void shouldAddUserSavedInContext() throws Exception {
-
-        mockMvc.perform(fileUpload("/users/save")
-                        .param("login", "bobstark")
-                        .param("password", "1234")
-                        .param("passwordConfirm", "1234")
-                        .param("profile.id", "1")
-                        .param("name", "Bob")
-                        .param("lastname", "Stark")
-        ).andExpect(status().isOk())
-                .andExpect(model().attributeExists("user"));
-    }
 
     @Test
     public void shouldReturnErrorsWhenInvalidName() throws Exception {
@@ -104,8 +87,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
                 .param("name", "Bob")
                 .param("lastname", "Stark")
                 .param("profile.id", "1")
-        ).andExpect(status().isOk())
-            .andExpect(view().name("user"));
+        ).andExpect(status().isOk());
     }
     
     @Test
@@ -135,7 +117,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("user"));
+        assertThat(modelAndView.getViewName(), is("/users/list"));
     }
 
 
