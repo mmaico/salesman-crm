@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+<countries>
+		
+		<country id="1" bacenCode="00132" name_pt="Afeganist&amp;atilde;o" name_en="Afghanistan" />
+		<country id="2" bacenCode="07560" name_pt="&amp;Aacute;frica do Sul" name_en="South Africa" />
+		<country id="4" bacenCode="00175" name_pt="Alb&amp;acirc;nia" name_en="Albania" />
+		<country id="5" bacenCode="00230" name_pt="Alemanha" name_en="Germany" />
+		<country id="6" bacenCode="00370" name_pt="Andorra" name_en="Andorra" />
+		<country id="7" bacenCode="00400" name_pt="Angola" name_en="Angola" />
+		<country id="8" bacenCode="00418" name_pt="Anguila" name_en="Anguilla" />
+		<country id="10" bacenCode="00434" name_pt="Ant&amp;iacute;­gua e Barbuda" name_en="Antigua and Barbuda" />
+		<country id="11" bacenCode="00477" name_pt="Antilhas Holandesas" name_en="Netherlands Antilles" />
+		<country id="12" bacenCode="00531" name_pt="Ar&amp;aacute;bia Saudita" name_en="Saudi Arabia" />
+		<country id="13" bacenCode="00590" name_pt="Arg&amp;eacute;lia" name_en="Algeria" />
+		<country id="14" bacenCode="00639" name_pt="Argentina" name_en="Argentina" />
+		<country id="15" bacenCode="00647" name_pt="Arm&amp;eacute;nia" name_en="Armenia" />
+		<country id="16" bacenCode="00655" name_pt="Aruba" name_en="Aruba" />
+		<country id="17" bacenCode="00698" name_pt="Austr&amp;aacute;lia" name_en="Australia" />
+		<country id="18" bacenCode="00728" name_pt="&amp;Aacute;ustria" name_en="Austria" />
+		<country id="19" bacenCode="00736" name_pt="Azerbaij&amp;atilde;o" name_en="Azerbaijan" />
+		<country id="20" bacenCode="00779" name_pt="Baamas" name_en="Bahamas" />
+		<country id="21" bacenCode="00817" name_pt="Bangladeche" name_en="Bangladesh" />
+		<country id="22" bacenCode="00833" name_pt="Barbados" name_en="Barbados" />
+		<country id="23" bacenCode="00809" name_pt="Bar&amp;eacute;m" name_en="Bahrain" />
+		<country id="24" bacenCode="00876" name_pt="B&amp;eacute;lgica" name_en="Belgium" />
+		<country id="25" bacenCode="00884" name_pt="Belize" name_en="Belize" />
+		<country id="26" bacenCode="02291" name_pt="Benim" name_en="Benin" />
+		<country id="27" bacenCode="00906" name_pt="Bermudas" name_en="Bermuda" />
+		<country id="200" bacenCode="00973" name_pt="Bol&amp;iacute;via" name_en="Bolivia" />
+		<country id="31" bacenCode="01058" name_pt="Brasil" name_en="Brazil" />
+		<country id="32" bacenCode="01082" name_pt="Brunei" name_en="Brunei" />
+		<country id="33" bacenCode="01112" name_pt="Bulg&amp;aacute;ria" name_en="Bulgaria" />
+		<country id="34" bacenCode="00310" name_pt="Burquina Faso" name_en="Burkina Faso" />
+		<country id="35" bacenCode="01155" name_pt="Bur&amp;uacute;ndi" name_en="Burundi" />
+		<country id="36" bacenCode="01279" name_pt="Cabo Verde" name_en="Cape Verde" />
+		<country id="37" bacenCode="01457" name_pt="Camar&amp;otilde;es" name_en="Cameroon" />
+		<country id="38" bacenCode="01414" name_pt="Camboja" name_en="Cambodia" />
+		<country id="39" bacenCode="01511" name_pt="Canad&amp;aacute;" name_en="Canada" />
+		<country id="40" bacenCode="01546" name_pt="Catar" name_en="Qatar" />
+		<country id="41" bacenCode="01538" name_pt="Cazaquist&amp;atilde;o" name_en="Kazakhstan" />
+		<country id="42" bacenCode="07889" name_pt="Chade" name_en="Chad" />
+		<country id="43" bacenCode="01589" name_pt="Chile" name_en="Chile" />
+		<country id="44" bacenCode="01600" name_pt="China" name_en="China" />
+		<country id="45" bacenCode="01635" name_pt="Chipre" name_en="Cyprus" />
+		<country id="46" bacenCode="01694" name_pt="Col&amp;ocirc;mbia" name_en="Colombia" />
+		<country id="47" bacenCode="01732" name_pt="Comores" name_en="Comoros" />
+		<country id="48" bacenCode="01872" name_pt="Coreia do Norte" name_en="North Korea" />
+		<country id="49" bacenCode="01902" name_pt="Coreia do Sul" name_en="South Korea" />
+		<country id="201" bacenCode="01694" name_pt="Col&amp;ocirc;mbia" name_en="Colombia" />
+		<country id="50" bacenCode="01937" name_pt="Costa do Marfim" name_en="Ivory Coast" />
+		<country id="51" bacenCode="01961" name_pt="Costa Rica" name_en="Costa Rica" />
+		<country id="52" bacenCode="01953" name_pt="Cro&amp;aacute;cia" name_en="Croatia" />
+		<country id="53" bacenCode="501996" name_pt="Cuba" name_en="Cuba" />
+		<country id="54" bacenCode="02321" name_pt="Dinamarca" name_en="Denmark" />
+		<country id="55" bacenCode="02321" name_pt="Dom&amp;iacute;­nica" name_en="Dominica" />
+		<country id="56" bacenCode="02402" name_pt="Egipto" name_en="Egypt" />
+		<country id="57" bacenCode="02445" name_pt="Emiratos &amp;Aacute;rabes Unidos" name_en="United Arab Emirates" />
+		<country id="58" bacenCode="02399" name_pt="Equador" name_en="Ecuador" />
+		<country id="59" bacenCode="02437" name_pt="Eritreia" name_en="Eritrea" />
+		<country id="60" bacenCode="02470" name_pt="Eslov&amp;aacute;quia" name_en="Slovakia" />
+		<country id="61" bacenCode="02461" name_pt="Eslov&amp;eacute;nia" name_en="Slovenia" />
+		<country id="62" bacenCode="02453" name_pt="Espanha" name_en="Spain" />
+		<country id="63" bacenCode="02496" name_pt="Estados Unidos" name_en="United States" />
+		<country id="64" bacenCode="02518" name_pt="Est&amp;ocirc;nia" name_en="Estonia" />
+		<country id="65" bacenCode="02534" name_pt="Eti&amp;ocirc;pia" name_en="Ethiopia" />
+		<country id="66" bacenCode="08702" name_pt="Fiji" name_en="Fiji" />
+		<country id="67" bacenCode="02674" name_pt="Filipinas" name_en="Philippines" />
+		<country id="68" bacenCode="02712" name_pt="Finl&amp;acirc;ndia" name_en="Finland" />
+		<country id="69" bacenCode="02755" name_pt="Fran&amp;ccedil;a" name_en="France" />
+		<country id="70" bacenCode="02810" name_pt="Gab&amp;atilde;o" name_en="Gabon" />
+		<country id="71" bacenCode="02852" name_pt="G&amp;acirc;mbia" name_en="Gambia" />
+		<country id="72" bacenCode="02895" name_pt="Gana" name_en="Ghana" />
+		<country id="73" bacenCode="02917" name_pt="Ge&amp;ocirc;rgia" name_en="Georgia" />
+		<country id="74" bacenCode="02933" name_pt="Gibraltar" name_en="Gibraltar" />
+		<country id="75" bacenCode="02976" name_pt="Granada" name_en="Grenada" />
+		<country id="76" bacenCode="03018" name_pt="Gr&amp;eacute;cia" name_en="Greece" />
+		<country id="77" bacenCode="03050" name_pt="Groel&amp;acirc;ndia" name_en="Greenland" />
+		<country id="79" bacenCode="03174" name_pt="Guatemala" name_en="Guatemala" />
+		<country id="81" bacenCode="03379" name_pt="Guiana" name_en="Guyana" />
+		<country id="82" bacenCode="03298" name_pt="Guin&amp;eacute;" name_en="Guinea" />
+		<country id="83" bacenCode="03310" name_pt="Guin&amp;eacute; Equatorial" name_en="Equatorial Guinea" />
+		<country id="84" bacenCode="03344" name_pt="Guin&amp;eacute;-Bissau" name_en="Guinea-Bissau" />
+		<country id="85" bacenCode="03417" name_pt="Haiti" name_en="Haiti" />
+		<country id="86" bacenCode="03450" name_pt="Honduras" name_en="Honduras" />
+		<country id="87" bacenCode="03514" name_pt="Hong Kong" name_en="Hong Kong" />
+		<country id="88" bacenCode="03557" name_pt="Hungria" name_en="Hungary" />
+		<country id="89" bacenCode="03573" name_pt="I&amp;eacute;men" name_en="Yemen" />
+		<country id="94" bacenCode="03611"  name_pt="Índia" name_en="India" />
+		<country id="95" bacenCode="03654"  name_pt="Indon&amp;eacute;sia" name_en="Indonesia" />
+		<country id="96" bacenCode="03727"  name_pt="Ir&amp;atilde;" name_en="Iran" />
+		<country id="97" bacenCode="03697"  name_pt="Iraque" name_en="Iraq" />
+		<country id="98"  bacenCode="03751"  name_pt="Irlanda" name_en="Ireland" />
+		<country id="99" bacenCode="03794"  name_pt="Isl&amp;acirc;ndia" name_en="Iceland" />
+		<country id="100"  bacenCode="03832" name_pt="Israel" name_en="Israel" />
+		<country id="101" bacenCode="03867" name_pt="It&amp;aacute;lia" name_en="Italy" />
+		<country id="102" bacenCode="03913" name_pt="Jamaica" name_en="Jamaica" />
+		<country id="104" bacenCode="03999" name_pt="Jap&amp;atilde;o" name_en="Japan" />
+		<country id="105" bacenCode="01508" name_pt="Jersey" name_en="Jersey" />
+		<country id="106" bacenCode="04030" name_pt="Jord&amp;acirc;nia" name_en="Jordan" />
+		<country id="108" bacenCode="04200" name_pt="Laos" name_en="Laos" />
+		<country id="109" bacenCode="04260" name_pt="Lesoto" name_en="Lesotho" />
+		<country id="110" bacenCode="04421" name_pt="Let&amp;ocirc;nia" name_en="Lithuania" />
+		<country id="111" bacenCode="04316" name_pt="L&amp;iacute;bano" name_en="Lebanon" />
+		<country id="112" bacenCode="04340" name_pt="Lib&amp;eacute;ria" name_en="Liberia" />
+		<country id="113" bacenCode="04383" name_pt="L&amp;iacute;bia" name_en="Libya" />
+		<country id="115" bacenCode="04456" name_pt="Luxemburgo" name_en="Luxembourg" />
+		<country id="116" bacenCode="04472" name_pt="Macau" name_en="Macau" />
+		<country id="117" bacenCode="04499" name_pt="Maced&amp;ocirc;nia" name_en="Macedonia" />
+		<country id="118" bacenCode="04502" name_pt="Madag&amp;aacute;scar" name_en="Madagascar" />
+		<country id="119" bacenCode="04553" name_pt="Mal&amp;aacute;sia" name_en="Malaysia" />
+		<country id="120" bacenCode="04588" name_pt="Mal&amp;aacute;vi" name_en="Malawi" />
+		<country id="121" bacenCode="04618" name_pt="Maldivas" name_en="Maldives" />
+		<country id="122" bacenCode="04642" name_pt="Mali" name_en="Mali" />
+		<country id="123" bacenCode="04677" name_pt="Malta" name_en="Malta" />
+		<country id="124" bacenCode="04740" name_pt="Marrocos" name_en="Morocco" />
+		<country id="125" bacenCode="04855" name_pt="Maur&amp;iacute;cia" name_en="Mauritius" />
+		<country id="126" bacenCode="04880" name_pt="Maurit&amp;acirc;nia" name_en="Mauritania" />
+		<country id="127" bacenCode="04936" name_pt="M&amp;eacute;xico" name_en="Mexico" />
+		<country id="128" bacenCode="04995" name_pt="Micron&amp;eacute;sia" name_en="Micronesia" />
+		<country id="129" bacenCode="05053" name_pt="Mo&amp;ccedil;ambique" name_en="Mozambique" />
+		<country id="130" bacenCode="04944" name_pt="Mold&amp;aacute;via" name_en="Moldavia" />
+		<country id="131" bacenCode="04952" name_pt="M&amp;ocirc;naco" name_en="Monaco" />
+		<country id="132" bacenCode="04979" name_pt="Mong&amp;ocirc;lia" name_en="Mongolia" />
+		<country id="133" bacenCode="05010" name_pt="Monserrate" name_en="Montserrat" />
+		<country id="134" bacenCode="04985" name_pt="Montenegro" name_en="Montenegro" />
+		<country id="135" bacenCode="05070" name_pt="Nam&amp;iacute;bia" name_en="Namibia" />
+		<country id="136" bacenCode="05088" name_pt="Nauru" name_en="Nauru" />
+		<country id="137" bacenCode="05177" name_pt="Nepal" name_en="Nepal" />
+		<country id="138" bacenCode="05215" name_pt="Nicar&amp;aacute;gua" name_en="Nicaragua" />
+		<country id="139" bacenCode="05258" name_pt="N&amp;iacute;ger" name_en="Niger" />
+		<country id="141" bacenCode="05312" name_pt="Niue" name_en="Niue" />
+		<country id="142" bacenCode="05380" name_pt="Noruega" name_en="Norway" />
+		<country id="143" bacenCode="05428" name_pt="Nova Caled&amp;ocirc;nia" name_en="New Caledonia" />
+		<country id="144" bacenCode="05487" name_pt="Nova Zel&amp;acirc;ndia" name_en="New Zealand" />
+		<country id="145" bacenCode="05568" name_pt="Om&amp;atilde;" name_en="Oman" />
+		<country id="146" bacenCode="05754" name_pt="Palau" name_en="Palau" />
+		<country id="147" bacenCode="05800" name_pt="Panam&amp;aacute;" name_en="Panama" />
+		<country id="148" bacenCode="05452" name_pt="Papua-Nova Guin&amp;eacute;" name_en="Papua New Guinea" />
+		<country id="149" bacenCode="05762" name_pt="Paquist&amp;atilde;o" name_en="Pakistan" />
+		<country id="150" bacenCode="05860" name_pt="Paraguai" name_en="Paraguay" />
+		<country id="151" bacenCode="05894" name_pt="Peru" name_en="Peru" />
+		<country id="152" bacenCode="05991" name_pt="Polin&amp;eacute;sia Francesa" name_en="French Polynesia" />
+		<country id="153" bacenCode="06033" name_pt="Pol&amp;ocirc;nia" name_en="Poland" />
+		<country id="154" bacenCode="06114" name_pt="Porto Rico" name_en="Puerto Rico" />
+		<country id="155" bacenCode="06076" name_pt="Portugal" name_en="Portugal" />
+		<country id="156" bacenCode="06238" name_pt="Qu&amp;eacute;nia" name_en="Kenya" />
+		<country id="159" bacenCode="06289" name_pt="Reino Unido" name_en="United Kingdom" />
+		<country id="161" bacenCode="06475" name_pt="Rep&amp;uacute;blica Dominicana" name_en="Dominican Republic" />
+		<country id="162" bacenCode="06700" name_pt="Rom&amp;eacute;nia" name_en="Romania" />
+		<country id="163" bacenCode="06750" name_pt="Ruanda" name_en="Rwanda" />
+		<country id="164" bacenCode="06769" name_pt="R&amp;uacute;ssia" name_en="Russia" />
+		<country id="166" bacenCode="07285" name_pt="Senegal" name_en="Senegal" />
+		<country id="167" bacenCode="07358" name_pt="Serra Leoa" name_en="Sierra Leone" />
+		<country id="168" bacenCode="07370" name_pt="S&amp;eacute;rvia" name_en="Serbia" />
+		<country id="169" bacenCode="07412" name_pt="Cingapura" name_en="Singapore" />
+		<country id="170" bacenCode="07447" name_pt="S&amp;iacute;ria" name_en="Syria" />
+		<country id="171" bacenCode="07480" name_pt="Som&amp;aacute;lia" name_en="Somalia" />
+		<country id="172" bacenCode="07501" name_pt="Sri Lanca" name_en="Sri Lanka" />
+		<country id="173" bacenCode="07595" name_pt="Sud&amp;atilde;o" name_en="Sudan" />
+		<country id="174" bacenCode="07641" name_pt="Su&amp;eacute;cia" name_en="Sweden" />
+		<country id="175" bacenCode="07676" name_pt="Su&amp;iacute;­&amp;ccedil;a" name_en="Switzerland" />
+		<country id="176" bacenCode="07706" name_pt="Suriname" name_en="Suriname" />
+		<country id="177" bacenCode="07765" name_pt="Tail&amp;acirc;ndia" name_en="Thailand" />
+		<country id="179" bacenCode="07722" name_pt="Tajiquist&amp;atilde;o" name_en="Tajikistan" />
+		<country id="180" bacenCode="07803" name_pt="Tanz&amp;acirc;nia" name_en="Tanzania" />
+		<country id="181" bacenCode="07951" name_pt="Timor Leste" name_en="East Timor" />
+		<country id="182" bacenCode="08150" name_pt="Trindade e Tobago" name_en="Trinidad and Tobago" />
+		<country id="183" bacenCode="08206" name_pt="Tun&amp;iacute;­sia" name_en="Tunisia" />
+		<country id="184" bacenCode="08249" name_pt="Turquemenist&amp;atilde;o" name_en="Turkmenistan" />
+		<country id="185" bacenCode="08273" name_pt="Turquia" name_en="Turkey" />
+		<country id="186" bacenCode="08311" name_pt="Ucr&amp;acirc;nia" name_en="Ukraine" />
+		<country id="187" bacenCode="08338" name_pt="Uganda" name_en="Uganda" />
+		<country id="188" bacenCode="08451" name_pt="Uruguai" name_en="Uruguay" />
+		<country id="189" bacenCode="08478" name_pt="Usbequist&amp;atilde;o" name_en="Uzbekistan" />
+		<country id="190" bacenCode="05517" name_pt="Vanuatu" name_en="Vanuatu" />
+		<country id="191" bacenCode="08486" name_pt="Vaticano" name_en="Vatican" />
+		<country id="192" bacenCode="08508" name_pt="Venezuela" name_en="Venezuela" />
+		<country id="193" bacenCode="08583" name_pt="Vietname" name_en="Vietnam" />
+		<country id="194" bacenCode="08907" name_pt="Z&amp;acirc;mbia" name_en="Zambia" />
+		<country id="195" bacenCode="06653" name_pt="Zimbabu&amp;eacute;" name_en="Zimbabwe" />
+		<country id="196" bacenCode="05738" name_pt="Holanda" name_en="Netherlands" />
+		
+		
+</countries>

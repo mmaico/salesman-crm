@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+
+<states>
+
+	<state id="1" name="Foreign company"/>
+	<state id="2" name="AC" />
+	<state id="3" name="AL" />
+	<state id="4" name="AM" />
+	<state id="5" name="AP" />
+	<state id="6" name="BA" />
+	<state id="7" name="CE" />
+	<state id="8" name="DF" />
+	<state id="9" name="ES" />
+	<state id="10" name="GO" />
+	<state id="11" name="MA" />
+	<state id="12" name="MG" />
+	<state id="13" name="MS" />
+	<state id="14" name="MT" />
+	<state id="15" name="PA" />
+	<state id="16" name="PB" />
+	<state id="17" name="PE" />
+	<state id="18" name="PR" />
+	<state id="19" name="RJ" />
+	<state id="20" name="RN" />
+	<state id="21" name="RO" />
+	<state id="22" name="RR" />
+	<state id="23" name="RS" />
+	<state id="24" name="SC" />
+	<state id="25" name="SE" />
+	<state id="26" name="SP" />
+	<state id="27" name="TO" />
+	
+</states>
