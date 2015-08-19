@@ -39,6 +39,8 @@ public class QAddress extends EntityPathBase<Address> {
 
     public final StringPath street = createString("street");
 
+    public final EnumPath<Address.Type> type = createEnum("type", Address.Type.class);
+
     public QAddress(String variable) {
         this(Address.class, forVariable(variable), INITS);
     }

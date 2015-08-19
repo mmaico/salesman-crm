@@ -11,6 +11,9 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Cria um usuario admin caso nao tenha nenhum usuario no banco.
+ */
 @Component
 public class UserInit implements InitialProcess {
 

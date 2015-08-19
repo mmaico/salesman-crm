@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.location;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
@@ -15,13 +15,13 @@ import com.mysema.query.types.Path;
 @Generated("com.mysema.query.codegen.EntitySerializer")
 public class QCountry extends EntityPathBase<Country> {
 
-    private static final long serialVersionUID = -1229938041L;
+    private static final long serialVersionUID = 1929529932L;
 
     public static final QCountry country = new QCountry("country");
 
-    public final QIdentifiable _super = new QIdentifiable(this);
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final StringPath code = createString("code");
+    public final StringPath bacenCode = createString("bacenCode");
 
     //inherited
     public final NumberPath<Long> id = _super.id;

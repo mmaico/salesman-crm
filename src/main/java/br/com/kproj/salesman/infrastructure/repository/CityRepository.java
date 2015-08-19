@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CityRepository extends BaseRepository<City, Long> {
 
-    @Query("SELECT c FROM City AS c WHERE c.stateName = :state ORDER BY c.name ASC")
-    public List<City> getCityByState(@Param("state")String state);
+    @Query("SELECT c FROM City AS c WHERE c.stateAcronym = :state ORDER BY c.name ASC")
+    List<City> findByStateAcronym(@Param("state")String state);
 
 }

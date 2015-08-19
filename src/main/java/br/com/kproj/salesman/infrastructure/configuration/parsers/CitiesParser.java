@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
-import br.com.kproj.salesman.infrastructure.entity.location.State;
+import br.com.kproj.salesman.infrastructure.entity.location.City;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -13,64 +13,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class StateLoad {
-    private static final String FILE_NAME = "/configurations/state.xml";
+public class CitiesParser {
 
-    private static final String ATTRIBUTE_NAME = "name";
-    private static final String ATTRIBUTE_ID = "id";
+    private static final String FILE_NAME = "/configurations/cities.xml";
 
-    public static List<State> getStates() {
 
-        return loadStates();
+    public static List<City> getCities() {
+
+        return loadCities();
     }
 
 
     @SuppressWarnings("unchecked")
-    protected static List<State> loadStates() {
+    protected static List<City> loadCities() {
         SAXBuilder sab = new SAXBuilder();
         try {
             InputStream inputStream = findFile();
             Document doc = (Document) sab.build(inputStream);
             Element rootElement = (Element) doc.getRootElement();
+            List<City> listCities = new ArrayList<City>();
 
-            List<Element> children = rootElement.getChildren();
-            List<State> states = new ArrayList<State>();
+            List<Element> childrenRoot = rootElement.getChildren();
 
-            for (Element el : children) {
-                State state = convertToState(el);
-                states.add(state);
+            for (Element el : childrenRoot) {
+
+                City city = convertToCity(el);
+                listCities.add(city);
             }
 
-            return states;
+            return listCities;
         } catch (JDOMException e) {
             throw new InternalArchitectureException("Erro ao obter as configuracoes.", e);
 
         } catch (IOException e) {
             throw new InternalArchitectureException("Erro ao obter o arquivos de configuracoes.", e);
         }
-
     }
 
-    private static State convertToState(Element element) {
-        State state = new State();
-        String name = element.getAttributeValue(ATTRIBUTE_NAME);
-        String id = element.getAttributeValue(ATTRIBUTE_ID);
+    @SuppressWarnings("unchecked")
+    private static City convertToCity(Element element) {
 
-        state.setName(name);
-        state.setId(new Long(id));
+        List<Element> children = element.getChildren();
+        Element stateAcronym = children.get(0);
+        Element code = children.get(1);
+        Element name = children.get(2);
 
-        return state;
+        City city = new City();
+        city.setCode(code.getText());
+        city.setName(name.getText());
+        city.setStateAcronym(stateAcronym.getText());
+
+        return city;
 
     }
-
-
     private static InputStream findFile() {
 
         try {
-            return StateLoad.class.getResourceAsStream(FILE_NAME);
+            return CitiesParser.class.getResourceAsStream(FILE_NAME);
         } catch (Exception e) {
             throw new IllegalArgumentException("Nao foi possivel encontrar o arquivo:" + FILE_NAME);
         }
 
     }
+
 }

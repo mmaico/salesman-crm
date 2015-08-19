@@ -17,7 +17,7 @@ public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
-	@NotNull @Size(min = 2, max = 30)
+	@NotNull @Size(min = 2, max = 100)
     private String name;
 
     @Email

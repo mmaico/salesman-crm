@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.location;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
@@ -15,16 +15,20 @@ import com.mysema.query.types.Path;
 @Generated("com.mysema.query.codegen.EntitySerializer")
 public class QCity extends EntityPathBase<City> {
 
-    private static final long serialVersionUID = -949117926L;
+    private static final long serialVersionUID = -482766219L;
 
     public static final QCity city = new QCity("city");
 
-    public final QIdentifiable _super = new QIdentifiable(this);
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
+
+    public final StringPath code = createString("code");
 
     //inherited
     public final NumberPath<Long> id = _super.id;
 
     public final StringPath name = createString("name");
+
+    public final StringPath StateAcronym = createString("StateAcronym");
 
     public QCity(String variable) {
         super(City.class, forVariable(variable));

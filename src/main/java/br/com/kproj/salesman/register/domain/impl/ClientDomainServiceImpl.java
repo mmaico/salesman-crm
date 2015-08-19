@@ -19,7 +19,7 @@ public class ClientDomainServiceImpl implements ClientDomainService {
 				!COMPANY_CLIENT.get().equals(person.getProfile())) {
 			throw new ValidationException(newHashSet("client.without.profile"));
 		}
-		
+        
 	}
 
 	

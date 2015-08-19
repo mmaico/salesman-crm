@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.configuration.initial;
 
+import br.com.kproj.salesman.infrastructure.configuration.parsers.CitiesParser;
 import br.com.kproj.salesman.infrastructure.configuration.parsers.CountryParser;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.configuration.parsers.StateParser;
 import br.com.kproj.salesman.infrastructure.repository.CityRepository;
 import br.com.kproj.salesman.infrastructure.repository.CountryRepository;
 import br.com.kproj.salesman.infrastructure.repository.StateRepository;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.io.InputStream;
 
+/**
+ * Carrega todos os paises, estados e cidades caso ainda nao exista no banco.
+ */
 @Component
 public class LocationsInit implements InitialProcess {
 
@@ -32,8 +32,22 @@ public class LocationsInit implements InitialProcess {
 
 		long count = countryRepository.count();
         if (count < 1) {
-
+            countryRepository.save(CountryParser.getCountries());
         }
-	}
+
+        long countStates = stateRepository.count();
+
+        if (countStates < 1) {
+            stateRepository.save(StateParser.getStates());
+        }
+
+        long countCities = cityRepository.count();
+
+        if (countCities < 1) {
+            cityRepository.save(CitiesParser.getCities());
+        }
+
+
+    }
 
 }
