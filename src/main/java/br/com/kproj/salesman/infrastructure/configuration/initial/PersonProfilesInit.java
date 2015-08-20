@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Cria os profiles que serao usados no cadastro de clientes e fornecedores.
+ */
 @Component
 public class PersonProfilesInit implements InitialProcess {
 

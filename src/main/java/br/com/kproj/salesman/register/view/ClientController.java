@@ -2,6 +2,7 @@ package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ClientService;
@@ -32,6 +33,9 @@ public class ClientController {
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
+
+    @Autowired
+    private LocationHelper locationHelper;
 
     @InitBinder(value = "clientDTO")
     private void initBinder(WebDataBinder binder) {
@@ -77,8 +81,9 @@ public class ClientController {
     }
 
     @RequestMapping(value="/clients/create")
-    public ModelAndView newClient() {
+    public ModelAndView newClient(Model model) {
 
+        model.addAttribute("countries", locationHelper.getAllCountries());
         return new ModelAndView("/clients/newClient");
     }
     
@@ -87,6 +92,7 @@ public class ClientController {
         
         Optional<Person> result = this.service.getOne(clientId);
 
+        model.addAttribute("countries", locationHelper.getAllCountries());
         model.addAttribute("client", result.isPresent() ? result.get(): null);
         return new ModelAndView("/clients/edit");
     }

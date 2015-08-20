@@ -1,8 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
-import javax.persistence.*;
-
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 @Entity
@@ -19,7 +21,7 @@ public class City extends Identifiable {
     private String code;
 
     @Column(name="state_acronym")
-    private String StateAcronym;
+    private String stateAcronym;
 
 	public String getName() {
 		return name;
@@ -30,11 +32,11 @@ public class City extends Identifiable {
 	}
 
     public String getStateAcronym() {
-        return StateAcronym;
+        return stateAcronym;
     }
 
     public void setStateAcronym(String stateAcronym) {
-        StateAcronym = stateAcronym;
+        this.stateAcronym = stateAcronym;
     }
 
     public String getCode() {

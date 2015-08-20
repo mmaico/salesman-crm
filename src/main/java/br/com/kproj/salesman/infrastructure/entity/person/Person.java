@@ -20,7 +20,7 @@ public class Person extends Identifiable {
 	private static final long serialVersionUID = -6416371282639932944L;
 
 	@NotNull
-    @Size(min = 2, max = 30, message = "name")
+    @Size(min = 2, max = 30, message = "person.name.is.invalid")
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")

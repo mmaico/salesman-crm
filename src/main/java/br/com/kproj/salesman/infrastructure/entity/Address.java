@@ -1,25 +1,45 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.location.City;
+import br.com.kproj.salesman.infrastructure.entity.location.Country;
+import br.com.kproj.salesman.infrastructure.entity.location.State;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="address")
 public class Address extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;
+    public enum Type {
+        BUSINESS, BILLING
+    }
 	private String postalCode;
     private String street;
     private String complement;
     private String number;
     private String district;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="country_id")
+    private Country country;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="state_id")
+    private State state;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="city_id")
+    private City city;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Person person;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     public Address() {}
 
@@ -78,6 +98,38 @@ public class Address extends Identifiable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override

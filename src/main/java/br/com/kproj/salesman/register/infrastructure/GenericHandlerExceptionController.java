@@ -17,7 +17,7 @@ public class GenericHandlerExceptionController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ModelAndView handlerValidatorException(Throwable throwable) {
 
-        return new ModelAndView("errors/list", "errors", ((ValidationException)throwable).getErrors());
+        return new ModelAndView("/assets/includes/vm/errors", "errors", ((ValidationException)throwable).getErrors());
     }
 
 

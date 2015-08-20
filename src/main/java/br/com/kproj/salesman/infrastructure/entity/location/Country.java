@@ -1,18 +1,16 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
-import java.util.List;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 @Entity
 @Table(name="countries")
 public class Country extends Identifiable {
 
+    public static final Long BRASIL = 31l;
 	/**
 	 * 
 	 */
@@ -23,9 +21,7 @@ public class Country extends Identifiable {
 	@Column(name= "bacen_code")
 	private String bacenCode;
 	
-	@OneToMany(mappedBy = "country")
-	private List<State> states;
-	
+
 	public String getName() {
 		return name;
 	}
