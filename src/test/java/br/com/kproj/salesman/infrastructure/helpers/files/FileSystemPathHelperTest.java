@@ -67,11 +67,22 @@ public class FileSystemPathHelperTest {
 
         private static final long serialVersionUID = 1L;
 
+        private Long id;
+
         @MediaStorage(name="image")
         private AppFile image;
 
         public TestBuildPath(Long id) {
             this.setId(id);
+        }
+
+        @Override
+        public Long getId() {
+            return this.id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
         }
 
     }

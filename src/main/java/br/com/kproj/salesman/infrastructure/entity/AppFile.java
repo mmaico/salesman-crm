@@ -14,6 +14,10 @@ public class AppFile extends Identifiable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 	
 	@Column(name="original_name")
 	private String originalName;
@@ -34,6 +38,15 @@ public class AppFile extends Identifiable {
 	public AppFile(Long id) {
 		this.setId(id);
 	}
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	
 	public String getOriginalName() {
 		return originalName;

@@ -16,6 +16,9 @@ public class Address extends Identifiable {
     public enum Type {
         BUSINESS, BILLING
     }
+    @Id
+    @GeneratedValue
+    private Long id;
 	private String postalCode;
     private String street;
     private String complement;
@@ -44,13 +47,21 @@ public class Address extends Identifiable {
     public Address() {}
 
     public Address(Long id) {
-        super(id);
+        this.id = id;
         postalCode = null;
         street = null;
         complement = null;
         number = null;
     }
 
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getPostalCode() {
         return postalCode;

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("email")
 public class EmailItem extends TimelineItem {
 
+
     private String to;
     private String from;
     private String subject;

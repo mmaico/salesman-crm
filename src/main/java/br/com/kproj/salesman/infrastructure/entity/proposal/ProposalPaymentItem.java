@@ -16,6 +16,10 @@ import java.util.Date;
 @Table(name="proposal_payment_item")
 public class ProposalPaymentItem extends Identifiable {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "proposal.payment.datedue.is.invalid")
@@ -30,6 +34,15 @@ public class ProposalPaymentItem extends Identifiable {
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
     private BusinessProposal businessProposal;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Date getDateDue() {
         return dateDue;

@@ -8,38 +8,22 @@ import java.util.Objects;
 import java.util.Set;
 
 @MappedSuperclass
-public class Identifiable implements Persistable<Long> {
+public abstract class Identifiable implements Persistable<Long> {
 
 	private static final long serialVersionUID = 8213025865912695435L;
 
-	@Id
-    @GeneratedValue
-    @Column(name="id")
-    protected Long id;
 
     @Transient
     private Set<String> fields = new HashSet<String>();
 
-    public Identifiable() {
-        id = null;
-    }
-
-    public Identifiable(final Long id) {
-        this.id = id;
-    }
 
     @Override
-    public Long getId() {
-        return this.id;
-    }
+    public abstract Long getId();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public boolean isNew() {
-        return this.id == null;
+        return this.getId() == null;
     }
 
     @Override
@@ -47,18 +31,18 @@ public class Identifiable implements Persistable<Long> {
         if (this == o) return true;
         if (!(o instanceof Identifiable)) return false;
         Identifiable that = (Identifiable) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Identifiable{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(getId());
         sb.append('}');
         return sb.toString();
     }

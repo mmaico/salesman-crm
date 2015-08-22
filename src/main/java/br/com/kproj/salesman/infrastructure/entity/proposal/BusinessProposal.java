@@ -18,10 +18,15 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 @Table(name = "business_proposal")
 public class BusinessProposal extends Identifiable {
 
+
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -3466031805155434986L;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
 	@ManyToOne
     @JoinColumn(name="person_id")
@@ -51,6 +56,15 @@ public class BusinessProposal extends Identifiable {
 
     public BusinessProposal(){}
     public BusinessProposal(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
     public BigDecimal getTotal() {

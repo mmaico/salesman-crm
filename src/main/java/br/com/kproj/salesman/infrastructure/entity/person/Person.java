@@ -19,6 +19,10 @@ public class Person extends Identifiable {
 
 	private static final long serialVersionUID = -6416371282639932944L;
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
 	@NotNull
     @Size(min = 2, max = 30, message = "person.name.is.invalid")
     private String name;
@@ -48,6 +52,15 @@ public class Person extends Identifiable {
 
     public Person(Long id) {
         super();
+        this.id = id;
+    }
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 

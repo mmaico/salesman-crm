@@ -10,11 +10,13 @@ import java.util.Date;
 @DiscriminatorValue("logactivity")
 public class LogActivityItem extends TimelineItem {
 
+
     @Temporal(TemporalType.DATE)
     private Date date;
 
     @Enumerated(EnumType.STRING)
     private LogActivityTypeEnum type;
+
 
     public Date getDate() {
         return date;

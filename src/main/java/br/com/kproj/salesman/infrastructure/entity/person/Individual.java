@@ -14,11 +14,21 @@ public class Individual extends Person {
 	@Size(max = 20, message = "company.invalid.cpf")
 	private String cpf;
 
+    private String lastname;
+
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }

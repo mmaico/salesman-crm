@@ -4,6 +4,8 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +16,13 @@ public class PersonProfile extends Identifiable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+    public static final Long COMPANY_PROFILE = 1l;
+    public static final Long INDIVIDUAL_PROFILE = 2l;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 	
 	private String name;
 
@@ -25,7 +34,15 @@ public class PersonProfile extends Identifiable {
 		this.setId(id);
 		this.name = name;
 	}
-	
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

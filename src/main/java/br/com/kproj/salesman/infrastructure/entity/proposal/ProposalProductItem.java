@@ -4,13 +4,9 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Product;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -21,6 +17,10 @@ public class ProposalProductItem extends Identifiable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3881704814612452364L;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
 	@ManyToOne
     @JoinColumn(name="product_id")
@@ -39,6 +39,15 @@ public class ProposalProductItem extends Identifiable {
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
     private BusinessProposal businessProposal;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Product getProduct() {
         return product;

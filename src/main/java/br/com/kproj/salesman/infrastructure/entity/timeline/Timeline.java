@@ -14,6 +14,9 @@ import java.util.List;
 @Table(name="timelines")
 public class Timeline extends Identifiable {
 
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @OneToMany(cascade={CascadeType.ALL})
     @JoinColumn(name="department_id")
@@ -34,6 +37,15 @@ public class Timeline extends Identifiable {
     public  Timeline() {}
 
     public Timeline (Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 

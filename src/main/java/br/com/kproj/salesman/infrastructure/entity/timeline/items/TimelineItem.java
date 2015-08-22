@@ -18,6 +18,10 @@ import java.util.List;
 @DiscriminatorColumn(name="type_item", discriminatorType=DiscriminatorType.STRING)
 public class TimelineItem extends Identifiable {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,6 +34,15 @@ public class TimelineItem extends Identifiable {
     @OrderBy("creation ASC")
     @MediaStorage(name="files")
     private List<AppFile> files;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

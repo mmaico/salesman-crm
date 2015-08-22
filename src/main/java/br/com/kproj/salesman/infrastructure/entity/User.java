@@ -18,6 +18,10 @@ public class User extends Identifiable {
 	 */
 	private static final long serialVersionUID = 282685797677443589L;
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
 	@NotNull(message = "user.login")
     private String login;
 
@@ -45,7 +49,7 @@ public class User extends Identifiable {
     }
 
     public User(Long id) {
-        super(id);
+        this.id = id;
     }
 
     public User(String login, String password) {
@@ -54,6 +58,14 @@ public class User extends Identifiable {
         this.password = password;
     }
 
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getLogin() {
         return login;
     }

@@ -1,13 +1,9 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,6 +12,10 @@ import javax.validation.constraints.Size;
 public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
 	@NotNull @Size(min = 2, max = 100)
     private String name;
@@ -41,6 +41,15 @@ public class Contact extends Identifiable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Person person;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

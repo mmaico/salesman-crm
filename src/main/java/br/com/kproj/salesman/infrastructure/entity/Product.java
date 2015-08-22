@@ -17,6 +17,10 @@ public class Product extends Identifiable {
 	 */
 	private static final long serialVersionUID = -2422314617985187903L;
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
 	@NotNull
     private String name;
 
@@ -40,6 +44,14 @@ public class Product extends Identifiable {
         this.id = id;
     }
 
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

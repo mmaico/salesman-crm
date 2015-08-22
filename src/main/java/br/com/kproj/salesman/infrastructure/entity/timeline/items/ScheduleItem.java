@@ -1,10 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -42,4 +39,6 @@ public class ScheduleItem extends TimelineItem {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+
 }

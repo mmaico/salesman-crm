@@ -1,14 +1,17 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.*;
@@ -66,7 +69,7 @@ public class FileSystemHelperTest {
     @Test
     public void shouldFindFileOnFilesystem() throws IOException {
 
-        Identifiable entity = new Identifiable();
+        User entity = new User();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();
@@ -92,7 +95,7 @@ public class FileSystemHelperTest {
     @Test
     public void shouldReturnEmptyByteArrayWhenFileNotExist() throws IOException {
 
-        Identifiable entity = new Identifiable();
+        User entity = new User();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();
@@ -107,7 +110,7 @@ public class FileSystemHelperTest {
 
     @Test
     public void shouldDelegateToFileSystemPathUtilsOnMethodGetBasePath() {
-        Identifiable entity = new Identifiable();
+        User entity = new User();
         entity.setId(2l);
         String pathExpected = "path/file";
 
@@ -120,7 +123,7 @@ public class FileSystemHelperTest {
 
     @Test
     public void shouldDelegateToFileSystemPathUtilsOnMethodGetPathFile() {
-        Identifiable entity = new Identifiable();
+        User entity = new User();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();

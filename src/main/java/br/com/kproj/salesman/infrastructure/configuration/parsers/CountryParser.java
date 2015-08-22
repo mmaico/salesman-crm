@@ -1,10 +1,5 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import org.jdom.Document;
@@ -12,10 +7,15 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CountryParser {
 
-	private static final String ATTRIBUTE_CODE = "id";
+	private static final String ATTRIBUTE_ID = "id";
 	private static final String ATTRIBUTE_BACEN_CODE = "bacenCode";
 	private static final String ATTRIBUTE_NAME_PT = "name_pt";
 	private static final String FILE_NAME = "/configurations/countries.xml";
@@ -61,7 +61,7 @@ public class CountryParser {
 		Country country = new Country();
 		
 		String namePT = element.getAttributeValue(ATTRIBUTE_NAME_PT);
-		String id = element.getAttributeValue(ATTRIBUTE_CODE);
+		String id = element.getAttributeValue(ATTRIBUTE_ID);
 		String codeBacen = element.getAttributeValue(ATTRIBUTE_BACEN_CODE);
 
 		country.setId(new Long(id));

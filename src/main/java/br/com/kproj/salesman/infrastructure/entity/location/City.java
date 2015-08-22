@@ -2,9 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.location;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -16,12 +14,27 @@ public class City extends Identifiable {
 	 */
 	private static final long serialVersionUID = -2757567678579808171L;
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
 	private String name;
 
     private String code;
 
     @Column(name="state_acronym")
     private String stateAcronym;
+
+
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 	public String getName() {
 		return name;
