@@ -88,12 +88,13 @@ public class ClientController {
     }
     
     @RequestMapping(value="/clients/{clientId}")
-    public ModelAndView viewInfo(@PathVariable Long clientId, Model model) {
+    public ModelAndView viewInfo(@RequestParam(defaultValue="edit",required=false, value="template") String templateName,
+                                 @PathVariable Long clientId, Model model) {
         
         Optional<Person> result = this.service.getOne(clientId);
 
         model.addAttribute("countries", locationHelper.getAllCountries());
         model.addAttribute("client", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/clients/edit");
+        return new ModelAndView("/clients/" + templateName);
     }
 }
