@@ -3,11 +3,11 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import java.util.List;
 
 
@@ -104,6 +104,14 @@ public class Person extends Identifiable {
         this.addresses = addresses;
     }
 
+    public void addContact(Contact contact) {
+
+        if (this.contacts == null) {
+            this.contacts = Lists.newArrayList();
+        }
+
+        this.contacts.add(contact);
+    }
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Person{");
