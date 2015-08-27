@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -45,7 +46,7 @@ public class ProviderController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.doNestedReference(providerDTO.getProvider());
-        Person clientSaved = service.register(providerDTO.getProvider());
+        Provider clientSaved = service.register(providerDTO.getProvider());
 
         model.addAttribute("provider", clientSaved);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -58,7 +59,7 @@ public class ProviderController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(providerDTO.getProvider());
-        Person clientSaved = service.register(providerDTO.getProvider());
+        Provider clientSaved = service.register(providerDTO.getProvider());
 
         model.addAttribute("provider", clientSaved);
         return new ResponseEntity<>(HttpStatus.OK);

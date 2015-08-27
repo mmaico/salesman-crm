@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.domain.impl;
 
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.register.domain.ClientDomainService;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import static com.google.common.collect.Sets.newHashSet;
 public class ClientDomainServiceImpl implements ClientDomainService {
 
 	@Override
-	public void verifyPreconditionToSave(Person person) {
+	public void verifyPreconditionToSave(Client person) {
 
 		if(!INDIVIDUAL_CLIENT.get().equals(person.getProfile()) &&
 				!COMPANY_CLIENT.get().equals(person.getProfile())) {

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.application.impl;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -32,9 +33,9 @@ public class ClientServiceImpl extends BaseModelServiceImpl<Person> implements C
     }
 
     @Override
-    public Person register(Person client) {
+    public Client register(Client client) {
         domainService.verifyPreconditionToSave(client);
-        return super.save(client);
+        return super.save((Person)client);
     }
     
     @Override

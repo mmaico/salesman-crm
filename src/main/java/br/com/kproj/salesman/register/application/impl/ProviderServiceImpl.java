@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.application.impl;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -31,9 +32,9 @@ public class ProviderServiceImpl extends BaseModelServiceImpl<Person> implements
     }
 
     @Override
-    public Person register(Person provider) {
+    public Provider register(Provider provider) {
         domainService.verifyPreconditionToSave(provider);
-        return super.save(provider);
+        return super.save((Person)provider);
     }
     
     @Override

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -42,6 +43,8 @@ public class ClientController {
         binder.setValidator(validator);
     }
 
+
+
     @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
@@ -49,7 +52,7 @@ public class ClientController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.doNestedReference(clientDTO.getClient());
-        Person clientSaved = service.register(clientDTO.getClient());
+        Client clientSaved = service.register(clientDTO.getClient());
 
         model.addAttribute("client", clientSaved);
 
@@ -63,7 +66,7 @@ public class ClientController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
-        Person clientSaved = service.register(clientDTO.getClient());
+        Client clientSaved = service.register(clientDTO.getClient());
 
         model.addAttribute("client", clientSaved);
 

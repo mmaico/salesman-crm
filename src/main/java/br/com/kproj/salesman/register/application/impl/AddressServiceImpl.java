@@ -1,20 +1,20 @@
 package br.com.kproj.salesman.register.application.impl;
 
-import static com.google.common.collect.Sets.newHashSet;
-
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
 import br.com.kproj.salesman.register.application.AddressService;
 import br.com.kproj.salesman.register.application.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 @Service
 public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements AddressService {
@@ -30,10 +30,10 @@ public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements
     }
 
     @Override
-    public Address register(Person person, Address address) {
+    public Address register(Client client, Address address) {
 
         if (address.isNew()) {
-            Optional<Person> clientLoaded = clientService.getOne(person.getId());
+            Optional<Person> clientLoaded = clientService.getOne(client.getId());
             if (clientLoaded.isPresent()) {
                 clientLoaded.get().addAddress(address);
             } else {
