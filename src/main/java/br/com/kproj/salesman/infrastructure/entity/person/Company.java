@@ -1,12 +1,15 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
+import br.com.kproj.salesman.infrastructure.entity.person.client.ClientCompany;
+import br.com.kproj.salesman.infrastructure.entity.person.privider.ProviderCompany;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("company")
-public class Company extends Person {
+public class Company extends Person implements ClientCompany, ProviderCompany {
 
 	private static final long serialVersionUID = 4479758448493548647L;
 

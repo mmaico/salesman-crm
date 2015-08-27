@@ -3,6 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
+import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import com.google.common.collect.Lists;
 
 import javax.persistence.*;
@@ -15,7 +17,7 @@ import java.util.List;
 @Table(name = "persons")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
-public class Person extends Identifiable {
+public class Person extends Identifiable implements Client, Provider{
 
 	private static final long serialVersionUID = -6416371282639932944L;
 
@@ -112,6 +114,16 @@ public class Person extends Identifiable {
 
         this.contacts.add(contact);
     }
+    
+    public void addAddress(Address address) {
+
+        if (this.addresses == null) {
+            this.addresses = Lists.newArrayList();
+        }
+
+        this.addresses.add(address);
+    }
+   
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Person{");
