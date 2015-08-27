@@ -39,6 +39,7 @@ public class ContactController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
+        normalizeEntityRequest.addFieldsToUpdate(contact);
         service.register(createClient(clientId).build(), contact);
 
         return new ResponseEntity<>(HttpStatus.OK);

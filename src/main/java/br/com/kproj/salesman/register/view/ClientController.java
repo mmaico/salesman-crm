@@ -51,8 +51,12 @@ public class ClientController {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.doNestedReference(clientDTO.getClient());
-        Client clientSaved = service.register(clientDTO.getClient());
+
+        Person person = clientDTO.getClient();
+
+        normalizeEntityRequest.addFieldsToUpdate(person);
+        normalizeEntityRequest.doNestedReference(person);
+        Client clientSaved = service.register(person);
 
         model.addAttribute("client", clientSaved);
 

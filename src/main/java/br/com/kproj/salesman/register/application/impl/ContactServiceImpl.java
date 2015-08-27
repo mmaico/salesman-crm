@@ -33,13 +33,14 @@ public class ContactServiceImpl extends BaseModelServiceImpl<Contact> implements
 
         if (contact.isNew()) {
             Optional<Person> clientLoaded = clientService.getOne(person.getId());
-            if (clientLoaded.isPresent()) {
-                clientLoaded.get().addContact(contact);
-            } else {
+
+            if (!clientLoaded.isPresent()) {
                 throw new ValidationException(newHashSet("client.not.exist.on.save.contact"));
             }
-            clientService.save(clientLoaded.get());
-            return contact;
+
+            contact.setPerson(clientLoaded.get());
+
+            return super.save(contact);
         } else {
             return super.save(contact);
         }
