@@ -33,14 +33,13 @@ public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements
     public Address register(Client client, Address address) {
 
         if (address.isNew()) {
-            Optional<Person> clientLoaded = clientService.getOne(client.getId());
-            if (clientLoaded.isPresent()) {
-                clientLoaded.get().addAddress(address);
+            Optional<Person> personLoaded = clientService.getOne(client.getId());
+            if (personLoaded.isPresent()) {
+                address.setPerson(personLoaded.get());
             } else {
                 throw new ValidationException(newHashSet("client.not.exist.on.save.address"));
             }
-            clientService.save(clientLoaded.get());
-            return address;
+            return super.save(address);
         } else {
             return super.save(address);
         }
