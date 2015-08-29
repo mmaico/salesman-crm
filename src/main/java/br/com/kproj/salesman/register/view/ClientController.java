@@ -46,7 +46,7 @@ public class ClientController {
 
 
     @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody String save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -58,9 +58,7 @@ public class ClientController {
         normalizeEntityRequest.doNestedReference(person);
         Client clientSaved = service.register(person);
 
-        model.addAttribute("client", clientSaved);
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "/clients/" + clientSaved.getId();
     }
 
     @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)

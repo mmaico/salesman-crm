@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
 import br.com.kproj.salesman.register.application.AddressService;
 import br.com.kproj.salesman.register.application.ClientService;
+import br.com.kproj.salesman.register.domain.AddressDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements
     private AddressRepository addressRepository;
 
     private ClientService clientService;
+
+    @Autowired
+    private AddressDomainService service;
 
     @Autowired
     public AddressServiceImpl(ClientService clientService, AddressRepository addressRepository) {
@@ -39,8 +43,10 @@ public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements
             } else {
                 throw new ValidationException(newHashSet("client.not.exist.on.save.address"));
             }
+            service.prepareToSave(address);
             return super.save(address);
         } else {
+            service.prepareToSave(address);
             return super.save(address);
         }
     }

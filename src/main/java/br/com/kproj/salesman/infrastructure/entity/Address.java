@@ -14,7 +14,16 @@ public class Address extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;
     public enum Type {
-        BUSINESS, BILLING
+        BUSINESS("Comercial"), BILLING("Cobrança");
+
+        private String name;
+        private Type(String name) {
+            this.name = name;
+        }
+
+        public String getName()  {
+            return this.name;
+        }
     }
     @Id
     @GeneratedValue
