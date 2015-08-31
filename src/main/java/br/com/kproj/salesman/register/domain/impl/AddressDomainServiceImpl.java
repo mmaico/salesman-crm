@@ -3,6 +3,7 @@ package br.com.kproj.salesman.register.domain.impl;
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
 import br.com.kproj.salesman.register.domain.AddressDomainService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class AddressDomainServiceImpl implements AddressDomainService {
     @Override
     public void prepareToSave(List<Address> addresses) {
 
+        if (CollectionUtils.isEmpty(addresses)) {
+            return;
+        }
         addresses.forEach(e -> prepareToSave(e));
     }
 

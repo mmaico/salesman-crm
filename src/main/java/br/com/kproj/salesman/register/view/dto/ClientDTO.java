@@ -4,7 +4,9 @@ package br.com.kproj.salesman.register.view.dto;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
+import com.google.common.collect.Sets;
 
 public class ClientDTO extends Person {
 
@@ -53,7 +55,7 @@ public class ClientDTO extends Person {
             ReflectionsHelper.copyProperties(this.individual, this);
             return this.individual;
         } else {
-            throw new IllegalArgumentException();
+            throw new ValidationException(Sets.newHashSet("client.not.have.type"));
         }
     }
 

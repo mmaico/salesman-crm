@@ -52,6 +52,7 @@ public class ClientController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
+        normalizeEntityRequest.addFieldsToUpdate(clientDTO);
         Person person = clientDTO.getClient();
 
         normalizeEntityRequest.addFieldsToUpdate(person);
