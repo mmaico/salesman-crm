@@ -12,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ClientBuilder.createClient;
+import static br.com.kproj.salesman.infrastructure.entity.builders.ProviderBuilder.createProvider;
 
 @RestController
 public class AddressController {
@@ -40,6 +41,18 @@ public class AddressController {
 
         normalizeEntityRequest.addFieldsToUpdate(address);
         service.register(createClient(clientId).build(), address);        
+    }
+
+    @RequestMapping(value = "/providers/{providerId}/addresses/save", method = {RequestMethod.PUT, RequestMethod.POST})
+    public @ResponseBody void updateAddressProvider(@ModelAttribute @Validated Address address, @PathVariable("providerId") Long providerId,
+                                     BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult.getAllErrors());
+        }
+
+        normalizeEntityRequest.addFieldsToUpdate(address);
+        service.register(createProvider(providerId).build(), address);
     }
 
 }

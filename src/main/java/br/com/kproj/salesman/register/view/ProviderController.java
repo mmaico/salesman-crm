@@ -3,6 +3,7 @@ package br.com.kproj.salesman.register.view;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ProviderService;
@@ -34,22 +35,30 @@ public class ProviderController {
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
 
+    @Autowired
+    private LocationHelper locationHelper;
+
     @InitBinder(value = "providerDTO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/providers/save", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
+    public @ResponseBody String save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.doNestedReference(providerDTO.getProvider());
-        Provider clientSaved = service.register(providerDTO.getProvider());
+        normalizeEntityRequest.addFieldsToUpdate(providerDTO);
+        Person provider = providerDTO.getProvider();
 
-        model.addAttribute("provider", clientSaved);
-        return new ResponseEntity<>(HttpStatus.OK);
+        normalizeEntityRequest.addFieldsToUpdate(provider);
+        normalizeEntityRequest.doNestedReference(provider);
+
+        Provider providerSaved = service.register(provider);
+
+        model.addAttribute("provider", providerSaved);
+        return "/providers/" + providerSaved.getId();
     }
 
     @RequestMapping(value = "/providers/save", method = RequestMethod.PUT)
@@ -76,17 +85,20 @@ public class ProviderController {
     }
 
     @RequestMapping(value="/providers/create")
-    public ModelAndView newProvider() {
+    public ModelAndView newProvider(Model model) {
 
+        model.addAttribute("countries", locationHelper.getAllCountries());
         return new ModelAndView("/providers/newProvider");
     }
     
     @RequestMapping(value="/providers/{providerId}")
-    public ModelAndView viewInfo(Long providerId, Model model) {
+    public ModelAndView viewInfo(@RequestParam(defaultValue="edit",required=false, value="template") String templateName,
+                                 @PathVariable Long providerId, Model model) {
         
         Optional<Person> result = this.service.getOne(providerId);
 
+        model.addAttribute("countries", locationHelper.getAllCountries());
         model.addAttribute("provider", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/providers/edit");
+        return new ModelAndView("/providers/" + templateName);
     }
 }

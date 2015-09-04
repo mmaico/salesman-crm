@@ -1,16 +1,16 @@
 package br.com.kproj.salesman.infrastructure.entity.enums;
 
-import static java.util.Arrays.asList;
+import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 
 import java.util.stream.Collectors;
 
-import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
+import static java.util.Arrays.asList;
 
 public enum PersonProfilesEnum {
 
 	COMPANY_CLIENT(new PersonProfile(1l, "Cliente Pessoa Juridica")),
 	INDIVIDUAL_CLIENT(new PersonProfile(2l, "Cliente Pessoa Fisica")),
-	COMPANY_PROVIDER(new PersonProfile(3l, "Fornecedor Pessoa Jurifica")),
+	COMPANY_PROVIDER(new PersonProfile(3l, "Fornecedor Pessoa Juridica")),
 	INDIVIDUAL_PROVIDER(new PersonProfile(4l, "Fornecedor Pessoa fisica"));
 	
 	private PersonProfile profile;
