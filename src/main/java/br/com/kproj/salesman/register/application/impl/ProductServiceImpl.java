@@ -1,36 +1,36 @@
 package br.com.kproj.salesman.register.application.impl;
 
-import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.repository.ProductRepository;
+import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
-import br.com.kproj.salesman.register.application.ProductService;
-import br.com.kproj.salesman.register.domain.ProductDomainService;
+import br.com.kproj.salesman.register.application.SaleableUnitService;
+import br.com.kproj.salesman.register.domain.SaleableUnitDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductServiceImpl extends BaseModelServiceImpl<Product> implements ProductService {
+public class ProductServiceImpl extends BaseModelServiceImpl<SaleableUnit> implements SaleableUnitService {
+
+    private SaleableUnitDomainService domainService;
+
+    private SaleableUnitRepository productRepository;
 
     @Autowired
-    private ProductDomainService domainService;
-
-    private ProductRepository productRepository;
-
-    @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(SaleableUnitRepository productRepository, SaleableUnitDomainService domainService) {
         this.productRepository = productRepository;
+        this.domainService = domainService;
     }
 
     @Override
-    public BaseRepository<Product, Long> getRepository() {
+    public SaleableUnit register(SaleableUnit saleableUnit) {
+        domainService.verifyPreconditionToSave(saleableUnit);
+        return super.save(saleableUnit);
+    }
+
+    @Override
+    public BaseRepository<SaleableUnit, Long> getRepository() {
         return productRepository;
-    }
-
-    @Override
-    public Product register(Product product) {
-        domainService.verifyPreconditionToSave(product);
-        return super.save(product);
     }
 
 }

@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.register.view;
 
-import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.ProductService;
+import br.com.kproj.salesman.register.application.SaleableUnitService;
 import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator;
 
 
@@ -24,10 +24,10 @@ import java.util.Optional;
 
 
 @RestController
-public class ProductController {
+public class SaleableUnitController {
 
     @Autowired
-    private ProductService service;
+    private SaleableUnitService service;
 
     @Autowired
     private ProductValidator validator;
@@ -43,26 +43,26 @@ public class ProductController {
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    ResponseEntity save(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(product);
-        service.register(product);
+        normalizeEntityRequest.addFieldsToUpdate(saleableUnit);
+        service.register(saleableUnit);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    ResponseEntity update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    ResponseEntity update(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(product);
-        service.register(product);
+        normalizeEntityRequest.addFieldsToUpdate(saleableUnit);
+        service.register(saleableUnit);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -72,7 +72,7 @@ public class ProductController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Product> result = this.service.findAll(pager);
+        Iterable<SaleableUnit> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
         return new ModelAndView("/products/list");
@@ -81,7 +81,7 @@ public class ProductController {
     @RequestMapping(value="/products/{productId}")
     public ModelAndView viewInfo(Long productId, Model model) {
         
-        Optional<Product> result = this.service.getOne(productId);
+        Optional<SaleableUnit> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.get());
         return new ModelAndView("/products/edit");

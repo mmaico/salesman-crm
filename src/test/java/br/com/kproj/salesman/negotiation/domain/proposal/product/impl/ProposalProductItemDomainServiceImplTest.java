@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.product.impl;
 
-import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
-import br.com.kproj.salesman.infrastructure.repository.ProductRepository;
+import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class ProposalProductItemDomainServiceImplTest {
     private ProductItemPersistBusinessRulesImpl service;
 
     @Mock
-    private ProductRepository productRepository;
+    private SaleableUnitRepository productRepository;
 
 
     @Test
@@ -87,12 +87,12 @@ public class ProposalProductItemDomainServiceImplTest {
     public List<ProposalProductItem> getItemsStub() {
         ProposalProductItem itemOne = new ProposalProductItem();
         itemOne.setQuantity(1);
-        itemOne.setProduct(new Product(1l));
+        itemOne.setSaleableUnit(new SaleableUnit(1l));
         itemOne.setPrice(BigDecimal.TEN);
 
         ProposalProductItem itemTwo = new ProposalProductItem();
         itemTwo.setQuantity(2);
-        itemTwo.setProduct(new Product(2l));
+        itemTwo.setSaleableUnit(new SaleableUnit(2l));
         itemTwo.setPrice(BigDecimal.TEN);
 
         return Lists.newArrayList(itemOne, itemTwo);

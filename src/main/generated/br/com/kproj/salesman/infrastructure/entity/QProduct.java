@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -13,7 +14,7 @@ import com.mysema.query.types.Path;
  * QProduct is a Querydsl query type for Product
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QProduct extends EntityPathBase<Product> {
+public class QProduct extends EntityPathBase<SaleableUnit> {
 
     private static final long serialVersionUID = 1797724128L;
 
@@ -35,15 +36,15 @@ public class QProduct extends EntityPathBase<Product> {
     public final NumberPath<java.math.BigDecimal> priceCost = createNumber("priceCost", java.math.BigDecimal.class);
 
     public QProduct(String variable) {
-        super(Product.class, forVariable(variable));
+        super(SaleableUnit.class, forVariable(variable));
     }
 
-    public QProduct(Path<? extends Product> path) {
+    public QProduct(Path<? extends SaleableUnit> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QProduct(PathMetadata<?> metadata) {
-        super(Product.class, metadata);
+        super(SaleableUnit.class, metadata);
     }
 
 }
