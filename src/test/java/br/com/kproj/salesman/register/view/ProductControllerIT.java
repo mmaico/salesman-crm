@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test to {@link ProductController}
+ * Test to {@link SaleableUnitController}
  */
 public class ProductControllerIT extends AbstractIntegrationTest {
 

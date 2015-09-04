@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +36,10 @@ public class TimelineItem extends Identifiable {
     @MediaStorage(name="files")
     private List<AppFile> files;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
     @Override
     public Long getId() {
         return this.id;
@@ -66,5 +71,13 @@ public class TimelineItem extends Identifiable {
 
     public void setFiles(List<AppFile> files) {
         this.files = files;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

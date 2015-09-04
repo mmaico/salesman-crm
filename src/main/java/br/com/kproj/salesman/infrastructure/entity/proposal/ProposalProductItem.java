@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -25,7 +25,7 @@ public class ProposalProductItem extends Identifiable {
 	@ManyToOne
     @JoinColumn(name="product_id")
     @NotNull(message = "proposal.product.is.invalid")
-    private Product product;
+    private SaleableUnit saleableUnit;
 
     @NotNull(message = "proposal.product.price.is.invalid")
     private BigDecimal price;
@@ -49,12 +49,12 @@ public class ProposalProductItem extends Identifiable {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public SaleableUnit getSaleableUnit() {
+        return saleableUnit;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setSaleableUnit(SaleableUnit saleableUnit) {
+        this.saleableUnit = saleableUnit;
     }
 
     public BigDecimal getPrice() {

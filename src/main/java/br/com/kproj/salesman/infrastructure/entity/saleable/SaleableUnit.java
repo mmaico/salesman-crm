@@ -1,6 +1,7 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="products")
-public class Product extends Identifiable {
+public class SaleableUnit extends Identifiable {
 
 	/**
 	 * 
@@ -36,11 +37,16 @@ public class Product extends Identifiable {
     @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
     private BigDecimal priceCost;
 
-    public Product(){}
-    public Product(String name) {
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name="TYPE")
+    private SaleableType type;
+
+    public SaleableUnit(){}
+    public SaleableUnit(String name) {
         this.name = name;
     }
-    public Product(Long id) {
+    public SaleableUnit(Long id) {
         this.id = id;
     }
 
@@ -91,10 +97,18 @@ public class Product extends Identifiable {
     public void setActive(Boolean active) {
         this.active = active;
     }
-    
-	@Override
+
+    public SaleableType getType() {
+        return type;
+    }
+
+    public void setType(SaleableType type) {
+        this.type = type;
+    }
+
+    @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Product{");
+        final StringBuilder sb = new StringBuilder("Saleable Unit {");
         sb.append("id=").append(getId());
         sb.append(", name=").append(name);
         sb.append('}');
@@ -105,8 +119,8 @@ public class Product extends Identifiable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(getId(), product.getId());
+        SaleableUnit saleableUnit = (SaleableUnit) o;
+        return Objects.equals(getId(), saleableUnit.getId());
     }
 
     @Override

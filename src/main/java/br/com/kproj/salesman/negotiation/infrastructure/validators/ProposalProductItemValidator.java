@@ -33,7 +33,7 @@ public class ProposalProductItemValidator implements Validator, InitializingBean
         validator.validate(productItem)
                 .forEach(error -> errors.reject(error.getMessage()));
 
-        idValidator.validate(productItem.getProduct(), errors);
+        idValidator.validate(productItem.getSaleableUnit(), errors);
 
         if (productItem.getPrice() != null
                 && productItem.getPrice().compareTo(BigDecimal.ZERO) > 0) {

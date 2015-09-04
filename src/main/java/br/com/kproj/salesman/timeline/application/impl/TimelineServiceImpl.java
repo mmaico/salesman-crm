@@ -20,9 +20,7 @@ public class TimelineServiceImpl extends BaseModelServiceImpl<Timeline> implemen
 
     public Timeline register(Timeline timeline, Person person) {
 
-        if (!repository.findOne(person).isPresent()) {
 
-        }
         return null;
     }
 

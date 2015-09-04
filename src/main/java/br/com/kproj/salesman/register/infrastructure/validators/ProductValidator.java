@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.kproj.salesman.infrastructure.entity.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 
 @Component
 public class ProductValidator implements Validator, InitializingBean {
@@ -20,16 +20,16 @@ public class ProductValidator implements Validator, InitializingBean {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Product.class.equals(clazz);
+        return SaleableUnit.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-    	Product product = (Product) target;
-        Set<ConstraintViolation<Object>> constraints = validator.validate(product);
+    	SaleableUnit saleableUnit = (SaleableUnit) target;
+        Set<ConstraintViolation<Object>> constraints = validator.validate(saleableUnit);
         
-        if (product.getActive()) {
-        	if (product.getPrice() == null) {
+        if (saleableUnit.getActive()) {
+        	if (saleableUnit.getPrice() == null) {
         		errors.reject("price", "product.ative.without.price");
         	}
         }
