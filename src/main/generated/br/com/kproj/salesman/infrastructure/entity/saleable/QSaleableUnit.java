@@ -1,8 +1,7 @@
-package br.com.kproj.salesman.infrastructure.entity;
+package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -11,23 +10,22 @@ import com.mysema.query.types.Path;
 
 
 /**
- * QProduct is a Querydsl query type for Product
+ * QSaleableUnit is a Querydsl query type for SaleableUnit
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QProduct extends EntityPathBase<SaleableUnit> {
+public class QSaleableUnit extends EntityPathBase<SaleableUnit> {
 
-    private static final long serialVersionUID = 1797724128L;
+    private static final long serialVersionUID = 809079651L;
 
-    public static final QProduct product = new QProduct("product");
+    public static final QSaleableUnit saleableUnit = new QSaleableUnit("saleableUnit");
 
-    public final QIdentifiable _super = new QIdentifiable(this);
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
     public final BooleanPath active = createBoolean("active");
 
     public final StringPath description = createString("description");
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 
@@ -35,15 +33,17 @@ public class QProduct extends EntityPathBase<SaleableUnit> {
 
     public final NumberPath<java.math.BigDecimal> priceCost = createNumber("priceCost", java.math.BigDecimal.class);
 
-    public QProduct(String variable) {
+    public final EnumPath<SaleableType> type = createEnum("type", SaleableType.class);
+
+    public QSaleableUnit(String variable) {
         super(SaleableUnit.class, forVariable(variable));
     }
 
-    public QProduct(Path<? extends SaleableUnit> path) {
+    public QSaleableUnit(Path<? extends SaleableUnit> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QProduct(PathMetadata<?> metadata) {
+    public QSaleableUnit(PathMetadata<?> metadata) {
         super(SaleableUnit.class, metadata);
     }
 

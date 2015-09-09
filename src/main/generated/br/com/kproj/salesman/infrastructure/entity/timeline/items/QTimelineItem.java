@@ -18,6 +18,8 @@ public class QTimelineItem extends EntityPathBase<TimelineItem> {
 
     private static final long serialVersionUID = -1067837984L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QTimelineItem timelineItem = new QTimelineItem("timelineItem");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
@@ -28,19 +30,29 @@ public class QTimelineItem extends EntityPathBase<TimelineItem> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.AppFile, br.com.kproj.salesman.infrastructure.entity.QAppFile> files = this.<br.com.kproj.salesman.infrastructure.entity.AppFile, br.com.kproj.salesman.infrastructure.entity.QAppFile>createList("files", br.com.kproj.salesman.infrastructure.entity.AppFile.class, br.com.kproj.salesman.infrastructure.entity.QAppFile.class, PathInits.DIRECT2);
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
 
     public QTimelineItem(String variable) {
-        super(TimelineItem.class, forVariable(variable));
+        this(TimelineItem.class, forVariable(variable), INITS);
     }
 
     public QTimelineItem(Path<? extends TimelineItem> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
     public QTimelineItem(PathMetadata<?> metadata) {
-        super(TimelineItem.class, metadata);
+        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    }
+
+    public QTimelineItem(PathMetadata<?> metadata, PathInits inits) {
+        this(TimelineItem.class, metadata, inits);
+    }
+
+    public QTimelineItem(Class<? extends TimelineItem> type, PathMetadata<?> metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("user"), inits.get("user")) : null;
     }
 
 }

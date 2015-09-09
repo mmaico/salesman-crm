@@ -26,8 +26,7 @@ public class QContact extends EntityPathBase<Contact> {
 
     public final StringPath email = createString("email");
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 

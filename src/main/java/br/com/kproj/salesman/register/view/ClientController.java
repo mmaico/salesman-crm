@@ -12,8 +12,6 @@ import br.com.kproj.salesman.register.view.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -60,20 +58,6 @@ public class ClientController {
         Client clientSaved = service.register(person);
 
         return "/clients/" + clientSaved.getId();
-    }
-
-    @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-        normalizeEntityRequest.addFieldsToUpdate(clientDTO.getClient());
-        Client clientSaved = service.register(clientDTO.getClient());
-
-        model.addAttribute("client", clientSaved);
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value="/clients/list")

@@ -23,8 +23,7 @@ public class QAppFile extends EntityPathBase<AppFile> {
 
     public final DateTimePath<java.util.Date> creation = createDateTime("creation", java.util.Date.class);
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath mimeType = createString("mimeType");
 

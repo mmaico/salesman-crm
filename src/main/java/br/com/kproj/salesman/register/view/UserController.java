@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.infrastructure.repository.UserPositionRepository;
 import br.com.kproj.salesman.register.application.UserService;
 import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
 import br.com.kproj.salesman.register.view.dto.UserVO;
@@ -37,6 +38,9 @@ public class UserController {
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
 
+    @Autowired
+    private UserPositionRepository positionRepository;
+
     @InitBinder(value = "userVO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
@@ -50,10 +54,8 @@ public class UserController {
         }
         
         User user = userVO.getUser();
-        normalizeEntityRequest.addFieldsToUpdate(user);
-        User userRegistered = service.register(user);
+        service.register(user);
 
-        model.addAttribute(userRegistered);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -66,9 +68,8 @@ public class UserController {
         
         User user = userVO.getUser();
         normalizeEntityRequest.addFieldsToUpdate(user);
-        User userRegistered = service.register(user);
+        service.register(user);
 
-        model.addAttribute(userRegistered);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -79,22 +80,25 @@ public class UserController {
 
         Iterable<User> result = this.service.findAll(pager);
 
+        model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("users", result);
         return new ModelAndView("/users/list");
     }
     
     @RequestMapping(value="/users/{userId}")
-    public ModelAndView viewInfo(Long userId, Model model) {
+    public ModelAndView viewInfo(@PathVariable Long userId, Model model) {
         
         Optional<User> result = this.service.getOne(userId);
 
+        model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("user", result.get());
         return new ModelAndView("/users/edit");
     }
 
     @RequestMapping(value="/users/create")
-    public ModelAndView newUser() {
+    public ModelAndView newUser(Model model) {
 
+        model.addAttribute("positions", positionRepository.findAll());
         return new ModelAndView("/users/newUser");
     }
     

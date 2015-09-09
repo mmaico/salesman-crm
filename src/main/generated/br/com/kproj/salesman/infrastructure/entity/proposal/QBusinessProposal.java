@@ -28,8 +28,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final DateTimePath<java.util.Date> deliveryForeCast = createDateTime("deliveryForeCast", java.util.Date.class);
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath introduction = createString("introduction");
 
@@ -60,7 +59,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
     public QBusinessProposal(Class<? extends BusinessProposal> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
-        this.vendor = inits.isInitialized("vendor") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("vendor")) : null;
+        this.vendor = inits.isInitialized("vendor") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("vendor"), inits.get("vendor")) : null;
     }
 
 }

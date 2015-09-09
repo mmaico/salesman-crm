@@ -6,13 +6,9 @@ import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.SaleableUnitService;
 import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -38,33 +34,34 @@ public class SaleableUnitController {
     @InitBinder(value = {"product"})
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
+
         
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity save(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
+    SaleableUnit save(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(saleableUnit);
-        service.register(saleableUnit);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        SaleableUnit saleable = service.register(saleableUnit);
+
+        return saleable;
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    ResponseEntity update(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
+    SaleableUnit update(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(saleableUnit);
-        service.register(saleableUnit);
+        SaleableUnit saleable = service.register(saleableUnit);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return saleable;
     }
 
     @RequestMapping("/products/list")
@@ -79,18 +76,18 @@ public class SaleableUnitController {
     }
     
     @RequestMapping(value="/products/{productId}")
-    public ModelAndView viewInfo(Long productId, Model model) {
+    public ModelAndView viewInfo(@PathVariable Long productId, Model model) {
         
         Optional<SaleableUnit> result = this.service.getOne(productId);
 
-        model.addAttribute("product", result.get());
+        model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/products/edit");
     }
 
     @RequestMapping(value="/products/create")
     public ModelAndView newProduct() {
 
-        return new ModelAndView("/products/newProduct");
+        return new ModelAndView("/products/edit");
     }
 
 }

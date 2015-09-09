@@ -30,8 +30,7 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact> contacts = this.<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact>createList("contacts", br.com.kproj.salesman.infrastructure.entity.Contact.class, br.com.kproj.salesman.infrastructure.entity.QContact.class, PathInits.DIRECT2);
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 

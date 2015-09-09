@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+
+<positions>
+
+	<position id="1" name="Vendedor"/>
+	<position id="2" name="Gerente" />
+	<position id="3" name="Recepcionista" />
+	<position id="4" name="Atendente" />
+	<position id="5" name="Diretor" />
+	<position id="6" name="Gerente comercial" />
+
+</positions>

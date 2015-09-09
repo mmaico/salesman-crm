@@ -26,16 +26,15 @@ public class QProposalProductItem extends EntityPathBase<ProposalProductItem> {
 
     public final QBusinessProposal businessProposal;
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final NumberPath<java.math.BigDecimal> originalPrice = createNumber("originalPrice", java.math.BigDecimal.class);
 
     public final NumberPath<java.math.BigDecimal> price = createNumber("price", java.math.BigDecimal.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QProduct product;
-
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit saleableUnit;
 
     public QProposalProductItem(String variable) {
         this(ProposalProductItem.class, forVariable(variable), INITS);
@@ -56,7 +55,7 @@ public class QProposalProductItem extends EntityPathBase<ProposalProductItem> {
     public QProposalProductItem(Class<? extends ProposalProductItem> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.businessProposal = inits.isInitialized("businessProposal") ? new QBusinessProposal(forProperty("businessProposal"), inits.get("businessProposal")) : null;
-        this.product = inits.isInitialized("product") ? new br.com.kproj.salesman.infrastructure.entity.QProduct(forProperty("product")) : null;
+        this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit(forProperty("saleableUnit")) : null;
     }
 
 }

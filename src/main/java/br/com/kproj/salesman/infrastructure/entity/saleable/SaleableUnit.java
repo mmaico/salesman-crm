@@ -28,13 +28,13 @@ public class SaleableUnit extends Identifiable {
     private String description;
     
     @NotNull
-    private Boolean active = Boolean.FALSE;
+    private Boolean active = Boolean.TRUE;
 
     @NotNull
-    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
+    @NumberFormat(pattern="###.###,##")
     private BigDecimal price;
 
-    @NumberFormat(style= NumberFormat.Style.CURRENCY, pattern="#.###.##0,00")
+    @NumberFormat(pattern="###.###,##")
     private BigDecimal priceCost;
 
     @NotNull

@@ -38,6 +38,8 @@ public class QIndividual extends EntityPathBase<Individual> {
     //inherited
     public final NumberPath<Long> id;
 
+    public final StringPath lastname = createString("lastname");
+
     //inherited
     public final StringPath name;
 

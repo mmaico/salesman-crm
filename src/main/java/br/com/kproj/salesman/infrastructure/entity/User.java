@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,6 +39,10 @@ public class User extends Identifiable {
 	@Column(name = "avatar", length = 200000)
 	@Lob
 	private byte[] avatar;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="position_id")
+    private UserPosition position;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -114,7 +117,15 @@ public class User extends Identifiable {
 		this.avatar = avatar;
 	}
 
-	@Override
+    public UserPosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(UserPosition position) {
+        this.position = position;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
         sb.append("id=").append(getId());

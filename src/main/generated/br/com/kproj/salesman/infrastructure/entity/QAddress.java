@@ -32,8 +32,7 @@ public class QAddress extends EntityPathBase<Address> {
 
     public final StringPath district = createString("district");
 
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath number = createString("number");
 

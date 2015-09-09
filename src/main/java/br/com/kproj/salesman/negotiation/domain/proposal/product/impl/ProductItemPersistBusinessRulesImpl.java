@@ -24,7 +24,7 @@ public class ProductItemPersistBusinessRulesImpl implements ProductItemPersistBu
         List<ProposalProductItem> result = businessProposal.getProductItems()
                 .stream()
                 .filter(e ->
-                        !productRepository.exists(e.getProduct().getId())
+                        !productRepository.exists(e.getSaleableUnit().getId())
                                 || !isNotNegativeNumber(e.getPrice())
                                 || !(e.getQuantity() > 0))
                 .collect(Collectors.toList());

@@ -19,8 +19,6 @@ public class QIdentifiable extends EntityPathBase<Identifiable> {
 
     public static final QIdentifiable identifiable = new QIdentifiable("identifiable");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
-
     public QIdentifiable(String variable) {
         super(Identifiable.class, forVariable(variable));
     }
