@@ -8,7 +8,12 @@ import javax.persistence.Entity;
 public class EmailItem extends TimelineItem {
 
 
-    private String to;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2555190729836666717L;
+	
+	private String to;
     private String from;
     private String subject;
 

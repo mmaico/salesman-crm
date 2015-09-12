@@ -21,6 +21,21 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this.entity.setId(id);
 	}
 	
+	public TimelineBuilder(Person person) {
+		this();
+		this.entity.setPerson(person);
+	}
+	
+	public TimelineBuilder(Contact contact) {
+		this();
+		this.entity.setContact(contact);
+	}
+	
+	public TimelineBuilder(BusinessProposal businessProposal) {
+		this();
+		this.entity.setProposal(businessProposal);
+	}
+	
 	public TimelineBuilder withContact(Contact contact) {
 		this.entity.setContact(contact);
 		return this;
@@ -60,5 +75,17 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 
 	public static TimelineBuilder createTimeline() {
 		return new TimelineBuilder();
+	}
+	
+	public static TimelineBuilder createTimeline(Person person) {
+		return new TimelineBuilder(person);
+	}
+	
+	public static TimelineBuilder createTimeline(Contact contact) {
+		return new TimelineBuilder(contact);
+	}
+	
+	public static TimelineBuilder createTimeline(BusinessProposal proposal) {
+		return new TimelineBuilder(proposal);
 	}
 }

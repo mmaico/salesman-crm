@@ -8,7 +8,12 @@ import java.util.Date;
 @DiscriminatorValue("schedule")
 public class ScheduleItem extends TimelineItem {
 
-    private String title;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9181186990350770213L;
+
+	private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;

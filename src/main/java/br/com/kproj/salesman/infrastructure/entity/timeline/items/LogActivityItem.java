@@ -11,7 +11,12 @@ import java.util.Date;
 public class LogActivityItem extends TimelineItem {
 
 
-    @Temporal(TemporalType.DATE)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2728388686834419769L;
+
+	@Temporal(TemporalType.DATE)
     private Date date;
 
     @Enumerated(EnumType.STRING)

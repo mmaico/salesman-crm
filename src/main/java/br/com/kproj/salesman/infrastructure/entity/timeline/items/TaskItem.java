@@ -11,7 +11,12 @@ import java.util.Date;
 @DiscriminatorValue("task")
 public class TaskItem extends TimelineItem {
 
-    @Temporal(TemporalType.TIMESTAMP)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6505997363895736083L;
+	
+	@Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     public Date getDate() {

@@ -19,7 +19,12 @@ import java.util.List;
 @DiscriminatorColumn(name="type_item", discriminatorType=DiscriminatorType.STRING)
 public class TimelineItem extends Identifiable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8655772230845390696L;
+
+	@Id
     @GeneratedValue
     private Long id;
 
