@@ -3,12 +3,13 @@ package br.com.kproj.salesman.infrastructure.entity;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @MappedSuperclass
-public abstract class Identifiable implements Persistable<Long> {
+public abstract class Identifiable implements Persistable<Long>, Serializable {
 
 	private static final long serialVersionUID = 8213025865912695435L;
 

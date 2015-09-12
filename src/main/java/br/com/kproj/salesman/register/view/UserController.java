@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.POST)
-    public  @ResponseBody ResponseEntity save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, @ModelAttribute("file") MultipartFile file, Model model) {
+    public  @ResponseBody ResponseEntity save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -60,17 +60,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
+    public @ResponseBody User update(@ModelAttribute @Validated UserVO userVO, @ModelAttribute("file") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         
         User user = userVO.getUser();
+        user.setAvatar(file.getBytes());
         normalizeEntityRequest.addFieldsToUpdate(user);
-        service.register(user);
+        User resultRegistered = service.register(user);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return resultRegistered;
+    }
+
+    @RequestMapping(value = "/users/avatar", method = RequestMethod.POST)
+    public @ResponseBody User updateAvatar(@ModelAttribute UserVO userVO, @ModelAttribute("file") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult.getAllErrors());
+        }
+
+        User user = userVO.getUser();
+        user.setAvatar(file.getBytes());
+        user.addFields("avatar");
+        User resultRegistered = service.register(user);
+
+        return resultRegistered;
     }
 
     @RequestMapping("/users/list")
@@ -103,14 +119,15 @@ public class UserController {
     }
     
     @RequestMapping("/users/{id}/avatar")
-	public void getBigImage(HttpServletResponse response, @PathVariable Long id, @PathVariable String size) throws IOException {
+	public void getImage(HttpServletResponse response, @PathVariable Long id) throws IOException {
 	    
 		Optional<User> userOptional = this.service.getOne(id);
 		
-		if (userOptional.isPresent()) {
+		if (userOptional.isPresent() && userOptional.get().getAvatar() != null) {
 			IOUtils.write(userOptional.get().getAvatar(), response.getOutputStream());
-		}
-		
+		} else {
+            IOUtils.write(User.getDefaultAvatar(), response.getOutputStream());
+        }
 	}
 
 

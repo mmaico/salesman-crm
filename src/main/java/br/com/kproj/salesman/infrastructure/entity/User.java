@@ -1,9 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -135,6 +138,14 @@ public class User extends Identifiable {
         return sb.toString();
     }
 
+    public static byte[] getDefaultAvatar() {
+        InputStream inputStream = User.class.getResourceAsStream("/imagens/avatar.png");
+        try {
+            return IOUtils.toByteArray(inputStream);
+        } catch (IOException e) {
+            return null;
+        }
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
