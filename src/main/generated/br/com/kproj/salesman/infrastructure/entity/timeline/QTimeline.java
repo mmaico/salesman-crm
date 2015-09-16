@@ -24,11 +24,11 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity> activities = this.<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity>createList("activities", br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity.class, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity.class, PathInits.DIRECT2);
+
     public final br.com.kproj.salesman.infrastructure.entity.QContact contact;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineItem> items = this.<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineItem>createList("items", br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem.class, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineItem.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
 

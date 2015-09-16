@@ -4,15 +4,15 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
 
-public interface TimelineActivitiesService extends ModelService<Timeline> {
+public interface TimelineActivitiesService extends ModelService<TimelineActivity> {
 
-    Timeline register(Person person, TimelineItem item);
+    Timeline register(Person person, TimelineActivity item);
 
-    Timeline register(BusinessProposal proposal, TimelineItem item);
+    Timeline register(BusinessProposal proposal, TimelineActivity item);
 
-    Timeline register(Contact contact, TimelineItem item);
+    Timeline register(Contact contact, TimelineActivity item);
 
 }

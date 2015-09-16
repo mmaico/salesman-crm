@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -51,21 +51,21 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
         return this;
     }
 
-    public TimelineBuilder withItem(TimelineItem item) {
-        if (this.entity.getItems() == null) {
-            this.entity.setItems(Lists.newArrayList());
+    public TimelineBuilder withItem(TimelineActivity item) {
+        if (this.entity.getActivities() == null) {
+            this.entity.setActivities(Lists.newArrayList());
         }
 
-        this.entity.getItems().add(item);
+        this.entity.getActivities().add(item);
         return this;
     }
 
-    public TimelineBuilder withItems(List<TimelineItem> items) {
-        if (this.entity.getItems() == null) {
-            this.entity.setItems(Lists.newArrayList());
+    public TimelineBuilder withItems(List<TimelineActivity> items) {
+        if (this.entity.getActivities() == null) {
+            this.entity.setActivities(Lists.newArrayList());
         }
 
-        this.entity.getItems().addAll(items);
+        this.entity.getActivities().addAll(items);
         return this;
     }
 

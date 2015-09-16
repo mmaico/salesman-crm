@@ -1,11 +1,13 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.ContactService;
 import br.com.kproj.salesman.register.infrastructure.validators.ContactValidator;
+import br.com.kproj.salesman.timeline.application.TimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ClientBuilder.createClient;
+import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
 import static br.com.kproj.salesman.infrastructure.entity.builders.ProviderBuilder.createProvider;
 
 @RestController
@@ -31,6 +34,9 @@ public class ContactController {
 
     @Autowired
     private ContactValidator validator;
+
+    @Autowired
+    private TimelineService timelineService;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
@@ -115,7 +121,9 @@ public class ContactController {
                                  @PathVariable Long contactId, Model model) {
 
         Optional<Contact> result = this.service.getOne(contactId);
+        Timeline timeline = timelineService.register(createContact(contactId).build());
 
+        model.addAttribute("timeline", timeline);
         model.addAttribute("contact", result.isPresent() ? result.get(): null);
         return new ModelAndView("/contacts/" + templateName);
     }

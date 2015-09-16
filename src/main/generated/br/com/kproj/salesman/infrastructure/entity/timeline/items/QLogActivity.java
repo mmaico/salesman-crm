@@ -11,21 +11,23 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QEmailItem is a Querydsl query type for EmailItem
+ * QLogActivity is a Querydsl query type for LogActivity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QEmailItem extends EntityPathBase<EmailItem> {
+public class QLogActivity extends EntityPathBase<LogActivity> {
 
-    private static final long serialVersionUID = 358971747L;
+    private static final long serialVersionUID = -136245753L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QEmailItem emailItem = new QEmailItem("emailItem");
+    public static final QLogActivity logActivity = new QLogActivity("logActivity");
 
-    public final QTimelineItem _super;
+    public final QTimelineActivity _super;
 
     //inherited
     public final DateTimePath<java.util.Date> creation;
+
+    public final DatePath<java.util.Date> date = createDate("date", java.util.Date.class);
 
     //inherited
     public final StringPath description;
@@ -33,37 +35,33 @@ public class QEmailItem extends EntityPathBase<EmailItem> {
     //inherited
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.AppFile, br.com.kproj.salesman.infrastructure.entity.QAppFile> files;
 
-    public final StringPath from = createString("from");
-
     //inherited
     public final NumberPath<Long> id;
 
-    public final StringPath subject = createString("subject");
-
-    public final StringPath to = createString("to");
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum> type = createEnum("type", br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum.class);
 
     // inherited
     public final br.com.kproj.salesman.infrastructure.entity.QUser user;
 
-    public QEmailItem(String variable) {
-        this(EmailItem.class, forVariable(variable), INITS);
+    public QLogActivity(String variable) {
+        this(LogActivity.class, forVariable(variable), INITS);
     }
 
-    public QEmailItem(Path<? extends EmailItem> path) {
+    public QLogActivity(Path<? extends LogActivity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QEmailItem(PathMetadata<?> metadata) {
+    public QLogActivity(PathMetadata<?> metadata) {
         this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QEmailItem(PathMetadata<?> metadata, PathInits inits) {
-        this(EmailItem.class, metadata, inits);
+    public QLogActivity(PathMetadata<?> metadata, PathInits inits) {
+        this(LogActivity.class, metadata, inits);
     }
 
-    public QEmailItem(Class<? extends EmailItem> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLogActivity(Class<? extends LogActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this._super = new QTimelineItem(type, metadata, inits);
+        this._super = new QTimelineActivity(type, metadata, inits);
         this.creation = _super.creation;
         this.description = _super.description;
         this.files = _super.files;

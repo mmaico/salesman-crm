@@ -6,10 +6,14 @@ import br.com.kproj.salesman.infrastructure.helpers.files.FileSystemHelper;
 import br.com.kproj.salesman.infrastructure.repository.AppFileRepository;
 import br.com.kproj.salesman.infrastructure.service.FileService;
 import br.com.kproj.salesman.infrastructure.validators.AppFileValidator;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -61,5 +65,18 @@ public class FileServiceImpl implements FileService {
 		
 		return errors;
 	}
+
+    @Override
+    public Set<String> saveFile(Identifiable entity, List<AppFile> appFiles) {
+        Set<String> errors = Sets.newHashSet();
+
+        if (isEmptySafe(appFiles)) {
+            return errors;
+        }
+
+        appFiles.stream().forEach(e -> errors.addAll(saveFile(entity, e)));
+
+        return errors;
+    }
 
 }

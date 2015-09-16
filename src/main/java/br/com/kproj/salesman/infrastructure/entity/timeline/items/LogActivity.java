@@ -4,11 +4,12 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @DiscriminatorValue("logactivity")
-public class LogActivityItem extends TimelineItem {
+public class LogActivity extends TimelineActivity {
 
 
     /**
@@ -17,9 +18,11 @@ public class LogActivityItem extends TimelineItem {
 	private static final long serialVersionUID = 2728388686834419769L;
 
 	@Temporal(TemporalType.DATE)
+    @NotNull
     private Date date;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private LogActivityTypeEnum type;
 
 

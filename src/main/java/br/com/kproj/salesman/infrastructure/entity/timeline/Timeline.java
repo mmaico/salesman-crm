@@ -5,7 +5,8 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineItem;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
+import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Timeline extends Identifiable {
 
     @OneToMany(cascade={CascadeType.ALL})
     @JoinColumn(name="department_id")
-    private List<TimelineItem> items;
+    private List<TimelineActivity> activities;
 
     @ManyToOne
     @JoinColumn(name="person_id")
@@ -49,12 +50,20 @@ public class Timeline extends Identifiable {
         this.id = id;
     }
 
-    public List<TimelineItem> getItems() {
-        return items;
+    public List<TimelineActivity> getActivities() {
+        return activities;
     }
 
-    public void setItems(List<TimelineItem> items) {
-        this.items = items;
+    public void setActivities(List<TimelineActivity> activities) {
+        this.activities = activities;
+    }
+
+    public void addActivity(TimelineActivity activity) {
+        if (this.activities == null) {
+            this.activities = Lists.newArrayList();
+        }
+
+        this.activities.add(activity);
     }
 
     public Person getPerson() {

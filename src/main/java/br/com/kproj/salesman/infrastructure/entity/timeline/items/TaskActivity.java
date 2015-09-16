@@ -5,11 +5,12 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @DiscriminatorValue("task")
-public class TaskItem extends TimelineItem {
+public class TaskActivity extends TimelineActivity {
 
     /**
 	 * 
@@ -17,6 +18,7 @@ public class TaskItem extends TimelineItem {
 	private static final long serialVersionUID = 6505997363895736083L;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+    @NotNull
     private Date date;
 
     public Date getDate() {

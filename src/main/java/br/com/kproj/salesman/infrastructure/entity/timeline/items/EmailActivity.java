@@ -5,14 +5,14 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("email")
-public class EmailItem extends TimelineItem {
+public class EmailActivity extends TimelineActivity {
 
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -2555190729836666717L;
-	
+
 	private String to;
     private String from;
     private String subject;

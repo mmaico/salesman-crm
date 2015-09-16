@@ -11,18 +11,18 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QScheduleItem is a Querydsl query type for ScheduleItem
+ * QScheduleActivity is a Querydsl query type for ScheduleActivity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QScheduleItem extends EntityPathBase<ScheduleItem> {
+public class QScheduleActivity extends EntityPathBase<ScheduleActivity> {
 
-    private static final long serialVersionUID = -1372276426L;
+    private static final long serialVersionUID = -43161678L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QScheduleItem scheduleItem = new QScheduleItem("scheduleItem");
+    public static final QScheduleActivity scheduleActivity = new QScheduleActivity("scheduleActivity");
 
-    public final QTimelineItem _super;
+    public final QTimelineActivity _super;
 
     //inherited
     public final DateTimePath<java.util.Date> creation;
@@ -45,25 +45,25 @@ public class QScheduleItem extends EntityPathBase<ScheduleItem> {
     // inherited
     public final br.com.kproj.salesman.infrastructure.entity.QUser user;
 
-    public QScheduleItem(String variable) {
-        this(ScheduleItem.class, forVariable(variable), INITS);
+    public QScheduleActivity(String variable) {
+        this(ScheduleActivity.class, forVariable(variable), INITS);
     }
 
-    public QScheduleItem(Path<? extends ScheduleItem> path) {
+    public QScheduleActivity(Path<? extends ScheduleActivity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QScheduleItem(PathMetadata<?> metadata) {
+    public QScheduleActivity(PathMetadata<?> metadata) {
         this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QScheduleItem(PathMetadata<?> metadata, PathInits inits) {
-        this(ScheduleItem.class, metadata, inits);
+    public QScheduleActivity(PathMetadata<?> metadata, PathInits inits) {
+        this(ScheduleActivity.class, metadata, inits);
     }
 
-    public QScheduleItem(Class<? extends ScheduleItem> type, PathMetadata<?> metadata, PathInits inits) {
+    public QScheduleActivity(Class<? extends ScheduleActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this._super = new QTimelineItem(type, metadata, inits);
+        this._super = new QTimelineActivity(type, metadata, inits);
         this.creation = _super.creation;
         this.description = _super.description;
         this.files = _super.files;

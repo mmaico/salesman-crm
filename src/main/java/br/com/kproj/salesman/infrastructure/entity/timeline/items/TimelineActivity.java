@@ -14,10 +14,10 @@ import java.util.List;
 
 @Entity
 @Media(name="timelines")
-@Table(name="timeline_item")
+@Table(name="timeline_activities")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_item", discriminatorType=DiscriminatorType.STRING)
-public class TimelineItem extends Identifiable {
+public abstract class TimelineActivity extends Identifiable {
 
     /**
 	 * 
@@ -32,11 +32,12 @@ public class TimelineItem extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    private Date creation;
+    private Date creation = new Date();
 
     @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinTable(name="timeline_item_files", joinColumns=@JoinColumn(name="timeline_item_id"),
             inverseJoinColumns=@JoinColumn(name="appfile_id"))
+
     @OrderBy("creation ASC")
     @MediaStorage(name="files")
     private List<AppFile> files;

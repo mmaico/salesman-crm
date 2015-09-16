@@ -11,16 +11,16 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QTimelineItem is a Querydsl query type for TimelineItem
+ * QTimelineActivity is a Querydsl query type for TimelineActivity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QTimelineItem extends EntityPathBase<TimelineItem> {
+public class QTimelineActivity extends EntityPathBase<TimelineActivity> {
 
-    private static final long serialVersionUID = -1067837984L;
+    private static final long serialVersionUID = -1897898148L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QTimelineItem timelineItem = new QTimelineItem("timelineItem");
+    public static final QTimelineActivity timelineActivity = new QTimelineActivity("timelineActivity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
@@ -34,23 +34,23 @@ public class QTimelineItem extends EntityPathBase<TimelineItem> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser user;
 
-    public QTimelineItem(String variable) {
-        this(TimelineItem.class, forVariable(variable), INITS);
+    public QTimelineActivity(String variable) {
+        this(TimelineActivity.class, forVariable(variable), INITS);
     }
 
-    public QTimelineItem(Path<? extends TimelineItem> path) {
+    public QTimelineActivity(Path<? extends TimelineActivity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QTimelineItem(PathMetadata<?> metadata) {
+    public QTimelineActivity(PathMetadata<?> metadata) {
         this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QTimelineItem(PathMetadata<?> metadata, PathInits inits) {
-        this(TimelineItem.class, metadata, inits);
+    public QTimelineActivity(PathMetadata<?> metadata, PathInits inits) {
+        this(TimelineActivity.class, metadata, inits);
     }
 
-    public QTimelineItem(Class<? extends TimelineItem> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTimelineActivity(Class<? extends TimelineActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("user"), inits.get("user")) : null;
     }

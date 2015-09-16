@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @DiscriminatorValue("schedule")
-public class ScheduleItem extends TimelineItem {
+public class ScheduleActivity extends TimelineActivity {
 
     /**
 	 * 
