@@ -83,7 +83,7 @@ dependencies {
     compile("net.vidageek:mirror:1.6.1")
     compile("org.jdom:jdom:1.1")
     
-    compile("mysql:mysql-connector-java")
+    compile("mysql:mysql-connector-java:5.1.36")
 
     testCompile("org.mockito:mockito-all:1.10.19")
     testCompile("org.springframework.boot:spring-boot-starter-test")
