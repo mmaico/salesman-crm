@@ -20,7 +20,7 @@ public class Timeline extends Identifiable {
     private Long id;
 
     @OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="department_id")
+    @JoinColumn(name="timeline_id")
     private List<TimelineActivity> activities;
 
     @ManyToOne

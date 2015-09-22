@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.infrastructure.helpers.files.MimetypeUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -73,7 +74,7 @@ public class AppFile extends Identifiable {
     }
 
     public String getExtension() {
-        return MimetypeUtils.findExtension(this.mimeType);
+        return "." + FilenameUtils.getExtension(this.getOriginalName());
     }
 
 	public byte[] getFile() {
@@ -91,5 +92,10 @@ public class AppFile extends Identifiable {
 	public void setSize(Long size) {
 		this.size = size;
 	}
+
+    public Boolean isValid() {
+        AppFile nullObject = new AppFile();
+        return EqualsBuilder.reflectionEquals(this, nullObject);
+    }
 		
 }

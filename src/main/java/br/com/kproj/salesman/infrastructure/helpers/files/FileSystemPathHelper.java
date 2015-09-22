@@ -7,6 +7,8 @@ import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 import net.vidageek.mirror.dsl.Mirror;
 import net.vidageek.mirror.list.dsl.MirrorList;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
@@ -16,7 +18,7 @@ import java.lang.reflect.Field;
 @Component
 public class FileSystemPathHelper {
 
-	//@Value("${system.repository.storage}")
+	@Value("${system.repository.storage}")
 	private String basePath;
 	
 	public String mountBasePathFile(Identifiable object) {
@@ -46,4 +48,10 @@ public class FileSystemPathHelper {
 		
 		return fullPath + "/"+ appFile.getId() + appFile.getExtension();
 	}
+
+    public static void main(String[] args) {
+        String extension = FilenameUtils.getExtension("arquivo.pdf");
+        System.out.println(extension);
+
+    }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Media(name="timelines")
 @Table(name="timeline_activities")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_item", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING)
 public abstract class TimelineActivity extends Identifiable {
 
     /**
@@ -37,7 +37,6 @@ public abstract class TimelineActivity extends Identifiable {
     @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinTable(name="timeline_item_files", joinColumns=@JoinColumn(name="timeline_item_id"),
             inverseJoinColumns=@JoinColumn(name="appfile_id"))
-
     @OrderBy("creation ASC")
     @MediaStorage(name="files")
     private List<AppFile> files;

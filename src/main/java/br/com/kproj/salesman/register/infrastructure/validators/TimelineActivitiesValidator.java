@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.register.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.register.view.dto.LogActivityVO;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class TimelineActivitiesValidator implements Validator, InitializingBean 
 
     private javax.validation.Validator validator;
 
-    private Map<Class<? extends TimelineActivity>, Validator> validatorMap = new HashMap<>();
+    private Map<Class<?>, Validator> validatorMap = new HashMap<>();
 
     {
         validatorMap.put(LogActivity.class, new TimelineLogActivityValidator());
@@ -31,7 +31,7 @@ public class TimelineActivitiesValidator implements Validator, InitializingBean 
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return TimelineActivity.class.equals(clazz);
+        return clazz.equals(LogActivity.class);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class TimelineActivitiesValidator implements Validator, InitializingBean 
 
         @Override
         public boolean supports(Class<?> clazz) {
-            return LogActivity.class.equals(clazz);
+            return LogActivityVO.class.equals(clazz);
         }
 
         @Override

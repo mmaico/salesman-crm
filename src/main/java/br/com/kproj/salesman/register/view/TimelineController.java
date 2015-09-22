@@ -5,15 +5,20 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.register.infrastructure.validators.TimelineActivitiesValidator;
+import br.com.kproj.salesman.register.view.dto.LogActivityVO;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesService;
 import br.com.kproj.salesman.timeline.application.TimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
 import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
@@ -34,23 +39,23 @@ public class TimelineController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
 
-    @InitBinder(value = "logActivity")
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-    }
+//    @InitBinder
+//    private void initBinder(WebDataBinder binder) {
+//        binder.setValidator(validator);
+//    }
 
     @RequestMapping(value = "/contact/{contactId}/logactivity/save", method = RequestMethod.POST)
-    public ModelAndView saveOfContact(@PathVariable Long contactId, @ModelAttribute @Validated LogActivity logActivity,
-                                              BindingResult bindingResult, Model model) {
+    public @ResponseBody ResponseEntity saveOfContact(@PathVariable Long contactId, @ModelAttribute LogActivityVO logActivityVO,
+                                                      BindingResult bindingResult, Model model) throws IOException {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
+        LogActivity logActivity = logActivityVO.getLogActivity();
+        validator.validate(logActivity, new BindException(bindingResult));
 
+        logActivity.setFiles(logActivityVO.getAppFiles());
         Timeline timelineResult = service.register(createContact(contactId).build(), logActivity);
 
         model.addAttribute(timelineResult);
-        return new ModelAndView("");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/business-proposal/{businessId}/logactivity/save", method = RequestMethod.POST)

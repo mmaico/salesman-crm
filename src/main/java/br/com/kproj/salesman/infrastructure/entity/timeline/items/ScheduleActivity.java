@@ -16,9 +16,11 @@ public class ScheduleActivity extends TimelineActivity {
 	private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="start_date")
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="end_date")
     private Date endDate;
 
     public String getTitle() {
