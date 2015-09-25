@@ -66,6 +66,15 @@ public class TimelineActivitiesServiceImpl extends BaseModelServiceImpl<Timeline
     }
 
     @Override
+    public byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile) {
+        if (timelineActivity.isNew() || appfile.isNew()) {
+            return new byte[0];
+        }
+        return fileService.getFile(timelineActivity, appfile);
+    }
+
+
+    @Override
     public BaseRepository<TimelineActivity, Long> getRepository() {
         return repository;
     }

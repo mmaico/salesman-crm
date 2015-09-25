@@ -27,8 +27,6 @@ public class QTaskActivity extends EntityPathBase<TaskActivity> {
     //inherited
     public final DateTimePath<java.util.Date> creation;
 
-    public final DateTimePath<java.util.Date> date = createDateTime("date", java.util.Date.class);
-
     //inherited
     public final StringPath description;
 

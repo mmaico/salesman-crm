@@ -25,6 +25,12 @@ public class LogActivity extends TimelineActivity {
     @NotNull
     private LogActivityTypeEnum type;
 
+    public LogActivity(){}
+
+    public LogActivity(Long id) {
+        this.setId(id);
+    }
+
     public LogActivityTypeEnum getType() {
         return type;
     }

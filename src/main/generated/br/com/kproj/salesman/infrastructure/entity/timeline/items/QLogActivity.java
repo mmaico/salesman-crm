@@ -27,8 +27,6 @@ public class QLogActivity extends EntityPathBase<LogActivity> {
     //inherited
     public final DateTimePath<java.util.Date> creation;
 
-    public final DatePath<java.util.Date> date = createDate("date", java.util.Date.class);
-
     //inherited
     public final StringPath description;
 
