@@ -37,6 +37,7 @@ public class LogActivityVO {
                     .withMimeType(safe(multipart).getContentType())
                     .withOriginalName(safe(multipart).getOriginalFilename())
                     .withSize(safe(multipart).getSize())
+                    .addDimensionsIfImage()
                     .build();
 
             if (!appFile.isValid()) {

@@ -83,6 +83,7 @@ public class TimelineController {
 
         Timeline timeline = timelineService.register(createContact(contactId).build());
 
+        model.addAttribute(createContact(contactId).build());
         model.addAttribute(timeline);
         return new ModelAndView("/timeline/timeline");
     }

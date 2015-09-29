@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import com.google.common.collect.Sets;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
@@ -30,6 +31,10 @@ public class AppFile extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creation;
+
+    private Integer width;
+
+    private Integer height;
 	
 	@Transient
 	private byte[] file;
@@ -93,9 +98,25 @@ public class AppFile extends Identifiable {
 		this.size = size;
 	}
 
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
     public Boolean isValid() {
         AppFile nullObject = new AppFile();
-        return EqualsBuilder.reflectionEquals(this, nullObject);
+        return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
     }
 		
 }
