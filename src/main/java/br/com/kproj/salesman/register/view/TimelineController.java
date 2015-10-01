@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
+import br.com.kproj.salesman.infrastructure.service.FileService;
 import br.com.kproj.salesman.register.infrastructure.validators.TimelineActivitiesValidator;
 import br.com.kproj.salesman.register.view.dto.LogActivityVO;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesService;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
 import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
@@ -45,6 +47,9 @@ public class TimelineController {
 
     @Autowired
     private SecurityHelper security;
+
+    @Autowired
+    private FileService fileService;
 
 
 
@@ -99,6 +104,24 @@ public class TimelineController {
         byte[] activityFile = this.service.getActivityFile(activity, file);
 
         IOUtils.write(activityFile, response.getOutputStream());
+    }
+
+    @RequestMapping("/file/{activityId}/app/{idAppFile}")
+    public void getFile(HttpServletResponse response, @PathVariable Long activityId, @PathVariable Long idAppFile) throws IOException {
+
+        byte[] file = service.getActivityFile(new LogActivity(activityId), new AppFile(idAppFile));
+
+        Optional<AppFile> appfile = fileService.getAppfile(idAppFile);
+
+        if (!appfile.isPresent()) {
+            return;
+        }
+
+        response.setContentType("application/octet-stream");
+        response.addHeader("Content-Disposition", "attachment; filename=\"" + appfile.get().getOriginalName() + "\"");
+
+        IOUtils.write(file, response.getOutputStream());
+
     }
 
 }

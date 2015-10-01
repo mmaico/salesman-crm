@@ -27,10 +27,10 @@ public class TimelineActivityHelper {
     private Map<LogActivityTypeEnum, ViewActivity> profile = new HashMap<>();
 
     {
-        profile.put(CALL, ViewActivity.build("telefone", "bg-secondary", "entypo-phone", PHONE_MESSAGE));
-        profile.put(EMAIL, ViewActivity.build("e-mail", "bg-warning", "entypo-mail", EMAIL_MESSAGE));
-        profile.put(MEETING, ViewActivity.build("visita", "bg-info", "entypo-location", MEETING_MESSAGE));
-        profile.put(NOTE, ViewActivity.build("nota", "bg-info", "fa fa-edit", NOTE_MESSAGE));
+        profile.put(CALL, ViewActivity.build("telefone", "bg-info", "entypo-phone", PHONE_MESSAGE));
+        profile.put(EMAIL, ViewActivity.build("e-mail", "bg-green", "entypo-mail", EMAIL_MESSAGE));
+        profile.put(MEETING, ViewActivity.build("visita", "bg-orange", "entypo-location", MEETING_MESSAGE));
+        profile.put(NOTE, ViewActivity.build("nota", "bg-purple", "fa fa-edit", NOTE_MESSAGE));
 
     }
 

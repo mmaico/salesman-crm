@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
@@ -42,7 +43,19 @@ public class FileServiceImpl implements FileService {
 		return file;
 	}
 
-	@Override
+    @Override
+    public Optional<AppFile> getAppfile(Long idtAppFile) {
+
+        if (idtAppFile == null) {
+            return Optional.empty();
+        }
+
+        AppFile appfileLoaded = this.repository.findOne(idtAppFile);
+
+        return Optional.ofNullable(appfileLoaded);
+    }
+
+    @Override
 	public Set<String> saveFile(Identifiable entity, AppFile appFile) {
 		
 		Set<String> errors = this.appFileValidator.validateToSave(appFile);

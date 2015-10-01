@@ -11,8 +11,6 @@ import br.com.kproj.salesman.timeline.application.TimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -22,9 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.ClientBuilder.createClient;
 import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
-import static br.com.kproj.salesman.infrastructure.entity.builders.ProviderBuilder.createProvider;
 
 @RestController
 public class ContactController {
@@ -46,21 +42,21 @@ public class ContactController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/clients/{clientId}/contacts/save", method = RequestMethod.POST)
-    public  @ResponseBody ResponseEntity save(@ModelAttribute @Validated Contact contact, @PathVariable("clientId") Long clientId,
+    @RequestMapping(value = "/contacts/save", method = RequestMethod.POST)
+    public  @ResponseBody String save(@ModelAttribute @Validated Contact contact,
                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
         normalizeEntityRequest.doNestedReference(contact);
-        service.register(createClient(clientId).build(), contact);
+        Contact contactLoaded = service.register(contact);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "/contacts/" + contactLoaded.getId();
     }
 
-    @RequestMapping(value = "/clients/{clientId}/contacts/save", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated Contact contact, @PathVariable("clientId") Long clientId,
+    @RequestMapping(value = "/contacts/save", method = RequestMethod.PUT)
+    public @ResponseBody String update(@ModelAttribute @Validated Contact contact,
                                                BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -68,40 +64,14 @@ public class ContactController {
         }
 
         normalizeEntityRequest.addFieldsToUpdate(contact);
-        service.register(createClient(clientId).build(), contact);
+        Contact contactLoaded = service.register(contact);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "/contacts/" + contactLoaded.getId();
     }
 
-    @RequestMapping(value = "/providers/{providerId}/contacts/save", method = RequestMethod.POST)
-    public  @ResponseBody ResponseEntity saveProvider(@ModelAttribute @Validated Contact contact, @PathVariable("providerId") Long providerId,
-                                              BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-
-        normalizeEntityRequest.addFieldsToUpdate(contact);
-        service.register(createProvider(providerId).build(), contact);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/providers/{providerId}/contacts/save", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity updateProvider(@ModelAttribute @Validated Contact contact, @PathVariable("providerId") Long providerId,
-                                               BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-
-        normalizeEntityRequest.addFieldsToUpdate(contact);
-        service.register(createProvider(providerId).build(), contact);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @RequestMapping(value="/contacts/list")
-    public ModelAndView list(@PageableDefault(page=0, size=15)Pageable pageable, Model model) {
+    public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 
         Iterable<Contact> result = this.service.findAll(pager);

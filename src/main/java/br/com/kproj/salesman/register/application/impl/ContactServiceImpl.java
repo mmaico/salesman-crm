@@ -1,49 +1,28 @@
 package br.com.kproj.salesman.register.application.impl;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.ContactRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
-import br.com.kproj.salesman.register.application.ClientService;
 import br.com.kproj.salesman.register.application.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
-import static com.google.common.collect.Sets.newHashSet;
 
 @Service
 public class ContactServiceImpl extends BaseModelServiceImpl<Contact> implements ContactService {
 
     private ContactRepository contactRepository;
 
-    private ClientService clientService;
 
     @Autowired
-    public ContactServiceImpl(ClientService clientService, ContactRepository contactRepository) {
+    public ContactServiceImpl(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
-        this.clientService = clientService;
+
     }
 
     @Override
-    public Contact register(Person person, Contact contact) {
-
-        if (contact.isNew()) {
-            Optional<Person> clientLoaded = clientService.getOne(person.getId());
-
-            if (!clientLoaded.isPresent()) {
-                throw new ValidationException(newHashSet("client.not.exist.on.save.contact"));
-            }
-
-            contact.setPerson(clientLoaded.get());
-
-            return super.save(contact);
-        } else {
-            return super.save(contact);
-        }
+    public Contact register(Contact contact) {
+        return super.save(contact);
     }
 
     @Override

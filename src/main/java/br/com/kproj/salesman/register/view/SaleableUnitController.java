@@ -65,7 +65,7 @@ public class SaleableUnitController {
     }
 
     @RequestMapping("/products/list")
-    public ModelAndView list(@PageableDefault(page=0, size=15)Pageable pageable, Model model) {
+    public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
 
         Pager pager = Pager.binding(pageable);
 
