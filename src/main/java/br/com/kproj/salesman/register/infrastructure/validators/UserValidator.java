@@ -1,20 +1,19 @@
 package br.com.kproj.salesman.register.infrastructure.validators;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
-
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
-
+import br.com.kproj.salesman.register.view.dto.UserVO;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.kproj.salesman.register.view.dto.UserVO;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static org.apache.commons.lang.StringUtils.isBlank;
 
 @Component
 public class UserValidator implements Validator, InitializingBean {
@@ -38,6 +37,12 @@ public class UserValidator implements Validator, InitializingBean {
             if (isBlank(user.getPassword()) || isBlank(user.getPasswordConfirm())
                     || !user.getPassword().equals(user.getPasswordConfirm()))
             errors.rejectValue("password", "Senha invalida");
+        }
+        else {
+            constraints = constraints.stream().filter(e ->
+                                e.getMessageTemplate().equals("user.password")
+                            ||  e.getMessageTemplate().equals("user.login"))
+                    .collect(Collectors.toSet());
         }
         
         avatarValidator.validate(user.getAvatarFile(), errors);

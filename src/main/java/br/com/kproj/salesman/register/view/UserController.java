@@ -3,6 +3,7 @@ package br.com.kproj.salesman.register.view;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.repository.BranchRepository;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.UserPositionRepository;
 import br.com.kproj.salesman.register.application.UserService;
@@ -12,8 +13,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -41,22 +40,25 @@ public class UserController {
     @Autowired
     private UserPositionRepository positionRepository;
 
+    @Autowired
+    private BranchRepository branchRepository;
+
     @InitBinder(value = "userVO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.POST)
-    public  @ResponseBody ResponseEntity save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
+    public  @ResponseBody String save(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         
         User user = userVO.getUser();
-        service.register(user);
+        User register = service.register(user);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "/users/" + register.getId();
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
@@ -96,6 +98,7 @@ public class UserController {
 
         Iterable<User> result = this.service.findAll(pager);
 
+
         model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("users", result);
         return new ModelAndView("/users/list");
@@ -106,6 +109,7 @@ public class UserController {
         
         Optional<User> result = this.service.getOne(userId);
 
+        model.addAttribute("branchs", branchRepository.findAll());
         model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("user", result.get());
         return new ModelAndView("/users/edit");
@@ -114,6 +118,7 @@ public class UserController {
     @RequestMapping(value="/users/create")
     public ModelAndView newUser(Model model) {
 
+        model.addAttribute("branchs", branchRepository.findAll());
         model.addAttribute("positions", positionRepository.findAll());
         return new ModelAndView("/users/newUser");
     }

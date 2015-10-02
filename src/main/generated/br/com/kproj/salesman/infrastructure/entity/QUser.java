@@ -26,6 +26,10 @@ public class QUser extends EntityPathBase<User> {
 
     public final ArrayPath<byte[], Byte> avatar = createArray("avatar", byte[].class);
 
+    public final QBranch branch;
+
+    public final StringPath email = createString("email");
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath lastname = createString("lastname");
@@ -56,6 +60,7 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.branch = inits.isInitialized("branch") ? new QBranch(forProperty("branch")) : null;
         this.position = inits.isInitialized("position") ? new QUserPosition(forProperty("position")) : null;
     }
 

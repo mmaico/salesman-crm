@@ -37,6 +37,8 @@ public class User extends Identifiable {
     private String name;
 
     private String lastname;
+
+    private String email;
     
     @Basic(fetch = FetchType.LAZY)
 	@Column(name = "avatar", length = 200000)
@@ -46,6 +48,10 @@ public class User extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="position_id")
     private UserPosition position;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="branch_id")
+    private Branch branch;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -124,8 +130,24 @@ public class User extends Identifiable {
         return position;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setPosition(UserPosition position) {
         this.position = position;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     @Override

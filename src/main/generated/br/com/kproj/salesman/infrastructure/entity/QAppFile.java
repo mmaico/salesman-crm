@@ -23,6 +23,8 @@ public class QAppFile extends EntityPathBase<AppFile> {
 
     public final DateTimePath<java.util.Date> creation = createDateTime("creation", java.util.Date.class);
 
+    public final NumberPath<Integer> height = createNumber("height", Integer.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath mimeType = createString("mimeType");
@@ -30,6 +32,8 @@ public class QAppFile extends EntityPathBase<AppFile> {
     public final StringPath originalName = createString("originalName");
 
     public final NumberPath<Long> size = createNumber("size", Long.class);
+
+    public final NumberPath<Integer> width = createNumber("width", Integer.class);
 
     public QAppFile(String variable) {
         super(AppFile.class, forVariable(variable));
