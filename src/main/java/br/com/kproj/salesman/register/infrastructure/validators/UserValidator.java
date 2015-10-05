@@ -39,9 +39,10 @@ public class UserValidator implements Validator, InitializingBean {
             errors.rejectValue("password", "Senha invalida");
         }
         else {
-            constraints = constraints.stream().filter(e ->
-                                e.getMessageTemplate().equals("user.password")
-                            ||  e.getMessageTemplate().equals("user.login"))
+            constraints = constraints.stream()
+                    .filter(e ->
+                            !e.getMessageTemplate().equals("user.password")
+                            && !e.getMessageTemplate().equals("user.login"))
                     .collect(Collectors.toSet());
         }
         

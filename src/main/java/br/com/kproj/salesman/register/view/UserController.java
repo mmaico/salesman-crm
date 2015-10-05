@@ -13,6 +13,8 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -62,22 +64,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
-    public @ResponseBody User update(@ModelAttribute @Validated UserVO userVO, @ModelAttribute("file") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
+    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) throws IOException {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         
         User user = userVO.getUser();
-        user.setAvatar(file.getBytes());
         normalizeEntityRequest.addFieldsToUpdate(user);
-        User resultRegistered = service.register(user);
+        service.register(user);
 
-        return resultRegistered;
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/users/credentials", method = RequestMethod.PUT)
+    public @ResponseBody ResponseEntity updateCredentials(@ModelAttribute User user, Model model) throws IOException {
+
+        normalizeEntityRequest.addFieldsToUpdate(user);
+        service.register(user);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/users/avatar", method = RequestMethod.POST)
-    public @ResponseBody User updateAvatar(@ModelAttribute UserVO userVO, @ModelAttribute("file") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
+    public @ResponseBody ResponseEntity updateAvatar(@ModelAttribute UserVO userVO, @ModelAttribute("file") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -86,9 +96,9 @@ public class UserController {
         User user = userVO.getUser();
         user.setAvatar(file.getBytes());
         user.addFields("avatar");
-        User resultRegistered = service.register(user);
+        service.register(user);
 
-        return resultRegistered;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/users/list")
