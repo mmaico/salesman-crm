@@ -89,7 +89,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/clients/list"));
+        assertThat(modelAndView.getViewName(), is("/clients/list-items"));
     }
 
 

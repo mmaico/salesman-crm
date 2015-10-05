@@ -3,9 +3,12 @@ package br.com.kproj.salesman.register.domain.impl;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.register.domain.AddressDomainService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -13,7 +16,10 @@ public class ProviderDomainServiceImplTest {
 
 
     @InjectMocks
-    private ProviderDomainServiceImpl service;
+    private ProviderDomainServiceImpl providerDomainService;
+    
+    @Mock
+    private AddressDomainService service;
 
 
     @Test
@@ -22,7 +28,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.INDIVIDUAL_PROVIDER.get());
 
 
-        service.verifyPreconditionToSave(person);
+        providerDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -32,7 +38,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.COMPANY_PROVIDER.get());
 
 
-        service.verifyPreconditionToSave(person);
+        providerDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -42,7 +48,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.COMPANY_CLIENT.get());
 
 
-        service.verifyPreconditionToSave(person);
+        providerDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -52,7 +58,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.INDIVIDUAL_CLIENT.get());
 
 
-        service.verifyPreconditionToSave(person);
+        providerDomainService.verifyPreconditionToSave(person);
 
     }
 }

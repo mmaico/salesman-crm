@@ -72,12 +72,12 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenProviderTradingnameGreaterThan30Characters() throws Exception {
+    public void shouldReturnErrorWhenProviderTradingnameGreaterThan120Characters() throws Exception {
 
         mockMvc.perform(post("/providers/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "Client Name")
-                        .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
+                        .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")
                         .param("profile.id", PersonProfilesEnum.COMPANY_PROVIDER.get().getId().toString())
         ).andExpect(status().isBadRequest()).andExpect(model().attributeExists("errors"));
     }
@@ -90,7 +90,7 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/providers/list"));
+        assertThat(modelAndView.getViewName(), is("/providers/list-items"));
     }
 
 

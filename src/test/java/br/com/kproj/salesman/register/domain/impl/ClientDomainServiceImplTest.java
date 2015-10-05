@@ -3,16 +3,22 @@ package br.com.kproj.salesman.register.domain.impl;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.register.domain.AddressDomainService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ClientDomainServiceImplTest {
 
     @InjectMocks
-    private ClientDomainServiceImpl service;
+    private ClientDomainServiceImpl clientDomainService;
+    
+    @Mock
+    private AddressDomainService service;
 
 
     @Test
@@ -21,7 +27,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(1l));
 
 
-        service.verifyPreconditionToSave(person);
+        clientDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -31,7 +37,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(2l));
 
 
-        service.verifyPreconditionToSave(person);
+        clientDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -41,7 +47,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(3l));
 
 
-        service.verifyPreconditionToSave(person);
+        clientDomainService.verifyPreconditionToSave(person);
 
     }
 
@@ -51,7 +57,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(4l));
 
 
-        service.verifyPreconditionToSave(person);
+        clientDomainService.verifyPreconditionToSave(person);
 
     }
 }

@@ -36,6 +36,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     public void shouldSaveProduct() throws Exception {
 
         mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        		.param("type", "PRODUCT")
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -75,7 +76,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/products/list"));
+        assertThat(modelAndView.getViewName(), is("/products/list-items"));
     }
 
 

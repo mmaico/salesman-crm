@@ -111,7 +111,7 @@ public class UserController {
 
         model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("users", result);
-        return new ModelAndView("/users/list");
+        return new ModelAndView("/users/list-items");
     }
     
     @RequestMapping(value="/users/{userId}")

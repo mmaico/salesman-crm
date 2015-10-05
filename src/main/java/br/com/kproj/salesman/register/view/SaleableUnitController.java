@@ -72,7 +72,7 @@ public class SaleableUnitController {
         Iterable<SaleableUnit> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
-        return new ModelAndView("/products/list");
+        return new ModelAndView("/products/list-items");
     }
     
     @RequestMapping(value="/products/{productId}")

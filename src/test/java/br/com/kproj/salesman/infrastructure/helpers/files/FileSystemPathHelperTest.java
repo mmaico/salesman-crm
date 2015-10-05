@@ -52,12 +52,13 @@ public class FileSystemPathHelperTest {
     @Test
     public void shouldReturnTheFullPathFile() {
         TestBuildPath test = new TestBuildPath(10l);
-        AppFile imageFile = new AppFile(3l);
-        imageFile.setMimeType("application/vnd.ms-excel");
+        AppFile appfile = new AppFile(3l);
+        appfile.setOriginalName("planilha.xls");
+        appfile.setMimeType("application/vnd.ms-excel");
 
         String pathExpected = this.basePath + "/test/image/10/3.xls";
 
-        String pathFile = fileSystemPathUtils.getPathFile(test, imageFile);
+        String pathFile = fileSystemPathUtils.getPathFile(test, appfile);
 
         assertThat(pathFile, is(pathExpected));
     }

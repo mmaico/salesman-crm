@@ -131,7 +131,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/users/list"));
+        assertThat(modelAndView.getViewName(), is("/users/list-items"));
     }
 
 

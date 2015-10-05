@@ -81,7 +81,7 @@ public class ProviderController {
         Iterable<Person> result = this.service.findAll(pager);
 
         model.addAttribute("providers", result);
-        return new ModelAndView("/providers/list");
+        return new ModelAndView("/providers/list-items");
     }
 
     @RequestMapping(value="/providers/create")

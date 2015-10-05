@@ -67,7 +67,7 @@ public class ClientController {
         Iterable<Person> result = this.service.findAll(pager);
 
         model.addAttribute("clients", result);
-        return new ModelAndView("/clients/list");
+        return new ModelAndView("/clients/list-items");
     }
 
     @RequestMapping(value="/clients/create")
