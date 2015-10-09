@@ -1,0 +1,87 @@
+spring:
+  profiles: prod
+  velocity:
+    allow-request-override: false
+    cache: true
+    check-template-location: false
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    prefer-file-system-access: true
+    resource-loader-path: file:/opt/templates
+    suffix: .vm
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/facility
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+    max-active: 100
+    max-idle: 8
+    min-idle: 8
+    initial-size: 10
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  data.jpa.repositories.enabled: true
+
+
+multipart:
+  enabled: true
+  file-size-threshold: 0
+  location: /opt
+  max-file-size: 100Mb
+  max-request-size: 500Mb
+
+system.repository.storage: /opt
+
+security:
+  require-ssl: false
+  enable-csrf: false
+
+---
+spring:
+  profiles: test
+  velocity:
+    allow-request-override: false
+    cache: true
+    check-template-location: false
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    prefer-file-system-access: true
+    resource-loader-path: file:/opt/templates
+    suffix: .vm
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  data.jpa.repositories.enabled: true
+
+
+multipart:
+  enabled: true
+  file-size-threshold: 0
+  location: /opt
+  max-file-size: 100Mb
+  max-request-size: 500Mb
+
+system.repository.storage: /opt
+
+security:
+  require-ssl: false
+  enable-csrf: false

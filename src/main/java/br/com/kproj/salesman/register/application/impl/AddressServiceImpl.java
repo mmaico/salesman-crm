@@ -20,15 +20,14 @@ import static com.google.common.collect.Sets.newHashSet;
 @Service
 public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements AddressService {
 
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
-    private ClientService clientService;
-    
-    private AddressDomainService service;
+    private final ClientService clientService;
+
+    private final AddressDomainService service;
 
     @Autowired
-    public AddressServiceImpl(ClientService clientService, AddressRepository addressRepository,
-    		AddressDomainService service) {
+    public AddressServiceImpl(ClientService clientService, AddressRepository addressRepository, AddressDomainService service) {
         this.addressRepository = addressRepository;
         this.clientService = clientService;
         this.service = service;

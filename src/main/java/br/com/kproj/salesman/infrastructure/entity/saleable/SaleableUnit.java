@@ -39,7 +39,7 @@ public class SaleableUnit extends Identifiable {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name="TYPE")
+    @Column(name = "TYPE", nullable = true)
     private SaleableType type;
 
     public SaleableUnit(){}

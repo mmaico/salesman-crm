@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @NoRepositoryBean
 
-public interface BaseRepository<T, Serializable> extends CrudRepository<T, Long>, QueryDslPredicateExecutor<T> {
+public interface BaseRepository<T, ID extends Serializable> extends CrudRepository<T, ID>, QueryDslPredicateExecutor<T> {
 
     Page<T> findAll(Pageable page);
 }

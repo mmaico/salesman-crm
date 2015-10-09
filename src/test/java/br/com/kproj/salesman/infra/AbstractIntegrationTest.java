@@ -1,24 +1,22 @@
 package br.com.kproj.salesman.infra;
 
+import br.com.kproj.salesman.Application;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import br.com.kproj.salesman.Application;
-
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = Application.class, initializers = {ConfigFileApplicationContextInitializer.class})
 @WebAppConfiguration
-@TestPropertySource(locations="classpath:test.properties")
 @TestExecutionListeners({
 	DependencyInjectionTestExecutionListener.class,
     DirtiesContextTestExecutionListener.class,
@@ -26,6 +24,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
     DbUnitTestExecutionListener.class,
     ForeignKeyDisabling.class})
 @DatabaseSetup("/dbunit-dataset.xml")
+@ActiveProfiles("test")
 public abstract class AbstractIntegrationTest {
 
 }
