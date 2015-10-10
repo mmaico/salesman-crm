@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.application.impl;
+package br.com.kproj.salesman.negotiation.application;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -6,7 +6,6 @@ import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
-import br.com.kproj.salesman.negotiation.application.NegotiationService;
 import br.com.kproj.salesman.negotiation.domain.proposal.BusinessProposalDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
