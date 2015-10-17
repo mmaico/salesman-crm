@@ -3,6 +3,7 @@ package br.com.kproj.salesman.register.application.impl;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.repository.ContactRepository;
 import br.com.kproj.salesman.register.application.ClientService;
+import br.com.kproj.salesman.register.application.ContactServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

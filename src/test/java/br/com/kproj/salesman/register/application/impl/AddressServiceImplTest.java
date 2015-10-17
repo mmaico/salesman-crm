@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
+import br.com.kproj.salesman.register.application.AddressServiceImpl;
 import br.com.kproj.salesman.register.application.ClientService;
 import br.com.kproj.salesman.register.domain.AddressDomainService;
 import org.junit.Test;

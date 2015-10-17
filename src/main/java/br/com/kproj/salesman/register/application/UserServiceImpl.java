@@ -1,10 +1,9 @@
-package br.com.kproj.salesman.register.application.impl;
+package br.com.kproj.salesman.register.application;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
-import br.com.kproj.salesman.register.application.UserService;
 import br.com.kproj.salesman.register.domain.UserDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
