@@ -1,24 +1,18 @@
-package br.com.kproj.salesman.timeline.application.impl;
-
-import static br.com.kproj.salesman.infrastructure.entity.builders.TimelineBuilder.createTimeline;
-
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.google.common.collect.Sets;
+package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineRepository;
-import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
-import br.com.kproj.salesman.timeline.application.TimelineService;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+import static br.com.kproj.salesman.infrastructure.entity.builders.TimelineBuilder.createTimeline;
 
 @Service
 public class TimelineServiceImpl extends BaseModelServiceImpl<Timeline> implements TimelineService {

@@ -1,10 +1,9 @@
-package br.com.kproj.salesman.infrastructure.service.impl;
+package br.com.kproj.salesman.infrastructure.service;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.files.FileSystemHelper;
 import br.com.kproj.salesman.infrastructure.repository.AppFileRepository;
-import br.com.kproj.salesman.infrastructure.service.FileService;
 import br.com.kproj.salesman.infrastructure.validators.AppFileValidator;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;

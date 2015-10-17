@@ -1,10 +1,9 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.product.impl;
+package br.com.kproj.salesman.negotiation.domain.proposal.product;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
 import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
-import br.com.kproj.salesman.negotiation.domain.proposal.product.ProductItemPersistBusinessRules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

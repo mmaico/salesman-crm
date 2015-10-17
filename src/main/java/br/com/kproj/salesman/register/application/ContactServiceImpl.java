@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.application;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.ContactRepository;
-import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

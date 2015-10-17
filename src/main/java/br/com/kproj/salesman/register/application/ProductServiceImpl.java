@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.application;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
-import br.com.kproj.salesman.infrastructure.service.impl.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.register.domain.SaleableUnitDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

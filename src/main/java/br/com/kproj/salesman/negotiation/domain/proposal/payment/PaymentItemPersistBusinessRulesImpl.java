@@ -1,24 +1,20 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.payment.impl;
+package br.com.kproj.salesman.negotiation.domain.proposal.payment;
 
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isEquals;
-import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNumberEqualsZero;
-import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNumberGreaterThanZero;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
-import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
+import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.*;
+import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Service
 public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBusinessRules {

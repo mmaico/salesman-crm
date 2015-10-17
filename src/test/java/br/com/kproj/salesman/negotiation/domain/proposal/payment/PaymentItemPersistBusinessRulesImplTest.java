@@ -1,23 +1,21 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.payment.impl;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.runners.MockitoJUnitRunner;
+package br.com.kproj.salesman.negotiation.domain.proposal.payment;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-
 import com.google.common.collect.Lists;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PaymentItemPersistBusinessRulesImplTest {

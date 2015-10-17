@@ -1,8 +1,8 @@
-package br.com.kproj.salesman.negotiation.domain.proposal.product.impl;
+package br.com.kproj.salesman.negotiation.domain.proposal.product;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
 import com.google.common.collect.Lists;
 import org.junit.Test;
