@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.view;
 
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -56,6 +57,14 @@ public class ProposalController {
 
         model.addAttribute("proposal", newBusinessProposal);
         return new ModelAndView("proposal");
+    }
+
+    @RequestMapping(value="/proposals/persons/{idPerson}")
+    public ModelAndView newProposal(Model model, @PathVariable Long idPerson) {
+
+
+        model.addAttribute("client", new Person(idPerson));
+        return new ModelAndView("/clients/proposal/newProposal");
     }
 
 
