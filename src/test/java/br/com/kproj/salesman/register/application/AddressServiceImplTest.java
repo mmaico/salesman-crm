@@ -24,7 +24,7 @@ public class AddressServiceImplTest {
     private AddressServiceImpl service;
 
     @Mock
-    private AddressRepository contactRepository;
+    private AddressRepository addressRepository;
 
     @Mock
     private ClientService clientService;
@@ -32,19 +32,22 @@ public class AddressServiceImplTest {
     @Mock
     private AddressDomainService addressDomainService;
 
+
     @Test
-    public void shouldSaveANewContact() {
+    public void shouldSaveANewAddress() {
         Person personMocked = Mockito.mock(Person.class);
         Person personLoadedMocked = Mockito.mock(Person.class);
-        Address address = new Address();
+        Address address = Mockito.mock(Address.class);
 
         given(personMocked.getId()).willReturn(2l);
         given(clientService.getOne(2l)).willReturn(Optional.of(personLoadedMocked));
+        given(address.isNew()).willReturn(Boolean.TRUE);
 
         service.register(personMocked, address);
 
-//        verify(personLoadedMocked).addAddress(address);
-//        verify(clientService).save(personLoadedMocked);
+        verify(address).setPerson(personLoadedMocked);
+        verify(addressDomainService).prepareToSave(address);
+        verify(addressRepository).save(address);
 
     }
 
@@ -59,20 +62,20 @@ public class AddressServiceImplTest {
 
         service.register(personMocked, address);
 
-        verify(personLoadedMocked).addAddress(address);
     }
 
     @Test
-    public void shouldUpdateContact() {
+    public void shouldUpdateAddress() {
         Person personMocked = Mockito.mock(Person.class);
         Address address = new Address();
         address.setId(1l);
         Address addressLoaded = Mockito.mock(Address.class);
 
-        given(contactRepository.findOne(1l)).willReturn(addressLoaded);
+        given(addressRepository.findOne(1l)).willReturn(addressLoaded);
 
         service.register(personMocked, address);
 
-        verify(contactRepository).save(addressLoaded);
+        verify(addressDomainService).prepareToSave(address);
+        verify(addressRepository).save(addressLoaded);
     }
 }

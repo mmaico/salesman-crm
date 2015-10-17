@@ -77,7 +77,7 @@ public class ContactController {
         Iterable<Contact> result = this.service.findAll(pager);
 
         model.addAttribute("contacts", result);
-        return new ModelAndView("/contacts/list");
+        return new ModelAndView("/contacts/list-items");
     }
 
     @RequestMapping(value="/contacts/create")
