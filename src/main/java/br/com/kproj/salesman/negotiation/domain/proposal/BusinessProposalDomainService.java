@@ -5,6 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 public interface BusinessProposalDomainService {
 
 
-    public void checkBusinessRulesFor(BusinessProposal businessProposal);
+    void checkBusinessRulesFor(BusinessProposal businessProposal);
 
 }
