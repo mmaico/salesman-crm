@@ -84,6 +84,15 @@ public class SaleableUnitController {
         return new ModelAndView("/products/edit");
     }
 
+    @RequestMapping(value = "/products/{productId}/json", method = RequestMethod.GET)
+    public @ResponseBody
+    SaleableUnit getProduct(@PathVariable Long productId) {
+
+        Optional<SaleableUnit> saleable = service.getOne(productId);
+
+        return saleable.isPresent() ? saleable.get() : null;
+    }
+
     @RequestMapping(value="/products/create")
     public ModelAndView newProduct() {
 

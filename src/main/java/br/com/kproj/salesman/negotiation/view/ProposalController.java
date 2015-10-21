@@ -2,10 +2,14 @@ package br.com.kproj.salesman.negotiation.view;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationService;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
+import br.com.kproj.salesman.register.application.ClientService;
+import br.com.kproj.salesman.register.application.SaleableUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @RestController
 public class ProposalController {
@@ -25,6 +31,12 @@ public class ProposalController {
 
     @Autowired
     private BusinessProposalValidator validator;
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private SaleableUnitService saleableUnitService;
 
     @InitBinder(value = "businessProposal")
     private void initBinder(WebDataBinder binder) {
@@ -62,10 +74,17 @@ public class ProposalController {
     @RequestMapping(value="/proposals/persons/{idPerson}")
     public ModelAndView newProposal(Model model, @PathVariable Long idPerson) {
 
+        Optional<Person> clientOptional  = clientService.getOne(idPerson);
 
-        model.addAttribute("client", new Person(idPerson));
+        if (!clientOptional.isPresent()) {
+            return new ModelAndView("redirect:/clients/list");
+        }
+
+        Iterable<SaleableUnit> saleable = saleableUnitService.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+
+        model.addAttribute("saleables", saleable);
+        model.addAttribute("client", clientOptional.get());
         return new ModelAndView("/clients/proposal/newProposal");
     }
-
 
 }
