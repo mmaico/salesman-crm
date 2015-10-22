@@ -26,7 +26,7 @@ public class Person extends Identifiable implements Client, Provider{
     private Long id;
 
 	@NotNull
-    @Size(min = 2, max = 30, message = "person.name.is.invalid")
+    @Size(min = 2, max = 150, message = "person.name.is.invalid")
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")

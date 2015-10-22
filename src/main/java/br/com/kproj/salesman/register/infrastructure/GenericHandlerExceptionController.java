@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.infrastructure;
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,5 +27,11 @@ public class GenericHandlerExceptionController {
     public @ResponseBody ResponseEntity unauthorized(Throwable throwable) {
 
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value={Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public @ResponseBody String handlerInternalException(Throwable throwable) {
+        return ExceptionUtils.getFullStackTrace(throwable);
     }
 }
