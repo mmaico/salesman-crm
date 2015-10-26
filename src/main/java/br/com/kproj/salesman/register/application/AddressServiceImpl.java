@@ -7,7 +7,9 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
-import br.com.kproj.salesman.register.domain.AddressDomainService;
+import br.com.kproj.salesman.register.application.contract.AddressService;
+import br.com.kproj.salesman.register.application.contract.ClientService;
+import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

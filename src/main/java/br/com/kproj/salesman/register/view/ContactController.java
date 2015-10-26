@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.ContactService;
+import br.com.kproj.salesman.register.application.contract.ContactService;
 import br.com.kproj.salesman.register.infrastructure.validators.ContactValidator;
 import br.com.kproj.salesman.timeline.application.TimelineService;
 import org.springframework.beans.factory.annotation.Autowired;

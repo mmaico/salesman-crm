@@ -2,6 +2,8 @@ package br.com.kproj.salesman.register.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
+import br.com.kproj.salesman.register.domain.contract.ClientDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

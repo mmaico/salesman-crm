@@ -8,8 +8,9 @@ import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationService;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
-import br.com.kproj.salesman.register.application.ClientService;
-import br.com.kproj.salesman.register.application.SaleableUnitService;
+import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
+import br.com.kproj.salesman.register.application.contract.ClientService;
+import br.com.kproj.salesman.register.application.contract.SaleableUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,18 +39,21 @@ public class ProposalController {
     @Autowired
     private SaleableUnitService saleableUnitService;
 
-    @InitBinder(value = "businessProposal")
+    @InitBinder(value = "proposalDTO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated BusinessProposal businessProposal,
+    public ModelAndView save(@ModelAttribute @Validated BusinessProposalDTO proposalDTO,
                              BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
+
+        BusinessProposal businessProposal = proposalDTO.get();
+
         normalizeEntityRequest.doNestedReference(businessProposal);
         BusinessProposal newBusinessProposal = service.register(businessProposal);
 

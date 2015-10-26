@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.domain.proposal.payment;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;
-import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
+import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -27,8 +27,8 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	@Test
 	public void shouldValidateProposalPaymentItem() {
 		BusinessProposal businessProposal = new BusinessProposal();
-		List<ProposalProductItem> products = getProducts();
-		businessProposal.setProductItems(products);
+		List<ProposalSaleableItem> products = getProducts();
+		businessProposal.setSaleableItems(products);
 		
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
 		installmentOne.setValue(BigDecimal.TEN);
@@ -52,7 +52,7 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	@Test
 	public void shouldReturnErrorWhenInvalidPayment() {
 		BusinessProposal businessProposal = new BusinessProposal();
-		businessProposal.setProductItems(getProducts());
+		businessProposal.setSaleableItems(getProducts());
 		businessProposal.setPaymentItems(null);
 		Set<String> erros = null;
 		
@@ -71,10 +71,10 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	@Test
 	public void shouldReturnErrorWhenIfPaymentIsEmptyAndTotalIsNotZero() {
 		BusinessProposal businessProposal = new BusinessProposal();
-		List<ProposalProductItem> products = getProducts();
+		List<ProposalSaleableItem> products = getProducts();
 		products.get(0).setPrice(BigDecimal.ZERO);
 		products.get(1).setPrice(BigDecimal.ZERO);
-		businessProposal.setProductItems(products);
+		businessProposal.setSaleableItems(products);
 		
 		ProposalPaymentItem payment = new ProposalPaymentItem();
 		payment.setValue(BigDecimal.TEN);
@@ -97,8 +97,8 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	@Test
 	public void shouldReturnErrorWhenTotalPaymentIsDiferentFromTotalProducts() {
 		BusinessProposal businessProposal = new BusinessProposal();
-		List<ProposalProductItem> products = getProducts();
-		businessProposal.setProductItems(products);
+		List<ProposalSaleableItem> products = getProducts();
+		businessProposal.setSaleableItems(products);
 		
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
 		installmentOne.setValue(BigDecimal.TEN);
@@ -126,12 +126,12 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	
 	
 	
-	public List<ProposalProductItem> getProducts() {
-		ProposalProductItem productOne = new ProposalProductItem();
+	public List<ProposalSaleableItem> getProducts() {
+		ProposalSaleableItem productOne = new ProposalSaleableItem();
 		productOne.setPrice(BigDecimal.TEN);
 		productOne.setQuantity(1);
 		
-		ProposalProductItem productTwo = new ProposalProductItem();
+		ProposalSaleableItem productTwo = new ProposalSaleableItem();
 		productTwo.setPrice(BigDecimal.TEN);
 		productTwo.setQuantity(5);
 		

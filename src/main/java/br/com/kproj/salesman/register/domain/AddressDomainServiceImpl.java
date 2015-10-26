@@ -2,6 +2,7 @@ package br.com.kproj.salesman.register.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
+import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 

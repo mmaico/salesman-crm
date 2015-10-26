@@ -1,5 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
-public interface Service {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="services")
+public class Service extends SaleableUnit {
 }

@@ -32,11 +32,13 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final StringPath introduction = createString("introduction");
 
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion operationRegion;
+
     public final ListPath<ProposalPaymentItem, QProposalPaymentItem> paymentItems = this.<ProposalPaymentItem, QProposalPaymentItem>createList("paymentItems", ProposalPaymentItem.class, QProposalPaymentItem.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
 
-    public final ListPath<ProposalProductItem, QProposalProductItem> productItems = this.<ProposalProductItem, QProposalProductItem>createList("productItems", ProposalProductItem.class, QProposalProductItem.class, PathInits.DIRECT2);
+    public final ListPath<ProposalSaleableItem, QProposalProductItem> productItems = this.<ProposalSaleableItem, QProposalProductItem>createList("productItems", ProposalSaleableItem.class, QProposalProductItem.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser vendor;
 
@@ -58,6 +60,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public QBusinessProposal(Class<? extends BusinessProposal> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.vendor = inits.isInitialized("vendor") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("vendor"), inits.get("vendor")) : null;
     }

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -48,11 +49,16 @@ public class BusinessProposal extends Identifiable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
     @Valid
-    private List<ProposalProductItem> productItems;
+    private List<ProposalSaleableItem> saleableItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
     @Valid
     private List<ProposalPaymentItem> paymentItems;
+
+    @ManyToOne
+    @JoinColumn(name="operation_region_id")
+    @NotNull(message = "business.proposal.region.required")
+    private OperationRegion operationRegion;
 
     public BusinessProposal(){}
     public BusinessProposal(Long id) {
@@ -69,11 +75,11 @@ public class BusinessProposal extends Identifiable {
     }
     public BigDecimal getTotal() {
 
-        if (isEmptySafe(this.getProductItems())) {
+        if (isEmptySafe(this.getSaleableItems())) {
             return BigDecimal.ZERO;
         }
 
-        BigDecimal total = this.getProductItems()
+        BigDecimal total = this.getSaleableItems()
                 .stream()
                 .map(e -> e.getPrice().multiply(new BigDecimal(e.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -137,14 +143,6 @@ public class BusinessProposal extends Identifiable {
         this.introduction = introduction;
     }
 
-    public List<ProposalProductItem> getProductItems() {
-        return productItems;
-    }
-
-    public void setProductItems(List<ProposalProductItem> productItems) {
-        this.productItems = productItems;
-    }
-
     public List<ProposalPaymentItem> getPaymentItems() {
         return paymentItems;
     }
@@ -153,5 +151,19 @@ public class BusinessProposal extends Identifiable {
         this.paymentItems = paymentItems;
     }
 
+    public OperationRegion getOperationRegion() {
+        return operationRegion;
+    }
 
+    public void setOperationRegion(OperationRegion operationRegion) {
+        this.operationRegion = operationRegion;
+    }
+
+    public List<ProposalSaleableItem> getSaleableItems() {
+        return saleableItems;
+    }
+
+    public void setSaleableItems(List<ProposalSaleableItem> saleableItems) {
+        this.saleableItems = saleableItems;
+    }
 }

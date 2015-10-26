@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
-import br.com.kproj.salesman.negotiation.domain.proposal.product.ProductItemPersistBusinessRules;
+import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleableItemPersistBusinessRules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     private UserRepository userRepository;
 
     @Autowired
-    private ProductItemPersistBusinessRules productIService;
+    private SaleableItemPersistBusinessRules productIService;
 
     @Autowired
     private PaymentItemPersistBusinessRules paymentService;
@@ -51,5 +51,10 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
+    }
+
+    @Override
+    public void applyPreconditions(BusinessProposal proposal) {
+        //proposal.getProductItems().forEach( p -> p.setId());
     }
 }

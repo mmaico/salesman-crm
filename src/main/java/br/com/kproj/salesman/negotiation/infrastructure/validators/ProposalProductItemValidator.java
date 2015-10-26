@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
+import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.register.infrastructure.validators.EntityIDValidator;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class ProposalProductItemValidator implements Validator, InitializingBean
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return ProposalProductItem.class.equals(clazz);
+        return ProposalSaleableItem.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        ProposalProductItem productItem = (ProposalProductItem) target;
+        ProposalSaleableItem productItem = (ProposalSaleableItem) target;
 
         validator.validate(productItem)
                 .forEach(error -> errors.reject(error.getMessage()));

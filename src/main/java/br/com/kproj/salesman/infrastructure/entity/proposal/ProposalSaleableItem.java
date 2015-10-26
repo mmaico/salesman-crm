@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 
 import javax.persistence.*;
@@ -10,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="proposal_product_item")
-public class ProposalProductItem extends Identifiable {
+@Table(name="proposal_saleable_item")
+public class ProposalSaleableItem extends Identifiable {
 
     /**
 	 * 
@@ -23,22 +24,29 @@ public class ProposalProductItem extends Identifiable {
     private Long id;
 
 	@ManyToOne
-    @JoinColumn(name="product_id")
-    @NotNull(message = "proposal.product.is.invalid")
+    @JoinColumn(name="saleable_id")
+    @NotNull(message = "proposal.saleable.is.invalid")
     private SaleableUnit saleableUnit;
 
-    @NotNull(message = "proposal.product.price.is.invalid")
+    @ManyToOne
+    @JoinColumn(name = "package_id")
+    private Package packageSaleable;
+
+    @NotNull(message = "proposal.saleable.price.is.invalid")
     private BigDecimal price;
 
     private BigDecimal originalPrice;
 
     @NotNull
-    @Min(value = 1, message = "quantity.product.lessthan.one")
+    @Min(value = 1, message = "quantity.saleable.lessthan.one")
     private Integer quantity = 0;
 
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
     private BusinessProposal businessProposal;
+
+
+
 
     @Override
     public Long getId() {
@@ -79,5 +87,21 @@ public class ProposalProductItem extends Identifiable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Package getPackageSaleable() {
+        return packageSaleable;
+    }
+
+    public void setPackageSaleable(Package packageSaleable) {
+        this.packageSaleable = packageSaleable;
+    }
+
+    public BusinessProposal getBusinessProposal() {
+        return businessProposal;
+    }
+
+    public void setBusinessProposal(BusinessProposal businessProposal) {
+        this.businessProposal = businessProposal;
     }
 }

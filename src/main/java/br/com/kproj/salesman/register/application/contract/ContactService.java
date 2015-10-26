@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.application;
+package br.com.kproj.salesman.register.application.contract;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.service.ModelService;

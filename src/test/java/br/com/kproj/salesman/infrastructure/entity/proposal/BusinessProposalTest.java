@@ -22,8 +22,8 @@ public class BusinessProposalTest {
     @Test
     public void shouldReturnTotal() {
 
-        List<ProposalProductItem> productItems = getProductItems();
-        businessProposal.setProductItems(productItems);
+        List<ProposalSaleableItem> productItems = getProductItems();
+        businessProposal.setSaleableItems(productItems);
 
         BigDecimal total = businessProposal.getTotal();
 
@@ -42,11 +42,11 @@ public class BusinessProposalTest {
     }
 
     
-    private List<ProposalProductItem> getProductItems() {
-        ProposalProductItem itemOne = new ProposalProductItem();
+    private List<ProposalSaleableItem> getProductItems() {
+        ProposalSaleableItem itemOne = new ProposalSaleableItem();
         itemOne.setPrice(BigDecimal.TEN);
         itemOne.setQuantity(2);
-        ProposalProductItem itemTwo = new ProposalProductItem();
+        ProposalSaleableItem itemTwo = new ProposalSaleableItem();
         itemTwo.setPrice(BigDecimal.ONE);
         itemTwo.setQuantity(5);
 

@@ -10,7 +10,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name="products")
+@Table(name="saleable")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class SaleableUnit extends Identifiable {
 
 	/**
@@ -20,6 +21,7 @@ public class SaleableUnit extends Identifiable {
 
     @Id
     @GeneratedValue
+    @Column(name="saleable_unit_id")
     private Long id;
 
 	@NotNull
@@ -35,11 +37,12 @@ public class SaleableUnit extends Identifiable {
     private BigDecimal price;
 
     @NumberFormat(pattern="###.###,##")
+    @Column(name = "price_cost", nullable = false)
     private BigDecimal priceCost;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE", nullable = true)
+    @Column(name = "type", nullable = false)
     private SaleableType type;
 
     public SaleableUnit(){}

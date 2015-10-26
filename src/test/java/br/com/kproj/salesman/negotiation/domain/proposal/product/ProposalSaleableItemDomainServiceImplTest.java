@@ -1,9 +1,10 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.product;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalProductItem;
+import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.infrastructure.repository.SaleableUnitRepository;
+import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
+import br.com.kproj.salesman.negotiation.domain.proposal.saleable.SaleableItemPersistBusinessRulesImpl;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +20,10 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ProposalProductItemDomainServiceImplTest {
+public class ProposalSaleableItemDomainServiceImplTest {
 
     @InjectMocks
-    private ProductItemPersistBusinessRulesImpl service;
+    private SaleableItemPersistBusinessRulesImpl service;
 
     @Mock
     private SaleableUnitRepository productRepository;
@@ -31,7 +32,7 @@ public class ProposalProductItemDomainServiceImplTest {
     @Test
     public void shouldReturnTrueWhenNotHaveInvalidItems() {
         BusinessProposal proposal = new BusinessProposal();
-        proposal.setProductItems(getItemsStub());
+        proposal.setSaleableItems(getItemsStub());
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
         given(productRepository.exists(2l)).willReturn(Boolean.TRUE);
@@ -44,7 +45,7 @@ public class ProposalProductItemDomainServiceImplTest {
     @Test
     public void shouldReturnFalseWhenProductDoesNotExist() {
         BusinessProposal proposal = new BusinessProposal();
-        proposal.setProductItems(getItemsStub());
+        proposal.setSaleableItems(getItemsStub());
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
         given(productRepository.exists(2l)).willReturn(Boolean.FALSE);
@@ -57,9 +58,9 @@ public class ProposalProductItemDomainServiceImplTest {
     @Test
     public void shouldReturnFalseWhenItemHavePriceLessThanZero() {
         BusinessProposal proposal = new BusinessProposal();
-        List<ProposalProductItem> itemsStub = getItemsStub();
+        List<ProposalSaleableItem> itemsStub = getItemsStub();
         itemsStub.get(1).setPrice(new BigDecimal("-12.00"));
-        proposal.setProductItems(itemsStub);
+        proposal.setSaleableItems(itemsStub);
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
         given(productRepository.exists(2l)).willReturn(Boolean.TRUE);
@@ -72,9 +73,9 @@ public class ProposalProductItemDomainServiceImplTest {
     @Test
     public void shouldReturnFalseWhenItemHaveQuantityLessThanOne() {
         BusinessProposal proposal = new BusinessProposal();
-        List<ProposalProductItem> itemsStub = getItemsStub();
+        List<ProposalSaleableItem> itemsStub = getItemsStub();
         itemsStub.get(1).setQuantity(0);
-        proposal.setProductItems(itemsStub);
+        proposal.setSaleableItems(itemsStub);
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
         given(productRepository.exists(2l)).willReturn(Boolean.TRUE);
@@ -84,13 +85,13 @@ public class ProposalProductItemDomainServiceImplTest {
         assertThat(result, is(Boolean.FALSE));
     }
 
-    public List<ProposalProductItem> getItemsStub() {
-        ProposalProductItem itemOne = new ProposalProductItem();
+    public List<ProposalSaleableItem> getItemsStub() {
+        ProposalSaleableItem itemOne = new ProposalSaleableItem();
         itemOne.setQuantity(1);
         itemOne.setSaleableUnit(new SaleableUnit(1l));
         itemOne.setPrice(BigDecimal.TEN);
 
-        ProposalProductItem itemTwo = new ProposalProductItem();
+        ProposalSaleableItem itemTwo = new ProposalSaleableItem();
         itemTwo.setQuantity(2);
         itemTwo.setSaleableUnit(new SaleableUnit(2l));
         itemTwo.setPrice(BigDecimal.TEN);
