@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationService;
-import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
+import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalDTOValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
 import br.com.kproj.salesman.register.application.contract.ClientService;
 import br.com.kproj.salesman.register.application.contract.SaleableUnitService;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @RestController
-public class ProposalController {
+public class BusinessProposalController {
 
     @Autowired
     private NegotiationService service;
@@ -31,7 +31,7 @@ public class ProposalController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
     @Autowired
-    private BusinessProposalValidator validator;
+    private BusinessProposalDTOValidator validator;
 
     @Autowired
     private ClientService clientService;
@@ -39,23 +39,23 @@ public class ProposalController {
     @Autowired
     private SaleableUnitService saleableUnitService;
 
-    @InitBinder(value = "proposalDTO")
+    @InitBinder(value = "businessProposalDTO")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated BusinessProposalDTO proposalDTO,
+    public ModelAndView save(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
                              BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposal businessProposal = proposalDTO.get();
+        BusinessProposal result = businessProposalDTO.get();
 
-        normalizeEntityRequest.doNestedReference(businessProposal);
-        BusinessProposal newBusinessProposal = service.register(businessProposal);
+        normalizeEntityRequest.doNestedReference(result);
+        BusinessProposal newBusinessProposal = service.register(result);
 
         model.addAttribute("proposal", newBusinessProposal);
         return new ModelAndView("proposal");

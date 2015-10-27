@@ -21,7 +21,6 @@ public class SaleableUnit extends Identifiable {
 
     @Id
     @GeneratedValue
-    @Column(name="saleable_unit_id")
     private Long id;
 
 	@NotNull

@@ -9,18 +9,21 @@
 
     <measurement_unit id="1" name="Kilo"/>
 
-    <saleable saleable_unit_id="1" name="Produto 01" description="Descricao do produto 01" active="true" price="20.00" price_cost="5.00" type="PRODUCT"/>
-    <saleable saleable_unit_id="2" name="Servico 01" description="Descricao do servico 01" active="true" price="10.00" price_cost="3.00" type="SERVICE"/>
-    <saleable saleable_unit_id="3" name="Servico 02" description="Descricao do servico 02" active="true" price="11.00" price_cost="4.00" type="SERVICE"/>
-    <saleable saleable_unit_id="4" name="Pacote 01" description="Descricao do pacote 01" active="true" price="8.00" price_cost="2.00" type="PACKAGE"/>
-    <saleable saleable_unit_id="5" name="Produto 02" description="Descricao do product 02" active="true" price="6.00" price_cost="1.00" type="PRODUCT"/>
+    <saleable id="1" name="Produto 01" description="Descricao do produto 01" active="true" price="20.00" price_cost="5.00" type="PRODUCT"/>
+    <saleable id="2" name="Servico 01" description="Descricao do servico 01" active="true" price="10.00" price_cost="3.00" type="SERVICE"/>
+    <saleable id="3" name="Servico 02" description="Descricao do servico 02" active="true" price="11.00" price_cost="4.00" type="SERVICE"/>
+    <saleable id="4" name="Pacote 01" description="Descricao do pacote 01" active="true" price="8.00" price_cost="2.00" type="PACKAGE"/>
+    <saleable id="5" name="Produto 02" description="Descricao do product 02" active="true" price="6.00" price_cost="1.00" type="PRODUCT"/>
 
-    <products saleable_unit_id="1" measurement_unit_id="1"/>
-    <products saleable_unit_id="2"/>
-    <services saleable_unit_id="3"/>
-    <packages saleable_unit_id="4"/>
+    <products id="1" measurement_unit_id="1"/>
+    <products id="2"/>
+
+    <services id="3"/>
+
+    <packages id="4"/>
 
     <package_saleable package_id="4" saleable_id="5"/>
+
 
 
     <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
@@ -36,11 +39,13 @@
 
     <business_proposal id="1" person_id="1" user_id="1" operation_region_id="1"/>
 
-    <proposal_product_item id="1" saleable_id="2" price="400.00" quantity="3" business_proposal_id="1"/>
-    <proposal_product_item id="2" saleable_id="1" price="100.00" quantity="2" business_proposal_id="1"/>
+    <proposal_saleable_item id="1" saleable_id="2" price="400.00" quantity="3" business_proposal_id="1" />
+    <proposal_saleable_item id="2" saleable_id="1" price="100.00" quantity="2" business_proposal_id="1" />
 
     <proposal_payment_item id="1" date_due="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" date_due="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
+
+
 
     <timelines id="1" person_id="1"/>
     <timelines id="3" business_proposal_id="1"/>

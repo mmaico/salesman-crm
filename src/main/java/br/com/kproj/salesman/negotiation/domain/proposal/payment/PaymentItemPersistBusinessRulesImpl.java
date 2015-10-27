@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +34,12 @@ public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBu
         persistRules.put(description("proposal.verify.payment.has.item.with.value.zero"),
                 (bp) -> bp.getPaymentItems() != null && !bp.getPaymentItems().stream()
     			.filter(e -> isNumberEqualsZero(e.getValue())).collect(Collectors.toList()).isEmpty());
+
+        persistRules.put(description("proposal.verify.payment.has.invalid.due.date"),
+                     (bp) -> !bp.getPaymentItems().stream()
+                            .filter(e -> e.getDateDue() == null || e.getDateDue().before(new Date()))
+                            .collect(Collectors.toList()).isEmpty()
+                        );
     }
     
     public Boolean verifyRules(BusinessProposal businessProposal) {

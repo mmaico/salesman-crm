@@ -3,7 +3,6 @@ package br.com.kproj.salesman.negotiation.infrastructure.validators;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
 import br.com.kproj.salesman.register.infrastructure.validators.EntityIDValidator;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -13,9 +12,7 @@ import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
 @Component
-public class BusinessProposalValidator implements Validator, InitializingBean {
-
-    private javax.validation.Validator validator;
+public class BusinessProposalDTOValidator implements Validator {
 
     @Autowired
     private EntityIDValidator idValidator;
@@ -31,19 +28,13 @@ public class BusinessProposalValidator implements Validator, InitializingBean {
         BusinessProposalDTO dto = (BusinessProposalDTO) target;
         BusinessProposal businessProposal = dto.get();
 
-        validator.validate(businessProposal)
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+
+        factory.getValidator().validate(businessProposal)
                 .forEach(error -> errors.reject(error.getMessage()));
 
         idValidator.validate(businessProposal.getPerson(), errors);
         idValidator.validate(businessProposal.getVendor(), errors);
     }
 
-    @Override
-    public void afterPropertiesSet(){
-        try {
-            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-            this.validator = factory.getValidator();
-        } catch(Exception e) {}
-
-    }
 }

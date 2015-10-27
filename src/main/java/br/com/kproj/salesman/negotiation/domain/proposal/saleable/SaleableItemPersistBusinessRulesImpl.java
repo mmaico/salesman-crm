@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.PackageBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleableItemPersistBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleablePersistBusinessRules;
 import com.google.common.collect.Sets;
@@ -27,6 +28,9 @@ public class SaleableItemPersistBusinessRulesImpl implements SaleableItemPersist
     @Autowired
     private SaleablePersistBusinessRules saleablePersistBusinessRules;
 
+    @Autowired
+    private PackageBusinessRules packageBusinessRules;
+
     Map<String, CheckRule<ProposalSaleableItem>> saleableUnitRules = new HashMap<>();
     {
         saleableUnitRules.put(description("proposal.item.wihtout.price"), (proposalSaleableItem) -> !isNotNegativeNumber(proposalSaleableItem.getPrice()));
@@ -46,6 +50,8 @@ public class SaleableItemPersistBusinessRulesImpl implements SaleableItemPersist
 
             hasErrors(violations).throwing(ValidationException.class);
         }
+
+        packageBusinessRules.verifyRules(businessProposal.getSaleableItems());
 
         return Boolean.TRUE;
     }

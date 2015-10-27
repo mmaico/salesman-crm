@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
@@ -74,47 +73,12 @@ public class SaleablePersistBusinessRulesImplTest {
         assertThat(validationExceptionValidation, is(Boolean.TRUE));
     }
 
-    @Test
-    public void shouldReturnTrueWhenValidPackage() {
-        Package packageStub = getPackageStub();
-
-        given(salebleRepository.exists(5l)).willReturn(Boolean.TRUE);
-        given(salebleRepository.exists(1l)).willReturn(Boolean.TRUE);
-        given(salebleRepository.exists(2l)).willReturn(Boolean.TRUE);
-
-        Boolean result = rules.verifyRules(packageStub);
-
-        assertThat(result, is(Boolean.TRUE));
-    }
-
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenNotExistsAnSaleableInPackage() {
-        Package packageStub = getPackageStub();
-
-        given(salebleRepository.exists(5l)).willReturn(Boolean.TRUE);
-        given(salebleRepository.exists(1l)).willReturn(Boolean.FALSE);
-        given(salebleRepository.exists(2l)).willReturn(Boolean.TRUE);
-
-        rules.verifyRules(packageStub);
-    }
-
     public List<SaleableUnit> getSaleableUnits() {
         SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
         SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
 
 
         return Lists.newArrayList(saleableUnitOne, saleableUnitTwo);
-    }
-
-    private Package getPackageStub() {
-        SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
-        SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
-
-        Package packageUnit = new Package();
-        packageUnit.setId(5l);
-        packageUnit.setSaleableUnits(Lists.newArrayList(saleableUnitOne, saleableUnitTwo));
-
-        return packageUnit;
     }
 
 }

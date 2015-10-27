@@ -1,18 +1,22 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder.create;
 import static br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder.createSaleableUnit;
 import static com.google.common.collect.Lists.newArrayList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PackageBusinessRulesImplTest {
@@ -21,15 +25,65 @@ public class PackageBusinessRulesImplTest {
     private PackageBusinessRulesImpl rules;
 
 
-    
+    @Test
+    public void shouldReturnTrueWhenPackageInItemExist() {
+
+        Boolean result = rules.verifyRules(getProposalStub());
+
+        assertThat(result, is(Boolean.TRUE));
+    }
 
 
-    private BusinessProposal getProposalStub() {
+    @Test(expected = ValidationException.class)
+    public void shouldReturnFaseWhenPackageInItemNotHaveInList() {
+        List<ProposalSaleableItem> itemsStub = getProposalStub();
+        itemsStub.remove(2);
+
+        rules.verifyRules(itemsStub);
+    }
+
+    @Test(expected = ValidationException.class)
+    public void shouldThrowExceptionWhenPackageToPersistNotHaveAllPackageInReferencesSaleable() {
+        Package ipackage = new Package(3l);
+        Package package2 = new Package(9l);
+        List<ProposalSaleableItem> items = getProposalStub();
+
+        ProposalSaleableItem newPackage = create()
+                .withPackage(package2)
+                .withSaleable(null)
+                .withQuantity(1)
+                .withPrice(BigDecimal.ZERO).build();
+
+        items.add(newPackage);
+
+        items.get(0).setPackageSaleable(ipackage);
+
+        rules.verifyRules(items);
+    }
+
+    @Test
+    public void shouldReturnTrueWhenPackageInItemsAndPackageWithoutReference() {
+        List<ProposalSaleableItem> itemsStub = getProposalStub();
+        Package packageWithoutRefereceSaleable = new Package(9l);
+
+        ProposalSaleableItem proposalSaleablePackage = create()
+                .withPackage(packageWithoutRefereceSaleable)
+                .withSaleable(null)
+                .withQuantity(1)
+                .withPrice(BigDecimal.ZERO).build();
+
+        itemsStub.add(proposalSaleablePackage);
+
+        Boolean result = rules.verifyRules(itemsStub);
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+
+    private List<ProposalSaleableItem> getProposalStub() {
         SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
         SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
         Package ipackage = new Package(2l);
-
-        BusinessProposal businessProposal = new BusinessProposal();
 
         ProposalSaleableItem proposalSaleableOne = create()
                 .withPackage(ipackage)
@@ -49,10 +103,7 @@ public class PackageBusinessRulesImplTest {
                 .withQuantity(1)
                 .withPrice(BigDecimal.ZERO).build();
 
-        businessProposal
-                .setSaleableItems(newArrayList(proposalSaleableOne, proposalSaleableTwo, proposalSaleablePackage));
-
-        return businessProposal;
+        return newArrayList(proposalSaleableOne, proposalSaleableTwo, proposalSaleablePackage);
     }
 
 }

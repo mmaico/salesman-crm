@@ -41,4 +41,11 @@ public class BusinessProposalDTO {
         return proposal;
     }
 
+    public BusinessProposal getProposal() {
+        return proposal;
+    }
+
+    public void setProposal(BusinessProposal proposal) {
+        this.proposal = proposal;
+    }
 }

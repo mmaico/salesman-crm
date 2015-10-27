@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
@@ -38,11 +37,6 @@ public class SaleablePersistBusinessRulesImpl implements SaleablePersistBusiness
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
-
-        if (saleableUnit instanceof Package) {
-             ((Package)saleableUnit).getSaleableUnits()
-                    .forEach(saleableUnitItem -> verifyRules(saleableUnitItem));
-        }
 
         return Boolean.TRUE;
     }
