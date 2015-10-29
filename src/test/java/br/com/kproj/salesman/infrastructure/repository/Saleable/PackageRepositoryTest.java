@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository.Saleable;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,5 +29,21 @@ public class PackageRepositoryTest extends AbstractIntegrationTest {
 
         assertThat(packageResult.isPresent(), is(Boolean.TRUE));
         assertThat(packageResult.get().getId(), is(4l));
+    }
+
+    @Test
+    public void shouldReturnPackage() {
+
+        Optional<Package> result = repository.getOne(4l);
+
+        MatcherAssert.assertThat(result.isPresent(), is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnNotPresentWhenIdIsNotAPackage() {
+
+        Optional<Package> result = repository.getOne(1l);
+
+        MatcherAssert.assertThat(result.isPresent(), is(Boolean.FALSE));
     }
 }

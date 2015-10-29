@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -32,11 +33,13 @@ public class SaleableUnit extends Identifiable {
     private Boolean active = Boolean.TRUE;
 
     @NotNull
+    @Min(value = 0, message = "saleable.price.must.be.greater.than.zero")
     @NumberFormat(pattern="###.###,##")
     private BigDecimal price;
 
     @NumberFormat(pattern="###.###,##")
     @Column(name = "price_cost", nullable = false)
+    @Min(value = 0, message = "saleable.cost.price.must.be.greater.than.zero")
     private BigDecimal priceCost;
 
     @NotNull

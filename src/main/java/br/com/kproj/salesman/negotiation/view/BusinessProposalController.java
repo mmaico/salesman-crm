@@ -10,7 +10,7 @@ import br.com.kproj.salesman.negotiation.application.NegotiationService;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalDTOValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
 import br.com.kproj.salesman.register.application.contract.ClientService;
-import br.com.kproj.salesman.register.application.contract.SaleableUnitService;
+import br.com.kproj.salesman.register.application.contract.saleable.SaleableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,7 +37,7 @@ public class BusinessProposalController {
     private ClientService clientService;
 
     @Autowired
-    private SaleableUnitService saleableUnitService;
+    private SaleableService saleableService;
 
     @InitBinder(value = "businessProposalDTO")
     private void initBinder(WebDataBinder binder) {
@@ -62,16 +62,18 @@ public class BusinessProposalController {
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated BusinessProposal businessProposal,
+    public ModelAndView update(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
                              BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(businessProposal);
-        BusinessProposal newBusinessProposal = service.register(businessProposal);
 
-        model.addAttribute("proposal", newBusinessProposal);
+        BusinessProposal result = businessProposalDTO.get();
+        normalizeEntityRequest.addFieldsToUpdate(result);
+        BusinessProposal proposal = service.register(result);
+
+        model.addAttribute("proposal", proposal);
         return new ModelAndView("proposal");
     }
 
@@ -84,7 +86,7 @@ public class BusinessProposalController {
             return new ModelAndView("redirect:/clients/list");
         }
 
-        Iterable<SaleableUnit> saleable = saleableUnitService.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+        Iterable<SaleableUnit> saleable = saleableService.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
         model.addAttribute("saleables", saleable);
         model.addAttribute("client", clientOptional.get());

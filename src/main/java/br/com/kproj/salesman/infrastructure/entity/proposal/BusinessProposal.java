@@ -73,6 +73,7 @@ public class BusinessProposal extends Identifiable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public BigDecimal getTotal() {
 
         if (isEmptySafe(this.getSaleableItems())) {

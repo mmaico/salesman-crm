@@ -1,26 +1,24 @@
 package br.com.kproj.salesman.register.infrastructure.validators;
 
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
-
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
 
 @Component
-public class ProductValidator implements Validator, InitializingBean {
+public class SaleableValidator implements Validator, InitializingBean {
 
     private javax.validation.Validator validator;
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return SaleableUnit.class.equals(clazz);
+        return SaleableUnit.class.equals(clazz.getSuperclass());
     }
 
     @Override

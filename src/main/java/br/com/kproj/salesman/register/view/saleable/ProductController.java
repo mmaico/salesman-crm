@@ -1,11 +1,12 @@
-package br.com.kproj.salesman.register.view;
+package br.com.kproj.salesman.register.view.saleable;
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.SaleableUnitService;
-import br.com.kproj.salesman.register.infrastructure.validators.ProductValidator;
+import br.com.kproj.salesman.register.application.contract.saleable.ProductService;
+import br.com.kproj.salesman.register.infrastructure.validators.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,13 +21,13 @@ import java.util.Optional;
 
 
 @RestController
-public class SaleableUnitController {
+public class ProductController {
 
     @Autowired
-    private SaleableUnitService service;
+    private ProductService service;
 
     @Autowired
-    private ProductValidator validator;
+    private SaleableValidator validator;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
@@ -40,26 +41,26 @@ public class SaleableUnitController {
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
     public @ResponseBody
-    SaleableUnit save(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
+    SaleableUnit save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        SaleableUnit saleable = service.register(saleableUnit);
+        SaleableUnit saleable = service.register(product);
 
         return saleable;
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    SaleableUnit update(@ModelAttribute @Validated SaleableUnit saleableUnit, BindingResult bindingResult, Model model) {
+    SaleableUnit update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(saleableUnit);
-        SaleableUnit saleable = service.register(saleableUnit);
+        normalizeEntityRequest.addFieldsToUpdate(product);
+        SaleableUnit saleable = service.register(product);
 
         return saleable;
     }
@@ -69,7 +70,7 @@ public class SaleableUnitController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<SaleableUnit> result = this.service.findAll(pager);
+        Iterable<Product> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
         return new ModelAndView("/products/list-items");
@@ -78,7 +79,7 @@ public class SaleableUnitController {
     @RequestMapping(value="/products/{productId}")
     public ModelAndView viewInfo(@PathVariable Long productId, Model model) {
         
-        Optional<SaleableUnit> result = this.service.getOne(productId);
+        Optional<Product> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/products/edit");
@@ -88,7 +89,7 @@ public class SaleableUnitController {
     public @ResponseBody
     SaleableUnit getProduct(@PathVariable Long productId) {
 
-        Optional<SaleableUnit> saleable = service.getOne(productId);
+        Optional<Product> saleable = service.getOne(productId);
 
         return saleable.isPresent() ? saleable.get() : null;
     }
