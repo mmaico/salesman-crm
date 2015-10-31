@@ -112,6 +112,9 @@ dependencies {
     compile("com.mysema.querydsl:querydsl-codegen:${querydslVersion}") {
         exclude module: 'querydsl-core'
     }
+
+    compile("org.apache.commons:commons-lang3:3.4");
+
 }
 
 eclipse {

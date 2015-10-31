@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Set;
 
@@ -31,12 +33,15 @@ public class PaymentItemPersistBusinessRulesImplTest {
 		businessProposal.setSaleableItems(products);
 		
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
+        installmentOne.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentOne.setValue(BigDecimal.TEN);
 		
 		ProposalPaymentItem installmentTwo = new ProposalPaymentItem();
+        installmentTwo.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentTwo.setValue(BigDecimal.TEN);
 		
 		ProposalPaymentItem installmentThree = new ProposalPaymentItem();
+        installmentThree.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentThree.setValue(new BigDecimal("40"));
 		
 		businessProposal.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentThree));
@@ -63,13 +68,15 @@ public class PaymentItemPersistBusinessRulesImplTest {
 			
 		}
 		
-		assertThat(erros.size(), is(2));
-		assertThat(erros.contains("proposal.verify.total.payment.is.diferent.from.total.products"), is(Boolean.TRUE));
+		assertThat(erros.size(), is(3));
+
+        assertThat(erros.contains("proposal.verify.payment.has.invalid.due.date"), is(Boolean.TRUE));
+        assertThat(erros.contains("proposal.verify.total.payment.is.diferent.from.total.products"), is(Boolean.TRUE));
 		assertThat(erros.contains("proposal.verify.payment.invalid.payment"), is(Boolean.TRUE));
 	}
 
 	@Test
-	public void shouldReturnErrorWhenIfPaymentIsEmptyAndTotalIsNotZero() {
+	public void shouldReturnErrorWhenPaymentIsEmptyAndTotalIsNotZero() {
 		BusinessProposal businessProposal = new BusinessProposal();
 		List<ProposalSaleableItem> products = getProducts();
 		products.get(0).setPrice(BigDecimal.ZERO);
@@ -77,6 +84,7 @@ public class PaymentItemPersistBusinessRulesImplTest {
 		businessProposal.setSaleableItems(products);
 		
 		ProposalPaymentItem payment = new ProposalPaymentItem();
+        payment.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		payment.setValue(BigDecimal.TEN);
 		
 		businessProposal.setPaymentItems(Lists.newArrayList(payment));
@@ -95,18 +103,22 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	}
 	
 	@Test
-	public void shouldReturnErrorWhenTotalPaymentIsDiferentFromTotalProducts() {
+	public void shouldReturnErrorWhenTotalPaymentIsDiferentFromTotalProposalSaleableItems() throws ParseException {
 		BusinessProposal businessProposal = new BusinessProposal();
 		List<ProposalSaleableItem> products = getProducts();
 		businessProposal.setSaleableItems(products);
-		
+
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
-		installmentOne.setValue(BigDecimal.TEN);
+
+        installmentOne.setDueDate(DateHelper.convertToDate("10/03/2030"));
+        installmentOne.setValue(BigDecimal.TEN);
 		
 		ProposalPaymentItem installmentTwo = new ProposalPaymentItem();
+        installmentTwo.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentTwo.setValue(BigDecimal.TEN);
 		
 		ProposalPaymentItem installmentTree = new ProposalPaymentItem();
+        installmentTree.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentTree.setValue(BigDecimal.ZERO);
 		
 		businessProposal.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentTree));

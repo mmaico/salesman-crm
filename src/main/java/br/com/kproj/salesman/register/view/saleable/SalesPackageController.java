@@ -72,8 +72,8 @@ public class SalesPackageController {
 
         Iterable<SalePackage> result = this.service.findAll(pager);
 
-        model.addAttribute("products", result);
-        return new ModelAndView("/products/list-items");
+        model.addAttribute("packages", result);
+        return new ModelAndView("/packages/list-items");
     }
     
     @RequestMapping(value="/sales-package/{packageId}")

@@ -22,9 +22,9 @@ public class ProposalPaymentItem extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    @NotNull(message = "proposal.payment.datedue.is.invalid")
+    @NotNull(message = "proposal.payment.duedate.is.invalid")
     @Column(name="date_due")
-    private Date dateDue;
+    private Date dueDate;
 
     @NotNull(message = "proposal.payment.value.is.invalid")
     private BigDecimal value;
@@ -44,12 +44,12 @@ public class ProposalPaymentItem extends Identifiable {
         this.id = id;
     }
 
-    public Date getDateDue() {
-        return dateDue;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void setDateDue(Date dateDue) {
-        this.dateDue = dateDue;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     public BigDecimal getValue() {

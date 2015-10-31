@@ -36,8 +36,8 @@ public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBu
     			.filter(e -> isNumberEqualsZero(e.getValue())).collect(Collectors.toList()).isEmpty());
 
         persistRules.put(description("proposal.verify.payment.has.invalid.due.date"),
-                     (bp) -> !bp.getPaymentItems().stream()
-                            .filter(e -> e.getDateDue() == null || e.getDateDue().before(new Date()))
+                     (bp) -> bp.getPaymentItems() == null ||!bp.getPaymentItems().stream()
+                            .filter(e -> e.getDueDate() == null || e.getDueDate().before(new Date()))
                             .collect(Collectors.toList()).isEmpty()
                         );
     }

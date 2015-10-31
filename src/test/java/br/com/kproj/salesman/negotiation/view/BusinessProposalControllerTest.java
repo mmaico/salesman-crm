@@ -55,7 +55,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("items[1].saleableUnit.id", "2")
                         .param("items[1].price", "300.00")
                         .param("items[1].quantity", "1")
-                        .param("proposal.paymentItems[0].dateDue", "10/02/2017")
+                        .param("proposal.paymentItems[0].dueDate", "10/02/2017")
                         .param("proposal.paymentItems[0].value", "900.00")
         ).andExpect(status().isOk())
                 .andExpect(view().name("proposal"));
@@ -75,7 +75,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("items[1].saleableUnit.id", "2")
                         .param("items[1].price", "300.00")
                         .param("items[1].quantity", "1")
-                        .param("proposal.paymentItems[0].dateDue", "10/02/2017")
+                        .param("proposal.paymentItems[0].dueDate", "10/02/2017")
                         .param("proposal.paymentItems[0].value", "900.00")
         ).andExpect(status().isBadRequest())
                 .andExpect(model().attributeExists("errors"));
@@ -97,7 +97,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("items[1].saleableUnit.id", "2")
                         .param("items[1].price", "300.00")
                         .param("items[1].quantity", "1")
-                        .param("proposal.paymentItems[0].dateDue", "10/02/2010")
+                        .param("proposal.paymentItems[0].dueDate", "10/02/2010")
                         .param("proposal.paymentItems[0].value", "900.00")
         ).andExpect(status().isBadRequest())
                 .andExpect(model().attributeExists("errors"));
@@ -120,7 +120,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("items[1].price", "300.0")
                         .param("items[1].quantity", "1")
                         .param("paymentItems[0].id", "1")
-                        .param("paymentItems[0].dateDue", "10/02/2017")
+                        .param("paymentItems[0].dueDate", "10/02/2017")
                         .param("paymentItems[0].value", "700.00")
         ).andExpect(status().isBadRequest())
                 .andExpect(model().attributeExists("errors"));

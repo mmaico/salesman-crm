@@ -26,7 +26,7 @@ public class QProposalPaymentItem extends EntityPathBase<ProposalPaymentItem> {
 
     public final QBusinessProposal businessProposal;
 
-    public final DateTimePath<java.util.Date> dateDue = createDateTime("dateDue", java.util.Date.class);
+    public final DateTimePath<java.util.Date> dueDate = createDateTime("dueDate", java.util.Date.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

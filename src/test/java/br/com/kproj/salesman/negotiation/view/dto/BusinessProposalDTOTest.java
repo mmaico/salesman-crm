@@ -34,7 +34,7 @@ public class BusinessProposalDTOTest {
 
         BusinessProposal businessProposal = businessProposalDTO.get();
 
-        assertThat(businessProposal.getSaleableItems().size(), Matchers.is(2));
+        assertThat(businessProposal.getSaleableItems().size(), Matchers.is(3));
     }
 
     public List<SaleableItemDTO> getSaleableItemDTOs() {

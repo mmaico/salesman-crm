@@ -13,6 +13,15 @@ public class NumberHelper {
 
         return base.compareTo(BigDecimal.ZERO) == 0 || base.compareTo(BigDecimal.ZERO) > 0 ;
     }
+
+    public static Boolean isNegativeNumber(BigDecimal base) {
+
+        if (base == null) {
+            return Boolean.TRUE;
+        }
+
+        return base.compareTo(BigDecimal.ZERO) < 0;
+    }
     
     public static Boolean isNumberGreaterThanZero(BigDecimal base) {
 
