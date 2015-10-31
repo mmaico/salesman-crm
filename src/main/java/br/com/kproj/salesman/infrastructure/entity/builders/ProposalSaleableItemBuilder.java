@@ -3,8 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 
 import java.math.BigDecimal;
 
@@ -44,8 +44,8 @@ public class ProposalSaleableItemBuilder extends AbstractBuilder<ProposalSaleabl
         return this;
     }
 
-    public ProposalSaleableItemBuilder withPackage(Package packageSaleable) {
-        this.entity.setPackageSaleable(packageSaleable);
+    public ProposalSaleableItemBuilder withPackage(SalePackage salePackageSaleable) {
+        this.entity.setSalePackageSaleable(salePackageSaleable);
         return this;
     }
 

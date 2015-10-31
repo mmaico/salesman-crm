@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.register.view.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.*;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.saleable.PackageService;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
-import br.com.kproj.salesman.register.infrastructure.validators.SaleableValidator;
+import br.com.kproj.salesman.register.application.contract.saleable.SalePackageService;
+import br.com.kproj.salesman.register.infrastructure.validators.SalePackageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,79 +21,80 @@ import java.util.Optional;
 
 
 @RestController
-public class PackageController {
+public class SalesPackageController {
 
     @Autowired
-    private PackageService service;
+    private SalePackageService service;
 
     @Autowired
-    private SaleableValidator validator;
+    private SalePackageValidator validator;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
 
-    @InitBinder(value = {"packageUnit"})
+    @InitBinder(value = {"salePackage"})
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
 
         
     }
 
-    @RequestMapping(value = "/saleable/packages/save", method = RequestMethod.POST)
-    public @ResponseBody Package save(@ModelAttribute @Validated Package packageUnit, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
+    public @ResponseBody
+    SalePackage save(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        Package packageResult = service.register(packageUnit);
+        SalePackage salePackageResult = service.register(salePackage);
 
-        return packageResult;
+        return salePackageResult;
     }
 
-    @RequestMapping(value = "/saleable/packages/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
     public @ResponseBody
-    SaleableUnit update(@ModelAttribute @Validated Package packageUnit, BindingResult bindingResult, Model model) {
+    SaleableUnit update(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
-        normalizeEntityRequest.addFieldsToUpdate(packageUnit);
-        SaleableUnit saleable = service.register(packageUnit);
+        normalizeEntityRequest.addFieldsToUpdate(salePackage);
+        SaleableUnit saleable = service.register(salePackage);
 
         return saleable;
     }
 
-    @RequestMapping("/saleable/packages/list")
+    @RequestMapping("/sales-package/list")
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Package> result = this.service.findAll(pager);
+        Iterable<SalePackage> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
         return new ModelAndView("/products/list-items");
     }
     
-    @RequestMapping(value="/saleable/packages/{packageId}")
+    @RequestMapping(value="/sales-package/{packageId}")
     public ModelAndView viewInfo(@PathVariable Long packageId, Model model) {
         
-        Optional<Package> result = this.service.getOne(packageId);
+        Optional<SalePackage> result = this.service.getOne(packageId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/products/edit");
     }
 
-    @RequestMapping(value = "/saleable/packages/{packageId}/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/packages/{packageId}/json", method = RequestMethod.GET)
     public @ResponseBody
     SaleableUnit getProduct(@PathVariable Long packageId) {
 
-        Optional<Package> saleable = service.getOne(packageId);
+        Optional<SalePackage> saleable = service.getOne(packageId);
 
         return saleable.isPresent() ? saleable.get() : null;
     }
 
-    @RequestMapping(value="/saleable/packages/create")
+    @RequestMapping(value="/sales-package/create")
     public ModelAndView newProduct() {
 
         return new ModelAndView("/products/edit");

@@ -38,7 +38,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
 
-    public final ListPath<ProposalSaleableItem, QProposalProductItem> productItems = this.<ProposalSaleableItem, QProposalProductItem>createList("productItems", ProposalSaleableItem.class, QProposalProductItem.class, PathInits.DIRECT2);
+    public final ListPath<ProposalSaleableItem, QProposalSaleableItem> saleableItems = this.<ProposalSaleableItem, QProposalSaleableItem>createList("saleableItems", ProposalSaleableItem.class, QProposalSaleableItem.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser vendor;
 

@@ -5,19 +5,21 @@ import java.util.List;
 
 @Entity
 @Table(name = "packages")
-public class Package extends SaleableUnit {
+public class SalePackage extends SaleableUnit {
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="package_saleable", joinColumns=@JoinColumn(name="package_id"),
             inverseJoinColumns=@JoinColumn(name="saleable_id"))
     private List<SaleableUnit> saleableUnits;
 
-    public Package(Long id) {
+    public SalePackage(Long id) {
         super(id);
+        setType(SaleableType.PACKAGE);
     }
 
-    public Package() {
+    public SalePackage() {
         super();
+        setType(SaleableType.PACKAGE);
     }
 
     public List<SaleableUnit> getSaleableUnits() {

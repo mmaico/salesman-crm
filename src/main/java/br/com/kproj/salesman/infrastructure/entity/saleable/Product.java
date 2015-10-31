@@ -13,13 +13,14 @@ public class Product extends SaleableUnit {
     @JoinColumn(name="measurement_unit_id")
     private MeasurementUnit measurementUnit;
 
+    public Product() {
+        super();
+        setType(SaleableType.PRODUCT);
+    }
 
     public Product(Long id) {
         super(id);
-    }
-
-    public Product() {
-        super();
+        setType(SaleableType.PRODUCT);
     }
 
     public MeasurementUnit getMeasurementUnit() {

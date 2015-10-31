@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PackageBusinessRulesImplTest {
+public class SalePackageBusinessRulesImplTest {
 
     @InjectMocks
     private PackageBusinessRulesImpl rules;
@@ -44,19 +44,19 @@ public class PackageBusinessRulesImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenPackageToPersistNotHaveAllPackageInReferencesSaleable() {
-        Package ipackage = new Package(3l);
-        Package package2 = new Package(9l);
+        SalePackage ipackage = new SalePackage(3l);
+        SalePackage salePackage2 = new SalePackage(9l);
         List<ProposalSaleableItem> items = getProposalStub();
 
         ProposalSaleableItem newPackage = create()
-                .withPackage(package2)
+                .withPackage(salePackage2)
                 .withSaleable(null)
                 .withQuantity(1)
                 .withPrice(BigDecimal.ZERO).build();
 
         items.add(newPackage);
 
-        items.get(0).setPackageSaleable(ipackage);
+        items.get(0).setSalePackageSaleable(ipackage);
 
         rules.verifyRules(items);
     }
@@ -64,10 +64,10 @@ public class PackageBusinessRulesImplTest {
     @Test
     public void shouldReturnTrueWhenPackageInItemsAndPackageWithoutReference() {
         List<ProposalSaleableItem> itemsStub = getProposalStub();
-        Package packageWithoutRefereceSaleable = new Package(9l);
+        SalePackage salePackageWithoutRefereceSaleable = new SalePackage(9l);
 
         ProposalSaleableItem proposalSaleablePackage = create()
-                .withPackage(packageWithoutRefereceSaleable)
+                .withPackage(salePackageWithoutRefereceSaleable)
                 .withSaleable(null)
                 .withQuantity(1)
                 .withPrice(BigDecimal.ZERO).build();
@@ -83,7 +83,7 @@ public class PackageBusinessRulesImplTest {
     private List<ProposalSaleableItem> getProposalStub() {
         SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
         SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
-        Package ipackage = new Package(2l);
+        SalePackage ipackage = new SalePackage(2l);
 
         ProposalSaleableItem proposalSaleableOne = create()
                 .withPackage(ipackage)

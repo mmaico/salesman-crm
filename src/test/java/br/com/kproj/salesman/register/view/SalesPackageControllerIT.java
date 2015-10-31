@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.register.view.saleable.ProductController;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test to {@link ProductController}
+ * Test to {@link br.com.kproj.salesman.register.view.saleable.SalesPackageController}
  */
-public class ProductControllerIT extends AbstractIntegrationTest {
+public class SalesPackageControllerIT extends AbstractIntegrationTest {
 
     private MockMvc mockMvc;
 
@@ -34,9 +33,9 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
 
     @Test
-    public void shouldSaveProduct() throws Exception {
+    public void shouldSavePackage() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -46,9 +45,9 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
     
     @Test
-    public void shouldNotSaveWhenProductWithoutPrice() throws Exception {
+    public void shouldNotSaveWhenPackageWithoutPrice() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -58,9 +57,9 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
     
     @Test
-    public void shouldNotSaveWhenProductWithoutName() throws Exception {
+    public void shouldNotSaveWhenPackageWithoutName() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("description", "descricao do produto")
                 .param("active", "true")
                 .param("price", "56.45")
@@ -70,20 +69,20 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
     
     @Test
-    public void shouldListProductsRegistered() throws Exception {
+    public void shouldListPackagesRegistered() throws Exception {
 
-        ModelAndView modelAndView = mockMvc.perform(get("/products/list")).andExpect(status().isOk())
+        ModelAndView modelAndView = mockMvc.perform(get("/sales-package/list")).andExpect(status().isOk())
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/products/list-items"));
+        assertThat(modelAndView.getViewName(), is("/packages/list-items"));
     }
 
 
     @Test
-    public void shouldNotSaveWhenProductPriceLessThanZero() throws Exception {
+    public void shouldNotSaveWhenPackagePriceLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -94,9 +93,9 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
 
     @Test
-    public void shouldNotSaveWhenProductPriceCostLessThanZero() throws Exception {
+    public void shouldNotSaveWhenPackagePriceCostLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")

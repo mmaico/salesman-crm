@@ -1,8 +1,8 @@
-package br.com.kproj.salesman.register.view;
+package br.com.kproj.salesman.register.view.saleable;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.register.view.saleable.ProductController;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,10 +18,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 /**
- * Test to {@link ProductController}
+ * Test to {@link ServiceController}
  */
-public class ProductControllerIT extends AbstractIntegrationTest {
+public class ServiceControllerIT extends AbstractIntegrationTest {
 
     private MockMvc mockMvc;
 
@@ -34,56 +35,57 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
 
     @Test
-    public void shouldSaveProduct() throws Exception {
+    public void shouldSaveService() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("name", "bobstark")
-                .param("description", "descricao do produto")
-                .param("active", "true")
-                .param("price", "56.45")
-                .param("priceCost", "30.10")
+        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "bobstark")
+                        .param("description", "descricao do produto")
+                        .param("active", "true")
+                        .param("price", "56.45")
+                        .param("priceCost", "30.10")
         ).andExpect(status().isOk());
     }
-    
-    @Test
-    public void shouldNotSaveWhenProductWithoutPrice() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("name", "bobstark")
-                .param("description", "descricao do produto")
-                .param("active", "true")
-                .param("priceCost", "30.10")
+    @Test
+    public void shouldNotSaveWhenServiceWithoutPrice() throws Exception {
+
+        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "bobstark")
+                        .param("description", "descricao do produto")
+                        .param("active", "true")
+                        .param("priceCost", "30.10")
         ).andExpect(status().isBadRequest())
-            .andExpect(model().attributeExists("errors"));
+                .andExpect(model().attributeExists("errors"));
     }
-    
-    @Test
-    public void shouldNotSaveWhenProductWithoutName() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("description", "descricao do produto")
-                .param("active", "true")
-                .param("price", "56.45")
-                .param("priceCost", "30.10")
+    @Test
+    public void shouldNotSaveWhenServiceWithoutName() throws Exception {
+
+        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("description", "descricao do produto")
+                        .param("active", "true")
+                        .param("price", "56.45")
+                        .param("priceCost", "30.10")
         ).andExpect(status().isBadRequest())
-            .andExpect(model().attributeExists("errors"));
+                .andExpect(model().attributeExists("errors"));
     }
-    
-    @Test
-    public void shouldListProductsRegistered() throws Exception {
 
-        ModelAndView modelAndView = mockMvc.perform(get("/products/list")).andExpect(status().isOk())
+    @Ignore("definir o pacote de templates")
+    @Test
+    public void shouldListServicesRegistered() throws Exception {
+
+        ModelAndView modelAndView = mockMvc.perform(get("/services/list")).andExpect(status().isOk())
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/products/list-items"));
+        assertThat(modelAndView.getViewName(), is("/services/list-items"));
     }
 
 
     @Test
-    public void shouldNotSaveWhenProductPriceLessThanZero() throws Exception {
+    public void shouldNotSaveWhenServicePriceLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -94,9 +96,9 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     }
 
     @Test
-    public void shouldNotSaveWhenProductPriceCostLessThanZero() throws Exception {
+    public void shouldNotSaveWhenServicePriceCostLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -105,6 +107,5 @@ public class ProductControllerIT extends AbstractIntegrationTest {
         ).andExpect(status().isBadRequest())
                 .andExpect(model().attributeExists("errors"));
     }
-
 
 }

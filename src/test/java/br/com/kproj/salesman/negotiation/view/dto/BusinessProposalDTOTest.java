@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.view.dto;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
 import com.google.common.collect.Lists;
 import org.hamcrest.Matchers;
@@ -42,18 +42,18 @@ public class BusinessProposalDTOTest {
         itemOne.setPrice(BigDecimal.TEN);
         itemOne.setQuantity(2);
         itemOne.setSaleableUnit(new Product(1l));
-        itemOne.setIpackage(new Package(7l));
+        itemOne.setIpackage(new SalePackage(7l));
 
         SaleableItemDTO itemTwo = new SaleableItemDTO();
         itemTwo.setPrice(BigDecimal.ONE);
         itemTwo.setQuantity(1);
         itemTwo.setSaleableUnit(new Product(2l));
-        itemTwo.setIpackage(new Package(8l));
+        itemTwo.setIpackage(new SalePackage(8l));
 
         SaleableItemDTO itemThree = new SaleableItemDTO();
         itemThree.setPrice(BigDecimal.ZERO);
         itemThree.setQuantity(1);
-        itemThree.setIpackage(new Package(8l));
+        itemThree.setIpackage(new SalePackage(8l));
 
         return Lists.newArrayList(itemOne, itemTwo, itemThree);
 

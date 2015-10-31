@@ -40,7 +40,7 @@ public class ServiceController {
         
     }
 
-    @RequestMapping(value = "/saleable/services/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/services/save", method = RequestMethod.POST)
     public @ResponseBody
     SaleableUnit save(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
 
@@ -53,7 +53,7 @@ public class ServiceController {
         return saleable;
     }
 
-    @RequestMapping(value = "/saleable/services/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/services/save", method = RequestMethod.PUT)
     public @ResponseBody
     SaleableUnit update(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
 
@@ -66,7 +66,7 @@ public class ServiceController {
         return saleable;
     }
 
-    @RequestMapping("/saleable/services/list")
+    @RequestMapping("/services/list")
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
 
         Pager pager = Pager.binding(pageable);
@@ -77,16 +77,16 @@ public class ServiceController {
         return new ModelAndView("/saleable/services/list-items");
     }
     
-    @RequestMapping(value="/saleable/services/{productId}")
-    public ModelAndView viewInfo(@PathVariable Long productId, Model model) {
+    @RequestMapping(value="/services/{serviceId}")
+    public ModelAndView viewInfo(@PathVariable Long serviceId, Model model) {
         
-        Optional<Service> result = this.service.getOne(productId);
+        Optional<Service> result = this.service.getOne(serviceId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/saleable/services/edit");
     }
 
-    @RequestMapping(value = "/saleable/services/{serviceId}/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/services/{serviceId}/json", method = RequestMethod.GET)
     public @ResponseBody
     SaleableUnit getProduct(@PathVariable Long serviceId) {
 
@@ -95,7 +95,7 @@ public class ServiceController {
         return saleable.isPresent() ? saleable.get() : null;
     }
 
-    @RequestMapping(value="/saleable/services/create")
+    @RequestMapping(value="/services/create")
     public ModelAndView newProduct() {
 
         return new ModelAndView("/saleable/services/edit");

@@ -11,14 +11,14 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QPackage is a Querydsl query type for Package
+ * QSalePackage is a Querydsl query type for SalePackage
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QPackage extends EntityPathBase<Package> {
+public class QSalePackage extends EntityPathBase<SalePackage> {
 
-    private static final long serialVersionUID = 1039218024L;
+    private static final long serialVersionUID = -966386143L;
 
-    public static final QPackage package$ = new QPackage("package$");
+    public static final QSalePackage salePackage = new QSalePackage("salePackage");
 
     public final QSaleableUnit _super = new QSaleableUnit(this);
 
@@ -45,16 +45,16 @@ public class QPackage extends EntityPathBase<Package> {
     //inherited
     public final EnumPath<SaleableType> type = _super.type;
 
-    public QPackage(String variable) {
-        super(Package.class, forVariable(variable));
+    public QSalePackage(String variable) {
+        super(SalePackage.class, forVariable(variable));
     }
 
-    public QPackage(Path<? extends Package> path) {
+    public QSalePackage(Path<? extends SalePackage> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QPackage(PathMetadata<?> metadata) {
-        super(Package.class, metadata);
+    public QSalePackage(PathMetadata<?> metadata) {
+        super(SalePackage.class, metadata);
     }
 
 }

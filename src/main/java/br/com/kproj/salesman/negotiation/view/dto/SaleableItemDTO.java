@@ -1,23 +1,23 @@
 package br.com.kproj.salesman.negotiation.view.dto;
 
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
 
 import java.math.BigDecimal;
 
 public class SaleableItemDTO {
 
-    private Package ipackage;
+    private SalePackage ipackage;
     private SaleableUnit saleableUnit;
     private BigDecimal price;
     private Integer quantity;
 
-    public Package getIpackage() {
+    public SalePackage getIpackage() {
         return ipackage;
     }
 
-    public void setIpackage(Package ipackage) {
+    public void setIpackage(SalePackage ipackage) {
         this.ipackage = ipackage;
     }
 

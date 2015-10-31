@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.PackageBusinessRules;
 import com.google.common.collect.Sets;
@@ -23,23 +23,23 @@ public class PackageBusinessRulesImpl implements PackageBusinessRules {
     public Boolean verifyRules(List<ProposalSaleableItem> proposalSaleableItems) {
         Set<String> violations = Sets.newHashSet();
 
-        Set<Package> packagesInSaleable = proposalSaleableItems.stream()
-                .filter(item -> item.getPackageSaleable() != null && item.getSaleableUnit() != null)
-                .map(ProposalSaleableItem::getPackageSaleable)
+        Set<SalePackage> packagesInSaleable = proposalSaleableItems.stream()
+                .filter(item -> item.getSalePackageSaleable() != null && item.getSaleableUnit() != null)
+                .map(ProposalSaleableItem::getSalePackageSaleable)
                 .collect(Collectors.toSet());
 
-        Set<Package> packages = proposalSaleableItems.stream()
-                .filter(item -> item.getPackageSaleable() != null && item.getSaleableUnit() == null)
-                .map(ProposalSaleableItem::getPackageSaleable)
+        Set<SalePackage> salePackages = proposalSaleableItems.stream()
+                .filter(item -> item.getSalePackageSaleable() != null && item.getSaleableUnit() == null)
+                .map(ProposalSaleableItem::getSalePackageSaleable)
                 .collect(Collectors.toSet());
 
-        if (packagesInSaleable.size() > packages.size()) {
+        if (packagesInSaleable.size() > salePackages.size()) {
             violations.add("invalid.quantity.packages.inlist.with.packages.insaleable");
             hasErrors(violations).throwing(ValidationException.class);
         }
 
         long countPackageInReferenceNotExist = packagesInSaleable
-                .stream().filter(item -> !packages.contains(item)).count();
+                .stream().filter(item -> !salePackages.contains(item)).count();
 
         if (countPackageInReferenceNotExist > 0) {
             violations.add("invalid.package.inreference.not.exist.in.list");

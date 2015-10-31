@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Package;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 
 import javax.persistence.*;
@@ -30,7 +30,7 @@ public class ProposalSaleableItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name = "package_id")
-    private Package packageSaleable;
+    private SalePackage salePackageSaleable;
 
     @NotNull(message = "proposal.saleable.price.is.invalid")
     private BigDecimal price;
@@ -89,12 +89,12 @@ public class ProposalSaleableItem extends Identifiable {
         this.quantity = quantity;
     }
 
-    public Package getPackageSaleable() {
-        return packageSaleable;
+    public SalePackage getSalePackageSaleable() {
+        return salePackageSaleable;
     }
 
-    public void setPackageSaleable(Package packageSaleable) {
-        this.packageSaleable = packageSaleable;
+    public void setSalePackageSaleable(SalePackage salePackageSaleable) {
+        this.salePackageSaleable = salePackageSaleable;
     }
 
     public BusinessProposal getBusinessProposal() {
