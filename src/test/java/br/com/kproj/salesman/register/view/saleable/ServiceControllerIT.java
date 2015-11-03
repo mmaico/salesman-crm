@@ -2,7 +2,6 @@ package br.com.kproj.salesman.register.view.saleable;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -70,7 +69,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
                 .andExpect(model().attributeExists("errors"));
     }
 
-    @Ignore("definir o pacote de templates")
+
     @Test
     public void shouldListServicesRegistered() throws Exception {
 
@@ -78,7 +77,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/services/list-items"));
+        assertThat(modelAndView.getViewName(), is("/saleable/services/list-items"));
     }
 
 
