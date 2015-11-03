@@ -23,14 +23,15 @@ public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements
     private AddressRepository addressRepository;
 
     private ClientService clientService;
-
-    @Autowired
+    
     private AddressDomainService service;
 
     @Autowired
-    public AddressServiceImpl(ClientService clientService, AddressRepository addressRepository) {
+    public AddressServiceImpl(ClientService clientService, AddressRepository addressRepository,
+    		AddressDomainService service) {
         this.addressRepository = addressRepository;
         this.clientService = clientService;
+        this.service = service;
     }
 
     @Override

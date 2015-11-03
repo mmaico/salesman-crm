@@ -7,6 +7,10 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
 import br.com.kproj.salesman.infrastructure.repository.ContactRepository;
 import br.com.kproj.salesman.register.application.ClientService;
+import br.com.kproj.salesman.register.domain.AddressDomainService;
+
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,6 +20,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -24,13 +30,16 @@ import static org.mockito.Mockito.verify;
 public class AddressServiceImplTest {
 
     @InjectMocks
-    private AddressServiceImpl service;
+    private AddressServiceImpl addressService;
 
     @Mock
     private AddressRepository contactRepository;
 
     @Mock
     private ClientService clientService;
+    
+    @Mock
+    private AddressDomainService service;
 
     @Test
     public void shouldSaveANewContact() {
@@ -41,10 +50,12 @@ public class AddressServiceImplTest {
         given(personMocked.getId()).willReturn(2l);
         given(clientService.getOne(2l)).willReturn(Optional.of(personLoadedMocked));
 
-        service.register(personMocked, address);
+        addressService.register(personMocked, address);
 
-        verify(personLoadedMocked).addAddress(address);
-        verify(clientService).save(personLoadedMocked);
+        
+        assertThat(address.getPerson(), sameInstance(personLoadedMocked));
+        verify(service).prepareToSave(address);
+        verify(contactRepository).save(address);
 
     }
 
@@ -57,7 +68,7 @@ public class AddressServiceImplTest {
         given(personMocked.getId()).willReturn(2l);
         given(clientService.getOne(2l)).willReturn(Optional.ofNullable(personLoadedMocked));
 
-        service.register(personMocked, address);
+        addressService.register(personMocked, address);
 
         verify(personLoadedMocked).addAddress(address);
     }
@@ -71,8 +82,10 @@ public class AddressServiceImplTest {
 
         given(contactRepository.findOne(1l)).willReturn(addressLoaded);
 
-        service.register(personMocked, address);
+        addressService.register(personMocked, address);
 
+        
+        verify(service).prepareToSave(address);
         verify(contactRepository).save(addressLoaded);
     }
 }

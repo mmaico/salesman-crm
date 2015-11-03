@@ -7,8 +7,8 @@
 
     <users id="1" login="mmaico" password="1234" name="Maico"/>
 
-    <products id="1" name="product 1" active="true" price="30.0"/>
-    <products id="2" name="product 2" active="true" price="10.0"/>
+    <products id="1" name="product 1" active="true" price="30.0" type="PRODUCT"/>
+    <products id="2" name="product 2" active="true" price="10.0" type="PRODUCT"/>
 
 
     <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
