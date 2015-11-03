@@ -7,4 +7,6 @@ import br.com.kproj.salesman.infrastructure.service.ModelService;
 public interface UserService extends ModelService<User> {
 
     User register(User user);
+
+    Boolean existsByLogin(String login);
 }
