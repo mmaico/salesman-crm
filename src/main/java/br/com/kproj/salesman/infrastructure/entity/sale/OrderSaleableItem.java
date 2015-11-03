@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity.proposal;
+package br.com.kproj.salesman.infrastructure.entity.sale;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="proposal_saleable_item")
-public class ProposalSaleableItem extends Identifiable {
+@Table(name="order_saleable_item")
+public class OrderSaleableItem extends Identifiable {
 
     /**
 	 * 
@@ -25,14 +25,14 @@ public class ProposalSaleableItem extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
-    @NotNull(message = "proposal.saleable.is.invalid")
+    @NotNull(message = "order.saleable.is.invalid")
     private SaleableUnit saleableUnit;
 
     @ManyToOne
     @JoinColumn(name = "package_id")
     private SalePackage salePackage;
 
-    @NotNull(message = "proposal.saleable.price.is.invalid")
+    @NotNull(message = "order.saleable.price.is.invalid")
     private BigDecimal price;
 
     private BigDecimal originalPrice;
@@ -42,10 +42,8 @@ public class ProposalSaleableItem extends Identifiable {
     private Integer quantity = 0;
 
     @ManyToOne
-    @JoinColumn(name="business_proposal_id")
-    private BusinessProposal businessProposal;
-
-
+    @JoinColumn(name="order_id")
+    private Order order;
 
 
     @Override
@@ -97,11 +95,11 @@ public class ProposalSaleableItem extends Identifiable {
         this.salePackage = salePackage;
     }
 
-    public BusinessProposal getBusinessProposal() {
-        return businessProposal;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBusinessProposal(BusinessProposal businessProposal) {
-        this.businessProposal = businessProposal;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

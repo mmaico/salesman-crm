@@ -24,13 +24,13 @@ public class PackageBusinessRulesImpl implements PackageBusinessRules {
         Set<String> violations = Sets.newHashSet();
 
         Set<SalePackage> packagesInSaleable = proposalSaleableItems.stream()
-                .filter(item -> item.getSalePackageSaleable() != null && item.getSaleableUnit() != null)
-                .map(ProposalSaleableItem::getSalePackageSaleable)
+                .filter(item -> item.getSalePackage() != null && item.getSaleableUnit() != null)
+                .map(ProposalSaleableItem::getSalePackage)
                 .collect(Collectors.toSet());
 
         Set<SalePackage> salePackages = proposalSaleableItems.stream()
-                .filter(item -> item.getSalePackageSaleable() != null && item.getSaleableUnit() == null)
-                .map(ProposalSaleableItem::getSalePackageSaleable)
+                .filter(item -> item.getSalePackage() != null && item.getSaleableUnit() == null)
+                .map(ProposalSaleableItem::getSalePackage)
                 .collect(Collectors.toSet());
 
         if (packagesInSaleable.size() > salePackages.size()) {

@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity.proposal;
+package br.com.kproj.salesman.infrastructure.entity.sale;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
@@ -11,8 +11,8 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="proposal_payment_item")
-public class ProposalPaymentItem extends Identifiable {
+@Table(name="order_payment_item")
+public class OrderPaymentItem extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -20,18 +20,18 @@ public class ProposalPaymentItem extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    @NotNull(message = "proposal.payment.duedate.is.invalid")
+    @NotNull(message = "order.duedate.is.invalid")
     @Column(name="date_due")
     private Date dueDate;
 
-    @NotNull(message = "proposal.payment.value.is.invalid")
+    @NotNull(message = "order.payment.value.is.invalid")
     private BigDecimal value;
 
     private String observation;
 
     @ManyToOne
-    @JoinColumn(name="business_proposal_id")
-    private BusinessProposal businessProposal;
+    @JoinColumn(name="order_id")
+    private Order order;
 
     @Override
     public Long getId() {
@@ -66,11 +66,11 @@ public class ProposalPaymentItem extends Identifiable {
         this.observation = observation;
     }
 
-    public BusinessProposal getBusinessProposal() {
-        return businessProposal;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBusinessProposal(BusinessProposal businessProposal) {
-        this.businessProposal = businessProposal;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

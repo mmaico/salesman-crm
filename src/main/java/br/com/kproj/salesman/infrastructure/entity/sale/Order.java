@@ -1,10 +1,10 @@
-package br.com.kproj.salesman.infrastructure.entity.proposal;
+package br.com.kproj.salesman.infrastructure.entity.sale;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,9 +17,8 @@ import java.util.List;
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 @Entity
-@Table(name = "business_proposal")
-public class BusinessProposal extends Identifiable {
-
+@Table(name = "sales_order")
+public class Order extends Identifiable {
 
     /**
 	 * 
@@ -32,41 +31,40 @@ public class BusinessProposal extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="person_id")
-    @NotNull(message = "business.proposal.person.required")
+    @NotNull(message = "order.person.required")
     private Person person;
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    @NotNull(message = "business.proposal.vendor.required")
+    @NotNull(message = "order.vendor.required")
     private User vendor;
 
-    private String careOf;
+    @OneToOne
+    @JoinColumn(name="sales_order_id")
+    @NotNull(message = "order.proposal.required")
+    private BusinessProposal proposal;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    private Date deliveryForeCast;
+    private Date deliveryForecast;
 
-    private String introduction;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     @Valid
-    private List<ProposalSaleableItem> saleableItems;
+    private List<OrderSaleableItem> saleableItems;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     @Valid
-    private List<ProposalPaymentItem> paymentItems;
+    private List<OrderPaymentItem> paymentItems;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
-    @NotNull(message = "business.proposal.region.required")
+    @NotNull(message = "order.region.required")
     private OperationRegion operationRegion;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "temperature")
-    private SaleTemperature temperature;
 
-    public BusinessProposal(){}
-    public BusinessProposal(Long id) {
+    public Order(){}
+    public Order(Long id) {
         this.id = id;
     }
 
@@ -107,7 +105,7 @@ public class BusinessProposal extends Identifiable {
         return totaToPay;
     }
 
-    
+
 
     public Person getPerson() {
         return person;
@@ -125,35 +123,19 @@ public class BusinessProposal extends Identifiable {
         this.vendor = vendor;
     }
 
-    public String getCareOf() {
-        return careOf;
+    public Date getDeliveryForecast() {
+        return deliveryForecast;
     }
 
-    public void setCareOf(String careOf) {
-        this.careOf = careOf;
+    public void setDeliveryForecast(Date deliveryForecast) {
+        this.deliveryForecast = deliveryForecast;
     }
 
-    public Date getDeliveryForeCast() {
-        return deliveryForeCast;
-    }
-
-    public void setDeliveryForeCast(Date deliveryForeCast) {
-        this.deliveryForeCast = deliveryForeCast;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
-    public List<ProposalPaymentItem> getPaymentItems() {
+    public List<OrderPaymentItem> getPaymentItems() {
         return paymentItems;
     }
 
-    public void setPaymentItems(List<ProposalPaymentItem> paymentItems) {
+    public void setPaymentItems(List<OrderPaymentItem> paymentItems) {
         this.paymentItems = paymentItems;
     }
 
@@ -165,19 +147,19 @@ public class BusinessProposal extends Identifiable {
         this.operationRegion = operationRegion;
     }
 
-    public List<ProposalSaleableItem> getSaleableItems() {
+    public List<OrderSaleableItem> getSaleableItems() {
         return saleableItems;
     }
 
-    public void setSaleableItems(List<ProposalSaleableItem> saleableItems) {
+    public void setSaleableItems(List<OrderSaleableItem> saleableItems) {
         this.saleableItems = saleableItems;
     }
 
-    public SaleTemperature getTemperature() {
-        return temperature;
+    public BusinessProposal getProposal() {
+        return proposal;
     }
 
-    public void setTemperature(SaleTemperature temperature) {
-        this.temperature = temperature;
+    public void setProposal(BusinessProposal proposal) {
+        this.proposal = proposal;
     }
 }

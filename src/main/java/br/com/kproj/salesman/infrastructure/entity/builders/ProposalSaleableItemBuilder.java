@@ -45,7 +45,7 @@ public class ProposalSaleableItemBuilder extends AbstractBuilder<ProposalSaleabl
     }
 
     public ProposalSaleableItemBuilder withPackage(SalePackage salePackageSaleable) {
-        this.entity.setSalePackageSaleable(salePackageSaleable);
+        this.entity.setSalePackage(salePackageSaleable);
         return this;
     }
 

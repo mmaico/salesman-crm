@@ -56,7 +56,7 @@ public class SalePackageBusinessRulesImplTest {
 
         items.add(newPackage);
 
-        items.get(0).setSalePackageSaleable(ipackage);
+        items.get(0).setSalePackage(ipackage);
 
         rules.verifyRules(items);
     }
