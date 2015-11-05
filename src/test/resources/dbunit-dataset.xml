@@ -51,5 +51,11 @@
     <timelines id="3" business_proposal_id="1"/>
     <timelines id="4" contact_id="2"/>
 
+    <sales_order id="1" person_id="2" user_id="1" proposal_id="1" operation_region_id="3"/>
+
+    <sales_order_item id="1" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="1"/>
+    <sales_order_item id="2" saleable_id="2"  price="13.00" original_price="5.00" quantity="1" sales_order_id="1"/>
+    <sales_order_item id="3" saleable_id="3"  price="16.00" original_price="5.00" quantity="2" sales_order_id="1"/>
+
 
 </dataset>

@@ -11,8 +11,8 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="order_payment_item")
-public class OrderPaymentItem extends Identifiable {
+@Table(name="sales_order_payment_item")
+public class SalesOrderPaymentItem extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -31,7 +31,7 @@ public class OrderPaymentItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="order_id")
-    private Order order;
+    private SalesOrder salesOrder;
 
     @Override
     public Long getId() {
@@ -66,11 +66,11 @@ public class OrderPaymentItem extends Identifiable {
         this.observation = observation;
     }
 
-    public Order getOrder() {
-        return order;
+    public SalesOrder getSalesOrder() {
+        return salesOrder;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setSalesOrder(SalesOrder salesOrder) {
+        this.salesOrder = salesOrder;
     }
 }

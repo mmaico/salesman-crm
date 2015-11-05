@@ -18,10 +18,10 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 
 @Entity
 @Table(name = "sales_order")
-public class Order extends Identifiable {
+public class SalesOrder extends Identifiable {
 
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3466031805155434986L;
 
@@ -32,7 +32,7 @@ public class Order extends Identifiable {
 	@ManyToOne
     @JoinColumn(name="person_id")
     @NotNull(message = "order.person.required")
-    private Person person;
+    private Person client;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -40,7 +40,7 @@ public class Order extends Identifiable {
     private User vendor;
 
     @OneToOne
-    @JoinColumn(name="sales_order_id")
+    @JoinColumn(name="proposal_id")
     @NotNull(message = "order.proposal.required")
     private BusinessProposal proposal;
 
@@ -49,13 +49,13 @@ public class Order extends Identifiable {
     private Date deliveryForecast;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesOrder")
     @Valid
-    private List<OrderSaleableItem> saleableItems;
+    private List<SalesOrderItem> saleableItems;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesOrder")
     @Valid
-    private List<OrderPaymentItem> paymentItems;
+    private List<SalesOrderPaymentItem> paymentItems;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
@@ -63,8 +63,8 @@ public class Order extends Identifiable {
     private OperationRegion operationRegion;
 
 
-    public Order(){}
-    public Order(Long id) {
+    public SalesOrder(){}
+    public SalesOrder(Long id) {
         this.id = id;
     }
 
@@ -105,14 +105,12 @@ public class Order extends Identifiable {
         return totaToPay;
     }
 
-
-
-    public Person getPerson() {
-        return person;
+    public Person getClient() {
+        return client;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setClient(Person client) {
+        this.client = client;
     }
 
     public User getVendor() {
@@ -131,11 +129,11 @@ public class Order extends Identifiable {
         this.deliveryForecast = deliveryForecast;
     }
 
-    public List<OrderPaymentItem> getPaymentItems() {
+    public List<SalesOrderPaymentItem> getPaymentItems() {
         return paymentItems;
     }
 
-    public void setPaymentItems(List<OrderPaymentItem> paymentItems) {
+    public void setPaymentItems(List<SalesOrderPaymentItem> paymentItems) {
         this.paymentItems = paymentItems;
     }
 
@@ -147,11 +145,11 @@ public class Order extends Identifiable {
         this.operationRegion = operationRegion;
     }
 
-    public List<OrderSaleableItem> getSaleableItems() {
+    public List<SalesOrderItem> getSaleableItems() {
         return saleableItems;
     }
 
-    public void setSaleableItems(List<OrderSaleableItem> saleableItems) {
+    public void setSaleableItems(List<SalesOrderItem> saleableItems) {
         this.saleableItems = saleableItems;
     }
 

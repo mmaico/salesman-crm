@@ -40,6 +40,8 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final ListPath<ProposalSaleableItem, QProposalSaleableItem> saleableItems = this.<ProposalSaleableItem, QProposalSaleableItem>createList("saleableItems", ProposalSaleableItem.class, QProposalSaleableItem.class, PathInits.DIRECT2);
 
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature.class);
+
     public final br.com.kproj.salesman.infrastructure.entity.QUser vendor;
 
     public QBusinessProposal(String variable) {

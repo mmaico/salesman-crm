@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="order_saleable_item")
-public class OrderSaleableItem extends Identifiable {
+@Table(name="sales_order_item")
+public class SalesOrderItem extends Identifiable {
 
     /**
 	 * 
@@ -25,25 +25,26 @@ public class OrderSaleableItem extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
-    @NotNull(message = "order.saleable.is.invalid")
+    @NotNull(message = "sales.order.item.is.invalid")
     private SaleableUnit saleableUnit;
 
     @ManyToOne
     @JoinColumn(name = "package_id")
     private SalePackage salePackage;
 
-    @NotNull(message = "order.saleable.price.is.invalid")
+    @NotNull(message = "sales.order.item.price.is.invalid")
     private BigDecimal price;
 
+    @Column(name="original_price")
     private BigDecimal originalPrice;
 
     @NotNull
-    @Min(value = 1, message = "quantity.saleable.lessthan.one")
+    @Min(value = 1, message = "sales.order.item.quantity.saleable.lessthan.one")
     private Integer quantity = 0;
 
     @ManyToOne
-    @JoinColumn(name="order_id")
-    private Order order;
+    @JoinColumn(name="sales_order_id")
+    private SalesOrder salesOrder;
 
 
     @Override
@@ -95,11 +96,11 @@ public class OrderSaleableItem extends Identifiable {
         this.salePackage = salePackage;
     }
 
-    public Order getOrder() {
-        return order;
+    public SalesOrder getSalesOrder() {
+        return salesOrder;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setSalesOrder(SalesOrder salesOrder) {
+        this.salesOrder = salesOrder;
     }
 }
