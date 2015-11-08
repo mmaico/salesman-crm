@@ -53,8 +53,4 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
         hasErrors(violations).throwing(ValidationException.class);
     }
 
-    @Override
-    public void applyPreconditions(BusinessProposal proposal) {
-        //proposal.getProductItems().forEach( p -> p.setId());
-    }
 }

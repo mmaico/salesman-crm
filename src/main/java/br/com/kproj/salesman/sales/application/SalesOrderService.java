@@ -6,4 +6,5 @@ import br.com.kproj.salesman.infrastructure.service.ModelService;
 
 
 public interface SalesOrderService extends ModelService<SalesOrder> {
+
 }
