@@ -46,6 +46,7 @@ public class SalesOrder extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
+    @Column(name="delivery_forecast")
     private Date deliveryForecast;
 
 

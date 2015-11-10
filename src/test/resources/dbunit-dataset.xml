@@ -42,9 +42,16 @@
     <proposal_saleable_item id="1" saleable_id="2" price="400.00" quantity="3" business_proposal_id="1" />
     <proposal_saleable_item id="2" saleable_id="1" price="100.00" quantity="2" business_proposal_id="1" />
 
-    <proposal_payment_item id="1" date_due="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
-    <proposal_payment_item id="2" date_due="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
+    <proposal_payment_item id="1" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
+    <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
 
+
+    <sales_order id="1" person_id="1" user_id="1" proposal_id="1" operation_region_id="2" delivery_forecast="2016-03-15 00:00:00"/>
+
+    <sales_order_item id="1" saleable_id="1" price="10.00" quantity="2" sales_order_id="1"/>
+    <sales_order_item id="2" saleable_id="2" price="5.00" quantity="1" sales_order_id="1"/>
+
+    <sales_order_payment_item id="1" due_date="2016-03-15 00:00:00" value="25.00"/>
 
 
     <timelines id="1" person_id="1"/>
@@ -57,5 +64,13 @@
     <sales_order_item id="2" saleable_id="2"  price="13.00" original_price="5.00" quantity="1" sales_order_id="1"/>
     <sales_order_item id="3" saleable_id="3"  price="16.00" original_price="5.00" quantity="2" sales_order_id="1"/>
 
+
+    <task_template id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1"/>
+    <task_template id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1"/>
+
+    <task id="1" title="title" description="description" deadline="2016-02-16 00:00:00" status="WATTING" sales_order_id="1"/>
+    <task id="2" title="title" description="description" deadline="2016-02-16 00:00:00" status="STATED" sales_order_id="1"/>
+    <task id="3" title="title" description="description" deadline="2016-02-16 00:00:00" status="PROBLEM" sales_order_id="1"/>
+    <task id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1"/>
 
 </dataset>

@@ -21,7 +21,7 @@ public class SalesOrderPaymentItem extends Identifiable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "order.duedate.is.invalid")
-    @Column(name="date_due")
+    @Column(name="due_date")
     private Date dueDate;
 
     @NotNull(message = "order.payment.value.is.invalid")
