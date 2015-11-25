@@ -26,5 +26,39 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
         assertThat(result.size(), is(4));
     }
 
+    @Test
+    public void shouldReturnAllTasksOrderedByDeadline() {
+        SalesOrder salesOrder = new SalesOrder();
+        salesOrder.setId(1l);
+
+        List<Task> result = repository.findBySalesOrder(salesOrder);
+
+        assertThat(result.get(0).getId(), is(4l));
+        assertThat(result.get(1).getId(), is(3l));
+        assertThat(result.get(2).getId(), is(2l));
+        assertThat(result.get(3).getId(), is(1l));
+    }
+
+
+    @Test
+    public void shouldReturnTrueWhenHasParent() {
+        Task task = new Task();
+        task.setId(4l);
+
+        Boolean result = repository.isSomeonesSon(task);
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenNotHaveParent() {
+        Task task = new Task();
+        task.setId(1l);
+
+        Boolean result = repository.isSomeonesSon(task);
+
+        assertThat(result, is(Boolean.FALSE));
+    }
+
 
 }

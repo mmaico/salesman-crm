@@ -6,11 +6,13 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+
 
 public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
 
@@ -24,6 +26,37 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
         List<TaskTemplate> result = repository.findTaskTemplateBy(saleable);
 
         assertThat(result.size(), is(2));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenTaksIsSonOfOtherTaksTemplate() {
+        TaskTemplate taskTemplate = new TaskTemplate();
+        taskTemplate.setId(3l);
+
+        Boolean result = repository.isSomeonesSon(taskTemplate);
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenTaskIsNotSonOfOtherTaskTempalte() {
+        TaskTemplate taskTemplate = new TaskTemplate();
+        taskTemplate.setId(1l);
+
+        Boolean result = repository.isSomeonesSon(taskTemplate);
+
+        assertThat(result, is(Boolean.FALSE));
+    }
+
+    @Test
+    @Transactional
+    public void shouldLoadChecklistOfTaskTemplate() {
+        TaskTemplate taskTemplate = new TaskTemplate();
+        taskTemplate.setId(1l);
+
+        TaskTemplate result = repository.findOne(1l);
+
+        assertThat(result.getChecklistTemplates().size(), is(2));
     }
 
 

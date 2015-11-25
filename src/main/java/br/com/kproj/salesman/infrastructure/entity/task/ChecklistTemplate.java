@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="checklist_template")
+@Table(name="checklist_templates")
 public class ChecklistTemplate extends Identifiable {
 
     @Id

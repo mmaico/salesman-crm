@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="task_cost_template")
+@Table(name="task_cost_templates")
 public class TaskCostTemplate extends Identifiable {
 
 

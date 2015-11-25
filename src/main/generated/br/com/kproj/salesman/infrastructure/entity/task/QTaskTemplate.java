@@ -34,11 +34,13 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = createNumber("quantityDaysTofinishAfertSignedContract", Integer.class);
 
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;
+
     public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit saleable;
 
-    public final ListPath<TaskCostTemplate, QTaskCostTemplate> tasksCostsTemplate = this.<TaskCostTemplate, QTaskCostTemplate>createList("tasksCostsTemplate", TaskCostTemplate.class, QTaskCostTemplate.class, PathInits.DIRECT2);
+    public final ListPath<TaskCostTemplate, QTaskCostTemplate> tasksCostsTemplates = this.<TaskCostTemplate, QTaskCostTemplate>createList("tasksCostsTemplates", TaskCostTemplate.class, QTaskCostTemplate.class, PathInits.DIRECT2);
 
-    public final ListPath<TaskTemplate, QTaskTemplate> tasksTemplate = this.<TaskTemplate, QTaskTemplate>createList("tasksTemplate", TaskTemplate.class, QTaskTemplate.class, PathInits.DIRECT2);
+    public final ListPath<TaskTemplate, QTaskTemplate> templatesChilds = this.<TaskTemplate, QTaskTemplate>createList("templatesChilds", TaskTemplate.class, QTaskTemplate.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
@@ -60,6 +62,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public QTaskTemplate(Class<? extends TaskTemplate> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("region")) : null;
         this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit(forProperty("saleable")) : null;
     }
 

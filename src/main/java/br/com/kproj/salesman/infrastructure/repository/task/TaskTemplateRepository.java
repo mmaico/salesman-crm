@@ -13,4 +13,13 @@ public interface TaskTemplateRepository extends BaseRepository<TaskTemplate, Lon
 
     @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.saleable = :saleable")
     List<TaskTemplate> findTaskTemplateBy(@Param("saleable")SaleableUnit saleable);
+
+    @Query("SELECT " +
+            "   CASE WHEN count(*) > 0 " +
+            "       THEN true " +
+            "       ELSE false " +
+            "   END  " +
+            "FROM TaskTemplate AS tt JOIN tt.templatesChilds AS taskChild " +
+            "WHERE taskChild = :taskTemplate")
+    Boolean isSomeonesSon(@Param("taskTemplate")TaskTemplate taskTemplate);
 }

@@ -21,7 +21,7 @@ public class ProposalPaymentItem extends Identifiable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "proposal.payment.duedate.is.invalid")
-    @Column(name="date_due")
+    @Column(name="due_date")
     private Date dueDate;
 
     @NotNull(message = "proposal.payment.value.is.invalid")

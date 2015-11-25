@@ -58,19 +58,35 @@
     <timelines id="3" business_proposal_id="1"/>
     <timelines id="4" contact_id="2"/>
 
-    <sales_order id="1" person_id="2" user_id="1" proposal_id="1" operation_region_id="3"/>
+    <sales_order id="2" person_id="2" user_id="1" proposal_id="1" operation_region_id="3"/>
 
-    <sales_order_item id="1" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="1"/>
-    <sales_order_item id="2" saleable_id="2"  price="13.00" original_price="5.00" quantity="1" sales_order_id="1"/>
-    <sales_order_item id="3" saleable_id="3"  price="16.00" original_price="5.00" quantity="2" sales_order_id="1"/>
+    <sales_order_item id="3" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="2"/>
+    <sales_order_item id="4" saleable_id="2"  price="13.00" original_price="5.00" quantity="1" sales_order_id="2"/>
+    <sales_order_item id="5" saleable_id="3"  price="16.00" original_price="5.00" quantity="2" sales_order_id="2"/>
 
 
-    <task_template id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1"/>
-    <task_template id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1"/>
+    <task_templates id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
+    <task_templates id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
 
-    <task id="1" title="title" description="description" deadline="2016-02-16 00:00:00" status="WATTING" sales_order_id="1"/>
-    <task id="2" title="title" description="description" deadline="2016-02-16 00:00:00" status="STATED" sales_order_id="1"/>
-    <task id="3" title="title" description="description" deadline="2016-02-16 00:00:00" status="PROBLEM" sales_order_id="1"/>
-    <task id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1"/>
+    <!-- Task templates filhas-->
+    <task_templates id="3" title="title child" description="description child" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
+                   task_template_parent_id="1"/>
+    <task_templates id="4" title="title child 2" description="description child 2" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
+                   task_template_parent_id="1"/>
+
+    <task_cost_templates id = "1" cost="12.00" is_internal="TRUE" task_template_id="1"/>
+    <task_cost_templates id = "2" cost="13.00" is_internal="FALSE" task_template_id="1"/>
+
+    <checklist_templates id="1" task_template_id="1" name="Cobrar fornecedores"/>
+    <checklist_templates id="2" task_template_id="1" name="Cobrar fornecedores 2"/>
+
+    <checklist_templates id="3" task_template_id="2" name="Cobrar fornecedores 1"/>
+    <checklist_templates id="4" task_template_id="2" name="Cobrar fornecedores 2"/>
+
+
+    <tasks id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WATTING" sales_order_id="1" />
+    <tasks id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" />
+    <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" />
+    <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1"/>
 
 </dataset>

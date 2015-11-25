@@ -3,25 +3,28 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name="task_template")
+@Table(name="task_templates")
 public class TaskTemplate extends Identifiable {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String title;
     private String description;
 
     @OneToMany
     @JoinColumn(name="task_template_parent_id")
-    private List<TaskTemplate> tasksTemplate;
+    private List<TaskTemplate> templatesChilds;
 
     @Column(name="quantity_days_to_finish_after_signed_contract")
     private Integer quantityDaysTofinishAfertSignedContract;
@@ -34,11 +37,17 @@ public class TaskTemplate extends Identifiable {
     private List<ChecklistTemplate> checklistTemplates;
 
     @OneToMany(mappedBy = "taskTemplate")
-    private List<TaskCostTemplate> tasksCostsTemplate;
+    private List<TaskCostTemplate> tasksCostsTemplates;
 
     @ManyToOne
     @JoinColumn(name="saleable_unit_id")
+    @NotNull
     private SaleableUnit saleable;
+
+    @ManyToOne
+    @JoinColumn(name="operation_region_id")
+    @NotNull
+    private OperationRegion region;
 
 
     public String getTitle() {
@@ -57,12 +66,12 @@ public class TaskTemplate extends Identifiable {
         this.description = description;
     }
 
-    public List<TaskTemplate> getTasksTemplate() {
-        return tasksTemplate;
+    public List<TaskTemplate> getTemplatesChilds() {
+        return templatesChilds;
     }
 
-    public void setTasksTemplate(List<TaskTemplate> tasksTemplate) {
-        this.tasksTemplate = tasksTemplate;
+    public void setTemplatesChilds(List<TaskTemplate> templatesChilds) {
+        this.templatesChilds = templatesChilds;
     }
 
     public Integer getQuantityDaysTofinishAfertSignedContract() {
@@ -89,12 +98,12 @@ public class TaskTemplate extends Identifiable {
         this.checklistTemplates = checklistTemplates;
     }
 
-    public List<TaskCostTemplate> getTasksCostsTemplate() {
-        return tasksCostsTemplate;
+    public List<TaskCostTemplate> getTasksCostsTemplates() {
+        return tasksCostsTemplates;
     }
 
-    public void setTasksCostsTemplate(List<TaskCostTemplate> tasksCostsTemplate) {
-        this.tasksCostsTemplate = tasksCostsTemplate;
+    public void setTasksCostsTemplates(List<TaskCostTemplate> tasksCostsTemplates) {
+        this.tasksCostsTemplates = tasksCostsTemplates;
     }
 
     public SaleableUnit getSaleable() {
@@ -105,6 +114,13 @@ public class TaskTemplate extends Identifiable {
         this.saleable = saleable;
     }
 
+    public OperationRegion getRegion() {
+        return region;
+    }
+
+    public void setRegion(OperationRegion region) {
+        this.region = region;
+    }
 
     @Override
     public Long getId() {

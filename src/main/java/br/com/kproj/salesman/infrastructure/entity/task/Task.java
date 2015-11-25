@@ -3,7 +3,9 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class Task extends Identifiable {
 
     @OneToMany
     @JoinColumn(name="parent_id")
-    private List<Task> tasks;
+    private List<Task> tasksChilds;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date deadline;
@@ -40,9 +42,20 @@ public class Task extends Identifiable {
     @JoinColumn(name="sales_order_id")
     private SalesOrder salesOrder;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User signedBy;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="task_user",
+            joinColumns={@JoinColumn(name="task_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")})
+    private List<User> signedBy;
+
+    @OneToOne
+    @JoinColumn(name = "timeline_id")
+    private Timeline timeline;
+
+    @OneToMany
+    @JoinColumn(name="task_id")
+    private List<Notification> notifications;
+
 
     @Override
     public Long getId() {
@@ -69,12 +82,12 @@ public class Task extends Identifiable {
         this.description = description;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Task> getTasksChilds() {
+        return tasksChilds;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasksChilds(List<Task> tasksChilds) {
+        this.tasksChilds = tasksChilds;
     }
 
     public Date getDeadline() {
@@ -109,11 +122,11 @@ public class Task extends Identifiable {
         this.taskCosts = taskCosts;
     }
 
-    public User getSignedBy() {
+    public List<User> getSignedBy() {
         return signedBy;
     }
 
-    public void setSignedBy(User signedBy) {
+    public void setSignedBy(List<User> signedBy) {
         this.signedBy = signedBy;
     }
 
@@ -123,5 +136,21 @@ public class Task extends Identifiable {
 
     public void setSalesOrder(SalesOrder salesOrder) {
         this.salesOrder = salesOrder;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }
