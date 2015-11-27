@@ -8,6 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Task extends Identifiable {
     @GeneratedValue
     private Long id;
 
+    @NotNull(message = "task.title.is.null")
     private String title;
     private String description;
 
@@ -42,7 +44,7 @@ public class Task extends Identifiable {
     @JoinColumn(name="sales_order_id")
     private SalesOrder salesOrder;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(name="task_user",
             joinColumns={@JoinColumn(name="task_id")},
             inverseJoinColumns={@JoinColumn(name="user_id")})
@@ -52,7 +54,7 @@ public class Task extends Identifiable {
     @JoinColumn(name = "timeline_id")
     private Timeline timeline;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="task_id")
     private List<Notification> notifications;
 

@@ -63,4 +63,10 @@ public class TaskCost extends Identifiable {
     public void setTask(Task task) {
         this.task = task;
     }
+
+    public static TaskCost getDefault() {
+        TaskCost taskCost = new TaskCost();
+        taskCost.setCost(BigDecimal.ZERO);
+        return taskCost;
+    }
 }

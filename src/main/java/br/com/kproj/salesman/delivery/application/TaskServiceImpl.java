@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.delivery.application;
 
+import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -23,6 +24,9 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskS
     @Autowired
     private TaskRepository repository;
 
+    @Autowired
+    private TaskDomainService service;
+
 
 
     @Override
@@ -34,10 +38,13 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskS
                     .throwing(ValidationException.class);
 
             BeanUtils.create().copyProperties(taskLoaded, task);
-            //domainService.checkBusinessRulesFor(taskTemplateLoaded);
+            service.checkBusinessRulesFor(taskLoaded);
+
             return repository.save(taskLoaded);
         } else {
-            //domainService.checkBusinessRulesFor(taskTemplate);
+            service.checkBusinessRulesFor(task);
+            service.prepareToSave(task);
+
             return repository.save(task);
         }
 

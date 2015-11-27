@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @ControllerAdvice
 public class GenericHandlerExceptionController {
+
+    private Log log = LogFactory.getLog(GenericHandlerExceptionController.class);
 
     @ExceptionHandler(value={ValidationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -32,6 +36,7 @@ public class GenericHandlerExceptionController {
     @ExceptionHandler(value={Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public @ResponseBody String handlerInternalException(Throwable throwable) {
+        log.error(ExceptionUtils.getMessage(throwable));
         return ExceptionUtils.getFullStackTrace(throwable);
     }
 }
