@@ -36,17 +36,17 @@ public class AvatarValidator implements Validator {
 			
 			long size = safe(file).getSize();
 			if (size > MAX_SIZE) {
-				errors.reject("product", "product.avatar.invalid.size");
+				errors.rejectValue("avatarFile", "product.avatar.invalid.size");
 			}
 			
 			String contentType = safe(file).getContentType();
 			
 			if (!mimeTypes.contains(contentType)) {
-				errors.reject("product", "product.avatar.invalid.mimetype");
+				errors.rejectValue("avatarFile", "product.avatar.invalid.mimetype");
 			}
 					
 		} catch (IOException e) {
-			errors.reject("product.avatar","product.avatar.is.invalid");
+			errors.rejectValue("avatarFile","product.avatar.is.invalid");
 		}
     	
     }

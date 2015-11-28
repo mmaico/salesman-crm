@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.delivery.domain;
 
+import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -34,6 +35,9 @@ public class TaskDomainServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private TaskValidator validator;
 
     @Rule
     public ExpectedException throwing = ExpectedException.none();
@@ -107,28 +111,6 @@ public class TaskDomainServiceImplTest {
 
         assertThat(exception.getErrors().size(), is(1));
         assertThat(exception.getErrors().contains("task.verify.users.valid"), is(Boolean.TRUE));
-    }
-
-    @Test
-    public void shouldThrowExceptionWhenInvalidDeadline () throws ParseException {
-        Task taskStub = getTaskStub();
-        taskStub.setId(null);
-        taskStub.setDeadline(DateUtils.parseDate("20/05/2010", "dd/MM/yyyy"));
-
-        ValidationException exception = null;
-
-        given(saleableUnitRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
-        given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
-        given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
-
-        try {
-            taskDomainService.checkBusinessRulesFor(taskStub);
-        } catch(ValidationException e) {
-            exception = e;
-        }
-
-        assertThat(exception.getErrors().size(), is(1));
-        assertThat(exception.getErrors().contains("task.verify.deadline.valid"), is(Boolean.TRUE));
     }
 
     private Task getTaskStub () throws ParseException {

@@ -17,7 +17,7 @@ public class ValidationException extends RuntimeException {
 	private Set<String> errors;
 
     public ValidationException(List<ObjectError> errors) {
-        this.errors = errors.stream().map(ObjectError::getDefaultMessage).collect(Collectors.toSet());
+        this.errors = errors.stream().map(ObjectError::getCode).collect(Collectors.toSet());
     }
 
     public ValidationException(Set<String> errors) {

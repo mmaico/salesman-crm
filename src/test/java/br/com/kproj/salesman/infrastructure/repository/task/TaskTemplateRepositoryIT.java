@@ -25,7 +25,7 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
 
         List<TaskTemplate> result = repository.findTaskTemplateBy(saleable);
 
-        assertThat(result.size(), is(2));
+        assertThat(result.size(), is(4));
     }
 
     @Test

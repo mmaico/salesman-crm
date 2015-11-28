@@ -26,7 +26,7 @@ public class SalePackageValidator implements Validator {
         validator.validate(salePackage, errors);
 
         if (isEmptySafe(salePackage.getSaleableUnits())) {
-            errors.reject("saleables", "package.without.saleables");
+            errors.rejectValue("saleableUnits", "package.without.saleables");
         }
 
     }

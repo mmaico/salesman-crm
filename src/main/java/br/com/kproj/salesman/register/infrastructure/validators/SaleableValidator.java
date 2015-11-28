@@ -28,7 +28,7 @@ public class SaleableValidator implements Validator, InitializingBean {
         
         if (saleableUnit.getActive()) {
         	if (saleableUnit.getPrice() == null) {
-        		errors.reject("price", "product.ative.without.price");
+        		errors.rejectValue("price", "product.ative.without.price");
         	}
         }
         
