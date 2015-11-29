@@ -33,7 +33,7 @@ public class BusinessProposalDTOValidator implements Validator {
         factory.getValidator().validate(businessProposal)
                 .forEach(error -> errors.reject(error.getMessage()));
 
-        idValidator.validate(businessProposal.getPerson(), errors);
+        idValidator.validate(businessProposal.getClient(), errors);
         idValidator.validate(businessProposal.getVendor(), errors);
     }
 

@@ -31,9 +31,9 @@ public class BusinessProposal extends Identifiable {
     private Long id;
 
 	@ManyToOne
-    @JoinColumn(name="person_id")
+    @JoinColumn(name="client_id")
     @NotNull(message = "business.proposal.person.required")
-    private Person person;
+    private Person client;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -64,6 +64,7 @@ public class BusinessProposal extends Identifiable {
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
     private SaleTemperature temperature;
+
 
     public BusinessProposal(){}
     public BusinessProposal(Long id) {
@@ -109,12 +110,12 @@ public class BusinessProposal extends Identifiable {
 
     
 
-    public Person getPerson() {
-        return person;
+    public Person getClient() {
+        return client;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setClient(Person client) {
+        this.client = client;
     }
 
     public User getVendor() {
@@ -180,4 +181,6 @@ public class BusinessProposal extends Identifiable {
     public void setTemperature(SaleTemperature temperature) {
         this.temperature = temperature;
     }
+
+
 }

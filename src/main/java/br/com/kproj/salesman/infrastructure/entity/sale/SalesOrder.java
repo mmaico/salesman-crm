@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import com.google.common.collect.Lists;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -52,7 +53,7 @@ public class SalesOrder extends Identifiable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesOrder")
     @Valid
-    private List<SalesOrderItem> saleableItems;
+    private List<SalesOrderItem> salesOrderItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salesOrder")
     @Valid
@@ -78,13 +79,27 @@ public class SalesOrder extends Identifiable {
         this.id = id;
     }
 
+    public void addSalesOrderItem(SalesOrderItem item) {
+        if (salesOrderItems == null) {
+            this.salesOrderItems = Lists.newArrayList();
+        }
+        this.salesOrderItems.add(item);
+    }
+
+    public void addPayment(SalesOrderPaymentItem item) {
+        if (paymentItems == null) {
+            this.paymentItems = Lists.newArrayList();
+        }
+        this.paymentItems.add(item);
+    }
+
     public BigDecimal getTotal() {
 
-        if (isEmptySafe(this.getSaleableItems())) {
+        if (isEmptySafe(this.getSalesOrderItems())) {
             return BigDecimal.ZERO;
         }
 
-        BigDecimal total = this.getSaleableItems()
+        BigDecimal total = this.getSalesOrderItems()
                 .stream()
                 .map(e -> e.getPrice().multiply(new BigDecimal(e.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -146,12 +161,12 @@ public class SalesOrder extends Identifiable {
         this.operationRegion = operationRegion;
     }
 
-    public List<SalesOrderItem> getSaleableItems() {
-        return saleableItems;
+    public List<SalesOrderItem> getSalesOrderItems() {
+        return salesOrderItems;
     }
 
-    public void setSaleableItems(List<SalesOrderItem> saleableItems) {
-        this.saleableItems = saleableItems;
+    public void setSalesOrderItems(List<SalesOrderItem> salesOrderItems) {
+        this.salesOrderItems = salesOrderItems;
     }
 
     public BusinessProposal getProposal() {

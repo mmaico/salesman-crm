@@ -44,7 +44,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
     public void shouldSaveABusinessProposal() throws Exception {
 
         mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("proposal.person.id", "1")
+                        .param("proposal.client.id", "1")
                         .param("proposal.vendor.id", "1")
                         .param("proposal.careOf", "Jose Luiz")
                         .param("proposal.deliveryForeCast", "10/02/2018")
@@ -59,6 +59,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("proposal.paymentItems[0].value", "900.00")
         ).andExpect(status().isOk())
                 .andExpect(view().name("proposal"));
+
     }
 
     @Test

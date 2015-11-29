@@ -21,4 +21,5 @@ public class BusinessProposalBuilder extends AbstractBuilder<BusinessProposal>  
 	public static BusinessProposalBuilder createBusinessProposal() {
 		return new BusinessProposalBuilder();
 	}
+
 }

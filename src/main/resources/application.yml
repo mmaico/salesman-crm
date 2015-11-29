@@ -71,7 +71,10 @@ spring:
       ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
   data.jpa.repositories.enabled: true
-
+  batch:
+    initializer.enabled: true
+    job.enabled: true
+    job.names: importProposalJob
 
 multipart:
   enabled: true
@@ -85,3 +88,4 @@ system.repository.storage: /opt
 security:
   require-ssl: false
   enable-csrf: false
+
