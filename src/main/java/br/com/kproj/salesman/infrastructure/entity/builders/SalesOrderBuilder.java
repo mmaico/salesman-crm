@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderPaymentItem;
 
 import java.util.Date;
+import java.util.List;
 
 public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
 
@@ -46,6 +47,11 @@ public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
 
     public SalesOrderBuilder withOperationRegion(OperationRegion operationRegion) {
         this.entity.setOperationRegion(operationRegion);
+        return this;
+    }
+
+    public SalesOrderBuilder withSalesOrderItems(List<SalesOrderItem> items) {
+        this.entity.setSalesOrderItems(items);
         return this;
     }
 

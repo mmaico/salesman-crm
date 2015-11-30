@@ -6,6 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static java.lang.Boolean.FALSE;
@@ -46,5 +47,19 @@ public class DateHelper {
         Format formatter = new SimpleDateFormat(DEFAULT_BRAZILIAN_PATTERN);
 
         return formatter.format(date);
+    }
+
+    public static Date addDayToDate(Integer qtdDays, Date date) {
+
+        if (qtdDays == null || qtdDays == 0 || date == null) {
+            return date;
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, qtdDays);
+
+        return calendar.getTime();
+
     }
 }

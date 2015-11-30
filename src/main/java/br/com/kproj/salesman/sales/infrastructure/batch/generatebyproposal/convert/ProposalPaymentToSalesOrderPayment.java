@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.sales.infrastructure.generatebyproposal.convert;
+package br.com.kproj.salesman.sales.infrastructure.batch.generatebyproposal.convert;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderPaymentItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;

@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -58,6 +59,40 @@ public class Task extends Identifiable {
     @JoinColumn(name="task_id")
     private List<Notification> notifications;
 
+    public void addChild(Task task) {
+        if (this.tasksChilds == null) {
+            this.tasksChilds = Lists.newArrayList();
+        }
+        this.tasksChilds.add(task);
+    }
+
+    public void addCheckList(Checklist checklist) {
+        if (this.checklist == null) {
+            this.checklist = Lists.newArrayList();
+        }
+        this.checklist.add(checklist);
+    }
+
+    public void addTaskCost(TaskCost taskCost) {
+        if (this.taskCosts == null) {
+            this.taskCosts = Lists.newArrayList();
+        }
+        this.taskCosts.add(taskCost);
+    }
+
+    public void addSignedBy(User user) {
+        if (this.signedBy == null) {
+            this.signedBy = Lists.newArrayList();
+        }
+        this.signedBy.add(user);
+    }
+
+    public void addNotification(Notification notification) {
+        if (this.notifications == null) {
+            this.notifications = Lists.newArrayList();
+        }
+        this.notifications.add(notification);
+    }
 
     @Override
     public Long getId() {

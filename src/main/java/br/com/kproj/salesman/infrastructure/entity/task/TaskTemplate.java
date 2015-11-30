@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -49,6 +50,13 @@ public class TaskTemplate extends Identifiable {
     @NotNull
     private OperationRegion region;
 
+
+    public void addChild(TaskTemplate taskTemplate) {
+        if(this.templatesChilds == null) {
+            this.templatesChilds = Lists.newArrayList();
+        }
+        this.templatesChilds.add(taskTemplate);
+    }
 
     public String getTitle() {
         return title;

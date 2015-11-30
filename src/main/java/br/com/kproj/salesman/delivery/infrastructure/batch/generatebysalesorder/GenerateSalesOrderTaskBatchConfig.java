@@ -1,7 +1,7 @@
-package br.com.kproj.salesman.sales.infrastructure.generatebyproposal;
+package br.com.kproj.salesman.delivery.infrastructure.batch.generatebysalesorder;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import org.hibernate.SessionFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -17,48 +17,48 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 
 @Configuration
 @EnableBatchProcessing
-public class GenerateSalesOrderByClosedProposalBatchConfig {
+public class GenerateSalesOrderTaskBatchConfig {
 
 
     @Bean
-    public ItemReader<BusinessProposal> reader(EntityManager em) {
+    public ItemReader<SalesOrder> reader(EntityManager em) {
 
         HibernatePagingItemReader reader = new HibernatePagingItemReader();
         reader.setSessionFactory(em.getEntityManagerFactory().unwrap(SessionFactory.class));
         reader.setPageSize(100);
-        reader.setQueryString("SELECT bp FROM BusinessProposal bp WHERE bp.temperature = 'CLOSED_WON'");
+        reader.setQueryString("SELECT so FROM SalesOrder so WHERE so.taskGenerated = false");
 
         return reader;
     }
 
     @Bean
-    public ItemWriter<SalesOrder> writer(EntityManager em) {
-        HibernateItemWriter<SalesOrder> writer = new HibernateItemWriter();
+    public ItemWriter<List<Task>> writer(EntityManager em) {
+        HibernateItemWriter<List<Task>> writer = new HibernateItemWriter();
         writer.setSessionFactory(em.getEntityManagerFactory().unwrap(SessionFactory.class));
 
         return writer;
     }
 
     @Bean
-    public Job importProposalJob(JobBuilderFactory factory, Step generateSalesOrderStep) {
-        return factory.get("importProposalJob")
-                .flow(generateSalesOrderStep).end().build();
+    public Job generateTaskJob(JobBuilderFactory factory, Step generateTasksStep) {
+        return factory.get("generateTaskJob")
+                .flow(generateTasksStep).end().build();
     }
 
     @Bean
-    public Step generateSalesOrderStep(StepBuilderFactory factory,
-                                                  ItemReader<BusinessProposal> reader, ItemWriter<SalesOrder> writer,
-                                                  ItemProcessor<BusinessProposal, SalesOrder> processor) {
-        return factory.get("genetateSalesOrderByClosedProposalStep")
-                    .<BusinessProposal, SalesOrder>chunk(100)
+    public Step generateTasksStep(StepBuilderFactory factory,
+                                                  ItemReader<SalesOrder> reader, ItemWriter<List<Task>> writer,
+                                                  ItemProcessor<SalesOrder, List<Task>> processor) {
+        return factory.get("generateTasksStep")
+                    .<SalesOrder, List<Task>>chunk(100)
                     .reader(reader)
                     .processor(processor)
                     .writer(writer).build();
-
     }
 
 
