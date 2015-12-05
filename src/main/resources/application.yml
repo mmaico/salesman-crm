@@ -54,7 +54,7 @@ spring:
   profiles: test
   velocity:
     allow-request-override: false
-    cache: true
+    cache: false
     check-template-location: false
     charset: UTF-8
     content-type: text/html
