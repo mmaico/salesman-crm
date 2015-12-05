@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, List<Task>> {
 
     @Autowired
-    private TaskTemplateToTask converter;
-
-    @Autowired
     private TaskTemplateRepository repository;
 
     @Override
@@ -27,7 +24,7 @@ public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, Li
         List<List<Task>> collect = salesOrder.getSalesOrderItems()
                 .stream()
                 .map(item -> repository.findTaskTemplateBy(item.getSaleableUnit())
-                                .stream().map(template -> converter.convert(template))
+                                .stream().map(template -> TaskTemplateToTask.create(salesOrder).convert(template))
                                 .collect(Collectors.toList())
                 ).collect(Collectors.toList());
 

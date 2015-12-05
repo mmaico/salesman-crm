@@ -42,7 +42,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final ListPath<TaskCost, QTaskCost> taskCosts = this.<TaskCost, QTaskCost>createList("taskCosts", TaskCost.class, QTaskCost.class, PathInits.DIRECT2);
 
-    public final ListPath<Task, QTask> tasks = this.<Task, QTask>createList("tasks", Task.class, QTask.class, PathInits.DIRECT2);
+    public final ListPath<Task, QTask> tasksChilds = this.<Task, QTask>createList("tasksChilds", Task.class, QTask.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 

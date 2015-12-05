@@ -15,6 +15,7 @@ import org.springframework.batch.item.database.HibernateItemWriter;
 import org.springframework.batch.item.database.HibernatePagingItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -26,7 +27,7 @@ public class GenerateSalesOrderTaskBatchConfig {
 
 
     @Bean
-    public ItemReader<SalesOrder> reader(EntityManager em) {
+    public ItemReader<SalesOrder> itemReader(EntityManager em) {
 
         HibernatePagingItemReader reader = new HibernatePagingItemReader();
         reader.setSessionFactory(em.getEntityManagerFactory().unwrap(SessionFactory.class));
@@ -37,7 +38,7 @@ public class GenerateSalesOrderTaskBatchConfig {
     }
 
     @Bean
-    public ItemWriter<List<Task>> writer(EntityManager em) {
+    public ItemWriter<List<Task>> itemWriter(EntityManager em) {
         HibernateItemWriter<List<Task>> writer = new HibernateItemWriter();
         writer.setSessionFactory(em.getEntityManagerFactory().unwrap(SessionFactory.class));
 
@@ -45,12 +46,14 @@ public class GenerateSalesOrderTaskBatchConfig {
     }
 
     @Bean
+    @DependsOn({"generateTasksStep"})
     public Job generateTaskJob(JobBuilderFactory factory, Step generateTasksStep) {
         return factory.get("generateTaskJob")
                 .flow(generateTasksStep).end().build();
     }
 
     @Bean
+    @DependsOn({"itemReader", "itemWriter"})
     public Step generateTasksStep(StepBuilderFactory factory,
                                                   ItemReader<SalesOrder> reader, ItemWriter<List<Task>> writer,
                                                   ItemProcessor<SalesOrder, List<Task>> processor) {

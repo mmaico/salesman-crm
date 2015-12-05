@@ -64,6 +64,8 @@ public class SalesOrder extends Identifiable {
     @NotNull(message = "order.region.required")
     private OperationRegion operationRegion;
 
+    @Column(name="task_generated")
+    private Boolean taskGenerated;
 
     public SalesOrder(){}
     public SalesOrder(Long id) {
@@ -175,5 +177,13 @@ public class SalesOrder extends Identifiable {
 
     public void setProposal(BusinessProposal proposal) {
         this.proposal = proposal;
+    }
+
+    public Boolean getTaskGenerated() {
+        return taskGenerated;
+    }
+
+    public void setTaskGenerated(Boolean taskGenerated) {
+        this.taskGenerated = taskGenerated;
     }
 }

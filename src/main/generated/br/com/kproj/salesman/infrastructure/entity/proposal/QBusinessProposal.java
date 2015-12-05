@@ -26,6 +26,8 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final StringPath careOf = createString("careOf");
 
+    public final br.com.kproj.salesman.infrastructure.entity.person.QPerson client;
+
     public final DateTimePath<java.util.Date> deliveryForeCast = createDateTime("deliveryForeCast", java.util.Date.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -35,8 +37,6 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion operationRegion;
 
     public final ListPath<ProposalPaymentItem, QProposalPaymentItem> paymentItems = this.<ProposalPaymentItem, QProposalPaymentItem>createList("paymentItems", ProposalPaymentItem.class, QProposalPaymentItem.class, PathInits.DIRECT2);
-
-    public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
 
     public final ListPath<ProposalSaleableItem, QProposalSaleableItem> saleableItems = this.<ProposalSaleableItem, QProposalSaleableItem>createList("saleableItems", ProposalSaleableItem.class, QProposalSaleableItem.class, PathInits.DIRECT2);
 
@@ -62,8 +62,8 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public QBusinessProposal(Class<? extends BusinessProposal> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
-        this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.vendor = inits.isInitialized("vendor") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("vendor"), inits.get("vendor")) : null;
     }
 

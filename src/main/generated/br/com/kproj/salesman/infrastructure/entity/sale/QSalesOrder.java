@@ -36,7 +36,9 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
 
-    public final ListPath<SalesOrderItem, QSalesOrderItem> saleableItems = this.<SalesOrderItem, QSalesOrderItem>createList("saleableItems", SalesOrderItem.class, QSalesOrderItem.class, PathInits.DIRECT2);
+    public final ListPath<SalesOrderItem, QSalesOrderItem> salesOrderItems = this.<SalesOrderItem, QSalesOrderItem>createList("salesOrderItems", SalesOrderItem.class, QSalesOrderItem.class, PathInits.DIRECT2);
+
+    public final BooleanPath taskGenerated = createBoolean("taskGenerated");
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser vendor;
 
