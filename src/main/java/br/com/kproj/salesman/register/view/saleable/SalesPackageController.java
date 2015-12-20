@@ -87,27 +87,21 @@ public class SalesPackageController {
     }
 
     @RequestMapping(value="/sales-package/{packageId}/add-saleable/{saleableId}", method = RequestMethod.PUT)
-    public ModelAndView addProductOrService(@PathVariable Long packageId, @PathVariable Long saleableId, Model model) {
+    public @ResponseBody void addProductOrService(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
         SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
         SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
 
-        SalePackage salePackageLoaded = this.service.addProductOrService(salePackage, saleableUnit);
-
-        model.addAttribute("package", salePackageLoaded);
-        return new ModelAndView("/packages/packageEdit");
+        this.service.addProductOrService(salePackage, saleableUnit);
     }
 
     @RequestMapping(value="/sales-package/{packageId}/remove-saleable/{saleableId}", method = RequestMethod.DELETE)
-    public ModelAndView removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId, Model model) {
+    public @ResponseBody void removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
         SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
         SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
 
-        SalePackage salePackageLoaded = this.service.removeProductOrService(salePackage, saleableUnit);
-
-        model.addAttribute("package", salePackageLoaded);
-        return new ModelAndView("/packages/packageEdit");
+        this.service.removeProductOrService(salePackage, saleableUnit);
     }
 
     @RequestMapping(value = "/sales-package/{packageId}/json", method = RequestMethod.GET)
