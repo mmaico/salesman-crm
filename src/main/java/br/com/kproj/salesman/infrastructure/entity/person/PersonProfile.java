@@ -2,14 +2,15 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="person_profiles")
+@Audited
 public class PersonProfile extends Identifiable {
 
     /**
@@ -21,7 +22,6 @@ public class PersonProfile extends Identifiable {
     public static final Long INDIVIDUAL_PROFILE = 2l;
 
     @Id
-    @GeneratedValue
     private Long id;
 	
 	private String name;

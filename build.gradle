@@ -103,6 +103,9 @@ dependencies {
         exclude module: 'querydsl-core'
     }
 
+    compile("org.hibernate:hibernate-envers:5.0.5.Final")
+    compile("org.springframework.data:spring-data-envers:0.3.0.RELEASE")
+
     compile("com.mysema.querydsl:querydsl-collections:${querydslVersion}") {
         exclude module: "guava"
         exclude module: 'querydsl-codegen'
@@ -116,7 +119,9 @@ dependencies {
         exclude module: 'querydsl-core'
     }
 
-    compile("org.apache.commons:commons-lang3:3.4");
+    compile("org.apache.commons:commons-lang3:3.4")
+
+    compile("org.zalando.stups:spring-boot-starter-guava-eventbus:0.5.4");
 
 }
 

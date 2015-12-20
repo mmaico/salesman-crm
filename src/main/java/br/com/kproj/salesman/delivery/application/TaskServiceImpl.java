@@ -1,13 +1,17 @@
 package br.com.kproj.salesman.delivery.application;
 
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusEvent;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,9 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskS
 
     @Autowired
     private TaskDomainService service;
+
+    @Autowired
+    private EventBus eventBus;
 
 
 
@@ -68,6 +75,20 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskS
         }
 
         return repository.isSomeonesSon(task);
+    }
+
+    @Override
+    public void changeStatus(Task task, User userChange) {
+
+        Task taskLoaded = repository.findOne(task.getId());
+
+        hasErrors(isNull(taskLoaded) ? newHashSet("task.not.found") : emptySet())
+                .throwing(ValidationException.class);
+
+        TaskStatus oldStatus = taskLoaded.getStatus();
+        taskLoaded.setStatus(task.getStatus());
+
+        eventBus.post(TaskChangeStatusEvent.create(taskLoaded, userChange, oldStatus));
     }
 
     @Override

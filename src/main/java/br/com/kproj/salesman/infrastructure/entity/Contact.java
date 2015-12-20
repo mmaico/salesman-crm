@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
+@Audited
 public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;

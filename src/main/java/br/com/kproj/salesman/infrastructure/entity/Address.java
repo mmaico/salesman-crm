@@ -4,12 +4,14 @@ import br.com.kproj.salesman.infrastructure.entity.location.City;
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
 import br.com.kproj.salesman.infrastructure.entity.location.State;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="address")
+@Audited
 public class Address extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;

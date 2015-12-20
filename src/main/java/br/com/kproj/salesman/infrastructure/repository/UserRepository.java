@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UserRepository extends BaseRepository<User, Long> {
 
     @Query("SELECT u FROM User AS u WHERE u.login = :login AND u.password = :password")
-    User findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
+    Optional<User> findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
 
     @Query("SELECT u FROM User AS u WHERE u.login = :login")
     Optional<User> findByLogin(@Param("login") String login);

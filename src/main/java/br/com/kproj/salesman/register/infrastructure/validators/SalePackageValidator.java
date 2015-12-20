@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
-
 @Component
 public class SalePackageValidator implements Validator {
 
@@ -24,10 +22,6 @@ public class SalePackageValidator implements Validator {
         SalePackage salePackage = (SalePackage) target;
 
         validator.validate(salePackage, errors);
-
-        if (isEmptySafe(salePackage.getSaleableUnits())) {
-            errors.rejectValue("saleableUnits", "package.without.saleables");
-        }
 
     }
 

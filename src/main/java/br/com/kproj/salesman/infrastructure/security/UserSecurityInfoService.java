@@ -23,13 +23,7 @@ public class UserSecurityInfoService {
             return Optional.empty();
         }
 
-        User userFound = repository.findByLoginAndPassword(login, password);
-
-        if (userFound != null) {
-            return Optional.of(userFound);
-        }
-
-        return Optional.empty();
+        return  repository.findByLoginAndPassword(login, password);
     }
 
 }

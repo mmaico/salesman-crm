@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import com.google.common.collect.Lists;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ import java.util.List;
 @Table(name = "persons")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+@Audited
 public class Person extends Identifiable implements Client, Provider{
 
 	private static final long serialVersionUID = -6416371282639932944L;

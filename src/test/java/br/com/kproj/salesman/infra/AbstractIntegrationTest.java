@@ -22,7 +22,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
     DirtiesContextTestExecutionListener.class,
     TransactionalTestExecutionListener.class,
     DbUnitTestExecutionListener.class,
-    ForeignKeyDisabling.class})
+    ForeignKeyDisablingListener.class})
 @DatabaseSetup("/dbunit-dataset.xml")
 @ActiveProfiles("test")
 public abstract class AbstractIntegrationTest {

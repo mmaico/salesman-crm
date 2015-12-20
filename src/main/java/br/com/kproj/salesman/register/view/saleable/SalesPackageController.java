@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.register.view.saleable;
 
+import br.com.kproj.salesman.infrastructure.entity.builders.SalePackageBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -36,7 +38,6 @@ public class SalesPackageController {
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
 
-        
     }
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
@@ -73,7 +74,7 @@ public class SalesPackageController {
         Iterable<SalePackage> result = this.service.findAll(pager);
 
         model.addAttribute("packages", result);
-        return new ModelAndView("/packages/list-items");
+        return new ModelAndView("/packages/packageList");
     }
     
     @RequestMapping(value="/sales-package/{packageId}")
@@ -82,10 +83,34 @@ public class SalesPackageController {
         Optional<SalePackage> result = this.service.getOne(packageId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/products/edit");
+        return new ModelAndView("/packages/packageEdit");
     }
 
-    @RequestMapping(value = "/packages/{packageId}/json", method = RequestMethod.GET)
+    @RequestMapping(value="/sales-package/{packageId}/add-saleable/{saleableId}", method = RequestMethod.PUT)
+    public ModelAndView addProductOrService(@PathVariable Long packageId, @PathVariable Long saleableId, Model model) {
+
+        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+
+        SalePackage salePackageLoaded = this.service.addProductOrService(salePackage, saleableUnit);
+
+        model.addAttribute("package", salePackageLoaded);
+        return new ModelAndView("/packages/packageEdit");
+    }
+
+    @RequestMapping(value="/sales-package/{packageId}/remove-saleable/{saleableId}", method = RequestMethod.DELETE)
+    public ModelAndView removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId, Model model) {
+
+        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+
+        SalePackage salePackageLoaded = this.service.removeProductOrService(salePackage, saleableUnit);
+
+        model.addAttribute("package", salePackageLoaded);
+        return new ModelAndView("/packages/packageEdit");
+    }
+
+    @RequestMapping(value = "/sales-package/{packageId}/json", method = RequestMethod.GET)
     public @ResponseBody
     SaleableUnit getProduct(@PathVariable Long packageId) {
 
@@ -97,7 +122,7 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/create")
     public ModelAndView newProduct() {
 
-        return new ModelAndView("/products/edit");
+        return new ModelAndView("/packages/packageEdit");
     }
 
 }

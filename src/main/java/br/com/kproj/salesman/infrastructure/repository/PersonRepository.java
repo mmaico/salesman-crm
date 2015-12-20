@@ -7,4 +7,5 @@ import br.com.kproj.salesman.infrastructure.repository.custom.PersonRepositoryCu
 public interface PersonRepository extends BaseRepository<Person, Long>, PersonRepositoryCustom {
 
 
+
 }

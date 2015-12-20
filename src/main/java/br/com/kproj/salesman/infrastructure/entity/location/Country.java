@@ -1,11 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="countries")
+@Audited
 public class Country extends Identifiable {
 
     public static final Long BRASIL = 31l;

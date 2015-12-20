@@ -29,8 +29,12 @@
     <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
     <persons id="2" name="Pedro Terra Nova" active="true" profile_id="1" type="company"/>
 
+
+
     <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839"/>
     <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387"/>
+
+    <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
 
     <operation_region id="1" name="SP"/>
     <operation_region id="2" name="RJ"/>
@@ -88,5 +92,18 @@
     <tasks id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" />
     <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" />
     <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1"/>
+
+    <REVINFO REV="1" REVTSTMP="1450272670378"/>
+    <REVINFO REV="2" REVTSTMP="1450272671527"/>
+    <REVINFO REV="3" REVTSTMP="1450272725224"/>
+
+    <persons_AUD REV="1" REVTYPE="0" id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
+    <persons_AUD REV="2" REVTYPE="1" id="1" name="Joao Fereira Dos Santos" active="false" profile_id="1" type="company"/>
+
+    <contacts_AUD REV="1" REVTYPE="0" id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
+    <contacts_AUD REV="2" REVTYPE="1" id="3" name="Jose luiz 22" email="jose@jose.com" phone="89838839" person_id="1"/>
+    <contacts_AUD REV="3" REVTYPE="3" id="3" name="Jose luiz 33" email="jose@jose.com" phone="89838839" person_id="1"/>
+
+
 
 </dataset>

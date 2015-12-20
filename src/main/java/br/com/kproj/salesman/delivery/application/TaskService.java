@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery.application;
 
 
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
@@ -14,5 +15,7 @@ public interface TaskService extends ModelService<Task> {
     List<Task> findBySaleOrder(SalesOrder salesOrder);
 
     Boolean isSomeonesSon(Task task);
+
+    void changeStatus(Task task, User userChange);
 
 }

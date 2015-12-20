@@ -32,7 +32,7 @@ public class UserSecurityInfoServiceTest {
     public void shouldFindUserByLoginAndPassword() {
         String login = "login";
         String password = "password";
-        User userMock = Mockito.mock(User.class);
+        Optional<User> userMock = Optional.of(Mockito.mock(User.class));
 
         given(repository.findByLoginAndPassword(login, password)).willReturn(userMock);
 
