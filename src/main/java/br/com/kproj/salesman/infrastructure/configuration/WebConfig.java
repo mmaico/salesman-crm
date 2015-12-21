@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.configuration;
 
 
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -8,7 +9,6 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.servlet.Filter;
 import java.math.BigDecimal;
 
 @Configuration
@@ -16,9 +16,14 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
 
 
     @Bean
-    public Filter hiddenHttpMethodFilter() {
+    public FilterRegistrationBean hiddenHttpMethodFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
-        return filter;
+        filterRegistrationBean.setFilter(filter);
+        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.setOrder(1);
+
+        return filterRegistrationBean;
     }
 
     @Override

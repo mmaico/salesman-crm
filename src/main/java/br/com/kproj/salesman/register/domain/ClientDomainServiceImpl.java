@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
 import br.com.kproj.salesman.register.domain.contract.ClientDomainService;
-import br.com.kproj.salesman.register.infrastructure.validators.ClientVOValidator;
+import br.com.kproj.salesman.register.infrastructure.validators.ClientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_CLIENT;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.INDIVIDUAL_CLIENT;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
 
 
@@ -25,7 +26,7 @@ public class ClientDomainServiceImpl implements ClientDomainService {
 
 
     @Autowired
-    private ClientVOValidator validator;
+    private ClientValidator validator;
 
 
     Map<String, CheckRule<Person>> persistRules = new HashMap<>();
@@ -34,7 +35,7 @@ public class ClientDomainServiceImpl implements ClientDomainService {
         persistRules.put(description("client.without.profile"), (client) ->
                     !INDIVIDUAL_CLIENT.get().equals(client.getProfile()) && !COMPANY_CLIENT.get().equals(client.getProfile()));
 
-        //persistRules.put(description("client.verify.base.validate"), (task) -> hasContraintViolated(task, validator));
+        persistRules.put(description("client.verify.base.validate"), (task) -> hasContraintViolated(task, validator));
     }
 
 

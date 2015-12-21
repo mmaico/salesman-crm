@@ -60,6 +60,20 @@ public class ClientController {
         return "/clients/" + clientSaved.getId();
     }
 
+    @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
+    public @ResponseBody String update(@ModelAttribute ClientDTO clientDTO, BindingResult bindingResult, Model model) {
+
+
+
+        normalizeEntityRequest.addFieldsToUpdate(clientDTO);
+        Person person = clientDTO.getClient();
+
+        normalizeEntityRequest.addFieldsToUpdate(person);
+        Client clientSaved = service.register(person);
+
+        return "/clients/" + clientSaved.getId();
+    }
+
     @RequestMapping(value="/clients/list")
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);

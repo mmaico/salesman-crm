@@ -36,7 +36,8 @@ public class GenericHandlerExceptionController {
     @ExceptionHandler(value={Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public @ResponseBody String handlerInternalException(Throwable throwable) {
-        log.error(ExceptionUtils.getMessage(throwable));
+        log.error(ExceptionUtils.getFullStackTrace(throwable));
+
         return ExceptionUtils.getFullStackTrace(throwable);
     }
 }
