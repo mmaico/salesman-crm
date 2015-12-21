@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
+import br.com.kproj.salesman.register.infrastructure.validators.ClientVOValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,9 @@ public class ClientDomainServiceImplTest {
     @Mock
     private AddressDomainService service;
 
+    @Mock
+    private ClientVOValidator validator;
+
 
     @Test
     public void shouldNotReturnErrorWhenProfileIs1() {
@@ -26,7 +30,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(1l));
 
 
-        clientDomainService.verifyPreconditionToSave(person);
+        clientDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -36,7 +40,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(2l));
 
 
-        clientDomainService.verifyPreconditionToSave(person);
+        clientDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -46,7 +50,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(3l));
 
 
-        clientDomainService.verifyPreconditionToSave(person);
+        clientDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -56,7 +60,7 @@ public class ClientDomainServiceImplTest {
         person.setProfile(new PersonProfile(4l));
 
 
-        clientDomainService.verifyPreconditionToSave(person);
+        clientDomainService.checkBusinessRulesFor(person);
 
     }
 }

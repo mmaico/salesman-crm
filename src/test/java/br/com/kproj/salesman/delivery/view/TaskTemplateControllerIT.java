@@ -60,8 +60,7 @@ public class TaskTemplateControllerIT extends AbstractIntegrationTest {
 
         String result = response.getContentAsString();
 
-        assertThat(result.matches("/task-template/\\d"), is(Boolean.TRUE));
-
+        assertThat(result.matches("/task-template/\\d+"), is(Boolean.TRUE));
 
     }
 

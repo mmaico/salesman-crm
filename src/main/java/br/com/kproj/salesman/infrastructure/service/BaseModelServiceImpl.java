@@ -10,18 +10,22 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+import static java.util.Arrays.asList;
+
 @Transactional
 @Service
 public abstract class BaseModelServiceImpl<T extends Identifiable> implements ModelService<T> {
 
     @Override
-    public T save(T entity) {
+    public T save(T entity, DomainBusinessRules... checkrules) {
 
         if (entity == null) {
             return entity;
         }
 
         if (entity.isNew()) {
+            asList(checkrules).stream()
+                    .forEach(check -> check.checkBusinessRulesFor(entity));
             return getRepository().save(entity);
         } else {
             T entityLoaded = getRepository().findOne(entity.getId());
@@ -31,6 +35,9 @@ public abstract class BaseModelServiceImpl<T extends Identifiable> implements Mo
             }
 
             BeanUtils.create().copyProperties(entityLoaded, entity);
+
+            asList(checkrules).stream()
+                            .forEach(check -> check.checkBusinessRulesFor(entityLoaded));
 
             return getRepository().save(entityLoaded);
         }

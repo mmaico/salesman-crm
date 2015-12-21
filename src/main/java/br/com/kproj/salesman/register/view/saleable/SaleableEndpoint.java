@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.view.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.register.application.contract.saleable.SaleableService;
+import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class SaleableEndpoint {
 
     @Autowired
-    private SaleableService service;
+    private SaleableApplication service;
 
 
 

@@ -6,11 +6,11 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.negotiation.application.NegotiationService;
+import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalDTOValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
-import br.com.kproj.salesman.register.application.contract.ClientService;
-import br.com.kproj.salesman.register.application.contract.saleable.SaleableService;
+import br.com.kproj.salesman.register.application.contract.ClientApplication;
+import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class BusinessProposalController {
 
     @Autowired
-    private NegotiationService service;
+    private NegotiationApplication service;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
@@ -34,10 +34,10 @@ public class BusinessProposalController {
     private BusinessProposalDTOValidator validator;
 
     @Autowired
-    private ClientService clientService;
+    private ClientApplication clientApplication;
 
     @Autowired
-    private SaleableService saleableService;
+    private SaleableApplication saleableApplication;
 
     @InitBinder(value = "businessProposalDTO")
     private void initBinder(WebDataBinder binder) {
@@ -80,13 +80,13 @@ public class BusinessProposalController {
     @RequestMapping(value="/proposals/persons/{idPerson}")
     public ModelAndView newProposal(Model model, @PathVariable Long idPerson) {
 
-        Optional<Person> clientOptional  = clientService.getOne(idPerson);
+        Optional<Person> clientOptional  = clientApplication.getOne(idPerson);
 
         if (!clientOptional.isPresent()) {
             return new ModelAndView("redirect:/clients/list");
         }
 
-        Iterable<SaleableUnit> saleable = saleableService.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+        Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
         model.addAttribute("saleables", saleable);
         model.addAttribute("client", clientOptional.get());

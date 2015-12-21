@@ -5,9 +5,9 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.ContactService;
+import br.com.kproj.salesman.register.application.contract.ContactApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.ContactValidator;
-import br.com.kproj.salesman.timeline.application.TimelineService;
+import br.com.kproj.salesman.timeline.application.TimelineApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -26,13 +26,13 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilde
 public class ContactController {
 
     @Autowired
-    private ContactService service;
+    private ContactApplication service;
 
     @Autowired
     private ContactValidator validator;
 
     @Autowired
-    private TimelineService timelineService;
+    private TimelineApplication timelineApplication;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
@@ -91,7 +91,7 @@ public class ContactController {
                                  @PathVariable Long contactId, Model model) {
 
         Optional<Contact> result = this.service.getOne(contactId);
-        Timeline timeline = timelineService.register(createContact(contactId).build());
+        Timeline timeline = timelineApplication.register(createContact(contactId).build());
 
         model.addAttribute("timeline", timeline);
         model.addAttribute("contact", result.isPresent() ? result.get(): null);

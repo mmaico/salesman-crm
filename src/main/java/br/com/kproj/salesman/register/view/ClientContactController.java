@@ -3,9 +3,9 @@ package br.com.kproj.salesman.register.view;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.register.application.contract.ContactService;
+import br.com.kproj.salesman.register.application.contract.ContactApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.ContactValidator;
-import br.com.kproj.salesman.timeline.application.TimelineService;
+import br.com.kproj.salesman.timeline.application.TimelineApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class ClientContactController {
 
     @Autowired
-    private ContactService service;
+    private ContactApplication service;
 
     @Autowired
     private ContactValidator validator;
 
     @Autowired
-    private TimelineService timelineService;
+    private TimelineApplication timelineApplication;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;

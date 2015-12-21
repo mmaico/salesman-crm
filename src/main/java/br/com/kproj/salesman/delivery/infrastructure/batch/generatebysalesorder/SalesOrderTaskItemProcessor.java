@@ -24,7 +24,7 @@ public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, Li
         List<List<Task>> collect = salesOrder.getSalesOrderItems()
                 .stream()
                 .map(item -> repository.findTaskTemplateBy(item.getSaleableUnit())
-                                .stream().map(template -> TaskTemplateToTask.create(salesOrder).convert(template))
+                                .stream().map(template -> getConverter(salesOrder).convert(template))
                                 .collect(Collectors.toList())
                 ).collect(Collectors.toList());
 
@@ -32,5 +32,9 @@ public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, Li
         collect.stream().forEach(taskList -> allTasks.addAll(taskList));
 
         return allTasks;
+    }
+
+    protected TaskTemplateToTask getConverter(SalesOrder salesOrder) {
+        return TaskTemplateToTask.create(salesOrder);
     }
 }

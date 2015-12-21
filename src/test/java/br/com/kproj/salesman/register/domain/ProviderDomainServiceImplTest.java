@@ -27,7 +27,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.INDIVIDUAL_PROVIDER.get());
 
 
-        providerDomainService.verifyPreconditionToSave(person);
+        providerDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -37,7 +37,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.COMPANY_PROVIDER.get());
 
 
-        providerDomainService.verifyPreconditionToSave(person);
+        providerDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -47,7 +47,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.COMPANY_CLIENT.get());
 
 
-        providerDomainService.verifyPreconditionToSave(person);
+        providerDomainService.checkBusinessRulesFor(person);
 
     }
 
@@ -57,7 +57,7 @@ public class ProviderDomainServiceImplTest {
         person.setProfile(PersonProfilesEnum.INDIVIDUAL_CLIENT.get());
 
 
-        providerDomainService.verifyPreconditionToSave(person);
+        providerDomainService.checkBusinessRulesFor(person);
 
     }
 }

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.register.infrastructure.helpers;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
-import br.com.kproj.salesman.timeline.application.TimelineActivitiesService;
+import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class TimelineImageHelper {
 
     @Autowired
-    private TimelineActivitiesService service;
+    private TimelineActivitiesApplication service;
 
 
     public boolean isImage(AppFile appfile) {

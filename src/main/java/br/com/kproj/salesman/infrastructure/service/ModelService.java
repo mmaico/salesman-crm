@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ModelService<T> {
 
-    T save(T entity);
+    T save(T entity, DomainBusinessRules... checkRules);
 
     Iterable<T> findAll(Pageable pager);
     

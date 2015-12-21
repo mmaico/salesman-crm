@@ -11,10 +11,12 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
 import com.google.common.collect.Lists;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
@@ -30,10 +32,15 @@ public class SalesOrderTaskItemProcessorTest {
     private SalesOrderTaskItemProcessor processor;
 
     @Mock
-    private TaskTemplateToTask converter;
+    private TaskTemplateRepository repository;
 
     @Mock
-    private TaskTemplateRepository repository;
+    private TaskTemplateToTask taskTemplateToTask;
+
+    @Before
+    public void setUp() {
+        this.processor = Mockito.spy(this.processor);
+    }
 
 
     @Test
@@ -51,9 +58,11 @@ public class SalesOrderTaskItemProcessorTest {
         given(repository.findTaskTemplateBy(salesOrderItems.get(1).getSaleableUnit()))
                 .willReturn(tasksTwo);
 
-        given(converter.convert(tasksOne.get(0))).willReturn(tasksMock.get(0));
-        given(converter.convert(tasksOne.get(1))).willReturn(tasksMock.get(1));
-        given(converter.convert(tasksTwo.get(0))).willReturn(tasksMock.get(2));
+        given(processor.getConverter(salesOrder)).willReturn(taskTemplateToTask);
+
+        given(taskTemplateToTask.convert(tasksOne.get(0))).willReturn(tasksMock.get(0));
+        given(taskTemplateToTask.convert(tasksTwo.get(0))).willReturn(tasksMock.get(1));
+        given(taskTemplateToTask.convert(tasksTwo.get(1))).willReturn(tasksMock.get(2));
 
         List<Task> result = processor.process(salesOrder);
 
@@ -77,7 +86,7 @@ public class SalesOrderTaskItemProcessorTest {
 
     }
 
-    private List<TaskTemplate> getTasksOne() {
+    private List<TaskTemplate> getTasksTwo() {
         TaskTemplate templateOne = new TaskTemplate();
         templateOne.setId(1l);
 
@@ -87,7 +96,7 @@ public class SalesOrderTaskItemProcessorTest {
         return Lists.newArrayList(templateOne, templateTwo);
     }
 
-    private List<TaskTemplate> getTasksTwo() {
+    private List<TaskTemplate> getTasksOne() {
         TaskTemplate templateOne = new TaskTemplate();
         templateOne.setId(33l);
 

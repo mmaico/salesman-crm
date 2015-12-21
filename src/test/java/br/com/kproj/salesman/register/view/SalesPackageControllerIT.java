@@ -45,20 +45,6 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
         ).andExpect(status().isOk());
     }
 
-
-    @Test
-    public void shouldNotSavePackageWithoutProduct() throws Exception {
-
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("name", "bobstark")
-                        .param("description", "descricao do produto")
-                        .param("active", "true")
-                        .param("price", "56.45")
-                        .param("priceCost", "30.10")
-        ).andExpect(status().isBadRequest())
-                .andExpect(model().attributeExists("errors"));
-    }
-
     @Test
     public void shouldNotSaveWhenPackageWithoutPrice() throws Exception {
 
@@ -92,7 +78,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/packages/list-items"));
+        assertThat(modelAndView.getViewName(), is("/packages/packageList"));
     }
 
 

@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.saleable.ProductService;
+import br.com.kproj.salesman.register.application.contract.saleable.ProductApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public class ProductController {
 
     @Autowired
-    private ProductService service;
+    private ProductApplication service;
 
     @Autowired
     private SaleableValidator validator;

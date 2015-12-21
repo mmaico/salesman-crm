@@ -2,7 +2,7 @@ package br.com.kproj.salesman.sales.view;
 
 
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.sales.application.SalesOrderService;
+import br.com.kproj.salesman.sales.application.SalesOrderApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class SalesOrderController {
 
     @Autowired
-    private SalesOrderService service;
+    private SalesOrderApplication service;
 
 
     @RequestMapping(value="/sales-order/{orderId}")

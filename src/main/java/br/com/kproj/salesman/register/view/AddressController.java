@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.view;
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.register.application.contract.AddressService;
+import br.com.kproj.salesman.register.application.contract.AddressApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.AddressValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -18,7 +18,7 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.ProviderBuild
 public class AddressController {
 
     @Autowired
-    private AddressService service;
+    private AddressApplication service;
 
     @Autowired
     private AddressValidator validator;

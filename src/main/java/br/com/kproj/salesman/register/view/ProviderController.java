@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.ProviderService;
+import br.com.kproj.salesman.register.application.contract.ProviderApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.ProviderVOValidator;
 import br.com.kproj.salesman.register.view.dto.ProviderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public class ProviderController {
 
     @Autowired
-    private ProviderService service;
+    private ProviderApplication service;
 
     @Autowired
     private ProviderVOValidator validator;

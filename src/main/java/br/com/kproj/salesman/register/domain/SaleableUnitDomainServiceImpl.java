@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class SaleableUnitDomainServiceImpl implements SaleableUnitDomainService {
 
 	@Override
-	public void verifyPreconditionToSave(SaleableUnit saleableUnit) {
+	public void checkBusinessRulesFor(SaleableUnit saleableUnit) {
 		
 		if (BigDecimal.ZERO.compareTo(saleableUnit.getPrice()) > 0) {
             throw new ValidationException(Sets.newHashSet("product.with.invalid.price"));

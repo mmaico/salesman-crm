@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.BranchRepository;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.UserPositionRepository;
-import br.com.kproj.salesman.register.application.contract.UserService;
+import br.com.kproj.salesman.register.application.contract.UserApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
 import br.com.kproj.salesman.register.view.dto.UserVO;
 import org.apache.commons.io.IOUtils;
@@ -31,7 +31,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserService service;
+    private UserApplication service;
 
     @Autowired
     private UserValidator validator;

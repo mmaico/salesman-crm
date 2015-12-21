@@ -38,7 +38,7 @@ public class UserSecurityInfoServiceTest {
 
         Optional<User> result = service.getUser(login, password);
 
-        assertThat(result.get(), Matchers.sameInstance(userMock));
+        assertThat(result, Matchers.sameInstance(userMock));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class UserSecurityInfoServiceTest {
         String login = "login";
         String password = "password";
 
-        given(repository.findByLoginAndPassword(login, password)).willReturn(null);
+        given(repository.findByLoginAndPassword(login, password)).willReturn(Optional.ofNullable(null));
 
         Optional<User> result = service.getUser(login, password);
 

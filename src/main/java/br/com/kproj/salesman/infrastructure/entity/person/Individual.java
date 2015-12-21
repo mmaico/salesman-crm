@@ -34,4 +34,9 @@ public class Individual extends Person implements ClientIndividual, ProviderIndi
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    @Override
+    public Individual to() {
+        return this;
+    }
 }

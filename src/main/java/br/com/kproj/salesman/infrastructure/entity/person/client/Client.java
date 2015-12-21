@@ -3,8 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity.person.client;
 
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
-import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -37,4 +37,6 @@ public interface Client {
     void addContact(Contact contact);
 
     void addAddress(Address address);
+
+    public <T extends Person> T  to();
 }

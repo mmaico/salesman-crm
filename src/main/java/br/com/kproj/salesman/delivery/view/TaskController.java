@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.delivery.application.TaskService;
+import br.com.kproj.salesman.delivery.application.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -22,7 +22,7 @@ import java.util.Optional;
 public class TaskController {
 
     @Autowired
-    private TaskService service;
+    private TaskApplication service;
 
     @Autowired
     private TaskValidator validator;

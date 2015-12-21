@@ -10,8 +10,8 @@ import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.infrastructure.service.FileService;
 import br.com.kproj.salesman.register.infrastructure.validators.TimelineActivitiesValidator;
 import br.com.kproj.salesman.register.view.dto.LogActivityVO;
-import br.com.kproj.salesman.timeline.application.TimelineActivitiesService;
-import br.com.kproj.salesman.timeline.application.TimelineService;
+import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
+import br.com.kproj.salesman.timeline.application.TimelineApplication;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +34,10 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilde
 public class TimelineController {
 
     @Autowired
-    private TimelineActivitiesService service;
+    private TimelineActivitiesApplication service;
 
     @Autowired
-    private TimelineService timelineService;
+    private TimelineApplication timelineApplication;
 
     @Autowired
     private TimelineActivitiesValidator validator;
@@ -86,7 +86,7 @@ public class TimelineController {
     public ModelAndView getTimelineContact(@PathVariable Long contactId, Model model,
                                            @RequestParam(defaultValue="edit",required=false, value="template") String templateName) {
 
-        Timeline timeline = timelineService.register(createContact(contactId).build());
+        Timeline timeline = timelineApplication.register(createContact(contactId).build());
 
         model.addAttribute(createContact(contactId).build());
         model.addAttribute(timeline);

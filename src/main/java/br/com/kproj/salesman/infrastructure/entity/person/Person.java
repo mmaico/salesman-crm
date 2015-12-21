@@ -19,7 +19,7 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
 @Audited
-public class Person extends Identifiable implements Client, Provider{
+public class Person extends Identifiable implements Client, Provider {
 
 	private static final long serialVersionUID = -6416371282639932944L;
 
@@ -134,6 +134,11 @@ public class Person extends Identifiable implements Client, Provider{
         sb.append(", profile='").append(profile).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public Person to() {
+        return this;
     }
 
 }

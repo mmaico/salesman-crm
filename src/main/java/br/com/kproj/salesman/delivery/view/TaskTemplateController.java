@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.delivery.application.TaskTemplateService;
+import br.com.kproj.salesman.delivery.application.TaskTemplateApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -22,7 +22,7 @@ import java.util.Optional;
 public class TaskTemplateController {
 
     @Autowired
-    private TaskTemplateService service;
+    private TaskTemplateApplication service;
 
     @Autowired
     private TaskTemplateValidator validator;

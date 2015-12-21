@@ -57,4 +57,9 @@ public class Company extends Person implements ClientCompany, ProviderCompany {
     public void setCcm(String ccm) {
         this.ccm = ccm;
     }
+
+    @Override
+    public Company to() {
+        return this;
+    }
 }

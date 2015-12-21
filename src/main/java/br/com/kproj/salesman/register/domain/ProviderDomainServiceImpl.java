@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
 import br.com.kproj.salesman.register.domain.contract.ProviderDomainService;
@@ -18,7 +18,7 @@ public class ProviderDomainServiceImpl implements ProviderDomainService {
     private AddressDomainService service;
 
 	@Override
-	public void verifyPreconditionToSave(Provider provider) {
+	public void checkBusinessRulesFor(Person provider) {
 		
 		if(!INDIVIDUAL_PROVIDER.get().equals(provider.getProfile()) &&
 				!COMPANY_PROVIDER.get().equals(provider.getProfile())) {
