@@ -2,6 +2,7 @@ package br.com.kproj.salesman.register.application;
 
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
@@ -36,7 +37,7 @@ public class AddressApplicationImplTest {
 
     @Test
     public void shouldSaveANewAddress() {
-        Person personMocked = Mockito.mock(Person.class);
+        Client personMocked = Mockito.mock(Client.class);
         Person personLoadedMocked = Mockito.mock(Person.class);
         Address address = Mockito.mock(Address.class);
 
@@ -44,7 +45,7 @@ public class AddressApplicationImplTest {
         given(clientApplication.getOne(2l)).willReturn(Optional.of(personLoadedMocked));
         given(address.isNew()).willReturn(Boolean.TRUE);
 
-        service.register(personMocked, address);
+        service.register(address, personMocked);
 
         verify(address).setPerson(personLoadedMocked);
         verify(addressDomainService).prepareToSave(address);
@@ -54,27 +55,27 @@ public class AddressApplicationImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenPersonNotExist() {
-        Person personMocked = Mockito.mock(Person.class);
+        Client personMocked = Mockito.mock(Client.class);
         Person personLoadedMocked = null;
         Address address = new Address();
 
         given(personMocked.getId()).willReturn(2l);
         given(clientApplication.getOne(2l)).willReturn(Optional.ofNullable(personLoadedMocked));
 
-        service.register(personMocked, address);
+        service.register(address, personMocked);
 
     }
 
     @Test
     public void shouldUpdateAddress() {
-        Person personMocked = Mockito.mock(Person.class);
+        Client personMocked = Mockito.mock(Client.class);
         Address address = new Address();
         address.setId(1l);
         Address addressLoaded = Mockito.mock(Address.class);
 
         given(addressRepository.findOne(1l)).willReturn(addressLoaded);
 
-        service.register(personMocked, address);
+        service.register(address, personMocked);
 
         verify(addressDomainService).prepareToSave(address);
         verify(addressRepository).save(addressLoaded);

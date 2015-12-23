@@ -39,4 +39,5 @@ public interface Client {
     void addAddress(Address address);
 
     public <T extends Person> T  to();
+
 }

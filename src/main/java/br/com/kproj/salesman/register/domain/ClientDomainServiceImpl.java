@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_CLIENT;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.INDIVIDUAL_CLIENT;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
 
 
@@ -35,7 +34,7 @@ public class ClientDomainServiceImpl implements ClientDomainService {
         persistRules.put(description("client.without.profile"), (client) ->
                     !INDIVIDUAL_CLIENT.get().equals(client.getProfile()) && !COMPANY_CLIENT.get().equals(client.getProfile()));
 
-        persistRules.put(description("client.verify.base.validate"), (task) -> hasContraintViolated(task, validator));
+        //persistRules.put(description("client.verify.base.validate"), (task) -> hasContraintViolated(task, validator));
     }
 
 

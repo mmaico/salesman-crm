@@ -54,15 +54,14 @@ public class ProductController {
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    SaleableUnit update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    void update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(product);
-        SaleableUnit saleable = service.register(product);
+        service.register(product);
 
-        return saleable;
     }
 
     @RequestMapping("/products/list")
@@ -73,7 +72,7 @@ public class ProductController {
         Iterable<Product> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
-        return new ModelAndView("/products/list-items");
+        return new ModelAndView("/saleables/products/productList");
     }
     
     @RequestMapping(value="/products/{productId}")
@@ -82,22 +81,14 @@ public class ProductController {
         Optional<Product> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/products/edit");
+        return new ModelAndView("/saleables/products/productDetail");
     }
 
-    @RequestMapping(value = "/products/{productId}/json", method = RequestMethod.GET)
-    public @ResponseBody
-    SaleableUnit getProduct(@PathVariable Long productId) {
-
-        Optional<Product> saleable = service.getOne(productId);
-
-        return saleable.isPresent() ? saleable.get() : null;
-    }
 
     @RequestMapping(value="/products/create")
     public ModelAndView newProduct() {
 
-        return new ModelAndView("/products/edit");
+        return new ModelAndView("/saleables/products/productEdit");
     }
 
 }

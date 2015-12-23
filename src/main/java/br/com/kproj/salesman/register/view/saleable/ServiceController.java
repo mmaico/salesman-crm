@@ -42,7 +42,7 @@ public class ServiceController {
 
     @RequestMapping(value = "/services/save", method = RequestMethod.POST)
     public @ResponseBody
-    SaleableUnit save(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
+    SaleableUnit save(@ModelAttribute @Validated Service service, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -54,16 +54,14 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "/services/save", method = RequestMethod.PUT)
-    public @ResponseBody
-    SaleableUnit update(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
+    public @ResponseBody void update(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(service);
-        SaleableUnit saleable = this.service.register(service);
+        this.service.register(service);
 
-        return saleable;
     }
 
     @RequestMapping("/services/list")
@@ -73,8 +71,8 @@ public class ServiceController {
 
         Iterable<Service> result = this.service.findAll(pager);
 
-        model.addAttribute("products", result);
-        return new ModelAndView("/saleable/services/list-items");
+        model.addAttribute("services", result);
+        return new ModelAndView("/saleables/services/serviceList");
     }
     
     @RequestMapping(value="/services/{serviceId}")
@@ -82,23 +80,14 @@ public class ServiceController {
         
         Optional<Service> result = this.service.getOne(serviceId);
 
-        model.addAttribute("product", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/saleable/services/edit");
-    }
-
-    @RequestMapping(value = "/services/{serviceId}/json", method = RequestMethod.GET)
-    public @ResponseBody
-    SaleableUnit getProduct(@PathVariable Long serviceId) {
-
-        Optional<Service> saleable = service.getOne(serviceId);
-
-        return saleable.isPresent() ? saleable.get() : null;
+        model.addAttribute("service", result.isPresent() ? result.get(): null);
+        return new ModelAndView("/saleables/services/serviceEdit");
     }
 
     @RequestMapping(value="/services/create")
     public ModelAndView newProduct() {
 
-        return new ModelAndView("/saleable/services/edit");
+        return new ModelAndView("/saleables/services/serviceEdit");
     }
 
 }

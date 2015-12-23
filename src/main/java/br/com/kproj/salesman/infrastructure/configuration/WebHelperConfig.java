@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.configuration;
 
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.FormatMoneyHelper;
+import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.ClientHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.ProductHelper;
@@ -35,6 +36,9 @@ public class WebHelperConfig {
     @Autowired
     private TimelineActivityHelper activityHelper;
 
+    @Autowired
+    private LocationHelper locationHelper;
+
     @PostConstruct
     public void config() {
         resolver.getAttributesMap().put("clientHelper", clientHelper);
@@ -44,6 +48,7 @@ public class WebHelperConfig {
         resolver.getAttributesMap().put("timelineImageHelper", fileHelper);
         resolver.getAttributesMap().put("activityHelper", activityHelper);
         resolver.getAttributesMap().put("dateHelper", new DateHelper());
+        resolver.getAttributesMap().put("locationHelper", locationHelper);
 
     }
 }

@@ -42,7 +42,7 @@ public class SalesPackageController {
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
     public @ResponseBody
-    SalePackage save(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult, Model model) {
+    SalePackage save(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -55,15 +55,14 @@ public class SalesPackageController {
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
     public @ResponseBody
-    SaleableUnit update(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult, Model model) {
+    void update(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
         normalizeEntityRequest.addFieldsToUpdate(salePackage);
-        SaleableUnit saleable = service.register(salePackage);
+        service.register(salePackage);
 
-        return saleable;
     }
 
     @RequestMapping("/sales-package/list")
@@ -74,7 +73,7 @@ public class SalesPackageController {
         Iterable<SalePackage> result = this.service.findAll(pager);
 
         model.addAttribute("packages", result);
-        return new ModelAndView("/packages/packageList");
+        return new ModelAndView("/saleables/packages/packageList");
     }
     
     @RequestMapping(value="/sales-package/{packageId}")
@@ -82,8 +81,9 @@ public class SalesPackageController {
         
         Optional<SalePackage> result = this.service.getOne(packageId);
 
-        model.addAttribute("product", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/packages/packageEdit");
+        model.addAttribute("salesPackage", result.isPresent() ? result.get(): null);
+
+        return new ModelAndView("/saleables/packages/packageDetail");
     }
 
     @RequestMapping(value="/sales-package/{packageId}/add-saleable/{saleableId}", method = RequestMethod.PUT)
@@ -102,15 +102,6 @@ public class SalesPackageController {
         SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
 
         this.service.removeProductOrService(salePackage, saleableUnit);
-    }
-
-    @RequestMapping(value = "/sales-package/{packageId}/json", method = RequestMethod.GET)
-    public @ResponseBody
-    SaleableUnit getProduct(@PathVariable Long packageId) {
-
-        Optional<SalePackage> saleable = service.getOne(packageId);
-
-        return saleable.isPresent() ? saleable.get() : null;
     }
 
     @RequestMapping(value="/sales-package/create")

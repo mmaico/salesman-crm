@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
+import br.com.kproj.salesman.register.view.clients.ClientController;
 import org.dbunit.DatabaseUnitException;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test to {@link br.com.kproj.salesman.register.view.ClientController}
+ * Test to {@link ClientController}
  */
 
 public class ClientControllerIT extends AbstractIntegrationTest {

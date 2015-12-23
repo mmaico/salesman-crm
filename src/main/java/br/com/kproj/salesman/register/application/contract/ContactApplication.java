@@ -5,6 +5,8 @@ import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
 
+import java.util.List;
+
 
 public interface ContactApplication extends ModelService<Contact> {
 
@@ -13,4 +15,8 @@ public interface ContactApplication extends ModelService<Contact> {
     Contact register(Contact contact, Client client);
 
     Contact register(Contact contact, Provider provider);
+
+    List<Contact> getContactsByClient(Client client);
+
+    List<Contact> getContactsByProvider(Provider provider);
 }
