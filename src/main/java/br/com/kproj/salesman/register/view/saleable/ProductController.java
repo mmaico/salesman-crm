@@ -54,14 +54,10 @@ public class ProductController {
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    void update(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    void update(@ModelAttribute Product product) {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
         normalizeEntityRequest.addFieldsToUpdate(product);
         service.register(product);
-
     }
 
     @RequestMapping("/products/list")

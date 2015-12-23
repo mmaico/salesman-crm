@@ -7,6 +7,8 @@ import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.register.application.contract.saleable.ProductApplication;
 import br.com.kproj.salesman.register.domain.contract.SaleableUnitDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,6 +29,11 @@ public class ProductApplicationImpl extends BaseModelServiceImpl<Product> implem
     public Product register(Product product) {
 
         return super.save(product, domainService);
+    }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
     }
 
     @Override
