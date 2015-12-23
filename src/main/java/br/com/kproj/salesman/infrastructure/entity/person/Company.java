@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.client.ClientCompany;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.ProviderCompany;
 import org.hibernate.envers.Audited;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
@@ -16,6 +17,7 @@ public class Company extends Person implements ClientCompany, ProviderCompany {
 	private static final long serialVersionUID = 4479758448493548647L;
 
 	@Size(max = 120, message = "company.invalid.trandingname")
+    @Column(name="trading_name")
     private String tradingName;
 
     @Size(max = 20, message = "company.invalid.cnpj")
