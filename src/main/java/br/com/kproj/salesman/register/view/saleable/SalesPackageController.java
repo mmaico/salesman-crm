@@ -107,7 +107,7 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/create")
     public ModelAndView newProduct() {
 
-        return new ModelAndView("/packages/packageEdit");
+        return new ModelAndView("/saleables/packages/packageEdit");
     }
 
 }
