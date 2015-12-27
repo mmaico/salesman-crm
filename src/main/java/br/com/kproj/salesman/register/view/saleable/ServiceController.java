@@ -54,14 +54,9 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "/services/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute @Validated Service service, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
+    public @ResponseBody void update(@ModelAttribute Service service, BindingResult bindingResult) {
         normalizeEntityRequest.addFieldsToUpdate(service);
         this.service.register(service);
-
     }
 
     @RequestMapping("/services/list")

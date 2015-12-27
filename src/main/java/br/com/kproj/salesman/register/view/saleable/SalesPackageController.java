@@ -55,11 +55,8 @@ public class SalesPackageController {
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
     public @ResponseBody
-    void update(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult) {
+    void update(@ModelAttribute SalePackage salePackage) {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
         normalizeEntityRequest.addFieldsToUpdate(salePackage);
         service.register(salePackage);
 

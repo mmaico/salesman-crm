@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TaskTemplateRepository extends BaseRepository<TaskTemplate, Long> {
 
@@ -27,4 +29,7 @@ public interface TaskTemplateRepository extends BaseRepository<TaskTemplate, Lon
             "FROM TaskTemplate AS tt JOIN tt.templatesChilds AS taskChild " +
             "WHERE taskChild = :taskTemplate")
     Boolean isSomeonesSon(@Param("taskTemplate")TaskTemplate taskTemplate);
+
+    @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.id = :id")
+    Optional<TaskTemplate> getOne(@Param("id")Long id);
 }

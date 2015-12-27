@@ -4,6 +4,7 @@ import br.com.kproj.salesman.delivery.application.TaskTemplateApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
 import br.com.kproj.salesman.delivery.view.dtos.TaskTemplateDTO;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -57,6 +58,13 @@ public class SaleableTaskTemplateController {
         normalizeEntityRequest.addFieldsToUpdate(taskTemplate);
         taskTemplate.setSaleable(createSaleableUnit(saleableId).build());
         service.register(taskTemplate);
+
+    }
+
+    @RequestMapping(value = "/saleables/task-template/{taskTemplateId}", method = RequestMethod.DELETE)
+    public @ResponseBody void remove(@PathVariable Long taskTemplateId) {
+
+        service.remove(TaskTemplateBuilder.createTaskTemplateBuilder(taskTemplateId).build());
 
     }
 

@@ -16,4 +16,6 @@ public interface TaskTemplateApplication extends ModelService<TaskTemplate> {
 
     List<TaskTemplate> findTaskTemplateOnlyRootBy(SaleableUnit saleable);
 
+    void remove(TaskTemplate taskTemplate);
+
 }

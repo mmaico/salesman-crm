@@ -6,9 +6,13 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import com.google.common.collect.Lists;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -26,6 +30,7 @@ public class TaskTemplate extends Identifiable {
 
     @OneToMany
     @JoinColumn(name="task_template_parent_id")
+    @Cascade(CascadeType.DELETE)
     private List<TaskTemplate> templatesChilds;
 
     @Column(name="quantity_days_to_finish_after_signed_contract")
@@ -36,9 +41,11 @@ public class TaskTemplate extends Identifiable {
     private List<AppFile> files;
 
     @OneToMany(mappedBy = "taskTemplate")
+    @Cascade(CascadeType.DELETE)
     private List<ChecklistTemplate> checklistTemplates;
 
     @OneToMany(mappedBy = "taskTemplate")
+    @Cascade(CascadeType.DELETE)
     private List<TaskCostTemplate> tasksCostsTemplates;
 
     @ManyToOne
