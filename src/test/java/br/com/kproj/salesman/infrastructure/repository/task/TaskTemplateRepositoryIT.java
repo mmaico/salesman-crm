@@ -59,5 +59,16 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
         assertThat(result.getChecklistTemplates().size(), is(2));
     }
 
+    @Test
+    public void shouldReturnAllTemplatesOnlyRoot() {
+        SaleableUnit saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
+
+        List<TaskTemplate> result = repository.findTaskTemplateRootBy(saleable);
+
+        assertThat(result.size(), is(2));
+        assertThat(result.get(0).getId(), is(1l));
+        assertThat(result.get(1).getId(), is(2l));
+    }
+
 
 }

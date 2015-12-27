@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import com.google.common.collect.Lists;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ public class TaskTemplate extends Identifiable {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotBlank(message = "tasktemplate.title.is.empty")
     private String title;
     private String description;
 
@@ -42,13 +43,15 @@ public class TaskTemplate extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="saleable_unit_id")
-    @NotNull
     private SaleableUnit saleable;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
-    @NotNull
+    @NotNull(message = "tasktemplate.region.not.informed")
     private OperationRegion region;
+
+    @Transient
+    private TaskTemplate parent;
 
 
     public void addChild(TaskTemplate taskTemplate) {
@@ -130,6 +133,7 @@ public class TaskTemplate extends Identifiable {
         this.region = region;
     }
 
+
     @Override
     public Long getId() {
         return this.id;
@@ -137,5 +141,18 @@ public class TaskTemplate extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public TaskTemplate getParent() {
+        return parent;
+    }
+
+    public void setParent(TaskTemplate parent) {
+        this.parent = parent;
+    }
+
+    public Boolean hasValidParent() {
+        return parent != null && !parent.isNew();
+
     }
 }

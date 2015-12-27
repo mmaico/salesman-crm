@@ -34,7 +34,10 @@ spring:
     testWhileIdle: true
     validationQuery: SELECT 1
   data.jpa.repositories.enabled: true
-
+  messages:
+    basename: messages
+    cache-seconds: -1
+    encoding: UTF-8
 
 multipart:
   enabled: true
@@ -48,6 +51,7 @@ system.repository.storage: /opt
 security:
   require-ssl: false
   enable-csrf: false
+
 
 ---
 spring:

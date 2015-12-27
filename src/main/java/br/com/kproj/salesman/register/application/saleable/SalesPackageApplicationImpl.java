@@ -8,6 +8,7 @@ import br.com.kproj.salesman.infrastructure.repository.Saleable.SalesPackageRepo
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.register.application.contract.saleable.SalePackageApplication;
 import br.com.kproj.salesman.register.domain.contract.SaleableUnitDomainService;
+import br.com.kproj.salesman.register.domain.contract.SalesPackageAddSaleableDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,15 +22,15 @@ import static com.google.common.collect.Sets.newHashSet;
 @Service
 public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackage> implements SalePackageApplication {
 
+    @Autowired
     private SaleableUnitDomainService domainService;
 
+    @Autowired
     private SalesPackageRepository salesPackageRepository;
 
     @Autowired
-    public SalesPackageApplicationImpl(SalesPackageRepository salesPackageRepository, SaleableUnitDomainService domainService) {
-        this.salesPackageRepository = salesPackageRepository;
-        this.domainService = domainService;
-    }
+    private SalesPackageAddSaleableDomainService addSaleableDomainService;
+
 
     @Override
     public SalePackage register(SalePackage salePackageItem) {
@@ -50,7 +51,7 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
         if (!salePackageLoaded.isPresent()) {
             hasErrors(newHashSet("salepackage.not.found")).throwing(ValidationException.class);
         }
-
+        addSaleableDomainService.checkBusinessRulesFor(saleable);
         salePackageLoaded.get().addSaleableUnit(saleable);
 
         return salePackageLoaded.get();

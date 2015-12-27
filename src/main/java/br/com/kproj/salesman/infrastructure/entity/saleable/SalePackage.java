@@ -1,9 +1,11 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "packages")
@@ -12,7 +14,7 @@ public class SalePackage extends SaleableUnit {
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="package_saleable", joinColumns=@JoinColumn(name="package_id"),
             inverseJoinColumns=@JoinColumn(name="saleable_id"))
-    private List<SaleableUnit> saleableUnits;
+    private Set<SaleableUnit> saleableUnits;
 
     public SalePackage(Long id) {
         super(id);
@@ -24,17 +26,17 @@ public class SalePackage extends SaleableUnit {
         setType(SaleableType.PACKAGE);
     }
 
-    public List<SaleableUnit> getSaleableUnits() {
+    public Set<SaleableUnit> getSaleableUnits() {
         return saleableUnits;
     }
 
-    public void setSaleableUnits(List<SaleableUnit> saleableUnits) {
+    public void setSaleableUnits(Set<SaleableUnit> saleableUnits) {
         this.saleableUnits = saleableUnits;
     }
 
     public void addSaleableUnit(SaleableUnit saleableUnit) {
         if (this.saleableUnits == null) {
-            this.saleableUnits = Lists.newArrayList();
+            this.saleableUnits = Sets.newHashSet();
         }
         this.saleableUnits.add(saleableUnit);
     }

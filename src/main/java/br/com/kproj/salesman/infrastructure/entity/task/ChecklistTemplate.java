@@ -2,8 +2,10 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="checklist_templates")
@@ -13,10 +15,12 @@ public class ChecklistTemplate extends Identifiable {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "checklist.template.name.invalid")
     private String name;
 
     @ManyToOne
     @JoinColumn(name="task_template_id")
+    @NotNull(message = "checklist.template.tasktemplate.null")
     private TaskTemplate taskTemplate;
 
     @Override

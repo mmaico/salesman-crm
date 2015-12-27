@@ -3,6 +3,7 @@ package br.com.kproj.salesman.delivery.view;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import org.dbunit.DatabaseUnitException;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TaskTemplateControllerIT extends AbstractIntegrationTest {
+public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
 
 
     private MockMvc mockMvc;
@@ -42,25 +44,31 @@ public class TaskTemplateControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveTaskTemplateOnlyRequiredFields() throws Exception {
 
-        mockMvc.perform(post("/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
-                        .param("saleable.id", "1")
                         .param("region.id", "2")
         ).andExpect(status().isOk());
     }
 
     @Test
-    public void shouldReturnUrlWithNewId() throws Exception {
+    public void shouldNotSaveWhenNotHaveTitle() throws Exception {
 
-        MockHttpServletResponse response = mockMvc.perform(post("/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("title", "titulo")
-                        .param("saleable.id", "1")
-                        .param("region.id", "2")
-        ).andExpect(status().isOk()).andReturn().getResponse();
+        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("region.id", "2")
+        ).andExpect(status().isBadRequest()).andReturn().getResponse();
 
         String result = response.getContentAsString();
 
-        assertThat(result.matches("/task-template/\\d+"), is(Boolean.TRUE));
+        assertThat(result, is("[tasktemplate.title.is.empty]"));
+    }
+
+    @Test
+    public void shouldReturnUrlWithNewId() throws Exception {
+
+        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("title", "titulo")
+                        .param("region.id", "2")
+        ).andExpect(status().isOk()).andReturn().getResponse();
 
     }
 
@@ -68,24 +76,21 @@ public class TaskTemplateControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldListAllTaskTemplates() throws Exception {
 
-        ModelAndView modelAndView = mockMvc.perform(get("/task-template/list")).andExpect(status().isOk()).andReturn().getModelAndView();
+        ModelAndView modelAndView = mockMvc.perform(get("/saleables/1/task-template/list")).andExpect(status().isOk()).andReturn().getModelAndView();
 
         Map<String, Object> model = modelAndView.getModel();
 
 
-        Page<TaskTemplate> taskTemplates =  (Page<TaskTemplate>) model.get("taskTemplates");
+        List<TaskTemplate> taskTemplates =  (List<TaskTemplate>) model.get("taskTemplates");
 
-
-        assertThat(taskTemplates.getTotalPages(), is(1));
-        assertThat(taskTemplates.getContent().size(), Matchers.greaterThan(2));
-
+        assertThat(taskTemplates.size(), Matchers.is(2));
 
     }
 
     @Test
     public void shouldGetOneTaskTemplateByID() throws Exception {
 
-        ModelAndView modelAndView = mockMvc.perform(get("/task-template/1")).andExpect(status().isOk()).andReturn().getModelAndView();
+        ModelAndView modelAndView = mockMvc.perform(get("/saleables/task-template/1")).andExpect(status().isOk()).andReturn().getModelAndView();
 
         Map<String, Object> model = modelAndView.getModel();
 
