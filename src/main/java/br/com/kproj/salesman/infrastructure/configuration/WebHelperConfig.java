@@ -23,19 +23,7 @@ public class WebHelperConfig {
     private VelocityViewResolver resolver;
 
     @Autowired
-    private ClientHelper clientHelper;
-
-    @Autowired
-    private ProductHelper productHelper;
-
-    @Autowired
     private SecurityHelper securityHelper;
-
-    @Autowired
-    private TimelineImageHelper fileHelper;
-
-    @Autowired
-    private TimelineActivityHelper activityHelper;
 
     @Autowired
     private LocationHelper locationHelper;
@@ -45,12 +33,9 @@ public class WebHelperConfig {
 
     @PostConstruct
     public void config() {
-        resolver.getAttributesMap().put("clientHelper", clientHelper);
-        resolver.getAttributesMap().put("productHelper", productHelper);
+
         resolver.getAttributesMap().put("moneyHelper", new FormatMoneyHelper());
         resolver.getAttributesMap().put("security", securityHelper);
-        resolver.getAttributesMap().put("timelineImageHelper", fileHelper);
-        resolver.getAttributesMap().put("activityHelper", activityHelper);
         resolver.getAttributesMap().put("dateHelper", new DateHelper());
         resolver.getAttributesMap().put("locationHelper", locationHelper);
         resolver.getAttributesMap().put("messagei18n", messagesI18nHelper);

@@ -51,14 +51,13 @@ public class SaleableTaskTemplateController {
     }
 
     @RequestMapping(value = "/saleables/{saleableId}/task-template/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute TaskTemplate taskTemplate,  @PathVariable Long saleableId) {
-
-        hasContraintViolated(taskTemplate, validator);
+    public @ResponseBody TaskTemplateDTO update(@ModelAttribute TaskTemplate taskTemplate,  @PathVariable Long saleableId) {
 
         normalizeEntityRequest.addFieldsToUpdate(taskTemplate);
         taskTemplate.setSaleable(createSaleableUnit(saleableId).build());
-        service.register(taskTemplate);
+        TaskTemplate result = service.register(taskTemplate);
 
+        return TaskTemplateDTO.build(result);
     }
 
     @RequestMapping(value = "/saleables/task-template/{taskTemplateId}", method = RequestMethod.DELETE)

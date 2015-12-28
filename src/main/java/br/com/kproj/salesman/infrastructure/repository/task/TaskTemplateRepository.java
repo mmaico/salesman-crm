@@ -27,8 +27,12 @@ public interface TaskTemplateRepository extends BaseRepository<TaskTemplate, Lon
             "       ELSE false " +
             "   END  " +
             "FROM TaskTemplate AS tt JOIN tt.templatesChilds AS taskChild " +
-            "WHERE taskChild = :taskTemplate")
-    Boolean isSomeonesSon(@Param("taskTemplate")TaskTemplate taskTemplate);
+            "WHERE taskChild = :taskTemplateChild")
+    Boolean isSomeonesSon(@Param("taskTemplateChild")TaskTemplate taskTemplateChild);
+
+    @Query("SELECT tt FROM TaskTemplate AS tt JOIN tt.templatesChilds AS taskChild " +
+            "WHERE taskChild = :taskTemplateChild")
+    Optional<TaskTemplate> findParent(@Param("taskTemplateChild")TaskTemplate taskTemplateChild);
 
     @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.id = :id")
     Optional<TaskTemplate> getOne(@Param("id")Long id);

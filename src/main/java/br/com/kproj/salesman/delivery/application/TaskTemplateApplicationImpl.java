@@ -4,7 +4,6 @@ import br.com.kproj.salesman.delivery.domain.TaskTemplateDomainService;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -70,6 +69,20 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTempla
         TaskTemplate tasktemplateLoaded = result.get();
 
         repository.delete(tasktemplateLoaded);
+    }
+
+    public Optional<TaskTemplate> getOne(Long id) {
+
+        Optional<TaskTemplate> result = repository.getOne(id);
+
+        if (!result.isPresent()) {
+            hasErrors(Sets.newHashSet("tasktemplate.notfound")).throwing(ValidationException.class);
+        }
+        Optional<TaskTemplate> parent = repository.findParent(result.get());
+
+        result.get().setParent(parent.isPresent() ? parent.get() : null);
+
+        return result;
     }
 
     @Override

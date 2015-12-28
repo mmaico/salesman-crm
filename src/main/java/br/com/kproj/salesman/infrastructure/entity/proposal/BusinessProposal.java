@@ -36,9 +36,9 @@ public class BusinessProposal extends Identifiable {
     private Person client;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
-    @NotNull(message = "business.proposal.vendor.required")
-    private User vendor;
+    @JoinColumn(name="seller_id")
+    @NotNull(message = "business.proposal.seller.required")
+    private User seller;
 
     private String careOf;
 
@@ -118,12 +118,12 @@ public class BusinessProposal extends Identifiable {
         this.client = client;
     }
 
-    public User getVendor() {
-        return vendor;
+    public User getSeller() {
+        return seller;
     }
 
-    public void setVendor(User vendor) {
-        this.vendor = vendor;
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
     public String getCareOf() {

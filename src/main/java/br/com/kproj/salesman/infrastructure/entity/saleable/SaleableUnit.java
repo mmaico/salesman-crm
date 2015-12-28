@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class SaleableUnit extends Identifiable {
     @GeneratedValue
     private Long id;
 
-	@NotNull
+	@NotBlank(message = "saleable.name.cannot.be.null")
     private String name;
 
     private String description;

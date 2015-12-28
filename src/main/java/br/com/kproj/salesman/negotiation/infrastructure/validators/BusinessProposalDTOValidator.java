@@ -34,7 +34,7 @@ public class BusinessProposalDTOValidator implements Validator {
                 .forEach(error -> errors.reject(error.getMessage()));
 
         idValidator.validate(businessProposal.getClient(), errors);
-        idValidator.validate(businessProposal.getVendor(), errors);
+        idValidator.validate(businessProposal.getSeller(), errors);
     }
 
 }

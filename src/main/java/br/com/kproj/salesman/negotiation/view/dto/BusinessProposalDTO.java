@@ -3,6 +3,7 @@ package br.com.kproj.salesman.negotiation.view.dto;
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
+import br.com.kproj.salesman.negotiation.view.dto.SaleableItemDTO;
 import com.google.common.collect.Lists;
 
 import java.util.List;

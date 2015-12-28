@@ -1,25 +1,22 @@
 package br.com.kproj.salesman.register.infrastructure.helpers;
 
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.ClientApplication;
+import br.com.kproj.salesman.register.application.contract.UserApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class ClientHelper {
+public class SellersHelper {
 
     @Autowired
-    private ClientApplication application;
+    private UserApplication application;
 
-    public Boolean isCompany(Person person) {
-
-        return (person instanceof Company) ? Boolean.TRUE : Boolean.FALSE;
+    public Iterable<User> getAllSellers() {
+        return application.findAll(Pager.build().withPageSize(1000));
     }
-
-    public Iterable<Person> getAllClients() {
-        return application.findAll(Pager.build().withPageSize(10000));
-    }
-
 }

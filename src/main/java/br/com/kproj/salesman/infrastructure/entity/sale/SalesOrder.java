@@ -36,9 +36,9 @@ public class SalesOrder extends Identifiable {
     private Person client;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
-    @NotNull(message = "order.vendor.required")
-    private User vendor;
+    @JoinColumn(name="seller_id")
+    @NotNull(message = "order.seller.required")
+    private User seller;
 
     @OneToOne
     @JoinColumn(name="proposal_id")
@@ -131,12 +131,12 @@ public class SalesOrder extends Identifiable {
         this.client = client;
     }
 
-    public User getVendor() {
-        return vendor;
+    public User getSeller() {
+        return seller;
     }
 
-    public void setVendor(User vendor) {
-        this.vendor = vendor;
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
     public Date getDeliveryForecast() {

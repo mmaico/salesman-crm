@@ -36,7 +36,7 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
     {
         persistRules.put(description("proposal.verify.valid.client"), (bp) -> !(!(bp).getClient().isNew() && clientReposiory.exists(bp.getClient().getId())));
-        persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(!(bp).getVendor().isNew() && userRepository.exists(bp.getVendor().getId())));
+        persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(!(bp).getSeller().isNew() && userRepository.exists(bp.getSeller().getId())));
         persistRules.put(description("proposal.verify.valid.product.items"), (bp) -> !productIService.verifyRules(bp));
         persistRules.put(description("proposal.verify.valid.payment.items"), (bp) -> !paymentService.verifyRules(bp));
     }

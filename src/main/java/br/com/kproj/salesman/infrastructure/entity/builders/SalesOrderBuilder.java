@@ -35,8 +35,8 @@ public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
         return this;
     }
 
-    public SalesOrderBuilder withVendor(User user) {
-        this.entity.setVendor(user);
+    public SalesOrderBuilder withSeller(User user) {
+        this.entity.setSeller(user);
         return this;
     }
 

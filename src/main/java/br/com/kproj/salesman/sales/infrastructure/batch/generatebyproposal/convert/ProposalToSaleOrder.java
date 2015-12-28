@@ -24,7 +24,7 @@ public class ProposalToSaleOrder implements Converter<BusinessProposal, SalesOrd
                 .withClient(source.getClient())
                 .withDeliveryForeCast(source.getDeliveryForeCast())
                 .withOperationRegion(source.getOperationRegion())
-                .withVendor(source.getVendor());
+                .withSeller(source.getSeller());
 
 
         source.getPaymentItems().stream()

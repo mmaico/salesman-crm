@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -68,6 +69,17 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getId(), is(1l));
         assertThat(result.get(1).getId(), is(2l));
+    }
+
+    @Test
+    public void shouldReturnTheTemplateTaskParent() {
+        TaskTemplate taskTemplate = new TaskTemplate();
+        taskTemplate.setId(3l);
+
+        Optional<TaskTemplate> result = repository.findParent(taskTemplate);
+
+        assertThat(result.isPresent(), is(Boolean.TRUE));
+        assertThat(result.get().getId(), is(1l));
     }
 
 

@@ -76,7 +76,7 @@ public class ServiceController {
         Optional<Service> result = this.service.getOne(serviceId);
 
         model.addAttribute("service", result.isPresent() ? result.get(): null);
-        return new ModelAndView("/saleables/services/serviceEdit");
+        return new ModelAndView("/saleables/services/serviceDetail");
     }
 
     @RequestMapping(value="/services/create")

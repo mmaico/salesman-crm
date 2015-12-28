@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.view;
 
+import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
@@ -9,6 +10,8 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalDTOValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
+import br.com.kproj.salesman.negotiation.view.dto.session.ProposalSaleableItemDTO;
+import br.com.kproj.salesman.negotiation.view.dto.session.ProposalSaleablesDTO;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,9 @@ public class BusinessProposalController {
 
     @Autowired
     private SaleableApplication saleableApplication;
+
+    @Autowired
+    private ProposalSaleablesDTO proposalSaleablesDTO;
 
     @InitBinder(value = "businessProposalDTO")
     private void initBinder(WebDataBinder binder) {
@@ -88,9 +94,28 @@ public class BusinessProposalController {
 
         Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
         model.addAttribute("saleables", saleable);
         model.addAttribute("client", clientOptional.get());
         return new ModelAndView("/clients/proposal/newProposal");
+    }
+
+    @RequestMapping(value="/proposals/add-saleables", method = RequestMethod.POST)
+    public ModelAndView addItem(@ModelAttribute ProposalSaleableItemDTO item, Model model) {
+
+        proposalSaleablesDTO.add(item);
+
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
+    }
+
+    @RequestMapping(value="/proposals/add-saleable/{saleableId}", method = RequestMethod.PUT)
+    public ModelAndView addSaleable(@PathVariable Long saleableId, Model model) {
+
+        proposalSaleablesDTO.add(SaleableUnitBuilder.createSaleableUnit(saleableId).build());
+
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
     }
 
 }
