@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.Set;
 
 public class ProposalSaleableItemDTO implements Serializable {
@@ -55,6 +56,17 @@ public class ProposalSaleableItemDTO implements Serializable {
         item.setSaleableId(saleableId);
 
         packageItems.add(item);
+    }
+
+    public void updateItem(ProposalPackageItemsDTO item) {
+        if (packageItems.contains(item)) {
+            Optional<ProposalPackageItemsDTO> itemSelected = packageItems.stream().filter(itemFiltered
+                        -> itemFiltered.equals(item)).findFirst();
+
+            itemSelected.get().setPrice(item.getPrice());
+            itemSelected.get().setQuantity(item.getQuantity());
+            itemSelected.get().setSelected(item.getSelected());
+        }
     }
 
     @Override

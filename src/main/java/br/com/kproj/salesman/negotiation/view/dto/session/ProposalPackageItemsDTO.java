@@ -9,6 +9,7 @@ public class ProposalPackageItemsDTO implements Serializable {
     private Long saleableId;
     private Integer quantity = 1;
     private BigDecimal price = BigDecimal.ZERO;
+    private Boolean selected = Boolean.TRUE;
 
     public Long getSaleableId() {
         return saleableId;
@@ -32,5 +33,29 @@ public class ProposalPackageItemsDTO implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProposalPackageItemsDTO that = (ProposalPackageItemsDTO) o;
+
+        return saleableId != null ? saleableId.equals(that.saleableId) : that.saleableId == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return saleableId != null ? saleableId.hashCode() : 0;
     }
 }

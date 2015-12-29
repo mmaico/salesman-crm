@@ -52,26 +52,24 @@ public class ProposalSaleablesDTO implements Serializable {
         }
     }
 
-    public void add(ProposalSaleableItemDTO item) {
+    public void mergeItems(ProposalSaleableItemDTO item) {
 
         Optional<SaleableUnit> result = application.getOne(item.getSaleableId());
         if (result.isPresent()) {
-            ProposalSaleableItemDTO proposalSaleableItemDTO = new ProposalSaleableItemDTO();
-            proposalSaleableItemDTO.setSaleableId(result.get().getId());
-            proposalSaleableItemDTO.setPrice(result.get().getPrice());
 
             if (SaleableType.PACKAGE.equals(result.get().getType())) {
-                item.getPackageItems()
-                        .forEach(packageItem ->
-                            proposalSaleableItemDTO
-                            .addPackageItemDTO(packageItem.getSaleableId(), packageItem.getQuantity(), packageItem.getPrice()));
+                Optional<ProposalSaleableItemDTO> packageFound = proposalSaleableItemDTOs.stream().filter(spackage -> item.getSaleableId()
+                        .equals(spackage.getSaleableId())).findFirst();
 
-            } else {
-                proposalSaleableItemDTO.setPrice(item.getPrice());
-                proposalSaleableItemDTO.setQuantity(item.getQuantity());
+                if (!packageFound.isPresent()) {
+                    return;
+                }
+                item.getPackageItems().forEach(itemToMerge -> packageFound.get().updateItem(itemToMerge));
             }
-
-            proposalSaleableItemDTOs.add(proposalSaleableItemDTO);
         }
+    }
+
+    public Optional<ProposalSaleableItemDTO> getByPackageId(Long packageId) {
+        return this.proposalSaleableItemDTOs.stream().filter(dto -> packageId.equals(dto.getSaleableId())).findFirst();
     }
 }

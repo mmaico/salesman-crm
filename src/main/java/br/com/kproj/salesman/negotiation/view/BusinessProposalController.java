@@ -100,10 +100,10 @@ public class BusinessProposalController {
         return new ModelAndView("/clients/proposal/newProposal");
     }
 
-    @RequestMapping(value="/proposals/add-saleables", method = RequestMethod.POST)
+    @RequestMapping(value="/proposals/select-saleables", method = RequestMethod.POST)
     public ModelAndView addItem(@ModelAttribute ProposalSaleableItemDTO item, Model model) {
 
-        proposalSaleablesDTO.add(item);
+        proposalSaleablesDTO.mergeItems(item);
 
         model.addAttribute("proposalSaleables", proposalSaleablesDTO);
         return new ModelAndView("/clients/proposal/saleables-items");
@@ -116,6 +116,15 @@ public class BusinessProposalController {
 
         model.addAttribute("proposalSaleables", proposalSaleablesDTO);
         return new ModelAndView("/clients/proposal/saleables-items");
+    }
+
+    @RequestMapping(value="/proposals/package/{packageId}/items", method = RequestMethod.GET)
+    public ModelAndView showPackageItems(@PathVariable Long packageId, Model model) {
+
+        Optional<ProposalSaleableItemDTO> result = proposalSaleablesDTO.getByPackageId(packageId);
+
+        model.addAttribute("proposalSaleableItem", result.isPresent() ? result.get() : null);
+        return new ModelAndView("/clients/proposal/modal/select-items-modal");
     }
 
 }
