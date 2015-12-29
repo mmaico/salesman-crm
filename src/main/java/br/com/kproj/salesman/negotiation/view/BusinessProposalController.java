@@ -94,7 +94,8 @@ public class BusinessProposalController {
 
         Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
-        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        proposalSaleablesDTO.clear();
+
         model.addAttribute("saleables", saleable);
         model.addAttribute("client", clientOptional.get());
         return new ModelAndView("/clients/proposal/newProposal");

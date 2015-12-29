@@ -72,4 +72,8 @@ public class ProposalSaleablesDTO implements Serializable {
     public Optional<ProposalSaleableItemDTO> getByPackageId(Long packageId) {
         return this.proposalSaleableItemDTOs.stream().filter(dto -> packageId.equals(dto.getSaleableId())).findFirst();
     }
+
+    public void clear() {
+        this.proposalSaleableItemDTOs.clear();
+    }
 }
