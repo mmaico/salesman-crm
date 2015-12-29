@@ -62,7 +62,7 @@ public class TaskControllerIT extends AbstractIntegrationTest {
 
         String result = mvcResult.getResponse().getContentAsString();
 
-        MatcherAssert.assertThat(result, Matchers.is("[task.verify.users.valid]"));
+        MatcherAssert.assertThat(result, Matchers.is("valor\n"));
     }
 
 

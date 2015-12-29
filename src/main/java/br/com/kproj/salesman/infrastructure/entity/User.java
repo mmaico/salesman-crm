@@ -24,16 +24,16 @@ public class User extends Identifiable {
     @GeneratedValue
     private Long id;
 
-	@NotNull(message = "user.login")
+	@NotNull(message = "user.login.cannot.be.null")
     private String login;
 
-    @NotNull(message = "user.password")
+    @NotNull(message = "user.password.cannot.be.null")
     private String password;
 
     @Transient
     private String passwordConfirm;
 
-    @NotNull(message = "user.name")
+    @NotNull(message = "user.name.cannot.be.null")
     private String name;
 
     private String lastname;

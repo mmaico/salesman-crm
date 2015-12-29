@@ -66,7 +66,7 @@ spring:
     expose-session-attributes: false
     expose-spring-macro-helpers: false
     prefer-file-system-access: true
-    resource-loader-path: file:/opt/templates
+    resource-loader-path: classpath:resources
     suffix: .vm
   jpa:
     open-in-view: true

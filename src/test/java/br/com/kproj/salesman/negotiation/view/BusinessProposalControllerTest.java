@@ -45,7 +45,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
 
         mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("proposal.client.id", "1")
-                        .param("proposal.vendor.id", "1")
+                        .param("proposal.seller.id", "1")
                         .param("proposal.careOf", "Jose Luiz")
                         .param("proposal.deliveryForeCast", "10/02/2018")
                         .param("proposal.operationRegion.id", "1")

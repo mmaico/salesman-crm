@@ -78,7 +78,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/packages/packageList"));
+        assertThat(modelAndView.getViewName(), is("/saleables/packages/packageList"));
     }
 
 

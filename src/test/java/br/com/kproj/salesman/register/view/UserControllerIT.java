@@ -15,9 +15,7 @@ import java.io.InputStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -38,7 +36,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldUpdateUser() throws Exception {
 
-        mockMvc.perform(post("/users/save")
+        mockMvc.perform(put("/users/save")
                         .param("id", "1")
                         .param("name", "Bob")
                         .param("lastname", "Stark")

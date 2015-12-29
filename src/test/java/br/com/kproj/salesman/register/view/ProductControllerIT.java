@@ -76,7 +76,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/products/list-items"));
+        assertThat(modelAndView.getViewName(), is("/saleables/products/productList"));
     }
 
 

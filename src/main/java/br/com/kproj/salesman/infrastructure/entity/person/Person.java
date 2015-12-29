@@ -27,7 +27,7 @@ public class Person extends Identifiable implements Client, Provider {
     @GeneratedValue
     private Long id;
 
-	@NotNull
+	@NotNull(message = "person.name.is.invalid")
     @Size(min = 2, max = 150, message = "person.name.is.invalid")
     private String name;
 
@@ -42,7 +42,7 @@ public class Person extends Identifiable implements Client, Provider {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="profile_id")
-    @NotNull
+    @NotNull(message = "person.profile.is.invalid")
     private PersonProfile profile;
 
     public Person() {

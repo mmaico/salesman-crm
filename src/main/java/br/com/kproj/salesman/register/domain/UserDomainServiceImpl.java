@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
@@ -50,7 +51,6 @@ public class UserDomainServiceImpl implements UserDomainService {
                     : Boolean.FALSE
         );
 
-        //persistRules.put(description("user.verify.base.validate"), (user) -> hasContraintViolated(user, validator));
     }
 
     @Override

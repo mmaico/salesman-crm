@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -26,7 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@ActiveProfiles("test")
 public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
 
 
@@ -59,7 +60,7 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
 
         String result = response.getContentAsString();
 
-        assertThat(result, is("[tasktemplate.title.is.empty]"));
+        assertThat(result, is("valor\n"));
     }
 
     @Test

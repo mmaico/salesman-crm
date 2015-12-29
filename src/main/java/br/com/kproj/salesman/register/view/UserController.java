@@ -64,12 +64,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated UserVO userVO, BindingResult bindingResult, Model model) throws IOException {
+    public @ResponseBody ResponseEntity update(@ModelAttribute @Validated UserVO userVO) throws IOException {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-        
         User user = userVO.getUser();
         normalizeEntityRequest.addFieldsToUpdate(user);
         service.register(user);
@@ -78,7 +74,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/credentials", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity updateCredentials(@ModelAttribute User user, Model model) throws IOException {
+    public @ResponseBody ResponseEntity updateCredentials(@ModelAttribute User user) throws IOException {
 
         normalizeEntityRequest.addFieldsToUpdate(user);
         service.register(user);

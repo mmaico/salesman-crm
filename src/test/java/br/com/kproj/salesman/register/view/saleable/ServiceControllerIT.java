@@ -77,7 +77,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
                 .andReturn().getModelAndView();
 
 
-        assertThat(modelAndView.getViewName(), is("/saleable/services/list-items"));
+        assertThat(modelAndView.getViewName(), is("/saleables/services/serviceList"));
     }
 
 

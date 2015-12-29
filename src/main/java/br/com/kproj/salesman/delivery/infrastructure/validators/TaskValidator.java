@@ -31,7 +31,7 @@ public class TaskValidator implements Validator, InitializingBean {
 
         if (task.isNew()) {
              if (task.getDeadline().before(new Date())) {
-                 errors.reject("deadline", "task.deadline.invalid");
+                 errors.rejectValue("deadline", "task.deadline.invalid");
              }
         }
 

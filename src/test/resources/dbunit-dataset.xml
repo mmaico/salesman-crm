@@ -41,7 +41,7 @@
     <operation_region id="3" name="MG"/>
     <operation_region id="4" name="RS"/>
 
-    <business_proposal id="1" client_id="1" user_id="1" operation_region_id="1"/>
+    <business_proposal id="1" client_id="1" seller_id="1" operation_region_id="1"/>
 
     <proposal_saleable_item id="1" saleable_id="2" price="400.00" quantity="3" business_proposal_id="1" />
     <proposal_saleable_item id="2" saleable_id="1" price="100.00" quantity="2" business_proposal_id="1" />
@@ -50,7 +50,7 @@
     <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
 
 
-    <sales_order id="1" person_id="1" user_id="1" proposal_id="1" operation_region_id="2" delivery_forecast="2016-03-15 00:00:00"/>
+    <sales_order id="1" person_id="1" seller_id="1" proposal_id="1" operation_region_id="2" delivery_forecast="2016-03-15 00:00:00"/>
 
     <sales_order_item id="1" saleable_id="1" price="10.00" quantity="2" sales_order_id="1"/>
     <sales_order_item id="2" saleable_id="2" price="5.00" quantity="1" sales_order_id="1"/>
@@ -62,7 +62,7 @@
     <timelines id="3" business_proposal_id="1"/>
     <timelines id="4" contact_id="2"/>
 
-    <sales_order id="2" person_id="2" user_id="1" proposal_id="1" operation_region_id="3"/>
+    <sales_order id="2" person_id="2" seller_id="1" proposal_id="1" operation_region_id="3"/>
 
     <sales_order_item id="3" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="2"/>
     <sales_order_item id="4" saleable_id="2"  price="13.00" original_price="5.00" quantity="1" sales_order_id="2"/>

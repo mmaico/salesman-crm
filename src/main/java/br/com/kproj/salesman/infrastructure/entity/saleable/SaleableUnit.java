@@ -33,7 +33,7 @@ public class SaleableUnit extends Identifiable {
     @NotNull
     private Boolean active = Boolean.TRUE;
 
-    @NotNull
+    @NotNull(message = "saleable.price.must.have.value")
     @Min(value = 0, message = "saleable.price.must.be.greater.than.zero")
     @NumberFormat(pattern="###.###,##")
     private BigDecimal price;

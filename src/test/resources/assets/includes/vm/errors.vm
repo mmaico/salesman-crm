@@ -1,0 +1,3 @@
+#foreach($error in $errors)
+$messagei18n.get($error)
+#end

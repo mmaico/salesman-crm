@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.domain.contract.AddressDomainService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -37,15 +38,16 @@ public class AddressApplicationImplTest {
 
     @Test
     public void shouldSaveANewAddress() {
-        Client personMocked = Mockito.mock(Client.class);
+        Client clientMocked = Mockito.mock(Client.class);
         Person personLoadedMocked = Mockito.mock(Person.class);
         Address address = Mockito.mock(Address.class);
 
-        given(personMocked.getId()).willReturn(2l);
+        given(clientMocked.getId()).willReturn(2l);
         given(clientApplication.getOne(2l)).willReturn(Optional.of(personLoadedMocked));
         given(address.isNew()).willReturn(Boolean.TRUE);
+        given(clientMocked.to()).willReturn(personLoadedMocked);
 
-        service.register(address, personMocked);
+        service.register(address, clientMocked);
 
         verify(address).setPerson(personLoadedMocked);
         verify(addressDomainService).prepareToSave(address);
@@ -59,6 +61,7 @@ public class AddressApplicationImplTest {
         Person personLoadedMocked = null;
         Address address = new Address();
 
+
         given(personMocked.getId()).willReturn(2l);
         given(clientApplication.getOne(2l)).willReturn(Optional.ofNullable(personLoadedMocked));
 
@@ -68,15 +71,21 @@ public class AddressApplicationImplTest {
 
     @Test
     public void shouldUpdateAddress() {
-        Client personMocked = Mockito.mock(Client.class);
-        Address address = new Address();
-        address.setId(1l);
+        Client clientMocked = Mockito.mock(Client.class);
+        Person personLoadedMocked = Mockito.mock(Person.class);
+        Address address = Mockito.mock(Address.class);
         Address addressLoaded = Mockito.mock(Address.class);
 
+        given(clientMocked.getId()).willReturn(2l);
+        given(clientApplication.getOne(2l)).willReturn(Optional.of(personLoadedMocked));
+        given(address.isNew()).willReturn(Boolean.FALSE);
+        given(address.getId()).willReturn(1l);
         given(addressRepository.findOne(1l)).willReturn(addressLoaded);
+        given(clientMocked.to()).willReturn(personLoadedMocked);
 
-        service.register(address, personMocked);
+        service.register(address, clientMocked);
 
+        verify(address).setPerson(personLoadedMocked);
         verify(addressDomainService).prepareToSave(address);
         verify(addressRepository).save(addressLoaded);
     }

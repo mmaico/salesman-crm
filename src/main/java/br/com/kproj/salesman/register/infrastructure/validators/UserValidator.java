@@ -41,8 +41,8 @@ public class UserValidator implements Validator, InitializingBean {
         else {
             constraints = constraints.stream()
                     .filter(e ->
-                            !e.getMessageTemplate().equals("user.password")
-                            && !e.getMessageTemplate().equals("user.login"))
+                            !e.getMessageTemplate().equals("user.password.cannot.be.null")
+                            && !e.getMessageTemplate().equals("user.login.cannot.be.null"))
                     .collect(Collectors.toSet());
         }
         
