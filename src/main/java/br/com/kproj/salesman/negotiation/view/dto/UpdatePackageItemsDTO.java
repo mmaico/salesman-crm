@@ -2,10 +2,12 @@ package br.com.kproj.salesman.negotiation.view.dto;
 
 
 import br.com.kproj.salesman.negotiation.view.dto.session.ProposalPackageItemsDTO;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,14 +17,14 @@ public class UpdatePackageItemsDTO implements Serializable {
     private Integer quantity = 1;
     private BigDecimal price = BigDecimal.ZERO;
 
-    private Set<ProposalPackageItemsDTO> packageItems = Sets.newHashSet();
+    private List<ProposalPackageItemsDTO> packageItems = Lists.newArrayList();
 
 
-    public Set<ProposalPackageItemsDTO> getPackageItems() {
+    public List<ProposalPackageItemsDTO> getPackageItems() {
         return packageItems;
     }
 
-    public void setPackageItems(Set<ProposalPackageItemsDTO> packageItems) {
+    public void setPackageItems(List<ProposalPackageItemsDTO> packageItems) {
         this.packageItems = packageItems;
     }
 
@@ -48,26 +50,6 @@ public class UpdatePackageItemsDTO implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public void addPackageItemDTO(Long saleableId, Integer quantity, BigDecimal price) {
-        ProposalPackageItemsDTO item = new ProposalPackageItemsDTO();
-        item.setPrice(price);
-        item.setQuantity(quantity);
-        item.setSaleableId(saleableId);
-
-        packageItems.add(item);
-    }
-
-    public void updateItem(ProposalPackageItemsDTO item) {
-        if (packageItems.contains(item)) {
-            Optional<ProposalPackageItemsDTO> itemSelected = packageItems.stream().filter(itemFiltered
-                        -> itemFiltered.equals(item)).findFirst();
-
-            itemSelected.get().setPrice(item.getPrice());
-            itemSelected.get().setQuantity(item.getQuantity());
-            itemSelected.get().setSelected(item.getSelected());
-        }
     }
 
     @Override

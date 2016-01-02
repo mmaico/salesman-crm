@@ -1,12 +1,8 @@
 package br.com.kproj.salesman.negotiation.view.dto;
 
 
-import br.com.kproj.salesman.negotiation.view.dto.session.ProposalPackageItemsDTO;
-import com.google.common.collect.Lists;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class UpdateQuantityPriceItemsDTO implements Serializable {
 
@@ -14,16 +10,6 @@ public class UpdateQuantityPriceItemsDTO implements Serializable {
     private Integer quantity = 1;
     private BigDecimal price = BigDecimal.ZERO;
 
-    private List<ProposalPackageItemsDTO> packageItems = Lists.newArrayList();
-
-
-    public List<ProposalPackageItemsDTO> getPackageItems() {
-        return packageItems;
-    }
-
-    public void setPackageItems(List<ProposalPackageItemsDTO> packageItems) {
-        this.packageItems = packageItems;
-    }
 
     public Long getSaleableId() {
         return saleableId;

@@ -29,81 +29,11 @@ import java.util.Optional;
 @RestController
 public class PrepareItemsController {
 
-    @Autowired
-    private NegotiationApplication service;
-
-    @Autowired
-    private NormalizeEntityRequest normalizeEntityRequest;
-
-    @Autowired
-    private BusinessProposalDTOValidator validator;
-
-    @Autowired
-    private ClientApplication clientApplication;
-
-    @Autowired
-    private SaleableApplication saleableApplication;
 
     @Autowired
     private ProposalSaleablesDTO proposalSaleablesDTO;
 
-    @InitBinder(value = "businessProposalDTO")
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-    }
 
-    @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
-                             BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-
-        BusinessProposal result = businessProposalDTO.get();
-
-        normalizeEntityRequest.doNestedReference(result);
-        BusinessProposal newBusinessProposal = service.register(result);
-
-        model.addAttribute("proposal", newBusinessProposal);
-        return new ModelAndView("proposal");
-    }
-
-    @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
-    public ModelAndView update(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
-                             BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
-
-        BusinessProposal result = businessProposalDTO.get();
-        normalizeEntityRequest.addFieldsToUpdate(result);
-        BusinessProposal proposal = service.register(result);
-
-        model.addAttribute("proposal", proposal);
-        return new ModelAndView("proposal");
-    }
-
-    @RequestMapping(value="/proposals/persons/{idPerson}")
-    public ModelAndView newProposal(Model model, @PathVariable Long idPerson) {
-
-        Optional<Person> clientOptional  = clientApplication.getOne(idPerson);
-
-        if (!clientOptional.isPresent()) {
-            return new ModelAndView("redirect:/clients/list");
-        }
-
-        Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
-
-        proposalSaleablesDTO.clear();
-
-        model.addAttribute("saleables", saleable);
-        model.addAttribute("client", clientOptional.get());
-        return new ModelAndView("/clients/proposal/newProposal");
-    }
-
-    //Update saleables items
 
     @RequestMapping(value="/proposals/select-saleables", method = RequestMethod.POST)
     public ModelAndView addItem(@ModelAttribute UpdatePackageItemsDTO item, Model model) {
