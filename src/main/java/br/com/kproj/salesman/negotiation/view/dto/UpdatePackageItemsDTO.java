@@ -1,19 +1,15 @@
-package br.com.kproj.salesman.negotiation.view.dto.session;
+package br.com.kproj.salesman.negotiation.view.dto;
 
 
-import br.com.kproj.salesman.infrastructure.helpers.NumberHelper;
-import br.com.kproj.salesman.negotiation.view.dto.UpdateQuantityPriceItemsDTO;
+import br.com.kproj.salesman.negotiation.view.dto.session.ProposalPackageItemsDTO;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Set;
 
-import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNegativeNumber;
-
-public class ProposalSaleableItemDTO implements Serializable {
+public class UpdatePackageItemsDTO implements Serializable {
 
     private Long saleableId;
     private Integer quantity = 1;
@@ -21,10 +17,6 @@ public class ProposalSaleableItemDTO implements Serializable {
 
     private Set<ProposalPackageItemsDTO> packageItems = Sets.newHashSet();
 
-    public ProposalSaleableItemDTO(Long saleableId) {
-        this.saleableId = saleableId;
-    }
-    public ProposalSaleableItemDTO() {}
 
     public Set<ProposalPackageItemsDTO> getPackageItems() {
         return packageItems;
@@ -78,18 +70,12 @@ public class ProposalSaleableItemDTO implements Serializable {
         }
     }
 
-    public void updateRootItem(UpdateQuantityPriceItemsDTO item) {
-
-        this.price = !isNegativeNumber(item.getPrice()) ? item.getPrice(): this.price;
-        this.quantity = item.getQuantity() >= 0 ? item.getQuantity() : this.quantity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProposalSaleableItemDTO that = (ProposalSaleableItemDTO) o;
+        UpdatePackageItemsDTO that = (UpdatePackageItemsDTO) o;
 
         return saleableId != null ? saleableId.equals(that.saleableId) : that.saleableId == null;
 

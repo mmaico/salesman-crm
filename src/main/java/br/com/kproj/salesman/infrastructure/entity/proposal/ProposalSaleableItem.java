@@ -25,7 +25,6 @@ public class ProposalSaleableItem extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
-    @NotNull(message = "proposal.saleable.is.invalid")
     private SaleableUnit saleableUnit;
 
     @ManyToOne
@@ -35,6 +34,7 @@ public class ProposalSaleableItem extends Identifiable {
     @NotNull(message = "proposal.saleable.price.is.invalid")
     private BigDecimal price;
 
+    @NotNull(message = "proposal.saleable.original.price.is.invalid")
     private BigDecimal originalPrice;
 
     @NotNull
@@ -103,5 +103,13 @@ public class ProposalSaleableItem extends Identifiable {
 
     public void setBusinessProposal(BusinessProposal businessProposal) {
         this.businessProposal = businessProposal;
+    }
+
+    public Boolean hasPackage() {
+        return saleableUnit == null && salePackage != null;
+    }
+
+    public Boolean hasSaleableWithPackage() {
+        return saleableUnit != null && salePackage != null;
     }
 }

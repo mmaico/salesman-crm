@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.COMPANY_CLIENT;
 import static br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum.INDIVIDUAL_CLIENT;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 
 @Service

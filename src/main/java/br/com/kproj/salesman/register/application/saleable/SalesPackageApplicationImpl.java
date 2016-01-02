@@ -19,7 +19,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static com.google.common.collect.Sets.newHashSet;
 
-@Service
+@Service("salePackageApplication")
 public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackage> implements SalePackageApplication {
 
     @Autowired

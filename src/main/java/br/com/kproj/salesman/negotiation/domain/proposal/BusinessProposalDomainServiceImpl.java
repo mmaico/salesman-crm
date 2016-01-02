@@ -3,6 +3,7 @@ package br.com.kproj.salesman.negotiation.domain.proposal;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
@@ -15,8 +16,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Service
 public class BusinessProposalDomainServiceImpl implements BusinessProposalDomainService {
@@ -37,6 +39,8 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     {
         persistRules.put(description("proposal.verify.valid.client"), (bp) -> !(!(bp).getClient().isNew() && clientReposiory.exists(bp.getClient().getId())));
         persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(!(bp).getSeller().isNew() && userRepository.exists(bp.getSeller().getId())));
+        persistRules.put(description("proposal.verify.not.empty.products"), (bp) -> isEmptySafe(bp.getSaleableItems()));
+        persistRules.put(description("proposal.verify.not.empty.payment"), (bp) -> isEmptySafe(bp.getPaymentItems()));
         persistRules.put(description("proposal.verify.valid.product.items"), (bp) -> !productIService.verifyRules(bp));
         persistRules.put(description("proposal.verify.valid.payment.items"), (bp) -> !paymentService.verifyRules(bp));
     }

@@ -15,25 +15,25 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.*;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Service
 public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBusinessRules {
 
     private Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
     {
-        persistRules.put(description("proposal.verify.payment.invalid.total"),
+        persistRules.put(description("proposal.has.payment.with.sale.with.total.zero"),
                 (bp) -> !isEmptySafe(bp.getPaymentItems()) && isNumberEqualsZero(bp.getTotal()));
         
-        persistRules.put(description("proposal.verify.payment.invalid.payment"),
+        persistRules.put(description("proposal.no.payment.to.sale.with.total.greater.zero"),
                 (bp) -> isEmptySafe(bp.getPaymentItems()) && isNumberGreaterThanZero(bp.getTotal()));
         
         persistRules.put(description("proposal.verify.total.payment.is.diferent.from.total.products"),
                 (bp) -> !isEquals(bp.getTotal(), bp.getTotalToPay()));
         
-        persistRules.put(description("proposal.verify.payment.has.item.with.value.zero"),
+        persistRules.put(description("proposal.verify.payment.has.item.with.value.less.than.zero"),
                 (bp) -> bp.getPaymentItems() != null && !bp.getPaymentItems().stream()
-    			.filter(e -> isNumberEqualsZero(e.getValue())).collect(Collectors.toList()).isEmpty());
+    			.filter(e -> isNegativeNumber(e.getValue())).collect(Collectors.toList()).isEmpty());
 
         persistRules.put(description("proposal.verify.payment.has.invalid.due.date"),
                      (bp) -> bp.getPaymentItems() == null ||!bp.getPaymentItems().stream()

@@ -34,7 +34,7 @@ public class PackageBusinessRulesImpl implements PackageBusinessRules {
                 .collect(Collectors.toSet());
 
         if (packagesInSaleable.size() > salePackages.size()) {
-            violations.add("invalid.quantity.packages.inlist.with.packages.insaleable");
+            violations.add("package.invalid.quantity.package.in.list.is.distinct.in.products");
             hasErrors(violations).throwing(ValidationException.class);
         }
 

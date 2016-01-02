@@ -43,8 +43,8 @@
 
     <business_proposal id="1" client_id="1" seller_id="1" operation_region_id="1"/>
 
-    <proposal_saleable_item id="1" saleable_id="2" price="400.00" quantity="3" business_proposal_id="1" />
-    <proposal_saleable_item id="2" saleable_id="1" price="100.00" quantity="2" business_proposal_id="1" />
+    <proposal_saleable_item id="1" saleable_id="2" originalPrice="5.00" price="400.00" quantity="3" business_proposal_id="1" />
+    <proposal_saleable_item id="2" saleable_id="1" originalPrice="5.00" price="100.00" quantity="2" business_proposal_id="1" />
 
     <proposal_payment_item id="1" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>

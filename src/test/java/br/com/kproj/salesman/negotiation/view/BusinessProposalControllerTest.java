@@ -57,8 +57,7 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
                         .param("items[1].quantity", "1")
                         .param("proposal.paymentItems[0].dueDate", "10/02/2017")
                         .param("proposal.paymentItems[0].value", "900.00")
-        ).andExpect(status().isOk())
-                .andExpect(view().name("proposal"));
+        ).andExpect(status().isOk());
 
     }
 

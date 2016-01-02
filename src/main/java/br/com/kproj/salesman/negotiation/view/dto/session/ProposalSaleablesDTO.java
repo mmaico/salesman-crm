@@ -4,6 +4,8 @@ package br.com.kproj.salesman.negotiation.view.dto.session;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableType;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.negotiation.view.dto.UpdatePackageItemsDTO;
+import br.com.kproj.salesman.negotiation.view.dto.UpdateQuantityPriceItemsDTO;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,7 @@ public class ProposalSaleablesDTO implements Serializable {
         }
     }
 
-    public void mergeItems(ProposalSaleableItemDTO item) {
+    public void mergeItems(UpdatePackageItemsDTO item) {
 
         Optional<SaleableUnit> result = application.getOne(item.getSaleableId());
         if (result.isPresent()) {
@@ -69,6 +71,22 @@ public class ProposalSaleablesDTO implements Serializable {
         }
     }
 
+    public void updateRootItem(UpdateQuantityPriceItemsDTO dto) {
+        Optional<SaleableUnit> result = application.getOne(dto.getSaleableId());
+
+        if(result.isPresent()) {
+            Optional<ProposalSaleableItemDTO> itemFound = proposalSaleableItemDTOs.stream().filter(item ->
+                    item.getSaleableId().equals(dto.getSaleableId())).findFirst();
+
+            if(itemFound.isPresent()) {
+               itemFound.get().updateRootItem(dto);
+            }
+        }
+    }
+
+    public void deleteRootItem(Long saleableId) {
+        this.proposalSaleableItemDTOs.remove(new ProposalSaleableItemDTO(saleableId));
+    }
     public Optional<ProposalSaleableItemDTO> getByPackageId(Long packageId) {
         return this.proposalSaleableItemDTOs.stream().filter(dto -> packageId.equals(dto.getSaleableId())).findFirst();
     }

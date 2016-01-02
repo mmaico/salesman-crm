@@ -40,9 +40,9 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final ListPath<ProposalSaleableItem, QProposalSaleableItem> saleableItems = this.<ProposalSaleableItem, QProposalSaleableItem>createList("saleableItems", ProposalSaleableItem.class, QProposalSaleableItem.class, PathInits.DIRECT2);
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature.class);
+    public final br.com.kproj.salesman.infrastructure.entity.QUser seller;
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser vendor;
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature.class);
 
     public QBusinessProposal(String variable) {
         this(BusinessProposal.class, forVariable(variable), INITS);
@@ -64,7 +64,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
-        this.vendor = inits.isInitialized("vendor") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("vendor"), inits.get("vendor")) : null;
+        this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("seller"), inits.get("seller")) : null;
     }
 
 }

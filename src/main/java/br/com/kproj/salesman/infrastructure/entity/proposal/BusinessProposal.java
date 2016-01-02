@@ -1,10 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
+import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -49,11 +51,9 @@ public class BusinessProposal extends Identifiable {
     private String introduction;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
-    @Valid
     private List<ProposalSaleableItem> saleableItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
-    @Valid
     private List<ProposalPaymentItem> paymentItems;
 
     @ManyToOne
@@ -86,12 +86,9 @@ public class BusinessProposal extends Identifiable {
             return BigDecimal.ZERO;
         }
 
-        BigDecimal total = this.getSaleableItems()
-                .stream()
-                .map(e -> e.getPrice().multiply(new BigDecimal(e.getQuantity())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        ProposalCalcTotalSaleableItems calculator = ServiceLocator.getBean(ProposalCalcTotalSaleableItems.class);
 
-        return total;
+        return calculator.getTotal(this.getSaleableItems());
     }
 
     public BigDecimal getTotalToPay() {

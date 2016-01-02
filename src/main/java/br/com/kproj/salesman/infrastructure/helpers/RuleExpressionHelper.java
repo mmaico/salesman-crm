@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.infrastructure.helpers;
+package br.com.kproj.salesman.infrastructure.helpers;
 
 
 public class RuleExpressionHelper {

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("saleableApplication")
 public class SaleableApplicationImpl extends BaseModelServiceImpl<SaleableUnit> implements SaleableApplication {
 
 

@@ -16,6 +16,9 @@ public class SalePackage extends SaleableUnit {
             inverseJoinColumns=@JoinColumn(name="saleable_id"))
     private List<SaleableUnit> saleableUnits;
 
+    @Column(name="price_by_products")
+    private Boolean priceByProducts = Boolean.FALSE;
+
     public SalePackage(Long id) {
         super(id);
         setType(SaleableType.PACKAGE);
@@ -32,6 +35,18 @@ public class SalePackage extends SaleableUnit {
 
     public void setSaleableUnits(List<SaleableUnit> saleableUnits) {
         this.saleableUnits = saleableUnits;
+    }
+
+    public Boolean getPriceByProducts() {
+        return priceByProducts;
+    }
+
+    public Boolean calcPriceByProducts() {
+        return priceByProducts == null ? Boolean.FALSE : priceByProducts;
+    }
+
+    public void setPriceByProducts(Boolean priceByProducts) {
+        this.priceByProducts = priceByProducts;
     }
 
     public void addSaleableUnit(SaleableUnit saleableUnit) {

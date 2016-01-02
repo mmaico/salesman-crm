@@ -1,9 +1,7 @@
 package br.com.kproj.salesman.delivery.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
 import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Service
 public class ChecklistTemplateDomainServiceImpl implements ChecklistTemplateDomainService {

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
-import static br.com.kproj.salesman.negotiation.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Service
 public class SaleableUnitDomainServiceImpl implements SaleableUnitDomainService {

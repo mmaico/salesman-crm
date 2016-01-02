@@ -8,18 +8,24 @@ import br.com.kproj.salesman.negotiation.domain.proposal.saleable.SaleableItemPe
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.PackageBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleablePersistBusinessRules;
 import com.google.common.collect.Lists;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder.create;
 import static br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder.createSaleableUnit;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -34,6 +40,7 @@ public class SaleableItemPersistBusinessRulesImplTest {
 
     @Mock
     private PackageBusinessRules packageBusinessRules;
+
 
 
     @Test
@@ -52,32 +59,49 @@ public class SaleableItemPersistBusinessRulesImplTest {
         assertThat(result, Matchers.is(Boolean.TRUE));
     }
 
-    @Test(expected = ValidationException.class)
-    public void shouldReturnFalseWhenInvalidSaleable() {
-        BusinessProposal businessProposal = getProposalStub();
-
-        given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(0).getSaleableUnit()))
-                .willReturn(Boolean.FALSE);
-
-        given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(1).getSaleableUnit()))
-                .willReturn(Boolean.TRUE);
-
-        rules.verifyRules(businessProposal);
-
-    }
-
-    @Test(expected = ValidationException.class)
+    @Test
     public void shouldReturnFalseWhenNegativePrice() {
+        Set<String> messageErrorsExpected = null;
         BusinessProposal businessProposal = getProposalStub();
         businessProposal.getSaleableItems().get(0).setPrice(new BigDecimal("-1"));
 
         given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(0).getSaleableUnit()))
-                .willReturn(Boolean.FALSE);
+                .willReturn(Boolean.TRUE);
 
         given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(1).getSaleableUnit()))
-                .willReturn(Boolean.FALSE);
+                .willReturn(Boolean.TRUE);
 
-        rules.verifyRules(businessProposal);
+        try {
+            rules.verifyRules(businessProposal);
+        } catch(ValidationException e) {
+            messageErrorsExpected = e.getErrors();
+        }
+
+        MatcherAssert.assertThat(messageErrorsExpected, hasSize(1));
+        MatcherAssert.assertThat(messageErrorsExpected.contains("proposal.item.wihtout.price"), is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenInvalidOriginalPrice() {
+
+        Set<String> messageErrorsExpected = null;
+        BusinessProposal businessProposal = getProposalStub();
+        businessProposal.getSaleableItems().get(0).setOriginalPrice(null);
+
+        given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(0).getSaleableUnit()))
+                .willReturn(Boolean.TRUE);
+
+        given(saleablePersistBusinessRules.verifyRules(businessProposal.getSaleableItems().get(1).getSaleableUnit()))
+                .willReturn(Boolean.TRUE);
+
+        try {
+            rules.verifyRules(businessProposal);
+        } catch(ValidationException e) {
+            messageErrorsExpected = e.getErrors();
+        }
+
+        MatcherAssert.assertThat(messageErrorsExpected, hasSize(1));
+        MatcherAssert.assertThat(messageErrorsExpected.contains("proposal.item.invalid.original.price"), is(Boolean.TRUE));
     }
 
     @Test(expected = ValidationException.class)
@@ -102,12 +126,14 @@ public class SaleableItemPersistBusinessRulesImplTest {
         ProposalSaleableItem proposalSaleableOne = create()
                 .withSaleable(saleableUnitOne)
                 .withQuantity(2)
-                .withPrice(BigDecimal.TEN).build();
+                .withPrice(BigDecimal.TEN)
+                .withOriginalPrice(BigDecimal.TEN).build();
 
         ProposalSaleableItem proposalSaleableTwo = create()
                 .withSaleable(saleableUnitTwo)
                 .withQuantity(1)
-                .withPrice(BigDecimal.TEN).build();
+                .withPrice(BigDecimal.TEN)
+                .withOriginalPrice(BigDecimal.TEN).build();
 
         businessProposal.setSaleableItems(Lists.newArrayList(proposalSaleableOne, proposalSaleableTwo));
 

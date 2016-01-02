@@ -3,7 +3,6 @@ package br.com.kproj.salesman.negotiation.view;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -28,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @RestController
-public class BusinessProposalController {
+public class PrepareItemsController {
 
     @Autowired
     private NegotiationApplication service;
@@ -54,32 +53,36 @@ public class BusinessProposalController {
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
-    public @ResponseBody
-    BusinessProposal save(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
-                     BindingResult bindingResult) {
+    public ModelAndView save(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
+                             BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposal result = businessProposalDTO.get(proposalSaleablesDTO);
+        BusinessProposal result = businessProposalDTO.get();
 
         normalizeEntityRequest.doNestedReference(result);
-        return service.register(result);
+        BusinessProposal newBusinessProposal = service.register(result);
 
+        model.addAttribute("proposal", newBusinessProposal);
+        return new ModelAndView("proposal");
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
-                             BindingResult bindingResult) {
+    public ModelAndView update(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
+                             BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposal result = businessProposalDTO.get(proposalSaleablesDTO);
+        BusinessProposal result = businessProposalDTO.get();
         normalizeEntityRequest.addFieldsToUpdate(result);
-        service.register(result);
+        BusinessProposal proposal = service.register(result);
+
+        model.addAttribute("proposal", proposal);
+        return new ModelAndView("proposal");
     }
 
     @RequestMapping(value="/proposals/persons/{idPerson}")
@@ -100,4 +103,49 @@ public class BusinessProposalController {
         return new ModelAndView("/clients/proposal/newProposal");
     }
 
+    //Update saleables items
+
+    @RequestMapping(value="/proposals/select-saleables", method = RequestMethod.POST)
+    public ModelAndView addItem(@ModelAttribute UpdatePackageItemsDTO item, Model model) {
+
+        proposalSaleablesDTO.mergeItems(item);
+
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
+    }
+
+    @RequestMapping(value="/proposals/add-saleable/{saleableId}", method = RequestMethod.PUT)
+    public ModelAndView addSaleable(@PathVariable Long saleableId, Model model) {
+
+        proposalSaleablesDTO.add(SaleableUnitBuilder.createSaleableUnit(saleableId).build());
+
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
+    }
+
+    @RequestMapping(value="/proposals/package/{packageId}/items", method = RequestMethod.GET)
+    public ModelAndView showPackageItems(@PathVariable Long packageId, Model model) {
+
+        Optional<ProposalSaleableItemDTO> result = proposalSaleablesDTO.getByPackageId(packageId);
+
+        model.addAttribute("proposalSaleableItem", result.isPresent() ? result.get() : null);
+        return new ModelAndView("/clients/proposal/modal/select-items-modal");
+    }
+
+    @RequestMapping(value="/proposals/saleables/{saleableId}", method = RequestMethod.PUT)
+    public ModelAndView updateItemSelected(@ModelAttribute UpdateQuantityPriceItemsDTO dto,
+                                           @PathVariable Long saleableId, Model model) {
+        dto.setSaleableId(saleableId);
+        proposalSaleablesDTO.updateRootItem(dto);
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
+    }
+
+    @RequestMapping(value="/proposals/saleables/{saleableId}", method = RequestMethod.DELETE)
+    public ModelAndView deleteItem(@PathVariable Long saleableId, Model model) {
+
+        proposalSaleablesDTO.deleteRootItem(saleableId);
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        return new ModelAndView("/clients/proposal/saleables-items");
+    }
 }

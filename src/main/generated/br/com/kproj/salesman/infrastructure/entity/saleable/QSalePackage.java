@@ -37,6 +37,8 @@ public class QSalePackage extends EntityPathBase<SalePackage> {
     //inherited
     public final NumberPath<java.math.BigDecimal> price = _super.price;
 
+    public final BooleanPath priceByProducts = createBoolean("priceByProducts");
+
     //inherited
     public final NumberPath<java.math.BigDecimal> priceCost = _super.priceCost;
 
