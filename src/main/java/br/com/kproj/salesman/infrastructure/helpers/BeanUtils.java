@@ -272,7 +272,7 @@ public class BeanUtils extends BeanUtilsBean {
 			}
 		} else {
 			Converter converter = getConvertUtils().lookup(type);
-			if (converter != null) {
+			if (converter != null && value != null) {
 				log.trace("        USING CONVERTER " + converter);
 				value = converter.convert(type, value);
 			}

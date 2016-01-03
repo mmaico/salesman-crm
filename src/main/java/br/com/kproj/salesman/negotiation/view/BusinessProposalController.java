@@ -1,19 +1,14 @@
 package br.com.kproj.salesman.negotiation.view;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
-import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalDTOValidator;
-import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalDTO;
-import br.com.kproj.salesman.negotiation.view.dto.UpdatePackageItemsDTO;
-import br.com.kproj.salesman.negotiation.view.dto.UpdateQuantityPriceItemsDTO;
-import br.com.kproj.salesman.negotiation.view.dto.session.ProposalSaleableItemDTO;
+import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
+import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalRequestMergeHelper;
 import br.com.kproj.salesman.negotiation.view.dto.session.ProposalSaleablesDTO;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
@@ -37,7 +32,7 @@ public class BusinessProposalController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
     @Autowired
-    private BusinessProposalDTOValidator validator;
+    private BusinessProposalValidator validator;
 
     @Autowired
     private ClientApplication clientApplication;
@@ -48,38 +43,58 @@ public class BusinessProposalController {
     @Autowired
     private ProposalSaleablesDTO proposalSaleablesDTO;
 
-    @InitBinder(value = "businessProposalDTO")
+    @InitBinder(value = "businessProposal")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
     public @ResponseBody
-    BusinessProposal save(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
-                     BindingResult bindingResult) {
+    BusinessProposal save(@ModelAttribute @Validated BusinessProposal businessProposal, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposal result = businessProposalDTO.get(proposalSaleablesDTO);
+        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposal);
 
-        normalizeEntityRequest.doNestedReference(result);
-        return service.register(result);
+        normalizeEntityRequest.doNestedReference(businessProposal);
+        return service.register(businessProposal);
 
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute @Validated BusinessProposalDTO businessProposalDTO,
+    public @ResponseBody void update(@ModelAttribute @Validated BusinessProposal businessProposal,
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposal result = businessProposalDTO.get(proposalSaleablesDTO);
-        normalizeEntityRequest.addFieldsToUpdate(result);
-        service.register(result);
+        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposal);
+
+        normalizeEntityRequest.addFieldsToUpdate(businessProposal);
+        businessProposal.getFields().remove("paymentItems");
+        service.register(businessProposal);
+    }
+
+    @RequestMapping(value = "/proposals/{proposalId}", method = RequestMethod.GET)
+    public ModelAndView get(@PathVariable Long proposalId, Model model) {
+
+        Optional<BusinessProposal> result = service.getOne(proposalId);
+
+        proposalSaleablesDTO.clear();
+        proposalSaleablesDTO.load(result.get().getSaleableItems());
+
+        Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+
+
+        model.addAttribute("proposalSaleables", proposalSaleablesDTO);
+        model.addAttribute("proposal", result.get());
+        model.addAttribute("client", result.get().getClient());
+        model.addAttribute("saleables", saleable);
+        return new ModelAndView("/clients/proposal/editProposal");
+
     }
 
     @RequestMapping(value="/proposals/persons/{idPerson}")

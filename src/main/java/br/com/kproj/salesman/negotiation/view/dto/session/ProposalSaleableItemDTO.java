@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.negotiation.view.dto.session;
 
 
+import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.helpers.NumberHelper;
 import br.com.kproj.salesman.negotiation.view.dto.UpdateQuantityPriceItemsDTO;
 import com.google.common.collect.Sets;
@@ -14,7 +15,7 @@ import java.util.Set;
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNegativeNumber;
 
 public class ProposalSaleableItemDTO implements Serializable {
-
+    private Long id;
     private Long saleableId;
     private Integer quantity = 1;
     private BigDecimal price = BigDecimal.ZERO;
@@ -67,6 +68,16 @@ public class ProposalSaleableItemDTO implements Serializable {
         packageItems.add(item);
     }
 
+    public void addPackageItemDTO(Long id, Long saleableId, Integer quantity, BigDecimal price) {
+        ProposalPackageItemsDTO item = new ProposalPackageItemsDTO();
+        item.setId(id);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+        item.setSaleableId(saleableId);
+
+        packageItems.add(item);
+    }
+
     public void updateItem(ProposalPackageItemsDTO item) {
         if (packageItems.contains(item)) {
             Optional<ProposalPackageItemsDTO> itemSelected = packageItems.stream().filter(itemFiltered
@@ -84,6 +95,14 @@ public class ProposalSaleableItemDTO implements Serializable {
         this.quantity = item.getQuantity() >= 0 ? item.getQuantity() : this.quantity;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +112,21 @@ public class ProposalSaleableItemDTO implements Serializable {
 
         return saleableId != null ? saleableId.equals(that.saleableId) : that.saleableId == null;
 
+    }
+
+    public static ProposalSaleableItemDTO create(ProposalSaleableItem item) {
+        ProposalSaleableItemDTO dto = new ProposalSaleableItemDTO();
+        dto.setId(item.getId());
+        dto.setPrice(item.getPrice());
+        dto.setQuantity(item.getQuantity());
+
+        if (item.hasPackage()) {
+            dto.setSaleableId(item.getSalePackage().getId());
+        } else {
+            dto.setSaleableId(item.getSaleableUnit().getId());
+        }
+
+        return dto;
     }
 
     @Override

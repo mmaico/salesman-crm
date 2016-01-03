@@ -6,8 +6,10 @@ import java.util.Date;
 
 public class InstallmentDTO {
 
+    private Long id;
     private Date dueDate;
     private BigDecimal value;
+    private String observation;
 
     public InstallmentDTO(){}
 
@@ -30,5 +32,21 @@ public class InstallmentDTO {
 
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 }

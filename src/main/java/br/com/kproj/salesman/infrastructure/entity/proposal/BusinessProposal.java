@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
@@ -177,6 +178,27 @@ public class BusinessProposal extends Identifiable {
 
     public void setTemperature(SaleTemperature temperature) {
         this.temperature = temperature;
+    }
+
+    public void updateSaleableItem(ProposalSaleableItem saleableWithNewValues) {
+        Optional<ProposalSaleableItem> result = this.getSaleableItems()
+                .stream().filter(item -> item.getId() != null && item.getId().equals(saleableWithNewValues.getId())).findFirst();
+
+        if(result.isPresent()) {
+            ProposalSaleableItem oldItem = result.get();
+            oldItem.setPrice(saleableWithNewValues.getPrice());
+            oldItem.setQuantity(saleableWithNewValues.getQuantity());
+        }
+    }
+
+    public void addNewProposalPaymentItem(ProposalPaymentItem item) {
+        item.setBusinessProposal(this);
+        this.getPaymentItems().add(item);
+    }
+
+    public void addNewProposalSaleableItem(ProposalSaleableItem saleableItem) {
+        saleableItem.setBusinessProposal(this);
+        this.getSaleableItems().add(saleableItem);
     }
 
 

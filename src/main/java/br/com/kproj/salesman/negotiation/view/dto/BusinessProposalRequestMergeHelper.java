@@ -18,41 +18,15 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class BusinessProposalDTO {
-
-    private BusinessProposal proposal = new BusinessProposal();
-
-    private List<SaleableItemDTO> items = Lists.newArrayList();
-
-    public List<SaleableItemDTO> getItems() {
-        return items;
-    }
-
-    public void setItems(List<SaleableItemDTO> items) {
-        this.items = items;
-    }
-
-    public BusinessProposal get() {
-
-        List<ProposalSaleableItem> saleableItems = Lists.newArrayList();
-
-        for (SaleableItemDTO dto: items) {
-            ProposalSaleableItem item = ProposalSaleableItemBuilder.create()
-                    .withPackage(dto.getIpackage())
-                    .withPrice(dto.getPrice())
-                    .withQuantity(dto.getQuantity())
-                    .withSaleable(dto.getSaleableUnit()).build();
-
-            saleableItems.add(item);
-        }
-
-        proposal.setSaleableItems(saleableItems);
-
-        return proposal;
-    }
+public class BusinessProposalRequestMergeHelper {
 
 
-    public BusinessProposal get(ProposalSaleablesDTO dto) {
+
+
+
+
+
+    public static BusinessProposal merge(ProposalSaleablesDTO dto, BusinessProposal proposal) {
 
         List<ProposalSaleableItem> saleableItems = Lists.newArrayList();
         SaleableApplication saleableApplication = ServiceLocator.getBean(SaleableApplication.class);
@@ -61,7 +35,7 @@ public class BusinessProposalDTO {
         for (ProposalSaleableItemDTO item : dto.getProposalSaleableItemDTOs()) {
 
             if (item.getPackageItems().isEmpty()) {
-                ProposalSaleableItem proposalSaleableItem = ProposalSaleableItemBuilder.create()
+                ProposalSaleableItem proposalSaleableItem = ProposalSaleableItemBuilder.createProposalSaleable(item.getId())
                         .withPrice(item.getPrice())
                         .withQuantity(item.getQuantity())
                         .withOriginalPrice(saleableApplication.getOne(item.getSaleableId()).get().getPrice())
@@ -72,7 +46,7 @@ public class BusinessProposalDTO {
                 Optional<SalePackage> salePackage = packageApplication.getOne(item.getSaleableId());
 
                 //add package
-                saleableItems.add(ProposalSaleableItemBuilder.create()
+                saleableItems.add(ProposalSaleableItemBuilder.createProposalSaleable(item.getId())
                         .withPackage(new SalePackage(item.getSaleableId()))
                         .withPrice(item.getPrice())
                         .withQuantity(item.getQuantity())
@@ -81,7 +55,7 @@ public class BusinessProposalDTO {
                 );
                  //add items package
                 item.getPackageItems().forEach(subitems ->
-                       saleableItems.add(ProposalSaleableItemBuilder.create()
+                       saleableItems.add(ProposalSaleableItemBuilder.createProposalSaleable(subitems.getId())
                             .withPackage(new SalePackage(item.getSaleableId()))
                             .withPrice(subitems.getPrice())
                             .withOriginalPrice(saleableApplication.getOne(item.getSaleableId()).get().getPrice())
@@ -99,12 +73,4 @@ public class BusinessProposalDTO {
     }
 
 
-
-    public BusinessProposal getProposal() {
-        return proposal;
-    }
-
-    public void setProposal(BusinessProposal proposal) {
-        this.proposal = proposal;
-    }
 }
