@@ -50,7 +50,7 @@ public class BusinessProposalController {
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
     public @ResponseBody
-    BusinessProposal save(@ModelAttribute @Validated BusinessProposal businessProposal, BindingResult bindingResult) {
+    Long save(@ModelAttribute @Validated BusinessProposal businessProposal, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -59,8 +59,9 @@ public class BusinessProposalController {
         BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposal);
 
         normalizeEntityRequest.doNestedReference(businessProposal);
-        return service.register(businessProposal);
+        BusinessProposal register = service.register(businessProposal);
 
+        return register.getId();
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
@@ -79,7 +80,7 @@ public class BusinessProposalController {
     }
 
     @RequestMapping(value = "/proposals/{proposalId}", method = RequestMethod.GET)
-    public ModelAndView get(@PathVariable Long proposalId, Model model) {
+    public ModelAndView get(@PathVariable Long proposalId, @RequestParam(defaultValue="editProposal",required=false, value="template") String templateName, Model model) {
 
         Optional<BusinessProposal> result = service.getOne(proposalId);
 
@@ -93,7 +94,7 @@ public class BusinessProposalController {
         model.addAttribute("proposal", result.get());
         model.addAttribute("client", result.get().getClient());
         model.addAttribute("saleables", saleable);
-        return new ModelAndView("/clients/proposal/editProposal");
+        return new ModelAndView("/clients/proposal/" + templateName);
 
     }
 
