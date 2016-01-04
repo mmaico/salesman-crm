@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.negotiation.infrastructure.configuration;
 
 
+import br.com.kproj.salesman.negotiation.view.helpers.BusinessProposalHelper;
 import br.com.kproj.salesman.negotiation.view.helpers.ProposalSaleablesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,14 @@ public class NegotiationHelperConfig {
     @Autowired
     private ProposalSaleablesHelper saleablesHelper;
 
+    @Autowired
+    private BusinessProposalHelper businessProposalHelper;
+
     @PostConstruct
     public void config() {
 
         resolver.getAttributesMap().put("saleablesHelper", saleablesHelper);
+        resolver.getAttributesMap().put("businessProposalHelper", businessProposalHelper);
 
     }
 }
