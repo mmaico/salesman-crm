@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import org.apache.commons.io.IOUtils;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -52,6 +53,9 @@ public class User extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="branch_id")
     private Branch branch;
+
+    @OneToOne(mappedBy = "approver")
+    private ApproverProfile approverProfile;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -148,6 +152,14 @@ public class User extends Identifiable {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public ApproverProfile getApproverProfile() {
+        return approverProfile;
+    }
+
+    public void setApproverProfile(ApproverProfile approverProfile) {
+        this.approverProfile = approverProfile;
     }
 
     @Override

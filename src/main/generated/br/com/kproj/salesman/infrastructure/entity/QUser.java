@@ -24,6 +24,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
+    public final br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverProfile approverProfile;
+
     public final ArrayPath<byte[], Byte> avatar = createArray("avatar", byte[].class);
 
     public final QBranch branch;
@@ -60,6 +62,7 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.approverProfile = inits.isInitialized("approverProfile") ? new br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverProfile(forProperty("approverProfile"), inits.get("approverProfile")) : null;
         this.branch = inits.isInitialized("branch") ? new QBranch(forProperty("branch")) : null;
         this.position = inits.isInitialized("position") ? new QUserPosition(forProperty("position")) : null;
     }
