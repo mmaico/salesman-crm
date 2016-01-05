@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import com.google.common.collect.Lists;
+import com.google.gson.annotations.Expose;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -25,16 +26,20 @@ public class Person extends Identifiable implements Client, Provider {
 
     @Id
     @GeneratedValue
+    @Expose
     private Long id;
 
 	@NotNull(message = "person.name.is.invalid")
     @Size(min = 2, max = 150, message = "person.name.is.invalid")
+    @Expose
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
+    @Expose
     protected List<Contact> contacts;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
+    @Expose
     protected List<Address> addresses;
 
     @NotNull

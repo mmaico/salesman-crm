@@ -4,6 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,24 +22,30 @@ public class ProposalSaleableItem extends Identifiable {
 
     @Id
     @GeneratedValue
+    @Expose
     private Long id;
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
+    @Expose
     private SaleableUnit saleableUnit;
 
     @ManyToOne
     @JoinColumn(name = "package_id")
+    @Expose
     private SalePackage salePackage;
 
     @NotNull(message = "proposal.saleable.price.is.invalid")
+    @Expose
     private BigDecimal price;
 
     @NotNull(message = "proposal.saleable.original.price.is.invalid")
+    @Expose
     private BigDecimal originalPrice;
 
     @NotNull
     @Min(value = 1, message = "quantity.saleable.lessthan.one")
+    @Expose
     private Integer quantity = 0;
 
     @ManyToOne

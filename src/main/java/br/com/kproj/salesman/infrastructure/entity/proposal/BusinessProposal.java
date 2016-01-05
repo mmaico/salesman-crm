@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
+import com.google.gson.annotations.Expose;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class BusinessProposal extends Identifiable {
 
     @Id
     @GeneratedValue
+    @Expose
     private Long id;
 
 	@ManyToOne
@@ -43,27 +45,34 @@ public class BusinessProposal extends Identifiable {
     @NotNull(message = "business.proposal.seller.required")
     private User seller;
 
+    @Expose
     private String careOf;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
+    @Expose
     private Date deliveryForeCast;
 
+    @Expose
     private String introduction;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @Expose
     private List<ProposalSaleableItem> saleableItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @Expose
     private List<ProposalPaymentItem> paymentItems;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
     @NotNull(message = "business.proposal.region.required")
+    @Expose
     private OperationRegion operationRegion;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
+    @Expose
     private SaleTemperature temperature;
 
 

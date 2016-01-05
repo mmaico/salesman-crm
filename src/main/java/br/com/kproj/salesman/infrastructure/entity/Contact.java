@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import com.google.gson.annotations.Expose;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
 
@@ -42,6 +43,7 @@ public class Contact extends Identifiable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Expose
     private Person person;
 
     @Override

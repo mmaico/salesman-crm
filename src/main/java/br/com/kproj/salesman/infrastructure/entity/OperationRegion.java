@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +14,10 @@ public class OperationRegion extends Identifiable {
 
     @Id
     @GeneratedValue
+    @Expose
     private Long id;
 
+    @Expose
     private String name;
 
     @Override
