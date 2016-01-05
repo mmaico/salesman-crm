@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import com.google.gson.annotations.Expose;
 import org.hibernate.envers.Audited;
@@ -43,7 +44,7 @@ public class Contact extends Identifiable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Expose
+    @ExcludeAuditingField
     private Person person;
 
     @Override

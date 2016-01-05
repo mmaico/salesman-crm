@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
 
@@ -16,6 +17,7 @@ public class ApproverProfile extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="user_approver_id")
+    @ExcludeAuditingField
     private User approver;
 
     private Boolean available = Boolean.FALSE;
