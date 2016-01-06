@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
-@Audited
 public class Contact extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;

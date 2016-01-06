@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="address")
-@Audited
 public class Address extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;

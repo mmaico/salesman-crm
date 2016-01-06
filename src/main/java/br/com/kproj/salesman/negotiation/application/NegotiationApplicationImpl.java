@@ -8,6 +8,7 @@ import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.negotiation.domain.proposal.BusinessProposalDomainService;
 import br.com.kproj.salesman.register.application.prepare.PreUpdateItems;
 import com.google.common.collect.Lists;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -31,17 +32,24 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
     @Autowired
     private BusinessProposalRepository repository;
 
+    @Autowired
+    private EventBus eventBus;
+
     public BusinessProposal register(BusinessProposal businessProposal) {
 
         service.checkBusinessRulesFor(businessProposal);
         productsPrepare.preUpdate(businessProposal);
         paymentPrepare.preUpdate(businessProposal);
+        BusinessProposal businessProposalSaved = null;
 
         if (!businessProposal.isNew()) {
-            return super.save(businessProposal, service);
+            businessProposalSaved = super.save(businessProposal, service);
         } else {
-            return super.save(businessProposal);
+            businessProposalSaved =  super.save(businessProposal);
         }
+
+        eventBus.post(businessProposal);
+        return businessProposalSaved;
     }
 
     @Override

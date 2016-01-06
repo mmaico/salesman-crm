@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="states")
-@Audited
 public class State extends Identifiable {
 
 	/**

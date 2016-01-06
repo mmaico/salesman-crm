@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("company")
-@Audited
 public class Company extends Person implements ClientCompany, ProviderCompany {
 
 	private static final long serialVersionUID = 4479758448493548647L;

@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
@@ -8,11 +7,9 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
-import com.google.gson.annotations.Expose;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;

@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="person_profiles")
-@Audited
 public class PersonProfile extends Identifiable {
 
     /**

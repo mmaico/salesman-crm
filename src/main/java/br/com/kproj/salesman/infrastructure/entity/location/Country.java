@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="countries")
-@Audited
 public class Country extends Identifiable {
 
     public static final Long BRASIL = 31l;
