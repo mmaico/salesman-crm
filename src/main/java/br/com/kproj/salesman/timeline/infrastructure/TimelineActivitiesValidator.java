@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.infrastructure.validators;
+package br.com.kproj.salesman.timeline.infrastructure;
 
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;

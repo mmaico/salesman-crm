@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.application;
 
+import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
@@ -11,5 +12,7 @@ public interface NegotiationApplication extends ModelService<BusinessProposal> {
     BusinessProposal register(BusinessProposal businessProposal);
 
     List<BusinessProposal> findByClient(Person client);
+
+    void changeTemperature(BusinessProposal proposal, ProposalTemperature temperature);
 
 }

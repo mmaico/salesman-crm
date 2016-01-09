@@ -34,6 +34,7 @@ public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceImp
         Page<BusinessProposalAudinting> lasModitication = repository.findLasVersion(Pager.build().withPageSize(1));
 
         BusinessProposalAudinting newEntryAuditable = BusinessProposalAuditingBuilder.createAuditing()
+                .withEntityId(businessProposal.getId())
                 .setCurrentDate()
                 .withInfo(gson.toJson(businessProposal))
                 .withUser(principal.getUser()).build();

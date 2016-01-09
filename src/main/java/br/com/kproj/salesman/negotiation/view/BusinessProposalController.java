@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.view;
 
+import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
@@ -9,6 +10,7 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalRequestMergeHelper;
+import br.com.kproj.salesman.negotiation.view.dto.TemperatureDTO;
 import br.com.kproj.salesman.negotiation.view.dto.session.ProposalSaleablesDTO;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
+
+import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
 
 @RestController
 public class BusinessProposalController {
@@ -97,6 +101,14 @@ public class BusinessProposalController {
         return new ModelAndView("/clients/proposal/" + templateName);
 
     }
+
+    @RequestMapping(value="/proposals/{proposalId}/temperature")
+    public @ResponseBody void changeTemperature(@PathVariable Long proposalId, @ModelAttribute TemperatureDTO temperatureDTO) {
+
+        service.changeTemperature(createBusinessProposal(proposalId).build(), temperatureDTO.getTemperature());
+
+    }
+
 
     @RequestMapping(value="/proposals/persons/{idPerson}")
     public ModelAndView newProposal(Model model, @PathVariable Long idPerson) {

@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -42,7 +43,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser seller;
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature.class);
+    public final EnumPath<ProposalTemperature> temperature = createEnum("temperature", ProposalTemperature.class);
 
     public QBusinessProposal(String variable) {
         this(BusinessProposal.class, forVariable(variable), INITS);

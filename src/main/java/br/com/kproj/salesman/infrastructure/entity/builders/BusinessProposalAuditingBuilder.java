@@ -32,6 +32,11 @@ public class BusinessProposalAuditingBuilder extends AbstractBuilder<BusinessPro
 		return this;
 	}
 
+	public BusinessProposalAuditingBuilder withEntityId(Long entityId) {
+		this.entity.setEntityId(entityId);
+		return this;
+	}
+
 	public static BusinessProposalAuditingBuilder createAuditing(Long id) {
 		return new BusinessProposalAuditingBuilder(id);
 	}
@@ -39,4 +44,6 @@ public class BusinessProposalAuditingBuilder extends AbstractBuilder<BusinessPro
 	public static BusinessProposalAuditingBuilder createAuditing() {
 		return new BusinessProposalAuditingBuilder();
 	}
+
+
 }

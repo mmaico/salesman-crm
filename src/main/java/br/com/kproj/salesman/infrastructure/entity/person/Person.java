@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
+import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import com.google.common.collect.Lists;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,6 +42,9 @@ public class Person extends Identifiable implements Client, Provider {
     @JoinColumn(name="profile_id")
     @NotNull(message = "person.profile.is.invalid")
     private PersonProfile profile;
+
+    @OneToOne(mappedBy = "person")
+    private Timeline timeline;
 
     public Person() {
         super();
@@ -122,7 +126,15 @@ public class Person extends Identifiable implements Client, Provider {
 
         this.addresses.add(address);
     }
-   
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Person{");
