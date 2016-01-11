@@ -98,10 +98,9 @@ dependencies {
     testCompile('com.github.springtestdbunit:spring-test-dbunit:1.2.1') {
         exclude group: "org.hamcrest"
     }
-    testCompile('org.powermock:powermock-mockito-release-full:1.6.2') {
+    testCompile('org.powermock:powermock-api-mockito:1.6.4') {
         exclude group: "org.hamcrest"
     }
-
 
     querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion") {
         exclude module: "guava"
