@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.auditing;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import com.jayway.jsonpath.JsonPath;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -72,5 +73,21 @@ public class BusinessProposalAudinting extends Identifiable {
 
     public void setEntityId(Long entityId) {
         this.entityId = entityId;
+    }
+
+    public Boolean isEquals(String json) {
+        String saleablesItemsStored = JsonPath.read(this.info, "$.saleableItems").toString();
+        String paymentItemsStored = JsonPath.read(this.info, "$.paymentItems").toString();
+
+        String saleablesItemsNew = JsonPath.read(json, "$.saleableItems").toString();
+        String paymentItemsNew = JsonPath.read(json, "$.paymentItems").toString();
+
+        String regionNew = JsonPath.read(json, "$.operationRegion").toString();
+        String regionStored = JsonPath.read(this.info, "$.operationRegion").toString();
+
+
+        return saleablesItemsStored.equals(saleablesItemsNew)
+                && paymentItemsStored.equals(paymentItemsNew)
+                && regionStored.equals(regionNew);
     }
 }

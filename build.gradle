@@ -133,6 +133,8 @@ dependencies {
 
     compile("com.google.code.gson:gson:2.5")
 
+    compile("com.jayway.jsonpath:json-path:2.1.0")
+
 }
 
 eclipse {

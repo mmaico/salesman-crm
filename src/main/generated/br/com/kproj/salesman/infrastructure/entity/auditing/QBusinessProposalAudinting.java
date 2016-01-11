@@ -24,6 +24,8 @@ public class QBusinessProposalAudinting extends EntityPathBase<BusinessProposalA
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
+    public final NumberPath<Long> entityId = createNumber("entityId", Long.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath info = createString("info");
@@ -31,8 +33,6 @@ public class QBusinessProposalAudinting extends EntityPathBase<BusinessProposalA
     public final DateTimePath<java.util.Date> lastUpdate = createDateTime("lastUpdate", java.util.Date.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser user;
-
-    public final NumberPath<Long> version = createNumber("version", Long.class);
 
     public QBusinessProposalAudinting(String variable) {
         this(BusinessProposalAudinting.class, forVariable(variable), INITS);

@@ -10,10 +10,13 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.infrastructure.service.FileService;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static br.com.kproj.salesman.infrastructure.events.messages.TimelineSaveMessage.createTimelineEvent;
 
 @Service
 public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<TimelineActivity> implements TimelineActivitiesApplication {
@@ -27,6 +30,9 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private EventBus eventBus;
 
     @Override
     public Timeline register(Person person, TimelineActivity activity) {
@@ -42,6 +48,8 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
 
         Timeline timeline = service.register(proposal);
         saveActivity(activity, timeline);
+
+        eventBus.post(createTimelineEvent(activity.getUser(), proposal, activity));
 
         return timeline;
     }

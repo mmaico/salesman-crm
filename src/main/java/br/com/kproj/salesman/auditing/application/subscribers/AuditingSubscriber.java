@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.auditing.application.events;
+package br.com.kproj.salesman.auditing.application.subscribers;
 
 
 import br.com.kproj.salesman.auditing.application.BusinessProposalAuditingApplication;
@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalAudi
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import com.google.common.eventbus.Subscribe;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,14 @@ public class AuditingSubscriber {
     @Autowired
     private BusinessProposalAuditingApplication application;
 
+    @Autowired
+    private SecurityHelper security;
+
 
     @Subscribe
-    public void persistAuditWhenDistinctBeforeVersion(BusinessProposal proposal) {
-        application.registerAuditing(proposal);
+    public void persistAuditWhenDistinctLastVersion(BusinessProposal proposal) {
+        LoggedUser principal = security.getPrincipal();
+        application.registerAuditing(proposal, principal.getUser());
     }
 
 }

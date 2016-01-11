@@ -1,12 +1,15 @@
 package br.com.kproj.salesman.timeline.view;
 
+import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
-import br.com.kproj.salesman.register.view.dto.LogActivityVO;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
 import br.com.kproj.salesman.timeline.application.TimelineApplication;
 import br.com.kproj.salesman.timeline.infrastructure.TimelineActivitiesValidator;
+import br.com.kproj.salesman.timeline.view.dto.BusinessProposalApprovalActivityVO;
+import br.com.kproj.salesman.timeline.view.dto.LogActivityVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
+import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
 
 @RestController
 public class BusinessProposalTimelineController {
@@ -36,9 +40,8 @@ public class BusinessProposalTimelineController {
     private SecurityHelper security;
 
 
-
     @RequestMapping(value = "/business-proposal/{businessId}/logactivity/save", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute LogActivityVO logActivityVO,
+    public @ResponseBody ResponseEntity saveOfContact(@PathVariable Long businessId, @ModelAttribute LogActivityVO logActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 
         LogActivity logActivity = logActivityVO.getLogActivity();
@@ -51,9 +54,24 @@ public class BusinessProposalTimelineController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/business-proposal/{businessId}/logactivity", method = RequestMethod.GET)
-    public ModelAndView getTimelineContact(@PathVariable Long businessId, Model model,
-                                           @RequestParam(defaultValue="edit",required=false, value="template") String templateName) {
+
+    @RequestMapping(value = "/business-proposal/{businessId}/approval-activity/save", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute BusinessProposalApprovalActivityVO approvalActivityVO,
+                                                      BindingResult bindingResult) throws IOException {
+
+        BusinessProposalApprovalActivity activity = approvalActivityVO.getApproval();
+
+        validator.validate(activity, new BindException(bindingResult));
+
+        activity.setFiles(approvalActivityVO.getAppFiles());
+        activity.setUser(security.getPrincipal().getUser());
+        service.register(createBusinessProposal(businessId).build(), activity);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/business-proposal/{businessId}/activities", method = RequestMethod.GET)
+    public ModelAndView getTimelineBusinessProposal(@PathVariable Long businessId, Model model) {
 
         Timeline timeline = timelineApplication.register(createBusinessProposal(businessId).build());
 

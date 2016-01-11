@@ -48,6 +48,9 @@ public class QCompany extends EntityPathBase<Company> {
     // inherited
     public final QPersonProfile profile;
 
+    // inherited
+    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
+
     public final StringPath tradingName = createString("tradingName");
 
     public QCompany(String variable) {
@@ -75,6 +78,7 @@ public class QCompany extends EntityPathBase<Company> {
         this.id = _super.id;
         this.name = _super.name;
         this.profile = _super.profile;
+        this.timeline = _super.timeline;
     }
 
 }

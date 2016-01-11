@@ -1,0 +1,121 @@
+{
+  "id":5674,
+  "client":{
+    "id":5530,
+    "active":true,
+    "fields":[
+      "id"
+    ]
+  },
+  "seller":{
+    "id":5511,
+    "authorities":[
+
+    ],
+    "fields":[
+      "id"
+    ]
+  },
+  "careOf":"jose luiz",
+  "introduction":"alteracao da introducao ))))))",
+  "saleableItems":[
+    {
+      "id":5679,
+      "price":99.38,
+      "originalPrice":99.38,
+      "quantity":2,
+      "fields":[
+
+      ]
+    },
+    {
+      "id":5680,
+      "price":993.98,
+      "originalPrice":9939800.49,
+      "quantity":1,
+      "fields":[
+
+      ]
+    },
+    {
+      "id":5681,
+      "price":222.32,
+      "originalPrice":2223.34,
+      "quantity":1,
+      "fields":[
+
+      ]
+    },
+    {
+      "id":5682,
+      "price":99.38,
+      "originalPrice":2223.34,
+      "quantity":1,
+      "fields":[
+
+      ]
+    },
+    {
+      "id":5683,
+      "price":9939800.49,
+      "originalPrice":2223.34,
+      "quantity":1,
+      "fields":[
+
+      ]
+    }
+  ],
+  "paymentItems":[
+    {
+      "dueDate":"Feb 5, 2016 12:00:00 AM",
+      "value":471.68,
+      "observation":"",
+      "fields":[
+        "observation",
+        "dueDate",
+        "value"
+      ]
+    },
+    {
+      "dueDate":"Mar 6, 2016 12:00:00 AM",
+      "value":471.68,
+      "observation":"",
+      "fields":[
+        "observation",
+        "dueDate",
+        "value"
+      ]
+    },
+    {
+      "dueDate":"Apr 5, 2016 12:00:00 AM",
+      "value":471.70,
+      "observation":"",
+      "fields":[
+        "observation",
+        "dueDate",
+        "value"
+      ]
+    }
+  ],
+  "operationRegion":{
+    "id":5515,
+    "fields":[
+      "id"
+    ]
+  },
+  "fields":[
+    "seller",
+    "quantity",
+    "saleable",
+    "deliveryForeCast",
+    "operationRegion",
+    "careOf",
+    "_method",
+    "installments",
+    "client",
+    "interval",
+    "id",
+    "firstDueDate",
+    "introduction"
+  ]
+}

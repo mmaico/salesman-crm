@@ -3,6 +3,7 @@ package br.com.kproj.salesman.timeline.application;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Optional;
 
 import static java.util.Optional.of;
+import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TimelineApplicationImplTest {
@@ -26,33 +29,46 @@ public class TimelineApplicationImplTest {
 	
 	@Mock
 	private TimelineRepository repository;
+
+	@Mock
+	private PersonRepository personRepository;
 	
 	
 	
 	@Test
-	public void shouldSaveAndReturnATimelineByPerson() {
+	public void shouldReturnTimelineWhenAlreadyExists() {
+		Timeline timelineMock = Mockito.mock(Timeline.class);
 		Person person = new Individual();
 		person.setId(1l);
-		Timeline timeline = new Timeline();
-	
-		given(this.repository.findOne(person)).willReturn(of(timeline));
+
+		Individual personDB = spy(new Individual());
+		personDB.setId(1l);
+		personDB.setTimeline(timelineMock);
+
+		given(this.personRepository.getOne(1l)).willReturn(Optional.of(personDB));
 		
 		Timeline result = service.register(person);
-		
-		assertThat(result, sameInstance(timeline));
+
+		verify(this.repository, times(0)).save(Mockito.any(Timeline.class));
+		assertThat(result, sameInstance(timelineMock));
 	}
 	
 	@Test
 	public void shouldCreateAnTimelineWhenNotExist() {
-		Timeline timelineMock = Mockito.mock(Timeline.class);
+		Timeline timelineMock = mock(Timeline.class);
 		Individual person = new Individual();
 		person.setId(1l);
+
+		Individual personDB = spy(new Individual());
+		personDB.setId(1l);
+		personDB.setTimeline(null);
 		
-		given(this.repository.findOne(person)).willReturn(Optional.empty());
+		given(this.personRepository.getOne(1l)).willReturn(Optional.of(personDB));
 		given(this.repository.save(Mockito.any(Timeline.class))).willReturn(timelineMock);
 		
 		Timeline result = service.register(person);
-		
+
+		verify(personDB).setTimeline(timelineMock);
 		assertThat(result, sameInstance(timelineMock));
 	}
 

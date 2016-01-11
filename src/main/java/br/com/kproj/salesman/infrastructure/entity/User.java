@@ -57,6 +57,7 @@ public class User extends Identifiable {
     @OneToOne(mappedBy = "approver")
     private ApproverProfile approverProfile;
 
+
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
@@ -185,7 +186,7 @@ public class User extends Identifiable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(login, user.login);
+        return Objects.equals(id, user.id);
     }
 
     @Override

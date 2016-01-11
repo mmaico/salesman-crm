@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -43,7 +42,9 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QUser seller;
 
-    public final EnumPath<ProposalTemperature> temperature = createEnum("temperature", ProposalTemperature.class);
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public QBusinessProposal(String variable) {
         this(BusinessProposal.class, forVariable(variable), INITS);
@@ -66,6 +67,7 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("seller"), inits.get("seller")) : null;
+        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

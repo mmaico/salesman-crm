@@ -34,14 +34,14 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
     public Timeline register(Person person) {
     	Timeline timeline = null;
 
-		Person personLoaded = personRepository.findOne(person.getId());
+		Optional<Person> personLoaded = personRepository.getOne(person.getId());
 
-		if (personLoaded.getTimeline() == null) {
-			timeline = createTimeline(personLoaded).build();
+		if (personLoaded.isPresent() && personLoaded.get().getTimeline() == null) {
+			timeline = createTimeline(personLoaded.get()).build();
 			timeline = repository.save(timeline);
-			personLoaded.setTimeline(timeline);
+			personLoaded.get().setTimeline(timeline);
 		} else {
-			timeline = personLoaded.getTimeline();
+			timeline = personLoaded.get().getTimeline();
 		}
 
         return timeline;

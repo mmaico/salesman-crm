@@ -4,6 +4,8 @@ import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItem
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
+import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import com.google.common.collect.Lists;
 import org.hamcrest.MatcherAssert;
@@ -27,7 +29,13 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
     private PreUpdateProductsImpl prepare;
 
     @Mock
+    private BusinessProposalRepository repository;
+
+    @Mock
     private NegotiationApplication application;
+
+    @Mock
+    private ProposalSaleableRepository saleableRepository;
 
 
     @Test

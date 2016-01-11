@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,10 +11,6 @@ import javax.validation.constraints.NotNull;
 @Table(name="proposal_approver")
 public class Approver extends Identifiable {
 
-
-    enum ApproverStatus {
-        APPROVED, WAITING, DISAPPROVED
-    }
 
     @Id
     @GeneratedValue

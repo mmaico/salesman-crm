@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public abstract class Identifiable implements Persistable<Long>, Serializable {
 
 
     @Transient
+    @ExcludeAuditingField
     private Set<String> fields = new HashSet<String>();
 
 

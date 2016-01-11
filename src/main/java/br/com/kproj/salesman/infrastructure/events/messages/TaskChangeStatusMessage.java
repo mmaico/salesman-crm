@@ -5,21 +5,21 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 
-public class TaskChangeStatusEvent {
+public class TaskChangeStatusMessage {
 
 
     private User user;
     private TaskStatus oldStatus;
     private Task task;
 
-    public TaskChangeStatusEvent(User user, Task task, TaskStatus oldStatus) {
+    public TaskChangeStatusMessage(User user, Task task, TaskStatus oldStatus) {
         this.user = user;
         this.task = task;
         this.oldStatus = oldStatus;
     }
 
-    public static TaskChangeStatusEvent create(Task task, User userChange, TaskStatus oldStatus) {
-          return new TaskChangeStatusEvent(userChange, task, oldStatus);
+    public static TaskChangeStatusMessage create(Task task, User userChange, TaskStatus oldStatus) {
+          return new TaskChangeStatusMessage(userChange, task, oldStatus);
     }
 
     public User getUser() {

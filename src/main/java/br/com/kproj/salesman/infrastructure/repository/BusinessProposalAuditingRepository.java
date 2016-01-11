@@ -7,12 +7,13 @@ import br.com.kproj.salesman.infrastructure.repository.custom.PersonRepositoryCu
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface BusinessProposalAuditingRepository extends BaseRepository<BusinessProposalAudinting, Long> {
 
 
 
-    @Query("SELECT bpa FROM BusinessProposalAudinting AS bpa ORDER BY bpa.lastUpdate desc ")
-    Page<BusinessProposalAudinting> findLasVersion(Pageable pageable);
+    @Query("SELECT bpa FROM BusinessProposalAudinting AS bpa WHERE bpa.entityId = :entityId ORDER BY bpa.lastUpdate desc ")
+    Page<BusinessProposalAudinting> findLasVersion(@Param("entityId") Long entityId, Pageable pageable);
 
 }

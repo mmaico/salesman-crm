@@ -36,6 +36,8 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final QPersonProfile profile;
 
+    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
+
     public QPerson(String variable) {
         this(Person.class, forVariable(variable), INITS);
     }
@@ -55,6 +57,7 @@ public class QPerson extends EntityPathBase<Person> {
     public QPerson(Class<? extends Person> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.profile = inits.isInitialized("profile") ? new QPersonProfile(forProperty("profile")) : null;
+        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }
