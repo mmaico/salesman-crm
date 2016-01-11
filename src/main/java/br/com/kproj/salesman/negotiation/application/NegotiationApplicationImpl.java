@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.application;
 
+import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessProposal> implements NegotiationApplication {
@@ -58,6 +60,18 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
             return Lists.newArrayList();
         }
         return repository.findByClient(client);
+    }
+
+    public void changeTemperature(BusinessProposal proposal, ProposalTemperature temperature) {
+
+        if (temperature == null) return;
+
+        Optional<BusinessProposal> proposalOptional = getOne(proposal.getId());
+
+        if (proposalOptional.isPresent()) {
+            BusinessProposal businessProposal = proposalOptional.get();
+            businessProposal.setTemperature(temperature);
+        }
     }
 
     @Override

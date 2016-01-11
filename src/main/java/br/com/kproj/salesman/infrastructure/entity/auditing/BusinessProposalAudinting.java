@@ -3,8 +3,10 @@ package br.com.kproj.salesman.infrastructure.entity.auditing;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import com.jayway.jsonpath.JsonPath;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,17 +17,21 @@ public class BusinessProposalAudinting extends Identifiable {
     @GeneratedValue
     private Long id;
 
-    @Version
-    private Long version;
+    @Column(name="entity_id")
+    @NotNull
+    private Long entityId;
 
     @Column(columnDefinition = "LONGTEXT")
+    @NotNull
     private String info;
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @NotNull
     private User user;
 
     @Column(name="last_update")
+    @NotNull
     private Date lastUpdate;
 
     @Override
@@ -35,14 +41,6 @@ public class BusinessProposalAudinting extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     public String getInfo() {
@@ -69,4 +67,27 @@ public class BusinessProposalAudinting extends Identifiable {
         this.lastUpdate = lastUpdate;
     }
 
+    public Long getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(Long entityId) {
+        this.entityId = entityId;
+    }
+
+    public Boolean isEquals(String json) {
+        String saleablesItemsStored = JsonPath.read(this.info, "$.saleableItems").toString();
+        String paymentItemsStored = JsonPath.read(this.info, "$.paymentItems").toString();
+
+        String saleablesItemsNew = JsonPath.read(json, "$.saleableItems").toString();
+        String paymentItemsNew = JsonPath.read(json, "$.paymentItems").toString();
+
+        String regionNew = JsonPath.read(json, "$.operationRegion").toString();
+        String regionStored = JsonPath.read(this.info, "$.operationRegion").toString();
+
+
+        return saleablesItemsStored.equals(saleablesItemsNew)
+                && paymentItemsStored.equals(paymentItemsNew)
+                && regionStored.equals(regionNew);
+    }
 }

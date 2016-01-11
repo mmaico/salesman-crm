@@ -1,14 +1,11 @@
 package br.com.kproj.salesman.negotiation.approval.application;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.ApproverProfileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,8 @@ public class ApproverProfileApplicationImpl extends BaseModelServiceImpl<Approve
     @Autowired
     private ApproverProfileRepository repository;
 
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public ApproverProfile register(ApproverProfile approverProfile) {
@@ -36,7 +35,11 @@ public class ApproverProfileApplicationImpl extends BaseModelServiceImpl<Approve
         Optional<ApproverProfile> result = repository.findByApprover(approver);
 
         if (!result.isPresent()) {
-            return super.save(approverProfile);
+            ApproverProfile profileSaved = super.save(approverProfile);
+            User userLoaded = userRepository.findOne(approver.getId());
+            userLoaded.setApproverProfile(profileSaved);
+
+            return profileSaved;
         }
 
         return result.get();

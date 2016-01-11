@@ -4,17 +4,21 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.negotiation.domain.proposal.BusinessProposalDomainService;
+import br.com.kproj.salesman.register.application.prepare.PreUpdateItems;
+import com.google.common.eventbus.EventBus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NegotiationApplicationImplTest {
@@ -28,6 +32,15 @@ public class NegotiationApplicationImplTest {
     @Mock
     private BusinessProposalRepository repository;
 
+    @Mock
+    private PreUpdateItems paymentPrepare;
+
+    @Mock
+    private PreUpdateItems productsPrepare;
+
+    @Mock
+    private EventBus eventBus;
+
     @Test
     public void shouldRegister() {
 
@@ -36,6 +49,10 @@ public class NegotiationApplicationImplTest {
         given(repository.save(businessProposal)).willReturn(new BusinessProposal(1L));
 
         final BusinessProposal result = negotiationService.register(businessProposal);
+
+        verify(paymentPrepare, times(1)).preUpdate(businessProposal);
+        verify(productsPrepare, times(1)).preUpdate(businessProposal);
+        verify(eventBus, times(1)).post(Mockito.any());
         assertThat(result.getId(), is(1L));
 
     }

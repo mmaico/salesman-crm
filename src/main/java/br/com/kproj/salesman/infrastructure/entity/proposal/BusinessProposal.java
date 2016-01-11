@@ -4,8 +4,9 @@ import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.enums.SaleTemperature;
+import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -63,7 +64,10 @@ public class BusinessProposal extends Identifiable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
-    private SaleTemperature temperature;
+    private ProposalTemperature temperature;
+
+    @OneToOne(mappedBy = "proposal")
+    private Timeline timeline;
 
 
     public BusinessProposal(){}
@@ -171,12 +175,20 @@ public class BusinessProposal extends Identifiable {
         this.saleableItems = saleableItems;
     }
 
-    public SaleTemperature getTemperature() {
+    public ProposalTemperature getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(SaleTemperature temperature) {
+    public void setTemperature(ProposalTemperature temperature) {
         this.temperature = temperature;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
     }
 
     public void updateSaleableItem(ProposalSaleableItem saleableWithNewValues) {

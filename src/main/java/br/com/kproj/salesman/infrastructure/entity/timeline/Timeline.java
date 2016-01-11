@@ -23,15 +23,15 @@ public class Timeline extends Identifiable {
     @JoinColumn(name="timeline_id")
     private List<TimelineActivity> activities;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="person_id")
     private Person person;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="business_proposal_id")
     private BusinessProposal proposal;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="contact_id")
     private Contact contact;
 

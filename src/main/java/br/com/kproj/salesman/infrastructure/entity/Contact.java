@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import com.google.gson.annotations.Expose;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
@@ -29,6 +30,9 @@ public class Contact extends Identifiable {
     private String phone;
 
     private String position;
+
+    @OneToOne(mappedBy = "contact")
+    private Timeline timeline;
 
     public Contact() {}
 
@@ -94,5 +98,13 @@ public class Contact extends Identifiable {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
     }
 }

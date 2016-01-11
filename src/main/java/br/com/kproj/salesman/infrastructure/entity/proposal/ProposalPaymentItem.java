@@ -18,21 +18,17 @@ public class ProposalPaymentItem extends Identifiable {
 
     @Id
     @GeneratedValue
-    @Expose
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "proposal.payment.duedate.is.invalid")
     @Column(name="due_date")
-    @Expose
     private Date dueDate;
 
     @NotNull(message = "proposal.payment.value.is.invalid")
-    @Expose
     private BigDecimal value;
 
-    @Expose
     private String observation;
 
     @ManyToOne

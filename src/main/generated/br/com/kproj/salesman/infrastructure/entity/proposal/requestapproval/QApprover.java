@@ -32,7 +32,7 @@ public class QApprover extends EntityPathBase<Approver> {
 
     public final QRequestApproval requestApproval;
 
-    public final EnumPath<Approver.ApproverStatus> status = createEnum("status", Approver.ApproverStatus.class);
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus.class);
 
     public QApprover(String variable) {
         this(Approver.class, forVariable(variable), INITS);

@@ -100,17 +100,6 @@
     <proposal_aprover_profile id="2" user_approver_id="2" available="false"/>
 
 
-    <REVINFO REV="1" REVTSTMP="1450272670378"/>
-    <REVINFO REV="2" REVTSTMP="1450272671527"/>
-    <REVINFO REV="3" REVTSTMP="1450272725224"/>
-
-    <persons_AUD REV="1" REVTYPE="0" id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
-    <persons_AUD REV="2" REVTYPE="1" id="1" name="Joao Fereira Dos Santos" active="false" profile_id="1" type="company"/>
-
-    <contacts_AUD REV="1" REVTYPE="0" id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
-    <contacts_AUD REV="2" REVTYPE="1" id="3" name="Jose luiz 22" email="jose@jose.com" phone="89838839" person_id="1"/>
-    <contacts_AUD REV="3" REVTYPE="3" id="3" name="Jose luiz 33" email="jose@jose.com" phone="89838839" person_id="1"/>
-
 
 
 </dataset>

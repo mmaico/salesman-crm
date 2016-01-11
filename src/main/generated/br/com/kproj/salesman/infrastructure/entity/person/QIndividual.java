@@ -46,6 +46,9 @@ public class QIndividual extends EntityPathBase<Individual> {
     // inherited
     public final QPersonProfile profile;
 
+    // inherited
+    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
+
     public QIndividual(String variable) {
         this(Individual.class, forVariable(variable), INITS);
     }
@@ -71,6 +74,7 @@ public class QIndividual extends EntityPathBase<Individual> {
         this.id = _super.id;
         this.name = _super.name;
         this.profile = _super.profile;
+        this.timeline = _super.timeline;
     }
 
 }

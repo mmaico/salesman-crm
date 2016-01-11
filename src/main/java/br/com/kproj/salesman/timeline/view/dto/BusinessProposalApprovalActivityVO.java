@@ -1,8 +1,9 @@
-package br.com.kproj.salesman.register.view.dto;
+package br.com.kproj.salesman.timeline.view.dto;
 
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import com.google.common.collect.Lists;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,9 +14,10 @@ import java.util.List;
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.safeIterable;
 import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
 
-public class LogActivityVO {
+public class BusinessProposalApprovalActivityVO {
 
-    private LogActivity logActivity;
+    private BusinessProposalApprovalActivity approval;
+
 
     private List<MultipartFile> files;
 
@@ -48,11 +50,11 @@ public class LogActivityVO {
         return items;
     }
 
-    public LogActivity getLogActivity() {
-        return logActivity;
+    public BusinessProposalApprovalActivity getApproval() {
+        return approval;
     }
 
-    public void setLogActivity(LogActivity logActivity) {
-        this.logActivity = logActivity;
+    public void setApproval(BusinessProposalApprovalActivity approval) {
+        this.approval = approval;
     }
 }

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
+import br.com.kproj.salesman.register.view.users.UserController;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;

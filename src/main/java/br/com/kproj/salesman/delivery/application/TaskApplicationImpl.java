@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
-import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusEvent;
+import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
@@ -80,7 +80,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         TaskStatus oldStatus = taskLoaded.getStatus();
         taskLoaded.setStatus(task.getStatus());
 
-        eventBus.post(TaskChangeStatusEvent.create(taskLoaded, userChange, oldStatus));
+        eventBus.post(TaskChangeStatusMessage.create(taskLoaded, userChange, oldStatus));
     }
 
     @Override
