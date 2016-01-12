@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.auditing.application;
 
+
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -138,10 +140,5 @@ public class BusinessProposalAuditingApplicationImplTest {
         Mockito.verify(repository, Mockito.times(0)).save(Mockito.any(BusinessProposalAudinting.class));
 
     }
-
-
-
-
-
 
 }
