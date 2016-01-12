@@ -50,6 +50,7 @@ public class RequestApprovalController {
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
                 .withProposal(BusinessProposalBuilder.createBusinessProposal(proposalId).build())
+                .withStatus(RequestApproval.RequestApprovalStatus.WAITING)
                 .withUserRequester(security.getPrincipal().getUser()).build();
 
         application.register(requestApproval);

@@ -16,7 +16,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.sa
 
 public class BusinessProposalApprovalActivityVO {
 
-    private BusinessProposalApprovalActivity approval;
+    private BusinessProposalApprovalActivity logActivity;
 
 
     private List<MultipartFile> files;
@@ -50,11 +50,11 @@ public class BusinessProposalApprovalActivityVO {
         return items;
     }
 
-    public BusinessProposalApprovalActivity getApproval() {
-        return approval;
+    public BusinessProposalApprovalActivity getLogActivity() {
+        return logActivity;
     }
 
-    public void setApproval(BusinessProposalApprovalActivity approval) {
-        this.approval = approval;
+    public void setLogActivity(BusinessProposalApprovalActivity approval) {
+        this.logActivity = approval;
     }
 }

@@ -41,7 +41,7 @@ public class BusinessProposalTimelineController {
 
 
     @RequestMapping(value = "/business-proposal/{businessId}/logactivity/save", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity saveOfContact(@PathVariable Long businessId, @ModelAttribute LogActivityVO logActivityVO,
+    public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute LogActivityVO logActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 
         LogActivity logActivity = logActivityVO.getLogActivity();
@@ -59,7 +59,7 @@ public class BusinessProposalTimelineController {
     public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute BusinessProposalApprovalActivityVO approvalActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 
-        BusinessProposalApprovalActivity activity = approvalActivityVO.getApproval();
+        BusinessProposalApprovalActivity activity = approvalActivityVO.getLogActivity();
 
         validator.validate(activity, new BindException(bindingResult));
 

@@ -1,7 +1,9 @@
 package br.com.kproj.salesman.timeline.infrastructure;
 
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.timeline.view.dto.BusinessProposalApprovalActivityVO;
 import br.com.kproj.salesman.timeline.view.dto.LogActivityVO;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.InitializingBean;
@@ -27,6 +29,8 @@ public class TimelineActivitiesValidator implements Validator, InitializingBean 
 
     {
         validatorMap.put(LogActivity.class, new TimelineLogActivityValidator());
+        validatorMap.put(BusinessProposalApprovalActivity.class, new TimelineBusinessProposalValidator());
+
     }
 
     @Override
@@ -70,6 +74,26 @@ public class TimelineActivitiesValidator implements Validator, InitializingBean 
             if (isEmpty(activity.getDescription())) {
                 errors.rejectValue("logactivity.description", "logactivity.description.is.invalid");
             }
+
+            constraints.forEach(error ->
+                    errors.rejectValue(error.getPropertyPath().toString(), error.getMessage()));
+
+        }
+    }
+
+    private class TimelineBusinessProposalValidator implements Validator {
+
+        @Override
+        public boolean supports(Class<?> clazz) {
+            return BusinessProposalApprovalActivityVO.class.equals(clazz);
+        }
+
+        @Override
+        public void validate(Object target, Errors errors) {
+            BusinessProposalApprovalActivity activity = (BusinessProposalApprovalActivity) target;
+
+            Set<ConstraintViolation<Object>> constraints = validator.validate(activity);
+
 
             constraints.forEach(error ->
                     errors.rejectValue(error.getPropertyPath().toString(), error.getMessage()));
