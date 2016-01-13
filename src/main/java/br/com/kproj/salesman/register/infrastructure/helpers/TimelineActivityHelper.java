@@ -2,7 +2,9 @@ package br.com.kproj.salesman.register.infrastructure.helpers;
 
 
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
@@ -23,20 +25,35 @@ public class TimelineActivityHelper {
     private static final String MEETING_MESSAGE = "tem uma reuniao";
     private static final String NOTE_MESSAGE = "fez uma anotacao";
 
+    private static final String APPROVED_MESSAGE = "aprovou a proposta";
+    private static final String DISAPPROVED_MESSAGE = "rejeitou a proposta";
+
+
+    private Map<ApproverStatus, ViewActivity> proposalProfile = new HashMap<>();
+
+    {
+        proposalProfile.put(ApproverStatus.APPROVED, ViewActivity.build("aprova&ccedil;&atilde;o de proposta", "bg-green", "entypo-check", APPROVED_MESSAGE));
+        proposalProfile.put(ApproverStatus.DISAPPROVED, ViewActivity.build("aprova&ccedil;&atilde;o de proposta", "bg-danger", "entypo-cancel", DISAPPROVED_MESSAGE));
+    }
 
     private Map<LogActivityTypeEnum, ViewActivity> profile = new HashMap<>();
 
     {
         profile.put(CALL, ViewActivity.build("telefone", "bg-info", "entypo-phone", PHONE_MESSAGE));
-        profile.put(EMAIL, ViewActivity.build("e-mail", "bg-green", "entypo-mail", EMAIL_MESSAGE));
+        profile.put(EMAIL, ViewActivity.build("e-mail",  "bg-green", "entypo-mail", EMAIL_MESSAGE));
         profile.put(MEETING, ViewActivity.build("visita", "bg-orange", "entypo-location", MEETING_MESSAGE));
         profile.put(NOTE, ViewActivity.build("nota", "bg-purple", "fa fa-edit", NOTE_MESSAGE));
 
     }
 
-    public ViewActivity getProfile(LogActivity activity) {
+    public ViewActivity getProfile(TimelineActivity activity) {
+        ViewActivity viewActivity = null;
 
-        ViewActivity viewActivity = profile.get(activity.getType());
+        if (activity instanceof LogActivity) {
+            viewActivity = profile.get(((LogActivity)activity).getType());
+        } else if (activity instanceof BusinessProposalApprovalActivity) {
+            viewActivity = proposalProfile.get(((BusinessProposalApprovalActivity)activity).getAvaluation());
+        }
 
         if (viewActivity == null) {
             return null;

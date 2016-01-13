@@ -47,6 +47,7 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
         if (!businessProposal.isNew()) {
             businessProposalSaved = super.save(businessProposal, service);
         } else {
+            businessProposal.setTemperature(ProposalTemperature.COLD);
             businessProposalSaved =  super.save(businessProposal);
         }
 
