@@ -123,8 +123,14 @@ public class ProposalSaleablesDTO implements Serializable {
 
     }
 
+    public void setApplication(SaleableApplication application) {
+        this.application = application;
+    }
 
     public void clear() {
         this.proposalSaleableItemDTOs.clear();
     }
+
+
+
 }
