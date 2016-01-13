@@ -1,13 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 
 import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
-@Table(name = "notifications")
+
+@Table(name="notifications")
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING)
 public class Notification extends Identifiable {
 
     @Id
@@ -15,7 +20,12 @@ public class Notification extends Identifiable {
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deadline;
+    @Column(name="create_date")
+    private Date createDate;
+
+    @ManyToOne
+    @JoinColumn(name="user_notified_id")
+    private User notified;
 
 
     @Override
@@ -27,11 +37,19 @@ public class Notification extends Identifiable {
         this.id = id;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public User getNotified() {
+        return notified;
+    }
+
+    public void setNotified(User notified) {
+        this.notified = notified;
     }
 }
