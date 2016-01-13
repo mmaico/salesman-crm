@@ -6,6 +6,8 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.events.messages.RequestApprovalFinalizeMessage;
+import br.com.kproj.salesman.infrastructure.events.messages.RequestNewApprovalMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -13,6 +15,7 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import com.google.common.collect.Sets;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,8 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<Request
     @Autowired
     private ApproverProfileRepository profileRepository;
 
+    @Autowired
+    private EventBus eventBus;
 
 
     @Override
@@ -63,6 +68,7 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<Request
 
         if (requestApproval.getApprovers().isEmpty()) return Optional.empty();
 
+        eventBus.post(RequestNewApprovalMessage.create(requestApproval));
         return Optional.ofNullable(super.save(requestApproval));
     }
 
@@ -79,7 +85,12 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<Request
 
         if (approverFound.isPresent()) {
             approverFound.get().setStatus(status);
-            requestApprovalLoaded.get().setCurrentStatus();
+            RequestApproval requestApproval = requestApprovalLoaded.get();
+            requestApproval.setCurrentStatus();
+
+            if (!requestApproval.getStatus().equals(RequestApproval.RequestApprovalStatus.WAITING)) {
+                eventBus.post(RequestApprovalFinalizeMessage.create(requestApproval));
+            }
         }
 
     }

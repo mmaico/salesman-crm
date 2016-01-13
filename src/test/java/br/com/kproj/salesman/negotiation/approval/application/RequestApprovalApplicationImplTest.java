@@ -12,6 +12,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Requ
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
 import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
 import com.google.common.collect.Lists;
+import com.google.common.eventbus.EventBus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -44,6 +45,8 @@ public class RequestApprovalApplicationImplTest {
     @Mock
     private ApproverProfileRepository profileRepository;
 
+    @Mock
+    private EventBus eventBus;
 
     @Test
     public void shouldRegisterRequestApproval() {

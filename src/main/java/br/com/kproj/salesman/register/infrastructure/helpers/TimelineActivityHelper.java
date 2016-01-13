@@ -24,6 +24,7 @@ public class TimelineActivityHelper {
     private static final String PHONE_MESSAGE = "conversou por telefone";
     private static final String MEETING_MESSAGE = "tem uma reuniao";
     private static final String NOTE_MESSAGE = "fez uma anotacao";
+    private static final String START_APPROVAL_MESSAGE = "solicitou nova aprova&ccedil;&atilde;o de proposta";
 
     private static final String APPROVED_MESSAGE = "aprovou a proposta";
     private static final String DISAPPROVED_MESSAGE = "rejeitou a proposta";
@@ -37,13 +38,12 @@ public class TimelineActivityHelper {
     }
 
     private Map<LogActivityTypeEnum, ViewActivity> profile = new HashMap<>();
-
     {
         profile.put(CALL, ViewActivity.build("telefone", "bg-info", "entypo-phone", PHONE_MESSAGE));
         profile.put(EMAIL, ViewActivity.build("e-mail",  "bg-green", "entypo-mail", EMAIL_MESSAGE));
         profile.put(MEETING, ViewActivity.build("visita", "bg-orange", "entypo-location", MEETING_MESSAGE));
         profile.put(NOTE, ViewActivity.build("nota", "bg-purple", "fa fa-edit", NOTE_MESSAGE));
-
+        profile.put(START_APPROVAL, ViewActivity.build("proposta", "bg-yellow", "entypo-check", START_APPROVAL_MESSAGE));
     }
 
     public ViewActivity getProfile(TimelineActivity activity) {
