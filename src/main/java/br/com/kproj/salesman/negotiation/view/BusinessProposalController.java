@@ -102,7 +102,7 @@ public class BusinessProposalController {
 
     }
 
-    @RequestMapping(value="/proposals/{proposalId}/temperature")
+    @RequestMapping(value="/proposals/{proposalId}/temperature", method = RequestMethod.PUT)
     public @ResponseBody void changeTemperature(@PathVariable Long proposalId, @ModelAttribute TemperatureDTO temperatureDTO) {
 
         service.changeTemperature(createBusinessProposal(proposalId).build(), temperatureDTO.getTemperature());
