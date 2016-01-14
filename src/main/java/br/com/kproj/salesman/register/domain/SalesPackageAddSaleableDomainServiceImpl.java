@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.domain;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableType;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import br.com.kproj.salesman.register.domain.contract.SalesPackageAddSaleableDomainService;
 import org.springframework.beans.factory.annotation.Autowired;

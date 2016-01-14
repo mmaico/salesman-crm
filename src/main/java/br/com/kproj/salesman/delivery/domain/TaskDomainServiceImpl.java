@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

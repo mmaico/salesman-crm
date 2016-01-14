@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.RegionRepository;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

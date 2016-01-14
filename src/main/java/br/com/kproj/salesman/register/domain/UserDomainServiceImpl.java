@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.domain;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.register.domain.contract.UserDomainService;
 import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;

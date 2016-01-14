@@ -3,9 +3,9 @@ package br.com.kproj.salesman.negotiation.domain.proposal;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.negotiation.domain.proposal.payment.PaymentItemPersistBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleableItemPersistBusinessRules;
 import org.springframework.beans.factory.annotation.Autowired;

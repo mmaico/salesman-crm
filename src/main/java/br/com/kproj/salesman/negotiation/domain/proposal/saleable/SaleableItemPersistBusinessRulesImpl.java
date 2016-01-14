@@ -4,7 +4,7 @@ package br.com.kproj.salesman.negotiation.domain.proposal.saleable;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.negotiation.domain.proposal.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.PackageBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleableItemPersistBusinessRules;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.SaleablePersistBusinessRules;

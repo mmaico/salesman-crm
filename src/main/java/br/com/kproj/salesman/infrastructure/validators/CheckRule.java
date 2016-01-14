@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.domain.proposal;
+package br.com.kproj.salesman.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
