@@ -23,7 +23,7 @@ public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> 
 
     @Override
     public SalesOrder register(BusinessProposal businessProposal) {
-
+        //verificar se existe um order com essa proposta
         SalesOrder salesOrder = converter.convert(businessProposal);
         return super.save(salesOrder);
     }

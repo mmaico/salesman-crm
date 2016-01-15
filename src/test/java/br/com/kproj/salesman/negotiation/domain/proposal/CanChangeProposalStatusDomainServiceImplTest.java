@@ -56,10 +56,11 @@ public class CanChangeProposalStatusDomainServiceImplTest {
     public void shouldNotHaveErrosWhenNotHasApprovers() {
         User userMock = Mockito.mock(User.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
-
+        RequestApproval requestApprovalMock = Mockito.mock(RequestApproval.class);
 
         given(profileRepository.hasApproversExcludeParam(userMock)).willReturn(Boolean.FALSE);
-        given(requestapproval.findLastRequestApproval(bpMock)).willReturn(Optional.empty());
+        given(requestApprovalMock.getStatus()).willReturn(RequestApproval.RequestApprovalStatus.APPROVED);
+        given(requestapproval.findLastRequestApproval(bpMock)).willReturn(Optional.of(requestApprovalMock));
 
         Boolean result = service.isValidBusinessRulesFor(bpMock, userMock);
 
