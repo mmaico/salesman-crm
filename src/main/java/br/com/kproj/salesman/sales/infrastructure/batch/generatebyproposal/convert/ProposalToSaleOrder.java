@@ -22,6 +22,7 @@ public class ProposalToSaleOrder implements Converter<BusinessProposal, SalesOrd
 
         SalesOrderBuilder builder = SalesOrderBuilder.createSalesOrder()
                 .withClient(source.getClient())
+                .withProposal(source)
                 .withDeliveryForeCast(source.getDeliveryForeCast())
                 .withOperationRegion(source.getOperationRegion())
                 .withSeller(source.getSeller());

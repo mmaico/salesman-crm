@@ -25,7 +25,6 @@ public class SalesOrderItem extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
-    @NotNull(message = "sales.order.item.is.invalid")
     private SaleableUnit saleableUnit;
 
     @ManyToOne

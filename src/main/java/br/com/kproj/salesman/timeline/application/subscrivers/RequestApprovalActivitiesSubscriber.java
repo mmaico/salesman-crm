@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class RequestApprovalActivitiesSubscriber {
 
     private static final String MESSAGE = "Solicitado aprovação de proposta";
+    private static final String MESSAGE_FINALIZE = "O processo de aprovacao foi finalizado";
 
     @Autowired
     private TimelineActivitiesApplication application;
@@ -33,7 +34,7 @@ public class RequestApprovalActivitiesSubscriber {
     @Subscribe
     public void generateActivityByFinalizeRequestApproval(RequestApprovalFinalizeMessage message) {
         LogActivity logActivity = LogActivityBuilder.createLogActivity()
-                .withDescription(MESSAGE)
+                .withDescription(MESSAGE_FINALIZE)
                 .withType(LogActivityTypeEnum.FINALIZE_APPROVAL)
                 .withUser(message.getRequestApproval().getUserRequester()).build();
 
