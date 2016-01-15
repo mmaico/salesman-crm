@@ -1,6 +1,6 @@
-package br.com.kproj.salesman.delivery.infrastructure.batch.generatebysalesorder;
+package br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder;
 
-import br.com.kproj.salesman.delivery.infrastructure.batch.generatebysalesorder.convert.TaskTemplateToTask;
+import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.convert.TaskTemplateToTask;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery.application;
 
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
+import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
@@ -10,6 +11,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,9 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
     private TaskDomainService service;
 
     @Autowired
+    private SalesOrderTaskItemProcessor processor;
+
+    @Autowired
     private EventBus eventBus;
 
 
@@ -47,6 +52,22 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
             return super.save(task);
         }
 
+    }
+
+    @Override
+    public void generateTaskByNewSalesOrder(SalesOrder salesOrder) throws Exception {
+
+        List<Task> result = repository.findBySalesOrder(salesOrder);
+        if (!result.isEmpty()) {
+            hasErrors(Sets.newHashSet("already.generate.task.for.this.sale"))
+                    .throwing(ValidationException.class);
+        }
+
+        List<Task> tasks = processor.process(salesOrder);
+
+        if (tasks.isEmpty()) return;
+
+        this.repository.save(tasks);
     }
 
     @Override

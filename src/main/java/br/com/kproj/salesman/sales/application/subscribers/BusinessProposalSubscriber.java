@@ -14,7 +14,6 @@ public class BusinessProposalSubscriber {
 
     @Subscribe
     public void generateSalesOrder(BusinessProposalClosedWonMessage message) {
-
         application.register(message.getProposal());
     }
 }

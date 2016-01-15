@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.delivery.infrastructure.batch.generatebysalesorder.convert;
+package br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.convert;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
