@@ -30,25 +30,16 @@ public class CanChangeProposalStatusDomainServiceImpl implements CanChangePropos
     private ApproverProfileRepository profileRepository;
 
     @Autowired
-    private RequestApprovalRepository approvalRepository;
-
-    @Autowired
     private RequestApprovalApplication requestapproval;
 
 
     Map<String, CheckParamsRule<BusinessProposal, User>> persistRules = new HashMap<>();
     {
         persistRules.put(description("proposal.change.temperature.to.done.with.approvers.without.aproval"),
-                (bp, user) -> profileRepository.hasApproversExcludeParam(user)
-                        && requestapproval.findLastRequestApproval(bp).isPresent()
-                        && requestapproval.findLastRequestApproval(bp).get().getStatus().equals(RequestApproval.RequestApprovalStatus.APPROVED)
+                (bp, user) -> !profileRepository.hasApproversExcludeParam(user) ? Boolean.FALSE :
+                            !requestapproval.findLastRequestApproval(bp).isPresent()
+                            || !requestapproval.findLastRequestApproval(bp).get().getStatus().equals(RequestApproval.RequestApprovalStatus.APPROVED)
                 );
-
-//        persistRules.put(description("proposal.change.temperature.to.done.with.rejected"),
-//                (bp, user) -> Boolean.FALSE);
-//
-//        persistRules.put(description("proposal.change.temperature.to.done.with.waiting"),
-//                (bp, user) -> Boolean.FALSE);
 
     }
 

@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.events.messages.BusinessProposalClosedWonMessage;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -68,6 +69,7 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
         return repository.findByClient(client);
     }
 
+    @Override
     public void changeTemperature(BusinessProposal proposal, User changeThat, ProposalTemperature temperature) {
 
         if (temperature == null) return;
@@ -79,6 +81,7 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
             if (ProposalTemperature.CLOSED_WON == temperature) {
                 if (checkChange.isValidBusinessRulesFor(proposal, changeThat)) {
                     businessProposal.setTemperature(temperature);
+                    eventBus.post(BusinessProposalClosedWonMessage.create(businessProposal));
                 }
             } else {
                 businessProposal.setTemperature(temperature);

@@ -33,6 +33,7 @@ public class UserNotificationLogView extends Identifiable {
     private Date lastVisualization;
 
     @Column(name="type_log_view")
+    @Enumerated(EnumType.STRING)
     private TypeLogView typeLogView;
 
     public User getUser() {

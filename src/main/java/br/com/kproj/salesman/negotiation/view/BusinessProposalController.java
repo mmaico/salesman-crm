@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.view;
 
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -7,6 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.BusinessProposalValidator;
 import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalRequestMergeHelper;
@@ -46,6 +48,9 @@ public class BusinessProposalController {
 
     @Autowired
     private ProposalSaleablesDTO proposalSaleablesDTO;
+
+    @Autowired
+    private SecurityHelper security;
 
     @InitBinder(value = "businessProposal")
     private void initBinder(WebDataBinder binder) {
@@ -104,9 +109,8 @@ public class BusinessProposalController {
 
     @RequestMapping(value="/proposals/{proposalId}/temperature", method = RequestMethod.PUT)
     public @ResponseBody void changeTemperature(@PathVariable Long proposalId, @ModelAttribute TemperatureDTO temperatureDTO) {
-
-        //service.changeTemperature(createBusinessProposal(proposalId).build(), temperatureDTO.getTemperature());
-
+        User user = security.getPrincipal().getUser();
+        service.changeTemperature(createBusinessProposal(proposalId).build(), user, temperatureDTO.getTemperature());
     }
 
 
