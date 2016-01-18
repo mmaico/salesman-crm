@@ -95,10 +95,10 @@
     <checklist_templates id="4" task_template_id="2" name="Cobrar fornecedores 2"/>
 
 
-    <tasks id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WATTING" sales_order_id="1" />
-    <tasks id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" />
-    <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" />
-    <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1"/>
+    <tasks id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WATTING" sales_order_id="1" operation_region_id="1" />
+    <tasks id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" operation_region_id="1"/>
+    <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
 
 
     <proposal_aprover_profile id="1" user_approver_id="1" available="true"/>
