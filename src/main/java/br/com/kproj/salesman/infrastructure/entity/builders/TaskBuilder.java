@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
+import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
@@ -49,6 +50,11 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
+    public TaskBuilder withRegion(OperationRegion region) {
+        this.entity.setRegion(region);
+        return this;
+    }
+
     public TaskBuilder withSignedBy(List<User> users) {
         this.entity.setSignedBy(users); ;
         return this;
@@ -56,13 +62,6 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
 
     public TaskBuilder withNotifications(List<Notification> notifications) {
         this.entity.setNotifications(notifications);
-        return this;
-    }
-
-    public TaskBuilder withTimeline() {
-        Timeline timeline = new Timeline();
-
-        this.entity.setTimeline(timeline);
         return this;
     }
 

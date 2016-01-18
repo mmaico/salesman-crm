@@ -77,7 +77,10 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
         Optional<BusinessProposal> proposalOptional = getOne(proposal.getId());
 
         if (proposalOptional.isPresent()) {
+
             BusinessProposal businessProposal = proposalOptional.get();
+            if (businessProposal.getTemperature() == ProposalTemperature.CLOSED_WON) return;
+
             if (ProposalTemperature.CLOSED_WON == temperature) {
                 if (checkChange.isValidBusinessRulesFor(proposal, changeThat)) {
                     businessProposal.setTemperature(temperature);

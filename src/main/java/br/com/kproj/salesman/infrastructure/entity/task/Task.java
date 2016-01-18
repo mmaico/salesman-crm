@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
@@ -25,9 +26,12 @@ public class Task extends Identifiable {
     private String title;
     private String description;
 
-    @OneToMany
+    @OneToMany(cascade =CascadeType.ALL)
     @JoinColumn(name="parent_id")
     private List<Task> tasksChilds;
+
+    @Column(name = "parent_id", updatable =false, insertable = false)
+    private Long parentId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date deadline;
@@ -58,6 +62,11 @@ public class Task extends Identifiable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="task_id")
     private List<Notification> notifications;
+
+    @ManyToOne
+    @JoinColumn(name="operation_region_id")
+    @NotNull(message = "task.region.not.informed")
+    private OperationRegion region;
 
     public void addChild(Task task) {
         if (this.tasksChilds == null) {
@@ -189,5 +198,21 @@ public class Task extends Identifiable {
 
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public OperationRegion getRegion() {
+        return region;
+    }
+
+    public void setRegion(OperationRegion region) {
+        this.region = region;
     }
 }

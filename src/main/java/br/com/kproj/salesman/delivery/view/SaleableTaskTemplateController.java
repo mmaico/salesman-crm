@@ -1,21 +1,13 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.delivery.application.TaskTemplateApplication;
+import br.com.kproj.salesman.delivery.application.tasktemplates.TaskTemplateApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
 import br.com.kproj.salesman.delivery.view.dtos.TaskTemplateDTO;
-import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.infrastructure.repository.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

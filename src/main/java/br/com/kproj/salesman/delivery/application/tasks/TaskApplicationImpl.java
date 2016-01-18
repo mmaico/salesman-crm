@@ -1,6 +1,7 @@
-package br.com.kproj.salesman.delivery.application;
+package br.com.kproj.salesman.delivery.application.tasks;
 
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
+import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
@@ -102,6 +103,35 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         taskLoaded.setStatus(task.getStatus());
 
         eventBus.post(TaskChangeStatusMessage.create(taskLoaded, userChange, oldStatus));
+    }
+
+    @Override
+    public DeliveryResumeExecutionTaskDTO getResume() {
+
+        DeliveryResumeExecutionTaskDTO taskDTO = DeliveryResumeExecutionTaskDTO.create()
+                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE))
+                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED))
+                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING))
+                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM));
+
+        return taskDTO;
+    }
+
+    @Override
+    public DeliveryResumeExecutionTaskDTO getResume(SalesOrder salesOrder) {
+        DeliveryResumeExecutionTaskDTO taskDTO = DeliveryResumeExecutionTaskDTO.create()
+                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE, salesOrder))
+                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED, salesOrder))
+                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING, salesOrder))
+                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM, salesOrder));
+
+        return taskDTO;
+    }
+
+    @Override
+    public Long countBySalesOrder(SalesOrder salesOrder) {
+        if (salesOrder == null || salesOrder.isNew()) return 0l;
+        return this.repository.countBySalesOrder(salesOrder);
     }
 
     @Override

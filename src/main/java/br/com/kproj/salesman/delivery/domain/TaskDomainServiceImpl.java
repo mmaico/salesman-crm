@@ -67,7 +67,7 @@ public class TaskDomainServiceImpl implements TaskDomainService {
         }
 
         if (task.isNew()) {
-            task.setStatus(TaskStatus.WATTING);
+            task.setStatus(TaskStatus.WAITING);
         }
     }
 }

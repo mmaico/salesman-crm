@@ -1,14 +1,9 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.delivery.application.ChecklistTemplateApplication;
-import br.com.kproj.salesman.delivery.application.TaskTemplateApplication;
+import br.com.kproj.salesman.delivery.application.tasktemplates.ChecklistTemplateApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistTemplateValidator;
-import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
-import br.com.kproj.salesman.delivery.view.dtos.TaskTemplateDTO;
-import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -16,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ChecklistTemplateBuilder.createChecklistTemplateBuilder;
 import static br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder.createSaleableUnit;

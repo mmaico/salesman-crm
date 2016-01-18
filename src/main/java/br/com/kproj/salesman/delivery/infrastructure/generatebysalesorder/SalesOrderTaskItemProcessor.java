@@ -23,7 +23,7 @@ public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, Li
 
         List<List<Task>> collect = salesOrder.getSalesOrderItems()
                 .stream()
-                .map(item -> repository.findTaskTemplateBy(item.getSaleableUnit())
+                .map(item -> repository.findTaskTemplateBy(item.getSaleableAvailable(), salesOrder.getOperationRegion())
                                 .stream().map(template -> getConverter(salesOrder).convert(template))
                                 .collect(Collectors.toList())
                 ).collect(Collectors.toList());

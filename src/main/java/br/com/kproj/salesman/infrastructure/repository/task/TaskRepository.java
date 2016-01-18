@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public interface TaskRepository extends BaseRepository<Task, Long> {
 
-    @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder ORDER BY t.deadline ASC")
+    @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
     List<Task> findBySalesOrder(@Param("salesOrder") SalesOrder salesOrder);
 
     @Query("SELECT " +
@@ -23,4 +24,15 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
             "FROM Task AS t JOIN t.tasksChilds AS taskChild " +
             "WHERE taskChild = :task")
     Boolean isSomeonesSon(@Param("task")Task task);
+
+
+    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status")
+    Long countByStatus(@Param("status")TaskStatus status);
+
+    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status AND t.salesOrder = :salesOrder")
+    Long countByStatus(@Param("status")TaskStatus status, @Param("salesOrder") SalesOrder salesOrder);
+
+    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.salesOrder = :salesOrder")
+    Long countBySalesOrder(@Param("salesOrder")SalesOrder salesOrder);
+
 }

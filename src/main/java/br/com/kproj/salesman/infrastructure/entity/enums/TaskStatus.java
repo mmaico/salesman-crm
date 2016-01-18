@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.enums;
 
 public enum TaskStatus {
 
-    WATTING("Aguardadndo"), STATED("Iniciado"), PROBLEM("Com problemas"), DONE("Finalizado");
+    WAITING("Aguardadndo"), STATED("Iniciado"), PROBLEM("Com problemas"), DONE("Finalizado");
 
     private String message;
 

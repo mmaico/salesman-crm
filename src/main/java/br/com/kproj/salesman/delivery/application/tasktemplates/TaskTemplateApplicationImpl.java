@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.delivery.application;
+package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 import br.com.kproj.salesman.delivery.domain.TaskTemplateDomainService;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;

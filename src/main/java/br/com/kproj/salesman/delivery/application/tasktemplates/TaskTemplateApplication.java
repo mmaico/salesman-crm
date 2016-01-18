@@ -1,10 +1,9 @@
-package br.com.kproj.salesman.delivery.application;
+package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.delivery.application.TaskApplication;
+import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;

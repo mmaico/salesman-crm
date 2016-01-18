@@ -2,12 +2,16 @@ package br.com.kproj.salesman.infrastructure.helpers;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
 
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -62,4 +66,14 @@ public class DateHelper {
         return calendar.getTime();
 
     }
+
+	public static Integer quantityDaysBetween(Date date) {
+		Date now = new Date();
+		LocalDate localStartDate = LocalDate.fromDateFields(now);
+		LocalDate localEndDate = LocalDate.fromDateFields(date);
+		Days days = Days.daysBetween(localStartDate, localEndDate);
+
+		return days.getDays();
+
+	}
 }

@@ -29,11 +29,10 @@ public class TaskTemplateToTask implements Converter<TaskTemplate, Task> {
         TaskBuilder builder = TaskBuilder.createTaskBuilder()
                 .withDeadline(addDayToDate(quantityDays, new Date()))
                 .withDescription(source.getDescription())
-                .withStatus(TaskStatus.WATTING)
-                .withTimeline()
+                .withStatus(TaskStatus.WAITING)
                 .withTitle(source.getTitle())
+                .withRegion(source.getRegion())
                 .withSalesOrder(salesOrder);
-
 
         safeIterable(source.getChecklistTemplates()).forEach(checklist -> builder.addCheckList(
                 ChecklistTemplateToChecklist.create(builder.build()).convert(checklist)
@@ -43,9 +42,11 @@ public class TaskTemplateToTask implements Converter<TaskTemplate, Task> {
                 TaskCostTemplateToTaskCost.create(builder.build()).convert(cost)
             ));
 
-        safeIterable(source.getTemplatesChilds()).forEach(child -> builder.addChild(
-                TaskTemplateToTask.create(salesOrder).convert(child)
-            ));
+        if (source.getTemplatesChilds() != null) {
+            source.getTemplatesChilds().stream()
+                    .filter(item -> item.getRegion().equals(salesOrder.getOperationRegion()))
+                        .forEach(child -> builder.addChild(TaskTemplateToTask.create(salesOrder).convert(child)));
+        }
 
         return builder.build();
     }

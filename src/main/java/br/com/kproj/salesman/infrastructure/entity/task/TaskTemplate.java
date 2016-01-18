@@ -33,6 +33,10 @@ public class TaskTemplate extends Identifiable {
     @Cascade(CascadeType.DELETE)
     private List<TaskTemplate> templatesChilds;
 
+
+    @Column(name = "task_template_parent_id", updatable =false, insertable = false)
+    private Long parentId;
+
     @Column(name="quantity_days_to_finish_after_signed_contract")
     private Integer quantityDaysTofinishAfertSignedContract;
 
@@ -161,5 +165,13 @@ public class TaskTemplate extends Identifiable {
     public Boolean hasValidParent() {
         return parent != null && !parent.isNew();
 
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

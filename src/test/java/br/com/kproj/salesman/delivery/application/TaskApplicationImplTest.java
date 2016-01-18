@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.delivery.application;
 
+import br.com.kproj.salesman.delivery.application.tasks.TaskApplicationImpl;
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
