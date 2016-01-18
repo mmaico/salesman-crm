@@ -14,4 +14,6 @@ public interface ActDeliverySalesApplication extends ModelService<ActDeliverySal
 
 
     List<SalesOrder> findSalesOrderInActDelivery();
+
+    ActDeliverySales register(ActDeliverySales actDeliverySales);
 }

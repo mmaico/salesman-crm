@@ -9,7 +9,6 @@ import java.util.Date;
 
 
 @Entity
-
 @Table(name="notifications")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING)
