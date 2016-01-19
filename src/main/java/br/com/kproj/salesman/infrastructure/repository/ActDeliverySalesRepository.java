@@ -13,8 +13,9 @@ import java.util.Optional;
 public interface ActDeliverySalesRepository extends BaseRepository<ActDeliverySales, Long> {
 
 
+    @Query("SELECT ads FROM ActDeliverySales AS ads WHERE ads.salesOrder = :salesOrder AND ads.user = :user ")
     Optional<ActDeliverySales> findBySalesOrderAndUser(@Param("salesOrder")SalesOrder salesOrder,
-                                                       @Param("salesOrder") User user);
+                                                       @Param("user") User user);
 
     @Query("SELECT so FROM SalesOrder AS so WHERE so NOT IN " +
             " (SELECT ads.salesOrder FROM ActDeliverySales AS ads ) ")
