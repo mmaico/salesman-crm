@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
+import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import com.google.common.collect.Lists;
@@ -59,9 +60,8 @@ public class Task extends Identifiable {
     @JoinColumn(name = "timeline_id")
     private Timeline timeline;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="task_id")
-    private List<Notification> notifications;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
+    private List<ScheduleTriggerNotification> triggerNotifications;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
@@ -96,11 +96,11 @@ public class Task extends Identifiable {
         this.signedBy.add(user);
     }
 
-    public void addNotification(Notification notification) {
-        if (this.notifications == null) {
-            this.notifications = Lists.newArrayList();
+    public void addTriggerNotification(ScheduleTriggerNotification notification) {
+        if (this.triggerNotifications == null) {
+            this.triggerNotifications = Lists.newArrayList();
         }
-        this.notifications.add(notification);
+        this.triggerNotifications.add(notification);
     }
 
     @Override
@@ -192,12 +192,12 @@ public class Task extends Identifiable {
         this.timeline = timeline;
     }
 
-    public List<Notification> getNotifications() {
-        return notifications;
+    public List<ScheduleTriggerNotification> getTriggerNotifications() {
+        return triggerNotifications;
     }
 
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
+    public void setTriggerNotifications(List<ScheduleTriggerNotification> triggerNotifications) {
+        this.triggerNotifications = triggerNotifications;
     }
 
     public Long getParentId() {

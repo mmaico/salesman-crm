@@ -9,7 +9,6 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 
 import java.util.Date;
 import java.util.List;
@@ -86,7 +85,7 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
     }
 
     public TaskBuilder addNotification(Notification notification) {
-        this.entity.addNotification(notification);
+        this.entity.addTriggerNotification(notification);
         return this;
     }
 

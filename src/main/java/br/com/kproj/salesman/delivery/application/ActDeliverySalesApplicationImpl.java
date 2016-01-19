@@ -2,6 +2,7 @@ package br.com.kproj.salesman.delivery.application;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.ActDeliverySalesValidator;
 import br.com.kproj.salesman.infrastructure.entity.ActDeliverySales;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.repository.ActDeliverySalesRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -45,6 +46,11 @@ public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDel
     @Override
     public List<SalesOrder> findNewSalesOrder() {
         return this.repository.findSalesOrderOutActDelivery();
+    }
+
+    @Override
+    public List<SalesOrder> findBy(User user) {
+        return this.repository.findByUser(user);
     }
 
     @Override
