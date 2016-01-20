@@ -32,6 +32,8 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
+
     public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = createNumber("quantityDaysTofinishAfertSignedContract", Integer.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;

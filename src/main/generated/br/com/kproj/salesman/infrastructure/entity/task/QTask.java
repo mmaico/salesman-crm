@@ -32,7 +32,9 @@ public class QTask extends EntityPathBase<Task> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.notification.Notification, br.com.kproj.salesman.infrastructure.entity.notification.QNotification> notifications = this.<br.com.kproj.salesman.infrastructure.entity.notification.Notification, br.com.kproj.salesman.infrastructure.entity.notification.QNotification>createList("notifications", br.com.kproj.salesman.infrastructure.entity.notification.Notification.class, br.com.kproj.salesman.infrastructure.entity.notification.QNotification.class, PathInits.DIRECT2);
+    public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;
 
     public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder salesOrder;
 
@@ -47,6 +49,8 @@ public class QTask extends EntityPathBase<Task> {
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public final StringPath title = createString("title");
+
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification> triggerNotifications = this.<br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification>createList("triggerNotifications", br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification.class, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification.class, PathInits.DIRECT2);
 
     public QTask(String variable) {
         this(Task.class, forVariable(variable), INITS);
@@ -66,6 +70,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public QTask(Class<? extends Task> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("region")) : null;
         this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }

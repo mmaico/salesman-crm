@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
+import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -59,11 +60,6 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder withNotifications(List<Notification> notifications) {
-        this.entity.setNotifications(notifications);
-        return this;
-    }
-
     public TaskBuilder addTaskCost(TaskCost taskCost) {
         this.entity.addTaskCost(taskCost);
         return this;
@@ -84,11 +80,10 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder addNotification(Notification notification) {
+    public TaskBuilder addNotification(ScheduleTriggerNotification notification) {
         this.entity.addTriggerNotification(notification);
         return this;
     }
-
 
 	
 	public static TaskBuilder createTaskBuilder(Long id) {
