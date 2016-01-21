@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TaskRepository extends BaseRepository<Task, Long> {
 
@@ -34,5 +35,8 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
 
     @Query("SELECT COUNT(t) FROM Task AS t WHERE t.salesOrder = :salesOrder")
     Long countBySalesOrder(@Param("salesOrder")SalesOrder salesOrder);
+
+    @Query("SELECT t FROM Task AS t WHERE t.id = :id")
+    Optional<Task> getOne(@Param("id")Long id);
 
 }

@@ -215,4 +215,13 @@ public class Task extends Identifiable {
     public void setRegion(OperationRegion region) {
         this.region = region;
     }
+
+    public Boolean hasSigned(User user) {
+        if (this.getSignedBy() == null) {
+            this.signedBy = Lists.newArrayList();
+            return Boolean.FALSE;
+        } else {
+            return this.signedBy.contains(user);
+        }
+    }
 }

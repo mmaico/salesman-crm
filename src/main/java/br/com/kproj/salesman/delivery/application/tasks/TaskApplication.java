@@ -27,4 +27,6 @@ public interface TaskApplication extends ModelService<Task> {
 
     Long countBySalesOrder(SalesOrder salesOrder);
 
+    void signedTask(User user, Task task);
+
 }

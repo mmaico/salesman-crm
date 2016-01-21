@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.ModelHelper.isNull;
@@ -132,6 +134,22 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
     public Long countBySalesOrder(SalesOrder salesOrder) {
         if (salesOrder == null || salesOrder.isNew()) return 0l;
         return this.repository.countBySalesOrder(salesOrder);
+    }
+
+    @Override
+    public void signedTask(User user, Task task) {
+
+        if (task == null || task.isNew()) {
+            hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
+        }
+
+        Optional<Task> taskLoaded = this.repository.getOne(task.getId());
+
+        if (taskLoaded.isPresent()) {
+            if (!taskLoaded.get().hasSigned(user)) {
+                taskLoaded.get().addSignedBy(user);
+            }
+        }
     }
 
     @Override

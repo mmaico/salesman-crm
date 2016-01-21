@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.sales.application.SalesOrderApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,10 +18,14 @@ public class DeliverySalesTasksController {
     @Autowired
     private SalesOrderApplication application;
 
+    @Autowired
+    private SecurityHelper security;
+
     @RequestMapping(value="/delivery/sales-order/{salesId}")
     public ModelAndView showDetail(@PathVariable Long salesId, Model model) {
         Optional<SalesOrder> result = application.getOne(salesId);
 
+        model.addAttribute("loggedUser", security.getPrincipal().getUser());
         model.addAttribute("salesorder", result.isPresent() ? result.get() : null);
         return new ModelAndView("/delivery/sales-order-tasks");
     }

@@ -2,10 +2,13 @@ package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -29,6 +32,9 @@ public class TaskController {
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
+
+    @Autowired
+    private SecurityHelper security;
 
     @InitBinder(value = "task")
     private void initBinder(WebDataBinder binder) {
@@ -82,6 +88,14 @@ public class TaskController {
 
         model.addAttribute(result.isPresent() ? result.get() : null);
         return new ModelAndView("/task/" + templateName);
+    }
+
+    @RequestMapping(value="/task/{taskId}/signed")
+    public @ResponseBody void signedTask(@PathVariable Long taskId) {
+        Task task = TaskBuilder.createTaskBuilder(taskId).build();
+        User user = security.getPrincipal().getUser();
+
+        this.service.signedTask(user, task);
     }
 
 }
