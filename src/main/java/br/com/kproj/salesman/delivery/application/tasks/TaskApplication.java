@@ -29,4 +29,6 @@ public interface TaskApplication extends ModelService<Task> {
 
     void signedTask(User user, Task task);
 
+    void unsignedTask(User user, Task task);
+
 }

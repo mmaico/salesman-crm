@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
 import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.ModelHelper.isNull;
 import static com.google.common.collect.Sets.newHashSet;
@@ -148,6 +150,23 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         if (taskLoaded.isPresent()) {
             if (!taskLoaded.get().hasSigned(user)) {
                 taskLoaded.get().addSignedBy(user);
+            }
+        }
+    }
+
+    @Override
+    public void unsignedTask(User user, Task task) {
+        if (task == null || task.isNew()) {
+            hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
+        }
+
+        Optional<Task> taskLoaded = this.repository.getOne(task.getId());
+
+        if (taskLoaded.isPresent()) {
+            if (taskLoaded.get().hasSigned(user)) {
+                if (!isEmptySafe(taskLoaded.get().getSignedBy())) {
+                    taskLoaded.get().getSignedBy().remove(user);
+                }
             }
         }
     }

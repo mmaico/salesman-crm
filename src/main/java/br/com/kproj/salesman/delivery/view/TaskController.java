@@ -41,7 +41,7 @@ public class TaskController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/task/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/tasks/save", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated Task task,
                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -54,7 +54,7 @@ public class TaskController {
         return "/task/" + taskSaved.getId();
     }
 
-    @RequestMapping(value = "/task/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/tasks/save", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute @Validated Task task,
                                                BindingResult bindingResult) {
 
@@ -69,7 +69,7 @@ public class TaskController {
     }
 
 
-    @RequestMapping(value="/task/list")
+    @RequestMapping(value="/tasks/list")
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 
@@ -80,22 +80,30 @@ public class TaskController {
     }
 
 
-    @RequestMapping(value="/task/{taskId}")
-    public ModelAndView viewInfo(@RequestParam(defaultValue="edit",required=false, value="template") String templateName,
+    @RequestMapping(value="/tasks/{taskId}")
+    public ModelAndView viewInfo(@RequestParam(defaultValue="detail",required=false, value="template") String templateName,
                                  @PathVariable Long taskId, Model model) {
 
         Optional<Task> result = this.service.getOne(taskId);
 
         model.addAttribute(result.isPresent() ? result.get() : null);
-        return new ModelAndView("/task/" + templateName);
+        return new ModelAndView("/delivery/tasks/" + templateName);
     }
 
-    @RequestMapping(value="/task/{taskId}/signed")
+    @RequestMapping(value="/tasks/{taskId}/signed", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId) {
         Task task = TaskBuilder.createTaskBuilder(taskId).build();
         User user = security.getPrincipal().getUser();
 
         this.service.signedTask(user, task);
+    }
+
+    @RequestMapping(value="/tasks/{taskId}/unsigned", method = RequestMethod.PUT)
+    public @ResponseBody void unsignedTask(@PathVariable Long taskId) {
+        Task task = TaskBuilder.createTaskBuilder(taskId).build();
+        User user = security.getPrincipal().getUser();
+
+        this.service.unsignedTask(user, task);
     }
 
 }

@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.repository.ActDeliverySalesRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,14 @@ public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDel
         }
 
         return result.get();
+    }
+
+    @Override
+    public List<User> findUsersResponsibles(SalesOrder salesOrder) {
+        if (salesOrder == null || salesOrder.isNew()) {
+            return Lists.newArrayList();
+        }
+        return repository.findUserWorkingActDelivery(salesOrder);
     }
 
 
