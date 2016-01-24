@@ -14,6 +14,7 @@ import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +48,24 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
 
     @Override
     public Task register(Task task) {
+        Task taskSaved;
 
         if (!task.isNew()) {
-            return super.save(task, service);
+            taskSaved =  super.save(task, service);
         } else {
             service.checkBusinessRulesFor(task);
             service.prepareToSave(task);
-
-            return super.save(task);
+            taskSaved = super.save(task);
         }
 
+        if (task.hasValidParent()) {
+            Optional<Task> parentLoaded = repository.getOne(task.getParent().getId());
+            if (parentLoaded.isPresent()) {
+                parentLoaded.get().addChild(taskSaved);
+            }
+        }
+
+        return taskSaved;
     }
 
     @Override
@@ -169,6 +178,16 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
                 }
             }
         }
+    }
+
+    @Override
+    public List<Task> findTaskRootBy(SalesOrder salesOrder) {
+
+        if (salesOrder.isNew()) {
+            Lists.newArrayList();
+        }
+
+        return this.repository.findTaskRootBy(salesOrder);
     }
 
     @Override

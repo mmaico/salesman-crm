@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
+import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
@@ -9,6 +10,7 @@ import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerN
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import com.google.common.collect.Lists;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -35,6 +37,8 @@ public class Task extends Identifiable {
     private Long parentId;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/M/Y")
+    @NotNull(message = "task.deadline.not.informed")
     private Date deadline;
 
     @Enumerated(EnumType.STRING)
@@ -67,6 +71,10 @@ public class Task extends Identifiable {
     @JoinColumn(name="operation_region_id")
     @NotNull(message = "task.region.not.informed")
     private OperationRegion region;
+
+    @Transient
+    @IgnoreField
+    private Task parent;
 
     public void addChild(Task task) {
         if (this.tasksChilds == null) {
@@ -214,6 +222,19 @@ public class Task extends Identifiable {
 
     public void setRegion(OperationRegion region) {
         this.region = region;
+    }
+
+    public Task getParent() {
+        return parent;
+    }
+
+    public void setParent(Task parent) {
+        this.parent = parent;
+    }
+
+    public Boolean hasValidParent() {
+        return parent != null && !parent.isNew();
+
     }
 
     public Boolean hasSigned(User user) {

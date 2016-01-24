@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -62,7 +63,13 @@ public class TaskController {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
+        if (task.isNew()) {
+            throw new ValidationException(Sets.newHashSet("task.update.without.id"));
+        }
+
         normalizeEntityRequest.addFieldsToUpdate(task);
+
+        normalizeEntityRequest.doNestedReference(task);
         Task taskSaved = service.register(task);
 
         return "/task/" + taskSaved.getId();

@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository.task;
 
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -25,6 +26,11 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
             "FROM Task AS t JOIN t.tasksChilds AS taskChild " +
             "WHERE taskChild = :task")
     Boolean isSomeonesSon(@Param("task")Task task);
+
+    @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder AND t " +
+            " NOT IN (SELECT child FROM Task AS ta JOIN ta.tasksChilds AS child " +
+            "   WHERE ta.salesOrder = :salesOrder)")
+    List<Task> findTaskRootBy(@Param("salesOrder")SalesOrder salesOrder);
 
 
     @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status")

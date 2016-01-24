@@ -1,8 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="checklists")
@@ -11,6 +13,8 @@ public class Checklist extends Identifiable {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotBlank(message = "checklist.name.invalid")
     private String name;
 
     @Column(name="is_done")
@@ -18,6 +22,7 @@ public class Checklist extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="task_id")
+    @NotNull(message = "checklist.task.null")
     private Task task;
 
     public Long getId() {

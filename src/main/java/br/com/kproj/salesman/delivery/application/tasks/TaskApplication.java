@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -30,5 +31,7 @@ public interface TaskApplication extends ModelService<Task> {
     void signedTask(User user, Task task);
 
     void unsignedTask(User user, Task task);
+
+    List<Task> findTaskRootBy(SalesOrder salesOrder);
 
 }
