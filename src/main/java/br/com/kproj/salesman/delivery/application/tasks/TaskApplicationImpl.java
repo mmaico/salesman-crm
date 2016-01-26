@@ -69,6 +69,24 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
     }
 
     @Override
+    public Task registerSubtask(Task parent, Task taskChild) {
+
+
+        Optional<Task> taskParentLoaded = repository.getOne(parent.getId());
+
+        if (!taskParentLoaded.isPresent()) {
+            throw new ValidationException(Sets.newHashSet("subtask.with.invalid.parent"));
+        }
+
+        taskChild.setParent(taskParentLoaded.get());
+        taskChild.setSalesOrder(taskParentLoaded.get().getSalesOrder());
+        taskChild.setRegion(taskParentLoaded.get().getRegion());
+
+
+        return register(taskChild);
+    }
+
+    @Override
     public void generateTaskByNewSalesOrder(SalesOrder salesOrder) throws Exception {
 
         List<Task> result = repository.findBySalesOrder(salesOrder);

@@ -69,7 +69,6 @@ public class Task extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
-    @NotNull(message = "task.region.not.informed")
     private OperationRegion region;
 
     @Transient

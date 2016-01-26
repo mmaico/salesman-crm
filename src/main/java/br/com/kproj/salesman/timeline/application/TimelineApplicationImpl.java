@@ -3,8 +3,10 @@ package br.com.kproj.salesman.timeline.application;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.repository.*;
+import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 
 	@Autowired
 	private ContactRepository contactRepository;
+
+	@Autowired
+	private TaskRepository taskRepository;
 
    
     @Override
@@ -81,8 +86,25 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 
 		return timeline;
     }
-   
-    @Override
+
+	@Override
+	public Timeline register(Task task) {
+		Timeline timeline = null;
+
+		Task taskLoaded = taskRepository.findOne(task.getId());
+
+		if (taskLoaded.getTimeline() == null) {
+			timeline = createTimeline(taskLoaded).build();
+			timeline = repository.save(timeline);
+			taskLoaded.setTimeline(timeline);
+		} else {
+			timeline = taskLoaded.getTimeline();
+		}
+
+		return timeline;
+	}
+
+	@Override
     public BaseRepository<Timeline, Long> getRepository() {
         return repository;
     }

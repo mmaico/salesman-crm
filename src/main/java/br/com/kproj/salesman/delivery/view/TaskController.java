@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
+import br.com.kproj.salesman.infrastructure.validators.ValidatorHelper;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
+
+import static br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder.createTaskBuilder;
+import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 
 @RestController
 public class TaskController {
@@ -43,8 +47,7 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/tasks/save", method = RequestMethod.POST)
-    public  @ResponseBody String save(@ModelAttribute @Validated Task task,
-                                              BindingResult bindingResult) {
+    public  @ResponseBody String save(@ModelAttribute @Validated Task task, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
@@ -55,9 +58,22 @@ public class TaskController {
         return "/task/" + taskSaved.getId();
     }
 
+    @RequestMapping(value = "/tasks/{parentTaskId}/subtask", method = RequestMethod.POST)
+    public  ModelAndView saveSubtask(@ModelAttribute Task task, @PathVariable("parentTaskId") Long parentTaskId, Model model) {
+
+        hasContraintViolated(task, validator);
+
+        normalizeEntityRequest.doNestedReference(task);
+        service.registerSubtask(createTaskBuilder(parentTaskId).build(), task);
+
+        Optional<Task> taskParentLoaded = service.getOne(parentTaskId);
+
+        model.addAttribute("task", taskParentLoaded.isPresent() ? taskParentLoaded.get() : null);
+        return new ModelAndView("/delivery/tasks/includes/subtask");
+    }
+
     @RequestMapping(value = "/tasks/save", method = RequestMethod.PUT)
-    public @ResponseBody String update(@ModelAttribute @Validated Task task,
-                                               BindingResult bindingResult) {
+    public @ResponseBody String update(@ModelAttribute @Validated Task task, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -99,7 +115,7 @@ public class TaskController {
 
     @RequestMapping(value="/tasks/{taskId}/signed", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId) {
-        Task task = TaskBuilder.createTaskBuilder(taskId).build();
+        Task task = createTaskBuilder(taskId).build();
         User user = security.getPrincipal().getUser();
 
         this.service.signedTask(user, task);
@@ -107,7 +123,7 @@ public class TaskController {
 
     @RequestMapping(value="/tasks/{taskId}/unsigned", method = RequestMethod.PUT)
     public @ResponseBody void unsignedTask(@PathVariable Long taskId) {
-        Task task = TaskBuilder.createTaskBuilder(taskId).build();
+        Task task = createTaskBuilder(taskId).build();
         User user = security.getPrincipal().getUser();
 
         this.service.unsignedTask(user, task);

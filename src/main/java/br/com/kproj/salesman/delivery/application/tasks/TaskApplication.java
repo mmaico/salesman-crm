@@ -14,6 +14,8 @@ public interface TaskApplication extends ModelService<Task> {
 
     Task register(Task task);
 
+    Task registerSubtask(Task parent, Task taskChild);
+
     void generateTaskByNewSalesOrder(SalesOrder salesOrder) throws Exception;
 
     List<Task> findBySaleOrder(SalesOrder salesOrder);
