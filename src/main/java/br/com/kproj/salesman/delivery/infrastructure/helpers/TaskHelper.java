@@ -1,9 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.delivery.application.ActDeliverySalesApplication;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
-import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -37,5 +35,13 @@ public class TaskHelper {
     public String getIconStatus(TaskStatus status) {
 
         return mapStatus.get(status);
+    }
+
+    public Boolean isSomeonesSon(Task task) {
+        return application.isSomeonesSon(task);
+    }
+
+    public List<Task> findTaskRootBy(SalesOrder salesOrder) {
+        return application.findTaskRootBy(salesOrder);
     }
 }

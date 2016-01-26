@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -95,7 +97,7 @@ public class NormalizeEntityRequest {
     
         for (Field field : fields) {
             
-        	if (field.getName().equals("class")) continue;
+        	if (field.getName().equals("class") || field.getAnnotation(IgnoreField.class) != null) continue;
         	
         	if (parent != null) {
                 

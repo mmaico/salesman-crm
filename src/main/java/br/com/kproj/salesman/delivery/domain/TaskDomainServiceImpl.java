@@ -5,18 +5,22 @@ import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
+import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
@@ -25,7 +29,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.
 public class TaskDomainServiceImpl implements TaskDomainService {
 
     @Autowired
-    private SaleableUnitRepository saleableUnitRepository;
+    private SalesOrderRepository salesOrderRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -37,13 +41,17 @@ public class TaskDomainServiceImpl implements TaskDomainService {
 
     {
         persistRules.put(description("task.verify.sales.order.valid"), (task) -> task.getSalesOrder() == null
-                                                                || task.getSalesOrder().isNew() || !saleableUnitRepository.exists(task.getSalesOrder().getId()));
+                                                                || task.getSalesOrder().isNew() || !salesOrderRepository.exists(task.getSalesOrder().getId()));
 
-        persistRules.put(description("task.verify.users.valid"), (task) -> task.getSignedBy().stream()
+        persistRules.put(description("task.verify.users.valid"), (task) -> !isEmptySafe(task.getSignedBy()) && task.getSignedBy().stream()
                                                                            .filter(user -> user == null || user.isNew() || !userRepository.exists(user.getId()))
                                                                            .count() > 0);
 
         persistRules.put(description("task.verify.base.validate"), (task) -> hasContraintViolated(task, taskValidator));
+
+        persistRules.put(description("task.deadline.great.than.or.equals.today"), (task) -> task.getDeadline() == null || task.getDeadline().before(new Date()));
+
+        persistRules.put(description("task.has.childs.and.parent"), (task) -> !isEmptySafe(task.getSignedBy()) && task.getParent() != null);
 
     }
 

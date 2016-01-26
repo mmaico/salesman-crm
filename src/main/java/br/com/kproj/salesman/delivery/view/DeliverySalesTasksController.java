@@ -25,7 +25,7 @@ public class DeliverySalesTasksController {
     public ModelAndView showDetail(@PathVariable Long salesId, Model model) {
         Optional<SalesOrder> result = application.getOne(salesId);
 
-        model.addAttribute("loggedUser", security.getPrincipal().getUser());
+        model.addAttribute("user", security.getPrincipal().getUser());
         model.addAttribute("salesorder", result.isPresent() ? result.get() : null);
         return new ModelAndView("/delivery/sales-order-tasks");
     }

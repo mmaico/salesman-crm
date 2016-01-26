@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import com.google.common.collect.Lists;
 
@@ -34,6 +35,10 @@ public class Timeline extends Identifiable {
     @OneToOne
     @JoinColumn(name="contact_id")
     private Contact contact;
+
+    @OneToOne
+    @JoinColumn(name="task_id")
+    private Task task;
 
     public  Timeline() {}
 
@@ -88,5 +93,13 @@ public class Timeline extends Identifiable {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

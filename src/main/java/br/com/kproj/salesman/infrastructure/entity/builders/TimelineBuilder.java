@@ -4,6 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import com.google.common.collect.Lists;
@@ -29,6 +30,11 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 	public TimelineBuilder(Contact contact) {
 		this();
 		this.entity.setContact(contact);
+	}
+
+	public TimelineBuilder(Task task) {
+		this();
+		this.entity.setTask(task);
 	}
 	
 	public TimelineBuilder(BusinessProposal businessProposal) {
@@ -87,5 +93,9 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 	
 	public static TimelineBuilder createTimeline(BusinessProposal proposal) {
 		return new TimelineBuilder(proposal);
+	}
+
+	public static TimelineBuilder createTimeline(Task task) {
+		return new TimelineBuilder(task);
 	}
 }

@@ -9,10 +9,12 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
 import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.ModelHelper.isNull;
 import static com.google.common.collect.Sets.newHashSet;
@@ -45,16 +48,42 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
 
     @Override
     public Task register(Task task) {
+        Task taskSaved;
 
         if (!task.isNew()) {
-            return super.save(task, service);
+            taskSaved =  super.save(task, service);
         } else {
             service.checkBusinessRulesFor(task);
             service.prepareToSave(task);
-
-            return super.save(task);
+            taskSaved = super.save(task);
         }
 
+        if (task.hasValidParent()) {
+            Optional<Task> parentLoaded = repository.getOne(task.getParent().getId());
+            if (parentLoaded.isPresent()) {
+                parentLoaded.get().addChild(taskSaved);
+            }
+        }
+
+        return taskSaved;
+    }
+
+    @Override
+    public Task registerSubtask(Task parent, Task taskChild) {
+
+
+        Optional<Task> taskParentLoaded = repository.getOne(parent.getId());
+
+        if (!taskParentLoaded.isPresent()) {
+            throw new ValidationException(Sets.newHashSet("subtask.with.invalid.parent"));
+        }
+
+        taskChild.setParent(taskParentLoaded.get());
+        taskChild.setSalesOrder(taskParentLoaded.get().getSalesOrder());
+        taskChild.setRegion(taskParentLoaded.get().getRegion());
+
+
+        return register(taskChild);
     }
 
     @Override
@@ -150,6 +179,33 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
                 taskLoaded.get().addSignedBy(user);
             }
         }
+    }
+
+    @Override
+    public void unsignedTask(User user, Task task) {
+        if (task == null || task.isNew()) {
+            hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
+        }
+
+        Optional<Task> taskLoaded = this.repository.getOne(task.getId());
+
+        if (taskLoaded.isPresent()) {
+            if (taskLoaded.get().hasSigned(user)) {
+                if (!isEmptySafe(taskLoaded.get().getSignedBy())) {
+                    taskLoaded.get().getSignedBy().remove(user);
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<Task> findTaskRootBy(SalesOrder salesOrder) {
+
+        if (salesOrder.isNew()) {
+            Lists.newArrayList();
+        }
+
+        return this.repository.findTaskRootBy(salesOrder);
     }
 
     @Override
