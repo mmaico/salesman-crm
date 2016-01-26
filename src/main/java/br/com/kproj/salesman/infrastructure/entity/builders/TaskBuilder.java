@@ -45,6 +45,11 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
+    public TaskBuilder withParent(Task parent) {
+        this.entity.setParent(parent);
+        return this;
+    }
+
     public TaskBuilder withSalesOrder(SalesOrder order) {
         this.entity.setSalesOrder(order);
         return this;
