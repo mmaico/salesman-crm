@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
+import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;

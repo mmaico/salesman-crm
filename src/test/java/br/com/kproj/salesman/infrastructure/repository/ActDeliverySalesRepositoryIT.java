@@ -44,8 +44,9 @@ public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
         List<User> users = repository.findUsersWithSignedDelivery();
 
         assertThat(users.size(), is(2));
-        assertThat(users, hasItem(createUser(1l).build()));
-        assertThat(users, hasItem(createUser(2l).build()));
+
+        assertThat(users.contains(createUser(1l).build()), Matchers.is(Boolean.TRUE));
+        assertThat(users.contains(createUser(2l).build()), Matchers.is(Boolean.TRUE));
     }
 
 }

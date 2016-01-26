@@ -24,7 +24,9 @@ public class SalesOrderRepositoryIT extends AbstractIntegrationTest {
 
         List<SalesOrder> result = repository.getOrdersByClient(client);
 
-        assertThat(result.size(), is(1));
+        assertThat(result.size(), is(3));
         assertThat(result.get(0).getId(), is(2l));
+        assertThat(result.get(1).getId(), is(3l));
+        assertThat(result.get(2).getId(), is(4l));
     }
 }

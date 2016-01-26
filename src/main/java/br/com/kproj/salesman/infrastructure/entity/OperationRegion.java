@@ -20,6 +20,12 @@ public class OperationRegion extends Identifiable {
     @Expose
     private String name;
 
+    public OperationRegion() {}
+
+    public OperationRegion(Long id) {
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

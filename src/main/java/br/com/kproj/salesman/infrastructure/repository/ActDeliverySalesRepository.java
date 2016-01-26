@@ -27,7 +27,10 @@ public interface ActDeliverySalesRepository extends BaseRepository<ActDeliverySa
     @Query("SELECT ads.salesOrder FROM ActDeliverySales AS ads WHERE ads.user =:user")
     List<SalesOrder> findByUser(@Param("user") User user);
 
+
+    @Query("SELECT distinct ads.user FROM ActDeliverySales AS ads")
+    List<User> findUsersWithSignedDelivery();
+
     @Query("SELECT DISTINCT ads.user FROM ActDeliverySales AS ads WHERE ads.salesOrder =:salesOrder")
     List<User> findUserWorkingActDelivery(@Param("salesOrder") SalesOrder salesOrder);
-
 }

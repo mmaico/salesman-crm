@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
+import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateUtils;
@@ -31,7 +32,7 @@ public class TaskDomainServiceImplTest {
     private TaskDomainServiceImpl taskDomainService;
 
     @Mock
-    private SaleableUnitRepository saleableUnitRepository;
+    private SalesOrderRepository salesOrderRepository;
 
     @Mock
     private UserRepository userRepository;
@@ -47,7 +48,7 @@ public class TaskDomainServiceImplTest {
     public void shouldNotErrosWhenTaskIsOK () throws ParseException {
         Task taskStub = getTaskStub();
 
-        given(saleableUnitRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
+        given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
         given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
         given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
 
@@ -59,7 +60,7 @@ public class TaskDomainServiceImplTest {
         Task taskStub = getTaskStub();
         ValidationException exception = null;
 
-        given(saleableUnitRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.FALSE);
+        given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.FALSE);
         given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
         given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
 
@@ -79,7 +80,7 @@ public class TaskDomainServiceImplTest {
         taskStub.getSignedBy().get(0).setId(null);
         ValidationException exception = null;
 
-        given(saleableUnitRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
+        given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
         given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
         given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
 
@@ -100,7 +101,7 @@ public class TaskDomainServiceImplTest {
         taskStub.getSignedBy().add(null);
         ValidationException exception = null;
 
-        given(saleableUnitRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
+        given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
 
 
         try {

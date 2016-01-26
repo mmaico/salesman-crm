@@ -23,7 +23,7 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
 
         List<Task> result = repository.findBySalesOrder(salesOrder);
 
-        assertThat(result.size(), is(4));
+        assertThat(result.size(), is(3));
     }
 
     @Test
@@ -33,10 +33,10 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
 
         List<Task> result = repository.findBySalesOrder(salesOrder);
 
-        assertThat(result.get(0).getId(), is(4l));
-        assertThat(result.get(1).getId(), is(3l));
-        assertThat(result.get(2).getId(), is(2l));
-        assertThat(result.get(3).getId(), is(1l));
+
+        assertThat(result.get(0).getId(), is(3l));
+        assertThat(result.get(1).getId(), is(2l));
+        assertThat(result.get(2).getId(), is(1l));
     }
 
 

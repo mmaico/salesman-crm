@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface SalesOrderRepository extends BaseRepository<SalesOrder, Long> {
 
-    @Query("SELECT so FROM SalesOrder AS so JOIN so.client WHERE so.client = :client")
+    @Query("SELECT so FROM SalesOrder AS so WHERE so.client = :client")
     List<SalesOrder> getOrdersByClient(@Param("client")Client client);
 
     Optional<SalesOrder> findByProposal(@Param("proposal")BusinessProposal proposal);
