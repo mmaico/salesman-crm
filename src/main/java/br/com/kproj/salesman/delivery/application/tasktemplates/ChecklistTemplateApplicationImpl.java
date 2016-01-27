@@ -38,7 +38,6 @@ public class ChecklistTemplateApplicationImpl extends BaseModelServiceImpl<Check
         repository.delete(checklistTemplate);
     }
 
-    @Override
     public BaseRepository<ChecklistTemplate, Long> getRepository() {
         return repository;
     }

@@ -44,7 +44,6 @@ public class UserApplicationImpl extends BaseModelServiceImpl<User> implements U
         return userRepository.findByLogin(login).isPresent();
     }
 
-    @Override
     public BaseRepository<User, Long> getRepository() {
         return userRepository;
     }

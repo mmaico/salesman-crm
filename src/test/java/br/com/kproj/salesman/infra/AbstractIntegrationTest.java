@@ -15,6 +15,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class, initializers = {ConfigFileApplicationContextInitializer.class})
@@ -27,6 +28,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
     ForeignKeyDisablingListener.class})
 @DatabaseSetup("/dbunit-dataset.xml")
 @ActiveProfiles("test")
+@Transactional
 public abstract class AbstractIntegrationTest {
 
 }

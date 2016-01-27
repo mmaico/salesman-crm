@@ -41,7 +41,6 @@ public class ServiceSaleableApplicationImpl extends BaseModelServiceImpl<Service
         return serviceRepository.getOne(id);
     }
 
-    @Override
     public BaseRepository<Service, Long> getRepository() {
         return serviceRepository;
     }

@@ -113,7 +113,6 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<Request
     }
 
 
-    @Override
     public BaseRepository<RequestApproval, Long> getRepository() {
         return repository;
     }

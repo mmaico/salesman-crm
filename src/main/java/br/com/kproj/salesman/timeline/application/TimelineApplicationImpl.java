@@ -1,17 +1,21 @@
 package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.repository.*;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.TimelineBuilder.createTimeline;
 
@@ -20,92 +24,45 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 
 	
     @Autowired
-    private TimelineRepository repository;
+    private TimelineRepository timelineRepository;
+
+
+	private Map<Class<? extends TimelinePresent>, BaseRepository<? extends Identifiable, Long>> repositories = new HashMap<>();
 
 	@Autowired
-	private PersonRepository personRepository;
+	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
+								   ContactRepository contactRepository, TaskRepository taskRepository) {
+		this.timelineRepository = timelineRepository;
 
-	@Autowired
-	private BusinessProposalRepository proposalRepository;
+		repositories.put(Individual.class, personRepository);
+		repositories.put(Person.class, personRepository);
+		repositories.put(BusinessProposal.class, proposalRepository);
+		repositories.put(Contact.class, contactRepository);
+		repositories.put(Task.class, taskRepository);
 
-	@Autowired
-	private ContactRepository contactRepository;
-
-	@Autowired
-	private TaskRepository taskRepository;
-
-   
-    @Override
-    public Timeline register(Person person) {
-    	Timeline timeline = null;
-
-		Optional<Person> personLoaded = personRepository.getOne(person.getId());
-
-		if (personLoaded.isPresent() && personLoaded.get().getTimeline() == null) {
-			timeline = createTimeline(personLoaded.get()).build();
-			timeline = repository.save(timeline);
-			personLoaded.get().setTimeline(timeline);
-		} else {
-			timeline = personLoaded.get().getTimeline();
-		}
-
-        return timeline;
-    }
-
-
-    @Override
-    public Timeline register(BusinessProposal proposal) {
-    	Timeline timeline = null;
-
-		BusinessProposal proposalLoaded = proposalRepository.findOne(proposal.getId());
-
-		if (proposalLoaded.getTimeline() == null) {
-			timeline = createTimeline(proposalLoaded).build();
-			timeline = repository.save(timeline);
-			proposalLoaded.setTimeline(timeline);
-		} else {
-			timeline = proposalLoaded.getTimeline();
-		}
-
-        return timeline;
-    }
-
-    @Override
-    public Timeline register(Contact contact) {
-		Timeline timeline = null;
-
-		Contact contactLoaded = contactRepository.findOne(contact.getId());
-
-		if (contactLoaded.getTimeline() == null) {
-			timeline = createTimeline(contactLoaded).build();
-			timeline = repository.save(timeline);
-			contactLoaded.setTimeline(timeline);
-		} else {
-			timeline = contactLoaded.getTimeline();
-		}
-
-		return timeline;
-    }
+	}
 
 	@Override
-	public Timeline register(Task task) {
+	public <T extends TimelinePresent> Timeline register(T entity) {
 		Timeline timeline = null;
 
-		Task taskLoaded = taskRepository.findOne(task.getId());
+		BaseRepository<? extends Identifiable, Long> repository = repositories.get(entity.getClass());
+		TimelinePresent result = (TimelinePresent)repository.findOne(entity.getId());
 
-		if (taskLoaded.getTimeline() == null) {
-			timeline = createTimeline(taskLoaded).build();
-			timeline = repository.save(timeline);
-			taskLoaded.setTimeline(timeline);
+		if (result.getTimeline() == null) {
+			timeline = createTimeline(entity).build();
+			timeline = timelineRepository.save(timeline);
+			result.setTimeline(timeline);
 		} else {
-			timeline = taskLoaded.getTimeline();
+			timeline = result.getTimeline();
 		}
 
 		return timeline;
 	}
 
-	@Override
-    public BaseRepository<Timeline, Long> getRepository() {
-        return repository;
+	public BaseRepository<Timeline, Long> getRepository() {
+        return timelineRepository;
     }
+
+
 }

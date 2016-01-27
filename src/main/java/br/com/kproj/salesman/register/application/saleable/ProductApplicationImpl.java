@@ -41,7 +41,6 @@ public class ProductApplicationImpl extends BaseModelServiceImpl<Product> implem
         return productRepository.getOne(id);
     }
 
-    @Override
     public BaseRepository<Product, Long> getRepository() {
         return productRepository;
     }

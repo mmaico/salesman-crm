@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RequestApprovalActivitiesSubscriber {
 
-    private static final String MESSAGE = "Solicitado aprovação de proposta";
-    private static final String MESSAGE_FINALIZE = "O processo de aprovacao foi finalizado";
+    static final String MESSAGE = "Solicitado aprovação de proposta";
+    static final String MESSAGE_FINALIZE = "O processo de aprovacao foi finalizado";
 
     @Autowired
     private TimelineActivitiesApplication application;

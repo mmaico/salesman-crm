@@ -49,7 +49,6 @@ public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> 
     }
 
 
-    @Override
     public BaseRepository<SalesOrder, Long> getRepository() {
         return repository;
     }

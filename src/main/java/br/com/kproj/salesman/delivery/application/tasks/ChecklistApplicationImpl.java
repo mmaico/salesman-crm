@@ -47,7 +47,6 @@ public class ChecklistApplicationImpl extends BaseModelServiceImpl<Checklist> im
 
     }
 
-    @Override
     public BaseRepository<Checklist, Long> getRepository() {
         return repository;
     }

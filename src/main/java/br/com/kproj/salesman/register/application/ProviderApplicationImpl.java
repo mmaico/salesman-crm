@@ -44,7 +44,6 @@ public class ProviderApplicationImpl extends BaseModelServiceImpl<Person> implem
     	return providerRepository.findAll(findByFilters(aggregator), pager, orderByName());
     }
 
-    @Override
     public BaseRepository<Person, Long> getRepository() {
         return this.providerRepository;
     }

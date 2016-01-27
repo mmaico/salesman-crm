@@ -68,7 +68,6 @@ public class AddressApplicationImpl extends BaseModelServiceImpl<Address> implem
         return addressRepository.findByPerson(provider.to());
     }
 
-    @Override
     public BaseRepository<Address, Long> getRepository() {
         return this.addressRepository;
     }

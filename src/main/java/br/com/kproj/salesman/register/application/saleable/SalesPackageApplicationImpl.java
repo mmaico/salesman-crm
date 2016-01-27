@@ -75,7 +75,6 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
         return salesPackageRepository.getOne(id);
     }
 
-    @Override
     public BaseRepository<SalePackage, Long> getRepository() {
         return salesPackageRepository;
     }

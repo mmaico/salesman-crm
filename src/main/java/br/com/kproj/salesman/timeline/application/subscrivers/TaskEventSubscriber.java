@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.items.TaskActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskActivityRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
+import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,14 +15,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskEventSubscriber {
 
-    private static final String MESSAGE = "Alterado do status da tarefa de: {OLD} para: {NEW}";
+    static final String MESSAGE = "Alterado do status da tarefa de: {OLD} para: {NEW}";
 
     @Autowired
-    private TaskActivityRepository activityRepository;
-
-    @Autowired
-    private TaskRepository taskRepository;
-
+    private TimelineActivitiesApplication application;
 
 
     @Subscribe
@@ -33,10 +30,8 @@ public class TaskEventSubscriber {
                 .withDescription(message)
                 .withUser(event.getUser().getId()).build();
 
-        Task taskLoaded = taskRepository.findOne(event.getTask().getId());
+        application.register(event.getTask(), taskActivity);
 
-        activityRepository.save(taskActivity);
-        taskLoaded.getTimeline().getActivities().add(taskActivity);
     }
 
 }

@@ -45,7 +45,6 @@ public class ApproverProfileApplicationImpl extends BaseModelServiceImpl<Approve
         return result.get();
     }
 
-    @Override
     public BaseRepository<ApproverProfile, Long> getRepository() {
         return repository;
     }

@@ -208,7 +208,6 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         return this.repository.findTaskRootBy(salesOrder);
     }
 
-    @Override
     public BaseRepository<Task, Long> getRepository() {
         return repository;
     }

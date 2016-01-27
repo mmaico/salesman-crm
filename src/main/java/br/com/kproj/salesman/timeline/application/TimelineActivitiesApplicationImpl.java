@@ -90,7 +90,6 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
     }
 
 
-    @Override
     public BaseRepository<TimelineActivity, Long> getRepository() {
         return repository;
     }

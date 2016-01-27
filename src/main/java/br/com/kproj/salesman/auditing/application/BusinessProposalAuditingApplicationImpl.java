@@ -55,7 +55,6 @@ public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceImp
         return Optional.empty();
     }
 
-    @Override
     public BaseRepository<BusinessProposalAudinting, Long> getRepository() {
         return this.repository;
     }

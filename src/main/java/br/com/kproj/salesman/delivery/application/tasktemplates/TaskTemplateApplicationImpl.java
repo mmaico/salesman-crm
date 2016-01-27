@@ -85,7 +85,6 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTempla
         return result;
     }
 
-    @Override
     public BaseRepository<TaskTemplate, Long> getRepository() {
         return repository;
     }

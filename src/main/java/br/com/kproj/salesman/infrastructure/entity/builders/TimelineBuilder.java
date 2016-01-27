@@ -6,8 +6,11 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import java.util.List;
 
@@ -83,19 +86,20 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		return new TimelineBuilder();
 	}
 	
-	public static TimelineBuilder createTimeline(Person person) {
-		return new TimelineBuilder(person);
-	}
-	
-	public static TimelineBuilder createTimeline(Contact contact) {
-		return new TimelineBuilder(contact);
-	}
-	
-	public static TimelineBuilder createTimeline(BusinessProposal proposal) {
-		return new TimelineBuilder(proposal);
+	public static TimelineBuilder createTimeline(TimelinePresent timelinePresent) {
+
+		if (timelinePresent instanceof Person) {
+			return new TimelineBuilder((Person)timelinePresent);
+		} else if (timelinePresent instanceof Contact) {
+			return new TimelineBuilder((Contact) timelinePresent);
+		} else if (timelinePresent instanceof BusinessProposal) {
+			return new TimelineBuilder((BusinessProposal) timelinePresent);
+		} else if (timelinePresent instanceof Task) {
+			return new TimelineBuilder((Task) timelinePresent);
+		} else {
+			throw new ValidationException(Sets.newHashSet("timeline.builder.invalid.type"));
+		}
+
 	}
 
-	public static TimelineBuilder createTimeline(Task task) {
-		return new TimelineBuilder(task);
-	}
 }

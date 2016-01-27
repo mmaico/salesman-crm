@@ -92,7 +92,6 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
         }
     }
 
-    @Override
     public BaseRepository<BusinessProposal, Long> getRepository() {
         return repository;
     }

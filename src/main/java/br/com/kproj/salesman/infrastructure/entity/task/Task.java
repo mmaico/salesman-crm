@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import com.google.common.collect.Lists;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Entity
 @Table(name="tasks")
-public class Task extends Identifiable {
+public class Task extends Identifiable implements TimelinePresent {
 
     @Id
     @GeneratedValue

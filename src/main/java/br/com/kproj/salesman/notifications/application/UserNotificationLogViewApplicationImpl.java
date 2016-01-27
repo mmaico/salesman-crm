@@ -20,7 +20,6 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceImpl
 
 
 
-    @Override
     public BaseRepository<UserNotificationLogView, Long> getRepository() {
         return repository;
     }

@@ -7,6 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,7 +22,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 
 @Entity
 @Table(name = "business_proposal")
-public class BusinessProposal extends Identifiable {
+public class BusinessProposal extends Identifiable implements TimelinePresent {
 
 
     /**

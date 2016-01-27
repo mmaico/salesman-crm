@@ -46,7 +46,6 @@ public class ClientApplicationImpl extends BaseModelServiceImpl<Person> implemen
     	return clientRepository.findAll(findByFilters(aggregator), pager, orderByName());
     }
 
-    @Override
     public BaseRepository<Person, Long> getRepository() {
         return this.clientRepository;
     }

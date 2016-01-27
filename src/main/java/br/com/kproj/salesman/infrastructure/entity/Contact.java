@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity;
 import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import com.google.gson.annotations.Expose;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
@@ -13,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
-public class Contact extends Identifiable {
+public class Contact extends Identifiable implements TimelinePresent {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 

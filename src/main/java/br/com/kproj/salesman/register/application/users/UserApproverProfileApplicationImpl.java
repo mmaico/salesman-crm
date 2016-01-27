@@ -42,7 +42,6 @@ public class UserApproverProfileApplicationImpl extends BaseModelServiceImpl<App
 
 
 
-    @Override
     public BaseRepository<ApproverProfile, Long> getRepository() {
         return profileRepository;
     }

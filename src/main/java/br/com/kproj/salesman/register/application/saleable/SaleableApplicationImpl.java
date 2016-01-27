@@ -25,7 +25,6 @@ public class SaleableApplicationImpl extends BaseModelServiceImpl<SaleableUnit> 
     }
 
 
-    @Override
     public BaseRepository<SaleableUnit, Long> getRepository() {
         return saleableRepository;
     }

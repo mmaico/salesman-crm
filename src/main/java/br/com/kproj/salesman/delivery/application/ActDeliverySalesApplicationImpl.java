@@ -47,7 +47,6 @@ public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDel
     }
 
 
-    @Override
     public BaseRepository<ActDeliverySales, Long> getRepository() {
         return this.repository;
     }

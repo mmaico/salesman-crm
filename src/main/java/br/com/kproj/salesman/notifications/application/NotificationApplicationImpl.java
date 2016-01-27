@@ -20,7 +20,6 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
     @Autowired
     private NotificationRepository repository;
 
-    @Override
     public BaseRepository<Notification, Long> getRepository() {
         return repository;
     }

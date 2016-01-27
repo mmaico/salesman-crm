@@ -63,7 +63,6 @@ public class ContactApplicationImpl extends BaseModelServiceImpl<Contact> implem
         return contactRepository.findByPerson(provider.to());
     }
 
-    @Override
     public BaseRepository<Contact, Long> getRepository() {
         return this.contactRepository;
     }
