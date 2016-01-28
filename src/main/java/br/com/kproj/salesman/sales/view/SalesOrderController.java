@@ -24,7 +24,7 @@ public class SalesOrderController {
 
         Optional<SalesOrder> result = this.service.getOne(orderId);
 
-        model.addAttribute("user", result.isPresent() ? result.get() : null);
+        model.addAttribute("salesOrder", result.isPresent() ? result.get() : null);
         return new ModelAndView("/users/edit");
     }
 }

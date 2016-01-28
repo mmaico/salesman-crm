@@ -51,7 +51,7 @@ public class ContactTimelineController {
     }
 
     //TODO alterar o a uri para /contact/id/activities
-    @RequestMapping(value = "/contact/{contactId}/logactivity", method = RequestMethod.GET)
+    @RequestMapping(value = "/contact/{contactId}/activities", method = RequestMethod.GET)
     public ModelAndView getTimelineContact(@PathVariable Long contactId, Model model) {
 
         Timeline timeline = timelineApplication.register(createContact(contactId).build());
