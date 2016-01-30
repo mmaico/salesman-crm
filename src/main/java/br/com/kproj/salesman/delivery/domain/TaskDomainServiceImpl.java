@@ -51,7 +51,8 @@ public class TaskDomainServiceImpl implements TaskDomainService {
 
         persistRules.put(description("task.deadline.great.than.or.equals.today"), (task) -> task.getDeadline() == null || task.getDeadline().before(new Date()));
 
-        persistRules.put(description("task.has.childs.and.parent"), (task) -> !isEmptySafe(task.getSignedBy()) && task.getParent() != null);
+        persistRules.put(description("task.has.childs.and.parent"), (task) -> !isEmptySafe(task.getTasksChilds())
+                && task.getParent() != null);
 
     }
 
