@@ -2,9 +2,13 @@ package br.com.kproj.salesman.infrastructure.entity.notification;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 
 @Entity
@@ -16,6 +20,7 @@ public class ScheduleTriggerNotification extends Identifiable {
     private Long id;
 
     @Column(name="trigger_date")
+    @DateTimeFormat(pattern = "dd/M/Y")
     private Date triggerDate;
 
     @ManyToOne
@@ -45,6 +50,20 @@ public class ScheduleTriggerNotification extends Identifiable {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public Boolean isValidTrigger() {
+        Date today = new Date();
+
+        if (triggerDate == null) return Boolean.FALSE;
+
+        return !triggerDate.before(today);
+    }
+
+    public Boolean isActive() {
+
+        return !new DateTime(this.getTriggerDate()).isBeforeNow();
+
     }
 
 
