@@ -5,8 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
-import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;

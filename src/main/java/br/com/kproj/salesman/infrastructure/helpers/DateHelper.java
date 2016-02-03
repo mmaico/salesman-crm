@@ -67,6 +67,10 @@ public class DateHelper {
 
     }
 
+	public static Date now() {
+		return new Date();
+	}
+
 	public static Integer quantityDaysBetween(Date date) {
 		Date now = new Date();
 		LocalDate localStartDate = LocalDate.fromDateFields(now);

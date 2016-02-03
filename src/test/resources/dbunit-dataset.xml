@@ -113,5 +113,9 @@
     <act_delivery_sales id="2" sales_order_id="2" user_id="1"/>
     <act_delivery_sales id="3" sales_order_id="2" user_id="2"/>
 
+    <schedule_trigger_notification id="1" trigger_date="2020-10-20 00:00:00" task_id="1" executed="true"/>
+    <schedule_trigger_notification id="2" trigger_date="2020-10-20 00:00:00" task_id="1" executed="false"/>
+    <schedule_trigger_notification id="3" trigger_date="2020-10-20 08:10:11" task_id="1" executed="false"/>
+    <schedule_trigger_notification id="4" trigger_date="2016-02-22 00:00:00" task_id="1" executed="false"/>
 
 </dataset>

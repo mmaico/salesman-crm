@@ -1,16 +1,21 @@
 package br.com.kproj.salesman.delivery.application.triggernotification;
 
-import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
+import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.events.messages.NewTaskTriggerToExecuteMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.ScheduleTriggerNotificationRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import com.google.common.collect.Sets;
+import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +26,9 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private EventBus eventBus;
 
 
     public BaseRepository<ScheduleTriggerNotification, Long> getRepository() {
@@ -51,5 +59,20 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
         task.addTriggerNotification(triggerSaved);
 
         return triggerSaved;
+    }
+
+    /**
+       Executa a cada 30 min
+     **/
+    @Scheduled(fixedDelay= 1080000 )
+    public void sendEventWhenTriggerAvailable() {
+
+        List<ScheduleTriggerNotification> result = repository.findAllAvailableToday(DateHelper.now());
+
+        for (ScheduleTriggerNotification trigger: result) {
+            eventBus.post(NewTaskTriggerToExecuteMessage
+                    .create(trigger.getTask(), trigger.getTriggerDate()));
+            trigger.setExecuted(Boolean.TRUE);
+        }
     }
 }

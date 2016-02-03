@@ -4,7 +4,7 @@ import br.com.kproj.salesman.delivery.application.triggernotification.TaskNotifi
 import br.com.kproj.salesman.delivery.view.dtos.TriggerNotificationDTO;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskNotificationBuilder;
-import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
+import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

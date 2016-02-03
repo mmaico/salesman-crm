@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity.notification;
+package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -27,6 +27,8 @@ public class ScheduleTriggerNotification extends Identifiable {
     @JoinColumn(name="task_id")
     private Task task;
 
+    private Boolean executed = Boolean.FALSE;
+
     @Override
     public Long getId() {
         return id;
@@ -50,6 +52,14 @@ public class ScheduleTriggerNotification extends Identifiable {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public Boolean getExecuted() {
+        return executed;
+    }
+
+    public void setExecuted(Boolean executed) {
+        this.executed = executed;
     }
 
     public Boolean isValidTrigger() {

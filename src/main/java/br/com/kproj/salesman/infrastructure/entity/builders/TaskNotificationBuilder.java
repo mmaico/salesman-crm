@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.notification.ScheduleTriggerNotification;
+import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 
 import java.util.Date;
