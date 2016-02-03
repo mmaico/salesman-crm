@@ -14,4 +14,14 @@ public enum TaskStatus {
     public String get() {
         return message;
     }
+
+    public static TaskStatus get(String status) {
+
+        for (TaskStatus value: values()) {
+            if (value.name().equalsIgnoreCase(status)) {
+                return value;
+            }
+        }
+        return null;
+    }
 }

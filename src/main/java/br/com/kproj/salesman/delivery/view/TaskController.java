@@ -4,6 +4,7 @@ import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
@@ -127,6 +128,16 @@ public class TaskController {
         User user = security.getPrincipal().getUser();
 
         this.service.unsignedTask(user, task);
+    }
+
+    @RequestMapping(value="/tasks/{taskId}/change-status/{status}", method = RequestMethod.PUT)
+    public @ResponseBody void signedTask(@PathVariable Long taskId, @PathVariable String status) {
+        Task task = createTaskBuilder(taskId)
+                .withStatus(TaskStatus.get(status)).build();
+
+        User user = security.getPrincipal().getUser();
+
+        this.service.changeStatus(task, user);
     }
 
 }
