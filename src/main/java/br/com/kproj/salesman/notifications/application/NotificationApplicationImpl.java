@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
+import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
@@ -13,7 +14,9 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.ApprovalBusinessProposalNotificationBuilder.createProposalNotification;
 
@@ -23,6 +26,9 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
 
     @Autowired
     private NotificationRepository repository;
+
+    @Autowired
+    private UserNotificationLogViewApplication logViewApplication;
 
     public BaseRepository<Notification, Long> getRepository() {
         return repository;
@@ -54,11 +60,27 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
 
     @Override
     public List<ApprovalBusinessProposalNotification> findProposalByUser(User user) {
-        return null;
+        return repository.findProposalNotificationBy(user);
     }
 
     @Override
     public List<TaskNotification> findTaskNotificationByUser(User user) {
-        return null;
+        return repository.findTaskNotificationBy(user);
+    }
+
+    @Override
+    public Long findCountTaskNotificationBy(User user) {
+        Optional<UserNotificationLogView> logView = logViewApplication.getLastViewTaskNotification(user);
+        Date lastVisualization = logView.isPresent() ? logView.get().getLastVisualization() : new Date();
+
+        return this.repository.findCountTaskNotificationBy(user, lastVisualization);
+    }
+
+    @Override
+    public Long findCountProposalBy(User user) {
+        Optional<UserNotificationLogView> logView = logViewApplication.getLastViewProposalNotification(user);
+        Date lastVisualization = logView.isPresent() ? logView.get().getLastVisualization() : new Date();
+
+        return this.repository.findCountProposalBy(user, lastVisualization);
     }
 }
