@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.delivery.application.triggernotification;
 
+import br.com.kproj.salesman.delivery.application.ActDeliverySalesApplication;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.NewTaskTriggerToExecuteMessage;
@@ -26,6 +28,9 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private ActDeliverySalesApplication actDeliverySalesApplication;
 
     @Autowired
     private EventBus eventBus;
@@ -62,16 +67,19 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
     }
 
     /**
-       Executa a cada 30 min
+       Executa a cada 10 min
      **/
-    @Scheduled(fixedDelay= 1080000 )
+    @Scheduled(fixedDelay= 600000 )
     public void sendEventWhenTriggerAvailable() {
 
         List<ScheduleTriggerNotification> result = repository.findAllAvailableToday(DateHelper.now());
 
         for (ScheduleTriggerNotification trigger: result) {
-            eventBus.post(NewTaskTriggerToExecuteMessage
-                    .create(trigger.getTask(), trigger.getTriggerDate()));
+            List<User> users = actDeliverySalesApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
+            users.forEach(user ->
+                    eventBus.post(NewTaskTriggerToExecuteMessage
+                            .create(trigger.getTask(), trigger.getTriggerDate(), user))
+            );
             trigger.setExecuted(Boolean.TRUE);
         }
     }

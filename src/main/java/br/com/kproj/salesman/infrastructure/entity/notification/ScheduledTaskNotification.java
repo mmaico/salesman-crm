@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Entity
 @DiscriminatorValue("scheduled_task_notification")
@@ -22,7 +23,6 @@ public class ScheduledTaskNotification extends Notification {
     @ManyToOne
     @JoinColumn(name="task_id")
     private Task task;
-
 
     public Task getTask() {
         return task;
