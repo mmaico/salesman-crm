@@ -50,7 +50,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final StringPath title = createString("title");
 
-    public final ListPath<ScheduleTriggerNotification, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification> triggerNotifications = this.<ScheduleTriggerNotification, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification>createList("triggerNotifications", ScheduleTriggerNotification.class, br.com.kproj.salesman.infrastructure.entity.notification.QScheduleTriggerNotification.class, PathInits.DIRECT2);
+    public final ListPath<ScheduleTriggerNotification, QScheduleTriggerNotification> triggerNotifications = this.<ScheduleTriggerNotification, QScheduleTriggerNotification>createList("triggerNotifications", ScheduleTriggerNotification.class, QScheduleTriggerNotification.class, PathInits.DIRECT2);
 
     public QTask(String variable) {
         this(Task.class, forVariable(variable), INITS);

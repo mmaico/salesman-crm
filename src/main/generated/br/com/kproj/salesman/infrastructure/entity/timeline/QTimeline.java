@@ -34,6 +34,8 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
 
+    public final br.com.kproj.salesman.infrastructure.entity.task.QTask task;
+
     public QTimeline(String variable) {
         this(Timeline.class, forVariable(variable), INITS);
     }
@@ -55,6 +57,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
         this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContact(forProperty("contact"), inits.get("contact")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
+        this.task = inits.isInitialized("task") ? new br.com.kproj.salesman.infrastructure.entity.task.QTask(forProperty("task"), inits.get("task")) : null;
     }
 
 }

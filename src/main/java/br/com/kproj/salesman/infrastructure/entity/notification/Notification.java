@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name="notifications")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING, length=80)
 public class Notification extends Identifiable {
 
     @Id

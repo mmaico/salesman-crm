@@ -1,7 +1,9 @@
 package br.com.kproj.salesman.notifications.application;
 
+import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
-import br.com.kproj.salesman.infrastructure.entity.notification.ScheduledTaskNotification;
+import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
@@ -21,9 +23,6 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
 
     @Autowired
     private NotificationRepository repository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     public BaseRepository<Notification, Long> getRepository() {
         return repository;
@@ -48,8 +47,18 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
     }
 
     @Override
-    public void senScheduledTaskdNotification(ScheduledTaskNotification notification) {
+    public void sendScheduledTaskdNotification(TaskNotification notification) {
 
         repository.save(notification);
+    }
+
+    @Override
+    public List<ApprovalBusinessProposalNotification> findProposalByUser(User user) {
+        return null;
+    }
+
+    @Override
+    public List<TaskNotification> findTaskNotificationByUser(User user) {
+        return null;
     }
 }

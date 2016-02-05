@@ -118,4 +118,15 @@
     <schedule_trigger_notification id="3" trigger_date="2020-10-20 08:10:11" task_id="1" executed="false"/>
     <schedule_trigger_notification id="4" trigger_date="2016-02-22 00:00:00" task_id="1" executed="false"/>
 
+    <notifications id="1" create_date="2015-02-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="1"/>
+    <notifications id="2" create_date="2015-03-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="2"/>
+    <notifications id="3" create_date="2015-04-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="3"/>
+    <notifications id="4" create_date="2020-02-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="4"/>
+
+    <notifications id="5" create_date="2015-01-22 00:00:00" user_notified_id="1" descriminator="approval_business_proposal_notification" proposal_id="1"/>
+    <notifications id="6" create_date="2015-01-22 00:00:00" user_notified_id="1" descriminator="approval_business_proposal_notification" proposal_id="2"/>
+    <notifications id="7" create_date="2020-02-22 00:00:00" user_notified_id="1" descriminator="approval_business_proposal_notification" proposal_id="1"/>
+
+
+
 </dataset>
