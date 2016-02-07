@@ -1,11 +1,14 @@
 package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
+import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +33,12 @@ public class TaskHelper {
     @Autowired
     private TaskApplication application;
 
+    @Autowired
+    private WorkspaceApplication workspaceApplication;
+
+    @Autowired
+    private SecurityHelper security;
+
 
     public List<Task> getTasks(SalesOrder salesOrder) {
         return application.findBySaleOrder(salesOrder);
@@ -46,6 +55,11 @@ public class TaskHelper {
 
     public List<Task> findTaskRootBy(SalesOrder salesOrder) {
         return application.findTaskRootBy(salesOrder);
+    }
+
+    public List<SalesOrder> getSalesOrderInMyWorkspace() {
+        User user = security.getPrincipal().getUser();
+        return workspaceApplication.findBy(user);
     }
 
     public ScheduleTriggerNotification getValidTaskNotification(Task task) {

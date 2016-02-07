@@ -13,6 +13,6 @@ public interface ScheduleTriggerNotificationRepository extends BaseRepository<Sc
 
 
     @Query("SELECT stn FROM ScheduleTriggerNotification AS stn WHERE stn.executed is false " +
-            " AND trunc(stn.triggerDate) = trunc(:date)")
+            " AND date(stn.triggerDate) = date(:date)")
     List<ScheduleTriggerNotification> findAllAvailableToday(@Param("date") Date date);
 }

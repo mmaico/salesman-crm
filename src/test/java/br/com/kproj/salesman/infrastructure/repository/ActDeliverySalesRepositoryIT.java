@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -19,7 +18,7 @@ import static org.junit.Assert.*;
 public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
 
     @Autowired
-    private ActDeliverySalesRepository repository;
+    private WorkspaceUnitRepository repository;
 
     @Test
     public void shouldReturnOnlyItemsInActDelivery() {
@@ -32,7 +31,7 @@ public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnOnlyInActWithDistinctAndOrderingByDeliveryForecast() {
-        List<SalesOrder> result = repository.findSalesOrderInActDelivery();
+        List<SalesOrder> result = repository.findSalesOrderNotInWorkspace();
 
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getId(), is(2l));

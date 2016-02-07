@@ -11,8 +11,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="act_delivery_sales")
-public class ActDeliverySales extends Identifiable {
+@Table(name="workspace_units")
+public class WorkspaceUnit extends Identifiable {
 
 	private static final long serialVersionUID = 2011235325379126884L;
 

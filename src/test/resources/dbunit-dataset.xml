@@ -109,9 +109,9 @@
     <proposal_aprover_profile id="1" user_approver_id="1" available="true"/>
     <proposal_aprover_profile id="2" user_approver_id="2" available="false"/>
 
-    <act_delivery_sales id="1" sales_order_id="1" user_id="1"/>
-    <act_delivery_sales id="2" sales_order_id="2" user_id="1"/>
-    <act_delivery_sales id="3" sales_order_id="2" user_id="2"/>
+    <workspace_units id="1" sales_order_id="1" user_id="1"/>
+    <workspace_units id="2" sales_order_id="2" user_id="1"/>
+    <workspace_units id="3" sales_order_id="2" user_id="2"/>
 
     <schedule_trigger_notification id="1" trigger_date="2020-10-20 00:00:00" task_id="1" executed="true"/>
     <schedule_trigger_notification id="2" trigger_date="2020-10-20 00:00:00" task_id="1" executed="false"/>

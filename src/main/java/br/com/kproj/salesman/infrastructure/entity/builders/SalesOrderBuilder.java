@@ -41,6 +41,11 @@ public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
         return this;
     }
 
+    public SalesOrderBuilder withCurrentDate() {
+        this.entity.setCreationDate(new Date());
+        return this;
+    }
+
     public SalesOrderBuilder withDeliveryForeCast(Date deliveryForeCast) {
         this.entity.setDeliveryForecast(deliveryForeCast);
         return this;

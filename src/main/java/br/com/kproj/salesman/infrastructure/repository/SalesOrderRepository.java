@@ -17,4 +17,6 @@ public interface SalesOrderRepository extends BaseRepository<SalesOrder, Long> {
 
     Optional<SalesOrder> findByProposal(@Param("proposal")BusinessProposal proposal);
 
+    @Query("SELECT so FROM SalesOrder AS so ORDER BY so.creationDate DESC")
+    List<SalesOrder> findAllOrdered();
 }

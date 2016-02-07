@@ -67,6 +67,10 @@ public class SalesOrder extends Identifiable {
     @Column(name="task_generated")
     private Boolean taskGenerated;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="creation_date")
+    private Date creationDate;
+
     public SalesOrder(){}
     public SalesOrder(Long id) {
         this.id = id;
@@ -185,5 +189,13 @@ public class SalesOrder extends Identifiable {
 
     public void setTaskGenerated(Boolean taskGenerated) {
         this.taskGenerated = taskGenerated;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

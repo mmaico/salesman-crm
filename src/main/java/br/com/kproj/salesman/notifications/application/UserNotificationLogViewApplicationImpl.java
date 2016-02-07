@@ -40,13 +40,13 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceImpl
 
         Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.PROPOSAL_NOTIFICATION, Pager.build().one());
 
-        return Optional.ofNullable(result.getSize() > 0 ? result.getContent().get(0) : null);
+        return Optional.ofNullable(result.getContent().size() > 0 ? result.getContent().get(0) : null);
     }
 
     @Override
     public Optional<UserNotificationLogView> getLastViewTaskNotification(User user) {
         Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.TASK_NOTIFICATION, Pager.build().one());
 
-        return Optional.ofNullable(result.getSize() > 0 ? result.getContent().get(0) : null);
+        return Optional.ofNullable(result.getContent().size() > 0 ? result.getContent().get(0) : null);
     }
 }

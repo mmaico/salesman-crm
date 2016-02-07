@@ -31,7 +31,7 @@ public class UserNotificationLogViewController {
         application.register(userView);
     }
 
-    @RequestMapping(value = "/notifications-view/task", method = RequestMethod.POST)
+    @RequestMapping(value = "/notifications-view/tasks", method = RequestMethod.POST)
     public @ResponseBody void notificationViewTask() {
         UserNotificationLogView userView = new UserNotificationLogView();
         userView.setUser(security.getPrincipal().getUser());

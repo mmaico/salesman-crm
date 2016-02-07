@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.delivery.application;
 
-import br.com.kproj.salesman.delivery.infrastructure.validators.ActDeliverySalesValidator;
-import br.com.kproj.salesman.infrastructure.entity.ActDeliverySales;
+import br.com.kproj.salesman.delivery.infrastructure.validators.WorkspaceUnitValidator;
+import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.repository.ActDeliverySalesRepository;
+import br.com.kproj.salesman.infrastructure.repository.WorkspaceUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import com.google.common.collect.Lists;
@@ -17,22 +17,22 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 
 @Service
-public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDeliverySales> implements ActDeliverySalesApplication {
+public class WorkspaceApplicationImpl extends BaseModelServiceImpl<WorkspaceUnit> implements WorkspaceApplication {
 
     @Autowired
-    private ActDeliverySalesRepository repository;
+    private WorkspaceUnitRepository repository;
 
     @Autowired
-    private ActDeliverySalesValidator validator;
+    private WorkspaceUnitValidator validator;
 
-    public ActDeliverySales register(ActDeliverySales actDeliverySales) {
+    public WorkspaceUnit register(WorkspaceUnit workspaceUnit) {
 
-        hasContraintViolated(actDeliverySales, validator);
+        hasContraintViolated(workspaceUnit, validator);
 
-        Optional<ActDeliverySales> result = repository.findBySalesOrderAndUser(actDeliverySales.getSalesOrder(), actDeliverySales.getUser());
+        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(workspaceUnit.getSalesOrder(), workspaceUnit.getUser());
 
         if (!result.isPresent()) {
-            return super.save(actDeliverySales);
+            return super.save(workspaceUnit);
         }
 
         return result.get();
@@ -43,11 +43,11 @@ public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDel
         if (salesOrder == null || salesOrder.isNew()) {
             return Lists.newArrayList();
         }
-        return repository.findUserWorkingActDelivery(salesOrder);
+        return repository.findUserWithItemsInWorkspace(salesOrder);
     }
 
 
-    public BaseRepository<ActDeliverySales, Long> getRepository() {
+    public BaseRepository<WorkspaceUnit, Long> getRepository() {
         return this.repository;
     }
 
@@ -62,7 +62,7 @@ public class ActDeliverySalesApplicationImpl extends BaseModelServiceImpl<ActDel
     }
 
     @Override
-    public List<SalesOrder> findSalesOrderInActDelivery() {
-        return this.repository.findSalesOrderInActDelivery();
+    public List<SalesOrder> findSalesOrderNotInWorkspace() {
+        return this.repository.findSalesOrderNotInWorkspace();
     }
 }

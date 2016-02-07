@@ -1,23 +1,22 @@
 package br.com.kproj.salesman.delivery.application;
 
-import br.com.kproj.salesman.infrastructure.entity.ActDeliverySales;
+import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 
-public interface ActDeliverySalesApplication extends ModelService<ActDeliverySales> {
+public interface WorkspaceApplication extends ModelService<WorkspaceUnit> {
 
     List<SalesOrder> findNewSalesOrder();
 
     List<SalesOrder> findBy(User user);
 
-    List<SalesOrder> findSalesOrderInActDelivery();
+    List<SalesOrder> findSalesOrderNotInWorkspace();
 
-    ActDeliverySales register(ActDeliverySales actDeliverySales);
+    WorkspaceUnit register(WorkspaceUnit workspaceUnit);
 
     List<User> findUsersResponsibles(SalesOrder salesOrder);
 }

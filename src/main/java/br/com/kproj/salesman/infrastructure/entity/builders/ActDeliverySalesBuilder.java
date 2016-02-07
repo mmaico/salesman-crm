@@ -1,14 +1,14 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.ActDeliverySales;
+import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 
-public class ActDeliverySalesBuilder extends AbstractBuilder<ActDeliverySales>  {
+public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
 
 	public ActDeliverySalesBuilder() {
-		this.entity = new ActDeliverySales();
+		this.entity = new WorkspaceUnit();
 	}
 
 	public ActDeliverySalesBuilder(Long id) {

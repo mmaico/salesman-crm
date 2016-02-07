@@ -36,4 +36,5 @@ public interface TaskApplication extends ModelService<Task> {
 
     List<Task> findTaskRootBy(SalesOrder salesOrder);
 
+
 }

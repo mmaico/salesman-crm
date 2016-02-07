@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,5 +27,14 @@ public class SalesOrderController {
 
         model.addAttribute("salesOrder", result.isPresent() ? result.get() : null);
         return new ModelAndView("/users/edit");
+    }
+
+    @RequestMapping(value="/sales-order/list")
+    public ModelAndView list(Model model) {
+
+        List<SalesOrder> result = this.service.findAllOrdered();
+
+        model.addAttribute("salesOrders", result);
+        return new ModelAndView("/sales/list");
     }
 }

@@ -56,7 +56,13 @@ public class TaskController {
         normalizeEntityRequest.doNestedReference(task);
         Task taskSaved = service.register(task);
 
-        return "/task/" + taskSaved.getId();
+        return "/tasks/" + taskSaved.getId();
+    }
+
+    @RequestMapping(value = "/tasks/new", method = RequestMethod.GET)
+    public  ModelAndView newTask() {
+
+        return new ModelAndView("/delivery/tasks/edit");
     }
 
     @RequestMapping(value = "/tasks/{parentTaskId}/subtask", method = RequestMethod.POST)

@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.delivery.application.tasks;
 
+import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
@@ -9,8 +10,6 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
-import br.com.kproj.salesman.infrastructure.helpers.HandlerErrors;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -133,7 +132,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         TaskStatus oldStatus = taskLoaded.getStatus();
         taskLoaded.setStatus(task.getStatus());
 
-        eventBus.post(TaskChangeStatusMessage.create(taskLoaded, userChange, oldStatus));
+        //eventBus.post(TaskChangeStatusMessage.create(taskLoaded, userChange, oldStatus));
     }
 
     @Override
@@ -207,6 +206,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
 
         return this.repository.findTaskRootBy(salesOrder);
     }
+
 
     public BaseRepository<Task, Long> getRepository() {
         return repository;

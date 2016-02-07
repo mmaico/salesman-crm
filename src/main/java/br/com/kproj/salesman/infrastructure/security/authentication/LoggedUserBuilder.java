@@ -26,7 +26,9 @@ public class LoggedUserBuilder extends AbstractBuilder<LoggedUser> {
 	
 	public LoggedUserBuilder withUser(User user) {
 		User baseData = UserBuilder.createUser(user.getId())
-			.withLogin(user.getLogin()).build();
+			.withLogin(user.getLogin())
+				.withName(user.getName())
+				.withLastname(user.getLastname()).build();
 		
 		this.entity.setUser(baseData);
 		return this;

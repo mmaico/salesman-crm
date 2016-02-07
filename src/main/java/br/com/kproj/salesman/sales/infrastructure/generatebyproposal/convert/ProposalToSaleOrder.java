@@ -25,6 +25,7 @@ public class ProposalToSaleOrder implements Converter<BusinessProposal, SalesOrd
                 .withProposal(source)
                 .withDeliveryForeCast(source.getDeliveryForeCast())
                 .withOperationRegion(source.getOperationRegion())
+                .withCurrentDate()
                 .withSeller(source.getSeller());
 
 
@@ -33,7 +34,6 @@ public class ProposalToSaleOrder implements Converter<BusinessProposal, SalesOrd
 
         source.getSaleableItems().stream()
                 .forEach(salesItem -> builder.addSalesOrderItem(orderItemConverter.convert(salesItem)));
-
 
         return builder.build();
     }

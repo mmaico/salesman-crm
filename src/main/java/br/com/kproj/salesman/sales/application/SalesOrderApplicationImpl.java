@@ -14,6 +14,7 @@ import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
@@ -46,6 +47,11 @@ public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> 
         eventBus.post(NewSalesOrderMessage.create(salesOrderSaved));
 
         return salesOrderSaved;
+    }
+
+    @Override
+    public List<SalesOrder> findAllOrdered() {
+        return repository.findAllOrdered();
     }
 
 

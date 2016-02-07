@@ -33,7 +33,7 @@ public class NotificationsController {
         List<ApprovalBusinessProposalNotification> result = application.findProposalByUser(security.getPrincipal().getUser());
 
         model.addAttribute("proposalNotifications", result);
-        return new ModelAndView("");
+        return new ModelAndView("/assets/includes/vm/notifications/proposal-notification");
     }
 
     @RequestMapping(value = "/notifications/tasks", method = RequestMethod.GET)
@@ -42,7 +42,7 @@ public class NotificationsController {
         List<TaskNotification> result = application.findTaskNotificationByUser(security.getPrincipal().getUser());
 
         model.addAttribute("tasksNotifications", result);
-        return new ModelAndView("");
+        return new ModelAndView("/assets/includes/vm/notifications/task-notification");
     }
 
 

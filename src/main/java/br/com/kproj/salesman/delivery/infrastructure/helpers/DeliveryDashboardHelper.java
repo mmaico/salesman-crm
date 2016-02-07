@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.delivery.application.ActDeliverySalesApplication;
+import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
@@ -18,7 +18,7 @@ public class DeliveryDashboardHelper {
     private TaskApplication application;
 
     @Autowired
-    private ActDeliverySalesApplication actDeliverySalesApplication;
+    private WorkspaceApplication workspaceApplication;
 
     public DeliveryResumeExecutionTaskDTO getResumeTasks() {
         return application.getResume();
@@ -29,15 +29,15 @@ public class DeliveryDashboardHelper {
     }
 
     public List<SalesOrder> findNewSalesOrder() {
-        return actDeliverySalesApplication.findNewSalesOrder();
+        return workspaceApplication.findNewSalesOrder();
     }
 
     public List<SalesOrder> findSalesOrderInActDelivery() {
-        return actDeliverySalesApplication.findSalesOrderInActDelivery();
+        return workspaceApplication.findSalesOrderNotInWorkspace();
     }
 
     public List<User> findUsersResponsibles(SalesOrder salesOrder) {
-        return actDeliverySalesApplication.findUsersResponsibles(salesOrder);
+        return workspaceApplication.findUsersResponsibles(salesOrder);
     }
 
     public Long countBySalesOrder(SalesOrder salesOrder) {

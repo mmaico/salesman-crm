@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.application.triggernotification;
 
-import br.com.kproj.salesman.delivery.application.ActDeliverySalesApplication;
+import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -30,7 +30,7 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
     private TaskRepository taskRepository;
 
     @Autowired
-    private ActDeliverySalesApplication actDeliverySalesApplication;
+    private WorkspaceApplication workspaceApplication;
 
     @Autowired
     private EventBus eventBus;
@@ -75,7 +75,7 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
         List<ScheduleTriggerNotification> result = repository.findAllAvailableToday(DateHelper.now());
 
         for (ScheduleTriggerNotification trigger: result) {
-            List<User> users = actDeliverySalesApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
+            List<User> users = workspaceApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
             users.forEach(user ->
                     eventBus.post(NewTaskTriggerToExecuteMessage
                             .create(trigger.getTask(), trigger.getTriggerDate(), user))

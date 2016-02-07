@@ -2,6 +2,7 @@ package br.com.kproj.salesman.delivery.domain;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -77,6 +78,11 @@ public class TaskDomainServiceImpl implements TaskDomainService {
 
         if (task.isNew()) {
             task.setStatus(TaskStatus.WAITING);
+        }
+
+        if (task.getRegion() == null || task.getRegion().isNew()) {
+            SalesOrder saleOrder = salesOrderRepository.findOne(task.getSalesOrder().getId());
+            task.setRegion(saleOrder.getOperationRegion());
         }
     }
 }
