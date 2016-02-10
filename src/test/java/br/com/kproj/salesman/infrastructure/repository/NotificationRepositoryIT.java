@@ -25,7 +25,7 @@ public class NotificationRepositoryIT extends AbstractIntegrationTest {
 
         Long count = repository.findCountTaskNotificationBy(user, date);
 
-        MatcherAssert.assertThat(count, is(3l));
+        MatcherAssert.assertThat(count, is(1l));
     }
 
     @Test
@@ -35,6 +35,6 @@ public class NotificationRepositoryIT extends AbstractIntegrationTest {
 
         Long count = repository.findCountProposalBy(user, date);
 
-        MatcherAssert.assertThat(count, is(2l));
+        MatcherAssert.assertThat(count, is(1l));
     }
 }

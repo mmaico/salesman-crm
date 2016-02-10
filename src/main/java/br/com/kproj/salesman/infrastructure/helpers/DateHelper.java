@@ -67,6 +67,13 @@ public class DateHelper {
 
     }
 
+
+	public static Boolean is(Greater greater, Than than) {
+		return greater.date.after(than.date);
+	}
+
+
+
 	public static Date now() {
 		return new Date();
 	}
@@ -79,5 +86,26 @@ public class DateHelper {
 
 		return days.getDays();
 
+	}
+
+	public static class Greater{
+		Date date;
+		Greater(Date date) {
+			this.date = date;
+
+		}
+		public static Greater create(Date date) {
+			return new Greater(date);
+		}
+	}
+
+	public static class Than {
+		Date date;
+		Than(Date date) {
+			this.date = date;
+		}
+		public static Than create(Date date) {
+			return new Than(date);
+		}
 	}
 }

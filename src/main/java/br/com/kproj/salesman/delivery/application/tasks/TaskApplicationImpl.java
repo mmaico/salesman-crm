@@ -129,10 +129,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
         hasErrors(isNull(taskLoaded) ? newHashSet("task.not.found") : emptySet())
                 .throwing(ValidationException.class);
 
-        TaskStatus oldStatus = taskLoaded.getStatus();
         taskLoaded.setStatus(task.getStatus());
-
-        //eventBus.post(TaskChangeStatusMessage.create(taskLoaded, userChange, oldStatus));
     }
 
     @Override

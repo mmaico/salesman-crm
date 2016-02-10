@@ -226,27 +226,6 @@ public class TaskApplicationImplTest {
     }
 
     @Test
-    public void shouldSendMessageWhenChangeStatus() {
-        User userChange = UserBuilder.createUser(2l).build();
-        Task taskParam = TaskBuilder.createTaskBuilder(1l)
-                .withStatus(TaskStatus.DONE).build();
-
-        Task taskDB = Mockito.mock(Task.class);
-
-        given(taskDB.getStatus()).willReturn(TaskStatus.STATED);
-        given(repository.findOne(1l)).willReturn(taskDB);
-
-        this.service.changeStatus(taskParam, userChange);
-
-        verify(eventBus).post(messageCaptor.capture());
-        TaskChangeStatusMessage result = messageCaptor.getValue();
-
-        assertThat(result.getOldStatus(), is(TaskStatus.STATED));
-        assertThat(result.getTask(), sameInstance(taskDB));
-        assertThat(result.getUser(), sameInstance(userChange));
-    }
-
-    @Test
     public void shouldReturnStatisticsOfDeliveryExecutionTasks() {
 
         given(repository.countByStatus(TaskStatus.DONE)).willReturn(1l);

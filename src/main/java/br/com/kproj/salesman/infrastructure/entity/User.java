@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.calendar.Calendar;
+import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import org.apache.commons.io.IOUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -57,6 +59,9 @@ public class User extends Identifiable {
     @OneToOne(mappedBy = "approver")
     private ApproverProfile approverProfile;
 
+    @OneToOne
+    @JoinColumn(name="calendar_id")
+    private Calendar calendar;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -161,6 +166,14 @@ public class User extends Identifiable {
 
     public void setApproverProfile(ApproverProfile approverProfile) {
         this.approverProfile = approverProfile;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     @Override

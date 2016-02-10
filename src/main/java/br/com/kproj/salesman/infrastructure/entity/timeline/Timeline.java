@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.timeline;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -39,6 +40,10 @@ public class Timeline extends Identifiable {
     @OneToOne
     @JoinColumn(name="task_id")
     private Task task;
+
+    @OneToOne
+    @JoinColumn(name="calendar_activity_id")
+    private CalendarActivity calendarActivity;
 
     public  Timeline() {}
 
@@ -101,5 +106,13 @@ public class Timeline extends Identifiable {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public CalendarActivity getCalendarActivity() {
+        return calendarActivity;
+    }
+
+    public void setCalendarActivity(CalendarActivity calendarActivity) {
+        this.calendarActivity = calendarActivity;
     }
 }

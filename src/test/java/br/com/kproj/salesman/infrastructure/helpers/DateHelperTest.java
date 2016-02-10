@@ -5,9 +5,13 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class DateHelperTest {
 
@@ -47,4 +51,41 @@ public class DateHelperTest {
         assertThat(dateConverted, Matchers.nullValue());
     }
 
+    @Test
+    public void shouldReturnTrueWhenADateIsBiggerThanOther() {
+        Date dateOne = DateHelper.convertToDate("06/02/2015");
+        Date dateTwo = DateHelper.convertToDate("05/02/2015");
+
+        Boolean result = DateHelper.is(DateHelper.Greater.create(dateOne), DateHelper.Than.create(dateTwo));
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenIsBiggerOnlyHoursThanOther() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        LocalDateTime dateTime = LocalDateTime.parse("05/02/2015 10:20", formatter);
+        LocalDateTime dateTimeTwo = LocalDateTime.parse("05/02/2015 09:20", formatter);
+        Date dateOne = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date dateTwo = Date.from(dateTimeTwo.atZone(ZoneId.systemDefault()).toInstant());
+
+        Boolean result = DateHelper.is(DateHelper.Greater.create(dateOne), DateHelper.Than.create(dateTwo));
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenIsBiggerOnlyMinutesThanOther() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        LocalDateTime dateTime = LocalDateTime.parse("05/02/2015 10:21", formatter);
+        LocalDateTime dateTimeTwo = LocalDateTime.parse("05/02/2015 10:20", formatter);
+        Date dateOne = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date dateTwo = Date.from(dateTimeTwo.atZone(ZoneId.systemDefault()).toInstant());
+
+        Boolean result = DateHelper.is(DateHelper.Greater.create(dateOne), DateHelper.Than.create(dateTwo));
+
+        assertThat(result, is(Boolean.TRUE));
+    }
 }
