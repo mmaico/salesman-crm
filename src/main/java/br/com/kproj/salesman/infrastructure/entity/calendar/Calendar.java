@@ -14,8 +14,7 @@ public class Calendar extends Identifiable {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="calendar_id")
+    @OneToMany(mappedBy = "calendar")
     private List<CalendarActivity> activities;
 
     @OneToOne(mappedBy = "calendar")

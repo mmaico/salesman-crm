@@ -19,6 +19,10 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name="calendar_id")
+    private Calendar calendar;
+
     @OneToOne(mappedBy = "calendarActivity")
     private Period period;
 
@@ -73,5 +77,13 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     public void setPeriod(Period period) {
         this.period = period;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 }

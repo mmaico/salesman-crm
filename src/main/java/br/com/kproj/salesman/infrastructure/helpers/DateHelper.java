@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 import java.text.Format;
 import java.text.ParseException;
@@ -72,6 +73,13 @@ public class DateHelper {
 		return greater.date.after(than.date);
 	}
 
+	public static Boolean hasHourOrMinutesSet(Date date) {
+		LocalDateTime localDateTime = LocalDateTime.fromDateFields(date);
+		int hourOfDay = localDateTime.getHourOfDay();
+		int minuteOfHour = localDateTime.getMinuteOfHour();
+
+		return hourOfDay > 0 || minuteOfHour > 0;
+	}
 
 
 	public static Date now() {

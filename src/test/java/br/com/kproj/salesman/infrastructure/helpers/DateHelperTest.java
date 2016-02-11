@@ -88,4 +88,43 @@ public class DateHelperTest {
 
         assertThat(result, is(Boolean.TRUE));
     }
+
+    @Test
+    public void shouldReturnTrueWhenDateHaveHour() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        LocalDateTime dateTime = LocalDateTime.parse("05/02/2015 10:00", formatter);
+
+        Date dateOne = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Boolean result = DateHelper.hasHourOrMinutesSet(dateOne);
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenDateHaveMinutes() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        LocalDateTime dateTime = LocalDateTime.parse("05/02/2015 00:01", formatter);
+
+        Date dateOne = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Boolean result = DateHelper.hasHourOrMinutesSet(dateOne);
+
+        assertThat(result, is(Boolean.TRUE));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenDateHaveMinutesAndHoursWithZero() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        LocalDateTime dateTime = LocalDateTime.parse("05/02/2015 00:00", formatter);
+
+        Date dateOne = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Boolean result = DateHelper.hasHourOrMinutesSet(dateOne);
+
+        assertThat(result, is(Boolean.FALSE));
+    }
 }

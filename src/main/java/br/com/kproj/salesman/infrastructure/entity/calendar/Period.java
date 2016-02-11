@@ -57,6 +57,10 @@ public class Period extends Identifiable {
         return isAllDay;
     }
 
+    public Boolean isAllDay() {
+        return isAllDay;
+    }
+
     public void setAllDay(Boolean allDay) {
         isAllDay = allDay;
     }

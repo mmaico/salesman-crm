@@ -23,17 +23,22 @@ public class CalendarActivityDomainServiceImpl implements CalendarActivityDomain
     @Autowired
     private CalendarActivityRepository repository;
 
+    @Autowired
+    private PeriodDomainService periodDomainService;
+
     Map<String, CheckRule<CalendarActivity>> persistRules = new HashMap<>();
     {
         persistRules.put(description("calendar.activity.not.exist"), (activity -> !activity.isNew() && !repository.exists(activity.getId())));
         persistRules.put(description("calendar.activity.not.have.period"), (activity -> activity.getPeriod() == null));
         persistRules.put(description("calendar.activity.not.have.title"), (activity -> isBlank(activity.getTitle())));
+        persistRules.put(description("calendar.activity.have.invalid.period"), (activity ->
+                        !periodDomainService.isValidPeriodToCalendarActivity(activity.getPeriod())));
 
     }
 
 
     @Override
-    public void checkBusinessRulesFor(CalendarActivity activity) {
+    public void hasValidDataToShowOnCalendar(CalendarActivity activity) {
 
         Set<String> violations = persistRules.entrySet()
                 .stream()
