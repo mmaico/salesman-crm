@@ -1,10 +1,9 @@
 package br.com.kproj.salesman.calendar.domain;
 
-import br.com.kproj.salesman.calendar.infrastructure.CalendarActivityRepository;
+import br.com.kproj.salesman.infrastructure.repository.CalendarActivityRepository;
 import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

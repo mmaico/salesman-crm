@@ -34,6 +34,13 @@ public class RangeDatesDTO {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public Boolean hasValidRangeToSearch() {
+        if (startDate == null || endDate == null || startDate.after(endDate)) {
+            return Boolean.FALSE;
+        }
+        return Boolean.TRUE;
+    }
     
     public static RangeDatesDTO create(String startDate, String endDate) {
         return new RangeDatesDTO(startDate, endDate);

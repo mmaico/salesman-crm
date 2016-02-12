@@ -31,6 +31,12 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     private String location;
 
+    public CalendarActivity(){}
+
+    public CalendarActivity(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

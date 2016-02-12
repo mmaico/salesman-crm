@@ -2,6 +2,7 @@ package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -31,7 +32,7 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
-								   ContactRepository contactRepository, TaskRepository taskRepository) {
+								   ContactRepository contactRepository, TaskRepository taskRepository, CalendarActivityRepository activityRepository) {
 		this.timelineRepository = timelineRepository;
 
 		repositories.put(Individual.class, personRepository);
@@ -39,6 +40,8 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 		repositories.put(BusinessProposal.class, proposalRepository);
 		repositories.put(Contact.class, contactRepository);
 		repositories.put(Task.class, taskRepository);
+		repositories.put(CalendarActivity.class, activityRepository);
+
 
 	}
 
