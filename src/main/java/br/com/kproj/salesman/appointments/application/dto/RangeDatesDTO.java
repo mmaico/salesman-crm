@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.calendar.application.dto;
+package br.com.kproj.salesman.appointments.application.dto;
 
 
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;

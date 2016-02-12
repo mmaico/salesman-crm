@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.calendar.application;
+package br.com.kproj.salesman.appointments.application;
 
 
 import br.com.kproj.salesman.infrastructure.entity.User;
