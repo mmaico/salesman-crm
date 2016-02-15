@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.appointments.domain;
+package br.com.kproj.salesman.assistants.calendar.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.calendar.Period;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;

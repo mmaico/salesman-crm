@@ -83,12 +83,20 @@ public class ProposalSaleableItemDTO implements Serializable {
 
     public void updateItem(ProposalPackageItemsDTO item) {
         if (packageItems.contains(item)) {
-            Optional<ProposalPackageItemsDTO> itemSelected = packageItems.stream().filter(itemFiltered
-                        -> itemFiltered.equals(item)).findFirst();
+            Optional<ProposalPackageItemsDTO> itemSelected = packageItems.stream()
+                    .filter(itemFiltered -> itemFiltered.equals(item)).findFirst();
 
             itemSelected.get().setPrice(item.getPrice());
             itemSelected.get().setQuantity(item.getQuantity());
             itemSelected.get().setSelected(item.getSelected() == null ? Boolean.FALSE : item.getSelected());
+        } else {
+            ProposalPackageItemsDTO newItem = new ProposalPackageItemsDTO();
+            newItem.setSaleableId(item.getSaleableId());
+            newItem.setPrice(item.getPrice());
+            newItem.setQuantity(item.getQuantity());
+            newItem.setSelected(item.getSelected() == null ? Boolean.FALSE : item.getSelected());
+
+            packageItems.add(newItem);
         }
     }
 

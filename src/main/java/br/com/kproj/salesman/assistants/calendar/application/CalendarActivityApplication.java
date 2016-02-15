@@ -1,7 +1,7 @@
-package br.com.kproj.salesman.appointments.application;
+package br.com.kproj.salesman.assistants.calendar.application;
 
 
-import br.com.kproj.salesman.appointments.application.dto.RangeDatesDTO;
+import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.service.ModelService;

@@ -67,8 +67,8 @@ public class ProposalSaleablesDTO implements Serializable {
         if (result.isPresent()) {
 
             if (SaleableType.PACKAGE.equals(result.get().getType())) {
-                Optional<ProposalSaleableItemDTO> packageFound = proposalSaleableItemDTOs.stream().filter(spackage -> item.getSaleableId()
-                        .equals(spackage.getSaleableId())).findFirst();
+                Optional<ProposalSaleableItemDTO> packageFound = proposalSaleableItemDTOs.stream()
+                        .filter(spackage -> item.getSaleableId().equals(spackage.getSaleableId())).findFirst();
 
                 if (!packageFound.isPresent()) {
                     return;
