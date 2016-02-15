@@ -4,6 +4,7 @@ package br.com.kproj.salesman.negotiation.view.helpers;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class BusinessProposalHelper {
@@ -39,5 +41,23 @@ public class BusinessProposalHelper {
         }
 
         return temperature.get(proposal.getTemperature());
+    }
+
+    public Boolean isDone(Long  proposalId) {
+        Optional<BusinessProposal> result = application.getOne(proposalId);
+
+        if (result.isPresent()) {
+            return ProposalTemperature.CLOSED_WON.equals(result.get().getTemperature());
+        }
+
+        return Boolean.FALSE;
+    }
+
+    public Boolean isDone(BusinessProposal  proposal) {
+        return isDone(proposal.getId());
+    }
+
+    public SalesOrder getByProposal(BusinessProposal proposal) {
+        return application.findSalesBy(proposal);
     }
 }

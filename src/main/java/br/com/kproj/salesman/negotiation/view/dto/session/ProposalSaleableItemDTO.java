@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNegativeNumber;
 
@@ -64,6 +65,7 @@ public class ProposalSaleableItemDTO implements Serializable {
         item.setPrice(price);
         item.setQuantity(quantity);
         item.setSaleableId(saleableId);
+        item.setSelected(Boolean.TRUE);
 
         packageItems.add(item);
     }
@@ -74,6 +76,7 @@ public class ProposalSaleableItemDTO implements Serializable {
         item.setPrice(price);
         item.setQuantity(quantity);
         item.setSaleableId(saleableId);
+        item.setSelected(Boolean.TRUE);
 
         packageItems.add(item);
     }
@@ -85,7 +88,7 @@ public class ProposalSaleableItemDTO implements Serializable {
 
             itemSelected.get().setPrice(item.getPrice());
             itemSelected.get().setQuantity(item.getQuantity());
-            itemSelected.get().setSelected(item.getSelected());
+            itemSelected.get().setSelected(item.getSelected() == null ? Boolean.FALSE : item.getSelected());
         }
     }
 
@@ -101,6 +104,13 @@ public class ProposalSaleableItemDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ProposalPackageItemsDTO getById(Long saleableId) {
+
+        Optional<ProposalPackageItemsDTO> result = packageItems.stream().filter(item -> item.getSaleableId().equals(saleableId)).findFirst();
+
+        return result.isPresent() ? result.get() : null;
     }
 
     @Override

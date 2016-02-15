@@ -10,7 +10,7 @@ public class ProposalPackageItemsDTO implements Serializable {
     private Long saleableId;
     private Integer quantity = 1;
     private BigDecimal price = BigDecimal.ZERO;
-    private Boolean selected = Boolean.TRUE;
+    private Boolean selected;
 
     public Long getSaleableId() {
         return saleableId;
@@ -37,6 +37,9 @@ public class ProposalPackageItemsDTO implements Serializable {
     }
 
     public Boolean getSelected() {
+        return selected;
+    }
+    public Boolean isSelected() {
         return selected;
     }
 

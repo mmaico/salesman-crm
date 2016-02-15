@@ -29,6 +29,8 @@ public class ProposalSaleablesDTO implements Serializable {
     @Autowired
     private SaleableApplication application;
 
+    private Long proposalId;
+
     private Set<ProposalSaleableItemDTO> proposalSaleableItemDTOs = Sets.newHashSet();
 
     public Set<ProposalSaleableItemDTO> getProposalSaleableItemDTOs() {
@@ -123,11 +125,20 @@ public class ProposalSaleablesDTO implements Serializable {
 
     }
 
+    public void setProposalId(Long proposalId) {
+        this.proposalId = proposalId;
+    }
+
+    public Long getProposalId() {
+        return proposalId;
+    }
+
     public void setApplication(SaleableApplication application) {
         this.application = application;
     }
 
     public void clear() {
+        this.proposalId = null;
         this.proposalSaleableItemDTOs.clear();
     }
 

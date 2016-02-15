@@ -54,7 +54,9 @@ public class BusinessProposalRequestMergeHelper {
                         .build()
                 );
                  //add items package
-                item.getPackageItems().forEach(subitems ->
+
+                item.getPackageItems().stream().filter(subItem -> subItem.isSelected()).forEach(subitems ->
+
                        saleableItems.add(ProposalSaleableItemBuilder.createProposalSaleable(subitems.getId())
                             .withPackage(new SalePackage(item.getSaleableId()))
                             .withPrice(subitems.getPrice())

@@ -26,6 +26,8 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
 
     public final br.com.kproj.salesman.infrastructure.entity.person.QPerson client;
 
+    public final DateTimePath<java.util.Date> creationDate = createDateTime("creationDate", java.util.Date.class);
+
     public final DateTimePath<java.util.Date> deliveryForecast = createDateTime("deliveryForecast", java.util.Date.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);

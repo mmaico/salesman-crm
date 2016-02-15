@@ -26,7 +26,7 @@ public class SalesOrderController {
         Optional<SalesOrder> result = this.service.getOne(orderId);
 
         model.addAttribute("salesOrder", result.isPresent() ? result.get() : null);
-        return new ModelAndView("/users/edit");
+        return new ModelAndView("/sales/editSales");
     }
 
     @RequestMapping(value="/sales-order/list")

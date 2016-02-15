@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.negotiation.domain.proposal;
 
 
+import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
@@ -37,6 +38,8 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
 
     Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
     {
+
+        persistRules.put(description("proposal.verify.won.cannotbe.changed"), (bp) -> ProposalTemperature.CLOSED_WON == bp.getTemperature());
         persistRules.put(description("proposal.verify.valid.client"), (bp) -> !(!(bp).getClient().isNew() && clientReposiory.exists(bp.getClient().getId())));
         persistRules.put(description("proposal.verify.valid.vendor"), (bp) -> !(!(bp).getSeller().isNew() && userRepository.exists(bp.getSeller().getId())));
         persistRules.put(description("proposal.verify.not.empty.products"), (bp) -> isEmptySafe(bp.getSaleableItems()));

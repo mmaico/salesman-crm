@@ -40,6 +40,8 @@ public class BusinessProposalController {
     @Autowired
     private BusinessProposalValidator validator;
 
+
+
     @Autowired
     private ClientApplication clientApplication;
 
@@ -95,6 +97,7 @@ public class BusinessProposalController {
 
         proposalSaleablesDTO.clear();
         proposalSaleablesDTO.load(result.get().getSaleableItems());
+        proposalSaleablesDTO.setProposalId(proposalId);
 
         Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
