@@ -14,7 +14,7 @@ public class PersonalActivitiesController {
 
 
 
-    @RequestMapping(value="/calendar/view")
+    @RequestMapping(value="/personal-activities/view")
     public ModelAndView showCalendar() {
 
         return new ModelAndView("/calendar/detail");
