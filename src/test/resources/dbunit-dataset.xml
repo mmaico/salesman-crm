@@ -105,6 +105,22 @@
     <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
     <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
 
+    <tasks id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <tasks id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING" sales_order_id="1" parent_id="1" operation_region_id="1"/>
+    <tasks id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <tasks id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
+
+    <task_user user_id="1" task_id="1" />
+    <task_user user_id="1" task_id="2" />
+    <task_user user_id="1" task_id="6" />
+    <task_user user_id="1" task_id="3" />
+    <task_user user_id="1" task_id="7" />
+
+    <task_user user_id="2" task_id="3" />
+    <task_user user_id="2" task_id="5" />
+    <task_user user_id="2" task_id="7" />
+    <task_user user_id="2" task_id="8" />
+    <task_user user_id="2" task_id="6" />
 
     <proposal_aprover_profile id="1" user_approver_id="1" available="true"/>
     <proposal_aprover_profile id="2" user_approver_id="2" available="false"/>

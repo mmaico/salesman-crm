@@ -3,7 +3,10 @@ package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
+import br.com.kproj.salesman.delivery.application.tasks.UserWorkTaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
+import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO;
+import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class DeliveryDashboardHelper {
 
     @Autowired
     private WorkspaceApplication workspaceApplication;
+
+    @Autowired
+    private UserWorkTaskApplication userWorkTaskApplication;
 
     public DeliveryResumeExecutionTaskDTO getResumeTasks() {
         return application.getResume();
@@ -42,5 +48,13 @@ public class DeliveryDashboardHelper {
 
     public Long countBySalesOrder(SalesOrder salesOrder) {
         return this.application.countBySalesOrder(salesOrder);
+    }
+
+    public List<DeliverySummaryExecutingDTO> getSummaryTasksExecuting() {
+        return userWorkTaskApplication.getSummaryTasksExecuting();
+    }
+
+    public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrder salesOrder) {
+        return userWorkTaskApplication.getSummarySalesOrderTasksExecuting(salesOrder);
     }
 }
