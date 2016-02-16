@@ -4,10 +4,13 @@ import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
+import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.builders.TaskChangeHistoryBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.infrastructure.entity.builders.TaskChangeHistoryBuilder.createTaskChangeHistory;
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.ModelHelper.isNull;
@@ -33,6 +37,9 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
 
     @Autowired
     private TaskRepository repository;
+
+    @Autowired
+    private TaskChangeHistoryRepository changeHistoryRepository;
 
     @Autowired
     private TaskDomainService service;
@@ -130,6 +137,9 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
                 .throwing(ValidationException.class);
 
         taskLoaded.setStatus(task.getStatus());
+
+        TaskChangeHistory history = createTaskChangeHistory(taskLoaded, task.getStatus()).build();
+        this.changeHistoryRepository.save(history);
     }
 
     @Override
