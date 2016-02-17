@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.assistants.archive.view;
 
 import br.com.kproj.salesman.assistants.archive.application.FileInfoApplication;
+import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfo;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -33,9 +34,29 @@ public class FileInfoController {
     }
 
     @RequestMapping(value="/file-info/list", method = RequestMethod.GET)
-    public ModelAndView addItem(Model model) {
+    public ModelAndView listAll(Model model) {
 
         Iterable<FileInfo> result = application.findAll(Pager.build().withPageSize(1000));
+
+        model.addAttribute("fileInfos", result);
+        return new ModelAndView("/file-info/list");
+    }
+
+    @RequestMapping(value="/file-info/shared/list", method = RequestMethod.GET)
+    public ModelAndView listSharedFiles(Model model) {
+        User user = security.getPrincipal().getUser();
+
+        Iterable<FileInfo> result = application.findPublicsAndSheredFiles(user);
+
+        model.addAttribute("fileInfos", result);
+        return new ModelAndView("/file-info/list");
+    }
+
+    @RequestMapping(value="/file-info/own/list", method = RequestMethod.GET)
+    public ModelAndView listMyFiles(Model model) {
+        User user = security.getPrincipal().getUser();
+
+        Iterable<FileInfo> result = application.findOwnFiles(user);
 
         model.addAttribute("fileInfos", result);
         return new ModelAndView("/file-info/list");

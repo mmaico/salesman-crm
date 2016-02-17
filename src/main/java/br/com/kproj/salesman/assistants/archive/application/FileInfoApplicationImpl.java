@@ -1,21 +1,18 @@
 package br.com.kproj.salesman.assistants.archive.application;
 
 import br.com.kproj.salesman.assistants.archive.infrastructure.repository.FileInfoRepository;
-import br.com.kproj.salesman.assistants.calendar.infrastructure.CalendarRepository;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfo;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
-import br.com.kproj.salesman.infrastructure.entity.builders.CalendarBuilder;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
 import br.com.kproj.salesman.infrastructure.service.AppFileApplication;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,5 +51,15 @@ public class FileInfoApplicationImpl extends BaseModelServiceImpl<FileInfo> impl
         }
 
         return fileInfoSaved;
+    }
+
+    @Override
+    public List<FileInfo> findPublicsAndSheredFiles(User user) {
+        return repository.findPublicsAndSheredFiles(user);
+    }
+
+    @Override
+    public List<FileInfo> findOwnFiles(User user) {
+        return repository.findOwnFiles(user);
     }
 }
