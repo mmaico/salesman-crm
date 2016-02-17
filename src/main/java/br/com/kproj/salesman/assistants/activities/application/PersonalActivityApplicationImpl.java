@@ -28,9 +28,6 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceImpl<Person
     @Autowired
     private PersonalActivityDomainService service;
 
-
-
-
     @Override
     public PersonalActivity register(PersonalActivity activity) {
         PersonalActivity activitySaved;
