@@ -1,12 +1,14 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 
@@ -65,10 +67,20 @@ public class AppFileBuilder extends AbstractBuilder<AppFile> {
         return this;
     }
 
+    public Boolean hasFile() {
+        return this.appfile.getFile() != null && this.appfile.getFile().length > 0;
+    }
 
 
     public static AppFileBuilder create(Long id) {
         return new AppFileBuilder(id);
+    }
+
+    public static AppFileBuilder create(MultipartFile multipart) throws IOException {
+        return new AppFileBuilder().withFile(safe(multipart).getBytes())
+                    .withMimeType(safe(multipart).getContentType())
+                    .withOriginalName(safe(multipart).getOriginalFilename())
+                    .withSize(safe(multipart).getSize());
     }
 
 	public AppFile build() {

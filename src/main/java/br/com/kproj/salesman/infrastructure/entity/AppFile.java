@@ -32,6 +32,9 @@ public class AppFile extends Identifiable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creation;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lasMotification;
+
     private Integer width;
 
     private Integer height;
@@ -118,5 +121,12 @@ public class AppFile extends Identifiable {
         AppFile nullObject = new AppFile();
         return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
     }
-		
+
+    public Date getLasMotification() {
+        return lasMotification;
+    }
+
+    public void setLasMotification(Date lasMotification) {
+        this.lasMotification = lasMotification;
+    }
 }

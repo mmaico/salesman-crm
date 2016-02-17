@@ -1,8 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

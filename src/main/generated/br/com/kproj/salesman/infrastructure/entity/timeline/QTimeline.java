@@ -26,7 +26,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity> activities = this.<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity>createList("activities", br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity.class, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity.class, PathInits.DIRECT2);
 
-    public final br.com.kproj.salesman.infrastructure.entity.calendar.QCalendarActivity calendarActivity;
+    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivity calendarActivity;
 
     public final br.com.kproj.salesman.infrastructure.entity.QContact contact;
 
@@ -56,7 +56,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public QTimeline(Class<? extends Timeline> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.calendarActivity = inits.isInitialized("calendarActivity") ? new br.com.kproj.salesman.infrastructure.entity.calendar.QCalendarActivity(forProperty("calendarActivity"), inits.get("calendarActivity")) : null;
+        this.calendarActivity = inits.isInitialized("calendarActivity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivity(forProperty("calendarActivity"), inits.get("calendarActivity")) : null;
         this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContact(forProperty("contact"), inits.get("contact")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;

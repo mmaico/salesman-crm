@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.calendar.Calendar;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
 
 
 public class CalendarBuilder extends AbstractBuilder<Calendar> {

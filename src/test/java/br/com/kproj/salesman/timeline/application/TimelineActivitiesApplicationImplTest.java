@@ -9,18 +9,14 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
-import br.com.kproj.salesman.infrastructure.service.FileService;
-import com.google.common.collect.Lists;
+import br.com.kproj.salesman.infrastructure.service.FileApplication;
 import com.google.common.eventbus.EventBus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -44,7 +40,7 @@ public class TimelineActivitiesApplicationImplTest {
     private TimelineActivitiesRepository repository;
 
     @Mock
-    private FileService fileService;
+    private FileApplication fileApplication;
 
     @Mock
     private EventBus eventBus;
@@ -67,7 +63,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(person, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileService).saveFile(activitySaved, files);
+        verify(this.fileApplication).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -90,7 +86,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(proposal, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileService).saveFile(activitySaved, files);
+        verify(this.fileApplication).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -112,7 +108,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(contact, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileService).saveFile(activitySaved, files);
+        verify(this.fileApplication).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -134,7 +130,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(task, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileService).saveFile(activitySaved, files);
+        verify(this.fileApplication).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -147,7 +143,7 @@ public class TimelineActivitiesApplicationImplTest {
 
         this.timelineActivitiesApplication.getActivityFile(timelineActivity, appFile);
 
-        verify(fileService).getFile(timelineActivity, appFile);
+        verify(fileApplication).getFile(timelineActivity, appFile);
     }
 
     @Test

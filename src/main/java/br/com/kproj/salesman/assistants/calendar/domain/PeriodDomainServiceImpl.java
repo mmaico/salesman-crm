@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.assistants.calendar.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.calendar.Period;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Period;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;

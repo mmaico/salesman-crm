@@ -30,7 +30,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final QBranch branch;
 
-    public final br.com.kproj.salesman.infrastructure.entity.calendar.QCalendar calendar;
+    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendar calendar;
 
     public final StringPath email = createString("email");
 
@@ -66,7 +66,7 @@ public class QUser extends EntityPathBase<User> {
         super(type, metadata, inits);
         this.approverProfile = inits.isInitialized("approverProfile") ? new br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverProfile(forProperty("approverProfile"), inits.get("approverProfile")) : null;
         this.branch = inits.isInitialized("branch") ? new QBranch(forProperty("branch")) : null;
-        this.calendar = inits.isInitialized("calendar") ? new br.com.kproj.salesman.infrastructure.entity.calendar.QCalendar(forProperty("calendar"), inits.get("calendar")) : null;
+        this.calendar = inits.isInitialized("calendar") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendar(forProperty("calendar"), inits.get("calendar")) : null;
         this.position = inits.isInitialized("position") ? new QUserPosition(forProperty("position")) : null;
     }
 

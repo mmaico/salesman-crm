@@ -2,7 +2,7 @@ package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -11,7 +11,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivi
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
-import br.com.kproj.salesman.infrastructure.service.FileService;
+import br.com.kproj.salesman.infrastructure.service.FileApplication;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
     private TimelineActivitiesRepository repository;
 
     @Autowired
-    private FileService fileService;
+    private FileApplication fileApplication;
 
     @Autowired
     private EventBus eventBus;
@@ -88,7 +88,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
         TimelineActivity activitySaved = save(activity);
 
         timeline.addActivity(activitySaved);
-        this.fileService.saveFile(activitySaved, files);
+        this.fileApplication.saveFile(activitySaved, files);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
         if (timelineActivity.isNew() || appfile.isNew()) {
             return new byte[0];
         }
-        return fileService.getFile(timelineActivity, appfile);
+        return fileApplication.getFile(timelineActivity, appfile);
     }
 
 

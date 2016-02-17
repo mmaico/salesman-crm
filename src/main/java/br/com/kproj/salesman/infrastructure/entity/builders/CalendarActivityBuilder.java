@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 
 
 public class CalendarActivityBuilder extends AbstractBuilder<CalendarActivity> {

@@ -3,7 +3,7 @@ package br.com.kproj.salesman.assistants.calendar.view;
 import br.com.kproj.salesman.assistants.calendar.application.CalendarActivityApplication;
 import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

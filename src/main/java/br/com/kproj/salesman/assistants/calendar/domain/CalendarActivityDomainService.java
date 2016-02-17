@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.assistants.calendar.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 
 public interface CalendarActivityDomainService {
 

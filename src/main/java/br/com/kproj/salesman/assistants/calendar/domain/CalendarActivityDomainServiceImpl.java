@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.assistants.calendar.domain;
 
 import br.com.kproj.salesman.infrastructure.repository.CalendarActivityRepository;
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.beans.factory.annotation.Autowired;

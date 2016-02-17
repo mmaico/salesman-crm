@@ -3,7 +3,7 @@ package br.com.kproj.salesman.timeline.view;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
-import br.com.kproj.salesman.infrastructure.service.FileService;
+import br.com.kproj.salesman.infrastructure.service.FileApplication;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class TimelineController {
 
 
     @Autowired
-    private FileService fileService;
+    private FileApplication fileApplication;
 
 
     @RequestMapping("/timeline/{activityId}/file/{fileId}")
@@ -43,7 +43,7 @@ public class TimelineController {
 
         byte[] file = service.getActivityFile(new LogActivity(activityId), new AppFile(idAppFile));
 
-        Optional<AppFile> appfile = fileService.getAppfile(idAppFile);
+        Optional<AppFile> appfile = fileApplication.getAppfile(idAppFile);
 
         if (!appfile.isPresent()) {
             return;

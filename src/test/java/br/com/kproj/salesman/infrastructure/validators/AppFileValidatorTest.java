@@ -22,7 +22,7 @@ public class AppFileValidatorTest {
     public void shouldMarkErrorsOnRequiredAttributes() {
         AppFile appFile = new AppFile();
 
-        Set<String> errors = validator.validateToSave(appFile);
+        Set<String> errors = validator.hasFileAndRequiredInfos(appFile);
 
         assertThat(errors.contains("app.file.error.name"), is(Boolean.TRUE));
         assertThat(errors.contains("app.file.error.mimetype"), is(Boolean.TRUE));
@@ -39,7 +39,7 @@ public class AppFileValidatorTest {
         appFile.setFile(new byte[10]);
 
 
-        Set<String> errors = validator.validateToSave(appFile);
+        Set<String> errors = validator.hasFileAndRequiredInfos(appFile);
 
         assertThat(errors.isEmpty(), is(Boolean.TRUE));
     }

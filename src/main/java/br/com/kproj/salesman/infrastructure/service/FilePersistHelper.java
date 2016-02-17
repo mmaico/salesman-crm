@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.service;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.files.FileSystemHelper;
 import br.com.kproj.salesman.infrastructure.repository.AppFileRepository;
 import br.com.kproj.salesman.infrastructure.validators.AppFileValidator;
@@ -10,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 @Service
-public class FileServiceImpl implements FileService {
+public class FilePersistHelper {
 
 	
 	private @Autowired
@@ -28,8 +28,7 @@ public class FileServiceImpl implements FileService {
 	private @Autowired
     AppFileValidator appFileValidator;
 	
-	@Override
-	public byte[] getFile(Identifiable entity, AppFile appFile) {
+	protected byte[] getFile(Identifiable entity, AppFile appFile) {
 		
 		if (appFile == null || appFile.isNew() || entity == null || entity.isNew()) {
 			throw new IllegalArgumentException("invalid.arguments.entity.or.appfile.cannot.be.null");
@@ -42,30 +41,12 @@ public class FileServiceImpl implements FileService {
 		return file;
 	}
 
-    @Override
-    public Optional<AppFile> getAppfile(Long idtAppFile) {
-
-        if (idtAppFile == null) {
-            return Optional.empty();
-        }
-
-        AppFile appfileLoaded = this.repository.findOne(idtAppFile);
-
-        return Optional.ofNullable(appfileLoaded);
-    }
-
-    @Override
-	public Set<String> saveFile(Identifiable entity, AppFile appFile) {
+	protected void saveFile(Identifiable entity, AppFile appFile) {
 		
-		Set<String> errors = this.appFileValidator.validateToSave(appFile);
+		this.appFileValidator.hasFileAndRequiredInfos(appFile);
 
-		if (!errors.isEmpty()) {
-			return errors;
-		}
-		
 		if (entity == null || entity.isNew()) {
-			errors.add("save.file.entity.not.have.id");
-			return errors;
+			throw new ValidationException(Sets.newHashSet("save.file.entity.not.have.id"));
 		}
 		
 		String basePath = this.fileSystemHelper.getBasePath(entity);
@@ -74,21 +55,16 @@ public class FileServiceImpl implements FileService {
 		String fullPathFile = this.fileSystemHelper.getPathFile(entity, appFile);
 		
 		this.fileSystemHelper.writeFile(fullPathFile, appFile.getFile());
-		
-		return errors;
 	}
 
-    @Override
-    public Set<String> saveFile(Identifiable entity, List<AppFile> appFiles) {
-        Set<String> errors = Sets.newHashSet();
+	protected void saveFile(Identifiable entity, List<AppFile> appFiles) {
 
         if (isEmptySafe(appFiles)) {
-            return errors;
+			throw new ValidationException(Sets.newHashSet("save.app.files.list.is.empty"));
         }
 
-        appFiles.stream().forEach(e -> errors.addAll(saveFile(entity, e)));
+        appFiles.stream().forEach(e -> saveFile(entity, e));
 
-        return errors;
     }
 
 }

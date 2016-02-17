@@ -1,7 +1,5 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.CalendarActivityBuilder;
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;

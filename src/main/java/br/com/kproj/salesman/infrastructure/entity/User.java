@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.infrastructure.entity.calendar.Calendar;
-import br.com.kproj.salesman.infrastructure.entity.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import org.apache.commons.io.IOUtils;
 import org.springframework.security.core.GrantedAuthority;

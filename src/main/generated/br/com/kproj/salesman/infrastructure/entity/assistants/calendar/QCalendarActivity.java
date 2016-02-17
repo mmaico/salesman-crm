@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.entity.calendar;
+package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
