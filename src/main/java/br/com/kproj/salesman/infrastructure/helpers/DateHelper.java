@@ -1,18 +1,19 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
+import java.math.BigDecimal;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -88,12 +89,72 @@ public class DateHelper {
 
 	public static Integer quantityDaysBetween(Date date) {
 		Date now = new Date();
-		LocalDate localStartDate = LocalDate.fromDateFields(now);
-		LocalDate localEndDate = LocalDate.fromDateFields(date);
+		return quantityDaysBetween(now, date);
+	}
+
+	public static Integer quantityDaysBetween(Date startDate, Date endDate) {
+
+		if (startDate == null || endDate == null)
+			return 0;
+
+		LocalDate localStartDate = LocalDate.fromDateFields(startDate);
+		LocalDate localEndDate = LocalDate.fromDateFields(endDate);
 		Days days = Days.daysBetween(localStartDate, localEndDate);
 
 		return days.getDays();
+	}
 
+	public static Integer quantityWeeksBetween(Date startDate, Date endDate) {
+
+		if (startDate == null || endDate == null)
+			return 0;
+
+		LocalDate localStartDate = LocalDate.fromDateFields(startDate);
+		LocalDate localEndDate = LocalDate.fromDateFields(endDate);
+		Days days = Days.daysBetween(localStartDate, localEndDate);
+
+		if (days.getDays() < 8) return 0;
+
+		BigDecimal bigDecimal = new BigDecimal(days.getDays()).divide(new BigDecimal(7), 2, BigDecimal.ROUND_HALF_UP)
+				.setScale(BigDecimal.ROUND_UP, 0);
+
+		return bigDecimal.intValue();
+	}
+
+	public static List<RangeDateDTO> getRangeWeeks(Date startDate, Date endDate) {
+		Integer quantityWeeksBetween = DateHelper.quantityWeeksBetween(startDate, endDate);
+		List<RangeDateDTO> result = Lists.newArrayList();
+
+		for (int i = 1; i <= quantityWeeksBetween ; i++) {
+			result.add(getRangeWeek(startDate, endDate, i));
+		}
+
+		if (result.isEmpty()) {
+			result.add(RangeDateDTO.build()
+					.withStartDate(startDate).withEndDate(endDate));
+		}
+		return result;
+	}
+
+	public static RangeDateDTO getRangeWeek(Date startDate, Date endDate, Integer week) {
+
+		Integer maxQuantityWeeksBetween = quantityWeeksBetween(startDate, endDate);
+
+		if (maxQuantityWeeksBetween < week) {
+			return RangeDateDTO.nullObject();
+		}
+
+		Integer quantityDaysToStartDate = ((week - 1) * 7 );
+
+		Integer quantityDaysToEndDate = maxQuantityWeeksBetween.equals(week)
+				? quantityDaysBetween(startDate, endDate)
+				: (week * 7) - 1;
+
+		Date startDateSought = addDayToDate(quantityDaysToStartDate, startDate);
+		Date endDateSought = addDayToDate(quantityDaysToEndDate, startDate);
+
+
+		return RangeDateDTO.build().withStartDate(startDateSought).withEndDate(endDateSought);
 	}
 
 	public static class Greater{

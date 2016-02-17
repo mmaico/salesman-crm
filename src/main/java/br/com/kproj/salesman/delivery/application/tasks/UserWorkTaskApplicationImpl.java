@@ -2,12 +2,20 @@ package br.com.kproj.salesman.delivery.application.tasks;
 
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
+import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
+import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.UserWorkOnTasksRepository;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
+import br.com.kproj.salesman.infrastructure.helpers.RangeDateDTO;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +27,9 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
 
     @Autowired
     private UserWorkOnTasksRepository repository;
+
+    @Autowired
+    private TaskChangeHistoryRepository taskChangeHistoryRepository;
 
     @Override
     public List<DeliverySummaryExecutingDTO> getSummaryTasksExecuting() {
@@ -45,5 +56,27 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
                         .addStatistic(WAITING, repository.countOnTaskBy(user, salesOrder, WAITING))
                         .addStatistic(STATED, repository.countOnTaskBy(user, salesOrder, STATED)))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrder salesOrder) {
+
+        Page<Date> startDateResult = taskChangeHistoryRepository.findDateFromNewestHistory(salesOrder, Pager.build().one());
+        Page<Date> endDateResult = taskChangeHistoryRepository.findDateFromOldestHistory(salesOrder, Pager.build().one());
+
+        Date startDate = startDateResult.getContent().size() > 0 ? startDateResult.getContent().get(0) : DateHelper.convertToDate("01/01/1900");
+        Date endDate = endDateResult.getContent().size() > 0 ? endDateResult.getContent().get(0) : new Date();
+
+        List<RangeDateDTO> rangeWeeks = DateHelper.getRangeWeeks(startDate, endDate);
+
+        List<TaskExecutingHistoryDTO> listHistory = rangeWeeks.stream().map(rangeDate ->
+                TaskExecutingHistoryDTO.createSummary(rangeDate)
+                        .addStatistic(DONE, taskChangeHistoryRepository.countHistoryByRangeDatesAndStatus(rangeDate.getStartDate(), rangeDate.getEndDate(), DONE))
+                        .addStatistic(STATED, taskChangeHistoryRepository.countHistoryByRangeDatesAndStatus(rangeDate.getStartDate(), rangeDate.getEndDate(), STATED))
+                        .addStatistic(PROBLEM, taskChangeHistoryRepository.countHistoryByRangeDatesAndStatus(rangeDate.getStartDate(), rangeDate.getEndDate(), PROBLEM))
+                        .addStatistic(WAITING, taskChangeHistoryRepository.countHistoryByRangeDatesAndStatus(rangeDate.getStartDate(), rangeDate.getEndDate(), WAITING))
+        ).collect(Collectors.toList());
+
+        return listHistory;
     }
 }
