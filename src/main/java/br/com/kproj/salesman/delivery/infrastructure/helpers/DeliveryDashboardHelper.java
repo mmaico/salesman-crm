@@ -7,6 +7,7 @@ import br.com.kproj.salesman.delivery.application.tasks.UserWorkTaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
+import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,9 @@ public class DeliveryDashboardHelper {
 
     public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrder salesOrder) {
         return userWorkTaskApplication.getSummarySalesOrderTasksExecuting(salesOrder);
+    }
+
+    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrder salesOrder) {
+        return userWorkTaskApplication.getTaskExecutingHistory(salesOrder);
     }
 }

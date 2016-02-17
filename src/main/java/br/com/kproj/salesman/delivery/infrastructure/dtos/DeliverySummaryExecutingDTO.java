@@ -21,6 +21,20 @@ public class DeliverySummaryExecutingDTO {
         return this;
     }
 
+    public Long getCount(TaskStatus status) {
+        Long result = statistics.get(status);
+
+        return result == null ? 0l : result;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public static DeliverySummaryExecutingDTO createSummary(User user) {
         return new DeliverySummaryExecutingDTO(user);
     }

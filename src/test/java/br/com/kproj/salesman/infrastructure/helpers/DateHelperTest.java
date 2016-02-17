@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
 public class DateHelperTest {
@@ -126,5 +127,86 @@ public class DateHelperTest {
         Boolean result = DateHelper.hasHourOrMinutesSet(dateOne);
 
         assertThat(result, is(Boolean.FALSE));
+    }
+
+    @Test
+    public void shouldReturn2WeekBetweenDates() throws ParseException {
+        Date firstDate = new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2012");
+        Date lastDate = new SimpleDateFormat("dd/MM/yyyy").parse("14/02/2012");
+
+        Integer quantityWeeks = DateHelper.quantityWeeksBetween(firstDate, lastDate);
+
+        assertThat(quantityWeeks, Matchers.is(2));
+    }
+
+    @Test
+    public void shouldReturnZeroIfNotHaveWeekBetweenDates() throws ParseException {
+        Date firstDate = new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2012");
+        Date lastDate = new SimpleDateFormat("dd/MM/yyyy").parse("05/02/2012");
+
+        Integer quantityWeeks = DateHelper.quantityWeeksBetween(firstDate, lastDate);
+
+        assertThat(quantityWeeks, Matchers.is(0));
+    }
+
+    @Test
+    public void shouldReturnCorrectlyFirstWeekOfTheRange() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date firstDate = dateFormat.parse("01/02/2012");
+        Date lastDate = dateFormat.parse("26/02/2012");
+
+        RangeDateDTO rangeDate = DateHelper.getRangeWeek(firstDate, lastDate, 1);
+
+        assertThat(dateFormat.format(rangeDate.getStartDate()), equalTo("01/02/2012"));
+        assertThat(dateFormat.format(rangeDate.getEndDate()), equalTo("07/02/2012"));
+    }
+
+    @Test
+    public void shouldReturnTheRangeDateOfWeek() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date firstDate = dateFormat.parse("01/02/2012");
+        Date lastDate = dateFormat.parse("26/02/2012");
+
+        RangeDateDTO rangeDate = DateHelper.getRangeWeek(firstDate, lastDate, 2);
+
+        assertThat(dateFormat.format(rangeDate.getStartDate()), equalTo("08/02/2012"));
+        assertThat(dateFormat.format(rangeDate.getEndDate()), equalTo("14/02/2012"));
+    }
+
+    @Test
+    public void shouldReturnDates() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date firstDate = dateFormat.parse("01/02/2012");
+        Date lastDate = dateFormat.parse("26/02/2012");
+
+        RangeDateDTO rangeDate = DateHelper.getRangeWeek(firstDate, lastDate, 3);
+
+        assertThat(dateFormat.format(rangeDate.getStartDate()), equalTo("15/02/2012"));
+        assertThat(dateFormat.format(rangeDate.getEndDate()), equalTo("21/02/2012"));
+    }
+
+    @Test
+    public void shouldNotReturnRangeDateWithEndDateGreaterLastDate() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date firstDate = dateFormat.parse("01/02/2012");
+        Date lastDate = dateFormat.parse("26/02/2012");
+
+        RangeDateDTO rangeDate = DateHelper.getRangeWeek(firstDate, lastDate, 4);
+
+        assertThat(dateFormat.format(rangeDate.getStartDate()), equalTo("22/02/2012"));
+        assertThat(dateFormat.format(rangeDate.getEndDate()), equalTo("26/02/2012"));
+    }
+
+    @Test
+    public void shouldReturnNullObjectIfWeekRangeNotExist() throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date firstDate = dateFormat.parse("01/02/2012");
+        Date lastDate = dateFormat.parse("26/02/2012");
+
+        RangeDateDTO rangeDate = DateHelper.getRangeWeek(firstDate, lastDate, 5);
+
+        assertThat(rangeDate.isNullObject(), Matchers.is(Boolean.TRUE));
+
     }
 }
