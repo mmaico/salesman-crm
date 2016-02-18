@@ -23,7 +23,7 @@ public class ActivityChecklist extends Identifiable {
     @ManyToOne
     @JoinColumn(name="personal_activity_id")
     @NotNull(message = "personal.activity.checklist.task.null")
-    private PersonalActivity task;
+    private PersonalActivity activity;
 
     public Long getId() {
         return id;
@@ -49,11 +49,19 @@ public class ActivityChecklist extends Identifiable {
         this.isDone = isDone;
     }
 
-    public PersonalActivity getTask() {
-        return task;
+    public Boolean getDone() {
+        return isDone;
     }
 
-    public void setTask(PersonalActivity task) {
-        this.task = task;
+    public void setDone(Boolean done) {
+        isDone = done;
+    }
+
+    public PersonalActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(PersonalActivity activity) {
+        this.activity = activity;
     }
 }
