@@ -23,7 +23,7 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
 
         List<Task> result = repository.findBySalesOrder(salesOrder);
 
-        assertThat(result.size(), is(3));
+        assertThat(result.size(), is(5));
     }
 
     @Test

@@ -118,8 +118,9 @@ public class AppFile extends Identifiable {
     }
 
     public Boolean isValid() {
-        AppFile nullObject = new AppFile();
-        return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
+        //AppFile nullObject = new AppFile();
+        return file == null || file.length < 1 || size == null || size < 1;
+        //return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
     }
 
     public Date getLasMotification() {

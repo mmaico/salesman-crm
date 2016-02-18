@@ -9,7 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
-import br.com.kproj.salesman.infrastructure.service.FileApplication;
+import br.com.kproj.salesman.infrastructure.service.FilePersistHelper;
 import com.google.common.eventbus.EventBus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.sameInstance;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -40,7 +40,7 @@ public class TimelineActivitiesApplicationImplTest {
     private TimelineActivitiesRepository repository;
 
     @Mock
-    private FileApplication fileApplication;
+    private FilePersistHelper filePersistHelper;
 
     @Mock
     private EventBus eventBus;
@@ -63,7 +63,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(person, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileApplication).saveFile(activitySaved, files);
+        verify(this.filePersistHelper).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -86,7 +86,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(proposal, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileApplication).saveFile(activitySaved, files);
+        verify(this.filePersistHelper).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -108,7 +108,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(contact, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileApplication).saveFile(activitySaved, files);
+        verify(this.filePersistHelper).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -130,7 +130,7 @@ public class TimelineActivitiesApplicationImplTest {
         Timeline timelineResult = timelineActivitiesApplication.register(task, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
-        verify(this.fileApplication).saveFile(activitySaved, files);
+        verify(this.filePersistHelper).saveFile(activitySaved, files);
         verify(timelineMock).addActivity(activitySaved);
     }
 
@@ -143,7 +143,7 @@ public class TimelineActivitiesApplicationImplTest {
 
         this.timelineActivitiesApplication.getActivityFile(timelineActivity, appFile);
 
-        verify(fileApplication).getFile(timelineActivity, appFile);
+        verify(filePersistHelper).getFile(timelineActivity, appFile);
     }
 
     @Test

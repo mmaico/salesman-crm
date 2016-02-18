@@ -16,7 +16,7 @@ import com.mysema.query.types.path.PathInits;
 @Generated("com.mysema.query.codegen.EntitySerializer")
 public class QCalendar extends EntityPathBase<Calendar> {
 
-    private static final long serialVersionUID = 1814490591L;
+    private static final long serialVersionUID = 2068737348L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

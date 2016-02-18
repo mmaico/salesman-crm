@@ -4,6 +4,7 @@ import br.com.kproj.salesman.delivery.application.tasks.TaskApplicationImpl;
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
+import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
@@ -12,6 +13,7 @@ import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
@@ -46,6 +48,9 @@ public class TaskApplicationImplTest {
 
     @Mock
     private SalesOrderTaskItemProcessor processor;
+
+    @Mock
+    private TaskChangeHistoryRepository changeHistoryRepository;
 
     @Mock
     private EventBus eventBus;
@@ -212,6 +217,7 @@ public class TaskApplicationImplTest {
         this.service.changeStatus(taskParam, userChange);
 
         verify(taskDB).setStatus(TaskStatus.DONE);
+        verify(changeHistoryRepository).save(Mockito.any(TaskChangeHistory.class));
     }
 
     @Test(expected = ValidationException.class)

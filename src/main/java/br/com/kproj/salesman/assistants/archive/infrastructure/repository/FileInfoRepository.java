@@ -13,7 +13,7 @@ public interface FileInfoRepository extends BaseRepository<FileInfo, Long> {
 
 
     @Query("SELECT fi FROM FileInfo AS fi JOIN fi.sharedWith AS sw " +
-            " WHERE fi.sPublic = true OR sw.user = :user")
+            " WHERE fi.isPublic = true OR sw.user = :user")
     List<FileInfo> findPublicsAndSheredFiles(@Param("user")User user);
 
     @Query("SELECT fi FROM FileInfo AS fi WHERE fi.owner = :user")

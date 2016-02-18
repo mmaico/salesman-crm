@@ -16,25 +16,28 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class AppFileValidator {
 
 
-	public Boolean hasFileAndRequiredInfos(AppFile target) {
+	public Set<String> hasFileAndRequiredInfos(AppFile target) {
+
+		Set<String> errors = new HashSet<>();
 
 		if (isBlank(target.getOriginalName())) {
-			throw new ValidationException(Sets.newHashSet("app.file.error.name"));
+			errors.add("app.file.error.name");
 		}
-		
+
 		if (isBlank(target.getMimeType())) {
-			throw new ValidationException(Sets.newHashSet("app.file.error.mimetype"));
+			errors.add("app.file.error.mimetype");
 		}
-		
+
 		if (target.getSize() == null || target.getSize() < 1) {
-			throw new ValidationException(Sets.newHashSet("app.file.error.size"));
+			errors.add("app.file.error.size");
 		}
-		
+
 		if (target.getFile() == null || target.getFile().length == 0) {
-			throw new ValidationException(Sets.newHashSet("app.file.error.file"));
+			errors.add("app.file.error.file");
 		}
-		
-		return Boolean.TRUE;
+
+		return errors;
+
 	}
 
 }

@@ -11,7 +11,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivi
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
-import br.com.kproj.salesman.infrastructure.service.FileApplication;
+import br.com.kproj.salesman.infrastructure.service.FilePersistHelper;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
     private TimelineActivitiesRepository repository;
 
     @Autowired
-    private FileApplication fileApplication;
+    private FilePersistHelper filePersistHelper;
 
     @Autowired
     private EventBus eventBus;
@@ -88,7 +88,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
         TimelineActivity activitySaved = save(activity);
 
         timeline.addActivity(activitySaved);
-        this.fileApplication.saveFile(activitySaved, files);
+        this.filePersistHelper.saveFile(activitySaved, files);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
         if (timelineActivity.isNew() || appfile.isNew()) {
             return new byte[0];
         }
-        return fileApplication.getFile(timelineActivity, appfile);
+        return filePersistHelper.getFile(timelineActivity, appfile);
     }
 
 

@@ -42,7 +42,7 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
     @Enumerated(EnumType.STRING)
     private PersonalAcvitityStatus status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
     private List<ActivityChecklist> checklist;
 
     @ManyToOne

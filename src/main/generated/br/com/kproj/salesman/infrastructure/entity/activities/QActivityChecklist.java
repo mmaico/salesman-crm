@@ -24,13 +24,13 @@ public class QActivityChecklist extends EntityPathBase<ActivityChecklist> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
+    public final QPersonalActivity activity;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath isDone = createBoolean("isDone");
 
     public final StringPath name = createString("name");
-
-    public final QPersonalActivity task;
 
     public QActivityChecklist(String variable) {
         this(ActivityChecklist.class, forVariable(variable), INITS);
@@ -50,7 +50,7 @@ public class QActivityChecklist extends EntityPathBase<ActivityChecklist> {
 
     public QActivityChecklist(Class<? extends ActivityChecklist> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.task = inits.isInitialized("task") ? new QPersonalActivity(forProperty("task"), inits.get("task")) : null;
+        this.activity = inits.isInitialized("activity") ? new QPersonalActivity(forProperty("activity"), inits.get("activity")) : null;
     }
 
 }

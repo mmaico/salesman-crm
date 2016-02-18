@@ -27,6 +27,8 @@ public class QAppFile extends EntityPathBase<AppFile> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final DateTimePath<java.util.Date> lasMotification = createDateTime("lasMotification", java.util.Date.class);
+
     public final StringPath mimeType = createString("mimeType");
 
     public final StringPath originalName = createString("originalName");

@@ -16,7 +16,7 @@ import com.mysema.query.types.path.PathInits;
 @Generated("com.mysema.query.codegen.EntitySerializer")
 public class QPeriod extends EntityPathBase<Period> {
 
-    private static final long serialVersionUID = 1352244386L;
+    private static final long serialVersionUID = 1307816263L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
