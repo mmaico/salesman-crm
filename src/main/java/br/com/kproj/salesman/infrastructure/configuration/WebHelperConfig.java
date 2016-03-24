@@ -11,11 +11,13 @@ import br.com.kproj.salesman.register.infrastructure.helpers.ProductHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.TimelineActivityHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.TimelineImageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 import javax.annotation.PostConstruct;
 
+@ConditionalOnMissingBean(WebHelperConfig.class)
 @Component
 public class WebHelperConfig {
 
