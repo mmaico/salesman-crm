@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import org.joda.time.DateTime;
@@ -25,6 +26,7 @@ public class ScheduleTriggerNotification extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="task_id")
+    @ExcludeAuditingField
     private Task task;
 
     private Boolean executed = Boolean.FALSE;

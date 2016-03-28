@@ -2,9 +2,12 @@ package br.com.kproj.salesman.auditing.application.subscribers;
 
 
 import br.com.kproj.salesman.auditing.application.BusinessProposalAuditingApplication;
+import br.com.kproj.salesman.auditing.application.TaskAuditingApplication;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalAuditingBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.events.messages.TaskAuditingAfterUpdateMessage;
+import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeMessage;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -22,6 +25,9 @@ public class AuditingSubscriber {
     private BusinessProposalAuditingApplication application;
 
     @Autowired
+    private TaskAuditingApplication taskAuditingApplication;
+
+    @Autowired
     private SecurityHelper security;
 
 
@@ -30,5 +36,14 @@ public class AuditingSubscriber {
         LoggedUser principal = security.getPrincipal();
         application.registerAuditing(proposal, principal.getUser());
     }
+
+    @Subscribe
+    public void persistAuditWhenDistinctLastVersion(TaskChangeMessage taskChangeMessage) {
+        LoggedUser principal = security.getPrincipal();
+
+        taskAuditingApplication.registerAuditing(taskChangeMessage.getTask(), principal.getUser());
+    }
+
+
 
 }

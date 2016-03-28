@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
@@ -51,6 +52,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="sales_order_id")
+    @ExcludeAuditingField
     private SalesOrder salesOrder;
 
     @ManyToMany
