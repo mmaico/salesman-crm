@@ -3,6 +3,7 @@ package br.com.kproj.salesman.delivery.application.tasks;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
+import br.com.kproj.salesman.delivery.infrastructure.repository.SalesOrderDeliveryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.UserWorkOnTasksRepository;
 import br.com.kproj.salesman.infrastructure.entity.User;
@@ -11,6 +12,7 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.RangeDateDTO;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,11 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
 
     @Autowired
     private TaskChangeHistoryRepository taskChangeHistoryRepository;
+
+    @Autowired
+    private SalesOrderDeliveryRepository salesOrderDeliveryRepository;
+
+
 
     @Override
     public List<DeliverySummaryExecutingDTO> getSummaryTasksExecuting() {
@@ -61,10 +68,13 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
     @Override
     public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrder salesOrder) {
 
+        SalesOrder salesOrderLoaded = salesOrderDeliveryRepository.findOne(salesOrder.getId());
+
         Page<Date> startDateResult = taskChangeHistoryRepository.findDateFromNewestHistory(salesOrder, Pager.build().one());
         Page<Date> endDateResult = taskChangeHistoryRepository.findDateFromOldestHistory(salesOrder, Pager.build().one());
 
-        Date startDate = startDateResult.getContent().size() > 0 ? startDateResult.getContent().get(0) : DateHelper.convertToDate("01/01/1900");
+
+        Date startDate = startDateResult.getContent().size() > 0 ? startDateResult.getContent().get(0) : salesOrderLoaded.getCreationDate();
         Date endDate = endDateResult.getContent().size() > 0 ? endDateResult.getContent().get(0) : new Date();
 
         List<RangeDateDTO> rangeWeeks = DateHelper.getRangeWeeks(startDate, endDate);

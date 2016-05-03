@@ -2,6 +2,7 @@ package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonProfilesEnum;
+import br.com.kproj.salesman.register.view.providers.ProviderController;
 import org.dbunit.DatabaseUnitException;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test to {@link br.com.kproj.salesman.register.view.ProviderController}
+ * Test to {@link ProviderController}
  */
 
 public class ProviderControllerIT extends AbstractIntegrationTest {

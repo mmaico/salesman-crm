@@ -19,4 +19,6 @@ public interface WorkspaceApplication extends ModelService<WorkspaceUnit> {
     WorkspaceUnit register(WorkspaceUnit workspaceUnit);
 
     List<User> findUsersResponsibles(SalesOrder salesOrder);
+
+    Boolean isInMyWorkspace(SalesOrder salesOrder, User user);
 }

@@ -31,7 +31,7 @@ public class PersonalActivitiesController {
     private PersonalActivityApplication application;
 
 
-    @RequestMapping(value = "/personal-activities/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/personal-activities/save", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute PersonalActivity activity, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -43,13 +43,13 @@ public class PersonalActivitiesController {
         return "/personal-activities/" + activitySaved.getId();
     }
 
-    @RequestMapping(value = "/personal-activities/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/personal-activities/new", method = RequestMethod.GET)
     public  ModelAndView newActivity() {
 
         return new ModelAndView("/personal-activity/list");
     }
 
-    @RequestMapping(value = "/personal-activities/{parentActivityId}/subactivity", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/personal-activities/{parentActivityId}/subactivity", method = RequestMethod.POST)
     public  ModelAndView saveSubtask(@ModelAttribute PersonalActivity activity, @PathVariable("parentActivityId") Long parentActivityId, Model model) {
 
         normalizeEntityRequest.doNestedReference(activity);
@@ -61,7 +61,7 @@ public class PersonalActivitiesController {
         return new ModelAndView("");
     }
 
-    @RequestMapping(value="/personal-activities/{activityId}/change-status/{status}", method = RequestMethod.PUT)
+    @RequestMapping(value="/users/personal-activities/{activityId}/change-status/{status}", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long activityId, @PathVariable String status) {
         PersonalActivity activity = PersonalActivityBuilder.createActivity(activityId)
                 .withStatus(PersonalAcvitityStatus.get(status)).build();

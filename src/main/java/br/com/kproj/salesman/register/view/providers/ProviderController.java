@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.register.view;
+package br.com.kproj.salesman.register.view.providers;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;

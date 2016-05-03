@@ -33,11 +33,7 @@ public class TaskHelper {
     @Autowired
     private TaskApplication application;
 
-    @Autowired
-    private WorkspaceApplication workspaceApplication;
 
-    @Autowired
-    private SecurityHelper security;
 
 
     public List<Task> getTasks(SalesOrder salesOrder) {
@@ -57,10 +53,6 @@ public class TaskHelper {
         return application.findTaskRootBy(salesOrder);
     }
 
-    public List<SalesOrder> getSalesOrderInMyWorkspace() {
-        User user = security.getPrincipal().getUser();
-        return workspaceApplication.findBy(user);
-    }
 
     public ScheduleTriggerNotification getValidTaskNotification(Task task) {
 

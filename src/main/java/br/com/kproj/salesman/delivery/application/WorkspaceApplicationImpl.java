@@ -46,6 +46,14 @@ public class WorkspaceApplicationImpl extends BaseModelServiceImpl<WorkspaceUnit
         return repository.findUserWithItemsInWorkspace(salesOrder);
     }
 
+    @Override
+    public Boolean isInMyWorkspace(SalesOrder salesOrder, User user) {
+        if (salesOrder == null || salesOrder.isNew() || user == null || user.isNew()) {
+            return Boolean.FALSE;
+        }
+        return repository.findBySalesOrderAndUser(salesOrder, user).isPresent();
+    }
+
 
     public BaseRepository<WorkspaceUnit, Long> getRepository() {
         return this.repository;
