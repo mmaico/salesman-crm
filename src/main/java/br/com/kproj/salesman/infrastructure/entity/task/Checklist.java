@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,6 +24,7 @@ public class Checklist extends Identifiable {
     @ManyToOne
     @JoinColumn(name="task_id")
     @NotNull(message = "checklist.task.null")
+    @ExcludeAuditingField
     private Task task;
 
     public Long getId() {
