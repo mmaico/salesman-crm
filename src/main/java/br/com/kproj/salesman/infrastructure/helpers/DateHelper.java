@@ -47,6 +47,15 @@ public class DateHelper {
 		return formatDate;
 	}
 
+	public static Date convertToDate(String date, String pattern) {
+		Date formatDate = null;
+		try {
+			formatDate = new SimpleDateFormat(pattern).parse(date);
+		} catch (Exception e) {
+		}
+		return formatDate;
+	}
+
     public static String convertToString(Date date) {
         if (date == null) {
             return null;

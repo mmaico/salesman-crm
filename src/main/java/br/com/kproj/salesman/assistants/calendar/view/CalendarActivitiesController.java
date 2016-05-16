@@ -4,8 +4,10 @@ import br.com.kproj.salesman.assistants.calendar.application.CalendarActivityApp
 import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,9 +44,21 @@ public class CalendarActivitiesController {
         return new ModelAndView("/calendar/calendar-activities");
     }
 
+    @RequestMapping(value="/calendar/calendar-activities")
+    public ModelAndView showAllActivities(Model model) {
+
+        Page<CalendarActivity> activities = application.findAll(Pager.build().withPageSize(10000));
+
+        model.addAttribute("activities", activities);
+        return new ModelAndView("/calendar/calendar-activities");
+    }
+
     @RequestMapping(value="/calendar/calendar-activities", method = RequestMethod.POST)
     public ModelAndView saveActivity(@ModelAttribute CalendarActivity activity, @ModelAttribute PeriodDTO periodDTO, Model model) {
         User user = security.getPrincipal().getUser();
+
+        activity.getPeriod().setStartDate(periodDTO.getStartDate());
+        activity.getPeriod().setEndDate(periodDTO.getEndDate());
 
         CalendarActivity result = application.register(activity, user);
 
