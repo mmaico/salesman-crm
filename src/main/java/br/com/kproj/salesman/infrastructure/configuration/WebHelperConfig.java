@@ -7,6 +7,7 @@ import br.com.kproj.salesman.register.infrastructure.helpers.ClientHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.ProductHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.TimelineActivityHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.TimelineImageHelper;
+import org.apache.velocity.tools.generic.EscapeTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
@@ -41,6 +42,8 @@ public class WebHelperConfig {
         resolver.getAttributesMap().put("locationHelper", locationHelper);
         resolver.getAttributesMap().put("messagei18n", messagesI18nHelper);
         resolver.getAttributesMap().put("userHelper", userHelper);
+        resolver.getAttributesMap().put("esc", new EscapeTool());
+
 
     }
 }
