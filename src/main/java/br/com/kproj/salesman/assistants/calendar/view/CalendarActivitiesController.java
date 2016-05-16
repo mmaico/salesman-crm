@@ -65,4 +65,13 @@ public class CalendarActivitiesController {
         model.addAttribute("activity", result);
         return new ModelAndView("/calendar/calendar-activity");
     }
+
+    @RequestMapping(value="/calendar/calendar-activities/{activityId}", method = RequestMethod.GET)
+    public ModelAndView saveActivity(@PathVariable Long ctivityId, Model model) {
+
+        CalendarActivity result = application.getOne(ctivityId);
+
+        model.addAttribute("activity", result);
+        return new ModelAndView("/calendar/edit");
+    }
 }
