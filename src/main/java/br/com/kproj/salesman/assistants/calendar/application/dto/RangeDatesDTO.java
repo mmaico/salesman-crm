@@ -15,7 +15,7 @@ public class RangeDatesDTO {
         Date startDateConveted = DateHelper.convertToDate(startDate);
         Date endDateConverted = DateHelper.convertToDate(endDate);
 
-        this.startDate = startDateConveted == null ? new Date() : startDateConveted;
+        this.startDate = startDateConveted;
         this.endDate = endDateConverted;
     }
     
@@ -40,6 +40,12 @@ public class RangeDatesDTO {
             return Boolean.FALSE;
         }
         return Boolean.TRUE;
+    }
+
+    public Boolean hasRangeDate() {
+        return !(startDate == null && endDate == null);
+
+
     }
     
     public static RangeDatesDTO create(String startDate, String endDate) {

@@ -85,7 +85,7 @@ public class DateHelper {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 		df.setTimeZone(tz);
 
-		return df.format(new Date());
+		return df.format(date);
 	}
 
     public static Date addDayToDate(Integer qtdDays, Date date) {

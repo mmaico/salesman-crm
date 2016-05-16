@@ -45,7 +45,15 @@ public class PeriodDTO {
         isAllDay = allDay;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public Date getFullStartDate() {
         String startHourTreat = this.isAllDay ? DEFAULT_HOUR : this.startHour;
 
         String date = startDate.trim() + " " + startHourTreat.trim();
@@ -63,7 +71,7 @@ public class PeriodDTO {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Date getFullEndDate() {
         String endHourTreat = this.isAllDay ? DEFAULT_HOUR : this.endHour;
         String date = endDate.trim() + " " + endHourTreat.trim();
 

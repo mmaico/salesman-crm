@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.assistants.calendar.view;
 
-import org.hamcrest.MatcherAssert;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -19,7 +18,7 @@ public class PeriodDTOTest {
         periodDTO.setStartDate("10/05/2016");
         periodDTO.setStartHour("10:30");
 
-        Date resultDate = periodDTO.getStartDate();
+        Date resultDate = periodDTO.getFullStartDate();
         DateTime resultDateTime = new DateTime(resultDate);
 
         assertThat(resultDateTime.getYear(), is(2016));
@@ -35,7 +34,7 @@ public class PeriodDTOTest {
         periodDTO.setEndDate("11/08/2017");
         periodDTO.setEndHour("15:30");
 
-        Date resultDate = periodDTO.getEndDate();
+        Date resultDate = periodDTO.getFullEndDate();
         DateTime resultDateTime = new DateTime(resultDate);
 
         assertThat(resultDateTime.getYear(), is(2017));
@@ -53,7 +52,7 @@ public class PeriodDTOTest {
         periodDTO.setStartHour("21:15");
         periodDTO.setAllDay(Boolean.TRUE);
 
-        Date resultDate = periodDTO.getStartDate();
+        Date resultDate = periodDTO.getFullStartDate();
         DateTime resultDateTime = new DateTime(resultDate);
 
         assertThat(resultDateTime.getYear(), is(2018));
@@ -71,7 +70,7 @@ public class PeriodDTOTest {
         periodDTO.setEndHour("22:16");
         periodDTO.setAllDay(Boolean.TRUE);
 
-        Date resultDate = periodDTO.getEndDate();
+        Date resultDate = periodDTO.getFullEndDate();
         DateTime resultDateTime = new DateTime(resultDate);
 
         assertThat(resultDateTime.getYear(), is(2019));
