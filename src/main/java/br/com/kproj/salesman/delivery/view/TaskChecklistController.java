@@ -56,12 +56,14 @@ public class TaskChecklistController {
     }
 
     @RequestMapping(value="/tasks/{taskId}/checklists")
-    public ModelAndView list(@PathVariable Long taskId, Model model) {
+    public ModelAndView list(@RequestParam(defaultValue="checklist-task-table",required=false, value="template") String templateName,
+                             @PathVariable Long taskId, Model model) {
 
         List<Checklist> result = application.findCheckListBy(createTaskBuilder(taskId).build());
 
         model.addAttribute("checklists", result);
-        return new ModelAndView("/delivery/tasks/includes/checklist-task-table");
+
+        return new ModelAndView("/delivery/tasks/includes/" + templateName);
 
     }
 

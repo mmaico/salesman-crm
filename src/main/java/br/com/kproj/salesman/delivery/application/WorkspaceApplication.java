@@ -21,4 +21,6 @@ public interface WorkspaceApplication extends ModelService<WorkspaceUnit> {
     List<User> findUsersResponsibles(SalesOrder salesOrder);
 
     Boolean isInMyWorkspace(SalesOrder salesOrder, User user);
+
+    void removeItemWorkspaceBy(SalesOrder salesOrder, User user);
 }

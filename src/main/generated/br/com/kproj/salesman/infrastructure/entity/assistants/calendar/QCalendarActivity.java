@@ -38,6 +38,8 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
 
     public final StringPath title = createString("title");
 
+    public final StringPath type = createString("type");
+
     public QCalendarActivity(String variable) {
         this(CalendarActivity.class, forVariable(variable), INITS);
     }

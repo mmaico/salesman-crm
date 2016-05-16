@@ -1,10 +1,7 @@
 package br.com.kproj.salesman.infrastructure.configuration;
 
 
-import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
-import br.com.kproj.salesman.infrastructure.helpers.FormatMoneyHelper;
-import br.com.kproj.salesman.infrastructure.helpers.LocationHelper;
-import br.com.kproj.salesman.infrastructure.helpers.MessagesI18nHelper;
+import br.com.kproj.salesman.infrastructure.helpers.*;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.ClientHelper;
 import br.com.kproj.salesman.register.infrastructure.helpers.ProductHelper;
@@ -17,7 +14,6 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 import javax.annotation.PostConstruct;
 
-@ConditionalOnMissingBean(WebHelperConfig.class)
 @Component
 public class WebHelperConfig {
 
@@ -33,6 +29,9 @@ public class WebHelperConfig {
     @Autowired
     private MessagesI18nHelper messagesI18nHelper;
 
+    @Autowired
+    private UserHelper userHelper;
+
     @PostConstruct
     public void config() {
 
@@ -41,6 +40,7 @@ public class WebHelperConfig {
         resolver.getAttributesMap().put("dateHelper", new DateHelper());
         resolver.getAttributesMap().put("locationHelper", locationHelper);
         resolver.getAttributesMap().put("messagei18n", messagesI18nHelper);
+        resolver.getAttributesMap().put("userHelper", userHelper);
 
     }
 }

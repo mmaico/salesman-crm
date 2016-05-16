@@ -53,6 +53,12 @@ public class BusinessProposalHelper {
         return Boolean.FALSE;
     }
 
+    public BusinessProposal load(BusinessProposal  proposal) {
+        Optional<BusinessProposal> result = application.getOne(proposal.getId());
+
+        return result.isPresent() ? result.get() : null;
+    }
+
     public Boolean isDone(BusinessProposal  proposal) {
         return isDone(proposal.getId());
     }

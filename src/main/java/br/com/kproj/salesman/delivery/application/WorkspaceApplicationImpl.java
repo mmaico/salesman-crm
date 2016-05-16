@@ -54,6 +54,15 @@ public class WorkspaceApplicationImpl extends BaseModelServiceImpl<WorkspaceUnit
         return repository.findBySalesOrderAndUser(salesOrder, user).isPresent();
     }
 
+    @Override
+    public void removeItemWorkspaceBy(SalesOrder salesOrder, User user) {
+        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(salesOrder, user);
+
+        if (result.isPresent()) {
+            repository.delete(result.get());
+        }
+    }
+
 
     public BaseRepository<WorkspaceUnit, Long> getRepository() {
         return this.repository;

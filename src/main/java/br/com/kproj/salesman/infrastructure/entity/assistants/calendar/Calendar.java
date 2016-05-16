@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
 
@@ -18,6 +19,7 @@ public class Calendar extends Identifiable {
     private List<CalendarActivity> activities;
 
     @OneToOne(mappedBy = "calendar")
+    @ExcludeAuditingField
     private User user;
 
     @Override

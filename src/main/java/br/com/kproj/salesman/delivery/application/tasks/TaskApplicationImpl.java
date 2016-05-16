@@ -11,6 +11,7 @@ import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
+import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeMessage;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -70,7 +71,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
                 parentLoaded.get().addChild(taskSaved);
             }
         }
-
+        eventBus.post(TaskChangeMessage.create(taskSaved));
         return taskSaved;
     }
 

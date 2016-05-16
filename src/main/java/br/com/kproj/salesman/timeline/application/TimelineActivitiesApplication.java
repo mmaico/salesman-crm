@@ -20,8 +20,6 @@ public interface TimelineActivitiesApplication extends ModelService<TimelineActi
 
     Timeline register(Task task, TimelineActivity item);
 
-    Timeline register(CalendarActivity calendarActivity, TimelineActivity activity);
-
     byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile);
 
 }

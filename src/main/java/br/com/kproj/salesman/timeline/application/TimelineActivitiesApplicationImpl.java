@@ -74,15 +74,6 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
         return timeline;
     }
 
-    @Override
-    public Timeline register(CalendarActivity calendarActivity, TimelineActivity activity) {
-
-        Timeline timeline = service.register(calendarActivity);
-        saveActivity(activity, timeline);
-
-        return timeline;
-    }
-
     private void saveActivity(TimelineActivity activity, Timeline timeline) {
         List<AppFile> files = activity.getFiles();
         TimelineActivity activitySaved = save(activity);

@@ -10,13 +10,12 @@ public class TaskChangeMessage {
     private User user;
     private Task task;
 
-    public TaskChangeMessage(User user, Task task) {
-        this.user = user;
+    public TaskChangeMessage(Task task) {
         this.task = task;
     }
 
-    public static TaskChangeMessage create(Task task, User userChange) {
-          return new TaskChangeMessage(userChange, task);
+    public static TaskChangeMessage create(Task task) {
+          return new TaskChangeMessage(task);
     }
 
     public User getUser() {

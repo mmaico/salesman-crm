@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import org.apache.commons.io.IOUtils;
@@ -45,6 +46,7 @@ public class User extends Identifiable {
     @Basic(fetch = FetchType.LAZY)
 	@Column(name = "avatar", length = 200000)
 	@Lob
+    @ExcludeAuditingField
 	private byte[] avatar;
 
     @ManyToOne(fetch=FetchType.LAZY)

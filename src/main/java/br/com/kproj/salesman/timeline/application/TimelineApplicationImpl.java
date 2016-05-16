@@ -40,8 +40,6 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 		repositories.put(BusinessProposal.class, proposalRepository);
 		repositories.put(Contact.class, contactRepository);
 		repositories.put(Task.class, taskRepository);
-		repositories.put(CalendarActivity.class, activityRepository);
-
 
 	}
 

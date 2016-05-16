@@ -50,6 +50,11 @@ public class TaskAuditingApplicationImpl extends BaseModelServiceImpl<TaskAudint
         return Optional.empty();
     }
 
+    @Override
+    public Page<TaskAudinting> findLogs(Long taskId, Pager pager) {
+        return repository.findAll(taskId, pager);
+    }
+
     public BaseRepository<TaskAudinting, Long> getRepository() {
         return this.repository;
     }

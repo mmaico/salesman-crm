@@ -10,6 +10,7 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecu
 import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,9 @@ public class DeliveryDashboardHelper {
 
     @Autowired
     private UserWorkTaskApplication userWorkTaskApplication;
+
+    @Autowired
+    private SecurityHelper security;
 
     public DeliveryResumeExecutionTaskDTO getResumeTasks() {
         return application.getResume();
@@ -45,6 +49,10 @@ public class DeliveryDashboardHelper {
 
     public List<User> findUsersResponsibles(SalesOrder salesOrder) {
         return workspaceApplication.findUsersResponsibles(salesOrder);
+    }
+
+    public Boolean isInMyWorkspace(SalesOrder salesOrder) {
+        return workspaceApplication.isInMyWorkspace(salesOrder, security.getPrincipal().getUser());
     }
 
     public Long countBySalesOrder(SalesOrder salesOrder) {

@@ -1,8 +1,11 @@
 package br.com.kproj.salesman.infrastructure.entity.auditing;
 
 
+import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 
 import javax.persistence.*;
@@ -73,6 +76,11 @@ public class BusinessProposalAudinting extends Identifiable {
 
     public void setEntityId(Long entityId) {
         this.entityId = entityId;
+    }
+
+    public BusinessProposal get() {
+        Gson gson = ServiceLocator.getBean(Gson.class);
+        return gson.fromJson(this.info, BusinessProposal.class);
     }
 
     public Boolean isEquals(String json) {

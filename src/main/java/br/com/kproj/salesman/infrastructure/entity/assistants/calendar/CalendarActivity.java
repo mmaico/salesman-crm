@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
 
+import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="calendar_activity")
-public class CalendarActivity extends Identifiable implements TimelinePresent {
+public class CalendarActivity extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -19,15 +20,15 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     private String description;
 
+    private String type;
+
     @ManyToOne
     @JoinColumn(name="calendar_id")
+    @ExcludeAuditingField
     private Calendar calendar;
 
-    @OneToOne(mappedBy = "calendarActivity")
+    @OneToOne(mappedBy = "calendarActivity", cascade = CascadeType.ALL)
     private Period period;
-
-    @OneToOne(mappedBy = "calendarActivity")
-    private Timeline timeline;
 
     private String location;
 
@@ -51,14 +52,6 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
     }
 
     public String getLocation() {
@@ -91,5 +84,13 @@ public class CalendarActivity extends Identifiable implements TimelinePresent {
 
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

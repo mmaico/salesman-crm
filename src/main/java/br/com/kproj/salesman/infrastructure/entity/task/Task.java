@@ -31,6 +31,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @OneToMany(cascade =CascadeType.ALL)
     @JoinColumn(name="parent_id")
+    @ExcludeAuditingField
     private List<Task> tasksChilds;
 
     @Column(name = "parent_id", updatable =false, insertable = false)
@@ -63,6 +64,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @OneToOne
     @JoinColumn(name = "timeline_id")
+    @ExcludeAuditingField
     private Timeline timeline;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
@@ -74,6 +76,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @Transient
     @IgnoreField
+    @ExcludeAuditingField
     private Task parent;
 
     public void addChild(Task task) {

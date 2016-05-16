@@ -1,19 +1,11 @@
 package br.com.kproj.salesman.assistants.calendar.view;
 
 import br.com.kproj.salesman.assistants.calendar.application.CalendarActivityApplication;
-import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @RestController
 public class CalendarController {
@@ -27,28 +19,7 @@ public class CalendarController {
 
     @RequestMapping(value="/calendar/view")
     public ModelAndView showCalendar() {
-
-        return new ModelAndView("/calendar/detail");
+        return new ModelAndView("/calendar/calendar");
     }
 
-    @RequestMapping(value="/calendar/calendar-activities")
-    public ModelAndView showActivitiesByRangeDate(@MatrixVariable(value = "startDate") Optional<String> startDate,
-                                                  @MatrixVariable(value = "endDate") Optional<String> endDate,
-                                                  Model model) {
-
-        RangeDatesDTO datesDTO = RangeDatesDTO.create(
-                startDate.isPresent() ? startDate.get() : EMPTY,
-                endDate.isPresent() ? endDate.get() : EMPTY);
-
-        List<CalendarActivity> result = application.findByRangeDate(datesDTO);
-
-        model.addAttribute("activities", result);
-        return new ModelAndView("/calendar/detail");
-    }
-
-    @RequestMapping(value="/calendar/calendar-activities", method = RequestMethod.POST)
-    public @ResponseBody void saveActivity(@ModelAttribute CalendarActivity activity) {
-        User user = security.getPrincipal().getUser();
-        application.register(activity, user);
-    }
 }

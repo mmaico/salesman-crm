@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
@@ -38,6 +39,12 @@ public class TaskHelper {
 
     public List<Task> getTasks(SalesOrder salesOrder) {
         return application.findBySaleOrder(salesOrder);
+    }
+
+    public Task load(Task task) {
+        Optional<Task> result = application.getOne(task.getId());
+
+        return result.isPresent() ? result.get() : null;
     }
 
     public String getIconStatus(TaskStatus status) {

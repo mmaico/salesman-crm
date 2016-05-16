@@ -3,12 +3,12 @@ package br.com.kproj.salesman.delivery.view;
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.builders.ActDeliverySalesBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.WorkspaceUnitBuilder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder.createSalesOrder;
@@ -36,5 +36,12 @@ public class DeliveryDashboardController {
                 .withSalesOrder(createSalesOrder(salesId).build()).build();
 
         application.register(workspaceUnit);
+    }
+
+    @RequestMapping(value="/delivery/salesorder/{salesorderId}", method = RequestMethod.DELETE)
+    public @ResponseBody void delete(@PathVariable Long salesorderId) {
+        SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(salesorderId).build();
+
+        application.removeItemWorkspaceBy(salesOrder, security.getPrincipal().getUser());
     }
 }

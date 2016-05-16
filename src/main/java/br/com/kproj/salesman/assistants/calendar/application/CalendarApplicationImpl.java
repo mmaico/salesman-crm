@@ -24,12 +24,12 @@ public class CalendarApplicationImpl extends BaseModelServiceImpl<Calendar> impl
 
     @Override
     public Calendar register(User user) {
-        Optional<Calendar> calendarLoaded = repository.findByUser(user);
+        User userLoaded = userRepository.findOne(user.getId());
+        Optional<Calendar> calendarLoaded = Optional.ofNullable(userLoaded.getCalendar());
 
         if (!calendarLoaded.isPresent()) {
             Calendar calendarNew = CalendarBuilder.create().withUser(user).build();
             Calendar calendarCreated = repository.save(calendarNew);
-            User userLoaded = userRepository.findOne(user.getId());
             userLoaded.setCalendar(calendarCreated);
 
             return calendarCreated;

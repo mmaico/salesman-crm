@@ -21,6 +21,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+        integration.envers.enabled: false
 
   datasource:
     url: jdbc:mysql://localhost:3306/facility
@@ -74,6 +75,7 @@ spring:
     hibernate:
       ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      integration.envers.enabled: false
   data.jpa.repositories.enabled: true
   batch:
     initializer.enabled: true
