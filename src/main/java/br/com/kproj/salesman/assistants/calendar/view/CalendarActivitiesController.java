@@ -62,6 +62,7 @@ public class CalendarActivitiesController {
         activity.getPeriod().getFields().add("startDate");
         activity.getPeriod().getFields().add("endDate");
         activity.getPeriod().getFields().add("isAllDay");
+        activity.getFields().add("period");
 
         CalendarActivity result = application.register(activity, user);
 

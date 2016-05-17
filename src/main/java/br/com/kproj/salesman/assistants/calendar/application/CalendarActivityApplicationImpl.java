@@ -45,9 +45,8 @@ public class CalendarActivityApplicationImpl extends BaseModelServiceImpl<Calend
             activity.setCalendar(calendarLoaded);
         }
         normalizeEntityRequest.addFieldsToUpdate(activity);
-        activityService.hasValidDataToShowOnCalendar(activity);
 
-        return super.save(activity);
+        return super.save(activity, activityService);
     }
 
     @Override

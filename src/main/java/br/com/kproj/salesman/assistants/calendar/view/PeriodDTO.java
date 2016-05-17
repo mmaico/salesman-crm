@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class PeriodDTO {
 
-    private static final String PATTERN_DATE = "dd/MM/yyyy hh:mm";
+    private static final String PATTERN_DATE = "dd/MM/yyyy HH:mm";
     private static final String DEFAULT_HOUR = "00:00";
 
     private String startDate = StringUtils.EMPTY;

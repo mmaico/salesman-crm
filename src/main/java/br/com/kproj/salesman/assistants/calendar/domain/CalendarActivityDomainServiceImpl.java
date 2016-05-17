@@ -37,7 +37,7 @@ public class CalendarActivityDomainServiceImpl implements CalendarActivityDomain
 
 
     @Override
-    public void hasValidDataToShowOnCalendar(CalendarActivity activity) {
+    public void checkBusinessRulesFor(CalendarActivity activity) {
 
         Set<String> violations = persistRules.entrySet()
                 .stream()

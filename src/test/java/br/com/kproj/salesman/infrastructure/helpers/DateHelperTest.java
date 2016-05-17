@@ -5,8 +5,10 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -208,5 +210,20 @@ public class DateHelperTest {
 
         assertThat(rangeDate.isNullObject(), Matchers.is(Boolean.TRUE));
 
+    }
+
+    @Test
+    public void shouldConvertDateToISO() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+        Date date = dateFormat.parse("05/04/2016 10:30");
+
+        String result = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmZ")
+                .withZone(ZoneOffset.UTC)
+                .format(date.toInstant());
+
+        //String result = DateHelper.convertToISO8601(date);
+
+        System.out.println(result);
     }
 }
