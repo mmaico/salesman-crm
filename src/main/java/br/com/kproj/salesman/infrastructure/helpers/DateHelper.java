@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.Days;
@@ -22,6 +23,8 @@ public class DateHelper {
 	private static Log logger = LogFactory.getLog(DateHelper.class);
 	
 	public static String DEFAULT_BRAZILIAN_PATTERN = "dd/MM/yyyy";
+
+	private static final FastDateFormat DATE_TIME_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 	public static final Map<Integer, String> DAY_OF_WEEK_NAMES = new HashMap<>();
 
@@ -90,11 +93,7 @@ public class DateHelper {
 			return null;
 		}
 
-		TimeZone tz = TimeZone.getTimeZone("UTC");
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-		df.setTimeZone(tz);
-
-		return df.format(date);
+        return DATE_TIME_FORMAT.format(date);
 	}
 
     public static Date addDayToDate(Integer qtdDays, Date date) {

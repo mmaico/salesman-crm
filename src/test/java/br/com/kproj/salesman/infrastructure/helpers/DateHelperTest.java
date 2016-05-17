@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -218,12 +219,8 @@ public class DateHelperTest {
 
         Date date = dateFormat.parse("05/04/2016 10:30");
 
-        String result = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmZ")
-                .withZone(ZoneOffset.UTC)
-                .format(date.toInstant());
+        String result = DateHelper.convertToISO8601(date);
 
-        //String result = DateHelper.convertToISO8601(date);
-
-        System.out.println(result);
+        MatcherAssert.assertThat(result, is("2016-04-05T10:30:00Z"));
     }
 }
