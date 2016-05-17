@@ -12,10 +12,7 @@ import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -25,6 +22,18 @@ public class DateHelper {
 	private static Log logger = LogFactory.getLog(DateHelper.class);
 	
 	public static String DEFAULT_BRAZILIAN_PATTERN = "dd/MM/yyyy";
+
+	public static final Map<Integer, String> DAY_OF_WEEK_NAMES = new HashMap<>();
+
+	static {
+		DAY_OF_WEEK_NAMES.put(1, "Dom");
+		DAY_OF_WEEK_NAMES.put(2, "Seg");
+		DAY_OF_WEEK_NAMES.put(3, "Ter");
+		DAY_OF_WEEK_NAMES.put(4, "Qua");
+		DAY_OF_WEEK_NAMES.put(5, "Qui");
+		DAY_OF_WEEK_NAMES.put(6, "Sex");
+		DAY_OF_WEEK_NAMES.put(7, "S&aacute;b");
+	}
 	
 	public static Boolean isValidDate(String dateStr) {
 		
@@ -123,6 +132,16 @@ public class DateHelper {
 	public static Integer quantityDaysBetween(Date date) {
 		Date now = new Date();
 		return quantityDaysBetween(now, date);
+	}
+
+	public static String getDayName(Date date) {
+		if (date == null) {
+			return "";
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+
+		return DAY_OF_WEEK_NAMES.get(calendar.get(Calendar.DAY_OF_WEEK));
 	}
 
 	public static Integer quantityDaysBetween(Date startDate, Date endDate) {
