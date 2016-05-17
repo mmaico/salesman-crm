@@ -3,6 +3,8 @@ package br.com.kproj.salesman.assistants.calendar.domain;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Period;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper.Greater;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper.Than;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +26,7 @@ public class PeriodDomainServiceImpl implements PeriodDomainService {
                 (period -> period.getStartDate() == null || period.getEndDate() == null));
 
         persistRules.put(description("period.startdate.cannotbe.greaterthan.enddate"),
-                (period -> !DateHelper.is(DateHelper.Greater.create(period.getEndDate()),
-                            DateHelper.Than.create(period.getStartDate()))));
+                (period -> !DateHelper.is(Greater.create(period.getEndDate()), Than.create(period.getStartDate()))));
 
         persistRules.put(description("period.if.allday.cannothave.hours"),
                 (period -> period.isAllDay()

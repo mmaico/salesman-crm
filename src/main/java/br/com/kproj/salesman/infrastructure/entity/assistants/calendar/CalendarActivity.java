@@ -20,7 +20,9 @@ public class CalendarActivity extends Identifiable {
 
     private String description;
 
-    private String type;
+    @ManyToOne
+    @JoinColumn(name="activity_type_id")
+    private ActivityType type;
 
     @ManyToOne
     @JoinColumn(name="calendar_id")
@@ -86,11 +88,11 @@ public class CalendarActivity extends Identifiable {
         this.calendar = calendar;
     }
 
-    public String getType() {
+    public ActivityType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ActivityType type) {
         this.type = type;
     }
 }
