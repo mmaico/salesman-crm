@@ -5,7 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -42,7 +41,16 @@ public class PersonalActivitiesController {
         normalizeEntityRequest.doNestedReference(activity);
         PersonalActivity activitySaved = application.register(activity);
 
-        return "/personal-activities/" + activitySaved.getId();
+        return "/users/personal-activities/" + activitySaved.getId();
+    }
+
+    @RequestMapping(value = "/users/personal-activities/save", method = RequestMethod.PUT)
+    public  @ResponseBody String update(@ModelAttribute PersonalActivity activity) {
+
+        normalizeEntityRequest.addFieldsToUpdate(activity);
+        PersonalActivity activitySaved = application.register(activity);
+
+        return "/users/personal-activities/" + activitySaved.getId();
     }
 
     @RequestMapping(value = "/users/personal-activities/new", method = RequestMethod.GET)
@@ -73,6 +81,7 @@ public class PersonalActivitiesController {
     public  ModelAndView saveSubtask(@ModelAttribute PersonalActivity activity, @PathVariable("parentActivityId") Long parentActivityId, Model model) {
 
         normalizeEntityRequest.doNestedReference(activity);
+        activity.setOwner(security.getPrincipal().getUser());
         application.registerSubtask(createActivity(parentActivityId).build(), activity);
 
         Optional<PersonalActivity> activityParentLoaded = application.getOne(parentActivityId);

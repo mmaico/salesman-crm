@@ -2,6 +2,7 @@ package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -70,6 +71,14 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
 
         Timeline timeline = service.register(task);
         saveActivity(activity, timeline);
+
+        return timeline;
+    }
+
+    @Override
+    public Timeline register(PersonalActivity activity, TimelineActivity item) {
+        Timeline timeline = service.register(activity);
+        saveActivity(item, timeline);
 
         return timeline;
     }

@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -44,6 +45,11 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this();
 		this.entity.setProposal(businessProposal);
 	}
+
+	public TimelineBuilder(PersonalActivity personal) {
+		this();
+		this.entity.setPersonalActivity(personal);
+	}
 	
 	public TimelineBuilder withContact(Contact contact) {
 		this.entity.setContact(contact);
@@ -59,6 +65,11 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
         this.entity.setProposal(proposal);
         return this;
     }
+
+	public TimelineBuilder withPersonalActivity(PersonalActivity personalActivity) {
+		this.entity.setPersonalActivity(personalActivity);
+		return this;
+	}
 
     public TimelineBuilder withItem(TimelineActivity item) {
         if (this.entity.getActivities() == null) {
@@ -96,6 +107,8 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 			return new TimelineBuilder((BusinessProposal) timelinePresent);
 		} else if (timelinePresent instanceof Task) {
 			return new TimelineBuilder((Task) timelinePresent);
+		} else if (timelinePresent instanceof PersonalActivity) {
+			return new TimelineBuilder((PersonalActivity) timelinePresent);
 		} else {
 			throw new ValidationException(Sets.newHashSet("timeline.builder.invalid.type"));
 		}

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.assistants.activities.view;
 
 import br.com.kproj.salesman.assistants.activities.application.ActivityChecklistApplication;
+import br.com.kproj.salesman.assistants.activities.infrastructure.ActivityChecklistValidator;
 import br.com.kproj.salesman.delivery.application.tasks.ChecklistApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistValidator;
 import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
@@ -29,7 +30,7 @@ public class ActivityChecklistController {
     private ActivityChecklistApplication application;
 
     @Autowired
-    private ChecklistValidator validator;
+    private ActivityChecklistValidator validator;
 
     @Autowired
     private NormalizeEntityRequest normalizeEntityRequest;
@@ -55,7 +56,7 @@ public class ActivityChecklistController {
         List<ActivityChecklist> result = application.findCheckListBy(createActivity(activityId).build());
 
         model.addAttribute("checklists", result);
-        return new ModelAndView("/delivery/tasks/includes/checklist-task-table");
+        return new ModelAndView("/users/activity/includes/checklist-activity-table");
 
     }
 

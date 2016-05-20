@@ -74,6 +74,7 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceImpl<Person
                 .throwing(ValidationException.class);
 
         activityLoaded.setStatus(activity.getStatus());
+        repository.save(activityLoaded);
     }
 
 

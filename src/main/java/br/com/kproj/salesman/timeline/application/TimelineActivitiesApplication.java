@@ -2,6 +2,7 @@ package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -19,6 +20,8 @@ public interface TimelineActivitiesApplication extends ModelService<TimelineActi
     Timeline register(Contact contact, TimelineActivity item);
 
     Timeline register(Task task, TimelineActivity item);
+
+    Timeline register(PersonalActivity activity, TimelineActivity item);
 
     byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile);
 
