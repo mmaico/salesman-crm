@@ -5,8 +5,10 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
+import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -46,7 +48,25 @@ public class PersonalActivitiesController {
     @RequestMapping(value = "/users/personal-activities/new", method = RequestMethod.GET)
     public  ModelAndView newActivity() {
 
-        return new ModelAndView("/personal-activity/list");
+        return new ModelAndView("/users/activity/edit");
+    }
+
+    @RequestMapping(value = "/users/personal-activities/list", method = RequestMethod.GET)
+    public  ModelAndView listActivity(Model model) {
+        Iterable<PersonalActivity> result = application.findAll(Pager.build().withPageSize(1000));
+
+        model.addAttribute("activities", result);
+        return new ModelAndView("/users/activity/list");
+    }
+
+    @RequestMapping(value="/users/personal-activities/{activityId}")
+    public ModelAndView viewInfo(@RequestParam(defaultValue="detail",required=false, value="template") String templateName,
+                                 @PathVariable Long activityId, Model model) {
+
+        Optional<PersonalActivity> result = this.application.getOne(activityId);
+
+        model.addAttribute("activity", result.isPresent() ? result.get() : null);
+        return new ModelAndView("/users/activity/" + templateName);
     }
 
     @RequestMapping(value = "/users/personal-activities/{parentActivityId}/subactivity", method = RequestMethod.POST)
