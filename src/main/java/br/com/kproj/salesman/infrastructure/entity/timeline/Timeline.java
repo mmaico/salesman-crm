@@ -3,8 +3,10 @@ package br.com.kproj.salesman.infrastructure.entity.timeline;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -45,6 +47,14 @@ public class Timeline extends Identifiable {
     @OneToOne
     @JoinColumn(name="personal_activity_id")
     private PersonalActivity personalActivity;
+
+    @OneToOne
+    @JoinColumn(name="campaign_id")
+    private Campaign campaign;
+
+    @OneToOne
+    @JoinColumn(name="incident_id")
+    private Incident incident;
 
     public  Timeline() {}
 
@@ -115,5 +125,21 @@ public class Timeline extends Identifiable {
 
     public void setPersonalActivity(PersonalActivity personalActivity) {
         this.personalActivity = personalActivity;
+    }
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    public Incident getIncident() {
+        return incident;
+    }
+
+    public void setIncident(Incident incident) {
+        this.incident = incident;
     }
 }
