@@ -3,6 +3,7 @@ package br.com.kproj.salesman.timeline.application;
 import br.com.kproj.salesman.assistants.activities.infrastructure.PersonalAcvitityRepository;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
@@ -34,7 +35,8 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
-								   ContactRepository contactRepository, TaskRepository taskRepository, PersonalAcvitityRepository personalAcvitityRepository) {
+								   ContactRepository contactRepository, TaskRepository taskRepository,
+								   PersonalAcvitityRepository personalAcvitityRepository, IncidentRepository incidentRepository) {
 		this.timelineRepository = timelineRepository;
 
 		repositories.put(Individual.class, personRepository);
@@ -43,7 +45,7 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 		repositories.put(Contact.class, contactRepository);
 		repositories.put(Task.class, taskRepository);
 		repositories.put(PersonalActivity.class, personalAcvitityRepository);
-
+		repositories.put(Incident.class, incidentRepository);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 
 import java.util.List;
 
-public interface Client {
+public interface Client  {
 
     Long getId();
 

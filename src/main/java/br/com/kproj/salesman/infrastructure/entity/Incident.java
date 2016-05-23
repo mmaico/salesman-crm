@@ -17,7 +17,7 @@ public class Incident extends Identifiable implements TimelinePresent {
 	private static final long serialVersionUID = -7486201820229036695L;
 
     public enum IncidentStatus {
-        OPEN, STATED, FIXED
+        OPEN, STATED, RESOLVED
     }
 
     public enum IncidentPriority {
@@ -28,6 +28,7 @@ public class Incident extends Identifiable implements TimelinePresent {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String title;
 
     private String description;
@@ -42,6 +43,7 @@ public class Incident extends Identifiable implements TimelinePresent {
 
     @Column(name="name")
     @Enumerated(EnumType.STRING)
+    @NotNull
 	private IncidentStatus status;
 
     @OneToOne(mappedBy = "incident")
@@ -51,10 +53,17 @@ public class Incident extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="responsible_id")
+    @NotNull
     private User responsible;
+
+    @ManyToOne
+    @JoinColumn(name="created_id")
+    @NotNull
+    private User createdBy;
 
     @Column(name="priority")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private IncidentPriority priority;
 
     public Incident() {}
@@ -119,5 +128,29 @@ public class Incident extends Identifiable implements TimelinePresent {
 
     public void setPriority(IncidentPriority priority) {
         this.priority = priority;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }
