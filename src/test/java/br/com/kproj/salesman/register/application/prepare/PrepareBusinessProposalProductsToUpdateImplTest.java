@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
-import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
+import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
 import com.google.common.collect.Lists;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

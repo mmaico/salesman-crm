@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.negotiation.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.negotiation.view.dto.BusinessProposalRequestMergeHelper;
 import br.com.kproj.salesman.register.infrastructure.validators.EntityIDValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -2,8 +2,8 @@ package br.com.kproj.salesman.negotiation.infrastructure.validators;
 
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.negotiation.view.dto.PaymentDefinitionDTO;
-import br.com.kproj.salesman.negotiation.view.helpers.ProposalSaleablesHelper;
+import br.com.kproj.salesman.negotiation.proposal.view.dto.PaymentDefinitionDTO;
+import br.com.kproj.salesman.negotiation.proposal.view.helpers.ProposalSaleablesHelper;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

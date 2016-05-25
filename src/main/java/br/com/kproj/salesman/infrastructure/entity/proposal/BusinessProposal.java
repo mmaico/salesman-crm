@@ -8,7 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import br.com.kproj.salesman.negotiation.domain.proposal.saleable.contract.ProposalCalcTotalSaleableItems;
+import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

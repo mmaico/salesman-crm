@@ -15,7 +15,7 @@ public interface SalesOrderRepository extends BaseRepository<SalesOrder, Long> {
     @Query("SELECT so FROM SalesOrder AS so WHERE so.client = :client")
     List<SalesOrder> getOrdersByClient(@Param("client")Client client);
 
-    Optional<SalesOrder> findByProposal(@Param("proposal")BusinessProposal proposal);
+    Optional<SalesOrder> findByProposal(@Param("domain")BusinessProposal proposal);
 
     @Query("SELECT so FROM SalesOrder AS so ORDER BY so.creationDate DESC")
     List<SalesOrder> findAllOrdered();

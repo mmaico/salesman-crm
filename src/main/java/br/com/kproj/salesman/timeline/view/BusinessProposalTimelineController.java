@@ -77,7 +77,7 @@ public class BusinessProposalTimelineController {
 
         model.addAttribute(createBusinessProposal(businessId).build());
         model.addAttribute(timeline);
-        return new ModelAndView("/timeline/proposal-timeline");
+        return new ModelAndView("/timeline/domain-timeline");
     }
 
 

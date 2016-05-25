@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.infrastructure.configuration;
 
 
-import br.com.kproj.salesman.negotiation.approval.views.helpers.RequestApprovalHelper;
+import br.com.kproj.salesman.negotiation.proposal.approval.views.helpers.RequestApprovalHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;

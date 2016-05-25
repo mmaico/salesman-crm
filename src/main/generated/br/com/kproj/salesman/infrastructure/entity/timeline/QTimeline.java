@@ -26,13 +26,19 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity> activities = this.<br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity>createList("activities", br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity.class, br.com.kproj.salesman.infrastructure.entity.timeline.items.QTimelineActivity.class, PathInits.DIRECT2);
 
-    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivity calendarActivity;
+    public final br.com.kproj.salesman.infrastructure.entity.campaigns.QCampaign campaign;
 
     public final br.com.kproj.salesman.infrastructure.entity.QContact contact;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final br.com.kproj.salesman.infrastructure.entity.QIncident incident;
+
+    public final br.com.kproj.salesman.infrastructure.entity.QIncident lead;
+
     public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
+
+    public final br.com.kproj.salesman.infrastructure.entity.activities.QPersonalActivity personalActivity;
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
 
@@ -56,9 +62,12 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public QTimeline(Class<? extends Timeline> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.calendarActivity = inits.isInitialized("calendarActivity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivity(forProperty("calendarActivity"), inits.get("calendarActivity")) : null;
+        this.campaign = inits.isInitialized("campaign") ? new br.com.kproj.salesman.infrastructure.entity.campaigns.QCampaign(forProperty("campaign"), inits.get("campaign")) : null;
         this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContact(forProperty("contact"), inits.get("contact")) : null;
+        this.incident = inits.isInitialized("incident") ? new br.com.kproj.salesman.infrastructure.entity.QIncident(forProperty("incident"), inits.get("incident")) : null;
+        this.lead = inits.isInitialized("lead") ? new br.com.kproj.salesman.infrastructure.entity.QIncident(forProperty("lead"), inits.get("lead")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
+        this.personalActivity = inits.isInitialized("personalActivity") ? new br.com.kproj.salesman.infrastructure.entity.activities.QPersonalActivity(forProperty("personalActivity"), inits.get("personalActivity")) : null;
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
         this.task = inits.isInitialized("task") ? new br.com.kproj.salesman.infrastructure.entity.task.QTask(forProperty("task"), inits.get("task")) : null;
     }

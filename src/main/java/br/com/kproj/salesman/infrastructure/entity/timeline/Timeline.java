@@ -5,7 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -55,6 +54,10 @@ public class Timeline extends Identifiable {
     @OneToOne
     @JoinColumn(name="incident_id")
     private Incident incident;
+
+    @OneToOne
+    @JoinColumn(name="lead_id")
+    private Incident lead;
 
     public  Timeline() {}
 
@@ -141,5 +144,13 @@ public class Timeline extends Identifiable {
 
     public void setIncident(Incident incident) {
         this.incident = incident;
+    }
+
+    public Incident getLead() {
+        return lead;
+    }
+
+    public void setLead(Incident lead) {
+        this.lead = lead;
     }
 }

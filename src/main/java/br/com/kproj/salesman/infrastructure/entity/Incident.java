@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
+import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -34,8 +35,8 @@ public class Incident extends Identifiable implements TimelinePresent {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="client_id")
-    private Client client;
+    @JoinColumn(name="person_id")
+    private Person client;
 
     @ManyToOne
     @JoinColumn(name="contact_id")
@@ -90,11 +91,11 @@ public class Incident extends Identifiable implements TimelinePresent {
         this.timeline = timeline;
     }
 
-    public Client getClient() {
+    public Person getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Person client) {
         this.client = client;
     }
 

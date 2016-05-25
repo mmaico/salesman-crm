@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -15,6 +16,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.repository.*;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.negotiation.infrastructure.repository.LeadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +38,8 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
 								   ContactRepository contactRepository, TaskRepository taskRepository,
-								   PersonalAcvitityRepository personalAcvitityRepository, IncidentRepository incidentRepository) {
+								   PersonalAcvitityRepository personalAcvitityRepository, IncidentRepository incidentRepository,
+								   LeadRepository leadRepository) {
 		this.timelineRepository = timelineRepository;
 
 		repositories.put(Individual.class, personRepository);
@@ -46,6 +49,7 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 		repositories.put(Task.class, taskRepository);
 		repositories.put(PersonalActivity.class, personalAcvitityRepository);
 		repositories.put(Incident.class, incidentRepository);
+		repositories.put(Lead.class, leadRepository);
 	}
 
 	@Override

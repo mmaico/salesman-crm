@@ -31,9 +31,9 @@ public class BusinessProposalLogController {
 
         Page<BusinessProposalAudinting> result = application.findLogs(proposalId, Pager.binding(pageable));
 
-        model.addAttribute("proposal", BusinessProposalBuilder.createBusinessProposal(proposalId).build());
+        model.addAttribute("domain", BusinessProposalBuilder.createBusinessProposal(proposalId).build());
         model.addAttribute("proposalLogs", result);
-        return new ModelAndView("/clients/proposal/logs/logs");
+        return new ModelAndView("/clients/domain/logs/logs");
 
     }
 

@@ -22,11 +22,11 @@ public class ProposalPaymentItem extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    @NotNull(message = "proposal.payment.duedate.is.invalid")
+    @NotNull(message = "domain.payment.duedate.is.invalid")
     @Column(name="due_date")
     private Date dueDate;
 
-    @NotNull(message = "proposal.payment.value.is.invalid")
+    @NotNull(message = "domain.payment.value.is.invalid")
     private BigDecimal value;
 
     private String observation;

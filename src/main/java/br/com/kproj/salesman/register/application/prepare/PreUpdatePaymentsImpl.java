@@ -4,11 +4,9 @@ package br.com.kproj.salesman.register.application.prepare;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalPaymentRepository;
-import br.com.kproj.salesman.negotiation.application.NegotiationApplication;
+import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component("paymentPreUpdate")
 public class PreUpdatePaymentsImpl implements PreUpdateItems {

@@ -42,7 +42,7 @@ public class SalesOrder extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="proposal_id")
-    @NotNull(message = "order.proposal.required")
+    @NotNull(message = "order.domain.required")
     private BusinessProposal proposal;
 
     @Temporal(TemporalType.TIMESTAMP)

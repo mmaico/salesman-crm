@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.assistants.campaigns.domain;
 
 import br.com.kproj.salesman.assistants.campaigns.infrastructure.CampaignsValidator;
-import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;

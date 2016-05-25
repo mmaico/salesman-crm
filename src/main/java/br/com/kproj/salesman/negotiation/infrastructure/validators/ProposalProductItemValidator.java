@@ -37,7 +37,7 @@ public class ProposalProductItemValidator implements Validator, InitializingBean
 
         if (productItem.getPrice() != null
                 && productItem.getPrice().compareTo(BigDecimal.ZERO) > 0) {
-            errors.reject("price", "proposal.product.price.is.valid");
+            errors.reject("price", "domain.product.price.is.valid");
         }
 
     }

@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -25,6 +26,8 @@ public interface TimelineActivitiesApplication extends ModelService<TimelineActi
     Timeline register(PersonalActivity activity, TimelineActivity item);
 
     Timeline register(Incident incident, TimelineActivity item);
+
+    Timeline register(Lead lead, TimelineActivity item);
 
     byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile);
 

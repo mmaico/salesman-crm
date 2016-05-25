@@ -34,11 +34,9 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
 
     public final QPeriod period;
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public final StringPath title = createString("title");
 
-    public final StringPath type = createString("type");
+    public final QActivityType type;
 
     public QCalendarActivity(String variable) {
         this(CalendarActivity.class, forVariable(variable), INITS);
@@ -60,7 +58,7 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
         super(type, metadata, inits);
         this.calendar = inits.isInitialized("calendar") ? new QCalendar(forProperty("calendar"), inits.get("calendar")) : null;
         this.period = inits.isInitialized("period") ? new QPeriod(forProperty("period"), inits.get("period")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
+        this.type = inits.isInitialized("type") ? new QActivityType(forProperty("type")) : null;
     }
 
 }

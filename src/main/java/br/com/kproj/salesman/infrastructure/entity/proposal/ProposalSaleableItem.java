@@ -35,10 +35,10 @@ public class ProposalSaleableItem extends Identifiable {
     @ExcludeAuditingField
     private SalePackage salePackage;
 
-    @NotNull(message = "proposal.saleable.price.is.invalid")
+    @NotNull(message = "domain.saleable.price.is.invalid")
     private BigDecimal price;
 
-    @NotNull(message = "proposal.saleable.original.price.is.invalid")
+    @NotNull(message = "domain.saleable.original.price.is.invalid")
     private BigDecimal originalPrice;
 
     @NotNull

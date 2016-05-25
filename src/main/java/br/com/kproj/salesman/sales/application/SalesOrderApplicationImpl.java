@@ -37,7 +37,7 @@ public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> 
     public SalesOrder register(BusinessProposal businessProposal) {
         Optional<SalesOrder> result = repository.findByProposal(businessProposal);
         if (result.isPresent()) {
-            hasErrors(Sets.newHashSet("already.exists.sales.order.to.proposal"))
+            hasErrors(Sets.newHashSet("already.exists.sales.order.to.domain"))
                         .throwing(ValidationException.class);
         }
 

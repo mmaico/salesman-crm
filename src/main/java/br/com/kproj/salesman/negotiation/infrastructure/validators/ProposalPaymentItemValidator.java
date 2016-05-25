@@ -35,12 +35,12 @@ public class ProposalPaymentItemValidator implements Validator, InitializingBean
 
         if (paymentItem.getValue() != null
                 && paymentItem.getValue().compareTo(BigDecimal.ZERO) > 0) {
-            errors.reject("price", "proposal.payment.value.is.valid");
+            errors.reject("price", "domain.payment.value.is.valid");
         }
 
         if (paymentItem.getDueDate() != null
                 && !paymentItem.getDueDate().after(yesterday)) {
-            errors.reject("date", "proposal.payment.date.is.valid");
+            errors.reject("date", "domain.payment.date.is.valid");
         }
 
     }

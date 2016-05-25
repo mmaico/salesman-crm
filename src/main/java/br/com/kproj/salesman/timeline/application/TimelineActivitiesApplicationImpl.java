@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -87,6 +88,14 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
     @Override
     public Timeline register(Incident incident, TimelineActivity item) {
         Timeline timeline = service.register(incident);
+        saveActivity(item, timeline);
+
+        return timeline;
+    }
+
+    @Override
+    public Timeline register(Lead lead, TimelineActivity item) {
+        Timeline timeline = service.register(lead);
         saveActivity(item, timeline);
 
         return timeline;
