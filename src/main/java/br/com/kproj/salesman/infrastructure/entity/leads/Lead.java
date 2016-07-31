@@ -40,7 +40,7 @@ public class Lead extends Identifiable implements TimelinePresent {
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "lead")
     protected List<LeadAddress> addresses;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "phone")
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "lead")
     protected List<LeadPhone> phones;
 
 

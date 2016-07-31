@@ -15,6 +15,7 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.TimelineActivitiesRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.infrastructure.service.FilePersistHelper;
+import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -121,4 +122,5 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceImpl<Time
     public BaseRepository<TimelineActivity, Long> getRepository() {
         return repository;
     }
+
 }
