@@ -1,9 +1,8 @@
 package br.com.kproj.salesman.infrastructure.repository.Saleable;
 
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Service;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -12,15 +11,15 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 
-public interface SalesPackageRepository extends BaseSaleableRepository<SalePackage> {
+public interface SalesPackageRepository extends BaseSaleableRepository<SalePackageEntity> {
 
     @Query("SELECT p FROM SalePackage AS p JOIN p.saleableUnits AS s WHERE s = :saleable AND p = :packageValue")
-    Optional<SalePackage> findBySaleable(@Param("packageValue") SalePackage salePackageValue, @Param("saleable") SaleableUnit saleable);
+    Optional<SalePackageEntity> findBySaleable(@Param("packageValue") SalePackageEntity salePackageValue, @Param("saleable") SaleableUnitEntity saleable);
 
     @Query("SELECT p FROM SalePackage AS p WHERE p.type = 'PACKAGE' AND p.id = :id")
-    Optional<SalePackage> getOne(@Param("id")Long id);
+    Optional<SalePackageEntity> getOne(@Param("id")Long id);
 
     @Query("SELECT s FROM SalePackage AS s WHERE s.type = 'PACKAGE' ORDER BY s.name")
-    Page<SalePackage> findAll(Pageable pageable);
+    Page<SalePackageEntity> findAll(Pageable pageable);
 
 }

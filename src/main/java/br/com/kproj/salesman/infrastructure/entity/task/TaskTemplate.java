@@ -4,7 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import com.google.common.collect.Lists;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
@@ -54,7 +54,7 @@ public class TaskTemplate extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="saleable_unit_id")
-    private SaleableUnit saleable;
+    private SaleableUnitEntity saleable;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
@@ -128,11 +128,11 @@ public class TaskTemplate extends Identifiable {
         this.tasksCostsTemplates = tasksCostsTemplates;
     }
 
-    public SaleableUnit getSaleable() {
+    public SaleableUnitEntity getSaleable() {
         return saleable;
     }
 
-    public void setSaleable(SaleableUnit saleable) {
+    public void setSaleable(SaleableUnitEntity saleable) {
         this.saleable = saleable;
     }
 

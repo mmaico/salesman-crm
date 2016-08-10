@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.view.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Service;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -42,19 +42,19 @@ public class ServiceController {
 
     @RequestMapping(value = "/services/save", method = RequestMethod.POST)
     public @ResponseBody
-    SaleableUnit save(@ModelAttribute @Validated Service service, BindingResult bindingResult) {
+    SaleableUnitEntity save(@ModelAttribute @Validated ServiceEntity service, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        SaleableUnit saleable = this.service.register(service);
+        SaleableUnitEntity saleable = this.service.register(service);
 
         return saleable;
     }
 
     @RequestMapping(value = "/services/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute Service service, BindingResult bindingResult) {
+    public @ResponseBody void update(@ModelAttribute ServiceEntity service, BindingResult bindingResult) {
         normalizeEntityRequest.addFieldsToUpdate(service);
         this.service.register(service);
     }
@@ -64,7 +64,7 @@ public class ServiceController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Service> result = this.service.findAll(pager);
+        Iterable<ServiceEntity> result = this.service.findAll(pager);
 
         model.addAttribute("services", result);
         return new ModelAndView("/saleables/services/serviceList");
@@ -73,7 +73,7 @@ public class ServiceController {
     @RequestMapping(value="/services/{serviceId}")
     public ModelAndView viewInfo(@PathVariable Long serviceId, Model model) {
         
-        Optional<Service> result = this.service.getOne(serviceId);
+        Optional<ServiceEntity> result = this.service.getOne(serviceId);
 
         model.addAttribute("service", result.isPresent() ? result.get(): null);
         return new ModelAndView("/saleables/services/serviceDetail");

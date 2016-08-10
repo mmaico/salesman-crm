@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.application.prepare;
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
 import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
@@ -109,19 +109,19 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
                     .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("200"))
                     .withPrice(new BigDecimal("100"))
                     .withQuantity(4)
-                    .withSaleable(new SaleableUnit(3l)).build();
+                    .withSaleable(new SaleableUnitEntity(3l)).build();
 
         ProposalSaleableItem itemTwo = ProposalSaleableItemBuilder
                 .createProposalSaleable(5l).withOriginalPrice(new BigDecimal("400"))
                 .withPrice(new BigDecimal("200"))
                 .withQuantity(2)
-                .withSaleable(new SaleableUnit(7l)).build();
+                .withSaleable(new SaleableUnitEntity(7l)).build();
 
         ProposalSaleableItem itemThree = ProposalSaleableItemBuilder
                 .createProposalSaleable(6l).withOriginalPrice(new BigDecimal("500"))
                 .withPrice(new BigDecimal("250"))
                 .withQuantity(5)
-                .withSaleable(new SaleableUnit(10l)).build();
+                .withSaleable(new SaleableUnitEntity(10l)).build();
 
         proposalOld.setSaleableItems(Lists.newArrayList(itemOne, itemTwo, itemThree));
 
@@ -135,19 +135,19 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
                 .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("300"))
                 .withPrice(new BigDecimal("150"))
                 .withQuantity(2)
-                .withSaleable(new SaleableUnit(3l)).build();
+                .withSaleable(new SaleableUnitEntity(3l)).build();
 
         ProposalSaleableItem itemTwo = ProposalSaleableItemBuilder
                 .createProposalSaleable(5l).withOriginalPrice(new BigDecimal("450"))
                 .withPrice(new BigDecimal("250"))
                 .withQuantity(3)
-                .withSaleable(new SaleableUnit(7l)).build();
+                .withSaleable(new SaleableUnitEntity(7l)).build();
 
         ProposalSaleableItem itemThree = ProposalSaleableItemBuilder
                 .createProposalSaleable(null).withOriginalPrice(new BigDecimal("1000"))
                 .withPrice(new BigDecimal("750"))
                 .withQuantity(1)
-                .withSaleable(new SaleableUnit(21l)).build();
+                .withSaleable(new SaleableUnitEntity(21l)).build();
 
         proposalNew.setSaleableItems(Lists.newArrayList(itemOne, itemTwo, itemThree));
 

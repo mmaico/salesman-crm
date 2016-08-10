@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QProduct is a Querydsl query type for Product
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QProduct extends EntityPathBase<Product> {
+public class QProduct extends EntityPathBase<ProductEntity> {
 
     private static final long serialVersionUID = 1536806417L;
 
@@ -45,13 +45,13 @@ public class QProduct extends EntityPathBase<Product> {
     public final NumberPath<java.math.BigDecimal> priceCost = _super.priceCost;
 
     //inherited
-    public final EnumPath<SaleableType> type = _super.type;
+    public final EnumPath<SaleableTypeEntity> type = _super.type;
 
     public QProduct(String variable) {
-        this(Product.class, forVariable(variable), INITS);
+        this(ProductEntity.class, forVariable(variable), INITS);
     }
 
-    public QProduct(Path<? extends Product> path) {
+    public QProduct(Path<? extends ProductEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -60,10 +60,10 @@ public class QProduct extends EntityPathBase<Product> {
     }
 
     public QProduct(PathMetadata<?> metadata, PathInits inits) {
-        this(Product.class, metadata, inits);
+        this(ProductEntity.class, metadata, inits);
     }
 
-    public QProduct(Class<? extends Product> type, PathMetadata<?> metadata, PathInits inits) {
+    public QProduct(Class<? extends ProductEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.measurementUnit = inits.isInitialized("measurementUnit") ? new QMeasurementUnit(forProperty("measurementUnit")) : null;
     }

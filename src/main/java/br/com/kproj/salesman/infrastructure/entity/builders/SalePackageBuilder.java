@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 
-public class SalePackageBuilder extends AbstractBuilder<SalePackage>  {
+public class SalePackageBuilder extends AbstractBuilder<SalePackageEntity>  {
 
 	public SalePackageBuilder() {
-		this.entity = new SalePackage();
+		this.entity = new SalePackageEntity();
 	}
 
 	public SalePackageBuilder(Long id) {

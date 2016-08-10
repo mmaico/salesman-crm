@@ -9,11 +9,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 
-public interface ProductRepository extends BaseSaleableRepository<Product> {
+public interface ProductRepository extends BaseSaleableRepository<ProductEntity> {
 
     @Query("SELECT p FROM Product AS p WHERE p.type = 'PRODUCT' AND p.id = :id")
-    Optional<Product> getOne(@Param("id")Long id);
+    Optional<ProductEntity> getOne(@Param("id")Long id);
 
     @Query("SELECT p FROM Product AS p WHERE p.type = 'PRODUCT' ORDER BY p.name")
-    Page<Product> findAll(Pageable pageable);
+    Page<ProductEntity> findAll(Pageable pageable);
 }

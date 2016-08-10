@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QSalePackage is a Querydsl query type for SalePackage
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QSalePackage extends EntityPathBase<SalePackage> {
+public class QSalePackage extends EntityPathBase<SalePackageEntity> {
 
     private static final long serialVersionUID = -966386143L;
 
@@ -42,21 +42,21 @@ public class QSalePackage extends EntityPathBase<SalePackage> {
     //inherited
     public final NumberPath<java.math.BigDecimal> priceCost = _super.priceCost;
 
-    public final ListPath<SaleableUnit, QSaleableUnit> saleableUnits = this.<SaleableUnit, QSaleableUnit>createList("saleableUnits", SaleableUnit.class, QSaleableUnit.class, PathInits.DIRECT2);
+    public final ListPath<SaleableUnitEntity, QSaleableUnit> saleableUnits = this.<SaleableUnitEntity, QSaleableUnit>createList("saleableUnits", SaleableUnitEntity.class, QSaleableUnit.class, PathInits.DIRECT2);
 
     //inherited
-    public final EnumPath<SaleableType> type = _super.type;
+    public final EnumPath<SaleableTypeEntity> type = _super.type;
 
     public QSalePackage(String variable) {
-        super(SalePackage.class, forVariable(variable));
+        super(SalePackageEntity.class, forVariable(variable));
     }
 
-    public QSalePackage(Path<? extends SalePackage> path) {
+    public QSalePackage(Path<? extends SalePackageEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QSalePackage(PathMetadata<?> metadata) {
-        super(SalePackage.class, metadata);
+        super(SalePackageEntity.class, metadata);
     }
 
 }

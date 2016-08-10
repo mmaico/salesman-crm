@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name="saleable")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class SaleableUnit extends Identifiable {
+public class SaleableUnitEntity extends Identifiable {
 
 	/**
 	 * 
@@ -46,13 +46,13 @@ public class SaleableUnit extends Identifiable {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private SaleableType type;
+    private SaleableTypeEntity type;
 
-    public SaleableUnit(){}
-    public SaleableUnit(String name) {
+    public SaleableUnitEntity(){}
+    public SaleableUnitEntity(String name) {
         this.name = name;
     }
-    public SaleableUnit(Long id) {
+    public SaleableUnitEntity(Long id) {
         this.id = id;
     }
 
@@ -104,11 +104,11 @@ public class SaleableUnit extends Identifiable {
         this.active = active;
     }
 
-    public SaleableType getType() {
+    public SaleableTypeEntity getType() {
         return type;
     }
 
-    public void setType(SaleableType type) {
+    public void setType(SaleableTypeEntity type) {
         this.type = type;
     }
 
@@ -126,7 +126,7 @@ public class SaleableUnit extends Identifiable {
         if (this == o) return true;
 
         if (o == null) return false;
-        SaleableUnit saleableUnit = (SaleableUnit) o;
+        SaleableUnitEntity saleableUnit = (SaleableUnitEntity) o;
         return Objects.equals(getId(), saleableUnit.getId());
     }
 

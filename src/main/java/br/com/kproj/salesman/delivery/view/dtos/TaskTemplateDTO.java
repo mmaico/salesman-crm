@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.view.dtos;
 
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 
 public class TaskTemplateDTO {
@@ -11,7 +11,7 @@ public class TaskTemplateDTO {
     private String title;
     private String description;
     private Integer quantityDaysTofinishAfertSignedContract;
-    private SaleableUnit saleable;
+    private SaleableUnitEntity saleable;
     private OperationRegion region;
 
     public Long getId() {
@@ -46,11 +46,11 @@ public class TaskTemplateDTO {
         this.quantityDaysTofinishAfertSignedContract = quantityDaysTofinishAfertSignedContract;
     }
 
-    public SaleableUnit getSaleable() {
+    public SaleableUnitEntity getSaleable() {
         return saleable;
     }
 
-    public void setSaleable(SaleableUnit saleable) {
+    public void setSaleable(SaleableUnitEntity saleable) {
         this.saleable = saleable;
     }
 

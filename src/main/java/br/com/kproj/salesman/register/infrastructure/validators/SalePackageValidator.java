@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -14,12 +14,12 @@ public class SalePackageValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return SalePackage.class.equals(clazz);
+        return SalePackageEntity.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        SalePackage salePackage = (SalePackage) target;
+        SalePackageEntity salePackage = (SalePackageEntity) target;
 
         validator.validate(salePackage, errors);
 

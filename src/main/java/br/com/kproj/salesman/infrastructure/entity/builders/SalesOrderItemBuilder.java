@@ -1,11 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
 import java.math.BigDecimal;
 
@@ -28,12 +27,12 @@ public class SalesOrderItemBuilder extends AbstractBuilder<SalesOrderItem>  {
 		return new SalesOrderItemBuilder();
 	}
 
-    public SalesOrderItemBuilder withSaleable(SaleableUnit saleableUnit) {
+    public SalesOrderItemBuilder withSaleable(SaleableUnitEntity saleableUnit) {
         this.entity.setSaleableUnit(saleableUnit);
         return this;
     }
 
-    public SalesOrderItemBuilder withSalesPackage(SalePackage salesPackage) {
+    public SalesOrderItemBuilder withSalesPackage(SalePackageEntity salesPackage) {
         this.entity.setSalePackage(salesPackage);
         return this;
     }

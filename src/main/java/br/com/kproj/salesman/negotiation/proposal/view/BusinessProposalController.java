@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.proposal.view;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -98,7 +98,7 @@ public class BusinessProposalController {
         proposalSaleablesDTO.load(result.get().getSaleableItems());
         proposalSaleablesDTO.setProposalId(proposalId);
 
-        Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+        Iterable<SaleableUnitEntity> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
 
         model.addAttribute("proposalSaleables", proposalSaleablesDTO);
@@ -125,7 +125,7 @@ public class BusinessProposalController {
             return new ModelAndView("redirect:/clients/list");
         }
 
-        Iterable<SaleableUnit> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
+        Iterable<SaleableUnitEntity> saleable = saleableApplication.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
 
         proposalSaleablesDTO.clear();
 

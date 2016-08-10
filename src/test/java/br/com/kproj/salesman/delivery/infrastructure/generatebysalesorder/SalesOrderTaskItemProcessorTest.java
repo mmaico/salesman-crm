@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
@@ -76,10 +76,10 @@ public class SalesOrderTaskItemProcessorTest {
 
     private SalesOrder getSalesOrderStub() {
         SalesOrderItem itemOne = SalesOrderItemBuilder.createSalesOrderItem(1l)
-                .withSaleable(new Product(1l)).build();
+                .withSaleable(new ProductEntity(1l)).build();
 
         SalesOrderItem itemTwo = SalesOrderItemBuilder.createSalesOrderItem(1l)
-                .withSaleable(new Product(2l)).build();
+                .withSaleable(new ProductEntity(2l)).build();
 
         List<SalesOrderItem> items = Lists.newArrayList(itemOne, itemTwo);
         return SalesOrderBuilder.createSalesOrder(10l)

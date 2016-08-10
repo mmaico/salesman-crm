@@ -6,15 +6,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="services")
-public class Service extends SaleableUnit {
+public class ServiceEntity extends SaleableUnitEntity {
 
-    public Service() {
+    public ServiceEntity() {
         super();
-        setType(SaleableType.SERVICE);
+        setType(SaleableTypeEntity.SERVICE);
     }
 
-    public Service(Long id) {
+    public ServiceEntity(Long id) {
         super(id);
-        setType(SaleableType.SERVICE);
+        setType(SaleableTypeEntity.SERVICE);
     }
 }

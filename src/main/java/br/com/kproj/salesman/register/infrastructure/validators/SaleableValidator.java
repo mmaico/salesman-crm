@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -18,12 +18,12 @@ public class SaleableValidator implements Validator, InitializingBean {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return SaleableUnit.class.equals(clazz.getSuperclass());
+        return SaleableUnitEntity.class.equals(clazz.getSuperclass());
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-    	SaleableUnit saleableUnit = (SaleableUnit) target;
+    	SaleableUnitEntity saleableUnit = (SaleableUnitEntity) target;
         Set<ConstraintViolation<Object>> constraints = validator.validate(saleableUnit);
         
         if (saleableUnit.getActive()) {

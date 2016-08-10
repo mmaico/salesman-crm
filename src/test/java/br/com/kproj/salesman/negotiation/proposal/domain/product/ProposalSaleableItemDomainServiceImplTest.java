@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.product;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.SaleableItemPersistBusinessRulesImpl;
@@ -87,12 +87,12 @@ public class ProposalSaleableItemDomainServiceImplTest {
     public List<ProposalSaleableItem> getItemsStub() {
         ProposalSaleableItem itemOne = new ProposalSaleableItem();
         itemOne.setQuantity(1);
-        itemOne.setSaleableUnit(new SaleableUnit(1l));
+        itemOne.setSaleableUnit(new SaleableUnitEntity(1l));
         itemOne.setPrice(BigDecimal.TEN);
 
         ProposalSaleableItem itemTwo = new ProposalSaleableItem();
         itemTwo.setQuantity(2);
-        itemTwo.setSaleableUnit(new SaleableUnit(2l));
+        itemTwo.setSaleableUnit(new SaleableUnitEntity(2l));
         itemTwo.setPrice(BigDecimal.TEN);
 
         return Lists.newArrayList(itemOne, itemTwo);

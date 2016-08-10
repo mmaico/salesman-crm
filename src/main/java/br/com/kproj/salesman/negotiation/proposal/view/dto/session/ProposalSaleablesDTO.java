@@ -2,9 +2,9 @@ package br.com.kproj.salesman.negotiation.proposal.view.dto.session;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableType;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.UpdatePackageItemsDTO;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.UpdateQuantityPriceItemsDTO;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
@@ -40,8 +40,8 @@ public class ProposalSaleablesDTO implements Serializable {
         this.proposalSaleableItemDTOs = proposalSaleableItemDTOs;
     }
 
-    public void add(SaleableUnit saleableUnit) {
-        Optional<SaleableUnit> result = application.getOne(saleableUnit.getId());
+    public void add(SaleableUnitEntity saleableUnit) {
+        Optional<SaleableUnitEntity> result = application.getOne(saleableUnit.getId());
 
         if (result.isPresent()) {
             ProposalSaleableItemDTO proposalSaleableItemDTO = new ProposalSaleableItemDTO();
@@ -49,8 +49,8 @@ public class ProposalSaleablesDTO implements Serializable {
             proposalSaleableItemDTO.setPrice(result.get().getPrice());
             proposalSaleableItemDTO.setQuantity(1);
 
-            if (SaleableType.PACKAGE.equals(result.get().getType())) {
-                SalePackage salePackage = (SalePackage) result.get();
+            if (SaleableTypeEntity.PACKAGE.equals(result.get().getType())) {
+                SalePackageEntity salePackage = (SalePackageEntity) result.get();
                 salePackage.getSaleableUnits()
                         .forEach(saleunit ->
                                 proposalSaleableItemDTO.addPackageItemDTO(saleunit.getId(), 1, saleunit.getPrice()));
@@ -62,10 +62,10 @@ public class ProposalSaleablesDTO implements Serializable {
 
     public void mergeItems(UpdatePackageItemsDTO item) {
 
-        Optional<SaleableUnit> result = application.getOne(item.getSaleableId());
+        Optional<SaleableUnitEntity> result = application.getOne(item.getSaleableId());
         if (result.isPresent()) {
 
-            if (SaleableType.PACKAGE.equals(result.get().getType())) {
+            if (SaleableTypeEntity.PACKAGE.equals(result.get().getType())) {
                 Optional<ProposalSaleableItemDTO> packageFound = proposalSaleableItemDTOs.stream()
                         .filter(spackage -> item.getSaleableId().equals(spackage.getSaleableId())).findFirst();
 
@@ -78,7 +78,7 @@ public class ProposalSaleablesDTO implements Serializable {
     }
 
     public void updateRootItem(UpdateQuantityPriceItemsDTO dto) {
-        Optional<SaleableUnit> result = application.getOne(dto.getSaleableId());
+        Optional<SaleableUnitEntity> result = application.getOne(dto.getSaleableId());
 
         if(result.isPresent()) {
             Optional<ProposalSaleableItemDTO> itemFound = proposalSaleableItemDTOs.stream().filter(item ->

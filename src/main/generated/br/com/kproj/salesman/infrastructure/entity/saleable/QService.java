@@ -13,7 +13,7 @@ import com.mysema.query.types.Path;
  * QService is a Querydsl query type for Service
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QService extends EntityPathBase<Service> {
+public class QService extends EntityPathBase<ServiceEntity> {
 
     private static final long serialVersionUID = -464533545L;
 
@@ -40,18 +40,18 @@ public class QService extends EntityPathBase<Service> {
     public final NumberPath<java.math.BigDecimal> priceCost = _super.priceCost;
 
     //inherited
-    public final EnumPath<SaleableType> type = _super.type;
+    public final EnumPath<SaleableTypeEntity> type = _super.type;
 
     public QService(String variable) {
-        super(Service.class, forVariable(variable));
+        super(ServiceEntity.class, forVariable(variable));
     }
 
-    public QService(Path<? extends Service> path) {
+    public QService(Path<? extends ServiceEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QService(PathMetadata<?> metadata) {
-        super(Service.class, metadata);
+        super(ServiceEntity.class, metadata);
     }
 
 }

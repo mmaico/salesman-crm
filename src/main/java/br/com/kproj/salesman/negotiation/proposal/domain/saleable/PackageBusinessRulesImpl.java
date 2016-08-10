@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.PackageBusinessRules;
 import com.google.common.collect.Sets;
@@ -23,12 +23,12 @@ public class PackageBusinessRulesImpl implements PackageBusinessRules {
     public Boolean verifyRules(List<ProposalSaleableItem> proposalSaleableItems) {
         Set<String> violations = Sets.newHashSet();
 
-        Set<SalePackage> packagesInSaleable = proposalSaleableItems.stream()
+        Set<SalePackageEntity> packagesInSaleable = proposalSaleableItems.stream()
                 .filter(item -> item.getSalePackage() != null && item.getSaleableUnit() != null)
                 .map(ProposalSaleableItem::getSalePackage)
                 .collect(Collectors.toSet());
 
-        Set<SalePackage> salePackages = proposalSaleableItems.stream()
+        Set<SalePackageEntity> salePackages = proposalSaleableItems.stream()
                 .filter(item -> item.getSalePackage() != null && item.getSaleableUnit() == null)
                 .map(ProposalSaleableItem::getSalePackage)
                 .collect(Collectors.toSet());

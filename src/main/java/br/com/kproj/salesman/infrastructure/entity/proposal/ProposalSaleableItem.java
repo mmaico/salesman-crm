@@ -3,9 +3,8 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
-import com.google.gson.annotations.Expose;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -28,12 +27,12 @@ public class ProposalSaleableItem extends Identifiable {
 	@ManyToOne
     @JoinColumn(name="saleable_id")
     @ExcludeAuditingField
-    private SaleableUnit saleableUnit;
+    private SaleableUnitEntity saleableUnit;
 
     @ManyToOne
     @JoinColumn(name = "package_id")
     @ExcludeAuditingField
-    private SalePackage salePackage;
+    private SalePackageEntity salePackage;
 
     @NotNull(message = "domain.saleable.price.is.invalid")
     private BigDecimal price;
@@ -62,11 +61,11 @@ public class ProposalSaleableItem extends Identifiable {
         this.id = id;
     }
 
-    public SaleableUnit getSaleableUnit() {
+    public SaleableUnitEntity getSaleableUnit() {
         return saleableUnit;
     }
 
-    public void setSaleableUnit(SaleableUnit saleableUnit) {
+    public void setSaleableUnit(SaleableUnitEntity saleableUnit) {
         this.saleableUnit = saleableUnit;
     }
 
@@ -94,11 +93,11 @@ public class ProposalSaleableItem extends Identifiable {
         this.quantity = quantity;
     }
 
-    public SalePackage getSalePackage() {
+    public SalePackageEntity getSalePackage() {
         return salePackage;
     }
 
-    public void setSalePackage(SalePackage salePackage) {
+    public void setSalePackage(SalePackageEntity salePackage) {
         this.salePackage = salePackage;
     }
 

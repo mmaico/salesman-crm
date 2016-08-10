@@ -2,8 +2,8 @@ package br.com.kproj.salesman.register.view.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.SalePackageBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -42,20 +42,20 @@ public class SalesPackageController {
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
     public @ResponseBody
-    SalePackage save(@ModelAttribute @Validated SalePackage salePackage, BindingResult bindingResult) {
+    SalePackageEntity save(@ModelAttribute @Validated SalePackageEntity salePackage, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        SalePackage salePackageResult = service.register(salePackage);
+        SalePackageEntity salePackageResult = service.register(salePackage);
 
         return salePackageResult;
     }
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
     public @ResponseBody
-    void update(@ModelAttribute SalePackage salePackage) {
+    void update(@ModelAttribute SalePackageEntity salePackage) {
 
         normalizeEntityRequest.addFieldsToUpdate(salePackage);
         service.register(salePackage);
@@ -67,7 +67,7 @@ public class SalesPackageController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<SalePackage> result = this.service.findAll(pager);
+        Iterable<SalePackageEntity> result = this.service.findAll(pager);
 
         model.addAttribute("packages", result);
         return new ModelAndView("/saleables/packages/packageList");
@@ -76,7 +76,7 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/{packageId}")
     public ModelAndView viewInfo(@PathVariable Long packageId, Model model) {
         
-        Optional<SalePackage> result = this.service.getOne(packageId);
+        Optional<SalePackageEntity> result = this.service.getOne(packageId);
 
         model.addAttribute("salesPackage", result.isPresent() ? result.get(): null);
 
@@ -86,8 +86,8 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/{packageId}/add-saleable/{saleableId}", method = RequestMethod.PUT)
     public @ResponseBody void addProductOrService(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
-        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
-        SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+        SalePackageEntity salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnitEntity saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
 
         this.service.addProductOrService(salePackage, saleableUnit);
     }
@@ -95,8 +95,8 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/{packageId}/remove-saleable/{saleableId}", method = RequestMethod.DELETE)
     public @ResponseBody void removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
-        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
-        SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+        SalePackageEntity salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnitEntity saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
 
         this.service.removeProductOrService(salePackage, saleableUnit);
     }

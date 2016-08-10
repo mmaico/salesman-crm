@@ -13,7 +13,7 @@ import com.mysema.query.types.Path;
  * QSaleableUnit is a Querydsl query type for SaleableUnit
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QSaleableUnit extends EntityPathBase<SaleableUnit> {
+public class QSaleableUnit extends EntityPathBase<SaleableUnitEntity> {
 
     private static final long serialVersionUID = 809079651L;
 
@@ -33,18 +33,18 @@ public class QSaleableUnit extends EntityPathBase<SaleableUnit> {
 
     public final NumberPath<java.math.BigDecimal> priceCost = createNumber("priceCost", java.math.BigDecimal.class);
 
-    public final EnumPath<SaleableType> type = createEnum("type", SaleableType.class);
+    public final EnumPath<SaleableTypeEntity> type = createEnum("type", SaleableTypeEntity.class);
 
     public QSaleableUnit(String variable) {
-        super(SaleableUnit.class, forVariable(variable));
+        super(SaleableUnitEntity.class, forVariable(variable));
     }
 
-    public QSaleableUnit(Path<? extends SaleableUnit> path) {
+    public QSaleableUnit(Path<? extends SaleableUnitEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QSaleableUnit(PathMetadata<?> metadata) {
-        super(SaleableUnit.class, metadata);
+        super(SaleableUnitEntity.class, metadata);
     }
 
 }

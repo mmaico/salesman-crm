@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.repository.task;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnAllTemplateAssociatedToTask() {
-        SaleableUnit saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
+        SaleableUnitEntity saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
 
         List<TaskTemplate> result = repository.findTaskTemplateBy(saleable);
 
@@ -62,7 +62,7 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnAllTemplatesOnlyRoot() {
-        SaleableUnit saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
+        SaleableUnitEntity saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
 
         List<TaskTemplate> result = repository.findTaskTemplateRootBy(saleable);
 

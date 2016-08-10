@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SalesPackageRepository;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class ProposalCalcTotalSaleableItemsImpl implements ProposalCalcTotalSale
     private BigDecimal calcValue(ProposalSaleableItem item) {
 
         if (item.hasSaleableWithPackage() || item.hasPackage()) {
-            Optional<SalePackage> salePackage = salesPackageRepository.getOne(item.getSalePackage().getId());
+            Optional<SalePackageEntity> salePackage = salesPackageRepository.getOne(item.getSalePackage().getId());
             if (salePackage.get().calcPriceByProducts()) {
                 if (item.hasPackage()) {
                     return BigDecimal.ZERO;

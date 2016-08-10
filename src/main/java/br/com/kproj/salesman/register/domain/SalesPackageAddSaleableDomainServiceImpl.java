@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableType;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
@@ -23,7 +23,7 @@ public class SalesPackageAddSaleableDomainServiceImpl implements SalesPackageAdd
 	@Autowired
 	private SaleableApplication application;
 
-	Map<String, CheckRule<SaleableUnit>> persistRules = new HashMap<>();
+	Map<String, CheckRule<SaleableUnitEntity>> persistRules = new HashMap<>();
 
 	{
 		persistRules.put(description("salespackage.not.exists"), (salespackage) -> salespackage == null || salespackage.isNew() ||
@@ -31,13 +31,13 @@ public class SalesPackageAddSaleableDomainServiceImpl implements SalesPackageAdd
 		);
 
 		persistRules.put(description("salespackage.not.permit.add.package"), (salespackage) ->
-				application.getOne(salespackage.getId()).get().getType() == SaleableType.PACKAGE
+				application.getOne(salespackage.getId()).get().getType() == SaleableTypeEntity.PACKAGE
 		);
 	}
 
 
 	@Override
-	public void checkBusinessRulesFor(SaleableUnit saleableUnit) {
+	public void checkBusinessRulesFor(SaleableUnitEntity saleableUnit) {
 
 		Set<String> violations = persistRules.entrySet()
 				.stream()

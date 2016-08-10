@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.product;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.SaleableItemPersistBusinessRulesImpl;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.PackageBusinessRules;
@@ -117,8 +117,8 @@ public class SaleableItemPersistBusinessRulesImplTest {
     }
 
     public BusinessProposal getProposalStub() {
-        SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
-        SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
+        SaleableUnitEntity saleableUnitOne = createSaleableUnit(1l).build();
+        SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
         BusinessProposal businessProposal = new BusinessProposal();
 
         ProposalSaleableItem proposalSaleableOne = create()

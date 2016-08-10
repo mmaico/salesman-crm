@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.application.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.ProductRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProductApplicationImpl extends BaseModelServiceImpl<Product> implements ProductApplication {
+public class ProductApplicationImpl extends BaseModelServiceImpl<ProductEntity> implements ProductApplication {
 
     private SaleableUnitDomainService domainService;
 
@@ -26,22 +26,22 @@ public class ProductApplicationImpl extends BaseModelServiceImpl<Product> implem
         this.domainService = domainService;
     }
 
-    public Product register(Product product) {
+    public ProductEntity register(ProductEntity product) {
 
         return super.save(product, domainService);
     }
 
     @Override
-    public Page<Product> findAll(Pageable pageable) {
+    public Page<ProductEntity> findAll(Pageable pageable) {
         return this.productRepository.findAll(pageable);
     }
 
     @Override
-    public Optional<Product> getOne(Long id) {
+    public Optional<ProductEntity> getOne(Long id) {
         return productRepository.getOne(id);
     }
 
-    public BaseRepository<Product, Long> getRepository() {
+    public BaseRepository<ProductEntity, Long> getRepository() {
         return productRepository;
     }
 

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.register.domain.contract.SaleableUnitDomainService;
@@ -25,7 +25,7 @@ public class SaleableUnitDomainServiceImpl implements SaleableUnitDomainService 
 	private SaleableValidator validator;
 
 
-	Map<String, CheckRule<SaleableUnit>> persistRules = new HashMap<>();
+	Map<String, CheckRule<SaleableUnitEntity>> persistRules = new HashMap<>();
 
 	{
 		persistRules.put(description("product.with.invalid.price"), (saleable) ->
@@ -36,7 +36,7 @@ public class SaleableUnitDomainServiceImpl implements SaleableUnitDomainService 
 	}
 
 	@Override
-	public void checkBusinessRulesFor(SaleableUnit saleableUnit) {
+	public void checkBusinessRulesFor(SaleableUnitEntity saleableUnit) {
 
 		Set<String> violations = persistRules.entrySet()
 				.stream()

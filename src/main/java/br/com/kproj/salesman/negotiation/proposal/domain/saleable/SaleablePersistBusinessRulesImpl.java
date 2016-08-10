@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
@@ -23,13 +23,13 @@ public class SaleablePersistBusinessRulesImpl implements SaleablePersistBusiness
     @Autowired
     private SaleableUnitRepository salebleRepository;
 
-    Map<String, CheckRule<SaleableUnit>> saleableUnitRules = new HashMap<>();
+    Map<String, CheckRule<SaleableUnitEntity>> saleableUnitRules = new HashMap<>();
     {
         saleableUnitRules.put(description("domain.saleable.item.wihtout.id"), (saleableUnit) -> saleableUnit == null || saleableUnit.isNew());
         saleableUnitRules.put(description("domain.saleable.item.notexist"), (saleableUnit) -> !salebleRepository.exists(saleableUnit.getId()));
     }
 
-    public Boolean verifyRules(SaleableUnit saleableUnit) {
+    public Boolean verifyRules(SaleableUnitEntity saleableUnit) {
 
         Set<String> violations = saleableUnitRules.entrySet()
                 .stream()

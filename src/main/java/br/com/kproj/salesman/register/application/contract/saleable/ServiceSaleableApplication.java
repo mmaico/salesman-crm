@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.register.application.contract.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.Service;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
 
-public interface ServiceSaleableApplication extends ModelService<Service> {
+public interface ServiceSaleableApplication extends ModelService<ServiceEntity> {
 
-    Service register(Service service);
+    ServiceEntity register(ServiceEntity service);
 }

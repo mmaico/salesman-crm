@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import com.google.common.collect.Lists;
@@ -28,7 +28,7 @@ public class SaleablePersistBusinessRulesImplTest {
 
     @Test
     public void shouldReturnTrueWhenAllValid() {
-        SaleableUnit saleableUnit = getSaleableUnits().get(0);
+        SaleableUnitEntity saleableUnit = getSaleableUnits().get(0);
 
         given(salebleRepository.exists(1l)).willReturn(Boolean.TRUE);
 
@@ -39,7 +39,7 @@ public class SaleablePersistBusinessRulesImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenSaleableUnitNotHaveId() {
-        SaleableUnit saleableUnit = getSaleableUnits().get(0);
+        SaleableUnitEntity saleableUnit = getSaleableUnits().get(0);
         saleableUnit.setId(null);
 
         rules.verifyRules(saleableUnit);
@@ -47,7 +47,7 @@ public class SaleablePersistBusinessRulesImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenSaleableUnitNotFound() {
-        SaleableUnit saleableUnit = getSaleableUnits().get(0);
+        SaleableUnitEntity saleableUnit = getSaleableUnits().get(0);
         saleableUnit.setId(1l);
 
         given(salebleRepository.exists(1l)).willReturn(Boolean.FALSE);
@@ -57,7 +57,7 @@ public class SaleablePersistBusinessRulesImplTest {
     @Test
     public void shouldThrowExceptionWhenSaleableUnitNotFoundAndReturnMessage() {
         Boolean validationExceptionValidation = Boolean.FALSE;
-        SaleableUnit saleableUnit = getSaleableUnits().get(0);
+        SaleableUnitEntity saleableUnit = getSaleableUnits().get(0);
         saleableUnit.setId(1l);
 
         given(salebleRepository.exists(1l)).willReturn(Boolean.FALSE);
@@ -73,9 +73,9 @@ public class SaleablePersistBusinessRulesImplTest {
         assertThat(validationExceptionValidation, is(Boolean.TRUE));
     }
 
-    public List<SaleableUnit> getSaleableUnits() {
-        SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
-        SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
+    public List<SaleableUnitEntity> getSaleableUnits() {
+        SaleableUnitEntity saleableUnitOne = createSaleableUnit(1l).build();
+        SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
 
 
         return Lists.newArrayList(saleableUnitOne, saleableUnitTwo);

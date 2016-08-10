@@ -1,16 +1,16 @@
 package br.com.kproj.salesman.register.application.contract.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelService;
 
-public interface SalePackageApplication extends ModelService<SalePackage> {
+public interface SalePackageApplication extends ModelService<SalePackageEntity> {
 
-    SalePackage register(SalePackage salePackageItem);
+    SalePackageEntity register(SalePackageEntity salePackageItem);
 
-    SalePackage addProductOrService(SalePackage salePackage, SaleableUnit saleable);
+    SalePackageEntity addProductOrService(SalePackageEntity salePackage, SaleableUnitEntity saleable);
 
-    SalePackage removeProductOrService(SalePackage salePackage, SaleableUnit saleable);
+    SalePackageEntity removeProductOrService(SalePackageEntity salePackage, SaleableUnitEntity saleable);
 
 
 }

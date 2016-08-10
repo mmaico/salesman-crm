@@ -1,39 +1,37 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "packages")
-public class SalePackage extends SaleableUnit {
+public class SalePackageEntity extends SaleableUnitEntity {
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="package_saleable", joinColumns=@JoinColumn(name="package_id"),
             inverseJoinColumns=@JoinColumn(name="saleable_id"))
-    private List<SaleableUnit> saleableUnits;
+    private List<SaleableUnitEntity> saleableUnits;
 
     @Column(name="price_by_products")
     private Boolean priceByProducts = Boolean.FALSE;
 
-    public SalePackage(Long id) {
+    public SalePackageEntity(Long id) {
         super(id);
-        setType(SaleableType.PACKAGE);
+        setType(SaleableTypeEntity.PACKAGE);
     }
 
-    public SalePackage() {
+    public SalePackageEntity() {
         super();
-        setType(SaleableType.PACKAGE);
+        setType(SaleableTypeEntity.PACKAGE);
     }
 
-    public List<SaleableUnit> getSaleableUnits() {
+    public List<SaleableUnitEntity> getSaleableUnits() {
         return saleableUnits;
     }
 
-    public void setSaleableUnits(List<SaleableUnit> saleableUnits) {
+    public void setSaleableUnits(List<SaleableUnitEntity> saleableUnits) {
         this.saleableUnits = saleableUnits;
     }
 
@@ -49,14 +47,14 @@ public class SalePackage extends SaleableUnit {
         this.priceByProducts = priceByProducts;
     }
 
-    public void addSaleableUnit(SaleableUnit saleableUnit) {
+    public void addSaleableUnit(SaleableUnitEntity saleableUnit) {
         if (this.saleableUnits == null) {
             this.saleableUnits = Lists.newArrayList();
         }
         this.saleableUnits.add(saleableUnit);
     }
 
-    public void removeSaleableUnit(SaleableUnit saleableUnit) {
+    public void removeSaleableUnit(SaleableUnitEntity saleableUnit) {
         if (this.saleableUnits == null) {
             return;
         }

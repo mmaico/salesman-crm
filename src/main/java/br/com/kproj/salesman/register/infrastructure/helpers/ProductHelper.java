@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.infrastructure.helpers;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableType;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,48 +14,48 @@ import java.util.Optional;
 @Component
 public class ProductHelper {
 
-    private static final Map<SaleableType, String> names = new HashMap<>();
+    private static final Map<SaleableTypeEntity, String> names = new HashMap<>();
 
     @Autowired
     private SaleableApplication service;
 
     static {
-        names.put(SaleableType.PRODUCT, "Produto");
-        names.put(SaleableType.SERVICE, "Servi&ccedil;o");
-        names.put(SaleableType.PACKAGE, "Pacote");
+        names.put(SaleableTypeEntity.PRODUCT, "Produto");
+        names.put(SaleableTypeEntity.SERVICE, "Servi&ccedil;o");
+        names.put(SaleableTypeEntity.PACKAGE, "Pacote");
     }
 
-    public String type(SaleableType type) {
+    public String type(SaleableTypeEntity type) {
         return names.get(type);
     }
 
-    public Iterable<SaleableUnit> getAllProducts() {
+    public Iterable<SaleableUnitEntity> getAllProducts() {
         return service.findAll(Pager.build().withPageNumer(1).withPageSize(10000));
     }
 
-    public Iterable<SaleableUnit> getProducts() {
-        return service.getByType(SaleableType.PRODUCT);
+    public Iterable<SaleableUnitEntity> getProducts() {
+        return service.getByType(SaleableTypeEntity.PRODUCT);
     }
 
-    public Iterable<SaleableUnit> getServices() {
-        return service.getByType(SaleableType.SERVICE);
+    public Iterable<SaleableUnitEntity> getServices() {
+        return service.getByType(SaleableTypeEntity.SERVICE);
     }
 
-    public Iterable<SaleableUnit> getPackages() {
-        return service.getByType(SaleableType.PACKAGE);
+    public Iterable<SaleableUnitEntity> getPackages() {
+        return service.getByType(SaleableTypeEntity.PACKAGE);
     }
 
-    public SaleableUnit load(Long id) {
-        Optional<SaleableUnit> result = service.getOne(id);
+    public SaleableUnitEntity load(Long id) {
+        Optional<SaleableUnitEntity> result = service.getOne(id);
 
         return result.isPresent() ? result.get() : null;
     }
 
-    public Boolean isPackage(SaleableUnit saleableUnit) {
+    public Boolean isPackage(SaleableUnitEntity saleableUnit) {
         if (saleableUnit == null || saleableUnit.getType() == null) {
             return Boolean.FALSE;
         }
 
-        return SaleableType.PACKAGE.equals(saleableUnit.getType());
+        return SaleableTypeEntity.PACKAGE.equals(saleableUnit.getType());
     }
 }

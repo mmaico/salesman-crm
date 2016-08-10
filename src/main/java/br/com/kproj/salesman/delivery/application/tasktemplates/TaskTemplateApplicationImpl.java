@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 import br.com.kproj.salesman.delivery.domain.TaskTemplateDomainService;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
@@ -40,7 +40,7 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTempla
     }
 
     @Override
-    public List<TaskTemplate> findTaskTemplateBy(SaleableUnit saleable) {
+    public List<TaskTemplate> findTaskTemplateBy(SaleableUnitEntity saleable) {
         if (saleable == null || saleable.isNew()) {
             return Lists.newArrayList();
         }
@@ -48,7 +48,7 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTempla
     }
 
     @Override
-    public List<TaskTemplate> findTaskTemplateOnlyRootBy(SaleableUnit saleable) {
+    public List<TaskTemplate> findTaskTemplateOnlyRootBy(SaleableUnitEntity saleable) {
         if (saleable == null || saleable.isNew()) {
             return Lists.newArrayList();
         }

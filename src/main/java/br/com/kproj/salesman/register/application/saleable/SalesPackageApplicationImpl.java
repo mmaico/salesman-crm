@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SalesPackageRepository;
@@ -20,7 +20,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErro
 import static com.google.common.collect.Sets.newHashSet;
 
 @Service("salePackageApplication")
-public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackage> implements SalePackageApplication {
+public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackageEntity> implements SalePackageApplication {
 
     @Autowired
     private SaleableUnitDomainService domainService;
@@ -33,20 +33,20 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
 
 
     @Override
-    public SalePackage register(SalePackage salePackageItem) {
+    public SalePackageEntity register(SalePackageEntity salePackageItem) {
 
         return super.save(salePackageItem, domainService);
     }
 
     @Override
-    public Page<SalePackage> findAll(Pageable pageable) {
+    public Page<SalePackageEntity> findAll(Pageable pageable) {
         return this.salesPackageRepository.findAll(pageable);
     }
 
     @Override
-    public SalePackage addProductOrService(SalePackage salePackage, SaleableUnit saleable) {
+    public SalePackageEntity addProductOrService(SalePackageEntity salePackage, SaleableUnitEntity saleable) {
 
-        Optional<SalePackage> salePackageLoaded = salesPackageRepository.getOne(salePackage.getId());
+        Optional<SalePackageEntity> salePackageLoaded = salesPackageRepository.getOne(salePackage.getId());
 
         if (!salePackageLoaded.isPresent()) {
             hasErrors(newHashSet("salepackage.not.found")).throwing(ValidationException.class);
@@ -58,9 +58,9 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
     }
 
     @Override
-    public SalePackage removeProductOrService(SalePackage salePackage, SaleableUnit saleable) {
+    public SalePackageEntity removeProductOrService(SalePackageEntity salePackage, SaleableUnitEntity saleable) {
 
-        Optional<SalePackage> salePackageLoaded = salesPackageRepository.getOne(salePackage.getId());
+        Optional<SalePackageEntity> salePackageLoaded = salesPackageRepository.getOne(salePackage.getId());
 
         if (!salePackageLoaded.isPresent()) {
             hasErrors(newHashSet("salepackage.not.found")).throwing(ValidationException.class);
@@ -71,11 +71,11 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
         return salePackageLoaded.get();
     }
 
-    public Optional<SalePackage> getOne(Long id) {
+    public Optional<SalePackageEntity> getOne(Long id) {
         return salesPackageRepository.getOne(id);
     }
 
-    public BaseRepository<SalePackage, Long> getRepository() {
+    public BaseRepository<SalePackageEntity, Long> getRepository() {
         return salesPackageRepository;
     }
 

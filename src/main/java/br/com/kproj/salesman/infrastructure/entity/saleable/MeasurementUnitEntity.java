@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="measurement_unit")
-public class MeasurementUnit extends Identifiable {
+public class MeasurementUnitEntity extends Identifiable {
 
     @Id
     private Long id;

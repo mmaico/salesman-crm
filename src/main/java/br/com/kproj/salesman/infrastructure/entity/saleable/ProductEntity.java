@@ -7,27 +7,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="products")
-public class Product extends SaleableUnit {
+public class ProductEntity extends SaleableUnitEntity {
 
     @ManyToOne
     @JoinColumn(name="measurement_unit_id")
-    private MeasurementUnit measurementUnit;
+    private MeasurementUnitEntity measurementUnit;
 
-    public Product() {
+    public ProductEntity() {
         super();
-        setType(SaleableType.PRODUCT);
+        setType(SaleableTypeEntity.PRODUCT);
     }
 
-    public Product(Long id) {
+    public ProductEntity(Long id) {
         super(id);
-        setType(SaleableType.PRODUCT);
+        setType(SaleableTypeEntity.PRODUCT);
     }
 
-    public MeasurementUnit getMeasurementUnit() {
+    public MeasurementUnitEntity getMeasurementUnit() {
         return measurementUnit;
     }
 
-    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+    public void setMeasurementUnit(MeasurementUnitEntity measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
 }

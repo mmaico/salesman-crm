@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;

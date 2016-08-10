@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.view.saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.Product;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -41,20 +41,20 @@ public class ProductController {
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
     public @ResponseBody
-    SaleableUnit save(@ModelAttribute @Validated Product product, BindingResult bindingResult, Model model) {
+    SaleableUnitEntity save(@ModelAttribute @Validated ProductEntity product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        SaleableUnit saleable = service.register(product);
+        SaleableUnitEntity saleable = service.register(product);
 
         return saleable;
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
     public @ResponseBody
-    void update(@ModelAttribute Product product) {
+    void update(@ModelAttribute ProductEntity product) {
 
         normalizeEntityRequest.addFieldsToUpdate(product);
         service.register(product);
@@ -65,7 +65,7 @@ public class ProductController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Product> result = this.service.findAll(pager);
+        Iterable<ProductEntity> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
         return new ModelAndView("/saleables/products/productList");
@@ -74,7 +74,7 @@ public class ProductController {
     @RequestMapping(value="/products/{productId}")
     public ModelAndView viewInfo(@PathVariable Long productId, Model model) {
         
-        Optional<Product> result = this.service.getOne(productId);
+        Optional<ProductEntity> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/saleables/products/productDetail");

@@ -13,7 +13,7 @@ import com.mysema.query.types.Path;
  * QMeasurementUnit is a Querydsl query type for MeasurementUnit
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QMeasurementUnit extends EntityPathBase<MeasurementUnit> {
+public class QMeasurementUnit extends EntityPathBase<MeasurementUnitEntity> {
 
     private static final long serialVersionUID = -81745278L;
 
@@ -26,15 +26,15 @@ public class QMeasurementUnit extends EntityPathBase<MeasurementUnit> {
     public final StringPath name = createString("name");
 
     public QMeasurementUnit(String variable) {
-        super(MeasurementUnit.class, forVariable(variable));
+        super(MeasurementUnitEntity.class, forVariable(variable));
     }
 
-    public QMeasurementUnit(Path<? extends MeasurementUnit> path) {
+    public QMeasurementUnit(Path<? extends MeasurementUnitEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QMeasurementUnit(PathMetadata<?> metadata) {
-        super(MeasurementUnit.class, metadata);
+        super(MeasurementUnitEntity.class, metadata);
     }
 
 }

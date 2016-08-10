@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,8 +44,8 @@ public class SalePackageBusinessRulesImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenPackageToPersistNotHaveAllPackageInReferencesSaleable() {
-        SalePackage ipackage = new SalePackage(3l);
-        SalePackage salePackage2 = new SalePackage(9l);
+        SalePackageEntity ipackage = new SalePackageEntity(3l);
+        SalePackageEntity salePackage2 = new SalePackageEntity(9l);
         List<ProposalSaleableItem> items = getProposalStub();
 
         ProposalSaleableItem newPackage = create()
@@ -64,7 +64,7 @@ public class SalePackageBusinessRulesImplTest {
     @Test
     public void shouldReturnTrueWhenPackageInItemsAndPackageWithoutReference() {
         List<ProposalSaleableItem> itemsStub = getProposalStub();
-        SalePackage salePackageWithoutRefereceSaleable = new SalePackage(9l);
+        SalePackageEntity salePackageWithoutRefereceSaleable = new SalePackageEntity(9l);
 
         ProposalSaleableItem proposalSaleablePackage = create()
                 .withPackage(salePackageWithoutRefereceSaleable)
@@ -81,9 +81,9 @@ public class SalePackageBusinessRulesImplTest {
 
 
     private List<ProposalSaleableItem> getProposalStub() {
-        SaleableUnit saleableUnitOne = createSaleableUnit(1l).build();
-        SaleableUnit saleableUnitTwo = createSaleableUnit(2l).build();
-        SalePackage ipackage = new SalePackage(2l);
+        SaleableUnitEntity saleableUnitOne = createSaleableUnit(1l).build();
+        SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
+        SalePackageEntity ipackage = new SalePackageEntity(2l);
 
         ProposalSaleableItem proposalSaleableOne = create()
                 .withPackage(ipackage)

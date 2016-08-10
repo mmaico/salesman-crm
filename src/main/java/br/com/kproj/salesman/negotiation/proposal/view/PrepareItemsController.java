@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.proposal.view;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.UpdatePackageItemsDTO;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.UpdateQuantityPriceItemsDTO;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.session.ProposalSaleableItemDTO;
@@ -55,7 +55,7 @@ public class PrepareItemsController {
     public ModelAndView showPackageItems(@PathVariable Long packageId, Model model) {
 
         Optional<ProposalSaleableItemDTO> result = proposalSaleablesDTO.getByPackageId(packageId);
-        Optional<SalePackage> salesPackage = application.getOne(packageId);
+        Optional<SalePackageEntity> salesPackage = application.getOne(packageId);
 
         model.addAttribute("salesPackage", salesPackage.isPresent() ? salesPackage.get() : null);
         model.addAttribute("proposalSaleables", proposalSaleablesDTO);

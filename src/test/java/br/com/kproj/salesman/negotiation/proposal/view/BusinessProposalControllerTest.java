@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.UpdateQuantityPriceItemsDTO;
 import br.com.kproj.salesman.negotiation.proposal.view.dto.session.ProposalSaleablesDTO;
@@ -153,8 +153,8 @@ public class BusinessProposalControllerTest extends AbstractIntegrationTest {
         ProposalSaleablesDTO dto = new ProposalSaleablesDTO();
         dto.setApplication(applicationMock);
 
-        SaleableUnit saleableUnit = SaleableUnitBuilder.createSaleableUnit(1l).withPrice(BigDecimal.TEN).build();
-        SaleableUnit saleableUnit1 = SaleableUnitBuilder.createSaleableUnit(2l).withPrice(BigDecimal.ONE).build();
+        SaleableUnitEntity saleableUnit = SaleableUnitBuilder.createSaleableUnit(1l).withPrice(BigDecimal.TEN).build();
+        SaleableUnitEntity saleableUnit1 = SaleableUnitBuilder.createSaleableUnit(2l).withPrice(BigDecimal.ONE).build();
 
         given(applicationMock.getOne(1l)).willReturn(Optional.of(saleableUnit));
         given(applicationMock.getOne(2l)).willReturn(Optional.of(saleableUnit1));

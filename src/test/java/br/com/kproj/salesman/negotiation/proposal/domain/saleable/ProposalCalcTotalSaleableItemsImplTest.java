@@ -2,8 +2,8 @@ package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackage;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnit;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SalesPackageRepository;
 import com.google.common.collect.Lists;
 
@@ -34,11 +34,11 @@ public class ProposalCalcTotalSaleableItemsImplTest {
 
     @Test
     public void shouldReturnCalcWithProductAndPackageWithPackageValueByProducts() {
-        SalePackage salePackageDB = Mockito.mock(SalePackage.class);
+        SalePackageEntity salePackageDB = Mockito.mock(SalePackageEntity.class);
 
         ProposalSaleableItem saleableItem = ProposalSaleableItemBuilder.create()
-                .withPackage(new SalePackage(1l))
-                .withSaleable(new SaleableUnit(2l))
+                .withPackage(new SalePackageEntity(1l))
+                .withSaleable(new SaleableUnitEntity(2l))
                 .withQuantity(2)
                 .withPrice(new BigDecimal(100)).build();
 
@@ -53,11 +53,11 @@ public class ProposalCalcTotalSaleableItemsImplTest {
 
     @Test
     public void shouldReturnCalcZeroWhenHaveProductAndPackageWithPackageValueByPackage() {
-        SalePackage salePackageDB = Mockito.mock(SalePackage.class);
+        SalePackageEntity salePackageDB = Mockito.mock(SalePackageEntity.class);
 
         ProposalSaleableItem saleableItem = ProposalSaleableItemBuilder.create()
-                .withPackage(new SalePackage(1l))
-                .withSaleable(new SaleableUnit(2l))
+                .withPackage(new SalePackageEntity(1l))
+                .withSaleable(new SaleableUnitEntity(2l))
                 .withQuantity(2)
                 .withPrice(new BigDecimal(100)).build();
 
@@ -72,10 +72,10 @@ public class ProposalCalcTotalSaleableItemsImplTest {
 
     @Test
     public void shouldReturnCalcPackageValueWhenHaveOnlyPackageAndPackageValueByPackage() {
-        SalePackage salePackageDB = Mockito.mock(SalePackage.class);
+        SalePackageEntity salePackageDB = Mockito.mock(SalePackageEntity.class);
 
         ProposalSaleableItem saleableItem = ProposalSaleableItemBuilder.create()
-                .withPackage(new SalePackage(1l))
+                .withPackage(new SalePackageEntity(1l))
                 .withQuantity(2)
                 .withPrice(new BigDecimal(200)).build();
 
@@ -90,10 +90,10 @@ public class ProposalCalcTotalSaleableItemsImplTest {
 
     @Test
     public void shouldReturnCalcZeroWhenHavePackageWithPackageValueByProducts() {
-        SalePackage salePackageDB = Mockito.mock(SalePackage.class);
+        SalePackageEntity salePackageDB = Mockito.mock(SalePackageEntity.class);
 
         ProposalSaleableItem saleableItem = ProposalSaleableItemBuilder.create()
-                .withPackage(new SalePackage(1l))
+                .withPackage(new SalePackageEntity(1l))
                 .withQuantity(2)
                 .withPrice(new BigDecimal(100)).build();
 
@@ -110,7 +110,7 @@ public class ProposalCalcTotalSaleableItemsImplTest {
     public void shouldCalcWhenNotHavePackage() {
 
         ProposalSaleableItem saleableItem = ProposalSaleableItemBuilder.create()
-                .withSaleable(new SaleableUnit(3l))
+                .withSaleable(new SaleableUnitEntity(3l))
                 .withQuantity(2)
                 .withPrice(new BigDecimal(100)).build();
 
