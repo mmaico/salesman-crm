@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ApproverProfileRepository extends BaseRepository<ApproverProfile, Long> {
+public interface ApproverProfileRepository extends BaseRepositoryLegacy<ApproverProfile, Long> {
 
 
     Optional<ApproverProfile> findByApprover(@Param("approver") User approver);

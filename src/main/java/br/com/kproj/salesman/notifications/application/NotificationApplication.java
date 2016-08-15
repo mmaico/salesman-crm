@@ -5,15 +5,12 @@ import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusiness
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
-import br.com.kproj.salesman.infrastructure.service.ModelService;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
-import java.util.Date;
 import java.util.List;
 
 
-public interface NotificationApplication extends ModelService<Notification> {
+public interface NotificationApplication extends ModelLegacyService<Notification> {
 
     void sendNotificationToProposalApprovers(RequestApproval requestApproval);
 

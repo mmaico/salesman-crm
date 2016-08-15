@@ -7,10 +7,10 @@ import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.NewTaskTriggerToExecuteMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.ScheduleTriggerNotificationRepository;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<ScheduleTriggerNotification> implements TaskNotificationApplication {
+public class TaskNotificationApplicationImpl extends BaseModelServiceLegacyImpl<ScheduleTriggerNotification> implements TaskNotificationApplication {
 
     @Autowired
     private ScheduleTriggerNotificationRepository repository;
@@ -36,7 +36,7 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceImpl<Schedu
     private EventBus eventBus;
 
 
-    public BaseRepository<ScheduleTriggerNotification, Long> getRepository() {
+    public BaseRepositoryLegacy<ScheduleTriggerNotification, Long> getRepository() {
         return repository;
     }
 

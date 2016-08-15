@@ -3,12 +3,12 @@ package br.com.kproj.salesman.register.application.contract;
 import br.com.kproj.salesman.infrastructure.entity.Address;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
-import br.com.kproj.salesman.infrastructure.service.ModelService;
+import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
 
-public interface AddressApplication extends ModelService<Address> {
+public interface AddressApplication extends ModelLegacyService<Address> {
 
 
     Address register(Address address, Client client);

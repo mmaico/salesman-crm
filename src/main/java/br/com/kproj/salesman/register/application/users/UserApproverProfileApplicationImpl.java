@@ -2,9 +2,9 @@ package br.com.kproj.salesman.register.application.users;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserApproverProfileRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.UserApplication;
 import br.com.kproj.salesman.register.application.contract.UserApproverProfileApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserApproverProfileApplicationImpl extends BaseModelServiceImpl<ApproverProfile> implements UserApproverProfileApplication {
+public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyImpl<ApproverProfile> implements UserApproverProfileApplication {
 
     @Autowired
     private UserApproverProfileRepository profileRepository;
@@ -42,7 +42,7 @@ public class UserApproverProfileApplicationImpl extends BaseModelServiceImpl<App
 
 
 
-    public BaseRepository<ApproverProfile, Long> getRepository() {
+    public BaseRepositoryLegacy<ApproverProfile, Long> getRepository() {
         return profileRepository;
     }
 

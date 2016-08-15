@@ -6,8 +6,8 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Collections.emptySet;
 
 @Service
-public class PersonalActivityApplicationImpl extends BaseModelServiceImpl<PersonalActivity> implements PersonalActivityApplication {
+public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<PersonalActivity> implements PersonalActivityApplication {
 
 	@Autowired
 	private PersonalAcvitityRepository repository;
@@ -78,7 +78,7 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceImpl<Person
     }
 
 
-    public BaseRepository<PersonalActivity, Long> getRepository() {
+    public BaseRepositoryLegacy<PersonalActivity, Long> getRepository() {
         return repository;
     }
 }

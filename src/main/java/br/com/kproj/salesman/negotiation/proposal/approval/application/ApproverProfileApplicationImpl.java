@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class ApproverProfileApplicationImpl extends BaseModelServiceImpl<ApproverProfile> implements ApproverProfileApplication {
+public class ApproverProfileApplicationImpl extends BaseModelServiceLegacyImpl<ApproverProfile> implements ApproverProfileApplication {
 
     @Autowired
     private ApproverProfileRepository repository;
@@ -45,7 +45,7 @@ public class ApproverProfileApplicationImpl extends BaseModelServiceImpl<Approve
         return result.get();
     }
 
-    public BaseRepository<ApproverProfile, Long> getRepository() {
+    public BaseRepositoryLegacy<ApproverProfile, Long> getRepository() {
         return repository;
     }
 }

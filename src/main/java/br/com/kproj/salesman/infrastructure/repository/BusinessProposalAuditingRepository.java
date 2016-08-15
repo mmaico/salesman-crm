@@ -2,15 +2,12 @@ package br.com.kproj.salesman.infrastructure.repository;
 
 
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
-import br.com.kproj.salesman.infrastructure.entity.auditing.TaskAudinting;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.repository.custom.PersonRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface BusinessProposalAuditingRepository extends BaseRepository<BusinessProposalAudinting, Long> {
+public interface BusinessProposalAuditingRepository extends BaseRepositoryLegacy<BusinessProposalAudinting, Long> {
 
 
 

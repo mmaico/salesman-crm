@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 import java.util.List;
 
-public interface CalendarActivityRepository extends BaseRepository<CalendarActivity, Long> {
+public interface CalendarActivityRepository extends BaseRepositoryLegacy<CalendarActivity, Long> {
 
 
     @Query("SELECT ca FROM CalendarActivity AS ca join ca.period AS p" +

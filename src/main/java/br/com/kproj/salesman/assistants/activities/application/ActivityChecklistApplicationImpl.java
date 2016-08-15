@@ -3,8 +3,8 @@ package br.com.kproj.salesman.assistants.activities.application;
 import br.com.kproj.salesman.assistants.activities.infrastructure.ActivityChecklistRepository;
 import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ActivityChecklistApplicationImpl extends BaseModelServiceImpl<ActivityChecklist> implements ActivityChecklistApplication {
+public class ActivityChecklistApplicationImpl extends BaseModelServiceLegacyImpl<ActivityChecklist> implements ActivityChecklistApplication {
 
     @Autowired
     private ActivityChecklistRepository repository;
@@ -47,7 +47,7 @@ public class ActivityChecklistApplicationImpl extends BaseModelServiceImpl<Activ
 
     }
 
-    public BaseRepository<ActivityChecklist, Long> getRepository() {
+    public BaseRepositoryLegacy<ActivityChecklist, Long> getRepository() {
         return repository;
     }
 

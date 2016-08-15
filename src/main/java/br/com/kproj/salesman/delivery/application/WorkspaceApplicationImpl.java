@@ -5,8 +5,8 @@ import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.repository.WorkspaceUnitRepository;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 
 @Service
-public class WorkspaceApplicationImpl extends BaseModelServiceImpl<WorkspaceUnit> implements WorkspaceApplication {
+public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<WorkspaceUnit> implements WorkspaceApplication {
 
     @Autowired
     private WorkspaceUnitRepository repository;
@@ -64,7 +64,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceImpl<WorkspaceUnit
     }
 
 
-    public BaseRepository<WorkspaceUnit, Long> getRepository() {
+    public BaseRepositoryLegacy<WorkspaceUnit, Long> getRepository() {
         return this.repository;
     }
 

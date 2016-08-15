@@ -5,11 +5,11 @@ import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.service.ModelService;
+import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
-public interface NegotiationApplication extends ModelService<BusinessProposal> {
+public interface NegotiationApplication extends ModelLegacyService<BusinessProposal> {
 
     BusinessProposal register(BusinessProposal businessProposal);
 

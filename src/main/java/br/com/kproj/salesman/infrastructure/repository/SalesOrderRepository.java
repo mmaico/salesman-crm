@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface SalesOrderRepository extends BaseRepository<SalesOrder, Long> {
+public interface SalesOrderRepository extends BaseRepositoryLegacy<SalesOrder, Long> {
 
     @Query("SELECT so FROM SalesOrder AS so WHERE so.client = :client")
     List<SalesOrder> getOrdersByClient(@Param("client")Client client);

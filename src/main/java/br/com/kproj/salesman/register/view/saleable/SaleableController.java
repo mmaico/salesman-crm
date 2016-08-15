@@ -22,7 +22,7 @@ public class SaleableController {
 
 
     @RequestMapping("/saleables/list")
-    public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
+    public ModelAndView list(@PageableDefault(size=150000)Pageable pageable, Model model) {
 
         Pager pager = Pager.binding(pageable);
 

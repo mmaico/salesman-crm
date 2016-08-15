@@ -2,9 +2,9 @@ package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.ChecklistTemplateRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ChecklistTemplateApplicationImpl extends BaseModelServiceImpl<ChecklistTemplate> implements ChecklistTemplateApplication {
+public class ChecklistTemplateApplicationImpl extends BaseModelServiceLegacyImpl<ChecklistTemplate> implements ChecklistTemplateApplication {
 
     @Autowired
     private ChecklistTemplateRepository repository;
@@ -38,7 +38,7 @@ public class ChecklistTemplateApplicationImpl extends BaseModelServiceImpl<Check
         repository.delete(checklistTemplate);
     }
 
-    public BaseRepository<ChecklistTemplate, Long> getRepository() {
+    public BaseRepositoryLegacy<ChecklistTemplate, Long> getRepository() {
         return repository;
     }
 

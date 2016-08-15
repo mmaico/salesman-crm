@@ -2,6 +2,7 @@ package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;

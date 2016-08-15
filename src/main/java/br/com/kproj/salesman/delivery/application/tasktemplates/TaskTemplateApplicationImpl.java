@@ -4,9 +4,9 @@ import br.com.kproj.salesman.delivery.domain.TaskTemplateDomainService;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTemplate> implements TaskTemplateApplication {
+public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<TaskTemplate> implements TaskTemplateApplication {
 
     @Autowired
     private TaskTemplateRepository repository;
@@ -85,7 +85,7 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceImpl<TaskTempla
         return result;
     }
 
-    public BaseRepository<TaskTemplate, Long> getRepository() {
+    public BaseRepositoryLegacy<TaskTemplate, Long> getRepository() {
         return repository;
     }
 

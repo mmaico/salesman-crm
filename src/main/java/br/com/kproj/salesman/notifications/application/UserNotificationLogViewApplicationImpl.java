@@ -2,10 +2,10 @@ package br.com.kproj.salesman.notifications.application;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.UserNotificationLogViewRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class UserNotificationLogViewApplicationImpl extends BaseModelServiceImpl<UserNotificationLogView> implements UserNotificationLogViewApplication {
+public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLegacyImpl<UserNotificationLogView> implements UserNotificationLogViewApplication {
 
 
     @Autowired
@@ -22,7 +22,7 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceImpl
 
 
 
-    public BaseRepository<UserNotificationLogView, Long> getRepository() {
+    public BaseRepositoryLegacy<UserNotificationLogView, Long> getRepository() {
         return repository;
     }
 

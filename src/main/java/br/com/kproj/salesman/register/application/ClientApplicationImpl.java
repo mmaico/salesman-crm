@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.domain.contract.ClientDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import static br.com.kproj.salesman.infrastructure.repository.predicates.PersonP
 import static com.google.common.collect.Lists.newArrayList;
 
 @Service
-public class ClientApplicationImpl extends BaseModelServiceImpl<Person> implements ClientApplication {
+public class ClientApplicationImpl extends BaseModelServiceLegacyImpl<Person> implements ClientApplication {
 
     private PersonRepository clientRepository;
 
@@ -46,7 +46,7 @@ public class ClientApplicationImpl extends BaseModelServiceImpl<Person> implemen
     	return clientRepository.findAll(findByFilters(aggregator), pager, orderByName());
     }
 
-    public BaseRepository<Person, Long> getRepository() {
+    public BaseRepositoryLegacy<Person, Long> getRepository() {
         return this.clientRepository;
     }
 

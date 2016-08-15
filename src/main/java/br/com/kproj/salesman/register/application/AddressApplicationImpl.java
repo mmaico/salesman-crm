@@ -5,8 +5,8 @@ import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AddressRepository;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.AddressApplication;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.application.contract.ProviderApplication;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddressApplicationImpl extends BaseModelServiceImpl<Address> implements AddressApplication {
+public class AddressApplicationImpl extends BaseModelServiceLegacyImpl<Address> implements AddressApplication {
 
     @Autowired
     private AddressRepository addressRepository;
@@ -68,7 +68,7 @@ public class AddressApplicationImpl extends BaseModelServiceImpl<Address> implem
         return addressRepository.findByPerson(provider.to());
     }
 
-    public BaseRepository<Address, Long> getRepository() {
+    public BaseRepositoryLegacy<Address, Long> getRepository() {
         return this.addressRepository;
     }
 }

@@ -4,14 +4,14 @@ package br.com.kproj.salesman.infrastructure.repository.task;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface TaskTemplateRepository extends BaseRepository<TaskTemplate, Long> {
+public interface TaskTemplateRepository extends BaseRepositoryLegacy<TaskTemplate, Long> {
 
     @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.saleable = :saleable AND tt.parentId is null")
     List<TaskTemplate> findTaskTemplateBy(@Param("saleable")SaleableUnitEntity saleable);

@@ -5,21 +5,20 @@ import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudi
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalAuditingBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceImpl<BusinessProposalAudinting> implements BusinessProposalAuditingApplication {
+public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceLegacyImpl<BusinessProposalAudinting> implements BusinessProposalAuditingApplication {
 
     @Autowired
     private BusinessProposalAuditingRepository repository;
@@ -61,7 +60,7 @@ public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceImp
         return repository.findAll(businessEntityId, pager);
     }
 
-    public BaseRepository<BusinessProposalAudinting, Long> getRepository() {
+    public BaseRepositoryLegacy<BusinessProposalAudinting, Long> getRepository() {
         return this.repository;
     }
 }

@@ -4,14 +4,13 @@ package br.com.kproj.salesman.delivery.infrastructure.repository;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserWorkOnTasksRepository extends BaseRepository<User, Long> {
+public interface UserWorkOnTasksRepository extends BaseRepositoryLegacy<User, Long> {
 
     @Query("SELECT DISTINCT user FROM Task AS t JOIN t.signedBy AS user")
     List<User> findUsersWorksInTasks();

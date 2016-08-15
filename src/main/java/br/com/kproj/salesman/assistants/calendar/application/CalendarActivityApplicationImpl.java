@@ -8,8 +8,8 @@ import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CalendarActivityApplicationImpl extends BaseModelServiceImpl<CalendarActivity> implements CalendarActivityApplication {
+public class CalendarActivityApplicationImpl extends BaseModelServiceLegacyImpl<CalendarActivity> implements CalendarActivityApplication {
 
 	@Autowired
 	private CalendarActivityRepository repository;
@@ -32,7 +32,7 @@ public class CalendarActivityApplicationImpl extends BaseModelServiceImpl<Calend
     private NormalizeEntityRequest normalizeEntityRequest;
 
 
-    public BaseRepository<CalendarActivity, Long> getRepository() {
+    public BaseRepositoryLegacy<CalendarActivity, Long> getRepository() {
         return repository;
     }
 

@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.register.domain.contract;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.service.DomainBusinessRules;
+import br.com.kproj.salesman.infrastructure.service.DomainBusinessRulesLegacy;
 
-public interface ProviderDomainService extends DomainBusinessRules<Person> {
+public interface ProviderDomainService extends DomainBusinessRulesLegacy<Person> {
 
 
 

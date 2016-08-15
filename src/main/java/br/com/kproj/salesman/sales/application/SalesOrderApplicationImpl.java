@@ -5,9 +5,9 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.events.messages.NewSalesOrderMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.sales.infrastructure.generatebyproposal.convert.ProposalToSaleOrder;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> implements SalesOrderApplication {
+public class SalesOrderApplicationImpl extends BaseModelServiceLegacyImpl<SalesOrder> implements SalesOrderApplication {
 
 
     @Autowired
@@ -55,7 +55,7 @@ public class SalesOrderApplicationImpl extends BaseModelServiceImpl<SalesOrder> 
     }
 
 
-    public BaseRepository<SalesOrder, Long> getRepository() {
+    public BaseRepositoryLegacy<SalesOrder, Long> getRepository() {
         return repository;
     }
 

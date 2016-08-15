@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface BusinessProposalRepository extends BaseRepository<BusinessProposal, Long> {
+public interface BusinessProposalRepository extends BaseRepositoryLegacy<BusinessProposal, Long> {
 
 
     List<BusinessProposal> findByClient(@Param("client") Person client);

@@ -10,10 +10,10 @@ import br.com.kproj.salesman.infrastructure.events.messages.RequestApprovalFinal
 import br.com.kproj.salesman.infrastructure.events.messages.RequestNewApprovalMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.ApproverBuild
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<RequestApproval> implements RequestApprovalApplication {
+public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<RequestApproval> implements RequestApprovalApplication {
 
     @Autowired
     private RequestApprovalRepository repository;
@@ -113,7 +113,7 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceImpl<Request
     }
 
 
-    public BaseRepository<RequestApproval, Long> getRepository() {
+    public BaseRepositoryLegacy<RequestApproval, Long> getRepository() {
         return repository;
     }
 }

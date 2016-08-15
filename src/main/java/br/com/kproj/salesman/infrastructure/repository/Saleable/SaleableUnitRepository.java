@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public interface SaleableUnitRepository extends BaseSaleableRepository<SaleableUnitEntity> {
 
-    @Query("SELECT s FROM SaleableUnit AS s WHERE s.id = :id")
+    @Query("SELECT s FROM SaleableUnitEntity AS s WHERE s.id = :id")
     Optional<SaleableUnitEntity> getOne(@Param("id")Long id);
 
-    @Query("SELECT s FROM SaleableUnit AS s WHERE s.type = :saleableType")
+    @Query("SELECT s FROM SaleableUnitEntity AS s WHERE s.type = :saleableType")
     List<SaleableUnitEntity> getByType(@Param("saleableType") SaleableTypeEntity saleableType);
 }

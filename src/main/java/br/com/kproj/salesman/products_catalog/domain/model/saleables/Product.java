@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
+import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import lombok.Data;
 
 @Data

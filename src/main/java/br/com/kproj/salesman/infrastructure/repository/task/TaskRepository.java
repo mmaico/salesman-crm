@@ -4,14 +4,14 @@ package br.com.kproj.salesman.infrastructure.repository.task;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface TaskRepository extends BaseRepository<Task, Long> {
+public interface TaskRepository extends BaseRepositoryLegacy<Task, Long> {
 
     @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
     List<Task> findBySalesOrder(@Param("salesOrder") SalesOrder salesOrder);

@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.register.application.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.ProductRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.saleable.ProductApplication;
 import br.com.kproj.salesman.register.domain.contract.SaleableUnitDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProductApplicationImpl extends BaseModelServiceImpl<ProductEntity> implements ProductApplication {
+public class ProductApplicationImpl extends BaseModelServiceLegacyImpl<ProductEntity> implements ProductApplication {
 
     private SaleableUnitDomainService domainService;
 
@@ -41,7 +41,7 @@ public class ProductApplicationImpl extends BaseModelServiceImpl<ProductEntity> 
         return productRepository.getOne(id);
     }
 
-    public BaseRepository<ProductEntity, Long> getRepository() {
+    public BaseRepositoryLegacy<ProductEntity, Long> getRepository() {
         return productRepository;
     }
 

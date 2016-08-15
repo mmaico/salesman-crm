@@ -3,12 +3,12 @@ package br.com.kproj.salesman.delivery.application;
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.service.ModelService;
+import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
 
-public interface WorkspaceApplication extends ModelService<WorkspaceUnit> {
+public interface WorkspaceApplication extends ModelLegacyService<WorkspaceUnit> {
 
     List<SalesOrder> findNewSalesOrder();
 

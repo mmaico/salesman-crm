@@ -7,9 +7,9 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.events.messages.BusinessProposalClosedWonMessage;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.negotiation.proposal.domain.BusinessProposalDomainService;
 import br.com.kproj.salesman.negotiation.proposal.domain.CanChangeProposalStatusDomainService;
 import br.com.kproj.salesman.register.application.prepare.PreUpdateItems;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessProposal> implements NegotiationApplication {
+public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<BusinessProposal> implements NegotiationApplication {
 
 	@Autowired
 	private BusinessProposalDomainService service;
@@ -104,7 +104,7 @@ public class NegotiationApplicationImpl extends BaseModelServiceImpl<BusinessPro
         }
     }
 
-    public BaseRepository<BusinessProposal, Long> getRepository() {
+    public BaseRepositoryLegacy<BusinessProposal, Long> getRepository() {
         return repository;
     }
 }

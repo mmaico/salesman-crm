@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface StateRepository extends BaseRepository<State, Long> {
+public interface StateRepository extends BaseRepositoryLegacy<State, Long> {
 
     @Query("SELECT s FROM State AS s WHERE s.id <> 1 ORDER BY s.name ASC")
     List<State> getNacionalStates();

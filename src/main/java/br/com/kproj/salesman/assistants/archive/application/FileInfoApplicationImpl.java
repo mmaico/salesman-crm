@@ -5,9 +5,9 @@ import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfo;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.service.AppFileApplication;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FileInfoApplicationImpl extends BaseModelServiceImpl<FileInfo> implements FileInfoApplication {
+public class FileInfoApplicationImpl extends BaseModelServiceLegacyImpl<FileInfo> implements FileInfoApplication {
 
 	@Autowired
 	private FileInfoRepository repository;
@@ -24,7 +24,7 @@ public class FileInfoApplicationImpl extends BaseModelServiceImpl<FileInfo> impl
     @Autowired
     private AppFileApplication appFileApplication;
 
-    public BaseRepository<FileInfo, Long> getRepository() {
+    public BaseRepositoryLegacy<FileInfo, Long> getRepository() {
         return repository;
     }
 

@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Data
 public class SaleableUnit extends ModelIdentifiable {
@@ -30,6 +29,7 @@ public class SaleableUnit extends ModelIdentifiable {
     private BigDecimal priceCost;
 
     public SaleableUnit(){}
+
     public SaleableUnit(String name) {
         this.name = name;
     }
@@ -42,26 +42,4 @@ public class SaleableUnit extends ModelIdentifiable {
     }
 
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Saleable Unit {");
-        sb.append("id=").append(getId());
-        sb.append(", name=").append(name);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null) return false;
-        SaleableUnit saleableUnit = (SaleableUnit) o;
-        return Objects.equals(getId(), saleableUnit.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
 }

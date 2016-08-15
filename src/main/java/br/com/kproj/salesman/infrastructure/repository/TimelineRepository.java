@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface TimelineRepository extends BaseRepository<Timeline, Long> {
+public interface TimelineRepository extends BaseRepositoryLegacy<Timeline, Long> {
 
     @Query("SELECT t FROM Timeline AS t where t.person = :person")
     Optional<Timeline> findOne(@Param("person")Person person);

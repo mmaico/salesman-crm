@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface RequestApprovalRepository extends BaseRepository<RequestApproval, Long> {
+public interface RequestApprovalRepository extends BaseRepositoryLegacy<RequestApproval, Long> {
 
 
     @Query("SELECT ra FROM RequestApproval AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")

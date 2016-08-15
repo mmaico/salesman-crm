@@ -3,9 +3,9 @@ package br.com.kproj.salesman.register.application.saleable;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SalesPackageRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.saleable.SalePackageApplication;
 import br.com.kproj.salesman.register.domain.contract.SaleableUnitDomainService;
 import br.com.kproj.salesman.register.domain.contract.SalesPackageAddSaleableDomainService;
@@ -20,7 +20,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErro
 import static com.google.common.collect.Sets.newHashSet;
 
 @Service("salePackageApplication")
-public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackageEntity> implements SalePackageApplication {
+public class SalesPackageApplicationImpl extends BaseModelServiceLegacyImpl<SalePackageEntity> implements SalePackageApplication {
 
     @Autowired
     private SaleableUnitDomainService domainService;
@@ -75,7 +75,7 @@ public class SalesPackageApplicationImpl extends BaseModelServiceImpl<SalePackag
         return salesPackageRepository.getOne(id);
     }
 
-    public BaseRepository<SalePackageEntity, Long> getRepository() {
+    public BaseRepositoryLegacy<SalePackageEntity, Long> getRepository() {
         return salesPackageRepository;
     }
 

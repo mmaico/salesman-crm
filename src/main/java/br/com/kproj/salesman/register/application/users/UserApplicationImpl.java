@@ -2,9 +2,9 @@ package br.com.kproj.salesman.register.application.users;
 
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.events.messages.UserSaveMessage;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.UserApplication;
 import br.com.kproj.salesman.register.domain.contract.UserDomainService;
 import com.google.common.eventbus.EventBus;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 @Service
-public class UserApplicationImpl extends BaseModelServiceImpl<User> implements UserApplication {
+public class UserApplicationImpl extends BaseModelServiceLegacyImpl<User> implements UserApplication {
 
     @Autowired
     private UserRepository userRepository;
@@ -44,7 +44,7 @@ public class UserApplicationImpl extends BaseModelServiceImpl<User> implements U
         return userRepository.findByLogin(login).isPresent();
     }
 
-    public BaseRepository<User, Long> getRepository() {
+    public BaseRepositoryLegacy<User, Long> getRepository() {
         return userRepository;
     }
 

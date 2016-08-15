@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.ContactRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.ClientApplication;
 import br.com.kproj.salesman.register.application.contract.ContactApplication;
 import br.com.kproj.salesman.register.application.contract.ProviderApplication;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ContactApplicationImpl extends BaseModelServiceImpl<Contact> implements ContactApplication {
+public class ContactApplicationImpl extends BaseModelServiceLegacyImpl<Contact> implements ContactApplication {
 
     @Autowired
     private ContactRepository contactRepository;
@@ -63,7 +63,7 @@ public class ContactApplicationImpl extends BaseModelServiceImpl<Contact> implem
         return contactRepository.findByPerson(provider.to());
     }
 
-    public BaseRepository<Contact, Long> getRepository() {
+    public BaseRepositoryLegacy<Contact, Long> getRepository() {
         return this.contactRepository;
     }
 }

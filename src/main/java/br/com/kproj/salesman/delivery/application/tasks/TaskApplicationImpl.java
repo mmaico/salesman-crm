@@ -1,22 +1,19 @@
 package br.com.kproj.salesman.delivery.application.tasks;
 
-import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.TaskChangeHistoryBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeMessage;
-import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
@@ -34,7 +31,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Collections.emptySet;
 
 @Service
-public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements TaskApplication {
+public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implements TaskApplication {
 
     @Autowired
     private TaskRepository repository;
@@ -216,7 +213,7 @@ public class TaskApplicationImpl extends BaseModelServiceImpl<Task> implements T
     }
 
 
-    public BaseRepository<Task, Long> getRepository() {
+    public BaseRepositoryLegacy<Task, Long> getRepository() {
         return repository;
     }
 

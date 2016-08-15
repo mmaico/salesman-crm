@@ -7,10 +7,9 @@ import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification
 import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.entity.builders.ApprovalBusinessProposalNotificationBuilder.createProposalNotification;
 
 @Service
-public class NotificationApplicationImpl extends BaseModelServiceImpl<Notification> implements NotificationApplication {
+public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Notification> implements NotificationApplication {
 
 
     @Autowired
@@ -31,7 +30,7 @@ public class NotificationApplicationImpl extends BaseModelServiceImpl<Notificati
     @Autowired
     private UserNotificationLogViewApplication logViewApplication;
 
-    public BaseRepository<Notification, Long> getRepository() {
+    public BaseRepositoryLegacy<Notification, Long> getRepository() {
         return repository;
     }
 

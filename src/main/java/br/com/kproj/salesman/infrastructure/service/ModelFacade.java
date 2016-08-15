@@ -5,9 +5,9 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
-public interface ModelService<T> {
+public interface ModelFacade<T> {
 
-    T save(T entity, DomainBusinessRules... checkRules);
+    Optional<T> register(T entity, DomainBusinessRules... checkRules);
 
     Iterable<T> findAll(Pageable pager);
     

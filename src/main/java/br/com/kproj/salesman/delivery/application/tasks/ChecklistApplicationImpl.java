@@ -2,9 +2,9 @@ package br.com.kproj.salesman.delivery.application.tasks;
 
 import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.ChecklistRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ChecklistApplicationImpl extends BaseModelServiceImpl<Checklist> implements ChecklistApplication {
+public class ChecklistApplicationImpl extends BaseModelServiceLegacyImpl<Checklist> implements ChecklistApplication {
 
     @Autowired
     private ChecklistRepository repository;
@@ -47,7 +47,7 @@ public class ChecklistApplicationImpl extends BaseModelServiceImpl<Checklist> im
 
     }
 
-    public BaseRepository<Checklist, Long> getRepository() {
+    public BaseRepositoryLegacy<Checklist, Long> getRepository() {
         return repository;
     }
 

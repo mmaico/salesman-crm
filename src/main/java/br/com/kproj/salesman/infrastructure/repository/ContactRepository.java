@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ContactRepository extends BaseRepository<Contact, Long> {
+public interface ContactRepository extends BaseRepositoryLegacy<Contact, Long> {
 
 
     @Query("SELECT c FROM Contact AS c WHERE c.person = :person")

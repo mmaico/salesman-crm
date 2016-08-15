@@ -4,7 +4,7 @@ package br.com.kproj.salesman.delivery.infrastructure.repository;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 
-public interface TaskChangeHistoryRepository extends BaseRepository<TaskChangeHistory, Long> {
+public interface TaskChangeHistoryRepository extends BaseRepositoryLegacy<TaskChangeHistory, Long> {
 
 
     @Query("SELECT tch.dateOfChange FROM TaskChangeHistory AS tch JOIN tch.taskChanged AS task " +

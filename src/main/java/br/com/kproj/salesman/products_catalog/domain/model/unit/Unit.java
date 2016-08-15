@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables;
+package br.com.kproj.salesman.products_catalog.domain.model.unit;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;

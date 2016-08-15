@@ -2,9 +2,9 @@ package br.com.kproj.salesman.register.application.saleable;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("saleableApplication")
-public class SaleableApplicationImpl extends BaseModelServiceImpl<SaleableUnitEntity> implements SaleableApplication {
+public class SaleableApplicationImpl extends BaseModelServiceLegacyImpl<SaleableUnitEntity> implements SaleableApplication {
 
 
 
@@ -25,7 +25,7 @@ public class SaleableApplicationImpl extends BaseModelServiceImpl<SaleableUnitEn
     }
 
 
-    public BaseRepository<SaleableUnitEntity, Long> getRepository() {
+    public BaseRepositoryLegacy<SaleableUnitEntity, Long> getRepository() {
         return saleableRepository;
     }
 

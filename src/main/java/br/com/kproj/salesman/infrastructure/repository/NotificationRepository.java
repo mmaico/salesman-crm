@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 import java.util.List;
 
-public interface NotificationRepository extends BaseRepository<Notification, Long> {
+public interface NotificationRepository extends BaseRepositoryLegacy<Notification, Long> {
 
     @Query("SELECT abpn FROM ApprovalBusinessProposalNotification AS abpn WHERE abpn.notified = :user " +
             " ORDER BY abpn.createDate DESC")

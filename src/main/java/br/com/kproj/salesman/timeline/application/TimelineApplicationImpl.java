@@ -5,7 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
@@ -15,7 +14,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.repository.*;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.negotiation.infrastructure.repository.LeadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,14 +25,14 @@ import java.util.Map;
 import static br.com.kproj.salesman.infrastructure.entity.builders.TimelineBuilder.createTimeline;
 
 @Service
-public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> implements TimelineApplication {
+public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline> implements TimelineApplication {
 
 	
     @Autowired
     private TimelineRepository timelineRepository;
 
 
-	private Map<Class<? extends TimelinePresent>, BaseRepository<? extends Identifiable, Long>> repositories = new HashMap<>();
+	private Map<Class<? extends TimelinePresent>, BaseRepositoryLegacy<? extends Identifiable, Long>> repositories = new HashMap<>();
 
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
@@ -56,7 +55,7 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 	public <T extends TimelinePresent> Timeline register(T entity) {
 		Timeline timeline = null;
 
-		BaseRepository<? extends Identifiable, Long> repository = repositories.get(entity.getClass());
+		BaseRepositoryLegacy<? extends Identifiable, Long> repository = repositories.get(entity.getClass());
 		TimelinePresent result = (TimelinePresent)repository.findOne(entity.getId());
 
 		if (result.getTimeline() == null) {
@@ -70,7 +69,7 @@ public class TimelineApplicationImpl extends BaseModelServiceImpl<Timeline> impl
 		return timeline;
 	}
 
-	public BaseRepository<Timeline, Long> getRepository() {
+	public BaseRepositoryLegacy<Timeline, Long> getRepository() {
         return timelineRepository;
     }
 

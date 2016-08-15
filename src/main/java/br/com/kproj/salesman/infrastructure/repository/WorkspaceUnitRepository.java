@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface WorkspaceUnitRepository extends BaseRepository<WorkspaceUnit, Long> {
+public interface WorkspaceUnitRepository extends BaseRepositoryLegacy<WorkspaceUnit, Long> {
 
 
     @Query("SELECT wu FROM WorkspaceUnit AS wu WHERE wu.salesOrder = :salesOrder AND wu.user = :user ")

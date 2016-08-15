@@ -4,16 +4,16 @@ import br.com.kproj.salesman.assistants.calendar.infrastructure.CalendarReposito
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.builders.CalendarBuilder;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
+import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CalendarApplicationImpl extends BaseModelServiceImpl<Calendar> implements CalendarApplication {
+public class CalendarApplicationImpl extends BaseModelServiceLegacyImpl<Calendar> implements CalendarApplication {
 
 	@Autowired
 	private CalendarRepository repository;
@@ -38,7 +38,7 @@ public class CalendarApplicationImpl extends BaseModelServiceImpl<Calendar> impl
         return calendarLoaded.get();
     }
 
-    public BaseRepository<Calendar, Long> getRepository() {
+    public BaseRepositoryLegacy<Calendar, Long> getRepository() {
         return repository;
     }
 }

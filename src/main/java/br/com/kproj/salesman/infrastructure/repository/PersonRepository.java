@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface PersonRepository extends BaseRepository<Person, Long>, PersonRepositoryCustom {
+public interface PersonRepository extends BaseRepositoryLegacy<Person, Long>, PersonRepositoryCustom {
 
 
     @Query("SELECT p FROM Person AS p WHERE p.id = :id")

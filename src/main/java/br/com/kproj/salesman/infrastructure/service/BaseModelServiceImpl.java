@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.service;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
+import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,36 +10,29 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-import static java.util.Arrays.asList;
-
 @Transactional
 @Service
-public abstract class BaseModelServiceImpl<T extends Identifiable> implements ModelService<T> {
+public abstract class BaseModelServiceImpl<T extends ModelIdentifiable> implements ModelFacade<T> {
 
     @Override
-    public T save(T entity, DomainBusinessRules... checkrules) {
+    public Optional<T> register(T entity, DomainBusinessRules... checkrules) {
 
         if (entity == null) {
-            return entity;
+            return Optional.empty();
         }
 
         if (entity.isNew()) {
-            asList(checkrules).stream()
-                    .forEach(check -> check.checkBusinessRulesFor(entity));
             return getRepository().save(entity);
         } else {
-            T entityLoaded = getRepository().findOne(entity.getId());
+            Optional<T> result = getRepository().findOne(entity.getId());
 
-            if (entityLoaded == null) {
+            if (result.isPresent()) {
                 throw new IllegalArgumentException("entity.to.update.not.exist");
             }
 
-            BeanUtils.create().copyProperties(entityLoaded, entity);
+            BeanUtils.create().copyProperties(result.get(), entity);
 
-            asList(checkrules).stream()
-                            .forEach(check -> check.checkBusinessRulesFor(entityLoaded));
-
-            return getRepository().save(entityLoaded);
+            return getRepository().save(result.get());
         }
     }
 
@@ -53,9 +46,7 @@ public abstract class BaseModelServiceImpl<T extends Identifiable> implements Mo
     		return Optional.empty();
     	}
     	
-    	T entity = getRepository().findOne(id);
-    	
-    	return Optional.ofNullable(entity);
+    	return getRepository().findOne(id);
     }
 
     public abstract BaseRepository<T, Long> getRepository();
