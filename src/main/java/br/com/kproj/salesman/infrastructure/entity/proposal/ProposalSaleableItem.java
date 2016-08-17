@@ -38,6 +38,7 @@ public class ProposalSaleableItem extends Identifiable {
     private BigDecimal price;
 
     @NotNull(message = "domain.saleable.original.price.is.invalid")
+    @Column(name = "original_price")
     private BigDecimal originalPrice;
 
     @NotNull
