@@ -33,9 +33,8 @@
 
 
 
-    <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839"/>
-    <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387"/>
-
+    <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
+    <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387" person_id="1"/>
     <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
 
     <operation_region id="1" name="SP"/>

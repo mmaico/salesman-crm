@@ -38,7 +38,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;
 
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit saleable;
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleable;
 
     public final ListPath<TaskCostTemplate, QTaskCostTemplate> tasksCostsTemplates = this.<TaskCostTemplate, QTaskCostTemplate>createList("tasksCostsTemplates", TaskCostTemplate.class, QTaskCostTemplate.class, PathInits.DIRECT2);
 
@@ -65,7 +65,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
     public QTaskTemplate(Class<? extends TaskTemplate> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("region")) : null;
-        this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit(forProperty("saleable")) : null;
+        this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;
     }
 
 }

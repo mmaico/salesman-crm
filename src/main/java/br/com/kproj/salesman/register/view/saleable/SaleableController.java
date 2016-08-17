@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@RestController(value = "oldSeableController")
 public class SaleableController {
 
-    @Autowired
-    private SaleableApplication application;
-
-
-
-
-    @RequestMapping("/saleables/list")
-    public ModelAndView list(@PageableDefault(size=150000)Pageable pageable, Model model) {
-
-        Pager pager = Pager.binding(pageable);
-
-        Iterable<SaleableUnitEntity> result = this.application.findAll(pager);
-
-        model.addAttribute("saleables", result);
-        return new ModelAndView("/saleables/saleablesList");
-    }
-    
+//    @Autowired
+//    private SaleableApplication application;
+//
+//
+//
+//
+//    @RequestMapping("/saleables/list")
+//    public ModelAndView list(@PageableDefault(size=150000)Pageable pageable, Model model) {
+//
+//        Pager pager = Pager.binding(pageable);
+//
+//        Iterable<SaleableUnitEntity> result = this.application.findAll(pager);
+//
+//        model.addAttribute("saleables", result);
+//        return new ModelAndView("/saleables/saleablesList");
+//    }
+//
 
 
 }

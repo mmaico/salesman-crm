@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 
-@RestController
+@RestController(value = "oldSaleableEndpoint")
 public class SaleableEndpoint {
 
-    @Autowired
-    private SaleableApplication service;
-
-
-
-    @RequestMapping(value = "/rs/saleable/{saleableId}", method = RequestMethod.GET)
-    public @ResponseBody
-    SaleableUnitEntity getSaleable(@PathVariable Long saleableId) {
-
-        Optional<SaleableUnitEntity> saleable = service.getOne(saleableId);
-
-        return saleable.isPresent() ? saleable.get() : null;
-    }
-
+//    @Autowired
+//    private SaleableApplication service;
+//
+//
+//
+//    @RequestMapping(value = "/rs/saleable/{saleableId}", method = RequestMethod.GET)
+//    public @ResponseBody
+//    SaleableUnitEntity getSaleable(@PathVariable Long saleableId) {
+//
+//        Optional<SaleableUnitEntity> saleable = service.getOne(saleableId);
+//
+//        return saleable.isPresent() ? saleable.get() : null;
+//    }
+//
 
 
 }

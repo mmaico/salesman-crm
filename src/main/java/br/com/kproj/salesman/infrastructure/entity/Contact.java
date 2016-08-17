@@ -4,8 +4,6 @@ import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import com.google.gson.annotations.Expose;
-import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -48,6 +46,7 @@ public class Contact extends Identifiable implements TimelinePresent {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
     @ExcludeAuditingField
     private Person person;
 

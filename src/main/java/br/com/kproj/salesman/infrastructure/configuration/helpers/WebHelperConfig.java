@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infrastructure.configuration;
+package br.com.kproj.salesman.infrastructure.configuration.helpers;
 
 
 import br.com.kproj.salesman.infrastructure.helpers.*;

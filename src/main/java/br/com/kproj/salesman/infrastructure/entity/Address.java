@@ -5,7 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.location.City;
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
 import br.com.kproj.salesman.infrastructure.entity.location.State;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

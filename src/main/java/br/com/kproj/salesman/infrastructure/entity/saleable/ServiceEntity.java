@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
+import com.trex.shared.annotations.EntityReference;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

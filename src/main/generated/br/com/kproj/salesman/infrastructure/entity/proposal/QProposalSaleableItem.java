@@ -34,9 +34,9 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
 
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit saleableUnit;
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleableUnit;
 
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackage salePackage;
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity salePackage;
 
     public QProposalSaleableItem(String variable) {
         this(ProposalSaleableItem.class, forVariable(variable), INITS);
@@ -57,8 +57,8 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
     public QProposalSaleableItem(Class<? extends ProposalSaleableItem> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.businessProposal = inits.isInitialized("businessProposal") ? new QBusinessProposal(forProperty("businessProposal"), inits.get("businessProposal")) : null;
-        this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit(forProperty("saleableUnit")) : null;
-        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackage(forProperty("salePackage")) : null;
+        this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
+        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;
     }
 
 }

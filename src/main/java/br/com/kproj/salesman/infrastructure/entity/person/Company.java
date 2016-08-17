@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 
 import br.com.kproj.salesman.infrastructure.entity.person.client.ClientCompany;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.ProviderCompany;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;

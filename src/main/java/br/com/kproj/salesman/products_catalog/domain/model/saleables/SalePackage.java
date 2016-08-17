@@ -1,12 +1,16 @@
 package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import com.google.common.collect.Lists;
+import com.trex.shared.annotations.EntityReference;
 
 import java.util.List;
 
-
+@EntityReference(SalePackageEntity.class)
 public class SalePackage extends SaleableUnit {
 
+    @EntityReference(SaleableUnitEntity.class)
     private List<SaleableUnit> saleables;
 
 

@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -32,9 +32,9 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
 
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit saleableUnit;
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleableUnit;
 
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackage salePackage;
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity salePackage;
 
     public final QSalesOrder salesOrder;
 
@@ -56,8 +56,8 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
 
     public QSalesOrderItem(Class<? extends SalesOrderItem> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnit(forProperty("saleableUnit")) : null;
-        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackage(forProperty("salePackage")) : null;
+        this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
+        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;
         this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
     }
 
