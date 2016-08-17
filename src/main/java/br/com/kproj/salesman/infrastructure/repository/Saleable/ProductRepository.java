@@ -11,9 +11,9 @@ import java.util.Optional;
 
 public interface ProductRepository extends BaseSaleableRepository<ProductEntity> {
 
-    @Query("SELECT p FROM Product AS p WHERE p.type = 'PRODUCT' AND p.id = :id")
+    @Query("SELECT p FROM ProductEntity AS p WHERE p.type = 'PRODUCT' AND p.id = :id")
     Optional<ProductEntity> getOne(@Param("id")Long id);
 
-    @Query("SELECT p FROM Product AS p WHERE p.type = 'PRODUCT' ORDER BY p.name")
+    @Query("SELECT p FROM ProductEntity AS p WHERE p.type = 'PRODUCT' ORDER BY p.name")
     Page<ProductEntity> findAll(Pageable pageable);
 }

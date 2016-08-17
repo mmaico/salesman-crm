@@ -31,7 +31,7 @@ public class ProductRepositoryHibernate implements ProductRepository {
         Product proxy = BusinessModelProxy.from(productsEntities.getContent().get(0)).proxy(Product.class);
 
         List<Product> converteds = productsEntities.getContent().stream()
-                .map(item -> BusinessModelProxy.from(item).proxy(Product.class))
+                .map(item -> BusinessModelClone.from(item).convertTo(Product.class))
                 .collect(Collectors.toList());
 
         return new PageImpl<>(converteds);

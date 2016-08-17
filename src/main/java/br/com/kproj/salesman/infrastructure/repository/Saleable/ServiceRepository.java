@@ -11,9 +11,9 @@ import java.util.Optional;
 
 public interface ServiceRepository extends BaseSaleableRepository<ServiceEntity> {
 
-    @Query("SELECT s FROM Service AS s WHERE s.type = 'SERVICE' AND s.id = :id")
+    @Query("SELECT s FROM ServiceEntity AS s WHERE s.type = 'SERVICE' AND s.id = :id")
     Optional<ServiceEntity> getOne(@Param("id")Long id);
 
-    @Query("SELECT s FROM Service AS s WHERE s.type = 'SERVICE' ORDER BY s.name")
+    @Query("SELECT s FROM ServiceEntity AS s WHERE s.type = 'SERVICE' ORDER BY s.name")
     Page<ServiceEntity> findAll(Pageable pageable);
 }
