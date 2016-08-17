@@ -134,7 +134,7 @@ dependencies {
     compile("com.jayway.jsonpath:json-path:2.1.0")
 
     compile("org.projectlombok:lombok:1.16.10")
-    compile("com.trex:ddd-reflection:1.8.0")
+    compile("com.trex:ddd-reflection:1.8.3")
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile("cglib:cglib:3.2.4")
 
