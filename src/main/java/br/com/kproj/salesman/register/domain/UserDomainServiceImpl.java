@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.domain;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.register.domain.contract.UserDomainService;
 import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class UserDomainServiceImpl implements UserDomainService {
     private UserValidator validator;
 
 
-    Map<String, CheckRule<User>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<User>> persistRules = new HashMap<>();
 
     {
         persistRules.put(description("user.already.existis.with.login"), (user) ->

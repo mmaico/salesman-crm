@@ -5,7 +5,7 @@ import br.com.kproj.salesman.incidents.application.IncidentApplication;
 import br.com.kproj.salesman.incidents.infrastructure.IncidentValidator;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;

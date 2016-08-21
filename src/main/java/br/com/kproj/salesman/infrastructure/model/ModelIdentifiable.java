@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.model;
 
 import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import javax.persistence.Transient;
 import java.io.Serializable;
@@ -26,10 +27,8 @@ public abstract class ModelIdentifiable implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Identifiable{");
-        sb.append("id=").append(getId());
-        sb.append('}');
-        return sb.toString();
+
+        return ReflectionToStringBuilder.toString(this);
     }
 
     public void addFields(String fieldName) {

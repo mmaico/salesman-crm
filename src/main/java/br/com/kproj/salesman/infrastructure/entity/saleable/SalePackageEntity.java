@@ -1,12 +1,15 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 import com.google.common.collect.Lists;
+import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "packages")
+@DiscriminatorOptions(force = true)
+@DiscriminatorValue("PACKAGE")
 public class SalePackageEntity extends SaleableUnitEntity {
 
     @ManyToMany(fetch=FetchType.LAZY)

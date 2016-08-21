@@ -1,18 +1,23 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables;
+package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import com.google.common.collect.Lists;
 import com.trex.shared.annotations.EntityReference;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EntityReference(SalePackageEntity.class)
 public class SalePackage extends SaleableUnit {
 
     @EntityReference(SaleableUnitEntity.class)
-    private List<SaleableUnit> saleables;
+    private List<SaleableUnit> saleables = new ArrayList<>();
 
+    @Autowired
+    private SalePackageRepository repository;
 
     public SalePackage(Long id) {
         super(id);
@@ -31,17 +36,12 @@ public class SalePackage extends SaleableUnit {
     }
 
     public void addSaleable(SaleableUnit saleableUnit) {
-        if (this.saleables == null) {
-            this.saleables = Lists.newArrayList();
-        }
         this.saleables.add(saleableUnit);
+        repository.addSaleable(this, saleableUnit);
     }
 
     public void removeSaleable(SaleableUnit saleableUnit) {
-        if (this.saleables == null) {
-            return;
-        }
-
         this.saleables.remove(saleableUnit);
+        repository.removeSaleable(this, saleableUnit);
     }
 }

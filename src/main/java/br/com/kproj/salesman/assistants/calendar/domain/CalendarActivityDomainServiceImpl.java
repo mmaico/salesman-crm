@@ -3,7 +3,7 @@ package br.com.kproj.salesman.assistants.calendar.domain;
 import br.com.kproj.salesman.infrastructure.repository.CalendarActivityRepository;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class CalendarActivityDomainServiceImpl implements CalendarActivityDomain
     @Autowired
     private PeriodDomainService periodDomainService;
 
-    Map<String, CheckRule<CalendarActivity>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<CalendarActivity>> persistRules = new HashMap<>();
     {
         persistRules.put(description("calendar.activity.not.exist"), (activity -> !activity.isNew() && !repository.exists(activity.getId())));
         persistRules.put(description("calendar.activity.not.have.period"), (activity -> activity.getPeriod() == null));

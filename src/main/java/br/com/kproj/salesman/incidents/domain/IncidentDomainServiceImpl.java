@@ -4,7 +4,7 @@ import br.com.kproj.salesman.incidents.infrastructure.IncidentValidator;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class IncidentDomainServiceImpl implements IncidentDomainService {
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<Incident>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Incident>> persistRules = new HashMap<>();
     {
         persistRules.put(description("incidente.base.validators"), (incident) -> hasContraintViolated(incident, validator));
 

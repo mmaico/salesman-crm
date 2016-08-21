@@ -1,12 +1,14 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import lombok.Data;
+import org.hibernate.annotations.DiscriminatorOptions;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="products")
+@DiscriminatorOptions(force = true)
+@DiscriminatorValue("PRODUCT")
 public class ProductEntity extends SaleableUnitEntity {
 
     @ManyToOne

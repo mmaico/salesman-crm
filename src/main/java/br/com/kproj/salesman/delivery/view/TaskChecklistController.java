@@ -1,12 +1,10 @@
 package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.delivery.application.tasks.ChecklistApplication;
-import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistTemplateValidator;
 import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistValidator;
 import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
-import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

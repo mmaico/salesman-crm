@@ -6,11 +6,9 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper;
-import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +36,7 @@ public class TaskDomainServiceImpl implements TaskDomainService {
     @Autowired
     private TaskValidator taskValidator;
 
-    Map<String, CheckRule<Task>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Task>> persistRules = new HashMap<>();
 
     {
         persistRules.put(description("task.verify.sales.order.valid"), (task) -> task.getSalesOrder() == null

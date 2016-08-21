@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.negotiation.proposal.domain.payment.PaymentItemPersistBusinessRules;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.SaleableItemPersistBusinessRules;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     @Autowired
     private PaymentItemPersistBusinessRules paymentService;
 
-    Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<BusinessProposal>> persistRules = new HashMap<>();
     {
 
         persistRules.put(description("proposal.verify.won.cannotbe.changed"), (bp) -> ProposalTemperature.CLOSED_WON == bp.getTemperature());

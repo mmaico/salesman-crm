@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.RegionRepository;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class TaskTemplateDomainServiceImpl implements TaskTemplateDomainService 
     @Autowired
     private RegionRepository regionRepository;
 
-    Map<String, CheckRule<TaskTemplate>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<TaskTemplate>> persistRules = new HashMap<>();
     {
         persistRules.put(description("task.template.verify.valid.saleableunit"), (tp) ->
                 tp.getSaleable() == null || tp.getSaleable().isNew() || !saleableUnitRepository.exists(tp.getSaleable().getId()));

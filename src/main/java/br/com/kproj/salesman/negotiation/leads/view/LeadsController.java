@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.leads.view;
 
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.LeadValidator;
 import br.com.kproj.salesman.negotiation.leads.application.LeadsApplication;

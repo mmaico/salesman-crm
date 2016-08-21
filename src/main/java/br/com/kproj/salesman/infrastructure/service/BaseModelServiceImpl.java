@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.service;
 
 
-import br.com.kproj.salesman.infrastructure.helpers.BeanUtils;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import org.springframework.data.domain.Pageable;
@@ -15,25 +14,13 @@ import java.util.Optional;
 public abstract class BaseModelServiceImpl<T extends ModelIdentifiable> implements ModelFacade<T> {
 
     @Override
-    public Optional<T> register(T entity, DomainBusinessRules... checkrules) {
+    public Optional<T> register(T entity) {
 
         if (entity == null) {
             return Optional.empty();
         }
 
-        if (entity.isNew()) {
-            return getRepository().save(entity);
-        } else {
-            Optional<T> result = getRepository().findOne(entity.getId());
-
-            if (result.isPresent()) {
-                throw new IllegalArgumentException("entity.to.update.not.exist");
-            }
-
-            BeanUtils.create().copyProperties(result.get(), entity);
-
-            return getRepository().save(result.get());
-        }
+        return getRepository().save(entity);
     }
 
     public Iterable<T> findAll(Pageable pager) {

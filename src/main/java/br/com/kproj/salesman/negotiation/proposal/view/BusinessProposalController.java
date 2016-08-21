@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;

@@ -4,7 +4,7 @@ import br.com.kproj.salesman.assistants.campaigns.infrastructure.CampaignsValida
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class CampaignsDomainServiceImpl implements CampaignsDomainService {
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<Campaign>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Campaign>> persistRules = new HashMap<>();
     {
         persistRules.put(description("campaign.base.validators"), (incident) -> hasContraintViolated(incident, validator));
 

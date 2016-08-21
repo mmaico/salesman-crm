@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.domain;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
 import br.com.kproj.salesman.register.domain.contract.SalesPackageAddSaleableDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SalesPackageAddSaleableDomainServiceImpl implements SalesPackageAdd
 	@Autowired
 	private SaleableApplication application;
 
-	Map<String, CheckRule<SaleableUnitEntity>> persistRules = new HashMap<>();
+	Map<String, CheckRuleLegacy<SaleableUnitEntity>> persistRules = new HashMap<>();
 
 	{
 		persistRules.put(description("salespackage.not.exists"), (salespackage) -> salespackage == null || salespackage.isNew() ||

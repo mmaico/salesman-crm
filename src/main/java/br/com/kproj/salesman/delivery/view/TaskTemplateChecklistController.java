@@ -4,7 +4,7 @@ import br.com.kproj.salesman.delivery.application.tasktemplates.ChecklistTemplat
 import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistTemplateValidator;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

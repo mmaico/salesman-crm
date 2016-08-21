@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
@@ -44,10 +45,7 @@ public abstract class Identifiable implements Persistable<Long>, Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Identifiable{");
-        sb.append("id=").append(getId());
-        sb.append('}');
-        return sb.toString();
+        return ReflectionToStringBuilder.toString(this);
     }
 
     public void addFields(String fieldName) {

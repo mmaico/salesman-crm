@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.hibernate.annotations.DiscriminatorOptions;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -14,6 +15,8 @@ import java.util.Objects;
 @Entity
 @Table(name="saleable")
 @Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorOptions(force = true)
+@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
 public class SaleableUnitEntity extends Identifiable {
 
 	/**

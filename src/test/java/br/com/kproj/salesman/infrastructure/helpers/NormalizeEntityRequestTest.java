@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.helpers;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class NormalizeEntityRequestTest {
 		this.normalize = spy(this.normalize);
 		Company company = getCompanyStub();
 
-		doReturn(parameters()).when(this.normalize).getRequest();
+		//doReturn(parameters()).when(this.normalize).getRequest();
 
 		normalize.addFieldsToUpdate(company);
 
@@ -63,7 +64,7 @@ public class NormalizeEntityRequestTest {
 		Company company = getCompanyStub();
 		Set<String> parameters = Sets.newHashSet("contacts[0].name");
 
-		doReturn(parameters).when(this.normalize).getRequest();
+		//doReturn(parameters).when(this.normalize).getRequest();
 
 		normalize.addFieldsToUpdate(company);
 

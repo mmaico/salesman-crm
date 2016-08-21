@@ -4,7 +4,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.PackageBusinessRules;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.SaleableItemPersistBusinessRules;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.SaleablePersistBusinessRules;
@@ -32,7 +32,7 @@ public class SaleableItemPersistBusinessRulesImpl implements SaleableItemPersist
     @Autowired
     private PackageBusinessRules packageBusinessRules;
 
-    Map<String, CheckRule<ProposalSaleableItem>> saleableUnitRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<ProposalSaleableItem>> saleableUnitRules = new HashMap<>();
     {
         saleableUnitRules.put(description("domain.item.wihtout.price"), (proposalSaleableItem) -> isNotNegativeNumber(proposalSaleableItem.getPrice()));
         saleableUnitRules.put(description("domain.item.without.quantity"), (proposalSaleableItem) -> proposalSaleableItem.getQuantity() > 0);

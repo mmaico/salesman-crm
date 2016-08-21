@@ -2,15 +2,8 @@ package br.com.kproj.salesman.assistants.activities.view;
 
 import br.com.kproj.salesman.assistants.activities.application.ActivityChecklistApplication;
 import br.com.kproj.salesman.assistants.activities.infrastructure.ActivityChecklistValidator;
-import br.com.kproj.salesman.delivery.application.tasks.ChecklistApplication;
-import br.com.kproj.salesman.delivery.infrastructure.validators.ChecklistValidator;
 import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
-import br.com.kproj.salesman.infrastructure.entity.builders.ActivityChecklistBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder;
-import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
-import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -2,50 +2,34 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
+import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.ProductRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.ProductRepositorySpringData;
-import com.trex.clone.BusinessModelClone;
-import com.trex.proxy.BusinessModelProxy;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ProductEntityToProductConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @Repository
-public class ProductRepositoryHibernate implements ProductRepository {
+public class ProductRepositoryHibernate extends BaseRespositoryImpl<Product, ProductEntity> implements ProductRepository {
 
     @Autowired
     private ProductRepositorySpringData repository;
 
+    @Autowired
+    private ProductEntityToProductConverter converter;
+
 
     @Override
-    public Page<Product> findAll(Pageable page) {
-        Page<ProductEntity> productsEntities = repository.findAll(page);
-
-        Product proxy = BusinessModelProxy.from(productsEntities.getContent().get(0)).proxy(Product.class);
-
-        List<Product> converteds = productsEntities.getContent().stream()
-                .map(item -> BusinessModelClone.from(item).convertTo(Product.class))
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(converteds);
+    public BaseRepositoryLegacy<ProductEntity, Long> getRepository() {
+        return repository;
     }
 
     @Override
-    public Optional<Product> findOne(Long id) {
-        ProductEntity result = repository.findOne(id);
-        return null;
+    public Converter<ProductEntity, Product> getConverter() {
+        return converter;
     }
 
-    @Override
-    public Optional<Product> save(Product entity) {
-
-        return null;
-    }
 }

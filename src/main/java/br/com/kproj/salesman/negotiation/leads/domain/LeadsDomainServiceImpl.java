@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.leads.domain;
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.LeadValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class LeadsDomainServiceImpl implements LeadsDomainService {
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<Lead>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Lead>> persistRules = new HashMap<>();
     {
         persistRules.put(description("lead.base.validators"), (incident) -> hasContraintViolated(incident, validator));
 

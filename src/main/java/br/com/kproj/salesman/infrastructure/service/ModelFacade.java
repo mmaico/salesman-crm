@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ModelFacade<T> {
 
-    Optional<T> register(T entity, DomainBusinessRules... checkRules);
+    Optional<T> register(T entity);
 
     Iterable<T> findAll(Pageable pager);
     

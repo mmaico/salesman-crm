@@ -1,18 +1,15 @@
 package br.com.kproj.salesman.products_catalog.view;
 
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeAttrUpdateHelper;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.ProductFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
-import br.com.kproj.salesman.register.infrastructure.validators.SaleableValidator;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,37 +23,28 @@ public class ProductController {
     private ProductFacade service;
 
     @Autowired
+    @Qualifier("saleableViewValidator")
     private SaleableValidator validator;
 
     @Autowired
-    private NormalizeEntityRequest normalizeEntityRequest;
+    private NormalizeAttrUpdateHelper attributesToUpdate;
 
-    @InitBinder(value = {"product"})
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-
-        
-    }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.POST)
-    public @ResponseBody
-    Product save(@ModelAttribute @Validated Product product, BindingResult bindingResult) {
+    public @ResponseBody Product save(@ModelAttribute Product product) {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
+        validator.checkRules(product);
 
-        Product saleable = null; //service.register(product);
+        Optional<Product> saleable = service.register(product);
 
-        return saleable;
+        return saleable.isPresent() ? saleable.get() : null;
     }
 
     @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
-    public @ResponseBody
-    void update(@ModelAttribute Product product) {
+    public @ResponseBody void update(@ModelAttribute Product product) {
 
-        //normalizeEntityRequest.addFieldsToUpdate(product);
-        //service.register(product);
+        attributesToUpdate.addAttributesToUpdate(product);
+        service.register(product);
     }
 
     @RequestMapping("/products/list")
@@ -64,7 +52,7 @@ public class ProductController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Product> result = null; //this.service.findAll(pager);
+        Iterable<Product> result = this.service.findAll(pager);
 
         model.addAttribute("products", result);
         return new ModelAndView("/saleables/products/productList");
@@ -73,7 +61,7 @@ public class ProductController {
     @RequestMapping(value="/products/{productId}")
     public ModelAndView viewInfo(@PathVariable Long productId, Model model) {
         
-        Optional<Product> result = null;//this.service.getOne(productId);
+        Optional<Product> result = this.service.getOne(productId);
 
         model.addAttribute("product", result.isPresent() ? result.get(): null);
         return new ModelAndView("/saleables/products/productDetail");

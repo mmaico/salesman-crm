@@ -2,7 +2,7 @@ package br.com.kproj.salesman.register.view.providers;
 
 import br.com.kproj.salesman.infrastructure.entity.Contact;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.register.application.contract.ContactApplication;
 import br.com.kproj.salesman.register.infrastructure.validators.ContactValidator;
 import org.springframework.beans.factory.annotation.Autowired;

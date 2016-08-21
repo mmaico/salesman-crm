@@ -1,37 +1,34 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
+import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
+import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.Service;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.ServiceRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.ServiceRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ServiceEntityToServiceConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public class ServiceRepositoryHibernate implements ServiceRepository {
+public class ServiceRepositoryHibernate extends BaseRespositoryImpl<Service, ServiceEntity> implements ServiceRepository {
 
     @Autowired
     private ServiceRepositorySpringData repository;
 
+    @Autowired
+    private ServiceEntityToServiceConverter converter;
+
 
     @Override
-    public Page<Service> findAll(Pageable page) {
-        Page<ServiceEntity> servicesEntities = repository.findAll(page);
-        return null;
+    public BaseRepositoryLegacy<ServiceEntity, Long> getRepository() {
+        return repository;
     }
 
     @Override
-    public Optional<Service> findOne(Long id) {
-        ServiceEntity serviceEntity = repository.findOne(id);
-        return null;
+    public Converter<ServiceEntity, Service> getConverter() {
+        return converter;
     }
 
-    @Override
-    public Optional<Service> save(Service entity) {
-        return null;
-    }
 }

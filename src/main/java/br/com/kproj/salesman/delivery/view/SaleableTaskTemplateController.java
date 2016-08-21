@@ -5,7 +5,7 @@ import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateVali
 import br.com.kproj.salesman.delivery.view.dtos.TaskTemplateDTO;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

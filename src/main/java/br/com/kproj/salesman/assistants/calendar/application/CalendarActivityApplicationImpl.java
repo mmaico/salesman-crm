@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.application;
 
 import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
 import br.com.kproj.salesman.assistants.calendar.domain.CalendarActivityDomainService;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.CalendarActivityRepository;
 import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;

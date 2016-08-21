@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain.payment;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,7 +20,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.
 @Service
 public class PaymentItemPersistBusinessRulesImpl implements PaymentItemPersistBusinessRules {
 
-    private Map<String, CheckRule<BusinessProposal>> persistRules = new HashMap<>();
+    private Map<String, CheckRuleLegacy<BusinessProposal>> persistRules = new HashMap<>();
     {
         persistRules.put(description("proposal.has.payment.with.sale.with.total.zero"),
                 (bp) -> !isEmptySafe(bp.getPaymentItems()) && isNumberEqualsZero(bp.getTotal()));

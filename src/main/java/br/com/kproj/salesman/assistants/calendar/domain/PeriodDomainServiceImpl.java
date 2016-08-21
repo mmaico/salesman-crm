@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper.Greater;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper.Than;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,7 +20,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.
 public class PeriodDomainServiceImpl implements PeriodDomainService {
 
 
-    Map<String, CheckRule<Period>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Period>> persistRules = new HashMap<>();
     {
         persistRules.put(description("period.without.dates"),
                 (period -> period.getStartDate() == null || period.getEndDate() == null));

@@ -1,8 +1,8 @@
-package br.com.kproj.salesman.infrastructure.helpers;
+package br.com.kproj.salesman.infrastructure.helpers.view;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
 import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.azeckoski.reflectutils.ReflectUtils;

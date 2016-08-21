@@ -3,7 +3,7 @@ package br.com.kproj.salesman.register.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.register.domain.contract.ClientDomainService;
 import br.com.kproj.salesman.register.infrastructure.validators.ClientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ClientDomainServiceImpl implements ClientDomainService {
     private ClientValidator validator;
 
 
-    Map<String, CheckRule<Person>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<Person>> persistRules = new HashMap<>();
 
     {
         persistRules.put(description("client.without.profile"), (client) ->

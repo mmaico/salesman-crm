@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.domain;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
-import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class ChecklistTemplateDomainServiceImpl implements ChecklistTemplateDoma
     @Autowired
     private TaskTemplateRepository taskTemplateRepository;
 
-    Map<String, CheckRule<ChecklistTemplate>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<ChecklistTemplate>> persistRules = new HashMap<>();
     {
         persistRules.put(description("checklist.template.name.empty"), (ct) -> StringUtils.isBlank(ct.getName()));
         persistRules.put(description("checklist.template.invalid.task"), (ct) ->

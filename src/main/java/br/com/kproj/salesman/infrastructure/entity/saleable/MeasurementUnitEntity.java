@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,5 +24,13 @@ public class MeasurementUnitEntity extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

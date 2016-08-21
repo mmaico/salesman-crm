@@ -6,11 +6,11 @@ import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import com.trex.shared.annotations.EntityReference;
 import lombok.Data;
 
-@Data
+
 @EntityReference(ProductEntity.class)
 public class Product extends SaleableUnit {
 
-    @EntityReference(MeasurementUnitEntity.class)
+    @EntityReference(value = MeasurementUnitEntity.class, fieldName = "measurementUnit")
     private Unit unit;
 
     public Product() {
@@ -22,5 +22,11 @@ public class Product extends SaleableUnit {
     }
 
 
+    public Unit getUnit() {
+        return unit;
+    }
 
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
 }

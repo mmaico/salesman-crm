@@ -1,21 +1,19 @@
 package br.com.kproj.salesman.products_catalog.view;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.SalePackageBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.helpers.NormalizeEntityRequest;
+
+import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeAttrUpdateHelper;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.saleable.SalePackageApplication;
-import br.com.kproj.salesman.register.infrastructure.validators.SalePackageValidator;
+import br.com.kproj.salesman.products_catalog.application.SalePackageFacade;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableBuilder;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackageBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,48 +24,42 @@ import java.util.Optional;
 public class SalesPackageController {
 
     @Autowired
-    private SalePackageApplication service;
+    private SalePackageFacade service;
 
     @Autowired
-    private SalePackageValidator validator;
+    @Qualifier("saleableViewValidator")
+    private SaleableValidator validator;
 
     @Autowired
-    private NormalizeEntityRequest normalizeEntityRequest;
+    private NormalizeAttrUpdateHelper attributesToUpdate;
 
-    @InitBinder(value = {"salePackage"})
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
 
-    }
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
-    public @ResponseBody
-    SalePackageEntity save(@ModelAttribute @Validated SalePackageEntity salePackage, BindingResult bindingResult) {
+    public @ResponseBody SalePackage save(@ModelAttribute SalePackage salePackage) {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException(bindingResult.getAllErrors());
-        }
+        validator.checkRules(salePackage);
 
-        SalePackageEntity salePackageResult = service.register(salePackage);
+        Optional<SalePackage> result = service.register(salePackage);
 
-        return salePackageResult;
+        return result.isPresent() ? result.get() : null;
     }
 
     @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
     public @ResponseBody
-    void update(@ModelAttribute SalePackageEntity salePackage) {
+    void update(@ModelAttribute SalePackage salePackage) {
 
-        normalizeEntityRequest.addFieldsToUpdate(salePackage);
+        attributesToUpdate.addAttributesToUpdate(salePackage);
         service.register(salePackage);
 
     }
 
     @RequestMapping("/sales-package/list")
-    public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
+    public ModelAndView list(@PageableDefault(size=150000)Pageable pageable, Model model) {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<SalePackageEntity> result = this.service.findAll(pager);
+        Iterable<SalePackage> result = this.service.findAll(pager);
 
         model.addAttribute("packages", result);
         return new ModelAndView("/saleables/packages/packageList");
@@ -76,7 +68,7 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/{packageId}")
     public ModelAndView viewInfo(@PathVariable Long packageId, Model model) {
         
-        Optional<SalePackageEntity> result = this.service.getOne(packageId);
+        Optional<SalePackage> result = this.service.getOne(packageId);
 
         model.addAttribute("salesPackage", result.isPresent() ? result.get(): null);
 
@@ -86,19 +78,19 @@ public class SalesPackageController {
     @RequestMapping(value="/sales-package/{packageId}/add-saleable/{saleableId}", method = RequestMethod.PUT)
     public @ResponseBody void addProductOrService(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
-        SalePackageEntity salePackage = SalePackageBuilder.createPackage(packageId).build();
-        SaleableUnitEntity saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnit saleableUnit = SaleableBuilder.createSaleable(saleableId).build();
 
-        this.service.addProductOrService(salePackage, saleableUnit);
+        this.service.addSaleable(salePackage, saleableUnit);
     }
 
     @RequestMapping(value="/sales-package/{packageId}/remove-saleable/{saleableId}", method = RequestMethod.DELETE)
     public @ResponseBody void removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId) {
 
-        SalePackageEntity salePackage = SalePackageBuilder.createPackage(packageId).build();
-        SaleableUnitEntity saleableUnit = SaleableUnitBuilder.createSaleableUnit(saleableId).build();
+        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
+        SaleableUnit saleableUnit = SaleableBuilder.createSaleable(saleableId).build();
 
-        this.service.removeProductOrService(salePackage, saleableUnit);
+        this.service.removeSaleable(salePackage, saleableUnit);
     }
 
     @RequestMapping(value="/sales-package/create")
