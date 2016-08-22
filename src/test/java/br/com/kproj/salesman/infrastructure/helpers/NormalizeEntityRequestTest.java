@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.helpers;
 
 
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import com.google.common.collect.Sets;
 import org.junit.Test;
@@ -18,7 +18,6 @@ import java.util.Set;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -48,7 +47,7 @@ public class NormalizeEntityRequestTest {
 		normalize.addFieldsToUpdate(company);
 
 
-		List<Contact> contacts = company.getContacts();
+		List<ContactEntity> contacts = company.getContacts();
 
 		assertThat(company.getFields().contains("name"), is(Boolean.TRUE));
 		assertThat(company.getFields().contains("tradingName"), is(Boolean.TRUE));
@@ -87,7 +86,7 @@ public class NormalizeEntityRequestTest {
 		Company company = new Company();
 		company.setName("teste");
 
-		Contact contact = new Contact();
+		ContactEntity contact = new ContactEntity();
         contact.setEmail("email@email.com");
         contact.setName("tesste");
 

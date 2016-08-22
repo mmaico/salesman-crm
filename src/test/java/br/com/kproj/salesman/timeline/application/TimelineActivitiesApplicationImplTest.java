@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -92,7 +92,7 @@ public class TimelineActivitiesApplicationImplTest {
 
     @Test
     public void shouldRegisterTimeActivyContact() {
-        Contact contact = mock(Contact.class);
+        ContactEntity contact = mock(ContactEntity.class);
         Timeline timelineMock = mock(Timeline.class);
         TimelineActivity activity = mock(LogActivity.class);
 

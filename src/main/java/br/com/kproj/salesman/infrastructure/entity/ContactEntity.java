@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
-public class Contact extends Identifiable implements TimelinePresent {
+public class ContactEntity extends Identifiable implements TimelinePresent {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -33,12 +33,12 @@ public class Contact extends Identifiable implements TimelinePresent {
     @OneToOne(mappedBy = "contact")
     private Timeline timeline;
 
-    public Contact() {}
+    public ContactEntity() {}
 
-    public Contact(Long id) {
+    public ContactEntity(Long id) {
         this.id = id;
     }
-    public Contact(String name, String email, String phone) {
+    public ContactEntity(String name, String email, String phone) {
         super();
         this.name = name;
         this.email = email;

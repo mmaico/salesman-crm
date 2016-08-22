@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.person.privider;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Address;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 
@@ -18,9 +18,9 @@ public interface Provider {
 
     void setName(String name);
 
-    List<Contact> getContacts();
+    List<ContactEntity> getContacts();
 
-    void setContacts(List<Contact> contacts);
+    void setContacts(List<ContactEntity> contacts);
 
     Boolean getActive();
 
@@ -34,7 +34,7 @@ public interface Provider {
 
     void setAddresses(List<Address> addresses);
 
-    void addContact(Contact contact);
+    void addContact(ContactEntity contact);
 
     void addAddress(Address address);
 

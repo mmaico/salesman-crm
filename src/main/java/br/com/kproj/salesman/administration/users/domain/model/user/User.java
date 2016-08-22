@@ -13,7 +13,6 @@ public class User extends ModelIdentifiable {
 
     private String login;
 
-    @NotNull(message = "user.password.cannot.be.null")
     private String password;
 
     private String passwordConfirm;

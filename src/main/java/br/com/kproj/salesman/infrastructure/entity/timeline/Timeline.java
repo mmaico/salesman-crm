@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
@@ -37,7 +37,7 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="contact_id")
-    private Contact contact;
+    private ContactEntity contact;
 
     @OneToOne
     @JoinColumn(name="task_id")
@@ -106,11 +106,11 @@ public class Timeline extends Identifiable {
         this.proposal = proposal;
     }
 
-    public Contact getContact() {
+    public ContactEntity getContact() {
         return contact;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(ContactEntity contact) {
         this.contact = contact;
     }
 

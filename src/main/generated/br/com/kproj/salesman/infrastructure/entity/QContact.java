@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QContact is a Querydsl query type for Contact
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QContact extends EntityPathBase<Contact> {
+public class QContact extends EntityPathBase<ContactEntity> {
 
     private static final long serialVersionUID = -1236242671L;
 
@@ -39,10 +39,10 @@ public class QContact extends EntityPathBase<Contact> {
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public QContact(String variable) {
-        this(Contact.class, forVariable(variable), INITS);
+        this(ContactEntity.class, forVariable(variable), INITS);
     }
 
-    public QContact(Path<? extends Contact> path) {
+    public QContact(Path<? extends ContactEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -51,10 +51,10 @@ public class QContact extends EntityPathBase<Contact> {
     }
 
     public QContact(PathMetadata<?> metadata, PathInits inits) {
-        this(Contact.class, metadata, inits);
+        this(ContactEntity.class, metadata, inits);
     }
 
-    public QContact(Class<? extends Contact> type, PathMetadata<?> metadata, PathInits inits) {
+    public QContact(Class<? extends ContactEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

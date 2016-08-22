@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -31,7 +31,7 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this.entity.setPerson(person);
 	}
 	
-	public TimelineBuilder(Contact contact) {
+	public TimelineBuilder(ContactEntity contact) {
 		this();
 		this.entity.setContact(contact);
 	}
@@ -51,7 +51,7 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this.entity.setPersonalActivity(personal);
 	}
 	
-	public TimelineBuilder withContact(Contact contact) {
+	public TimelineBuilder withContact(ContactEntity contact) {
 		this.entity.setContact(contact);
 		return this;
 	}
@@ -101,8 +101,8 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 
 		if (timelinePresent instanceof Person) {
 			return new TimelineBuilder((Person)timelinePresent);
-		} else if (timelinePresent instanceof Contact) {
-			return new TimelineBuilder((Contact) timelinePresent);
+		} else if (timelinePresent instanceof ContactEntity) {
+			return new TimelineBuilder((ContactEntity) timelinePresent);
 		} else if (timelinePresent instanceof BusinessProposal) {
 			return new TimelineBuilder((BusinessProposal) timelinePresent);
 		} else if (timelinePresent instanceof Task) {

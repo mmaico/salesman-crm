@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -15,7 +15,7 @@ public interface TimelineRepository extends BaseRepositoryLegacy<Timeline, Long>
     Optional<Timeline> findOne(@Param("person")Person person);
 
     @Query("SELECT t FROM Timeline AS t where t.contact = :contact")
-    Optional<Timeline> findOne(@Param("contact")Contact contact);
+    Optional<Timeline> findOne(@Param("contact")ContactEntity contact);
 
     @Query("SELECT t FROM Timeline AS t where t.proposal = :proposal")
     Optional<Timeline> findOne(@Param("proposal")BusinessProposal proposal);

@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 
-public class ContactBuilder extends AbstractBuilder<Contact>  {
+public class ContactBuilder extends AbstractBuilder<ContactEntity>  {
 
 	public ContactBuilder() {
-		this.entity = new Contact();
+		this.entity = new ContactEntity();
 	}
 
 	public ContactBuilder(Long id) {

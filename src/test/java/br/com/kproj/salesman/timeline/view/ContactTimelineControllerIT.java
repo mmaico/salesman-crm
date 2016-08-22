@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.timeline.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -69,7 +69,7 @@ public class ContactTimelineControllerIT extends AbstractIntegrationTest {
 
         Map<String, Object> model = mvcResult.getModelAndView().getModel();
         Timeline timeline = (Timeline) model.get("timeline");
-        Contact contact = (Contact)model.get("contact");
+        ContactEntity contact = (ContactEntity)model.get("contact");
 
 
         assertThat(timeline.getActivities().size(), is(1));

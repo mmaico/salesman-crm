@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.view.providers;
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.register.application.contract.ContactApplication;
@@ -35,7 +35,7 @@ public class ProviderContactController {
     }
 
     @RequestMapping(value = "/providers/{providerId}/contacts/save", method = {RequestMethod.POST, RequestMethod.PUT})
-    public  @ResponseBody void clientContact(@ModelAttribute @Validated Contact contact,
+    public  @ResponseBody void clientContact(@ModelAttribute @Validated ContactEntity contact,
                                       @PathVariable Long providerId, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -51,7 +51,7 @@ public class ProviderContactController {
     @RequestMapping(value = "/providers/{providerId}/contacts", method = RequestMethod.GET)
     public ModelAndView getContacts(@PathVariable Long providerId, Model model) {
 
-        List<Contact> result = service.getContactsByProvider(createProvider(providerId).build());
+        List<ContactEntity> result = service.getContactsByProvider(createProvider(providerId).build());
 
         model.addAttribute("contactItems", result);
         model.addAttribute("client", createProvider(providerId).build());

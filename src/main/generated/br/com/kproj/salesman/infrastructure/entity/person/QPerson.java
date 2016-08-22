@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -28,7 +29,7 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses = this.<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress>createList("addresses", br.com.kproj.salesman.infrastructure.entity.Address.class, br.com.kproj.salesman.infrastructure.entity.QAddress.class, PathInits.DIRECT2);
 
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact> contacts = this.<br.com.kproj.salesman.infrastructure.entity.Contact, br.com.kproj.salesman.infrastructure.entity.QContact>createList("contacts", br.com.kproj.salesman.infrastructure.entity.Contact.class, br.com.kproj.salesman.infrastructure.entity.QContact.class, PathInits.DIRECT2);
+    public final ListPath<ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContact> contacts = this.<ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContact>createList("contacts", ContactEntity.class, br.com.kproj.salesman.infrastructure.entity.QContact.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

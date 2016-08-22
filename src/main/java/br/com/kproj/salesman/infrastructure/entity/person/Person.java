@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
 import br.com.kproj.salesman.infrastructure.entity.Address;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
@@ -31,7 +31,7 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
-    protected List<Contact> contacts;
+    protected List<ContactEntity> contacts;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
     protected List<Address> addresses;
@@ -78,11 +78,11 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
         this.name = name;
     }
 
-    public List<Contact> getContacts() {
+    public List<ContactEntity> getContacts() {
         return contacts;
     }
 
-    public void setContacts(List<Contact> contacts) {
+    public void setContacts(List<ContactEntity> contacts) {
         this.contacts = contacts;
     }
 
@@ -110,7 +110,7 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
         this.addresses = addresses;
     }
 
-    public void addContact(Contact contact) {
+    public void addContact(ContactEntity contact) {
 
         if (this.contacts == null) {
             this.contacts = Lists.newArrayList();

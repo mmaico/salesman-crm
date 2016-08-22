@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.view;
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
@@ -43,20 +43,20 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/contacts/save", method = RequestMethod.POST)
-    public  @ResponseBody String save(@ModelAttribute @Validated Contact contact,
+    public  @ResponseBody String save(@ModelAttribute @Validated ContactEntity contact,
                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
         normalizeEntityRequest.doNestedReference(contact);
-        Contact contactLoaded = service.register(contact);
+        ContactEntity contactLoaded = service.register(contact);
 
         return "/contacts/" + contactLoaded.getId();
     }
 
     @RequestMapping(value = "/contacts/save", method = RequestMethod.PUT)
-    public @ResponseBody String update(@ModelAttribute @Validated Contact contact,
+    public @ResponseBody String update(@ModelAttribute @Validated ContactEntity contact,
                                                BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -64,7 +64,7 @@ public class ContactController {
         }
 
         normalizeEntityRequest.addFieldsToUpdate(contact);
-        Contact contactLoaded = service.register(contact);
+        ContactEntity contactLoaded = service.register(contact);
 
         return "/contacts/" + contactLoaded.getId();
     }
@@ -74,7 +74,7 @@ public class ContactController {
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Contact> result = this.service.findAll(pager);
+        Iterable<ContactEntity> result = this.service.findAll(pager);
 
         model.addAttribute("contacts", result);
         return new ModelAndView("/contacts/list-items");
@@ -90,7 +90,7 @@ public class ContactController {
     public ModelAndView viewInfo(@RequestParam(defaultValue="edit",required=false, value="template") String templateName,
                                  @PathVariable Long contactId, Model model) {
 
-        Optional<Contact> result = this.service.getOne(contactId);
+        Optional<ContactEntity> result = this.service.getOne(contactId);
         Timeline timeline = timelineApplication.register(createContact(contactId).build());
 
         model.addAttribute("timeline", timeline);

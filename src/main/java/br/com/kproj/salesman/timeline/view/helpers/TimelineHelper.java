@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.timeline.view.helpers;
 
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.PersonBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -20,7 +20,7 @@ public class TimelineHelper {
         return application.register(proposal);
     }
 
-    public Timeline findByContact(Contact contact) {
+    public Timeline findByContact(ContactEntity contact) {
         return application.register(contact);
     }
 

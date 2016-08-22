@@ -37,7 +37,7 @@ public class Incident extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="contact_id")
-    private Contact contact;
+    private ContactEntity contact;
 
     @Column(name="name")
     @Enumerated(EnumType.STRING)
@@ -96,11 +96,11 @@ public class Incident extends Identifiable implements TimelinePresent {
         this.client = client;
     }
 
-    public Contact getContact() {
+    public ContactEntity getContact() {
         return contact;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(ContactEntity contact) {
         this.contact = contact;
     }
 

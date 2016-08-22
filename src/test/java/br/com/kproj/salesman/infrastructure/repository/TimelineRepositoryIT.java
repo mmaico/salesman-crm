@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.Contact;
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -31,7 +31,7 @@ public class TimelineRepositoryIT extends AbstractIntegrationTest {
     public void shouldFindTimelineByContact() {
         Long contactId = 2l;
 
-        Optional<Timeline> result = repository.findOne(new Contact(contactId));
+        Optional<Timeline> result = repository.findOne(new ContactEntity(contactId));
 
         assertThat(result.isPresent(), is(Boolean.TRUE));
         assertThat(result.get().getId(), is(4l));
@@ -50,7 +50,7 @@ public class TimelineRepositoryIT extends AbstractIntegrationTest {
     public void shouldReturnNullWhenNotFound() {
         Long contactId = 1l;
 
-        Optional<Timeline> result = repository.findOne(new Contact(contactId));
+        Optional<Timeline> result = repository.findOne(new ContactEntity(contactId));
 
         assertThat(result.isPresent(), is(Boolean.FALSE));
     }
