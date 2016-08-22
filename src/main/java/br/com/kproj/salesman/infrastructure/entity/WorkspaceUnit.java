@@ -1,10 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
-import br.com.kproj.salesman.infrastructure.entity.location.City;
-import br.com.kproj.salesman.infrastructure.entity.location.Country;
-import br.com.kproj.salesman.infrastructure.entity.location.State;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 
 import javax.persistence.*;
@@ -28,7 +23,7 @@ public class WorkspaceUnit extends Identifiable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     @NotNull(message = "act.delivery.user.is.null")
-    private User user;
+    private UserEntity user;
 
     @Override
     public Long getId() {
@@ -47,11 +42,11 @@ public class WorkspaceUnit extends Identifiable {
         this.salesOrder = salesOrder;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 }

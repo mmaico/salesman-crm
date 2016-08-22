@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.security.authentication;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.security.UserSecurityInfoService;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
             throw new BadCredentialsException("security.invalid.password");
         }
 
-        Optional<User> userFound = service.getUser(login, password);
+        Optional<UserEntity> userFound = service.getUser(login, password);
 
         if (!userFound.isPresent()) {
             throw new BadCredentialsException("security.user.not.found");

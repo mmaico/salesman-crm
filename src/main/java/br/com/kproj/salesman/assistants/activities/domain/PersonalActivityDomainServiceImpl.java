@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.activities.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 public class PersonalActivityDomainServiceImpl implements PersonalActivityDomainService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
 
     Map<String, CheckRuleLegacy<PersonalActivity>> persistRules = new HashMap<>();
@@ -31,10 +31,10 @@ public class PersonalActivityDomainServiceImpl implements PersonalActivityDomain
         persistRules.put(description("activity.invalid.deadline"), (activity) -> activity.getDeadline() == null || activity.getDeadline().before(new Date()));
         persistRules.put(description("activity.invalid.owner"), (activity) -> activity.getOwner() == null
                     || activity.getOwner().isNew()
-                    || !userRepository.exists(activity.getOwner().getId()));
+                    || !userEntityRepository.exists(activity.getOwner().getId()));
 
         persistRules.put(description("activity.invalid.assignment"), (activity) -> activity.getAssignment() != null
-                    && !userRepository.exists(activity.getAssignment().getId()));
+                    && !userEntityRepository.exists(activity.getAssignment().getId()));
 
     }
 

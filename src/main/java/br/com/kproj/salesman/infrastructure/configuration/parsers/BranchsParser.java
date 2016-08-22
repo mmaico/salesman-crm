@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
-import br.com.kproj.salesman.infrastructure.entity.Branch;
+import br.com.kproj.salesman.infrastructure.entity.BranchEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import com.google.common.collect.Lists;
 import org.jdom.Document;
@@ -20,26 +20,26 @@ public class BranchsParser {
     private static final String FILE_NAME = "/configurations/user_branch.xml";
 
 
-    public static List<Branch> getBranchs() {
+    public static List<BranchEntity> getBranchs() {
 
         return loadBranchs();
     }
 
 
     @SuppressWarnings("unchecked")
-    protected static List<Branch> loadBranchs() {
+    protected static List<BranchEntity> loadBranchs() {
         SAXBuilder sab = new SAXBuilder();
         try {
             InputStream inputStream = findFile();
             Document doc = (Document) sab.build(inputStream);
             Element rootElement = (Element) doc.getRootElement();
-            List<Branch> listBranchs = Lists.newArrayList();
+            List<BranchEntity> listBranchs = Lists.newArrayList();
 
             List<Element> childrenRoot = rootElement.getChildren();
 
             for (Element el : childrenRoot) {
 
-                Branch branch = convertToBranch(el);
+                BranchEntity branch = convertToBranch(el);
                 listBranchs.add(branch);
             }
 
@@ -53,11 +53,11 @@ public class BranchsParser {
     }
 
     @SuppressWarnings("unchecked")
-    private static Branch convertToBranch(Element element) {
+    private static BranchEntity convertToBranch(Element element) {
         String name = element.getAttributeValue(NAME);
         String id = element.getAttributeValue(ID);
 
-        Branch branch = new Branch();
+        BranchEntity branch = new BranchEntity();
         branch.setId(new Long(id));
         branch.setName(name);
 

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import org.hibernate.validator.constraints.Email;
@@ -35,7 +35,7 @@ public class Lead extends Identifiable implements TimelinePresent {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="createdby_id")
     @NotNull(message = "lead.createdby.is.null")
-    private User createdBy;
+    private UserEntity createdBy;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "lead")
     protected List<LeadAddress> addresses;
@@ -118,11 +118,11 @@ public class Lead extends Identifiable implements TimelinePresent {
         this.company = company;
     }
 
-    public User getCreatedBy() {
+    public UserEntity getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
 }

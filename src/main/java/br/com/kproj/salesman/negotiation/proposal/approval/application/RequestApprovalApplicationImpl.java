@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
@@ -73,7 +73,7 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
     }
 
     @Override
-    public void evaluationApprover(BusinessProposal proposal, User user, ApproverStatus status) {
+    public void evaluationApprover(BusinessProposal proposal, UserEntity user, ApproverStatus status) {
         
         Optional<RequestApproval> requestApprovalLoaded = repository.findByProposal(proposal);
 

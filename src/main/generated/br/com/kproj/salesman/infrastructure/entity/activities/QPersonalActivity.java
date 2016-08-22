@@ -26,7 +26,7 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
 
     public final ListPath<PersonalActivity, QPersonalActivity> activitiesChildren = this.<PersonalActivity, QPersonalActivity>createList("activitiesChildren", PersonalActivity.class, QPersonalActivity.class, PathInits.DIRECT2);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser assignment;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity assignment;
 
     public final ListPath<ActivityChecklist, QActivityChecklist> checklist = this.<ActivityChecklist, QActivityChecklist>createList("checklist", ActivityChecklist.class, QActivityChecklist.class, PathInits.DIRECT2);
 
@@ -36,7 +36,7 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser owner;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity owner;
 
     public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
 
@@ -64,8 +64,8 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
 
     public QPersonalActivity(Class<? extends PersonalActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("assignment"), inits.get("assignment")) : null;
-        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("owner"), inits.get("owner")) : null;
+        this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assignment"), inits.get("assignment")) : null;
+        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

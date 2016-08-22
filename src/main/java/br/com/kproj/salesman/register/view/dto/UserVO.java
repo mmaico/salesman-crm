@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
 
-public class UserVO extends User {
+public class UserVO extends UserEntity {
 
 	/**
 	 * 
@@ -24,8 +24,8 @@ public class UserVO extends User {
 		this.avatarFile = avatarFile;
 	}
 	
-	public User getUser() {
-		User user = new User();
+	public UserEntity getUser() {
+		UserEntity user = new UserEntity();
 		ReflectionsHelper.copyProperties(user, this);
 		try {
 			user.setAvatar(avatarFile != null ? avatarFile.getBytes(): null);

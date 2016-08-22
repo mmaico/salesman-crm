@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.model;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
+import com.trex.shared.annotations.UpdateAttributes;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import javax.persistence.Transient;
@@ -14,8 +15,8 @@ public abstract class ModelIdentifiable implements Serializable {
 	private static final long serialVersionUID = 8213025865912695435L;
 
 
-    @Transient
-    @ExcludeAuditingField
+    @ExcludeField
+    @UpdateAttributes
     private Set<String> fields = new HashSet<>();
 
     public abstract Long getId();

@@ -1,22 +1,18 @@
 package br.com.kproj.salesman.timeline.application.subscrivers;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TaskActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
-import org.crsh.cli.Argument;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -37,7 +33,7 @@ public class TaskEventSubscriberTest {
     @Test
     public void shouldPostInTimelineChangeStatusFromTask() {
         Task taskmock = mock(Task.class);
-        User userMock = mock(User.class);
+        UserEntity userMock = mock(UserEntity.class);
         TaskStatus oldStatus = TaskStatus.STATED;
 
         TaskChangeStatusMessage message = TaskChangeStatusMessage.create(taskmock, userMock, oldStatus);
@@ -54,7 +50,7 @@ public class TaskEventSubscriberTest {
         String descriptionExpected = TaskEventSubscriber.MESSAGE
                 .replace("{OLD}", TaskStatus.STATED.get()).replace("{NEW}", TaskStatus.DONE.get());
         Task taskmock = mock(Task.class);
-        User userMock = mock(User.class);
+        UserEntity userMock = mock(UserEntity.class);
         TaskStatus oldStatus = TaskStatus.STATED;
 
         TaskChangeStatusMessage message = TaskChangeStatusMessage.create(taskmock, userMock, oldStatus);

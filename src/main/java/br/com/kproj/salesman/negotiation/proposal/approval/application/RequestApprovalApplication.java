@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
@@ -13,7 +13,7 @@ public interface RequestApprovalApplication extends ModelLegacyService<RequestAp
 
     Optional<RequestApproval> register(RequestApproval requestApproval);
 
-    void evaluationApprover(BusinessProposal proposal, User user, ApproverStatus status);
+    void evaluationApprover(BusinessProposal proposal, UserEntity user, ApproverStatus status);
 
     Optional<RequestApproval> hasRequestApprovalWaitingfor(BusinessProposal proposal);
 

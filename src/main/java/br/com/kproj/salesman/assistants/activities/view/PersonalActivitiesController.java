@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.assistants.activities.view;
 
 import br.com.kproj.salesman.assistants.activities.application.PersonalActivityApplication;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
@@ -95,7 +95,7 @@ public class PersonalActivitiesController {
         PersonalActivity activity = PersonalActivityBuilder.createActivity(activityId)
                 .withStatus(PersonalAcvitityStatus.get(status)).build();
 
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
 
         application.changeStatus(activity, user);
     }

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.security.authentication;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +21,7 @@ public class LoggedUser implements UserDetails {
 	
 	private String password;
 	
-	private User user;
+	private UserEntity user;
 
 	
 	private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -34,10 +34,10 @@ public class LoggedUser implements UserDetails {
 		this.password = password;
 	}
 	
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 

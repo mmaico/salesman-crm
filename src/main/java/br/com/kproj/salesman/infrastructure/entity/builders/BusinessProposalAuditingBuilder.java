@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 
 import java.util.Calendar;
@@ -17,7 +17,7 @@ public class BusinessProposalAuditingBuilder extends AbstractBuilder<BusinessPro
 		this.entity.setId(id);
 	}
 	
-	public BusinessProposalAuditingBuilder withUser(User user) {
+	public BusinessProposalAuditingBuilder withUser(UserEntity user) {
 		this.entity.setUser(user);
 		return this;
 	}

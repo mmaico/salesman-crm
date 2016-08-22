@@ -28,7 +28,7 @@ public class QWorkspaceUnit extends EntityPathBase<WorkspaceUnit> {
 
     public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder salesOrder;
 
-    public final QUser user;
+    public final QUserEntity user;
 
     public QWorkspaceUnit(String variable) {
         this(WorkspaceUnit.class, forVariable(variable), INITS);
@@ -49,7 +49,7 @@ public class QWorkspaceUnit extends EntityPathBase<WorkspaceUnit> {
     public QWorkspaceUnit(Class<? extends WorkspaceUnit> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
-        this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
+        this.user = inits.isInitialized("user") ? new QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 
 }

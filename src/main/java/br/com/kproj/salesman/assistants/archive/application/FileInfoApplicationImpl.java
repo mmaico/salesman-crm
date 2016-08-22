@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.archive.application;
 
 import br.com.kproj.salesman.assistants.archive.infrastructure.repository.FileInfoRepository;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfo;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -54,12 +54,12 @@ public class FileInfoApplicationImpl extends BaseModelServiceLegacyImpl<FileInfo
     }
 
     @Override
-    public List<FileInfo> findPublicsAndSheredFiles(User user) {
+    public List<FileInfo> findPublicsAndSheredFiles(UserEntity user) {
         return repository.findPublicsAndSheredFiles(user);
     }
 
     @Override
-    public List<FileInfo> findOwnFiles(User user) {
+    public List<FileInfo> findOwnFiles(UserEntity user) {
         return repository.findOwnFiles(user);
     }
 }

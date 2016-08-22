@@ -31,7 +31,7 @@ public class QTaskNotification extends EntityPathBase<TaskNotification> {
     public final NumberPath<Long> id;
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser notified;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity notified;
 
     public final br.com.kproj.salesman.infrastructure.entity.task.QTask task;
 

@@ -43,7 +43,7 @@ public class QScheduleActivity extends EntityPathBase<ScheduleActivity> {
     public final StringPath title = createString("title");
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QScheduleActivity(String variable) {
         this(ScheduleActivity.class, forVariable(variable), INITS);

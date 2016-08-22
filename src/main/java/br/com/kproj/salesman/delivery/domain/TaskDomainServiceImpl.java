@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class TaskDomainServiceImpl implements TaskDomainService {
     private SalesOrderRepository salesOrderRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
     @Autowired
     private TaskValidator taskValidator;
@@ -43,7 +43,7 @@ public class TaskDomainServiceImpl implements TaskDomainService {
                                                                 || task.getSalesOrder().isNew() || !salesOrderRepository.exists(task.getSalesOrder().getId()));
 
         persistRules.put(description("task.verify.users.valid"), (task) -> !isEmptySafe(task.getSignedBy()) && task.getSignedBy().stream()
-                                                                           .filter(user -> user == null || user.isNew() || !userRepository.exists(user.getId()))
+                                                                           .filter(user -> user == null || user.isNew() || !userEntityRepository.exists(user.getId()))
                                                                            .count() > 0);
 
         persistRules.put(description("task.verify.base.validate"), (task) -> hasContraintViolated(task, taskValidator));

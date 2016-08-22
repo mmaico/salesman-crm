@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,7 +43,7 @@ public abstract class TimelineActivity extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private UserEntity user;
 
     @Override
     public Long getId() {
@@ -78,11 +78,11 @@ public abstract class TimelineActivity extends Identifiable {
         this.files = files;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 }

@@ -39,7 +39,7 @@ public class QLogActivity extends EntityPathBase<LogActivity> {
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum> type = createEnum("type", br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum.class);
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QLogActivity(String variable) {
         this(LogActivity.class, forVariable(variable), INITS);

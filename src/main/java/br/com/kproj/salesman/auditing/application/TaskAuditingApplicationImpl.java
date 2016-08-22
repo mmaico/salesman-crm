@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.auditing.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.TaskAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskAuditingBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -27,7 +27,7 @@ public class TaskAuditingApplicationImpl extends BaseModelServiceLegacyImpl<Task
 
 
     @Override
-    public Optional<TaskAudinting> registerAuditing(Task task, User userThatChanged) {
+    public Optional<TaskAudinting> registerAuditing(Task task, UserEntity userThatChanged) {
         Page<TaskAudinting> lasModitication = repository.findLasVersion(task.getId(), Pager.build().withPageSize(1));
 
         TaskAudinting newEntryAuditable = TaskAuditingBuilder.createAuditing()

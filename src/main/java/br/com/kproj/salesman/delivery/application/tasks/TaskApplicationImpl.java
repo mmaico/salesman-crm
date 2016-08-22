@@ -4,7 +4,7 @@ import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -127,7 +127,7 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public void changeStatus(Task task, User userChange) {
+    public void changeStatus(Task task, UserEntity userChange) {
 
         Task taskLoaded = repository.findOne(task.getId());
 
@@ -170,7 +170,7 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public void signedTask(User user, Task task) {
+    public void signedTask(UserEntity user, Task task) {
 
         if (task == null || task.isNew()) {
             hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
@@ -186,7 +186,7 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public void unsignedTask(User user, Task task) {
+    public void unsignedTask(UserEntity user, Task task) {
         if (task == null || task.isNew()) {
             hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
         }

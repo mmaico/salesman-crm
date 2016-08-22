@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.view;
 
 import br.com.kproj.salesman.assistants.calendar.application.CalendarActivityApplication;
 import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Period;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -52,7 +52,7 @@ public class CalendarActivitiesController {
 
     @RequestMapping(value="/calendar/calendar-activities", method = RequestMethod.POST)
     public ModelAndView saveActivity(@ModelAttribute CalendarActivity activity, @ModelAttribute PeriodDTO periodDTO, Model model) {
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
 
         if (activity.getPeriod() == null) {
             activity.setPeriod(new Period());

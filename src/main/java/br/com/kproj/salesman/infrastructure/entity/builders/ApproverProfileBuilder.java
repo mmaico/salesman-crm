@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 
 public class ApproverProfileBuilder extends AbstractBuilder<ApproverProfile>  {
@@ -15,7 +15,7 @@ public class ApproverProfileBuilder extends AbstractBuilder<ApproverProfile>  {
 		this.entity.setId(id);
 	}
 	
-    public ApproverProfileBuilder withApprover(User approver) {
+    public ApproverProfileBuilder withApprover(UserEntity approver) {
         this.entity.setApprover(approver);
         return this;
     }

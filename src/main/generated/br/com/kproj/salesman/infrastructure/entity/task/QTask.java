@@ -38,7 +38,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder salesOrder;
 
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.User, br.com.kproj.salesman.infrastructure.entity.QUser> signedBy = this.<br.com.kproj.salesman.infrastructure.entity.User, br.com.kproj.salesman.infrastructure.entity.QUser>createList("signedBy", br.com.kproj.salesman.infrastructure.entity.User.class, br.com.kproj.salesman.infrastructure.entity.QUser.class, PathInits.DIRECT2);
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity> signedBy = this.<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity>createList("signedBy", br.com.kproj.salesman.infrastructure.entity.UserEntity.class, br.com.kproj.salesman.infrastructure.entity.QUserEntity.class, PathInits.DIRECT2);
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus.class);
 

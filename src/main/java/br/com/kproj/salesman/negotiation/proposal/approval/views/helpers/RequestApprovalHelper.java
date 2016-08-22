@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.views.helpers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
@@ -28,7 +28,7 @@ public class RequestApprovalHelper {
     }
 
     public Boolean isPendingApproval(BusinessProposal proposal) {
-        User user = securityHelper.getPrincipal().getUser();
+        UserEntity user = securityHelper.getPrincipal().getUser();
         Optional<RequestApproval> result = application.findLastRequestApproval(proposal);
         if (result.isPresent()) {
             if (result.get().getStatus().equals(RequestApproval.RequestApprovalStatus.WAITING)) {

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ public class WorkspaceTasksHelper {
     private SecurityHelper security;
 
     public List<SalesOrder> getSalesOrderInMyWorkspace() {
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
         return workspaceApplication.findBy(user);
     }
 
     public Boolean isInMyWorkspace(SalesOrder salesOrder) {
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
         return workspaceApplication.isInMyWorkspace(salesOrder, user);
     }
 

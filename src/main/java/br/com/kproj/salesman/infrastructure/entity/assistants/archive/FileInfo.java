@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 
@@ -26,7 +26,7 @@ public class FileInfo extends Identifiable {
     @ManyToOne
     @JoinColumn(name="owner_id")
     @NotNull(message = "files.owner.is.required")
-    private User owner;
+    private UserEntity owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fileInfo")
     private List<SharedWith> sharedWith;
@@ -64,11 +64,11 @@ public class FileInfo extends Identifiable {
         this.description = description;
     }
 
-    public User getOwner() {
+    public UserEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(UserEntity owner) {
         this.owner = owner;
     }
 

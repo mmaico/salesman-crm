@@ -30,7 +30,7 @@ public class QUserNotificationLogView extends EntityPathBase<UserNotificationLog
 
     public final EnumPath<UserNotificationLogView.TypeLogView> typeLogView = createEnum("typeLogView", UserNotificationLogView.TypeLogView.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QUserNotificationLogView(String variable) {
         this(UserNotificationLogView.class, forVariable(variable), INITS);
@@ -50,7 +50,7 @@ public class QUserNotificationLogView extends EntityPathBase<UserNotificationLog
 
     public QUserNotificationLogView(Class<? extends UserNotificationLogView> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("user"), inits.get("user")) : null;
+        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 
 }

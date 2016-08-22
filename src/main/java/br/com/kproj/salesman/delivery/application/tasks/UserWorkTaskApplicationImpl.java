@@ -6,13 +6,11 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDT
 import br.com.kproj.salesman.delivery.infrastructure.repository.SalesOrderDeliveryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.UserWorkOnTasksRepository;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.RangeDateDTO;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -41,7 +39,7 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
     @Override
     public List<DeliverySummaryExecutingDTO> getSummaryTasksExecuting() {
 
-        List<User> users = repository.findUsersWorksInTasks();
+        List<UserEntity> users = repository.findUsersWorksInTasks();
 
         return users.stream()
                 .map(user -> createSummary(user)
@@ -55,7 +53,7 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
     @Override
     public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrder salesOrder) {
 
-        List<User> users = repository.findUsersWorksOnSalesOrder(salesOrder);
+        List<UserEntity> users = repository.findUsersWorksOnSalesOrder(salesOrder);
 
         return users.stream().map(user -> SalesOrderSummaryExecutingDTO.createSummary(user)
                         .addStatistic(DONE, repository.countOnTaskBy(user, salesOrder, DONE))

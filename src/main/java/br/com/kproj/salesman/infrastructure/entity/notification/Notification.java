@@ -1,8 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,7 +23,7 @@ public class Notification extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="user_notified_id")
-    private User notified;
+    private UserEntity notified;
 
 
     @Override
@@ -44,11 +43,11 @@ public class Notification extends Identifiable {
         this.createDate = createDate;
     }
 
-    public User getNotified() {
+    public UserEntity getNotified() {
         return notified;
     }
 
-    public void setNotified(User notified) {
+    public void setNotified(UserEntity notified) {
         this.notified = notified;
     }
 }

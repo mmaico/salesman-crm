@@ -1,21 +1,21 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarEntity;
 
 
-public class CalendarBuilder extends AbstractBuilder<Calendar> {
+public class CalendarBuilder extends AbstractBuilder<CalendarEntity> {
 
-	private Calendar calendar = new Calendar();
+	private CalendarEntity calendarEntity = new CalendarEntity();
 
     public CalendarBuilder() {}
 
     public CalendarBuilder(Long id) {
-        calendar.setId(id);
+        calendarEntity.setId(id);
     }
 
-    public CalendarBuilder withUser(User user) {
-		this.calendar.setUser(user);
+    public CalendarBuilder withUser(UserEntity user) {
+		this.calendarEntity.setUser(user);
 		return this;
 	}
 
@@ -27,8 +27,8 @@ public class CalendarBuilder extends AbstractBuilder<Calendar> {
         return new CalendarBuilder();
     }
 
-	public Calendar build() {
-		return this.calendar;
+	public CalendarEntity build() {
+		return this.calendarEntity;
 	}
 
 

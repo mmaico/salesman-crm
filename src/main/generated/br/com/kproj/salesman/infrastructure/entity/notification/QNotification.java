@@ -28,7 +28,7 @@ public class QNotification extends EntityPathBase<Notification> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser notified;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity notified;
 
     public QNotification(String variable) {
         this(Notification.class, forVariable(variable), INITS);
@@ -48,7 +48,7 @@ public class QNotification extends EntityPathBase<Notification> {
 
     public QNotification(Class<? extends Notification> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.notified = inits.isInitialized("notified") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("notified"), inits.get("notified")) : null;
+        this.notified = inits.isInitialized("notified") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("notified"), inits.get("notified")) : null;
     }
 
 }

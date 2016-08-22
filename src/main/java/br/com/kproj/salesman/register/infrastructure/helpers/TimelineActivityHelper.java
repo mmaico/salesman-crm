@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
@@ -81,7 +81,7 @@ public class TimelineActivityHelper {
         private String color;
         private String icon;
         private String message;
-        private User user;
+        private UserEntity user;
 
         public ViewActivity(String type, String color, String icon, String message) {
             this.type = type;
@@ -99,7 +99,7 @@ public class TimelineActivityHelper {
             return this;
         }
 
-        public ViewActivity withUser(User user) {
+        public ViewActivity withUser(UserEntity user) {
             this.user= user;
             return this;
         }
@@ -121,7 +121,7 @@ public class TimelineActivityHelper {
             return message;
         }
 
-        public User getUser() {
+        public UserEntity getUser() {
             return user;
         }
 

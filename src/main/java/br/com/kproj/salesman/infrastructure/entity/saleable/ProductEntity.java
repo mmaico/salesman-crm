@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
-import lombok.Data;
 import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;

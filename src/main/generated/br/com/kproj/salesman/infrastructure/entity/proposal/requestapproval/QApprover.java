@@ -24,7 +24,7 @@ public class QApprover extends EntityPathBase<Approver> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser approver;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity approver;
 
     public final StringPath description = createString("description");
 
@@ -52,7 +52,7 @@ public class QApprover extends EntityPathBase<Approver> {
 
     public QApprover(Class<? extends Approver> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("approver"), inits.get("approver")) : null;
+        this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
         this.requestApproval = inits.isInitialized("requestApproval") ? new QRequestApproval(forProperty("requestApproval"), inits.get("requestApproval")) : null;
     }
 

@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.timeline.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUserBuilder;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -30,7 +29,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -44,13 +42,13 @@ public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTes
     @Autowired
     private BusinessProposalTimelineController controller;
 
-    private User user;
+    private UserEntity user;
 
     private SecurityHelper security;
 
     @Before
     public void setUp() {
-        user = UserBuilder.createUser(2l).build();
+        user = UserEntityBuilder.createUser(2l).build();
         LoggedUser loggedUser = LoggedUserBuilder.createLoggedUser("admin", user, Sets.newHashSet()).build();
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
         this.security = mock(SecurityHelper.class);

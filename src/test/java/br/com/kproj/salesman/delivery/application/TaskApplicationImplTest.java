@@ -6,10 +6,10 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutio
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
@@ -19,7 +19,6 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -206,7 +205,7 @@ public class TaskApplicationImplTest {
 
     @Test
     public void shouldChangeStatus() {
-        User userChange = UserBuilder.createUser(2l).build();
+        UserEntity userChange = UserEntityBuilder.createUser(2l).build();
         Task taskParam = TaskBuilder.createTaskBuilder(1l)
                 .withStatus(TaskStatus.DONE).build();
 
@@ -222,7 +221,7 @@ public class TaskApplicationImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenTaskNoFoundONChangeStatus() {
-        User userChange = UserBuilder.createUser(2l).build();
+        UserEntity userChange = UserEntityBuilder.createUser(2l).build();
         Task taskParam = TaskBuilder.createTaskBuilder(1l)
                 .withStatus(TaskStatus.DONE).build();
 
@@ -289,7 +288,7 @@ public class TaskApplicationImplTest {
 
     @Test
     public void shouldSignedTask() {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Task task = TaskBuilder.createTaskBuilder(1l).build();
         Task taskDB = TaskBuilder.createTaskBuilder(1l).build();
 
@@ -303,7 +302,7 @@ public class TaskApplicationImplTest {
 
     @Test
     public void shouldNotSignedTaskWhenAlreadyExists() {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Task task = TaskBuilder.createTaskBuilder(1l).build();
         Task taskDB = TaskBuilder
                 .createTaskBuilder(1l).withSignedBy(Lists.newArrayList(userMock)).build();
@@ -317,7 +316,7 @@ public class TaskApplicationImplTest {
 
     @Test
     public void shouldUnsignedTask() {
-        User userMock = UserBuilder.createUser(3l).build();
+        UserEntity userMock = UserEntityBuilder.createUser(3l).build();
         Task task = TaskBuilder.createTaskBuilder(1l).build();
         Task taskDB = TaskBuilder
                 .createTaskBuilder(1l).withSignedBy(Lists.newArrayList(userMock)).build();
@@ -332,7 +331,7 @@ public class TaskApplicationImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenTaskNoId() {
-        User userMock = UserBuilder.createUser(3l).build();
+        UserEntity userMock = UserEntityBuilder.createUser(3l).build();
         Task task = TaskBuilder.createTaskBuilder().build();
 
         this.service.unsignedTask(userMock, task);

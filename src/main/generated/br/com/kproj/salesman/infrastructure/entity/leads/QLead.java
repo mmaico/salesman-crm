@@ -28,7 +28,7 @@ public class QLead extends EntityPathBase<Lead> {
 
     public final StringPath company = createString("company");
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser createdBy;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity createdBy;
 
     public final StringPath email = createString("email");
 
@@ -60,7 +60,7 @@ public class QLead extends EntityPathBase<Lead> {
 
     public QLead(Class<? extends Lead> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("createdBy"), inits.get("createdBy")) : null;
+        this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

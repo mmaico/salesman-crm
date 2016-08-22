@@ -30,7 +30,7 @@ public class QSharedWith extends EntityPathBase<SharedWith> {
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.SharedType> type = createEnum("type", br.com.kproj.salesman.infrastructure.entity.enums.SharedType.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QSharedWith(String variable) {
         this(SharedWith.class, forVariable(variable), INITS);
@@ -51,7 +51,7 @@ public class QSharedWith extends EntityPathBase<SharedWith> {
     public QSharedWith(Class<? extends SharedWith> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.fileInfo = inits.isInitialized("fileInfo") ? new QFileInfo(forProperty("fileInfo"), inits.get("fileInfo")) : null;
-        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("user"), inits.get("user")) : null;
+        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 
 }

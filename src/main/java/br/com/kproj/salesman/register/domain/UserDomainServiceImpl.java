@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.register.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import br.com.kproj.salesman.register.domain.contract.UserDomainService;
 import br.com.kproj.salesman.register.infrastructure.validators.UserValidator;
@@ -22,19 +22,19 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class UserDomainServiceImpl implements UserDomainService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
     @Autowired
     private UserValidator validator;
 
 
-    Map<String, CheckRuleLegacy<User>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<UserEntity>> persistRules = new HashMap<>();
 
     {
         persistRules.put(description("user.already.existis.with.login"), (user) ->
 
             user.isNew() || user.getFields().contains("login")
-                    ? userRepository.findByLogin(user.getLogin()).isPresent() && !userRepository.findByLogin(user.getLogin()).get().equals(user)
+                    ? userEntityRepository.findByLogin(user.getLogin()).isPresent() && !userEntityRepository.findByLogin(user.getLogin()).get().equals(user)
                     : Boolean.FALSE
         );
 
@@ -53,7 +53,7 @@ public class UserDomainServiceImpl implements UserDomainService {
     }
 
     @Override
-    public void checkBusinessRulesFor(User user) {
+    public void checkBusinessRulesFor(UserEntity user) {
 
         Set<String> violations = persistRules.entrySet()
                 .stream()

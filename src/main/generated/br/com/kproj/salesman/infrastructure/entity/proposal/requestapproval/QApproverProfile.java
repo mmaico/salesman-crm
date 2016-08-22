@@ -24,7 +24,7 @@ public class QApproverProfile extends EntityPathBase<ApproverProfile> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser approver;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity approver;
 
     public final BooleanPath available = createBoolean("available");
 
@@ -48,7 +48,7 @@ public class QApproverProfile extends EntityPathBase<ApproverProfile> {
 
     public QApproverProfile(Class<? extends ApproverProfile> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("approver"), inits.get("approver")) : null;
+        this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
     }
 
 }

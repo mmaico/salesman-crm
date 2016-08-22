@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -30,7 +30,7 @@ public class CanChangeProposalStatusDomainServiceImpl implements CanChangePropos
     private RequestApprovalApplication requestapproval;
 
 
-    Map<String, CheckParamsRule<BusinessProposal, User>> persistRules = new HashMap<>();
+    Map<String, CheckParamsRule<BusinessProposal, UserEntity>> persistRules = new HashMap<>();
     {
         persistRules.put(description("proposal.change.temperature.to.done.with.approvers.without.aproval"),
                 (bp, user) -> !profileRepository.hasApproversExcludeParam(user) ? Boolean.FALSE :
@@ -46,7 +46,7 @@ public class CanChangeProposalStatusDomainServiceImpl implements CanChangePropos
 
         Set<String> violations = persistRules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(businessProposal, (User)user))
+                .filter(e -> e.getValue().check(businessProposal, (UserEntity)user))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);

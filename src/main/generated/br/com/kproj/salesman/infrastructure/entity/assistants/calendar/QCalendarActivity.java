@@ -24,7 +24,7 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final QCalendar calendar;
+    public final QCalendarEntity calendarEntity;
 
     public final StringPath description = createString("description");
 
@@ -56,7 +56,7 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
 
     public QCalendarActivity(Class<? extends CalendarActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.calendar = inits.isInitialized("calendar") ? new QCalendar(forProperty("calendar"), inits.get("calendar")) : null;
+        this.calendarEntity = inits.isInitialized("calendarEntity") ? new QCalendarEntity(forProperty("calendarEntity"), inits.get("calendarEntity")) : null;
         this.period = inits.isInitialized("period") ? new QPeriod(forProperty("period"), inits.get("period")) : null;
         this.type = inits.isInitialized("type") ? new QActivityType(forProperty("type")) : null;
     }

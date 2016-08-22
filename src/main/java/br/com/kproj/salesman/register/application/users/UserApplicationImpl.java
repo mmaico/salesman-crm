@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.register.application.users;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.UserSaveMessage;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import br.com.kproj.salesman.register.application.contract.UserApplication;
 import br.com.kproj.salesman.register.domain.contract.UserDomainService;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 @Service
-public class UserApplicationImpl extends BaseModelServiceLegacyImpl<User> implements UserApplication {
+public class UserApplicationImpl extends BaseModelServiceLegacyImpl<UserEntity> implements UserApplication {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
     @Autowired
     private UserDomainService service;
@@ -27,8 +27,8 @@ public class UserApplicationImpl extends BaseModelServiceLegacyImpl<User> implem
 
 
     @Override
-    public User register(User user) {
-        User userSaved = super.save(user, service);
+    public UserEntity register(UserEntity user) {
+        UserEntity userSaved = super.save(user, service);
 
         eventBus.post(UserSaveMessage.create(userSaved));
         return userSaved;
@@ -41,11 +41,11 @@ public class UserApplicationImpl extends BaseModelServiceLegacyImpl<User> implem
             return Boolean.FALSE;
         }
 
-        return userRepository.findByLogin(login).isPresent();
+        return userEntityRepository.findByLogin(login).isPresent();
     }
 
-    public BaseRepositoryLegacy<User, Long> getRepository() {
-        return userRepository;
+    public BaseRepositoryLegacy<UserEntity, Long> getRepository() {
+        return userEntityRepository;
     }
 
 }

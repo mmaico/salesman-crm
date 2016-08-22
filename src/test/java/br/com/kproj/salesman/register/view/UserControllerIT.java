@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.register.view.users.UserController;
+import br.com.kproj.salesman.register.view.users.UserEntityController;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test to {@link UserController}
+ * Test to {@link UserEntityController}
  */
 public class UserControllerIT extends AbstractIntegrationTest {
 

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +23,7 @@ public class ScheduleTriggerNotification extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="task_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private Task task;
 
     private Boolean executed = Boolean.FALSE;

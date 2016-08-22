@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.delivery.domain;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Rule;
@@ -35,7 +34,7 @@ public class TaskDomainServiceImplTest {
     private SalesOrderRepository salesOrderRepository;
 
     @Mock
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
     @Mock
     private TaskValidator validator;
@@ -49,8 +48,8 @@ public class TaskDomainServiceImplTest {
         Task taskStub = getTaskStub();
 
         given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
-        given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
-        given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(2l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(3l)).willReturn(Boolean.TRUE);
 
         taskDomainService.checkBusinessRulesFor(taskStub);
     }
@@ -61,8 +60,8 @@ public class TaskDomainServiceImplTest {
         ValidationException exception = null;
 
         given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.FALSE);
-        given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
-        given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(2l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(3l)).willReturn(Boolean.TRUE);
 
         try {
             taskDomainService.checkBusinessRulesFor(taskStub);
@@ -81,8 +80,8 @@ public class TaskDomainServiceImplTest {
         ValidationException exception = null;
 
         given(salesOrderRepository.exists(taskStub.getSalesOrder().getId())).willReturn(Boolean.TRUE);
-        given(userRepository.exists(2l)).willReturn(Boolean.TRUE);
-        given(userRepository.exists(3l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(2l)).willReturn(Boolean.TRUE);
+        given(userEntityRepository.exists(3l)).willReturn(Boolean.TRUE);
 
 
         try {
@@ -115,7 +114,7 @@ public class TaskDomainServiceImplTest {
     }
 
     private Task getTaskStub () throws ParseException {
-        List<User> users = Lists.<User>newArrayList(new User(2l), new User(3l));
+        List<UserEntity> users = Lists.<UserEntity>newArrayList(new UserEntity(2l), new UserEntity(3l));
 
         Task taskStub = new Task();
         SalesOrder order = new SalesOrder();

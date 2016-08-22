@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.dtos;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 
 import java.util.HashMap;
@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class DeliverySummaryExecutingDTO {
 
-    private User user;
+    private UserEntity user;
     Map<TaskStatus, Long> statistics = new HashMap<>();
 
-    public DeliverySummaryExecutingDTO(User user) {
+    public DeliverySummaryExecutingDTO(UserEntity user) {
         this.user = user;
     }
 
@@ -27,15 +27,15 @@ public class DeliverySummaryExecutingDTO {
         return result == null ? 0l : result;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public static DeliverySummaryExecutingDTO createSummary(User user) {
+    public static DeliverySummaryExecutingDTO createSummary(UserEntity user) {
         return new DeliverySummaryExecutingDTO(user);
     }
 }

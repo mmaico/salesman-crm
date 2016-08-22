@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.delivery.infrastructure.dtos;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.helpers.RangeDateDTO;
 

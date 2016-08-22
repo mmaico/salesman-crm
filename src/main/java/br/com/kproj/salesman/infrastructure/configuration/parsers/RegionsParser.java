@@ -1,10 +1,8 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.UserPosition;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import com.google.common.collect.Lists;
-import org.crsh.console.jline.console.Operation;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;

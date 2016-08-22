@@ -1,11 +1,10 @@
 package br.com.kproj.salesman.notifications.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.ApproverBuilder;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
 import org.hamcrest.Matchers;
@@ -73,8 +72,8 @@ public class NotificationApplicationImplTest {
     private RequestApproval getRequestApprovalStub() {
         RequestApproval requestApproval = new RequestApproval();
         requestApproval.setProposal(mock(BusinessProposal.class));
-        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(User.class)).build());
-        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(User.class)).build());
+        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
+        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
 
         return requestApproval;
     }

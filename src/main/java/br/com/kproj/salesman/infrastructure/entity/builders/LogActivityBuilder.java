@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 
@@ -26,7 +26,7 @@ public class LogActivityBuilder extends AbstractBuilder<LogActivity>  {
 		return this;
 	}
 
-	public LogActivityBuilder withUser(User user) {
+	public LogActivityBuilder withUser(UserEntity user) {
 		this.entity.setUser(user);
 		return this;
 	}

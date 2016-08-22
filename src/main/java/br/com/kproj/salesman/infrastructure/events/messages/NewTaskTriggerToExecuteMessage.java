@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 
 import java.util.Date;
@@ -12,15 +12,15 @@ public class NewTaskTriggerToExecuteMessage {
 
     private Date triggerDate;
 
-    private User userNotified;
+    private UserEntity userNotified;
 
-    public NewTaskTriggerToExecuteMessage(Task task, Date triggerDate, User userNotified) {
+    public NewTaskTriggerToExecuteMessage(Task task, Date triggerDate, UserEntity userNotified) {
         this.task = task;
         this.triggerDate = triggerDate;
         this.userNotified = userNotified;
     }
 
-    public static NewTaskTriggerToExecuteMessage create(Task task, Date triggerDate, User userNotified) {
+    public static NewTaskTriggerToExecuteMessage create(Task task, Date triggerDate, UserEntity userNotified) {
         return new NewTaskTriggerToExecuteMessage(task, triggerDate, userNotified);
     }
 
@@ -32,7 +32,7 @@ public class NewTaskTriggerToExecuteMessage {
         return triggerDate;
     }
 
-    public User getUserNotified() {
+    public UserEntity getUserNotified() {
         return userNotified;
     }
 }

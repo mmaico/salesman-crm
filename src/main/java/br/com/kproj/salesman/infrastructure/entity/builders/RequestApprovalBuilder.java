@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
@@ -24,7 +24,7 @@ public class RequestApprovalBuilder extends AbstractBuilder<RequestApproval>  {
         return this;
     }
 
-    public RequestApprovalBuilder withUserRequester(User userRequester) {
+    public RequestApprovalBuilder withUserRequester(UserEntity userRequester) {
         this.entity.setUserRequester(userRequester);
         return this;
     }

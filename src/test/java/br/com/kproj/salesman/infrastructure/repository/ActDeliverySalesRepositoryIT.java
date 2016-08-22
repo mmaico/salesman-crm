@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder.createUser;
+import static br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder.createUser;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -40,7 +40,7 @@ public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnAllUsersWithActDeliverySigned() {
-        List<User> users = repository.findUsersWithSignedDelivery();
+        List<UserEntity> users = repository.findUsersWithSignedDelivery();
 
         assertThat(users.size(), is(2));
 

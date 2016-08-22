@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.application.users;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserApproverProfileRepository;
@@ -29,7 +29,7 @@ public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyIm
             return Optional.empty();
         }
 
-        Optional<User> userLoaded = userApplication.getOne(userProfile.getApprover().getId());
+        Optional<UserEntity> userLoaded = userApplication.getOne(userProfile.getApprover().getId());
 
         ApproverProfile approverProfileSaved = super.save(userProfile);
 

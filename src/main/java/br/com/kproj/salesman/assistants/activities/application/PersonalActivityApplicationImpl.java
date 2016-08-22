@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.activities.application;
 
 import br.com.kproj.salesman.assistants.activities.domain.PersonalActivityDomainService;
 import br.com.kproj.salesman.assistants.activities.infrastructure.PersonalAcvitityRepository;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -66,7 +66,7 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     }
 
     @Override
-    public void changeStatus(PersonalActivity activity, User userChange) {
+    public void changeStatus(PersonalActivity activity, UserEntity userChange) {
 
         PersonalActivity activityLoaded = repository.findOne(activity.getId());
 

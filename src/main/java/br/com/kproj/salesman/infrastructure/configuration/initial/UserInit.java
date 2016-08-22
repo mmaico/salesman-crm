@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.configuration.initial;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,23 +22,23 @@ public class UserInit implements InitialProcess {
 	private static final String NAME = "Administrador do sistema";
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserEntityRepository userEntityRepository;
 
 
 	@Override
 	@PostConstruct
 	public void run() {
 
-		long count = userRepository.count();
+		long count = userEntityRepository.count();
 		if (count < 1) {
 			byte[] byteArray = getAvatar();
 
-            User adminUser = UserBuilder.createUser(1l)
+            UserEntity adminUser = UserEntityBuilder.createUser(1l)
                     .withLogin(LOGIN).withPassword(PASSWD)
                     .withName(NAME)
                     .withAvatar(byteArray).build();
 
-            userRepository.save(adminUser);
+            userEntityRepository.save(adminUser);
         }
 	}
 

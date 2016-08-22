@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.*;
@@ -21,7 +21,7 @@ public class LeadAddress extends Identifiable {
     private String zipcode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @ExcludeAuditingField
+    @ExcludeField
     private Lead lead;
 
     @Override

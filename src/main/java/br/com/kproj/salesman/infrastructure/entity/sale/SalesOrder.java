@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.sale;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import com.google.common.collect.Lists;
@@ -38,7 +38,7 @@ public class SalesOrder extends Identifiable {
     @ManyToOne
     @JoinColumn(name="seller_id")
     @NotNull(message = "order.seller.required")
-    private User seller;
+    private UserEntity seller;
 
     @OneToOne
     @JoinColumn(name="proposal_id")
@@ -135,11 +135,11 @@ public class SalesOrder extends Identifiable {
         this.client = client;
     }
 
-    public User getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public void setSeller(UserEntity seller) {
         this.seller = seller;
     }
 

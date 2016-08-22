@@ -32,7 +32,7 @@ public class QTaskAudinting extends EntityPathBase<TaskAudinting> {
 
     public final DateTimePath<java.util.Date> lastUpdate = createDateTime("lastUpdate", java.util.Date.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QTaskAudinting(String variable) {
         this(TaskAudinting.class, forVariable(variable), INITS);
@@ -52,7 +52,7 @@ public class QTaskAudinting extends EntityPathBase<TaskAudinting> {
 
     public QTaskAudinting(Class<? extends TaskAudinting> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("user"), inits.get("user")) : null;
+        this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 
 }

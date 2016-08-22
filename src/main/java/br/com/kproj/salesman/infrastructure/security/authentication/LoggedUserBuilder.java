@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.infrastructure.security.authentication;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public class LoggedUserBuilder extends AbstractBuilder<LoggedUser> {
 		this.entity = new LoggedUser();
 	}
 
-	public LoggedUserBuilder(String login, User user, Set<String> roles) {
+	public LoggedUserBuilder(String login, UserEntity user, Set<String> roles) {
 		this();
 		this.entity.setLogin(login);
 		this.withUser(user);
@@ -24,8 +24,8 @@ public class LoggedUserBuilder extends AbstractBuilder<LoggedUser> {
 
 	}
 	
-	public LoggedUserBuilder withUser(User user) {
-		User baseData = UserBuilder.createUser(user.getId())
+	public LoggedUserBuilder withUser(UserEntity user) {
+		UserEntity baseData = UserEntityBuilder.createUser(user.getId())
 			.withLogin(user.getLogin())
 				.withName(user.getName())
 				.withLastname(user.getLastname()).build();
@@ -35,7 +35,7 @@ public class LoggedUserBuilder extends AbstractBuilder<LoggedUser> {
 	}
 	
 
-	public static LoggedUserBuilder createLoggedUser(String login, User user, Set<String> roles) {
+	public static LoggedUserBuilder createLoggedUser(String login, UserEntity user, Set<String> roles) {
 		return new LoggedUserBuilder(login, user, roles);
 	}
 

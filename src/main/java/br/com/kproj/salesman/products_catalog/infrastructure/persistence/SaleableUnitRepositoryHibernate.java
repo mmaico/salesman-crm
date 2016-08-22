@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -61,6 +62,20 @@ public class SaleableUnitRepositoryHibernate extends BaseRespositoryImpl<Saleabl
 
         return new PageImpl<>(converteds, page, saleableUnits.getTotalElements());
     }
+
+    @Override
+    public Optional<SaleableUnit> findOne(Long id) {
+        Optional<SaleableUnitEntity> result = Optional.ofNullable(repository.findOne(id));
+
+        if (!result.isPresent()) {
+            return Optional.empty();
+        } else {
+            SaleableUnit saleableFound = poolConverters.get(result.get().getClass()).select(result.get());
+            return Optional.of(saleableFound);
+        }
+
+    }
+
 
     @Override
     public BaseRepositoryLegacy<SaleableUnitEntity, Long> getRepository() {

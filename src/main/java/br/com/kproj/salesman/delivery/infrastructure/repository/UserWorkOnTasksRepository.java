@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.repository;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -10,19 +10,19 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserWorkOnTasksRepository extends BaseRepositoryLegacy<User, Long> {
+public interface UserWorkOnTasksRepository extends BaseRepositoryLegacy<UserEntity, Long> {
 
     @Query("SELECT DISTINCT user FROM Task AS t JOIN t.signedBy AS user")
-    List<User> findUsersWorksInTasks();
+    List<UserEntity> findUsersWorksInTasks();
 
     @Query("SELECT count(*) FROM Task AS t JOIN t.signedBy AS user " +
             " WHERE user = :user AND t.status =:status")
-    Long countOnAllTasksBy(@Param("user") User user, @Param("status") TaskStatus status);
+    Long countOnAllTasksBy(@Param("user") UserEntity user, @Param("status") TaskStatus status);
 
     @Query("SELECT DISTINCT user FROM Task AS t JOIN t.signedBy AS user WHERE t.salesOrder =:salesOrder")
-    List<User> findUsersWorksOnSalesOrder(@Param("salesOrder")SalesOrder salesOrder);
+    List<UserEntity> findUsersWorksOnSalesOrder(@Param("salesOrder")SalesOrder salesOrder);
 
     @Query("SELECT count(*) FROM Task AS t JOIN t.signedBy AS user " +
             " WHERE user = :user AND t.status = :status AND t.salesOrder = :salesOrder")
-    Long countOnTaskBy(@Param("user")User user, @Param("salesOrder") SalesOrder salesOrder, @Param("status") TaskStatus status);
+    Long countOnTaskBy(@Param("user")UserEntity user, @Param("salesOrder") SalesOrder salesOrder, @Param("status") TaskStatus status);
 }

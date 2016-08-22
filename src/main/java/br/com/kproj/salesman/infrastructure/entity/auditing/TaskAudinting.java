@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.auditing;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import com.jayway.jsonpath.JsonPath;
 
 import javax.persistence.*;
@@ -28,7 +28,7 @@ public class TaskAudinting extends Identifiable {
     @ManyToOne
     @JoinColumn(name="user_id")
     @NotNull
-    private User user;
+    private UserEntity user;
 
     @Column(name="last_update")
     @NotNull
@@ -51,11 +51,11 @@ public class TaskAudinting extends Identifiable {
         this.info = info;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

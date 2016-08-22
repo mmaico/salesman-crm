@@ -37,7 +37,7 @@ public class QTaskActivity extends EntityPathBase<TaskActivity> {
     public final NumberPath<Long> id;
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QTaskActivity(String variable) {
         this(TaskActivity.class, forVariable(variable), INITS);

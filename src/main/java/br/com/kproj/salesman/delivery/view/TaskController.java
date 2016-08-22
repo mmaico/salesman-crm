@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -121,7 +121,7 @@ public class TaskController {
     @RequestMapping(value="/tasks/{taskId}/signed", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId) {
         Task task = createTaskBuilder(taskId).build();
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
 
         this.service.signedTask(user, task);
     }
@@ -129,7 +129,7 @@ public class TaskController {
     @RequestMapping(value="/tasks/{taskId}/unsigned", method = RequestMethod.PUT)
     public @ResponseBody void unsignedTask(@PathVariable Long taskId) {
         Task task = createTaskBuilder(taskId).build();
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
 
         this.service.unsignedTask(user, task);
     }
@@ -139,7 +139,7 @@ public class TaskController {
         Task task = createTaskBuilder(taskId)
                 .withStatus(TaskStatus.get(status)).build();
 
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
 
         this.service.changeStatus(task, user);
     }

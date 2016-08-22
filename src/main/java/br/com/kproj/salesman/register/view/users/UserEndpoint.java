@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.register.view.users;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.register.application.contract.UserApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,9 +20,10 @@ public class UserEndpoint {
 
 
     @RequestMapping(value="/rs/users/{userId}")
-    public @ResponseBody User viewInfo(@PathVariable Long userId, Model model) {
+    public @ResponseBody
+    UserEntity viewInfo(@PathVariable Long userId, Model model) {
         
-        Optional<User> result = this.service.getOne(userId);
+        Optional<UserEntity> result = this.service.getOne(userId);
 
         return result.isPresent() ? result.get() : null;
     }

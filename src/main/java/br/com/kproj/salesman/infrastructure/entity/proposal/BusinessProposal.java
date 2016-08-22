@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -42,7 +42,7 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
     @ManyToOne
     @JoinColumn(name="seller_id")
     @NotNull(message = "business.proposal.seller.required")
-    private User seller;
+    private UserEntity seller;
 
     private String careOf;
 
@@ -120,11 +120,11 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
         this.client = client;
     }
 
-    public User getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public void setSeller(UserEntity seller) {
         this.seller = seller;
     }
 

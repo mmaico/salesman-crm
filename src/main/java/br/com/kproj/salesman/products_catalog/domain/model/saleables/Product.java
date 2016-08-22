@@ -4,7 +4,6 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.MeasurementUnitEntit
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import com.trex.shared.annotations.EntityReference;
-import lombok.Data;
 
 
 @EntityReference(ProductEntity.class)

@@ -1,10 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 
 import javax.persistence.*;
 
@@ -26,8 +24,8 @@ public class CalendarActivity extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="calendar_id")
-    @ExcludeAuditingField
-    private Calendar calendar;
+    @ExcludeField
+    private CalendarEntity calendarEntity;
 
     @OneToOne(mappedBy = "calendarActivity", cascade = CascadeType.ALL)
     private Period period;
@@ -80,12 +78,12 @@ public class CalendarActivity extends Identifiable {
         this.period = period;
     }
 
-    public Calendar getCalendar() {
-        return calendar;
+    public CalendarEntity getCalendarEntity() {
+        return calendarEntity;
     }
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
+    public void setCalendarEntity(CalendarEntity calendarEntity) {
+        this.calendarEntity = calendarEntity;
     }
 
     public ActivityType getType() {

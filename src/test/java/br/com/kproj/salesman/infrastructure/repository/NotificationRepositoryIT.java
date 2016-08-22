@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class NotificationRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldCountTaskNotification() {
-        User user = UserBuilder.createUser(1l).build();
+        UserEntity user = UserEntityBuilder.createUser(1l).build();
         Date date = DateHelper.convertToDate("10/02/2016");
 
         Long count = repository.findCountTaskNotificationBy(user, date);
@@ -30,7 +30,7 @@ public class NotificationRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldCountProposalNotification() {
-        User user = UserBuilder.createUser(1l).build();
+        UserEntity user = UserEntityBuilder.createUser(1l).build();
         Date date = DateHelper.convertToDate("10/02/2016");
 
         Long count = repository.findCountProposalBy(user, date);

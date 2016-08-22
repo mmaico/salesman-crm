@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.Rule;
@@ -69,7 +69,7 @@ public class FileSystemHelperTest {
     @Test
     public void shouldFindFileOnFilesystem() throws IOException {
 
-        User entity = new User();
+        UserEntity entity = new UserEntity();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();
@@ -95,7 +95,7 @@ public class FileSystemHelperTest {
     @Test
     public void shouldReturnEmptyByteArrayWhenFileNotExist() throws IOException {
 
-        User entity = new User();
+        UserEntity entity = new UserEntity();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();
@@ -110,7 +110,7 @@ public class FileSystemHelperTest {
 
     @Test
     public void shouldDelegateToFileSystemPathUtilsOnMethodGetBasePath() {
-        User entity = new User();
+        UserEntity entity = new UserEntity();
         entity.setId(2l);
         String pathExpected = "path/file";
 
@@ -123,7 +123,7 @@ public class FileSystemHelperTest {
 
     @Test
     public void shouldDelegateToFileSystemPathUtilsOnMethodGetPathFile() {
-        User entity = new User();
+        UserEntity entity = new UserEntity();
         entity.setId(2l);
 
         AppFile appFile = new AppFile();

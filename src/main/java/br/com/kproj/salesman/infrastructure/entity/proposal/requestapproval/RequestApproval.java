@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import com.google.common.collect.Lists;
@@ -28,7 +28,7 @@ public class RequestApproval extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="user_requester_id")
-    private User userRequester;
+    private UserEntity userRequester;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApproval")
     private List<Approver> approvers = Lists.newArrayList();
@@ -54,11 +54,11 @@ public class RequestApproval extends Identifiable {
         this.proposal = proposal;
     }
 
-    public User getUserRequester() {
+    public UserEntity getUserRequester() {
         return userRequester;
     }
 
-    public void setUserRequester(User userRequester) {
+    public void setUserRequester(UserEntity userRequester) {
         this.userRequester = userRequester;
     }
 

@@ -2,13 +2,9 @@ package br.com.kproj.salesman.timeline.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.Contact;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUserBuilder;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -44,7 +40,7 @@ public class ContactTimelineControllerIT extends AbstractIntegrationTest {
     @Autowired
     private ContactTimelineController controller;
 
-    private User user;
+    private UserEntity user;
 
     private SecurityHelper security;
 
@@ -53,7 +49,7 @@ public class ContactTimelineControllerIT extends AbstractIntegrationTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
         this.security = mock(SecurityHelper.class);
 
-        user = UserBuilder.createUser(2l).build();
+        user = UserEntityBuilder.createUser(2l).build();
         LoggedUser loggedUser = LoggedUserBuilder.createLoggedUser("admin", user, Sets.newHashSet()).build();
 
         given(this.security.getPrincipal()).willReturn(loggedUser);

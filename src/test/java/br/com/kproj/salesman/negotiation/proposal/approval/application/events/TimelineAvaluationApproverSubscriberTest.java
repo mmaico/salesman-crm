@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.application.events;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
@@ -21,7 +21,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder.createUser;
+import static br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder.createUser;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -51,7 +51,7 @@ public class TimelineAvaluationApproverSubscriberTest {
         BusinessProposalApprovalActivity activity = new BusinessProposalApprovalActivity();
         activity.setId(1l);
         activity.setAvaluation(ApproverStatus.APPROVED);
-        TimelineSaveMessage timelineEvent = TimelineSaveMessage.createTimelineEvent(mock(User.class), proposalMock, activity);
+        TimelineSaveMessage timelineEvent = TimelineSaveMessage.createTimelineEvent(mock(UserEntity.class), proposalMock, activity);
 
         given(security.getPrincipal()).willReturn(loggedUser);
 
@@ -68,7 +68,7 @@ public class TimelineAvaluationApproverSubscriberTest {
         LogActivity activity = new LogActivity();
         activity.setId(1l);
 
-        TimelineSaveMessage timelineEvent = TimelineSaveMessage.createTimelineEvent(mock(User.class), proposalMock, activity);
+        TimelineSaveMessage timelineEvent = TimelineSaveMessage.createTimelineEvent(mock(UserEntity.class), proposalMock, activity);
 
         subscriber.requestApprovalAvaluation(timelineEvent);
 

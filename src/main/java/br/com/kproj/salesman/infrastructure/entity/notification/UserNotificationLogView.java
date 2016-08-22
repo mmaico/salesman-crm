@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.notification;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class UserNotificationLogView extends Identifiable {
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    private User user;
+    private UserEntity user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="last_view")
@@ -36,11 +36,11 @@ public class UserNotificationLogView extends Identifiable {
     @Enumerated(EnumType.STRING)
     private TypeLogView typeLogView;
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

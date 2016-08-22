@@ -3,7 +3,7 @@ package br.com.kproj.salesman.incidents.domain;
 import br.com.kproj.salesman.incidents.infrastructure.IncidentValidator;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,21 +25,21 @@ public class IncidentDomainServiceImpl implements IncidentDomainService {
     private IncidentValidator validator;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserEntityRepository userEntityRepository;
 
     Map<String, CheckRuleLegacy<Incident>> persistRules = new HashMap<>();
     {
         persistRules.put(description("incidente.base.validators"), (incident) -> hasContraintViolated(incident, validator));
 
         persistRules.put(description("incident.with.invalid.responsible"), (incident) ->
-                incident == null || !hasId(incident.getResponsible()) || !userRepository.exists(incident.getResponsible().getId()));
+                incident == null || !hasId(incident.getResponsible()) || !userEntityRepository.exists(incident.getResponsible().getId()));
 
         persistRules.put(description("incident.with.invalid.createdby"), (incident) ->
-                incident == null || !hasId(incident.getCreatedBy()) || !userRepository.exists(incident.getCreatedBy().getId()));
+                incident == null || !hasId(incident.getCreatedBy()) || !userEntityRepository.exists(incident.getCreatedBy().getId()));
 
         persistRules.put(description("incident.with.invalid.client"), (incident) ->
                 incident == null || incident.getClient() == null || incident.getClient().getId() == null
-                        || !userRepository.exists(incident.getCreatedBy().getId()));
+                        || !userEntityRepository.exists(incident.getCreatedBy().getId()));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.notifications.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -36,7 +36,7 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLega
     }
 
     @Override
-    public Optional<UserNotificationLogView> getLastViewProposalNotification(User user) {
+    public Optional<UserNotificationLogView> getLastViewProposalNotification(UserEntity user) {
 
         Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.PROPOSAL_NOTIFICATION, Pager.build().one());
 
@@ -44,7 +44,7 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLega
     }
 
     @Override
-    public Optional<UserNotificationLogView> getLastViewTaskNotification(User user) {
+    public Optional<UserNotificationLogView> getLastViewTaskNotification(UserEntity user) {
         Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.TASK_NOTIFICATION, Pager.build().one());
 
         return Optional.ofNullable(result.getContent().size() > 0 ? result.getContent().get(0) : null);

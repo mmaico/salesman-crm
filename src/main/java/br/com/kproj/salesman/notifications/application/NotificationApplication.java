@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.notifications.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
@@ -16,11 +16,11 @@ public interface NotificationApplication extends ModelLegacyService<Notification
 
     void sendScheduledTaskdNotification(TaskNotification notification);
 
-    List<ApprovalBusinessProposalNotification> findProposalByUser(User user);
+    List<ApprovalBusinessProposalNotification> findProposalByUser(UserEntity user);
 
-    List<TaskNotification> findTaskNotificationByUser(User user);
+    List<TaskNotification> findTaskNotificationByUser(UserEntity user);
 
-    Long findCountTaskNotificationBy(User user);
+    Long findCountTaskNotificationBy(UserEntity user);
 
-    Long findCountProposalBy(User user);
+    Long findCountProposalBy(UserEntity user);
 }

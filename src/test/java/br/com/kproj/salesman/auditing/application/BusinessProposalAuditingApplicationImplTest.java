@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.auditing.application;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -57,7 +57,7 @@ public class BusinessProposalAuditingApplicationImplTest {
     public void shouldRegisterFirstBusinessProposal () {
         BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
 
         given(pageResultMock.getContent()).willReturn(Lists.newArrayList());
@@ -75,7 +75,7 @@ public class BusinessProposalAuditingApplicationImplTest {
         String json = "{json}";
         BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
 
         given(pageResultMock.getContent()).willReturn(Lists.newArrayList());
@@ -101,7 +101,7 @@ public class BusinessProposalAuditingApplicationImplTest {
         String jsonNew = "{jsonNew}";
         BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
 
         BusinessProposalAudinting audintingMockDB = new BusinessProposalAudinting();
@@ -124,7 +124,7 @@ public class BusinessProposalAuditingApplicationImplTest {
 
         BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
 
         BusinessProposalAudinting audintingMockDB = new BusinessProposalAudinting();

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,9 @@ public class UserHelper {
 
 
 	@Autowired
-	private UserRepository repository;
+	private UserEntityRepository repository;
 
-	public Iterable<User> findAll() {
+	public Iterable<UserEntity> findAll() {
 		return repository.findAll();
 	}
 

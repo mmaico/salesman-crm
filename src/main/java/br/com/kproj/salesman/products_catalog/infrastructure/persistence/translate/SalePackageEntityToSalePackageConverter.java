@@ -1,11 +1,12 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate;
 
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.saleable.*;
-import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.PRODUCT;
-import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.SERVICE;
 
 
 @Component

@@ -1,26 +1,26 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 
 public class UserSaveMessage {
 
 
-    private User user;
+    private UserEntity user;
 
-    public UserSaveMessage(User user) {
+    public UserSaveMessage(UserEntity user) {
         this.user = user;
     }
 
-    public static UserSaveMessage create(User userChange) {
+    public static UserSaveMessage create(UserEntity userChange) {
           return new UserSaveMessage(userChange);
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

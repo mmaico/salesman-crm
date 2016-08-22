@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 
 
@@ -10,9 +10,9 @@ public class ProposalAuditingAfterUpdateMessage {
 
     private BusinessProposalAudinting after;
 
-    User userThatChanged;
+    UserEntity userThatChanged;
 
-    public  ProposalAuditingAfterUpdateMessage(BusinessProposalAudinting before, BusinessProposalAudinting after, User userThatChanged) {
+    public  ProposalAuditingAfterUpdateMessage(BusinessProposalAudinting before, BusinessProposalAudinting after, UserEntity userThatChanged) {
         this.before = before;
         this.after = after;
         this.userThatChanged = userThatChanged;
@@ -35,15 +35,15 @@ public class ProposalAuditingAfterUpdateMessage {
         this.after = after;
     }
 
-    public User getUserThatChanged() {
+    public UserEntity getUserThatChanged() {
         return userThatChanged;
     }
 
-    public void setUserThatChanged(User userThatChanged) {
+    public void setUserThatChanged(UserEntity userThatChanged) {
         this.userThatChanged = userThatChanged;
     }
 
-    public static ProposalAuditingAfterUpdateMessage create(BusinessProposalAudinting before, BusinessProposalAudinting after, User userThatChanged) {
+    public static ProposalAuditingAfterUpdateMessage create(BusinessProposalAudinting before, BusinessProposalAudinting after, UserEntity userThatChanged) {
         return new ProposalAuditingAfterUpdateMessage(before, after, userThatChanged);
     }
 }

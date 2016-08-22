@@ -28,7 +28,7 @@ public class QIncident extends EntityPathBase<Incident> {
 
     public final QContact contact;
 
-    public final QUser createdBy;
+    public final QUserEntity createdBy;
 
     public final StringPath description = createString("description");
 
@@ -36,7 +36,7 @@ public class QIncident extends EntityPathBase<Incident> {
 
     public final EnumPath<Incident.IncidentPriority> priority = createEnum("priority", Incident.IncidentPriority.class);
 
-    public final QUser responsible;
+    public final QUserEntity responsible;
 
     public final EnumPath<Incident.IncidentStatus> status = createEnum("status", Incident.IncidentStatus.class);
 
@@ -64,8 +64,8 @@ public class QIncident extends EntityPathBase<Incident> {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.contact = inits.isInitialized("contact") ? new QContact(forProperty("contact"), inits.get("contact")) : null;
-        this.createdBy = inits.isInitialized("createdBy") ? new QUser(forProperty("createdBy"), inits.get("createdBy")) : null;
-        this.responsible = inits.isInitialized("responsible") ? new QUser(forProperty("responsible"), inits.get("responsible")) : null;
+        this.createdBy = inits.isInitialized("createdBy") ? new QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
+        this.responsible = inits.isInitialized("responsible") ? new QUserEntity(forProperty("responsible"), inits.get("responsible")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

@@ -43,7 +43,7 @@ public class QEmailActivity extends EntityPathBase<EmailActivity> {
     public final StringPath to = createString("to");
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QEmailActivity(String variable) {
         this(EmailActivity.class, forVariable(variable), INITS);

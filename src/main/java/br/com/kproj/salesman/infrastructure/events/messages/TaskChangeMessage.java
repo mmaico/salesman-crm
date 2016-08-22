@@ -1,13 +1,13 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 
 public class TaskChangeMessage {
 
 
-    private User user;
+    private UserEntity user;
     private Task task;
 
     public TaskChangeMessage(Task task) {
@@ -18,11 +18,11 @@ public class TaskChangeMessage {
           return new TaskChangeMessage(task);
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

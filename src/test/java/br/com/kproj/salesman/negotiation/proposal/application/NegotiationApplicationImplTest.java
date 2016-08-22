@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -132,7 +132,7 @@ public class NegotiationApplicationImplTest {
 
     @Test
     public void shouldChangeTemperature() {
-        User changeThat = mock(User.class);
+        UserEntity changeThat = mock(UserEntity.class);
         BusinessProposal proposal = mock(BusinessProposal.class);
         BusinessProposal proposalLoaded = mock(BusinessProposal.class);
 
@@ -149,7 +149,7 @@ public class NegotiationApplicationImplTest {
 
     @Test
     public void shouldDoNothingWhenStatusIsClosedWon() {
-        User changeThat = mock(User.class);
+        UserEntity changeThat = mock(UserEntity.class);
         BusinessProposal proposal = mock(BusinessProposal.class);
         BusinessProposal proposalLoaded = mock(BusinessProposal.class);
 
@@ -166,7 +166,7 @@ public class NegotiationApplicationImplTest {
 
     @Test
     public void shouldChangeTemperatureToClosedWon() {
-        User changeThat = mock(User.class);
+        UserEntity changeThat = mock(UserEntity.class);
         BusinessProposal proposal = mock(BusinessProposal.class);
         BusinessProposal proposalLoaded = mock(BusinessProposal.class);
 

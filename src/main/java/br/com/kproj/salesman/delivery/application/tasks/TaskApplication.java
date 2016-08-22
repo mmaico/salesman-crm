@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.application.tasks;
 
 
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
@@ -21,7 +21,7 @@ public interface TaskApplication extends ModelLegacyService<Task> {
 
     Boolean isSomeonesSon(Task task);
 
-    void changeStatus(Task task, User userChange);
+    void changeStatus(Task task, UserEntity userChange);
 
     DeliveryResumeExecutionTaskDTO getResume();
 
@@ -29,9 +29,9 @@ public interface TaskApplication extends ModelLegacyService<Task> {
 
     Long countBySalesOrder(SalesOrder salesOrder);
 
-    void signedTask(User user, Task task);
+    void signedTask(UserEntity user, Task task);
 
-    void unsignedTask(User user, Task task);
+    void unsignedTask(UserEntity user, Task task);
 
     List<Task> findTaskRootBy(SalesOrder salesOrder);
 

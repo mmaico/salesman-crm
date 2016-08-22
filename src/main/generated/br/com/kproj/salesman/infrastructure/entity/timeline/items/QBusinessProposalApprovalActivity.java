@@ -39,7 +39,7 @@ public class QBusinessProposalApprovalActivity extends EntityPathBase<BusinessPr
     public final NumberPath<Long> id;
 
     // inherited
-    public final br.com.kproj.salesman.infrastructure.entity.QUser user;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QBusinessProposalApprovalActivity(String variable) {
         this(BusinessProposalApprovalActivity.class, forVariable(variable), INITS);

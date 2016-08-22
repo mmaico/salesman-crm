@@ -2,9 +2,8 @@ package br.com.kproj.salesman.infrastructure.entity.activities;
 
 import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import com.google.common.collect.Lists;
@@ -47,11 +46,11 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="owner_id")
-    private User owner;
+    private UserEntity owner;
 
     @ManyToOne
     @JoinColumn(name="assignment_id")
-    private User assignment;
+    private UserEntity assignment;
 
     @OneToOne
     @JoinColumn(name = "timeline_id")
@@ -161,19 +160,19 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
         this.status = status;
     }
 
-    public User getOwner() {
+    public UserEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(UserEntity owner) {
         this.owner = owner;
     }
 
-    public User getAssignment() {
+    public UserEntity getAssignment() {
         return assignment;
     }
 
-    public void setAssignment(User assignment) {
+    public void setAssignment(UserEntity assignment) {
         this.assignment = assignment;
     }
 }

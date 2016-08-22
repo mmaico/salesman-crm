@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
-import br.com.kproj.salesman.infrastructure.entity.UserPosition;
+import br.com.kproj.salesman.infrastructure.entity.UserPositionEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import com.google.common.collect.Lists;
 import org.jdom.Document;
@@ -21,14 +21,14 @@ public class UserPositionParser {
 	private static final String FILE_NAME = "/configurations/user_positions.xml";
 	
 	
-	public static List<UserPosition> getPositions() {
+	public static List<UserPositionEntity> getPositions() {
 
 		return  loadUserPositions();
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	protected static List<UserPosition> loadUserPositions() {
+	protected static List<UserPositionEntity> loadUserPositions() {
 		SAXBuilder sab = new SAXBuilder();
 		try {
 			InputStream inputStream = findFile();
@@ -38,13 +38,13 @@ public class UserPositionParser {
 			
 			Document doc = (Document) sab.build(inputStream);
 			Element rootElement = (Element) doc.getRootElement();
-			List<UserPosition> listPositions = new ArrayList<>();
+			List<UserPositionEntity> listPositions = new ArrayList<>();
 			
 			List<Element> childrenRoot = rootElement.getChildren();
 			
 			for (Element el : childrenRoot) {
 				
-				UserPosition possition = convertToPosition(el);
+				UserPositionEntity possition = convertToPosition(el);
 				listPositions.add(possition);
 			}
 			
@@ -57,8 +57,8 @@ public class UserPositionParser {
 		}
 	}
 	
-	private static UserPosition convertToPosition(Element element) {
-		UserPosition position = new UserPosition();
+	private static UserPositionEntity convertToPosition(Element element) {
+		UserPositionEntity position = new UserPositionEntity();
 		
 		String name = element.getAttributeValue(ATTRIBUTE_NAME);
 		String id = element.getAttributeValue(ATTRIBUTE_ID);

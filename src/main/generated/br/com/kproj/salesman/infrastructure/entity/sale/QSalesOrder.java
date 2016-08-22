@@ -40,7 +40,7 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
 
     public final ListPath<SalesOrderItem, QSalesOrderItem> salesOrderItems = this.<SalesOrderItem, QSalesOrderItem>createList("salesOrderItems", SalesOrderItem.class, QSalesOrderItem.class, PathInits.DIRECT2);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser seller;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity seller;
 
     public final BooleanPath taskGenerated = createBoolean("taskGenerated");
 
@@ -65,7 +65,7 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
-        this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("seller"), inits.get("seller")) : null;
+        this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
     }
 
 }

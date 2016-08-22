@@ -1,32 +1,32 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 
 public class TaskChangeStatusMessage {
 
 
-    private User user;
+    private UserEntity user;
     private TaskStatus oldStatus;
     private Task task;
 
-    public TaskChangeStatusMessage(User user, Task task, TaskStatus oldStatus) {
+    public TaskChangeStatusMessage(UserEntity user, Task task, TaskStatus oldStatus) {
         this.user = user;
         this.task = task;
         this.oldStatus = oldStatus;
     }
 
-    public static TaskChangeStatusMessage create(Task task, User userChange, TaskStatus oldStatus) {
+    public static TaskChangeStatusMessage create(Task task, UserEntity userChange, TaskStatus oldStatus) {
           return new TaskChangeStatusMessage(userChange, task, oldStatus);
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

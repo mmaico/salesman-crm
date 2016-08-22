@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 
@@ -18,7 +18,7 @@ public class ApprovalBusinessProposalNotificationBuilder extends AbstractBuilder
 		this.entity.setId(id);
 	}
 
-	public ApprovalBusinessProposalNotificationBuilder withNotified(User notified) {
+	public ApprovalBusinessProposalNotificationBuilder withNotified(UserEntity notified) {
 		this.entity.setNotified(notified);
 		return this;
 	}

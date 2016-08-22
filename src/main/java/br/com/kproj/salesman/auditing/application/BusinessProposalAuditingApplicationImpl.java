@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.auditing.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalAuditingBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
@@ -29,7 +29,7 @@ public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceLeg
     @Autowired
     private EventBus eventBus;
 
-    public Optional<BusinessProposalAudinting> registerAuditing(BusinessProposal businessProposal, User userThatChanged) {
+    public Optional<BusinessProposalAudinting> registerAuditing(BusinessProposal businessProposal, UserEntity userThatChanged) {
 
         Page<BusinessProposalAudinting> lasModitication = repository.findLasVersion(businessProposal.getId(), Pager.build().withPageSize(1));
 

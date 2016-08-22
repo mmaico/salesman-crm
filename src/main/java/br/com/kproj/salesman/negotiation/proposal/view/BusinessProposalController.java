@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.view;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
@@ -111,7 +111,7 @@ public class BusinessProposalController {
 
     @RequestMapping(value="/proposals/{proposalId}/temperature", method = RequestMethod.PUT)
     public @ResponseBody void changeTemperature(@PathVariable Long proposalId, @ModelAttribute TemperatureDTO temperatureDTO) {
-        User user = security.getPrincipal().getUser();
+        UserEntity user = security.getPrincipal().getUser();
         service.changeTemperature(createBusinessProposal(proposalId).build(), user, temperatureDTO.getTemperature());
     }
 

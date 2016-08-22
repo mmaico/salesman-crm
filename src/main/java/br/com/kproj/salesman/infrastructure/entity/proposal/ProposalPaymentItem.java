@@ -1,9 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import com.google.gson.annotations.Expose;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -33,7 +32,7 @@ public class ProposalPaymentItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private BusinessProposal businessProposal;
 
     @Override

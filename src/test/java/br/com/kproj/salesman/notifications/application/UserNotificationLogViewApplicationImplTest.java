@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.notifications.application;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
 import br.com.kproj.salesman.infrastructure.repository.UserNotificationLogViewRepository;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class UserNotificationLogViewApplicationImplTest {
     @Test
     public void shouldRegisterUserNotificationLogView() {
         UserNotificationLogView logView = new UserNotificationLogView();
-        logView.setUser(UserBuilder.createUser(1l).build());
+        logView.setUser(UserEntityBuilder.createUser(1l).build());
         UserNotificationLogView logViewDBMock = mock(UserNotificationLogView.class);
 
         given(repository.save(logView)).willReturn(logViewDBMock);
@@ -46,7 +46,7 @@ public class UserNotificationLogViewApplicationImplTest {
     @Test
     public void shouldReturnEmptyWhenUserWithoutId() {
         UserNotificationLogView logView = new UserNotificationLogView();
-        logView.setUser(UserBuilder.createUser().build());
+        logView.setUser(UserEntityBuilder.createUser().build());
 
         Optional<UserNotificationLogView> result = application.register(logView);
 

@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 
 import javax.persistence.*;
 
@@ -17,8 +17,8 @@ public class ApproverProfile extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="user_approver_id")
-    @ExcludeAuditingField
-    private User approver;
+    @ExcludeField
+    private UserEntity approver;
 
     private Boolean available = Boolean.FALSE;
 
@@ -31,11 +31,11 @@ public class ApproverProfile extends Identifiable {
         this.id = id;
     }
 
-    public User getApprover() {
+    public UserEntity getApprover() {
         return approver;
     }
 
-    public void setApprover(User approver) {
+    public void setApprover(UserEntity approver) {
         this.approver = approver;
     }
 

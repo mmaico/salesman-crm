@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
@@ -26,12 +26,12 @@ public class ProposalSaleableItem extends Identifiable {
 
 	@ManyToOne
     @JoinColumn(name="saleable_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private SaleableUnitEntity saleableUnit;
 
     @ManyToOne
     @JoinColumn(name = "package_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private SalePackageEntity salePackage;
 
     @NotNull(message = "domain.saleable.price.is.invalid")
@@ -47,7 +47,7 @@ public class ProposalSaleableItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private BusinessProposal businessProposal;
 
 

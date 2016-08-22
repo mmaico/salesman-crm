@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.location.City;
 import br.com.kproj.salesman.infrastructure.entity.location.Country;
 import br.com.kproj.salesman.infrastructure.entity.location.State;
@@ -48,7 +48,7 @@ public class Address extends Identifiable {
     private City city;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @ExcludeAuditingField
+    @ExcludeField
     private Person person;
 
     @NotNull

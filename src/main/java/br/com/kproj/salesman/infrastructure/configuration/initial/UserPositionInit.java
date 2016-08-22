@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.configuration.initial;
 
 import br.com.kproj.salesman.infrastructure.configuration.parsers.UserPositionParser;
-import br.com.kproj.salesman.infrastructure.entity.UserPosition;
+import br.com.kproj.salesman.infrastructure.entity.UserPositionEntity;
 import br.com.kproj.salesman.infrastructure.repository.UserPositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class UserPositionInit implements InitialProcess {
 
 		long count = repository.count();
 		if (count < 1) {
-            List<UserPosition> result = UserPositionParser.getPositions();
+            List<UserPositionEntity> result = UserPositionParser.getPositions();
 
             repository.save(result);
         }

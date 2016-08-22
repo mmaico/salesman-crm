@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
@@ -59,7 +59,7 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder withSignedBy(List<User> users) {
+    public TaskBuilder withSignedBy(List<UserEntity> users) {
         this.entity.setSignedBy(users); ;
         return this;
     }
@@ -74,7 +74,7 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder addSignedBy(User user) {
+    public TaskBuilder addSignedBy(UserEntity user) {
         this.entity.addSignedBy(user);
         return this;
     }

@@ -8,7 +8,7 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutio
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class DeliveryDashboardHelper {
         return workspaceApplication.findSalesOrderNotInWorkspace();
     }
 
-    public List<User> findUsersResponsibles(SalesOrder salesOrder) {
+    public List<UserEntity> findUsersResponsibles(SalesOrder salesOrder) {
         return workspaceApplication.findUsersResponsibles(salesOrder);
     }
 

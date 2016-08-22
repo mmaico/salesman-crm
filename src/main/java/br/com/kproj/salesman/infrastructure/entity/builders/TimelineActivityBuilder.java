@@ -20,7 +20,7 @@ public class TimelineActivityBuilder extends AbstractBuilder<TaskActivity>  {
     }
 
     public TimelineActivityBuilder withUser(Long userId) {
-        this.entity.setUser(UserBuilder.createUser(userId).build());
+        this.entity.setUser(UserEntityBuilder.createUser(userId).build());
         return this;
     }
 

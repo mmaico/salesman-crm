@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.timeline.application.subscrivers;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
@@ -37,7 +37,7 @@ public class RequestApprovalActivitiesSubscriberTest {
 
     @Test
     public void shouldGenerateActivyByRequestNewAapproval() {
-        User requestor = mock(User.class);
+        UserEntity requestor = mock(UserEntity.class);
         RequestApproval requestApproval = new RequestApproval();
         requestApproval.setUserRequester(requestor);
         RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApproval);
@@ -58,7 +58,7 @@ public class RequestApprovalActivitiesSubscriberTest {
     public void shouldVerifyIfCorreclyProposalSendToApplication() {
         BusinessProposal businessProposalMock = mock(BusinessProposal.class);
         RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(mock(User.class));
+        requestApproval.setUserRequester(mock(UserEntity.class));
         requestApproval.setProposal(businessProposalMock);
         RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApproval);
 
@@ -73,7 +73,7 @@ public class RequestApprovalActivitiesSubscriberTest {
 
     @Test
     public void shouldGenerateActivityByFinalizeRequestApproval() {
-        User requestor = mock(User.class);
+        UserEntity requestor = mock(UserEntity.class);
         RequestApproval requestApproval = new RequestApproval();
         requestApproval.setUserRequester(requestor);
         RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApproval);
@@ -93,7 +93,7 @@ public class RequestApprovalActivitiesSubscriberTest {
     public void shouldVerifyIfCorreclyProposalSendToApplicationOnFinalizeRequestApproval() {
         BusinessProposal businessProposalMock = mock(BusinessProposal.class);
         RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(mock(User.class));
+        requestApproval.setUserRequester(mock(UserEntity.class));
         requestApproval.setProposal(businessProposalMock);
         RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApproval);
 

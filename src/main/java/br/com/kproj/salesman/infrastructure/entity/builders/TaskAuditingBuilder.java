@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.TaskAudinting;
 
 import java.util.Calendar;
@@ -17,7 +17,7 @@ public class TaskAuditingBuilder extends AbstractBuilder<TaskAudinting>  {
 		this.entity.setId(id);
 	}
 	
-	public TaskAuditingBuilder withUser(User user) {
+	public TaskAuditingBuilder withUser(UserEntity user) {
 		this.entity.setUser(user);
 		return this;
 	}

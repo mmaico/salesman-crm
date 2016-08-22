@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -47,7 +47,7 @@ public class Contact extends Identifiable implements TimelinePresent {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private Person person;
 
     @Override

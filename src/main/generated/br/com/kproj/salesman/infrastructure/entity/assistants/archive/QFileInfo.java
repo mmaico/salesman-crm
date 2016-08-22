@@ -32,7 +32,7 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
 
     public final BooleanPath isPublic = createBoolean("isPublic");
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser owner;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity owner;
 
     public final ListPath<SharedWith, QSharedWith> sharedWith = this.<SharedWith, QSharedWith>createList("sharedWith", SharedWith.class, QSharedWith.class, PathInits.DIRECT2);
 
@@ -57,7 +57,7 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
     public QFileInfo(Class<? extends FileInfo> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFile(forProperty("file")) : null;
-        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("owner"), inits.get("owner")) : null;
+        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
     }
 
 }

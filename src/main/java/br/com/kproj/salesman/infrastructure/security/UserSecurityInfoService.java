@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.security;
 
 
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.repository.UserRepository;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +14,10 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class UserSecurityInfoService {
 
     @Autowired
-    private UserRepository repository;
+    private UserEntityRepository repository;
 
 
-    public Optional<User> getUser(String login, String password) {
+    public Optional<UserEntity> getUser(String login, String password) {
 
         if (isBlank(login) || isBlank(password)) {
             return Optional.empty();

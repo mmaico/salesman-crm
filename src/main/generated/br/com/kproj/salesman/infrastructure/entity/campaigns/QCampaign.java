@@ -24,7 +24,7 @@ public class QCampaign extends EntityPathBase<Campaign> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser createdBy;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity createdBy;
 
     public final StringPath description = createString("description");
 
@@ -58,7 +58,7 @@ public class QCampaign extends EntityPathBase<Campaign> {
 
     public QCampaign(Class<? extends Campaign> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("createdBy"), inits.get("createdBy")) : null;
+        this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

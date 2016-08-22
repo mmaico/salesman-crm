@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.application.triggernotification;
 
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.events.messages.NewTaskTriggerToExecuteMessage;
@@ -69,13 +69,13 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceLegacyImpl<
     /**
        Executa a cada 10 min
      **/
-    @Scheduled(fixedDelay= 600000 )
+    //@Scheduled(fixedDelay= 600000 )
     public void sendEventWhenTriggerAvailable() {
 
         List<ScheduleTriggerNotification> result = repository.findAllAvailableToday(DateHelper.now());
 
         for (ScheduleTriggerNotification trigger: result) {
-            List<User> users = workspaceApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
+            List<UserEntity> users = workspaceApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
             users.forEach(user ->
                     eventBus.post(NewTaskTriggerToExecuteMessage
                             .create(trigger.getTask(), trigger.getTriggerDate(), user))

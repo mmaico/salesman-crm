@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 
 public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
@@ -21,7 +21,7 @@ public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
 		return this;
 	}
 
-	public ActDeliverySalesBuilder withUser(User user) {
+	public ActDeliverySalesBuilder withUser(UserEntity user) {
 		this.entity.setUser(user);
 		return this;
 	}

@@ -32,7 +32,7 @@ public class QRequestApproval extends EntityPathBase<RequestApproval> {
 
     public final EnumPath<RequestApproval.RequestApprovalStatus> status = createEnum("status", RequestApproval.RequestApprovalStatus.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QUser userRequester;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity userRequester;
 
     public QRequestApproval(String variable) {
         this(RequestApproval.class, forVariable(variable), INITS);
@@ -53,7 +53,7 @@ public class QRequestApproval extends EntityPathBase<RequestApproval> {
     public QRequestApproval(Class<? extends RequestApproval> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
-        this.userRequester = inits.isInitialized("userRequester") ? new br.com.kproj.salesman.infrastructure.entity.QUser(forProperty("userRequester"), inits.get("userRequester")) : null;
+        this.userRequester = inits.isInitialized("userRequester") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("userRequester"), inits.get("userRequester")) : null;
     }
 
 }

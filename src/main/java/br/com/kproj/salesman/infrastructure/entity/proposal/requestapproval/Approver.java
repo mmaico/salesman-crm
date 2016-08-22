@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 
 import javax.persistence.*;
@@ -19,7 +19,7 @@ public class Approver extends Identifiable {
     @ManyToOne
     @JoinColumn(name="user_approver_id")
     @NotNull(message = "approver.user.cannot.be.null")
-    private User approver;
+    private UserEntity approver;
 
     private String description;
 
@@ -40,11 +40,11 @@ public class Approver extends Identifiable {
         this.id = id;
     }
 
-    public User getApprover() {
+    public UserEntity getApprover() {
         return approver;
     }
 
-    public void setApprover(User approver) {
+    public void setApprover(UserEntity approver) {
         this.approver = approver;
     }
 

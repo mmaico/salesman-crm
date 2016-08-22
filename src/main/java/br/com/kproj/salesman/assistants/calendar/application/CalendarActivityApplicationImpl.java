@@ -4,8 +4,8 @@ import br.com.kproj.salesman.assistants.calendar.application.dto.RangeDatesDTO;
 import br.com.kproj.salesman.assistants.calendar.domain.CalendarActivityDomainService;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.CalendarActivityRepository;
-import br.com.kproj.salesman.infrastructure.entity.User;
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.Calendar;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -37,12 +37,12 @@ public class CalendarActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     }
 
     @Override
-    public CalendarActivity register(CalendarActivity activity, User user) {
+    public CalendarActivity register(CalendarActivity activity, UserEntity user) {
 
-        Calendar calendarLoaded = calendarApplication.register(user);
+        CalendarEntity calendarEntityLoaded = calendarApplication.register(user);
         if (activity.isNew()) {
             normalizeEntityRequest.doNestedReference(activity);
-            activity.setCalendar(calendarLoaded);
+            activity.setCalendarEntity(calendarEntityLoaded);
         }
         normalizeEntityRequest.addFieldsToUpdate(activity);
 

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.application;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.WorkspaceUnitValidator;
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.repository.WorkspaceUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -39,7 +39,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public List<User> findUsersResponsibles(SalesOrder salesOrder) {
+    public List<UserEntity> findUsersResponsibles(SalesOrder salesOrder) {
         if (salesOrder == null || salesOrder.isNew()) {
             return Lists.newArrayList();
         }
@@ -47,7 +47,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public Boolean isInMyWorkspace(SalesOrder salesOrder, User user) {
+    public Boolean isInMyWorkspace(SalesOrder salesOrder, UserEntity user) {
         if (salesOrder == null || salesOrder.isNew() || user == null || user.isNew()) {
             return Boolean.FALSE;
         }
@@ -55,7 +55,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public void removeItemWorkspaceBy(SalesOrder salesOrder, User user) {
+    public void removeItemWorkspaceBy(SalesOrder salesOrder, UserEntity user) {
         Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(salesOrder, user);
 
         if (result.isPresent()) {
@@ -74,7 +74,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public List<SalesOrder> findBy(User user) {
+    public List<SalesOrder> findBy(UserEntity user) {
         return this.repository.findByUser(user);
     }
 

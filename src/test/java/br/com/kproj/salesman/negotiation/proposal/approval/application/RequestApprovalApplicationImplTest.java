@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.application;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.ApproverProfileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.RequestApprovalBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.UserBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
@@ -51,7 +51,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldRegisterRequestApproval() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
@@ -71,7 +71,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldAddApproversAvailableBeforeSave() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
         List<ApproverProfile> approverProfiles = getApproverProfilesStub();
 
@@ -103,7 +103,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldDoNothingWhenNotHaveApprovers() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
@@ -127,7 +127,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldReturnWhenAlreadyExistAnRequestApproval() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
@@ -152,7 +152,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldAddAvaluationApprover() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userStub = UserBuilder.createUser(3l).build();
+        UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
@@ -174,7 +174,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldUpdateStatusRequestApprovalIfUserDisaproved() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userStub = UserBuilder.createUser(3l).build();
+        UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
 
         RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
@@ -194,7 +194,7 @@ public class RequestApprovalApplicationImplTest {
     @Test
     public void shouldUpdateStatusRequestApprovalToApprovedWhenAllUserApproved() {
         BusinessProposal proposal = createBusinessProposal(1l).build();
-        User userStub = UserBuilder.createUser(3l).build();
+        UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
         approversStub.get(0).setStatus(ApproverStatus.APPROVED);
 
@@ -215,20 +215,20 @@ public class RequestApprovalApplicationImplTest {
 
     private List<Approver> getApproversStub() {
         Approver approver = new Approver();
-        approver.setApprover(UserBuilder.createUser(1l).build());
+        approver.setApprover(UserEntityBuilder.createUser(1l).build());
         approver.setDescription("desc 01");
         approver.setId(1l);
         approver.setStatus(ApproverStatus.WAITING);
 
         Approver approver02 = new Approver();
-        approver02.setApprover(UserBuilder.createUser(2l).build());
+        approver02.setApprover(UserEntityBuilder.createUser(2l).build());
         approver02.setDescription("desc 02");
         approver02.setId(2l);
         approver02.setStatus(ApproverStatus.APPROVED);
 
 
         Approver approver03 = new Approver();
-        approver03.setApprover(UserBuilder.createUser(3l).build());
+        approver03.setApprover(UserEntityBuilder.createUser(3l).build());
         approver03.setDescription("desc 03");
         approver03.setId(3l);
         approver03.setStatus(ApproverStatus.WAITING);
@@ -239,15 +239,15 @@ public class RequestApprovalApplicationImplTest {
 
     private List<ApproverProfile> getApproverProfilesStub() {
         ApproverProfile profileOneActive = ApproverProfileBuilder.createProfile(1l)
-                .withApprover(Mockito.mock(User.class))
+                .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.TRUE).build();
 
         ApproverProfile profileTwoActive = ApproverProfileBuilder.createProfile(2l)
-                .withApprover(Mockito.mock(User.class))
+                .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.TRUE).build();
 
         ApproverProfile profileTwoDisabled = ApproverProfileBuilder.createProfile(3l)
-                .withApprover(Mockito.mock(User.class))
+                .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.FALSE).build();
 
         return Lists.newArrayList(profileOneActive, profileTwoActive, profileTwoDisabled);

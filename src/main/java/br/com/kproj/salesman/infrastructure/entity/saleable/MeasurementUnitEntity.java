@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

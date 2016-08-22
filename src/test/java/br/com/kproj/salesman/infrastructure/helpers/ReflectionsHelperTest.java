@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
 import net.vidageek.mirror.list.dsl.MirrorList;
@@ -20,7 +20,7 @@ public class ReflectionsHelperTest {
 
     @Test
     public void shouldCreateANewInstanceOfClass() {
-        User newInstance = ReflectionsHelper.newInstance(User.class);
+        UserEntity newInstance = ReflectionsHelper.newInstance(UserEntity.class);
 
         assertThat(newInstance, notNullValue());
     }

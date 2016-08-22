@@ -2,7 +2,7 @@ package br.com.kproj.salesman.auditing.application.events;
 
 import br.com.kproj.salesman.auditing.application.BusinessProposalAuditingApplication;
 import br.com.kproj.salesman.auditing.application.subscribers.AuditingSubscriber;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -32,7 +32,7 @@ public class AuditingSubscriberTest {
     @Test
     public void shouldRegisterAuditing() {
         BusinessProposal businessProposalMock = Mockito.mock(BusinessProposal.class);
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         LoggedUser loggedUser = new LoggedUser();
         loggedUser.setUser(userMock);
 

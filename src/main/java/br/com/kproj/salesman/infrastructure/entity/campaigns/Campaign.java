@@ -1,10 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.campaigns;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,7 +42,7 @@ public class Campaign extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     @NotNull(message = "user.createdby.is.null")
-    private User createdBy;
+    private UserEntity createdBy;
 
     @OneToOne(mappedBy = "campaign")
     private Timeline timeline;
@@ -107,11 +105,11 @@ public class Campaign extends Identifiable {
         this.status = status;
     }
 
-    public User getCreatedBy() {
+    public UserEntity getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
 }

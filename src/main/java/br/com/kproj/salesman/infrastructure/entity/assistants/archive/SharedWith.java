@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.SharedType;
 
 import javax.persistence.*;
@@ -16,7 +16,7 @@ public class SharedWith extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name="file_info_id")
@@ -34,11 +34,11 @@ public class SharedWith extends Identifiable {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

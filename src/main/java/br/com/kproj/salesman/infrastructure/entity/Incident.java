@@ -1,14 +1,11 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -55,12 +52,12 @@ public class Incident extends Identifiable implements TimelinePresent {
     @ManyToOne
     @JoinColumn(name="responsible_id")
     @NotNull
-    private User responsible;
+    private UserEntity responsible;
 
     @ManyToOne
     @JoinColumn(name="created_id")
     @NotNull
-    private User createdBy;
+    private UserEntity createdBy;
 
     @Column(name="priority")
     @Enumerated(EnumType.STRING)
@@ -115,11 +112,11 @@ public class Incident extends Identifiable implements TimelinePresent {
         this.status = status;
     }
 
-    public User getResponsible() {
+    public UserEntity getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(User responsible) {
+    public void setResponsible(UserEntity responsible) {
         this.responsible = responsible;
     }
 
@@ -147,11 +144,11 @@ public class Incident extends Identifiable implements TimelinePresent {
         this.description = description;
     }
 
-    public User getCreatedBy() {
+    public UserEntity getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
 }

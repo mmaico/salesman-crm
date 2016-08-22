@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;

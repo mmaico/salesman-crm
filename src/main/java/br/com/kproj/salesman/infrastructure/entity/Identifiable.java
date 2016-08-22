@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
 
@@ -17,7 +17,7 @@ public abstract class Identifiable implements Persistable<Long>, Serializable {
 
 
     @Transient
-    @ExcludeAuditingField
+    @ExcludeField
     private Set<String> fields = new HashSet<String>();
 
 

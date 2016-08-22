@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import br.com.kproj.salesman.auditing.infrastructure.ExcludeAuditingField;
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -31,7 +31,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @OneToMany(cascade =CascadeType.ALL)
     @JoinColumn(name="parent_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private List<Task> tasksChilds;
 
     @Column(name = "parent_id", updatable =false, insertable = false)
@@ -53,18 +53,18 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="sales_order_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private SalesOrder salesOrder;
 
     @ManyToMany
     @JoinTable(name="task_user",
             joinColumns={@JoinColumn(name="task_id")},
             inverseJoinColumns={@JoinColumn(name="user_id")})
-    private List<User> signedBy;
+    private List<UserEntity> signedBy;
 
     @OneToOne
     @JoinColumn(name = "timeline_id")
-    @ExcludeAuditingField
+    @ExcludeField
     private Timeline timeline;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
@@ -76,7 +76,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @Transient
     @IgnoreField
-    @ExcludeAuditingField
+    @ExcludeField
     private Task parent;
 
     public void addChild(Task task) {
@@ -100,7 +100,7 @@ public class Task extends Identifiable implements TimelinePresent {
         this.taskCosts.add(taskCost);
     }
 
-    public void addSignedBy(User user) {
+    public void addSignedBy(UserEntity user) {
         if (this.signedBy == null) {
             this.signedBy = Lists.newArrayList();
         }
@@ -179,11 +179,11 @@ public class Task extends Identifiable implements TimelinePresent {
         this.taskCosts = taskCosts;
     }
 
-    public List<User> getSignedBy() {
+    public List<UserEntity> getSignedBy() {
         return signedBy;
     }
 
-    public void setSignedBy(List<User> signedBy) {
+    public void setSignedBy(List<UserEntity> signedBy) {
         this.signedBy = signedBy;
     }
 
@@ -240,7 +240,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     }
 
-    public Boolean hasSigned(User user) {
+    public Boolean hasSigned(UserEntity user) {
         if (this.getSignedBy() == null) {
             this.signedBy = Lists.newArrayList();
             return Boolean.FALSE;

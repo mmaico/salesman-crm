@@ -58,7 +58,7 @@ public abstract class BaseRespositoryImpl<T extends ModelIdentifiable, ENTITY ex
 
     public Class<ENTITY> getEntityClass() {
         return (Class<ENTITY>) ((ParameterizedType)
-                getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+                getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
 
 }

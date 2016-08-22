@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.User;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -34,7 +34,7 @@ public class CanChangeProposalStatusDomainServiceImplTest {
 
     @Test
     public void shouldNotHaveErrosWhenHasApproversAndStatusRequestApprovalIsApproved () {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         RequestApproval requestApprovalMock = Mockito.mock(RequestApproval.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
 
@@ -51,7 +51,7 @@ public class CanChangeProposalStatusDomainServiceImplTest {
 
     @Test
     public void shouldNotHaveErrosWhenNotHasApprovers() {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
         RequestApproval requestApprovalMock = Mockito.mock(RequestApproval.class);
 
@@ -67,7 +67,7 @@ public class CanChangeProposalStatusDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldHaveErrosWhenHasApproversAndStatusRequestApprovalIsWaiting () {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         RequestApproval requestApprovalMock = Mockito.mock(RequestApproval.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
 
@@ -82,7 +82,7 @@ public class CanChangeProposalStatusDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldHaveErrosWhenHasApproversAndStatusRequestApprovalIsDisapproved () {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         RequestApproval requestApprovalMock = Mockito.mock(RequestApproval.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
 
@@ -97,7 +97,7 @@ public class CanChangeProposalStatusDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldHaveErrosWhenHasApproversAndNotHaveRequestApproval () {
-        User userMock = Mockito.mock(User.class);
+        UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposal bpMock = Mockito.mock(BusinessProposal.class);
 
 
