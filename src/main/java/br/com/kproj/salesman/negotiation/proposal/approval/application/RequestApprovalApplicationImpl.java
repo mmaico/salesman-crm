@@ -51,7 +51,7 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
             return Optional.of(requestApprovalLoaded.get());
         }
 
-        //TODO exluir o usuario alterado
+        //TODO exluir o usuarios desativados
         if (!profileRepository.hasApprovers()) return Optional.empty();
 
         Page<ApproverProfile> profilesAvailables = profileRepository.findAll(Pager.build().withPageSize(10000));

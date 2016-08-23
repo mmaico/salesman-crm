@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.leads.domain;
+package br.com.kproj.salesman.businessprospecting.leads.domain;
 
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;

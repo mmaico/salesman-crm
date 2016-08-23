@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.infrastructure.validators;
+package br.com.kproj.salesman.businessprospecting.leads;
 
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import org.springframework.beans.factory.InitializingBean;

@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.leads.view;
+package br.com.kproj.salesman.businessprospecting.leads.view;
 
 
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.negotiation.infrastructure.validators.LeadValidator;
-import br.com.kproj.salesman.negotiation.leads.application.LeadsApplication;
+import br.com.kproj.salesman.businessprospecting.leads.application.LeadsApplication;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
