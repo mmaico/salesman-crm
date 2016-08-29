@@ -68,7 +68,7 @@ public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<Busin
         if (client == null || client.isNew()) {
             return Lists.newArrayList();
         }
-        return repository.findByClient(client);
+        return null; //repository.findByClient(client);
     }
 
     @Override

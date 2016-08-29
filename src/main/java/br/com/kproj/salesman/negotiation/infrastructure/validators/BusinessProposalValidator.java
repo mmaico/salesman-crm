@@ -31,7 +31,7 @@ public class BusinessProposalValidator implements Validator {
         factory.getValidator().validate(businessProposalEntity)
                 .forEach(error -> errors.reject(error.getMessage()));
 
-        idValidator.validate(businessProposalEntity.getClient(), errors);
+        //idValidator.validate(businessProposalEntity.getClient(), errors);
         idValidator.validate(businessProposalEntity.getSeller(), errors);
     }
 

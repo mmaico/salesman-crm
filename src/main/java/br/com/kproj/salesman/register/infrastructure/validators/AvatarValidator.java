@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
 
-@Component
+@Component("avatarValidatorOld")
 public class AvatarValidator implements Validator {
 
 	private static final Integer MAX_SIZE = 1024;

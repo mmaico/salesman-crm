@@ -12,7 +12,7 @@ import java.util.List;
 public interface BusinessProposalRepository extends BaseRepositoryLegacy<BusinessProposalEntity, Long> {
 
 
-    List<BusinessProposalEntity> findByClient(@Param("client") Person client);
+    //List<BusinessProposalEntity> findByClient(@Param("client") Person client);
 
     @Query("SELECT so FROM SalesOrder AS so WHERE so.proposal = :proposal")
     SalesOrder findByProposal(@Param("proposal") BusinessProposalEntity proposal);

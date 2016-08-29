@@ -40,7 +40,7 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     {
 
         persistRules.put(description("proposal.verify.won.cannotbe.changed"), (bp) -> ProposalTemperature.CLOSED_WON == bp.getTemperature());
-        persistRules.put(description("domain.verify.valid.client"), (bp) -> !(!(bp).getClient().isNew() && clientReposiory.exists(bp.getClient().getId())));
+        //persistRules.put(description("domain.verify.valid.client"), (bp) -> !(!(bp).getClient().isNew() && clientReposiory.exists(bp.getClient().getId())));
         persistRules.put(description("domain.verify.valid.vendor"), (bp) -> !(!(bp).getSeller().isNew() && userEntityRepository.exists(bp.getSeller().getId())));
         persistRules.put(description("proposal.verify.not.empty.products"), (bp) -> isEmptySafe(bp.getSaleableItems()));
         persistRules.put(description("proposal.verify.not.empty.payment"), (bp) -> isEmptySafe(bp.getPaymentItems()));

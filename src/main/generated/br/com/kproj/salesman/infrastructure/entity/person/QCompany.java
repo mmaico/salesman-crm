@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -36,7 +35,7 @@ public class QCompany extends EntityPathBase<Company> {
     public final StringPath cnpj = createString("cnpj");
 
     //inherited
-    public final ListPath<ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContact> contacts;
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity> contacts;
 
     //inherited
     public final NumberPath<Long> id;

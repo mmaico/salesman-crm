@@ -113,7 +113,7 @@ public class NegotiationApplicationImplTest {
         client.setId(1l);
         BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
 
-        given(repository.findByClient(client)).willReturn(Lists.newArrayList(proposal));
+        //given(repository.findByClient(client)).willReturn(Lists.newArrayList(proposal));
 
         List<BusinessProposalEntity> result = negotiationService.findByClient(client);
 

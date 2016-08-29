@@ -13,10 +13,10 @@ import java.util.Optional;
 public interface RequestApprovalRepository extends BaseRepositoryLegacy<RequestApprovalEntity, Long> {
 
 
-    @Query("SELECT ra FROM RequestApproval AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")
+    @Query("SELECT ra FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")
     Optional<RequestApprovalEntity> findByProposal(@Param("proposal")BusinessProposalEntity proposal);
 
-    @Query("SELECT ra FROM RequestApproval AS ra WHERE ra.proposal = :proposal ORDER BY ra.id DESC")
+    @Query("SELECT ra FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal ORDER BY ra.id DESC")
     Page<RequestApprovalEntity> findLastRequestApprovals(@Param("proposal")BusinessProposalEntity proposal, Pageable pageable);
 
     @Query("SELECT " +
@@ -24,7 +24,7 @@ public interface RequestApprovalRepository extends BaseRepositoryLegacy<RequestA
             "      THEN true " +
             "      ELSE false " +
             " END " +
-            "FROM RequestApproval AS ra WHERE ra.proposal = :proposal AND ra.status = 'APPROVED'")
+            "FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal AND ra.status = 'APPROVED'")
     Boolean hasRequestApprovalApproved(@Param("proposal")BusinessProposalEntity proposal);
 
 }

@@ -28,7 +28,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final br.com.kproj.salesman.infrastructure.entity.campaigns.QCampaign campaign;
 
-    public final br.com.kproj.salesman.infrastructure.entity.QContact contact;
+    public final br.com.kproj.salesman.infrastructure.entity.QContactEntity contact;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -40,7 +40,7 @@ public class QTimeline extends EntityPathBase<Timeline> {
 
     public final br.com.kproj.salesman.infrastructure.entity.activities.QPersonalActivity personalActivity;
 
-    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
+    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity proposal;
 
     public final br.com.kproj.salesman.infrastructure.entity.task.QTask task;
 
@@ -63,12 +63,12 @@ public class QTimeline extends EntityPathBase<Timeline> {
     public QTimeline(Class<? extends Timeline> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.campaign = inits.isInitialized("campaign") ? new br.com.kproj.salesman.infrastructure.entity.campaigns.QCampaign(forProperty("campaign"), inits.get("campaign")) : null;
-        this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContact(forProperty("contact"), inits.get("contact")) : null;
+        this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContactEntity(forProperty("contact"), inits.get("contact")) : null;
         this.incident = inits.isInitialized("incident") ? new br.com.kproj.salesman.infrastructure.entity.QIncident(forProperty("incident"), inits.get("incident")) : null;
         this.lead = inits.isInitialized("lead") ? new br.com.kproj.salesman.infrastructure.entity.QIncident(forProperty("lead"), inits.get("lead")) : null;
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.personalActivity = inits.isInitialized("personalActivity") ? new br.com.kproj.salesman.infrastructure.entity.activities.QPersonalActivity(forProperty("personalActivity"), inits.get("personalActivity")) : null;
-        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
+        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity(forProperty("proposal"), inits.get("proposal")) : null;
         this.task = inits.isInitialized("task") ? new br.com.kproj.salesman.infrastructure.entity.task.QTask(forProperty("task"), inits.get("task")) : null;
     }
 

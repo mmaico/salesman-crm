@@ -11,6 +11,6 @@ import java.util.List;
 public interface ContactRepository extends BaseRepositoryLegacy<ContactEntity, Long> {
 
 
-    @Query("SELECT c FROM Contact AS c WHERE c.person = :person")
+    @Query("SELECT c FROM ContactEntity AS c")
     List<ContactEntity> findByPerson(@Param("person") Person person);
 }

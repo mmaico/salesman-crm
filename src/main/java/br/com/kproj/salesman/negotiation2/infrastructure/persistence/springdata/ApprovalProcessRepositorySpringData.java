@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ApprovalProcessRepositorySpringData extends BaseRepositoryLegacy<RequestApprovalEntity, Long> {
 
-    @Query("SELECT ra FROM RequestApproval AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")
+    @Query("SELECT ra FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")
     Optional<RequestApprovalEntity> findOne(@Param("proposal") BusinessProposalEntity proposal);
 
 

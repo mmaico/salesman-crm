@@ -103,7 +103,7 @@ public class BusinessProposalController {
 
         model.addAttribute("proposalSaleables", proposalSaleablesDTO);
         model.addAttribute("domain", result.get());
-        model.addAttribute("client", result.get().getClient());
+        //model.addAttribute("client", result.get().getClient());
         model.addAttribute("saleables", saleable);
         return new ModelAndView("/clients/domain/" + templateName);
 

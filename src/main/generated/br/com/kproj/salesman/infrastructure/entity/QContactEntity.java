@@ -11,16 +11,16 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QContact is a Querydsl query type for Contact
+ * QContactEntity is a Querydsl query type for ContactEntity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QContact extends EntityPathBase<ContactEntity> {
+public class QContactEntity extends EntityPathBase<ContactEntity> {
 
-    private static final long serialVersionUID = -1236242671L;
+    private static final long serialVersionUID = -1924272556L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QContact contact = new QContact("contact");
+    public static final QContactEntity contactEntity = new QContactEntity("contactEntity");
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
@@ -38,23 +38,23 @@ public class QContact extends EntityPathBase<ContactEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
-    public QContact(String variable) {
+    public QContactEntity(String variable) {
         this(ContactEntity.class, forVariable(variable), INITS);
     }
 
-    public QContact(Path<? extends ContactEntity> path) {
+    public QContactEntity(Path<? extends ContactEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QContact(PathMetadata<?> metadata) {
+    public QContactEntity(PathMetadata<?> metadata) {
         this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QContact(PathMetadata<?> metadata, PathInits inits) {
+    public QContactEntity(PathMetadata<?> metadata, PathInits inits) {
         this(ContactEntity.class, metadata, inits);
     }
 
-    public QContact(Class<? extends ContactEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QContactEntity(Class<? extends ContactEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

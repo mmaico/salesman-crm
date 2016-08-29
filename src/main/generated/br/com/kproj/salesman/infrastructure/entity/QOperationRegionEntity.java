@@ -10,14 +10,14 @@ import com.mysema.query.types.Path;
 
 
 /**
- * QOperationRegion is a Querydsl query type for OperationRegion
+ * QOperationRegionEntity is a Querydsl query type for OperationRegionEntity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QOperationRegion extends EntityPathBase<OperationRegionEntity> {
+public class QOperationRegionEntity extends EntityPathBase<OperationRegionEntity> {
 
-    private static final long serialVersionUID = -1034827476L;
+    private static final long serialVersionUID = 1504446511L;
 
-    public static final QOperationRegion operationRegion = new QOperationRegion("operationRegion");
+    public static final QOperationRegionEntity operationRegionEntity = new QOperationRegionEntity("operationRegionEntity");
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
@@ -25,15 +25,15 @@ public class QOperationRegion extends EntityPathBase<OperationRegionEntity> {
 
     public final StringPath name = createString("name");
 
-    public QOperationRegion(String variable) {
+    public QOperationRegionEntity(String variable) {
         super(OperationRegionEntity.class, forVariable(variable));
     }
 
-    public QOperationRegion(Path<? extends OperationRegionEntity> path) {
+    public QOperationRegionEntity(Path<? extends OperationRegionEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QOperationRegion(PathMetadata<?> metadata) {
+    public QOperationRegionEntity(PathMetadata<?> metadata) {
         super(OperationRegionEntity.class, metadata);
     }
 

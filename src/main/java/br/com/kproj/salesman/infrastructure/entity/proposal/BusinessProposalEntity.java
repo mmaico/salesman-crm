@@ -52,10 +52,10 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
 
     private String introduction;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposalEntity")
     private List<ProposalSaleableItem> saleableItems;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposal")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposalEntity")
     private List<ProposalPaymentItem> paymentItems;
 
     @ManyToOne

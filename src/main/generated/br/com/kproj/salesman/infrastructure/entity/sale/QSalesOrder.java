@@ -32,11 +32,11 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion operationRegion;
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity operationRegionEntity;
 
     public final ListPath<SalesOrderPaymentItem, QSalesOrderPaymentItem> paymentItems = this.<SalesOrderPaymentItem, QSalesOrderPaymentItem>createList("paymentItems", SalesOrderPaymentItem.class, QSalesOrderPaymentItem.class, PathInits.DIRECT2);
 
-    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
+    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity proposal;
 
     public final ListPath<SalesOrderItem, QSalesOrderItem> salesOrderItems = this.<SalesOrderItem, QSalesOrderItem>createList("salesOrderItems", SalesOrderItem.class, QSalesOrderItem.class, PathInits.DIRECT2);
 
@@ -63,8 +63,8 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
     public QSalesOrder(Class<? extends SalesOrder> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
-        this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;
-        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
+        this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;
+        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity(forProperty("proposal"), inits.get("proposal")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
     }
 

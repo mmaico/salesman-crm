@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.person;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -32,7 +31,7 @@ public class QIndividual extends EntityPathBase<Individual> {
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses;
 
     //inherited
-    public final ListPath<ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContact> contacts;
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity> contacts;
 
     public final StringPath cpf = createString("cpf");
 

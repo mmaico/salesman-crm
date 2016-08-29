@@ -24,7 +24,7 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final QBusinessProposal businessProposal;
+    public final QBusinessProposalEntity businessProposalEntity;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -56,7 +56,7 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
 
     public QProposalSaleableItem(Class<? extends ProposalSaleableItem> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.businessProposal = inits.isInitialized("businessProposal") ? new QBusinessProposal(forProperty("businessProposal"), inits.get("businessProposal")) : null;
+        this.businessProposalEntity = inits.isInitialized("businessProposalEntity") ? new QBusinessProposalEntity(forProperty("businessProposalEntity"), inits.get("businessProposalEntity")) : null;
         this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
         this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;
     }

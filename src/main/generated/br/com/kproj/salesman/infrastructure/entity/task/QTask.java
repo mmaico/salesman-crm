@@ -34,7 +34,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
     public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder salesOrder;
 
@@ -70,7 +70,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public QTask(Class<? extends Task> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("region")) : null;
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }

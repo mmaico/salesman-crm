@@ -23,6 +23,8 @@ public class AddressEntity extends Identifiable {
         }
     }
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String street;
     private String city;

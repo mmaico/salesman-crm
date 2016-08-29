@@ -30,7 +30,7 @@ public class RequestApprovalEntity extends Identifiable {
     @JoinColumn(name="user_requester_id")
     private UserEntity userRequester;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApproval")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApprovalEntity")
     private List<Approver> approvers = Lists.newArrayList();
 
     @Enumerated(EnumType.STRING)

@@ -33,7 +33,7 @@ public class QApprovalBusinessProposalNotification extends EntityPathBase<Approv
     // inherited
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity notified;
 
-    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
+    public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity proposal;
 
     public QApprovalBusinessProposalNotification(String variable) {
         this(ApprovalBusinessProposalNotification.class, forVariable(variable), INITS);
@@ -57,7 +57,7 @@ public class QApprovalBusinessProposalNotification extends EntityPathBase<Approv
         this.createDate = _super.createDate;
         this.id = _super.id;
         this.notified = _super.notified;
-        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
+        this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity(forProperty("proposal"), inits.get("proposal")) : null;
     }
 
 }

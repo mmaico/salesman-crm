@@ -30,7 +30,7 @@ public class QApprover extends EntityPathBase<Approver> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QRequestApproval requestApproval;
+    public final QRequestApprovalEntity requestApprovalEntity;
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus.class);
 
@@ -53,7 +53,7 @@ public class QApprover extends EntityPathBase<Approver> {
     public QApprover(Class<? extends Approver> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
-        this.requestApproval = inits.isInitialized("requestApproval") ? new QRequestApproval(forProperty("requestApproval"), inits.get("requestApproval")) : null;
+        this.requestApprovalEntity = inits.isInitialized("requestApprovalEntity") ? new QRequestApprovalEntity(forProperty("requestApprovalEntity"), inits.get("requestApprovalEntity")) : null;
     }
 
 }

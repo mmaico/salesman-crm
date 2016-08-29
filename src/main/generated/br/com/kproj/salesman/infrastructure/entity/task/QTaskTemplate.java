@@ -36,7 +36,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = createNumber("quantityDaysTofinishAfertSignedContract", Integer.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegion region;
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
     public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleable;
 
@@ -64,7 +64,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public QTaskTemplate(Class<? extends TaskTemplate> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("region")) : null;
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;
     }
 
