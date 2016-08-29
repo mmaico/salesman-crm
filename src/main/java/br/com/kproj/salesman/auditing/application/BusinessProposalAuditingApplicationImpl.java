@@ -3,7 +3,7 @@ package br.com.kproj.salesman.auditing.application;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalAuditingBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
@@ -29,14 +29,14 @@ public class BusinessProposalAuditingApplicationImpl extends BaseModelServiceLeg
     @Autowired
     private EventBus eventBus;
 
-    public Optional<BusinessProposalAudinting> registerAuditing(BusinessProposal businessProposal, UserEntity userThatChanged) {
+    public Optional<BusinessProposalAudinting> registerAuditing(BusinessProposalEntity businessProposalEntity, UserEntity userThatChanged) {
 
-        Page<BusinessProposalAudinting> lasModitication = repository.findLasVersion(businessProposal.getId(), Pager.build().withPageSize(1));
+        Page<BusinessProposalAudinting> lasModitication = repository.findLasVersion(businessProposalEntity.getId(), Pager.build().withPageSize(1));
 
         BusinessProposalAudinting newEntryAuditable = BusinessProposalAuditingBuilder.createAuditing()
-                .withEntityId(businessProposal.getId())
+                .withEntityId(businessProposalEntity.getId())
                 .setCurrentDate()
-                .withInfo(gson.toJson(businessProposal))
+                .withInfo(gson.toJson(businessProposalEntity))
                 .withUser(userThatChanged).build();
 
         if (lasModitication.getContent().size() == 0) {

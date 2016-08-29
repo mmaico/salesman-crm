@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QBusinessProposal is a Querydsl query type for BusinessProposal
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
+public class QBusinessProposal extends EntityPathBase<BusinessProposalEntity> {
 
     private static final long serialVersionUID = -1363083457L;
 
@@ -47,10 +47,10 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public QBusinessProposal(String variable) {
-        this(BusinessProposal.class, forVariable(variable), INITS);
+        this(BusinessProposalEntity.class, forVariable(variable), INITS);
     }
 
-    public QBusinessProposal(Path<? extends BusinessProposal> path) {
+    public QBusinessProposal(Path<? extends BusinessProposalEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -59,10 +59,10 @@ public class QBusinessProposal extends EntityPathBase<BusinessProposal> {
     }
 
     public QBusinessProposal(PathMetadata<?> metadata, PathInits inits) {
-        this(BusinessProposal.class, metadata, inits);
+        this(BusinessProposalEntity.class, metadata, inits);
     }
 
-    public QBusinessProposal(Class<? extends BusinessProposal> type, PathMetadata<?> metadata, PathInits inits) {
+    public QBusinessProposal(Class<? extends BusinessProposalEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegion = inits.isInitialized("operationRegion") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegion(forProperty("operationRegion")) : null;

@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusiness
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
@@ -35,16 +35,16 @@ public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Noti
     }
 
     @Override
-    public void sendNotificationToProposalApprovers(RequestApproval requestApproval) {
-        if(requestApproval.getApprovers().isEmpty() || requestApproval.getProposal().isNew()) {
+    public void sendNotificationToProposalApprovers(RequestApprovalEntity requestApprovalEntity) {
+        if(requestApprovalEntity.getApprovers().isEmpty() || requestApprovalEntity.getProposal().isNew()) {
             return;
         }
         List<Notification> notifications = Lists.newArrayList();
 
-        requestApproval.getApprovers().stream()
+        requestApprovalEntity.getApprovers().stream()
                 .forEach(approver ->
                         notifications.add(createProposalNotification()
-                                .withBusinessProposal(requestApproval.getProposal())
+                                .withBusinessProposal(requestApprovalEntity.getProposal())
                                 .setCurrentDate()
                                 .withNotified(approver.getApprover()).build())
                 );

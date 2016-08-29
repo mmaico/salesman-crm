@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import com.google.common.collect.Lists;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name="proposal_request_approval")
-public class RequestApproval extends Identifiable {
+public class RequestApprovalEntity extends Identifiable {
 
 
     public enum RequestApprovalStatus {
@@ -24,7 +24,7 @@ public class RequestApproval extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
-    private BusinessProposal proposal;
+    private BusinessProposalEntity proposal;
 
     @ManyToOne
     @JoinColumn(name="user_requester_id")
@@ -46,11 +46,11 @@ public class RequestApproval extends Identifiable {
         this.id = id;
     }
 
-    public BusinessProposal getProposal() {
+    public BusinessProposalEntity getProposal() {
         return proposal;
     }
 
-    public void setProposal(BusinessProposal proposal) {
+    public void setProposal(BusinessProposalEntity proposal) {
         this.proposal = proposal;
     }
 

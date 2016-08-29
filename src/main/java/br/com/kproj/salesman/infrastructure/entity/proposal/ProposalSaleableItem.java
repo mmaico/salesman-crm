@@ -48,7 +48,7 @@ public class ProposalSaleableItem extends Identifiable {
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
     @ExcludeField
-    private BusinessProposal businessProposal;
+    private BusinessProposalEntity businessProposalEntity;
 
 
 
@@ -102,12 +102,12 @@ public class ProposalSaleableItem extends Identifiable {
         this.salePackage = salePackage;
     }
 
-    public BusinessProposal getBusinessProposal() {
-        return businessProposal;
+    public BusinessProposalEntity getBusinessProposalEntity() {
+        return businessProposalEntity;
     }
 
-    public void setBusinessProposal(BusinessProposal businessProposal) {
-        this.businessProposal = businessProposal;
+    public void setBusinessProposalEntity(BusinessProposalEntity businessProposalEntity) {
+        this.businessProposalEntity = businessProposalEntity;
     }
 
     public Boolean hasPackage() {

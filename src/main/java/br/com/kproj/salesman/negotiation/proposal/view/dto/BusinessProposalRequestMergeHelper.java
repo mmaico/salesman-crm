@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.view.dto;
 
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
@@ -25,7 +25,7 @@ public class BusinessProposalRequestMergeHelper {
 
 
 
-    public static BusinessProposal merge(ProposalSaleablesDTO dto, BusinessProposal proposal) {
+    public static BusinessProposalEntity merge(ProposalSaleablesDTO dto, BusinessProposalEntity proposal) {
 
         List<ProposalSaleableItem> saleableItems = Lists.newArrayList();
         SaleableApplication saleableApplication = ServiceLocator.getBean(SaleableApplication.class);

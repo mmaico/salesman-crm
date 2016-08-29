@@ -13,19 +13,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BusinessProposalTest {
+public class BusinessProposalEntityTest {
 
     @InjectMocks
-    private BusinessProposal businessProposal;
+    private BusinessProposalEntity businessProposalEntity;
 
 
     @Test
     public void shouldReturnTotal() {
 
         List<ProposalSaleableItem> productItems = getProductItems();
-        businessProposal.setSaleableItems(productItems);
+        businessProposalEntity.setSaleableItems(productItems);
 
-        BigDecimal total = businessProposal.getTotal();
+        BigDecimal total = businessProposalEntity.getTotal();
 
         assertThat(total, is(new BigDecimal(25)));
     }
@@ -34,9 +34,9 @@ public class BusinessProposalTest {
     public void shouldReturnTotalToPay() {
 
         List<ProposalPaymentItem> paymentItems = getPaymentItems();
-        businessProposal.setPaymentItems(paymentItems);
+        businessProposalEntity.setPaymentItems(paymentItems);
 
-        BigDecimal total = businessProposal.getTotalToPay();
+        BigDecimal total = businessProposalEntity.getTotalToPay();
 
         assertThat(total, is(new BigDecimal(11)));
     }

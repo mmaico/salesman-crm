@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
@@ -34,8 +34,8 @@ public class ProposalSaleableItemBuilder extends AbstractBuilder<ProposalSaleabl
         return this;
     }
 
-    public ProposalSaleableItemBuilder withProposal(BusinessProposal proposal) {
-        this.entity.setBusinessProposal(proposal);
+    public ProposalSaleableItemBuilder withProposal(BusinessProposalEntity proposal) {
+        this.entity.setBusinessProposalEntity(proposal);
         return this;
     }
 

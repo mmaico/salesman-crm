@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.events.messages.BusinessProposalClosedWonMessage;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<BusinessProposal> implements NegotiationApplication {
+public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<BusinessProposalEntity> implements NegotiationApplication {
 
 	@Autowired
 	private BusinessProposalDomainService service;
@@ -45,26 +45,26 @@ public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<Busin
     @Autowired
     private EventBus eventBus;
 
-    public BusinessProposal register(BusinessProposal businessProposal) {
+    public BusinessProposalEntity register(BusinessProposalEntity businessProposalEntity) {
 
-        service.checkBusinessRulesFor(businessProposal);
-        productsPrepare.preUpdate(businessProposal);
-        paymentPrepare.preUpdate(businessProposal);
-        BusinessProposal businessProposalSaved = null;
+        service.checkBusinessRulesFor(businessProposalEntity);
+        productsPrepare.preUpdate(businessProposalEntity);
+        paymentPrepare.preUpdate(businessProposalEntity);
+        BusinessProposalEntity businessProposalEntitySaved = null;
 
-        if (!businessProposal.isNew()) {
-            businessProposalSaved = super.save(businessProposal, service);
+        if (!businessProposalEntity.isNew()) {
+            businessProposalEntitySaved = super.save(businessProposalEntity, service);
         } else {
-            businessProposal.setTemperature(ProposalTemperature.COLD);
-            businessProposalSaved =  super.save(businessProposal);
+            businessProposalEntity.setTemperature(ProposalTemperature.COLD);
+            businessProposalEntitySaved =  super.save(businessProposalEntity);
         }
 
-        eventBus.post(businessProposal);
-        return businessProposalSaved;
+        eventBus.post(businessProposalEntity);
+        return businessProposalEntitySaved;
     }
 
     @Override
-    public List<BusinessProposal> findByClient(Person client) {
+    public List<BusinessProposalEntity> findByClient(Person client) {
         if (client == null || client.isNew()) {
             return Lists.newArrayList();
         }
@@ -72,39 +72,39 @@ public class NegotiationApplicationImpl extends BaseModelServiceLegacyImpl<Busin
     }
 
     @Override
-    public SalesOrder findSalesBy(BusinessProposal businessProposal) {
+    public SalesOrder findSalesBy(BusinessProposalEntity businessProposalEntity) {
 
-        if (businessProposal == null || businessProposal.isNew()) {
+        if (businessProposalEntity == null || businessProposalEntity.isNew()) {
             return SalesOrderBuilder.createSalesOrder().build();
         }
 
-        return repository.findByProposal(businessProposal);
+        return repository.findByProposal(businessProposalEntity);
     }
 
     @Override
-    public void changeTemperature(BusinessProposal proposal, UserEntity changeThat, ProposalTemperature temperature) {
+    public void changeTemperature(BusinessProposalEntity proposal, UserEntity changeThat, ProposalTemperature temperature) {
 
         if (temperature == null) return;
 
-        Optional<BusinessProposal> proposalOptional = getOne(proposal.getId());
+        Optional<BusinessProposalEntity> proposalOptional = getOne(proposal.getId());
 
         if (proposalOptional.isPresent()) {
 
-            BusinessProposal businessProposal = proposalOptional.get();
-            if (businessProposal.getTemperature() == ProposalTemperature.CLOSED_WON) return;
+            BusinessProposalEntity businessProposalEntity = proposalOptional.get();
+            if (businessProposalEntity.getTemperature() == ProposalTemperature.CLOSED_WON) return;
 
             if (ProposalTemperature.CLOSED_WON == temperature) {
                 if (checkChange.isValidBusinessRulesFor(proposal, changeThat)) {
-                    businessProposal.setTemperature(temperature);
-                    eventBus.post(BusinessProposalClosedWonMessage.create(businessProposal));
+                    businessProposalEntity.setTemperature(temperature);
+                    eventBus.post(BusinessProposalClosedWonMessage.create(businessProposalEntity));
                 }
             } else {
-                businessProposal.setTemperature(temperature);
+                businessProposalEntity.setTemperature(temperature);
             }
         }
     }
 
-    public BaseRepositoryLegacy<BusinessProposal, Long> getRepository() {
+    public BaseRepositoryLegacy<BusinessProposalEntity, Long> getRepository() {
         return repository;
     }
 }

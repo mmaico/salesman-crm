@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import com.google.common.collect.Lists;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -43,7 +43,7 @@ public class SalesOrder extends Identifiable {
     @OneToOne
     @JoinColumn(name="proposal_id")
     @NotNull(message = "order.domain.required")
-    private BusinessProposal proposal;
+    private BusinessProposalEntity proposal;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
@@ -62,7 +62,7 @@ public class SalesOrder extends Identifiable {
     @ManyToOne
     @JoinColumn(name="operation_region_id")
     @NotNull(message = "order.region.required")
-    private OperationRegion operationRegion;
+    private OperationRegionEntity operationRegionEntity;
 
     @Column(name="task_generated")
     private Boolean taskGenerated;
@@ -159,12 +159,12 @@ public class SalesOrder extends Identifiable {
         this.paymentItems = paymentItems;
     }
 
-    public OperationRegion getOperationRegion() {
-        return operationRegion;
+    public OperationRegionEntity getOperationRegionEntity() {
+        return operationRegionEntity;
     }
 
-    public void setOperationRegion(OperationRegion operationRegion) {
-        this.operationRegion = operationRegion;
+    public void setOperationRegionEntity(OperationRegionEntity operationRegionEntity) {
+        this.operationRegionEntity = operationRegionEntity;
     }
 
     public List<SalesOrderItem> getSalesOrderItems() {
@@ -175,11 +175,11 @@ public class SalesOrder extends Identifiable {
         this.salesOrderItems = salesOrderItems;
     }
 
-    public BusinessProposal getProposal() {
+    public BusinessProposalEntity getProposal() {
         return proposal;
     }
 
-    public void setProposal(BusinessProposal proposal) {
+    public void setProposal(BusinessProposalEntity proposal) {
         this.proposal = proposal;
     }
 

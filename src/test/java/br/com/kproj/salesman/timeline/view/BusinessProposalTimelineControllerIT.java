@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
@@ -70,7 +70,7 @@ public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTes
 
         Map<String, Object> model = mvcResult.getModelAndView().getModel();
         Timeline timeline = (Timeline) model.get("timeline");
-        BusinessProposal proposal = (BusinessProposal)model.get("businessProposal");
+        BusinessProposalEntity proposal = (BusinessProposalEntity)model.get("businessProposal");
 
 
         assertThat(timeline.getActivities().size(), is(1));
@@ -93,7 +93,7 @@ public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTes
 
         Map<String, Object> model = mvcResult.getModelAndView().getModel();
         Timeline timeline = (Timeline) model.get("timeline");
-        BusinessProposal proposal = (BusinessProposal)model.get("businessProposal");
+        BusinessProposalEntity proposal = (BusinessProposalEntity)model.get("businessProposal");
 
         BusinessProposalApprovalActivity timelineActivity =  (BusinessProposalApprovalActivity)timeline.getActivities().get(0);
         assertThat(timeline.getActivities().size(), is(1));

@@ -3,8 +3,8 @@ package br.com.kproj.salesman.negotiation.proposal.approval.views.helpers;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.negotiation.proposal.approval.application.RequestApprovalApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +21,17 @@ public class RequestApprovalHelper {
     @Autowired
     private SecurityHelper securityHelper;
 
-    public RequestApproval getRequestApproval(BusinessProposal proposal) {
-        Optional<RequestApproval> result = application.findLastRequestApproval(proposal);
+    public RequestApprovalEntity getRequestApproval(BusinessProposalEntity proposal) {
+        Optional<RequestApprovalEntity> result = application.findLastRequestApproval(proposal);
 
         return result.isPresent() ? result.get() : null;
     }
 
-    public Boolean isPendingApproval(BusinessProposal proposal) {
+    public Boolean isPendingApproval(BusinessProposalEntity proposal) {
         UserEntity user = securityHelper.getPrincipal().getUser();
-        Optional<RequestApproval> result = application.findLastRequestApproval(proposal);
+        Optional<RequestApprovalEntity> result = application.findLastRequestApproval(proposal);
         if (result.isPresent()) {
-            if (result.get().getStatus().equals(RequestApproval.RequestApprovalStatus.WAITING)) {
+            if (result.get().getStatus().equals(RequestApprovalEntity.RequestApprovalStatus.WAITING)) {
                 long count = result.get().getApprovers().stream().filter(item ->
                         item.getApprover().equals(user) && item.getStatus().equals(ApproverStatus.WAITING)).count();
                 return count > 0;

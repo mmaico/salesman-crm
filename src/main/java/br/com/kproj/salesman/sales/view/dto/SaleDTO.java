@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.sales.view.dto;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import com.google.common.collect.Lists;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SaleDTO {
 
-    private BusinessProposal proposal = new BusinessProposal();
+    private BusinessProposalEntity proposal = new BusinessProposalEntity();
 
     private List<SaleableItemDTO> items = Lists.newArrayList();
 
@@ -22,7 +22,7 @@ public class SaleDTO {
         this.items = items;
     }
 
-    public BusinessProposal get() {
+    public BusinessProposalEntity get() {
 
         List<ProposalSaleableItem> saleableItems = Lists.newArrayList();
 
@@ -41,11 +41,11 @@ public class SaleDTO {
         return proposal;
     }
 
-    public BusinessProposal getProposal() {
+    public BusinessProposalEntity getProposal() {
         return proposal;
     }
 
-    public void setProposal(BusinessProposal proposal) {
+    public void setProposal(BusinessProposalEntity proposal) {
         this.proposal = proposal;
     }
 }

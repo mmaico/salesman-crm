@@ -44,7 +44,7 @@ public class TaskTemplateToTask implements Converter<TaskTemplate, Task> {
 
         if (source.getTemplatesChilds() != null) {
             source.getTemplatesChilds().stream()
-                    .filter(item -> item.getRegion().equals(salesOrder.getOperationRegion()))
+                    .filter(item -> item.getRegion().equals(salesOrder.getOperationRegionEntity()))
                         .forEach(child -> builder.addChild(TaskTemplateToTask.create(salesOrder).convert(child)));
         }
 

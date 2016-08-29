@@ -18,7 +18,7 @@ public class RequestApprovalNotificationSubscriber {
     @Subscribe
     public void generateNotificationToApprovers(RequestNewApprovalMessage message) {
 
-        application.sendNotificationToProposalApprovers(message.getRequestApproval());
+        application.sendNotificationToProposalApprovers(message.getRequestApprovalEntity());
 
     }
 

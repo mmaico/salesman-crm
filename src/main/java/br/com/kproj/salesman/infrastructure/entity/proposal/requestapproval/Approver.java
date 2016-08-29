@@ -28,7 +28,7 @@ public class Approver extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="request_approval_id")
-    private RequestApproval requestApproval;
+    private RequestApprovalEntity requestApprovalEntity;
 
 
     @Override
@@ -64,12 +64,12 @@ public class Approver extends Identifiable {
         this.status = status;
     }
 
-    public RequestApproval getRequestApproval() {
-        return requestApproval;
+    public RequestApprovalEntity getRequestApprovalEntity() {
+        return requestApprovalEntity;
     }
 
-    public void setRequestApproval(RequestApproval requestApproval) {
-        this.requestApproval = requestApproval;
+    public void setRequestApprovalEntity(RequestApprovalEntity requestApprovalEntity) {
+        this.requestApprovalEntity = requestApprovalEntity;
     }
 
 

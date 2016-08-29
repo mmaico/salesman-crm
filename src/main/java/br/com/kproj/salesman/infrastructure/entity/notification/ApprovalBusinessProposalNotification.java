@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -19,14 +19,14 @@ public class ApprovalBusinessProposalNotification extends Notification {
 
     @ManyToOne
     @JoinColumn(name="proposal_id")
-    private BusinessProposal proposal;
+    private BusinessProposalEntity proposal;
 
 
-    public BusinessProposal getProposal() {
+    public BusinessProposalEntity getProposal() {
         return proposal;
     }
 
-    public void setProposal(BusinessProposal proposal) {
+    public void setProposal(BusinessProposalEntity proposal) {
         this.proposal = proposal;
     }
 }

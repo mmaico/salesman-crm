@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <person_profiles id="1" name="Cliente Pessoa Juridica"/>
-    <person_profiles id="2" name="Cliente Pessoa fisica"/>
-    <person_profiles id="3" name="Fornecedor Pessoa Jurifica"/>
-    <person_profiles id="4" name="Fornecedor Pessoa fisica"/>
 
     <users id="1" login="mmaico" password="1234" name="Maico"/>
     <users id="2" login="mmaico1" password="1234" name="Maico1"/>
@@ -28,9 +24,8 @@
 
 
 
-    <persons id="1" name="Joao Fereira" active="true" profile_id="1" type="company"/>
-    <persons id="2" name="Pedro Terra Nova" active="true" profile_id="1" type="company"/>
-
+    <accounts id="1" name="Joao Fereira" phone="88398398" employers="10"/>
+    <accounts id="2" name="Pedro Terra Nova" phone="113993898" employers="100"/>
 
 
     <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>

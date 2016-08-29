@@ -3,7 +3,7 @@ package br.com.kproj.salesman.auditing.application.subscribers;
 
 import br.com.kproj.salesman.auditing.application.BusinessProposalAuditingApplication;
 import br.com.kproj.salesman.auditing.application.TaskAuditingApplication;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeMessage;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -25,7 +25,7 @@ public class AuditingSubscriber {
 
 
     @Subscribe
-    public void persistAuditWhenDistinctLastVersion(BusinessProposal proposal) {
+    public void persistAuditWhenDistinctLastVersion(BusinessProposalEntity proposal) {
         LoggedUser principal = security.getPrincipal();
         application.registerAuditing(proposal, principal.getUser());
     }

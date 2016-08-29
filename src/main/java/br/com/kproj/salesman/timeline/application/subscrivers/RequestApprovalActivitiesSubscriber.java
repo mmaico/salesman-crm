@@ -26,9 +26,9 @@ public class RequestApprovalActivitiesSubscriber {
         LogActivity logActivity = LogActivityBuilder.createLogActivity()
                 .withDescription(MESSAGE)
                 .withType(LogActivityTypeEnum.START_APPROVAL)
-                .withUser(message.getRequestApproval().getUserRequester()).build();
+                .withUser(message.getRequestApprovalEntity().getUserRequester()).build();
 
-        application.register(message.getRequestApproval().getProposal(), logActivity);
+        application.register(message.getRequestApprovalEntity().getProposal(), logActivity);
     }
 
     @Subscribe
@@ -36,9 +36,9 @@ public class RequestApprovalActivitiesSubscriber {
         LogActivity logActivity = LogActivityBuilder.createLogActivity()
                 .withDescription(MESSAGE_FINALIZE)
                 .withType(LogActivityTypeEnum.FINALIZE_APPROVAL)
-                .withUser(message.getRequestApproval().getUserRequester()).build();
+                .withUser(message.getRequestApprovalEntity().getUserRequester()).build();
 
-        application.register(message.getRequestApproval().getProposal(), logActivity);
+        application.register(message.getRequestApprovalEntity().getProposal(), logActivity);
     }
 
 }

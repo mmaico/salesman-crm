@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.register.infrastructure.validators.EntityIDValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,20 +19,20 @@ public class BusinessProposalValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return BusinessProposal.class.equals(clazz);
+        return BusinessProposalEntity.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        BusinessProposal businessProposal = (BusinessProposal) target;
+        BusinessProposalEntity businessProposalEntity = (BusinessProposalEntity) target;
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
-        factory.getValidator().validate(businessProposal)
+        factory.getValidator().validate(businessProposalEntity)
                 .forEach(error -> errors.reject(error.getMessage()));
 
-        idValidator.validate(businessProposal.getClient(), errors);
-        idValidator.validate(businessProposal.getSeller(), errors);
+        idValidator.validate(businessProposalEntity.getClient(), errors);
+        idValidator.validate(businessProposalEntity.getSeller(), errors);
     }
 
 }

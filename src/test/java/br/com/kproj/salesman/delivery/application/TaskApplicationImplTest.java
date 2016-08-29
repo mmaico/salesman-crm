@@ -5,7 +5,7 @@ import br.com.kproj.salesman.delivery.domain.TaskDomainService;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutionTaskDTO;
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
@@ -107,18 +107,18 @@ public class TaskApplicationImplTest {
     public void shouldRegisterSubtask() {
         service = Mockito.spy(this.service);
         SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(3l).build();
-        OperationRegion operationRegion = new OperationRegion(5l);
+        OperationRegionEntity operationRegionEntity = new OperationRegionEntity(5l);
 
         Task taskParent = TaskBuilder.createTaskBuilder(2l)
                 .withSalesOrder(salesOrder)
-                .withRegion(operationRegion).build();
+                .withRegion(operationRegionEntity).build();
 
         Task taskChild = Mockito.mock(Task.class);
         Task taskDBParentMock = Mockito.mock(Task.class);
         Task taskSaved = Mockito.mock(Task.class);
 
         given(taskDBParentMock.getSalesOrder()).willReturn(salesOrder);
-        given(taskDBParentMock.getRegion()).willReturn(operationRegion);
+        given(taskDBParentMock.getRegion()).willReturn(operationRegionEntity);
         given(repository.getOne(2l)).willReturn(Optional.of(taskDBParentMock));
         doReturn(taskSaved).when(service).register(taskChild);
 
@@ -126,7 +126,7 @@ public class TaskApplicationImplTest {
 
         verify(taskChild).setParent(taskDBParentMock);
         verify(taskChild).setSalesOrder(salesOrder);
-        verify(taskChild).setRegion(operationRegion);
+        verify(taskChild).setRegion(operationRegionEntity);
     }
 
     @Test(expected = ValidationException.class)

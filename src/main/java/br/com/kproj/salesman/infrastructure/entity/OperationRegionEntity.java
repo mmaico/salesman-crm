@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="operation_region")
-public class OperationRegion extends Identifiable {
+public class OperationRegionEntity extends Identifiable {
 
 
     @Id
@@ -20,9 +20,9 @@ public class OperationRegion extends Identifiable {
     @Expose
     private String name;
 
-    public OperationRegion() {}
+    public OperationRegionEntity() {}
 
-    public OperationRegion(Long id) {
+    public OperationRegionEntity(Long id) {
         this.id = id;
     }
 

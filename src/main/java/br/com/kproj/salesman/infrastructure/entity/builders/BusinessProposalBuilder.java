@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 
-public class BusinessProposalBuilder extends AbstractBuilder<BusinessProposal>  {
+public class BusinessProposalBuilder extends AbstractBuilder<BusinessProposalEntity>  {
 
 	public BusinessProposalBuilder() {
-		this.entity = new BusinessProposal();
+		this.entity = new BusinessProposalEntity();
 	}
 
 	public BusinessProposalBuilder(Long id) {

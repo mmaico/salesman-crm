@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application.prepare;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalPaymentRepository;
 import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
@@ -24,11 +24,11 @@ public class PreUpdatePaymentsImpl implements PreUpdateItems {
 
 
     @Override
-    public void preUpdate(BusinessProposal proposalNew) {
+    public void preUpdate(BusinessProposalEntity proposalNew) {
 
         if (proposalNew.isNew()) return;
 
-        BusinessProposal proposalLoaded = application.getOne(proposalNew.getId()).get();
+        BusinessProposalEntity proposalLoaded = application.getOne(proposalNew.getId()).get();
 
         if (proposalNew.getTotal().equals(proposalLoaded.getTotalToPay())) return;
 

@@ -2,23 +2,23 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 
 public class TimelineSaveMessage {
 
 
-    private BusinessProposal businessProposal;
+    private BusinessProposalEntity businessProposalEntity;
     private UserEntity user;
     private TimelineActivity activity;
 
-    public TimelineSaveMessage(UserEntity user, BusinessProposal proposal, TimelineActivity activity) {
+    public TimelineSaveMessage(UserEntity user, BusinessProposalEntity proposal, TimelineActivity activity) {
         this.user = user;
-        this.businessProposal = proposal;
+        this.businessProposalEntity = proposal;
         this.activity = activity;
     }
 
-    public static TimelineSaveMessage createTimelineEvent(UserEntity userChange, BusinessProposal proposal, TimelineActivity activity) {
+    public static TimelineSaveMessage createTimelineEvent(UserEntity userChange, BusinessProposalEntity proposal, TimelineActivity activity) {
           return new TimelineSaveMessage(userChange, proposal, activity);
     }
 
@@ -30,12 +30,12 @@ public class TimelineSaveMessage {
         this.user = user;
     }
 
-    public BusinessProposal getBusinessProposal() {
-        return businessProposal;
+    public BusinessProposalEntity getBusinessProposalEntity() {
+        return businessProposalEntity;
     }
 
-    public void setBusinessProposal(BusinessProposal businessProposal) {
-        this.businessProposal = businessProposal;
+    public void setBusinessProposalEntity(BusinessProposalEntity businessProposalEntity) {
+        this.businessProposalEntity = businessProposalEntity;
     }
 
     public TimelineActivity getActivity() {

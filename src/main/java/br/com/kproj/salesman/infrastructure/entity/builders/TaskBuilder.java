@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
@@ -54,7 +54,7 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder withRegion(OperationRegion region) {
+    public TaskBuilder withRegion(OperationRegionEntity region) {
         this.entity.setRegion(region);
         return this;
     }

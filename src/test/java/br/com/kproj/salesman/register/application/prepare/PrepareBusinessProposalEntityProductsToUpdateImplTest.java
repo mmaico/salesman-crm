@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application.prepare;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
@@ -23,7 +23,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PrepareBusinessProposalProductsToUpdateImplTest {
+public class PrepareBusinessProposalEntityProductsToUpdateImplTest {
 
     @InjectMocks
     private PreUpdateProductsImpl prepare;
@@ -40,8 +40,8 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
 
     @Test
     public void shouldUpdateWhenSalesItemIntersection() {
-        BusinessProposal proposalOldStub = getProposalOldStub();
-        BusinessProposal proposalNewStub = getProposalNewStub();
+        BusinessProposalEntity proposalOldStub = getProposalOldStub();
+        BusinessProposalEntity proposalNewStub = getProposalNewStub();
 
 
         given(application.getOne(1l)).willReturn(Optional.of(proposalOldStub));
@@ -65,8 +65,8 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
 
     @Test
     public void shouldRemoveItemsWhenNotExistInNewProposal() {
-        BusinessProposal proposalOldStub = getProposalOldStub();
-        BusinessProposal proposalNewStub = getProposalNewStub();
+        BusinessProposalEntity proposalOldStub = getProposalOldStub();
+        BusinessProposalEntity proposalNewStub = getProposalNewStub();
 
 
         given(application.getOne(1l)).willReturn(Optional.of(proposalOldStub));
@@ -85,8 +85,8 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
 
     @Test
     public void shouldAddItemOnOldProposalWhenExistInNewProposal() {
-        BusinessProposal proposalOldStub = getProposalOldStub();
-        BusinessProposal proposalNewStub = getProposalNewStub();
+        BusinessProposalEntity proposalOldStub = getProposalOldStub();
+        BusinessProposalEntity proposalNewStub = getProposalNewStub();
 
 
         given(application.getOne(1l)).willReturn(Optional.of(proposalOldStub));
@@ -102,8 +102,8 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
     }
 
 
-    public BusinessProposal getProposalOldStub() {
-        BusinessProposal proposalOld = new BusinessProposal(1l);
+    public BusinessProposalEntity getProposalOldStub() {
+        BusinessProposalEntity proposalOld = new BusinessProposalEntity(1l);
 
         ProposalSaleableItem itemOne = ProposalSaleableItemBuilder
                     .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("200"))
@@ -128,8 +128,8 @@ public class PrepareBusinessProposalProductsToUpdateImplTest {
         return proposalOld;
     }
 
-    public BusinessProposal getProposalNewStub() {
-        BusinessProposal proposalNew = new BusinessProposal(1l);
+    public BusinessProposalEntity getProposalNewStub() {
+        BusinessProposalEntity proposalNew = new BusinessProposalEntity(1l);
 
         ProposalSaleableItem itemOne = ProposalSaleableItemBuilder
                 .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("300"))

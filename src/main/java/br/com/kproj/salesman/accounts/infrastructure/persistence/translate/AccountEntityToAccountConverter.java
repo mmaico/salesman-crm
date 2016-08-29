@@ -14,7 +14,7 @@ public class AccountEntityToAccountConverter implements Converter<AccountEntity,
     public Account convert(AccountEntity accountEntity, Object... args) {
         if (accountEntity == null) return null;
 
-        Account account = AccountBuilder.createUser(accountEntity.getId())
+        Account account = AccountBuilder.createAccount(accountEntity.getId())
                 .withName(accountEntity.getName())
                 .withDescription(accountEntity.getDescription())
                 .withEmployers(accountEntity.getEmployers())

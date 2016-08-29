@@ -3,7 +3,7 @@ package br.com.kproj.salesman.timeline.application;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
@@ -70,7 +70,7 @@ public class TimelineActivitiesApplicationImplTest {
 
     @Test
     public void shouldRegisterTimeActivyBusinessProposal() {
-        BusinessProposal proposal = mock(BusinessProposal.class);
+        BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
         Timeline timelineMock = mock(Timeline.class);
         TimelineActivity activity = mock(LogActivity.class);
 

@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.proposal.view.helpers;
 
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +31,11 @@ public class BusinessProposalHelper {
 
 
 
-    public List<BusinessProposal> getProposalsBy(Person client) {
+    public List<BusinessProposalEntity> getProposalsBy(Person client) {
         return application.findByClient(client);
     }
 
-    public String getTemperatureIcon(BusinessProposal proposal) {
+    public String getTemperatureIcon(BusinessProposalEntity proposal) {
         if (proposal.getTemperature() == null) {
             return temperature.get(ProposalTemperature.COLD);
         }
@@ -44,7 +44,7 @@ public class BusinessProposalHelper {
     }
 
     public Boolean isDone(Long  proposalId) {
-        Optional<BusinessProposal> result = application.getOne(proposalId);
+        Optional<BusinessProposalEntity> result = application.getOne(proposalId);
 
         if (result.isPresent()) {
             return ProposalTemperature.CLOSED_WON.equals(result.get().getTemperature());
@@ -53,17 +53,17 @@ public class BusinessProposalHelper {
         return Boolean.FALSE;
     }
 
-    public BusinessProposal load(BusinessProposal  proposal) {
-        Optional<BusinessProposal> result = application.getOne(proposal.getId());
+    public BusinessProposalEntity load(BusinessProposalEntity proposal) {
+        Optional<BusinessProposalEntity> result = application.getOne(proposal.getId());
 
         return result.isPresent() ? result.get() : null;
     }
 
-    public Boolean isDone(BusinessProposal  proposal) {
+    public Boolean isDone(BusinessProposalEntity proposal) {
         return isDone(proposal.getId());
     }
 
-    public SalesOrder getByProposal(BusinessProposal proposal) {
+    public SalesOrder getByProposal(BusinessProposalEntity proposal) {
         return application.findSalesBy(proposal);
     }
 }

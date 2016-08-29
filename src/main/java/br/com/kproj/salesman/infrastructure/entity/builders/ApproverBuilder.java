@@ -4,7 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 
 public class ApproverBuilder extends AbstractBuilder<Approver>  {
 
@@ -17,8 +17,8 @@ public class ApproverBuilder extends AbstractBuilder<Approver>  {
 		this.entity.setId(id);
 	}
 
-    public ApproverBuilder withProposal(RequestApproval request) {
-        this.entity.setRequestApproval(request);
+    public ApproverBuilder withProposal(RequestApprovalEntity request) {
+        this.entity.setRequestApprovalEntity(request);
         return this;
     }
 

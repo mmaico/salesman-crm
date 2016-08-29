@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.register.application.prepare;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 
 public interface PreUpdateItems {
 
-    void preUpdate(BusinessProposal proposal);
+    void preUpdate(BusinessProposalEntity proposal);
 }

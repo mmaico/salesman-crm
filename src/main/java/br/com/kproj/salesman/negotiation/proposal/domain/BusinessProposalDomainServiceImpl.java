@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.domain;
 
 
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.PersonRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
@@ -36,7 +36,7 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
     @Autowired
     private PaymentItemPersistBusinessRules paymentService;
 
-    Map<String, CheckRuleLegacy<BusinessProposal>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<BusinessProposalEntity>> persistRules = new HashMap<>();
     {
 
         persistRules.put(description("proposal.verify.won.cannotbe.changed"), (bp) -> ProposalTemperature.CLOSED_WON == bp.getTemperature());
@@ -50,11 +50,11 @@ public class BusinessProposalDomainServiceImpl implements BusinessProposalDomain
 
 
     @Override
-    public void checkBusinessRulesFor(BusinessProposal businessProposal) {
+    public void checkBusinessRulesFor(BusinessProposalEntity businessProposalEntity) {
 
         Set<String> violations = persistRules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(businessProposal))
+                .filter(e -> e.getValue().check(businessProposalEntity))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);

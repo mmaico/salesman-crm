@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.payment;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -30,9 +30,9 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	
 	@Test
 	public void shouldValidateProposalPaymentItem() {
-		BusinessProposal businessProposal = Mockito.spy(new BusinessProposal());
+		BusinessProposalEntity businessProposalEntity = Mockito.spy(new BusinessProposalEntity());
 		List<ProposalSaleableItem> products = getProducts();
-		businessProposal.setSaleableItems(products);
+		businessProposalEntity.setSaleableItems(products);
 		
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
         installmentOne.setDueDate(DateHelper.convertToDate("10/03/2030"));
@@ -46,29 +46,29 @@ public class PaymentItemPersistBusinessRulesImplTest {
         installmentThree.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentThree.setValue(new BigDecimal("40"));
 		
-		businessProposal.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentThree));
+		businessProposalEntity.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentThree));
 
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotal();
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotalToPay();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotal();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotalToPay();
 		
 		
-		 Boolean result = rules.verifyRules(businessProposal);
+		 Boolean result = rules.verifyRules(businessProposalEntity);
 		
 		assertThat(result, is(Boolean.TRUE));
 	}
 	
 	@Test
 	public void shouldReturnErrorWhenInvalidPayment() {
-		BusinessProposal businessProposal = Mockito.spy(new BusinessProposal());
-		businessProposal.setSaleableItems(getProducts());
-		businessProposal.setPaymentItems(null);
+		BusinessProposalEntity businessProposalEntity = Mockito.spy(new BusinessProposalEntity());
+		businessProposalEntity.setSaleableItems(getProducts());
+		businessProposalEntity.setPaymentItems(null);
 		Set<String> erros = null;
 
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotal();
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotalToPay();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotal();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotalToPay();
 		
 		try {
-			rules.verifyRules(businessProposal);
+			rules.verifyRules(businessProposalEntity);
 		} catch (ValidationException e) {
 			erros = e.getErrors();
 			
@@ -83,21 +83,21 @@ public class PaymentItemPersistBusinessRulesImplTest {
 
 	@Test
 	public void shouldReturnErrorWhenPaymentIsEmptyAndTotalIsNotZero() {
-		BusinessProposal businessProposal = Mockito.spy(new BusinessProposal());
+		BusinessProposalEntity businessProposalEntity = Mockito.spy(new BusinessProposalEntity());
 		List<ProposalSaleableItem> products = getProducts();
 		products.get(0).setPrice(BigDecimal.TEN);
 		products.get(1).setPrice(BigDecimal.ZERO);
-		businessProposal.setSaleableItems(products);
+		businessProposalEntity.setSaleableItems(products);
 
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotal();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotal();
 
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotalToPay();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotalToPay();
 
-		businessProposal.setPaymentItems(Lists.newArrayList());
+		businessProposalEntity.setPaymentItems(Lists.newArrayList());
 		Set<String> erros = null;
 		
 		try {
-			rules.verifyRules(businessProposal);
+			rules.verifyRules(businessProposalEntity);
 		} catch (ValidationException e) {
 			erros = e.getErrors();
 			
@@ -109,9 +109,9 @@ public class PaymentItemPersistBusinessRulesImplTest {
 	
 	@Test
 	public void shouldReturnErrorWhenTotalPaymentIsDiferentFromTotalProposalSaleableItems() throws ParseException {
-		BusinessProposal businessProposal = Mockito.spy(new BusinessProposal());
+		BusinessProposalEntity businessProposalEntity = Mockito.spy(new BusinessProposalEntity());
 		List<ProposalSaleableItem> products = getProducts();
-		businessProposal.setSaleableItems(products);
+		businessProposalEntity.setSaleableItems(products);
 
 		ProposalPaymentItem installmentOne = new ProposalPaymentItem();
 
@@ -126,16 +126,16 @@ public class PaymentItemPersistBusinessRulesImplTest {
         installmentTree.setDueDate(DateHelper.convertToDate("10/03/2030"));
 		installmentTree.setValue(BigDecimal.ZERO);
 		
-		businessProposal.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentTree));
+		businessProposalEntity.setPaymentItems(Lists.newArrayList(installmentOne, installmentTwo, installmentTree));
 
-		doReturn(BigDecimal.TEN).when(businessProposal).getTotal();
+		doReturn(BigDecimal.TEN).when(businessProposalEntity).getTotal();
 
-		doReturn(BigDecimal.ONE).when(businessProposal).getTotalToPay();
+		doReturn(BigDecimal.ONE).when(businessProposalEntity).getTotalToPay();
 
 		Set<String> erros = null;
 		
 		try {
-			rules.verifyRules(businessProposal);
+			rules.verifyRules(businessProposalEntity);
 		} catch (ValidationException e) {
 			erros = e.getErrors();
 			

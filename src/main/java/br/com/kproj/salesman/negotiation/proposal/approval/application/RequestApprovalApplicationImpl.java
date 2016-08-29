@@ -2,10 +2,10 @@ package br.com.kproj.salesman.negotiation.proposal.approval.application;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.RequestApprovalFinalizeMessage;
 import br.com.kproj.salesman.infrastructure.events.messages.RequestNewApprovalMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -26,7 +26,7 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.ApproverBuild
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<RequestApproval> implements RequestApprovalApplication {
+public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<RequestApprovalEntity> implements RequestApprovalApplication {
 
     @Autowired
     private RequestApprovalRepository repository;
@@ -39,13 +39,13 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
 
 
     @Override
-    public Optional<RequestApproval> register(RequestApproval requestApproval) {
+    public Optional<RequestApprovalEntity> register(RequestApprovalEntity requestApprovalEntity) {
 
-        if (requestApproval.getProposal() == null || requestApproval.getProposal().isNew()) {
+        if (requestApprovalEntity.getProposal() == null || requestApprovalEntity.getProposal().isNew()) {
             hasErrors(Sets.newHashSet("request.approval.without.domain")).throwing(ValidationException.class);
         }
 
-        Optional<RequestApproval> requestApprovalLoaded = repository.findByProposal(requestApproval.getProposal());
+        Optional<RequestApprovalEntity> requestApprovalLoaded = repository.findByProposal(requestApprovalEntity.getProposal());
 
         if (requestApprovalLoaded.isPresent()) {
             return Optional.of(requestApprovalLoaded.get());
@@ -60,22 +60,22 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
         if (countProfilesAvailables == 0) return Optional.empty();
 
         profilesAvailables.getContent().stream()
-                .filter(item -> item.getAvailable() && !item.getApprover().equals(requestApproval.getUserRequester()))
-                .forEach(availableItem -> requestApproval.addApprover(createApprover().withApprover(availableItem.getApprover())
-                    .withProposal(requestApproval)
+                .filter(item -> item.getAvailable() && !item.getApprover().equals(requestApprovalEntity.getUserRequester()))
+                .forEach(availableItem -> requestApprovalEntity.addApprover(createApprover().withApprover(availableItem.getApprover())
+                    .withProposal(requestApprovalEntity)
                     .withStatus(ApproverStatus.WAITING).build())
         );
 
-        if (requestApproval.getApprovers().isEmpty()) return Optional.empty();
+        if (requestApprovalEntity.getApprovers().isEmpty()) return Optional.empty();
 
-        eventBus.post(RequestNewApprovalMessage.create(requestApproval));
-        return Optional.ofNullable(super.save(requestApproval));
+        eventBus.post(RequestNewApprovalMessage.create(requestApprovalEntity));
+        return Optional.ofNullable(super.save(requestApprovalEntity));
     }
 
     @Override
-    public void evaluationApprover(BusinessProposal proposal, UserEntity user, ApproverStatus status) {
+    public void evaluationApprover(BusinessProposalEntity proposal, UserEntity user, ApproverStatus status) {
         
-        Optional<RequestApproval> requestApprovalLoaded = repository.findByProposal(proposal);
+        Optional<RequestApprovalEntity> requestApprovalLoaded = repository.findByProposal(proposal);
 
         if (!requestApprovalLoaded.isPresent()) return;
 
@@ -85,27 +85,27 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
 
         if (approverFound.isPresent()) {
             approverFound.get().setStatus(status);
-            RequestApproval requestApproval = requestApprovalLoaded.get();
-            requestApproval.setCurrentStatus();
+            RequestApprovalEntity requestApprovalEntity = requestApprovalLoaded.get();
+            requestApprovalEntity.setCurrentStatus();
 
-            if (!requestApproval.getStatus().equals(RequestApproval.RequestApprovalStatus.WAITING)) {
-                eventBus.post(RequestApprovalFinalizeMessage.create(requestApproval));
+            if (!requestApprovalEntity.getStatus().equals(RequestApprovalEntity.RequestApprovalStatus.WAITING)) {
+                eventBus.post(RequestApprovalFinalizeMessage.create(requestApprovalEntity));
             }
         }
 
     }
 
     @Override
-    public Optional<RequestApproval> hasRequestApprovalWaitingfor(BusinessProposal proposal) {
+    public Optional<RequestApprovalEntity> hasRequestApprovalWaitingfor(BusinessProposalEntity proposal) {
         if (proposal == null || proposal.isNew()) return Optional.empty();
         return  repository.findByProposal(proposal);
     }
 
     @Override
-    public Optional<RequestApproval> findLastRequestApproval(BusinessProposal proposal) {
+    public Optional<RequestApprovalEntity> findLastRequestApproval(BusinessProposalEntity proposal) {
         if (proposal == null || proposal.isNew()) return Optional.empty();
 
-        Page<RequestApproval> result = this.repository.findLastRequestApprovals(proposal, Pager.build().withPageSize(1));
+        Page<RequestApprovalEntity> result = this.repository.findLastRequestApprovals(proposal, Pager.build().withPageSize(1));
 
         if (result.getContent().isEmpty()) return Optional.empty();
 
@@ -113,7 +113,7 @@ public class RequestApprovalApplicationImpl extends BaseModelServiceLegacyImpl<R
     }
 
 
-    public BaseRepositoryLegacy<RequestApproval, Long> getRepository() {
+    public BaseRepositoryLegacy<RequestApprovalEntity, Long> getRepository() {
         return repository;
     }
 }

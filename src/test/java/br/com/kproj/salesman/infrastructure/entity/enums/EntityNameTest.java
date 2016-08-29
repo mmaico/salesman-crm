@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.enums;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class EntityNameTest {
     @Test
     public void shouldReturnEnumWhenFound() {
 
-        EntityName entityName = EntityName.get(BusinessProposal.class);
+        EntityName entityName = EntityName.get(BusinessProposalEntity.class);
         EntityName entityName1 = EntityName.get(Person.class);
 
         MatcherAssert.assertThat(entityName, is(EntityName.BUSINESS_PROPOSAL));

@@ -4,7 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.auditing;
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 
@@ -78,9 +78,9 @@ public class BusinessProposalAudinting extends Identifiable {
         this.entityId = entityId;
     }
 
-    public BusinessProposal get() {
+    public BusinessProposalEntity get() {
         Gson gson = ServiceLocator.getBean(Gson.class);
-        return gson.fromJson(this.info, BusinessProposal.class);
+        return gson.fromJson(this.info, BusinessProposalEntity.class);
     }
 
     public Boolean isEquals(String json) {

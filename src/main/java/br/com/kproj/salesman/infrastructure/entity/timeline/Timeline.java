@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.Task;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import com.google.common.collect.Lists;
@@ -33,7 +33,7 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="business_proposal_id")
-    private BusinessProposal proposal;
+    private BusinessProposalEntity proposal;
 
     @OneToOne
     @JoinColumn(name="contact_id")
@@ -98,11 +98,11 @@ public class Timeline extends Identifiable {
         this.person = person;
     }
 
-    public BusinessProposal getProposal() {
+    public BusinessProposalEntity getProposal() {
         return proposal;
     }
 
-    public void setProposal(BusinessProposal proposal) {
+    public void setProposal(BusinessProposalEntity proposal) {
         this.proposal = proposal;
     }
 

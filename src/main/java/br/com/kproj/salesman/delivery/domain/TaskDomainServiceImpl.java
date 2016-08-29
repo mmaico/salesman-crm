@@ -80,7 +80,7 @@ public class TaskDomainServiceImpl implements TaskDomainService {
 
         if (task.getRegion() == null || task.getRegion().isNew()) {
             SalesOrder saleOrder = salesOrderRepository.findOne(task.getSalesOrder().getId());
-            task.setRegion(saleOrder.getOperationRegion());
+            task.setRegion(saleOrder.getOperationRegionEntity());
         }
     }
 }

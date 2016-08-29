@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.saleable;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
@@ -39,14 +39,14 @@ public class SaleableItemPersistBusinessRulesImpl implements SaleableItemPersist
         saleableUnitRules.put(description("proposal.item.invalid.original.price"), (proposalSaleableItem) -> proposalSaleableItem.getOriginalPrice() != null);
     }
 
-    public Boolean verifyRules(BusinessProposal businessProposal) {
+    public Boolean verifyRules(BusinessProposalEntity businessProposalEntity) {
         Set<String> violations = Sets.newHashSet();
 
-        if (isEmptySafe(businessProposal.getSaleableItems())) {
+        if (isEmptySafe(businessProposalEntity.getSaleableItems())) {
             throw new ValidationException(Sets.newHashSet("proposal.must.be.products"));
         }
 
-        for(ProposalSaleableItem item: businessProposal.getSaleableItems()) {
+        for(ProposalSaleableItem item: businessProposalEntity.getSaleableItems()) {
             violations = saleableUnitRules.entrySet()
                     .stream()
                     .filter(e -> !saleablePersistBusinessRules.verifyRules(item.hasPackage() ? item.getSalePackage() : item.getSaleableUnit())
@@ -56,7 +56,7 @@ public class SaleableItemPersistBusinessRulesImpl implements SaleableItemPersist
             hasErrors(violations).throwing(ValidationException.class);
         }
 
-        packageBusinessRules.verifyRules(businessProposal.getSaleableItems());
+        packageBusinessRules.verifyRules(businessProposalEntity.getSaleableItems());
 
         return Boolean.TRUE;
     }

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder;
 
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.convert.TaskTemplateToTask;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
@@ -54,10 +54,10 @@ public class SalesOrderTaskItemProcessorTest {
 
         List<SalesOrderItem> salesOrderItems = salesOrder.getSalesOrderItems();
 
-        given(repository.findTaskTemplateBy(salesOrderItems.get(0).getSaleableUnit(), salesOrder.getOperationRegion()))
+        given(repository.findTaskTemplateBy(salesOrderItems.get(0).getSaleableUnit(), salesOrder.getOperationRegionEntity()))
                     .willReturn(tasksOne);
 
-        given(repository.findTaskTemplateBy(salesOrderItems.get(1).getSaleableUnit(), salesOrder.getOperationRegion()))
+        given(repository.findTaskTemplateBy(salesOrderItems.get(1).getSaleableUnit(), salesOrder.getOperationRegionEntity()))
                 .willReturn(tasksTwo);
 
         given(processor.getConverter(salesOrder)).willReturn(taskTemplateToTask);
@@ -83,7 +83,7 @@ public class SalesOrderTaskItemProcessorTest {
 
         List<SalesOrderItem> items = Lists.newArrayList(itemOne, itemTwo);
         return SalesOrderBuilder.createSalesOrder(10l)
-                .withOperationRegion(new OperationRegion(1l))
+                .withOperationRegion(new OperationRegionEntity(1l))
                 .withSalesOrderItems(items).build();
 
 

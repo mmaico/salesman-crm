@@ -65,7 +65,7 @@ public class UserEntity extends Identifiable {
     private CalendarEntity calendarEntity;
 
     @Transient
-    private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    private List<GrantedAuthority> authorities = new ArrayList<>();
 
     public UserEntity() {
         super();

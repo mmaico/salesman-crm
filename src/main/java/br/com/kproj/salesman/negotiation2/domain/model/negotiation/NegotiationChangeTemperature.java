@@ -3,12 +3,12 @@ package br.com.kproj.salesman.negotiation2.domain.model.negotiation;
 
 import br.com.kproj.salesman.infrastructure.model.ValueObject;
 
-public class NegotiationToChangeTemperature implements ValueObject {
+public class NegotiationChangeTemperature implements ValueObject {
 
     private final Negotiation negotiation;
     private final Temperature newTemperature;
 
-    private NegotiationToChangeTemperature (Negotiation negotiation, Temperature temperature) {
+    private NegotiationChangeTemperature(Negotiation negotiation, Temperature temperature) {
         this.negotiation = negotiation;
         this.newTemperature = temperature;
     }
@@ -21,8 +21,8 @@ public class NegotiationToChangeTemperature implements ValueObject {
         return newTemperature;
     }
 
-    public static NegotiationToChangeTemperature create(Negotiation negotiation, Temperature newTemperature) {
-        return new NegotiationToChangeTemperature(negotiation, newTemperature);
+    public static NegotiationChangeTemperature create(Negotiation negotiation, Temperature newTemperature) {
+        return new NegotiationChangeTemperature(negotiation, newTemperature);
     }
 
 }

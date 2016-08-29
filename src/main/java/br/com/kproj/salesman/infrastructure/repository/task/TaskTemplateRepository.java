@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -17,7 +17,7 @@ public interface TaskTemplateRepository extends BaseRepositoryLegacy<TaskTemplat
     List<TaskTemplate> findTaskTemplateBy(@Param("saleable")SaleableUnitEntity saleable);
 
     @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.saleable = :saleable AND tt.parentId is null AND tt.region = :region")
-    List<TaskTemplate> findTaskTemplateBy(@Param("saleable")SaleableUnitEntity saleable, @Param("region")OperationRegion region);
+    List<TaskTemplate> findTaskTemplateBy(@Param("saleable")SaleableUnitEntity saleable, @Param("region")OperationRegionEntity region);
 
     @Query("SELECT tt FROM TaskTemplate AS tt WHERE tt.saleable = :saleable AND tt " +
             " NOT IN (SELECT child FROM TaskTemplate AS tta JOIN tta.templatesChilds AS child " +

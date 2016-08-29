@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.sales.application;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.events.messages.NewSalesOrderMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -43,7 +43,7 @@ public class SalesOrderApplicationImplTest {
 
     @Test
     public void shouldRegisterBusinessProposal() {
-        BusinessProposal proposalMock = mock(BusinessProposal.class);
+        BusinessProposalEntity proposalMock = mock(BusinessProposalEntity.class);
         SalesOrder salesOrderMock = mock(SalesOrder.class);
         SalesOrder salesOrderSavedMock = mock(SalesOrder.class);
 
@@ -59,7 +59,7 @@ public class SalesOrderApplicationImplTest {
 
     @Test
     public void shouldSendMessage() {
-        BusinessProposal proposalMock = mock(BusinessProposal.class);
+        BusinessProposalEntity proposalMock = mock(BusinessProposalEntity.class);
         SalesOrder salesOrderMock = mock(SalesOrder.class);
         SalesOrder salesOrderSavedMock = mock(SalesOrder.class);
 
@@ -78,7 +78,7 @@ public class SalesOrderApplicationImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionWhenSalesOrderAlreadyExists() {
-        BusinessProposal proposalMock = mock(BusinessProposal.class);
+        BusinessProposalEntity proposalMock = mock(BusinessProposalEntity.class);
         SalesOrder salesOrderMock = mock(SalesOrder.class);
 
         given(repository.findByProposal(proposalMock)).willReturn(Optional.of(salesOrderMock));

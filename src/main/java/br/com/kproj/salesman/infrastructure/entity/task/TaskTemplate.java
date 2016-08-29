@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import com.google.common.collect.Lists;
 import org.hibernate.annotations.*;
@@ -59,7 +59,7 @@ public class TaskTemplate extends Identifiable {
     @ManyToOne
     @JoinColumn(name="operation_region_id")
     @NotNull(message = "tasktemplate.region.not.informed")
-    private OperationRegion region;
+    private OperationRegionEntity region;
 
     @Transient
     private TaskTemplate parent;
@@ -136,11 +136,11 @@ public class TaskTemplate extends Identifiable {
         this.saleable = saleable;
     }
 
-    public OperationRegion getRegion() {
+    public OperationRegionEntity getRegion() {
         return region;
     }
 
-    public void setRegion(OperationRegion region) {
+    public void setRegion(OperationRegionEntity region) {
         this.region = region;
     }
 

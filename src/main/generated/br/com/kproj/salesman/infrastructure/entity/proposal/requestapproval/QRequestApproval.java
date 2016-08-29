@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QRequestApproval is a Querydsl query type for RequestApproval
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QRequestApproval extends EntityPathBase<RequestApproval> {
+public class QRequestApproval extends EntityPathBase<RequestApprovalEntity> {
 
     private static final long serialVersionUID = 1116019145L;
 
@@ -30,15 +30,15 @@ public class QRequestApproval extends EntityPathBase<RequestApproval> {
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal proposal;
 
-    public final EnumPath<RequestApproval.RequestApprovalStatus> status = createEnum("status", RequestApproval.RequestApprovalStatus.class);
+    public final EnumPath<RequestApprovalEntity.RequestApprovalStatus> status = createEnum("status", RequestApprovalEntity.RequestApprovalStatus.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity userRequester;
 
     public QRequestApproval(String variable) {
-        this(RequestApproval.class, forVariable(variable), INITS);
+        this(RequestApprovalEntity.class, forVariable(variable), INITS);
     }
 
-    public QRequestApproval(Path<? extends RequestApproval> path) {
+    public QRequestApproval(Path<? extends RequestApprovalEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -47,10 +47,10 @@ public class QRequestApproval extends EntityPathBase<RequestApproval> {
     }
 
     public QRequestApproval(PathMetadata<?> metadata, PathInits inits) {
-        this(RequestApproval.class, metadata, inits);
+        this(RequestApprovalEntity.class, metadata, inits);
     }
 
-    public QRequestApproval(Class<? extends RequestApproval> type, PathMetadata<?> metadata, PathInits inits) {
+    public QRequestApproval(Class<? extends RequestApprovalEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposal(forProperty("proposal"), inits.get("proposal")) : null;
         this.userRequester = inits.isInitialized("userRequester") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("userRequester"), inits.get("userRequester")) : null;

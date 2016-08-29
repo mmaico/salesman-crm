@@ -4,7 +4,7 @@ package br.com.kproj.salesman.auditing.application;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.auditing.BusinessProposalAudinting;
 import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
 import com.google.common.collect.Lists;
@@ -31,7 +31,7 @@ import static org.mockito.BDDMockito.given;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Gson.class)
-public class BusinessProposalAuditingApplicationImplTest {
+public class BusinessProposalEntityAuditingApplicationImplTest {
 
     @InjectMocks
     private BusinessProposalAuditingApplicationImpl application;
@@ -55,7 +55,7 @@ public class BusinessProposalAuditingApplicationImplTest {
 
     @Test
     public void shouldRegisterFirstBusinessProposal () {
-        BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
+        BusinessProposalEntity businessProposalEntity = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
@@ -64,7 +64,7 @@ public class BusinessProposalAuditingApplicationImplTest {
         given(repository.findLasVersion(Mockito.eq(1l), Mockito.any(Pageable.class))).willReturn(pageResultMock);
         given(repository.save(Mockito.any(BusinessProposalAudinting.class))).willReturn(audintingMock);
 
-        Optional<BusinessProposalAudinting> result = application.registerAuditing(businessProposal, userMock);
+        Optional<BusinessProposalAudinting> result = application.registerAuditing(businessProposalEntity, userMock);
 
         MatcherAssert.assertThat(result.get(), Matchers.sameInstance(audintingMock));
 
@@ -73,7 +73,7 @@ public class BusinessProposalAuditingApplicationImplTest {
     @Test
     public void shouldSaveAndBuildCorrectlyAuditing () {
         String json = "{json}";
-        BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
+        BusinessProposalEntity businessProposalEntity = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
@@ -81,9 +81,9 @@ public class BusinessProposalAuditingApplicationImplTest {
         given(pageResultMock.getContent()).willReturn(Lists.newArrayList());
         given(repository.findLasVersion(Mockito.eq(1l), Mockito.any(Pageable.class))).willReturn(pageResultMock);
         given(repository.save(Mockito.any(BusinessProposalAudinting.class))).willReturn(audintingMock);
-        given(gson.toJson(businessProposal)).willReturn(json);
+        given(gson.toJson(businessProposalEntity)).willReturn(json);
 
-        application.registerAuditing(businessProposal, userMock);
+        application.registerAuditing(businessProposalEntity, userMock);
 
         Mockito.verify(repository).save(argumentCaptor.capture());
         BusinessProposalAudinting audintingCaptor = argumentCaptor.getValue();
@@ -99,7 +99,7 @@ public class BusinessProposalAuditingApplicationImplTest {
     public void shouldSaveAndSendMessage () {
         String json = "{json}";
         String jsonNew = "{jsonNew}";
-        BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
+        BusinessProposalEntity businessProposalEntity = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
@@ -110,9 +110,9 @@ public class BusinessProposalAuditingApplicationImplTest {
         given(pageResultMock.getContent()).willReturn(Lists.newArrayList(audintingMockDB));
         given(repository.findLasVersion(Mockito.eq(1l), Mockito.any(Pageable.class))).willReturn(pageResultMock);
         given(repository.save(Mockito.any(BusinessProposalAudinting.class))).willReturn(audintingMock);
-        given(gson.toJson(businessProposal)).willReturn(jsonNew);
+        given(gson.toJson(businessProposalEntity)).willReturn(jsonNew);
 
-        application.registerAuditing(businessProposal, userMock);
+        application.registerAuditing(businessProposalEntity, userMock);
 
         Mockito.verify(eventBus).post(Mockito.any(ProposalAuditingAfterUpdateMessage.class));
 
@@ -122,7 +122,7 @@ public class BusinessProposalAuditingApplicationImplTest {
     public void shouldNotSaveWhenObjectNotModifier () throws IOException {
         String json = "{json}";
 
-        BusinessProposal businessProposal = BusinessProposalBuilder.createBusinessProposal(1l).build();
+        BusinessProposalEntity businessProposalEntity = BusinessProposalBuilder.createBusinessProposal(1l).build();
         Page pageResultMock = Mockito.mock(Page.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         BusinessProposalAudinting audintingMock = Mockito.mock(BusinessProposalAudinting.class);
@@ -133,9 +133,9 @@ public class BusinessProposalAuditingApplicationImplTest {
         given(pageResultMock.getContent()).willReturn(Lists.newArrayList(audintingMockDB));
         given(repository.findLasVersion(Mockito.eq(1l), Mockito.any(Pageable.class))).willReturn(pageResultMock);
         given(repository.save(Mockito.any(BusinessProposalAudinting.class))).willReturn(audintingMock);
-        given(gson.toJson(businessProposal)).willReturn(json);
+        given(gson.toJson(businessProposalEntity)).willReturn(json);
 
-        application.registerAuditing(businessProposal, userMock);
+        application.registerAuditing(businessProposalEntity, userMock);
 
         Mockito.verify(repository, Mockito.times(0)).save(Mockito.any(BusinessProposalAudinting.class));
 

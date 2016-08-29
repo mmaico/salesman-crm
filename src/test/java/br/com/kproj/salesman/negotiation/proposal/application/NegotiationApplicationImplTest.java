@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.proposal.application;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.BusinessProposalClosedWonMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
@@ -54,14 +54,14 @@ public class NegotiationApplicationImplTest {
     @Test
     public void shouldRegister() {
 
-        final BusinessProposal businessProposal = new BusinessProposal();
-        doNothing().when(service).checkBusinessRulesFor(businessProposal);
-        given(repository.save(businessProposal)).willReturn(new BusinessProposal(1L));
+        final BusinessProposalEntity businessProposalEntity = new BusinessProposalEntity();
+        doNothing().when(service).checkBusinessRulesFor(businessProposalEntity);
+        given(repository.save(businessProposalEntity)).willReturn(new BusinessProposalEntity(1L));
 
-        final BusinessProposal result = negotiationService.register(businessProposal);
+        final BusinessProposalEntity result = negotiationService.register(businessProposalEntity);
 
-        verify(paymentPrepare, times(1)).preUpdate(businessProposal);
-        verify(productsPrepare, times(1)).preUpdate(businessProposal);
+        verify(paymentPrepare, times(1)).preUpdate(businessProposalEntity);
+        verify(productsPrepare, times(1)).preUpdate(businessProposalEntity);
         verify(eventBus, times(1)).post(Mockito.any());
         assertThat(result.getId(), is(1L));
 
@@ -69,26 +69,26 @@ public class NegotiationApplicationImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldNotRegister() {
-        final BusinessProposal businessProposal = new BusinessProposal();
-        doThrow(ValidationException.class).when(service).checkBusinessRulesFor(businessProposal);
-        given(repository.save(businessProposal)).willReturn(new BusinessProposal(1L));
+        final BusinessProposalEntity businessProposalEntity = new BusinessProposalEntity();
+        doThrow(ValidationException.class).when(service).checkBusinessRulesFor(businessProposalEntity);
+        given(repository.save(businessProposalEntity)).willReturn(new BusinessProposalEntity(1L));
 
-        negotiationService.register(businessProposal);
+        negotiationService.register(businessProposalEntity);
     }
 
     @Test
     public void shouldUpdate() {
 
-        final BusinessProposal businessProposal = new BusinessProposal(1L);
-        businessProposal.setIntroduction("b");
-        final BusinessProposal persisted = new BusinessProposal(1L);
+        final BusinessProposalEntity businessProposalEntity = new BusinessProposalEntity(1L);
+        businessProposalEntity.setIntroduction("b");
+        final BusinessProposalEntity persisted = new BusinessProposalEntity(1L);
         persisted.setIntroduction("a");
-        given(repository.findOne(businessProposal.getId())).willReturn(persisted);
+        given(repository.findOne(businessProposalEntity.getId())).willReturn(persisted);
 
-        doNothing().when(service).checkBusinessRulesFor(businessProposal);
-        given(repository.save(businessProposal)).willReturn(businessProposal);
+        doNothing().when(service).checkBusinessRulesFor(businessProposalEntity);
+        given(repository.save(businessProposalEntity)).willReturn(businessProposalEntity);
 
-        final BusinessProposal result = negotiationService.register(businessProposal);
+        final BusinessProposalEntity result = negotiationService.register(businessProposalEntity);
         assertThat(result.getId(), is(1L));
         assertThat(result.getIntroduction(), is("b"));
     }
@@ -96,26 +96,26 @@ public class NegotiationApplicationImplTest {
     @Test(expected = ValidationException.class)
     public void shouldNotUpdate() {
 
-        final BusinessProposal businessProposal = new BusinessProposal(1L);
-        businessProposal.setIntroduction("b");
-        final BusinessProposal persisted = new BusinessProposal(1L);
+        final BusinessProposalEntity businessProposalEntity = new BusinessProposalEntity(1L);
+        businessProposalEntity.setIntroduction("b");
+        final BusinessProposalEntity persisted = new BusinessProposalEntity(1L);
         persisted.setIntroduction("a");
-        given(repository.findOne(businessProposal.getId())).willReturn(persisted);
+        given(repository.findOne(businessProposalEntity.getId())).willReturn(persisted);
 
-        doThrow(ValidationException.class).when(service).checkBusinessRulesFor(businessProposal);
+        doThrow(ValidationException.class).when(service).checkBusinessRulesFor(businessProposalEntity);
 
-        negotiationService.register(businessProposal);
+        negotiationService.register(businessProposalEntity);
     }
 
     @Test
     public void shouldFindBusinessProposalByClient() {
         Person client = new Person();
         client.setId(1l);
-        BusinessProposal proposal = mock(BusinessProposal.class);
+        BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
 
         given(repository.findByClient(client)).willReturn(Lists.newArrayList(proposal));
 
-        List<BusinessProposal> result = negotiationService.findByClient(client);
+        List<BusinessProposalEntity> result = negotiationService.findByClient(client);
 
         assertThat(result.size(), is(1));
         assertThat(result.get(0), sameInstance(proposal));
@@ -125,7 +125,7 @@ public class NegotiationApplicationImplTest {
     public void shouldReturnEmptyWhenClientWithoutIdONProposalByClient() {
         Person client = new Person();
 
-        List<BusinessProposal> result = negotiationService.findByClient(client);
+        List<BusinessProposalEntity> result = negotiationService.findByClient(client);
 
         assertThat(result.isEmpty(), is(Boolean.TRUE));
     }
@@ -133,8 +133,8 @@ public class NegotiationApplicationImplTest {
     @Test
     public void shouldChangeTemperature() {
         UserEntity changeThat = mock(UserEntity.class);
-        BusinessProposal proposal = mock(BusinessProposal.class);
-        BusinessProposal proposalLoaded = mock(BusinessProposal.class);
+        BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
+        BusinessProposalEntity proposalLoaded = mock(BusinessProposalEntity.class);
 
         ProposalTemperature temperature = ProposalTemperature.HOT;
 
@@ -150,8 +150,8 @@ public class NegotiationApplicationImplTest {
     @Test
     public void shouldDoNothingWhenStatusIsClosedWon() {
         UserEntity changeThat = mock(UserEntity.class);
-        BusinessProposal proposal = mock(BusinessProposal.class);
-        BusinessProposal proposalLoaded = mock(BusinessProposal.class);
+        BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
+        BusinessProposalEntity proposalLoaded = mock(BusinessProposalEntity.class);
 
         ProposalTemperature temperature = ProposalTemperature.HOT;
 
@@ -167,8 +167,8 @@ public class NegotiationApplicationImplTest {
     @Test
     public void shouldChangeTemperatureToClosedWon() {
         UserEntity changeThat = mock(UserEntity.class);
-        BusinessProposal proposal = mock(BusinessProposal.class);
-        BusinessProposal proposalLoaded = mock(BusinessProposal.class);
+        BusinessProposalEntity proposal = mock(BusinessProposalEntity.class);
+        BusinessProposalEntity proposalLoaded = mock(BusinessProposalEntity.class);
 
         ProposalTemperature temperature = ProposalTemperature.CLOSED_WON;
 

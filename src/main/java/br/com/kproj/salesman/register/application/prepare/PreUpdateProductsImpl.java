@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application.prepare;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
@@ -43,11 +43,11 @@ public class PreUpdateProductsImpl implements PreUpdateItems {
     }
 
     @Override
-    public void preUpdate(BusinessProposal proposalNew) {
+    public void preUpdate(BusinessProposalEntity proposalNew) {
 
         if (proposalNew.isNew()) return;
 
-        BusinessProposal proposalLoaded = application.getOne(proposalNew.getId()).get();
+        BusinessProposalEntity proposalLoaded = application.getOne(proposalNew.getId()).get();
 
         List<ProposalSaleableItem> intersections = joinMap.get(Operation.INTERSECTION).join(proposalNew, proposalLoaded);
         intersections.forEach(item -> proposalLoaded.updateSaleableItem(item));
@@ -64,7 +64,7 @@ public class PreUpdateProductsImpl implements PreUpdateItems {
 
     private interface Join {
 
-        List<ProposalSaleableItem> join(BusinessProposal proposalOld, BusinessProposal proposalNew);
+        List<ProposalSaleableItem> join(BusinessProposalEntity proposalOld, BusinessProposalEntity proposalNew);
     }
 
 }

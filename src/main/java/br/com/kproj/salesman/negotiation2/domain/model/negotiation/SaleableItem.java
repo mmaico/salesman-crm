@@ -20,6 +20,9 @@ public class SaleableItem extends ModelIdentifiable {
     @NotNull(message = "domain.saleable.price.is.invalid")
     private BigDecimal price = BigDecimal.ZERO;
 
+    @NotNull(message = "domain.saleable.original.price.is.invalid")
+    private BigDecimal originalPrice;
+
     @NotNull
     @Min(value = 1, message = "quantity.saleable.lessthan.one")
     private Integer quantity = 0;
@@ -63,5 +66,17 @@ public class SaleableItem extends ModelIdentifiable {
 
     public void setSaleablePackage(SaleablePackage saleablePackage) {
         this.saleablePackage = saleablePackage;
+    }
+
+    public BigDecimal getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(BigDecimal originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Boolean hasPackage() {
+        return saleable == null && saleablePackage != null;
     }
 }

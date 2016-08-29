@@ -4,7 +4,6 @@ import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
-import br.com.kproj.salesman.negotiation.infrastructure.validators.LeadValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +15,19 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 import static br.com.kproj.salesman.infrastructure.validators.ModelValidatorUtils.hasId;
-import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 
 @Service
 public class LeadsDomainServiceImpl implements LeadsDomainService {
 
-    @Autowired
-    private LeadValidator validator;
+//    @Autowired
+//    private LeadValidator validator;
 
     @Autowired
     private UserEntityRepository userEntityRepository;
 
     Map<String, CheckRuleLegacy<Lead>> persistRules = new HashMap<>();
     {
-        persistRules.put(description("lead.base.validators"), (incident) -> hasContraintViolated(incident, validator));
+        //persistRules.put(description("lead.base.validators"), (incident) -> hasContraintViolated(incident, validator));
 
         persistRules.put(description("lead.with.invalid.createdby"), (lead) ->
                 lead == null || !hasId(lead.getCreatedBy()) || !userEntityRepository.exists(lead.getCreatedBy().getId()));

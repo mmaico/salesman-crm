@@ -5,10 +5,10 @@ import br.com.kproj.salesman.infrastructure.entity.builders.ApproverProfileBuild
 import br.com.kproj.salesman.infrastructure.entity.builders.RequestApprovalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
 import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
 import com.google.common.collect.Lists;
@@ -34,7 +34,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RequestApprovalApplicationImplTest {
+public class RequestApprovalEntityApplicationImplTest {
 
     @InjectMocks
     private RequestApprovalApplicationImpl application;
@@ -50,165 +50,165 @@ public class RequestApprovalApplicationImplTest {
 
     @Test
     public void shouldRegisterRequestApproval() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withUserRequester(userMock).build();
 
         given(repository.findByProposal(proposal)).willReturn(Optional.empty());
         given(profileRepository.hasApprovers()).willReturn(Boolean.TRUE);
         given(profileRepository.findAll(Mockito.any(Pageable.class))).willReturn(pageProfilesMock);
         given(pageProfilesMock.getContent()).willReturn(getApproverProfilesStub());
-        given(repository.save(requestApproval)).willReturn(requestApproval);
+        given(repository.save(requestApprovalEntity)).willReturn(requestApprovalEntity);
 
-        Optional<RequestApproval> result = application.register(requestApproval);
-        assertThat(result.get(), sameInstance(requestApproval));
+        Optional<RequestApprovalEntity> result = application.register(requestApprovalEntity);
+        assertThat(result.get(), sameInstance(requestApprovalEntity));
     }
 
     @Test
     public void shouldAddApproversAvailableBeforeSave() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
         List<ApproverProfile> approverProfiles = getApproverProfilesStub();
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withUserRequester(userMock).build();
 
         given(repository.findByProposal(proposal)).willReturn(Optional.empty());
         given(profileRepository.hasApprovers()).willReturn(Boolean.TRUE);
         given(profileRepository.findAll(Mockito.any(Pageable.class))).willReturn(pageProfilesMock);
         given(pageProfilesMock.getContent()).willReturn(approverProfiles);
-        given(repository.save(requestApproval)).willReturn(requestApproval);
+        given(repository.save(requestApprovalEntity)).willReturn(requestApprovalEntity);
 
-        Optional<RequestApproval> result = application.register(requestApproval);
+        Optional<RequestApprovalEntity> result = application.register(requestApprovalEntity);
         List<Approver> approvers = result.get().getApprovers();
 
         assertThat(approvers.size(), is(2));
         assertThat(approvers.get(0).getApprover(), is(approverProfiles.get(0).getApprover()));
         assertThat(approvers.get(0).getStatus(), is(ApproverStatus.WAITING));
-        assertThat(approvers.get(0).getRequestApproval(), sameInstance(requestApproval));
+        assertThat(approvers.get(0).getRequestApprovalEntity(), sameInstance(requestApprovalEntity));
 
         assertThat(approvers.get(1).getApprover(), is(approverProfiles.get(1).getApprover()));
         assertThat(approvers.get(1).getStatus(), is(ApproverStatus.WAITING));
-        assertThat(approvers.get(1).getRequestApproval(), sameInstance(requestApproval));
+        assertThat(approvers.get(1).getRequestApprovalEntity(), sameInstance(requestApprovalEntity));
 
     }
 
 
     @Test
     public void shouldDoNothingWhenNotHaveApprovers() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withUserRequester(userMock).build();
 
         given(repository.findByProposal(proposal)).willReturn(Optional.empty());
         given(profileRepository.hasApprovers()).willReturn(Boolean.FALSE);
 
-        Optional<RequestApproval> result = application.register(requestApproval);
+        Optional<RequestApprovalEntity> result = application.register(requestApprovalEntity);
 
         assertThat(result.isPresent(), is(Boolean.FALSE));
 
 
         verify(profileRepository, times(0)).findAll(Mockito.any(Pageable.class));
         verify(pageProfilesMock, times(0)).getContent();
-        verify(repository, times(0)).save(Mockito.any(RequestApproval.class));
+        verify(repository, times(0)).save(Mockito.any(RequestApprovalEntity.class));
 
     }
 
     @Test
     public void shouldReturnWhenAlreadyExistAnRequestApproval() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withUserRequester(userMock).build();
 
-        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApproval));
+        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApprovalEntity));
 
-        Optional<RequestApproval> result = application.register(requestApproval);
+        Optional<RequestApprovalEntity> result = application.register(requestApprovalEntity);
 
 
         assertThat(result.isPresent(), is(Boolean.TRUE));
-        assertThat(result.get(), sameInstance(requestApproval));
+        assertThat(result.get(), sameInstance(requestApprovalEntity));
 
         verify(profileRepository, times(0)).hasApprovers();
         verify(profileRepository, times(0)).findAll(Mockito.any(Pageable.class));
         verify(pageProfilesMock, times(0)).getContent();
-        verify(repository, times(0)).save(Mockito.any(RequestApproval.class));
+        verify(repository, times(0)).save(Mockito.any(RequestApprovalEntity.class));
 
     }
 
     @Test
     public void shouldAddAvaluationApprover() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withApprovers(approversStub)
                 .withUserRequester(userStub).build();
 
-        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApproval));
+        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApprovalEntity));
 
         application.evaluationApprover(proposal, userStub, ApproverStatus.APPROVED);
 
         Approver approver = approversStub.get(2);
 
         assertThat(approver.getStatus(), is(ApproverStatus.APPROVED));
-        assertThat(requestApproval.getStatus(), is(RequestApproval.RequestApprovalStatus.WAITING));
+        assertThat(requestApprovalEntity.getStatus(), is(RequestApprovalEntity.RequestApprovalStatus.WAITING));
 
     }
 
     @Test
     public void shouldUpdateStatusRequestApprovalIfUserDisaproved() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withApprovers(approversStub)
                 .withUserRequester(userStub).build();
 
-        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApproval));
+        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApprovalEntity));
 
         application.evaluationApprover(proposal, userStub, ApproverStatus.DISAPPROVED);
 
 
-        assertThat(requestApproval.getStatus(), is(RequestApproval.RequestApprovalStatus.DISAPPROVED));
+        assertThat(requestApprovalEntity.getStatus(), is(RequestApprovalEntity.RequestApprovalStatus.DISAPPROVED));
 
     }
 
     @Test
     public void shouldUpdateStatusRequestApprovalToApprovedWhenAllUserApproved() {
-        BusinessProposal proposal = createBusinessProposal(1l).build();
+        BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userStub = UserEntityBuilder.createUser(3l).build();
         List<Approver> approversStub = getApproversStub();
         approversStub.get(0).setStatus(ApproverStatus.APPROVED);
 
-        RequestApproval requestApproval = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(proposal).withStatus(RequestApproval.RequestApprovalStatus.WAITING)
+        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+                .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
                 .withApprovers(approversStub)
                 .withUserRequester(userStub).build();
 
-        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApproval));
+        given(repository.findByProposal(proposal)).willReturn(Optional.of(requestApprovalEntity));
 
         application.evaluationApprover(proposal, userStub, ApproverStatus.APPROVED);
 
 
-        assertThat(requestApproval.getStatus(), is(RequestApproval.RequestApprovalStatus.APPROVED));
+        assertThat(requestApprovalEntity.getStatus(), is(RequestApprovalEntity.RequestApprovalStatus.APPROVED));
 
     }
 

@@ -34,14 +34,18 @@ public class Negotiation extends ModelIdentifiable {
 
     private List<InstallmentItem> installments = Lists.newArrayList();
 
+    private Temperature temperature;
 
 
 
-    public boolean temperatureIsClosedWon() {
-        return Boolean.FALSE;
+
+    public boolean temperatureWasClosedWon() {
+        return Temperature.CLOSED_WON.equals(this.temperature);
     }
 
-
+    public void useInitialTemperature() {
+        this.temperature = Temperature.COLD;
+    }
 
 
 
@@ -128,5 +132,11 @@ public class Negotiation extends ModelIdentifiable {
         this.operationRegion = operationRegion;
     }
 
+    public Temperature getTemperature() {
+        return temperature;
+    }
 
+    public void setTemperature(Temperature temperature) {
+        this.temperature = temperature;
+    }
 }

@@ -9,6 +9,6 @@ import java.util.Collection;
 public interface NegotiationRepository extends BaseRepository<Negotiation, Long> {
 
 
-    Collection<Negotiation> find(Account account);
+    Collection<Negotiation> findOne(Account account);
 }
 

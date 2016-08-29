@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class TimelineRepositoryIT extends AbstractIntegrationTest {
     public void shouldFindTimelineByBusinessProposal() {
         Long proposalId = 1l;
 
-        Optional<Timeline> result = repository.findOne(new BusinessProposal(proposalId));
+        Optional<Timeline> result = repository.findOne(new BusinessProposalEntity(proposalId));
 
         assertThat(result.get().getId(), is(3l));
     }

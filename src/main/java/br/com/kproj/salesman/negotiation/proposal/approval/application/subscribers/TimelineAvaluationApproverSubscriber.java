@@ -30,7 +30,7 @@ public class TimelineAvaluationApproverSubscriber {
 
         BusinessProposalApprovalActivity approvalActivity = (BusinessProposalApprovalActivity) activity;
 
-        application.evaluationApprover(timelineSaveMessage.getBusinessProposal(),
+        application.evaluationApprover(timelineSaveMessage.getBusinessProposalEntity(),
                 security.getPrincipal().getUser(), approvalActivity.getAvaluation());
     }
 

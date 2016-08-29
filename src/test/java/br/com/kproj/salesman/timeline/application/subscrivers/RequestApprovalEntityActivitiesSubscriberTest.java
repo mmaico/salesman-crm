@@ -2,8 +2,8 @@ package br.com.kproj.salesman.timeline.application.subscrivers;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.RequestApprovalFinalizeMessage;
 import br.com.kproj.salesman.infrastructure.events.messages.RequestNewApprovalMessage;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class RequestApprovalActivitiesSubscriberTest {
+public class RequestApprovalEntityActivitiesSubscriberTest {
 
     @InjectMocks
     private RequestApprovalActivitiesSubscriber subscriber;
@@ -33,18 +33,18 @@ public class RequestApprovalActivitiesSubscriberTest {
     private ArgumentCaptor<LogActivity> logActivityCaptor;
 
     @Captor
-    private ArgumentCaptor<BusinessProposal> proposalCaptor;
+    private ArgumentCaptor<BusinessProposalEntity> proposalCaptor;
 
     @Test
     public void shouldGenerateActivyByRequestNewAapproval() {
         UserEntity requestor = mock(UserEntity.class);
-        RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(requestor);
-        RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApproval);
+        RequestApprovalEntity requestApprovalEntity = new RequestApprovalEntity();
+        requestApprovalEntity.setUserRequester(requestor);
+        RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApprovalEntity);
 
         subscriber.generateActivityByRequestNewApproval(message);
 
-        verify(application).register(Mockito.any(BusinessProposal.class), logActivityCaptor.capture());
+        verify(application).register(Mockito.any(BusinessProposalEntity.class), logActivityCaptor.capture());
 
         LogActivity logActivity = logActivityCaptor.getValue();
 
@@ -56,31 +56,31 @@ public class RequestApprovalActivitiesSubscriberTest {
 
     @Test
     public void shouldVerifyIfCorreclyProposalSendToApplication() {
-        BusinessProposal businessProposalMock = mock(BusinessProposal.class);
-        RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(mock(UserEntity.class));
-        requestApproval.setProposal(businessProposalMock);
-        RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApproval);
+        BusinessProposalEntity businessProposalEntityMock = mock(BusinessProposalEntity.class);
+        RequestApprovalEntity requestApprovalEntity = new RequestApprovalEntity();
+        requestApprovalEntity.setUserRequester(mock(UserEntity.class));
+        requestApprovalEntity.setProposal(businessProposalEntityMock);
+        RequestNewApprovalMessage message = RequestNewApprovalMessage.create(requestApprovalEntity);
 
         subscriber.generateActivityByRequestNewApproval(message);
 
         verify(application).register(proposalCaptor.capture(), Mockito.any(LogActivity.class));
 
-        BusinessProposal businessProposal = proposalCaptor.getValue();
+        BusinessProposalEntity businessProposalEntity = proposalCaptor.getValue();
 
-        assertThat(businessProposal, sameInstance(businessProposalMock));
+        assertThat(businessProposalEntity, sameInstance(businessProposalEntityMock));
     }
 
     @Test
     public void shouldGenerateActivityByFinalizeRequestApproval() {
         UserEntity requestor = mock(UserEntity.class);
-        RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(requestor);
-        RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApproval);
+        RequestApprovalEntity requestApprovalEntity = new RequestApprovalEntity();
+        requestApprovalEntity.setUserRequester(requestor);
+        RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApprovalEntity);
 
         subscriber.generateActivityByFinalizeRequestApproval(message);
 
-        verify(application).register(Mockito.any(BusinessProposal.class), logActivityCaptor.capture());
+        verify(application).register(Mockito.any(BusinessProposalEntity.class), logActivityCaptor.capture());
 
         LogActivity logActivity = logActivityCaptor.getValue();
 
@@ -91,18 +91,18 @@ public class RequestApprovalActivitiesSubscriberTest {
 
     @Test
     public void shouldVerifyIfCorreclyProposalSendToApplicationOnFinalizeRequestApproval() {
-        BusinessProposal businessProposalMock = mock(BusinessProposal.class);
-        RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setUserRequester(mock(UserEntity.class));
-        requestApproval.setProposal(businessProposalMock);
-        RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApproval);
+        BusinessProposalEntity businessProposalEntityMock = mock(BusinessProposalEntity.class);
+        RequestApprovalEntity requestApprovalEntity = new RequestApprovalEntity();
+        requestApprovalEntity.setUserRequester(mock(UserEntity.class));
+        requestApprovalEntity.setProposal(businessProposalEntityMock);
+        RequestApprovalFinalizeMessage message = RequestApprovalFinalizeMessage.create(requestApprovalEntity);
 
         subscriber.generateActivityByFinalizeRequestApproval(message);
 
         verify(application).register(proposalCaptor.capture(), Mockito.any(LogActivity.class));
 
-        BusinessProposal businessProposal = proposalCaptor.getValue();
+        BusinessProposalEntity businessProposalEntity = proposalCaptor.getValue();
 
-        assertThat(businessProposal, sameInstance(businessProposalMock));
+        assertThat(businessProposalEntity, sameInstance(businessProposalEntityMock));
     }
 }

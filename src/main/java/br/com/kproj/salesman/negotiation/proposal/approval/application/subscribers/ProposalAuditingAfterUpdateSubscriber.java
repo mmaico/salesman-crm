@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.negotiation.proposal.approval.application.subscribers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
 import br.com.kproj.salesman.negotiation.proposal.approval.application.RequestApprovalApplication;
 import br.com.kproj.salesman.negotiation.proposal.approval.predicates.StartApprovalProcessPredicate;
@@ -26,12 +26,12 @@ public class ProposalAuditingAfterUpdateSubscriber {
     public void startApprovalProcessIfNeeded(ProposalAuditingAfterUpdateMessage message) {
 
         if (predicate.test(message)) {
-            RequestApproval requestApproval = createRequestApproval()
+            RequestApprovalEntity requestApprovalEntity = createRequestApproval()
                     .withProposal(createBusinessProposal(message.getBefore().getEntityId()).build())
                     .withUserRequester(message.getUserThatChanged())
-                    .withStatus(RequestApproval.RequestApprovalStatus.WAITING).build();
+                    .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING).build();
 
-            application.register(requestApproval);
+            application.register(requestApprovalEntity);
         }
 
     }

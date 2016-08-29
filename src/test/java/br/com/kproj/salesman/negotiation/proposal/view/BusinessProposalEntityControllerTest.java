@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Test to {@link br.com.kproj.salesman.negotiation.proposal.view.BusinessProposalController}
  */
 @Component
-public class BusinessProposalControllerTest extends AbstractIntegrationTest {
+public class BusinessProposalEntityControllerTest extends AbstractIntegrationTest {
 
     private MockMvc mockMvc;
 

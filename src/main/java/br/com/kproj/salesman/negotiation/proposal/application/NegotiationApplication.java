@@ -3,20 +3,20 @@ package br.com.kproj.salesman.negotiation.proposal.application;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
-public interface NegotiationApplication extends ModelLegacyService<BusinessProposal> {
+public interface NegotiationApplication extends ModelLegacyService<BusinessProposalEntity> {
 
-    BusinessProposal register(BusinessProposal businessProposal);
+    BusinessProposalEntity register(BusinessProposalEntity businessProposalEntity);
 
-    List<BusinessProposal> findByClient(Person client);
+    List<BusinessProposalEntity> findByClient(Person client);
 
-    SalesOrder findSalesBy(BusinessProposal businessProposal);
+    SalesOrder findSalesBy(BusinessProposalEntity businessProposalEntity);
 
-    void changeTemperature(BusinessProposal proposal, UserEntity changer, ProposalTemperature temperature);
+    void changeTemperature(BusinessProposalEntity proposal, UserEntity changer, ProposalTemperature temperature);
 
 }

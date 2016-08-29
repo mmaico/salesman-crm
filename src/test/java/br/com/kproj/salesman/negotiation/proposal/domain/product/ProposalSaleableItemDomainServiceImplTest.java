@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.proposal.domain.product;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -34,7 +34,7 @@ public class ProposalSaleableItemDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldReturnTrueWhenNotHaveInvalidItems() {
-        BusinessProposal proposal = new BusinessProposal();
+        BusinessProposalEntity proposal = new BusinessProposalEntity();
         proposal.setSaleableItems(getItemsStub());
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
@@ -46,7 +46,7 @@ public class ProposalSaleableItemDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldReturnFalseWhenProductDoesNotExist() {
-        BusinessProposal proposal = new BusinessProposal();
+        BusinessProposalEntity proposal = new BusinessProposalEntity();
         proposal.setSaleableItems(getItemsStub());
 
         given(productRepository.exists(1l)).willReturn(Boolean.TRUE);
@@ -58,7 +58,7 @@ public class ProposalSaleableItemDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldReturnFalseWhenItemHavePriceLessThanZero() {
-        BusinessProposal proposal = new BusinessProposal();
+        BusinessProposalEntity proposal = new BusinessProposalEntity();
         List<ProposalSaleableItem> itemsStub = getItemsStub();
         itemsStub.get(1).setPrice(new BigDecimal("-12.00"));
         proposal.setSaleableItems(itemsStub);
@@ -72,7 +72,7 @@ public class ProposalSaleableItemDomainServiceImplTest {
 
     @Test(expected = ValidationException.class)
     public void shouldReturnFalseWhenItemHaveQuantityLessThanOne() {
-        BusinessProposal proposal = new BusinessProposal();
+        BusinessProposalEntity proposal = new BusinessProposalEntity();
         List<ProposalSaleableItem> itemsStub = getItemsStub();
         itemsStub.get(1).setQuantity(0);
         proposal.setSaleableItems(itemsStub);

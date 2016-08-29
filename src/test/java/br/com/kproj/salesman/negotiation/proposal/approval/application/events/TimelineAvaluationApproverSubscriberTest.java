@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.approval.application.events;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.TimelineSaveMessage;
@@ -46,7 +46,7 @@ public class TimelineAvaluationApproverSubscriberTest {
     public void shouldRequestApproval() {
         LoggedUser loggedUser = LoggedUserBuilder
                 .createLoggedUser("login", createUser(2l).build(), Sets.newHashSet()).build();
-        BusinessProposal proposalMock = Mockito.mock(BusinessProposal.class);
+        BusinessProposalEntity proposalMock = Mockito.mock(BusinessProposalEntity.class);
 
         BusinessProposalApprovalActivity activity = new BusinessProposalApprovalActivity();
         activity.setId(1l);
@@ -63,7 +63,7 @@ public class TimelineAvaluationApproverSubscriberTest {
 
     @Test
     public void shouldDoNothingWhenNotBusinessProposalApprovalActivity() {
-        BusinessProposal proposalMock = Mockito.mock(BusinessProposal.class);
+        BusinessProposalEntity proposalMock = Mockito.mock(BusinessProposalEntity.class);
 
         LogActivity activity = new LogActivity();
         activity.setId(1l);

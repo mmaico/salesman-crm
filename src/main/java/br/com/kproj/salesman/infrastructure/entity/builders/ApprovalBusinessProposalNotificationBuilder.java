@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 
 import java.util.Date;
 
@@ -32,7 +32,7 @@ public class ApprovalBusinessProposalNotificationBuilder extends AbstractBuilder
 		this.entity.setCreateDate(new Date());
 		return this;
 	}
-    public ApprovalBusinessProposalNotificationBuilder withBusinessProposal(BusinessProposal proposal) {
+    public ApprovalBusinessProposalNotificationBuilder withBusinessProposal(BusinessProposalEntity proposal) {
         this.entity.setProposal(proposal);
         return this;
     }

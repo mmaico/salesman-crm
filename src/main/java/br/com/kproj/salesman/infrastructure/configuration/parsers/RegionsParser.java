@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.configuration.parsers;
 
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.InternalArchitectureException;
 import com.google.common.collect.Lists;
 import org.jdom.Document;
@@ -21,14 +21,14 @@ public class RegionsParser {
 	private static final String FILE_NAME = "/configurations/regions.xml";
 	
 	
-	public static List<OperationRegion> getRegions() {
+	public static List<OperationRegionEntity> getRegions() {
 
 		return  loadOperationRegions();
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	protected static List<OperationRegion> loadOperationRegions() {
+	protected static List<OperationRegionEntity> loadOperationRegions() {
 		SAXBuilder sab = new SAXBuilder();
 		try {
 			InputStream inputStream = findFile();
@@ -38,13 +38,13 @@ public class RegionsParser {
 			
 			Document doc = (Document) sab.build(inputStream);
 			Element rootElement = (Element) doc.getRootElement();
-			List<OperationRegion> listRegions = new ArrayList<>();
+			List<OperationRegionEntity> listRegions = new ArrayList<>();
 			
 			List<Element> childrenRoot = rootElement.getChildren();
 			
 			for (Element el : childrenRoot) {
 				
-				OperationRegion region = convertToRegion(el);
+				OperationRegionEntity region = convertToRegion(el);
 				listRegions.add(region);
 			}
 			
@@ -57,8 +57,8 @@ public class RegionsParser {
 		}
 	}
 	
-	private static OperationRegion convertToRegion(Element element) {
-		OperationRegion position = new OperationRegion();
+	private static OperationRegionEntity convertToRegion(Element element) {
+		OperationRegionEntity position = new OperationRegionEntity();
 		
 		String name = element.getAttributeValue(ATTRIBUTE_NAME);
 

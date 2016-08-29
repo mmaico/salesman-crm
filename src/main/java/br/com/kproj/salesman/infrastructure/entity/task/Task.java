@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
@@ -72,7 +72,7 @@ public class Task extends Identifiable implements TimelinePresent {
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
-    private OperationRegion region;
+    private OperationRegionEntity region;
 
     @Transient
     @IgnoreField
@@ -219,11 +219,11 @@ public class Task extends Identifiable implements TimelinePresent {
         this.parentId = parentId;
     }
 
-    public OperationRegion getRegion() {
+    public OperationRegionEntity getRegion() {
         return region;
     }
 
-    public void setRegion(OperationRegion region) {
+    public void setRegion(OperationRegionEntity region) {
         this.region = region;
     }
 

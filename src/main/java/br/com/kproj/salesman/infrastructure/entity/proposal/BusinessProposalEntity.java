@@ -2,10 +2,10 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegion;
+import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.negotiation.proposal.domain.saleable.contract.ProposalCalcTotalSaleableItems;
@@ -22,7 +22,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 
 @Entity
 @Table(name = "business_proposal")
-public class BusinessProposal extends Identifiable implements TimelinePresent {
+public class BusinessProposalEntity extends Identifiable implements TimelinePresent {
 
 
     /**
@@ -35,9 +35,9 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
     private Long id;
 
 	@ManyToOne
-    @JoinColumn(name="client_id")
-    @NotNull(message = "business.proposal.person.required")
-    private Person client;
+    @JoinColumn(name="account_id")
+    @NotNull(message = "business.proposal.account.required")
+    private AccountEntity account;
 
     @ManyToOne
     @JoinColumn(name="seller_id")
@@ -61,7 +61,7 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
     @ManyToOne
     @JoinColumn(name="operation_region_id")
     @NotNull(message = "business.proposal.region.required")
-    private OperationRegion operationRegion;
+    private OperationRegionEntity operationRegionEntity;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
@@ -71,8 +71,8 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
     private Timeline timeline;
 
 
-    public BusinessProposal(){}
-    public BusinessProposal(Long id) {
+    public BusinessProposalEntity(){}
+    public BusinessProposalEntity(Long id) {
         this.id = id;
     }
 
@@ -110,14 +110,13 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
         return totaToPay;
     }
 
-    
 
-    public Person getClient() {
-        return client;
+    public AccountEntity getAccount() {
+        return account;
     }
 
-    public void setClient(Person client) {
-        this.client = client;
+    public void setAccount(AccountEntity account) {
+        this.account = account;
     }
 
     public UserEntity getSeller() {
@@ -160,12 +159,12 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
         this.paymentItems = paymentItems;
     }
 
-    public OperationRegion getOperationRegion() {
-        return operationRegion;
+    public OperationRegionEntity getOperationRegionEntity() {
+        return operationRegionEntity;
     }
 
-    public void setOperationRegion(OperationRegion operationRegion) {
-        this.operationRegion = operationRegion;
+    public void setOperationRegionEntity(OperationRegionEntity operationRegionEntity) {
+        this.operationRegionEntity = operationRegionEntity;
     }
 
     public List<ProposalSaleableItem> getSaleableItems() {
@@ -204,12 +203,12 @@ public class BusinessProposal extends Identifiable implements TimelinePresent {
     }
 
     public void addNewProposalPaymentItem(ProposalPaymentItem item) {
-        item.setBusinessProposal(this);
+        item.setBusinessProposalEntity(this);
         this.getPaymentItems().add(item);
     }
 
     public void addNewProposalSaleableItem(ProposalSaleableItem saleableItem) {
-        saleableItem.setBusinessProposal(this);
+        saleableItem.setBusinessProposalEntity(this);
         this.getSaleableItems().add(saleableItem);
     }
 

@@ -4,8 +4,8 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.ApproverBuilder;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.repository.NotificationRepository;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -38,9 +38,9 @@ public class NotificationApplicationImplTest {
 
     @Test
     public void shoulSendNotificationToProposalApprovers() {
-        RequestApproval requestApproval = getRequestApprovalStub();
+        RequestApprovalEntity requestApprovalEntity = getRequestApprovalStub();
 
-        application.sendNotificationToProposalApprovers(requestApproval);
+        application.sendNotificationToProposalApprovers(requestApprovalEntity);
 
         verify(repository).save(notificationsCaptor.capture());
 
@@ -51,30 +51,30 @@ public class NotificationApplicationImplTest {
         assertThat(result.size(), Matchers.is(2));
         assertThat(notificationOne.getCreateDate(), Matchers.notNullValue());
         assertThat(notificationOne.getNotified(), Matchers.notNullValue());
-        assertThat(notificationOne.getProposal(), sameInstance(requestApproval.getProposal()));
+        assertThat(notificationOne.getProposal(), sameInstance(requestApprovalEntity.getProposal()));
 
         assertThat(notificationTwo.getCreateDate(), Matchers.notNullValue());
         assertThat(notificationTwo.getNotified(), Matchers.notNullValue());
-        assertThat(notificationTwo.getProposal(), sameInstance(requestApproval.getProposal()));
+        assertThat(notificationTwo.getProposal(), sameInstance(requestApprovalEntity.getProposal()));
     }
 
     @Test
     public void shouldDoNothingWhenNotHaveApprovers() {
-        RequestApproval requestApproval = getRequestApprovalStub();
-        requestApproval.getApprovers().clear();
+        RequestApprovalEntity requestApprovalEntity = getRequestApprovalStub();
+        requestApprovalEntity.getApprovers().clear();
 
-        application.sendNotificationToProposalApprovers(requestApproval);
+        application.sendNotificationToProposalApprovers(requestApprovalEntity);
 
         verifyNoMoreInteractions(repository);
     }
 
 
-    private RequestApproval getRequestApprovalStub() {
-        RequestApproval requestApproval = new RequestApproval();
-        requestApproval.setProposal(mock(BusinessProposal.class));
-        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
-        requestApproval.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
+    private RequestApprovalEntity getRequestApprovalStub() {
+        RequestApprovalEntity requestApprovalEntity = new RequestApprovalEntity();
+        requestApprovalEntity.setProposal(mock(BusinessProposalEntity.class));
+        requestApprovalEntity.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
+        requestApprovalEntity.addApprover(ApproverBuilder.createApprover().withApprover(mock(UserEntity.class)).build());
 
-        return requestApproval;
+        return requestApprovalEntity;
     }
 }

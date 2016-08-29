@@ -3,7 +3,7 @@ package br.com.kproj.salesman.auditing.application.events;
 import br.com.kproj.salesman.auditing.application.BusinessProposalAuditingApplication;
 import br.com.kproj.salesman.auditing.application.subscribers.AuditingSubscriber;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.security.authentication.LoggedUser;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.junit.Test;
@@ -31,16 +31,16 @@ public class AuditingSubscriberTest {
 
     @Test
     public void shouldRegisterAuditing() {
-        BusinessProposal businessProposalMock = Mockito.mock(BusinessProposal.class);
+        BusinessProposalEntity businessProposalEntityMock = Mockito.mock(BusinessProposalEntity.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         LoggedUser loggedUser = new LoggedUser();
         loggedUser.setUser(userMock);
 
         given(security.getPrincipal()).willReturn(loggedUser);
 
-        subscriber.persistAuditWhenDistinctLastVersion(businessProposalMock);
+        subscriber.persistAuditWhenDistinctLastVersion(businessProposalEntityMock);
 
-        verify(application, times(1)).registerAuditing(businessProposalMock, userMock);
+        verify(application, times(1)).registerAuditing(businessProposalEntityMock, userMock);
     }
 
 }

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.proposal.view;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposal;
+import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
@@ -60,39 +60,39 @@ public class BusinessProposalController {
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.POST)
     public @ResponseBody
-    Long save(@ModelAttribute @Validated BusinessProposal businessProposal, BindingResult bindingResult) {
+    Long save(@ModelAttribute @Validated BusinessProposalEntity businessProposalEntity, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposal);
+        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposalEntity);
 
-        normalizeEntityRequest.doNestedReference(businessProposal);
-        BusinessProposal register = service.register(businessProposal);
+        normalizeEntityRequest.doNestedReference(businessProposalEntity);
+        BusinessProposalEntity register = service.register(businessProposalEntity);
 
         return register.getId();
     }
 
     @RequestMapping(value = "/proposals/save", method = RequestMethod.PUT)
-    public @ResponseBody void update(@ModelAttribute @Validated BusinessProposal businessProposal,
+    public @ResponseBody void update(@ModelAttribute @Validated BusinessProposalEntity businessProposalEntity,
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposal);
+        BusinessProposalRequestMergeHelper.merge(proposalSaleablesDTO, businessProposalEntity);
 
-        normalizeEntityRequest.addFieldsToUpdate(businessProposal);
-        businessProposal.getFields().remove("paymentItems");
-        service.register(businessProposal);
+        normalizeEntityRequest.addFieldsToUpdate(businessProposalEntity);
+        businessProposalEntity.getFields().remove("paymentItems");
+        service.register(businessProposalEntity);
     }
 
     @RequestMapping(value = "/proposals/{proposalId}", method = RequestMethod.GET)
     public ModelAndView get(@PathVariable Long proposalId, @RequestParam(defaultValue="editProposal",required=false, value="template") String templateName, Model model) {
 
-        Optional<BusinessProposal> result = service.getOne(proposalId);
+        Optional<BusinessProposalEntity> result = service.getOne(proposalId);
 
         proposalSaleablesDTO.clear();
         proposalSaleablesDTO.load(result.get().getSaleableItems());

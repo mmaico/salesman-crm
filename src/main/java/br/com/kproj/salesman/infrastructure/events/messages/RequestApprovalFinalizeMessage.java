@@ -1,26 +1,26 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 
 public class RequestApprovalFinalizeMessage {
 
 
-    private RequestApproval requestApproval;
+    private RequestApprovalEntity requestApprovalEntity;
 
-    public RequestApprovalFinalizeMessage(RequestApproval requestApproval) {
-        this.requestApproval = requestApproval;
+    public RequestApprovalFinalizeMessage(RequestApprovalEntity requestApprovalEntity) {
+        this.requestApprovalEntity = requestApprovalEntity;
     }
 
-    public static RequestApprovalFinalizeMessage create(RequestApproval requestApproval) {
-          return new RequestApprovalFinalizeMessage(requestApproval);
+    public static RequestApprovalFinalizeMessage create(RequestApprovalEntity requestApprovalEntity) {
+          return new RequestApprovalFinalizeMessage(requestApprovalEntity);
     }
 
-    public RequestApproval getRequestApproval() {
-        return requestApproval;
+    public RequestApprovalEntity getRequestApprovalEntity() {
+        return requestApprovalEntity;
     }
 
-    public void setRequestApproval(RequestApproval requestApproval) {
-        this.requestApproval = requestApproval;
+    public void setRequestApprovalEntity(RequestApprovalEntity requestApprovalEntity) {
+        this.requestApprovalEntity = requestApprovalEntity;
     }
 }
