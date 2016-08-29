@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEnti
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
-import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
+import br.com.kproj.salesman.negotiationold.proposal.application.NegotiationApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

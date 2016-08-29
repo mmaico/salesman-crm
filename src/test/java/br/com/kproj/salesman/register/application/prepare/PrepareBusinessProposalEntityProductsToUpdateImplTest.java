@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.register.application.prepare;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.ProposalSaleableItemBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.SaleableItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalRepository;
 import br.com.kproj.salesman.infrastructure.repository.ProposalSaleableRepository;
-import br.com.kproj.salesman.negotiation.proposal.application.NegotiationApplication;
+import br.com.kproj.salesman.negotiationold.proposal.application.NegotiationApplication;
 import com.google.common.collect.Lists;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -105,19 +105,19 @@ public class PrepareBusinessProposalEntityProductsToUpdateImplTest {
     public BusinessProposalEntity getProposalOldStub() {
         BusinessProposalEntity proposalOld = new BusinessProposalEntity(1l);
 
-        ProposalSaleableItem itemOne = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemOne = SaleableItemBuilder
                     .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("200"))
                     .withPrice(new BigDecimal("100"))
                     .withQuantity(4)
                     .withSaleable(new SaleableUnitEntity(3l)).build();
 
-        ProposalSaleableItem itemTwo = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemTwo = SaleableItemBuilder
                 .createProposalSaleable(5l).withOriginalPrice(new BigDecimal("400"))
                 .withPrice(new BigDecimal("200"))
                 .withQuantity(2)
                 .withSaleable(new SaleableUnitEntity(7l)).build();
 
-        ProposalSaleableItem itemThree = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemThree = SaleableItemBuilder
                 .createProposalSaleable(6l).withOriginalPrice(new BigDecimal("500"))
                 .withPrice(new BigDecimal("250"))
                 .withQuantity(5)
@@ -131,19 +131,19 @@ public class PrepareBusinessProposalEntityProductsToUpdateImplTest {
     public BusinessProposalEntity getProposalNewStub() {
         BusinessProposalEntity proposalNew = new BusinessProposalEntity(1l);
 
-        ProposalSaleableItem itemOne = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemOne = SaleableItemBuilder
                 .createProposalSaleable(2l).withOriginalPrice(new BigDecimal("300"))
                 .withPrice(new BigDecimal("150"))
                 .withQuantity(2)
                 .withSaleable(new SaleableUnitEntity(3l)).build();
 
-        ProposalSaleableItem itemTwo = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemTwo = SaleableItemBuilder
                 .createProposalSaleable(5l).withOriginalPrice(new BigDecimal("450"))
                 .withPrice(new BigDecimal("250"))
                 .withQuantity(3)
                 .withSaleable(new SaleableUnitEntity(7l)).build();
 
-        ProposalSaleableItem itemThree = ProposalSaleableItemBuilder
+        ProposalSaleableItem itemThree = SaleableItemBuilder
                 .createProposalSaleable(null).withOriginalPrice(new BigDecimal("1000"))
                 .withPrice(new BigDecimal("750"))
                 .withQuantity(1)

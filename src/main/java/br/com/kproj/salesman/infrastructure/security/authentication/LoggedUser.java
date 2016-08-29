@@ -1,12 +1,11 @@
 package br.com.kproj.salesman.infrastructure.security.authentication;
 
 
-import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import com.google.common.collect.Lists;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,15 +15,16 @@ import static java.lang.Boolean.TRUE;
 
 @SuppressWarnings("serial")
 public class LoggedUser implements UserDetails {
-	
+
+	private Long id;
+
+	private String name;
+
 	private String login;
 	
 	private String password;
-	
-	private UserEntity user;
 
-	
-	private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+	private List<GrantedAuthority> authorities = Lists.newArrayList();
 	
 	
 	public String getPassword() {
@@ -33,13 +33,7 @@ public class LoggedUser implements UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public UserEntity getUser() {
-		return user;
-	}
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
+
 
 	public void setLogin(String login) {
 		this.login = login;
@@ -76,5 +70,25 @@ public class LoggedUser implements UserDetails {
 	
 	public void removeRole(String role) {
 		this.authorities.remove(new SimpleGrantedAuthority(role));
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LoggedUser getLoggedUser() {
+		return this;
 	}
 }
