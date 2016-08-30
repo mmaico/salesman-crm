@@ -36,7 +36,7 @@ public class PrepareInstallmentsController {
         hasContraintViolated(result, validator);
 
 
-        model.addAttribute("payment", helper.generate(result));
+   //     model.addAttribute("payment", helper.generate(result));
         return new ModelAndView("/clients/domain/installments");
     }
 

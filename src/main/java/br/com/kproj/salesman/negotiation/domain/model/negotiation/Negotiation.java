@@ -37,8 +37,6 @@ public class Negotiation extends ModelIdentifiable {
     private Temperature temperature;
 
 
-
-
     public boolean temperatureWasClosedWon() {
         return Temperature.CLOSED_WON.equals(this.temperature);
     }
@@ -48,16 +46,7 @@ public class Negotiation extends ModelIdentifiable {
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    //getters and setters
 
     @Override
     public Long getId() {
