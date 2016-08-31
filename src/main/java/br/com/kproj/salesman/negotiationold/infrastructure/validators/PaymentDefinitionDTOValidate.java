@@ -27,9 +27,9 @@ public class PaymentDefinitionDTOValidate implements Validator {
     public void validate(Object target, Errors errors) {
         PaymentDefinitionDTO item = (PaymentDefinitionDTO) target;
 
-        if (proposalSaleablesHelper.getTotalItems().equals(BigDecimal.ZERO)) {
-            throw new ValidationException(Sets.newHashSet("proposal.necessary.products.to.generate.payment"));
-        }
+//        if (proposalSaleablesHelper.getTotalItems().equals(BigDecimal.ZERO)) {
+//            throw new ValidationException(Sets.newHashSet("proposal.necessary.products.to.generate.payment"));
+//        }
 
         if (item.getInstallments() < 1) {
             throw new ValidationException(Sets.newHashSet("proposal.payment.invalid.quantity.installments"));

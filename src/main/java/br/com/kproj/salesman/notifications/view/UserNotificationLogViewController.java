@@ -24,7 +24,7 @@ public class UserNotificationLogViewController {
     @RequestMapping(value = "/notifications-view/proposals", method = RequestMethod.POST)
     public @ResponseBody void notificationViewProposal() {
         UserNotificationLogView userView = new UserNotificationLogView();
-        userView.setUser(security.getPrincipal().getUser());
+        //userView.setUser(security.getPrincipal().getUser());
         userView.setLastVisualization(new Date());
         userView.setTypeLogView(UserNotificationLogView.TypeLogView.PROPOSAL_NOTIFICATION);
 
@@ -34,7 +34,7 @@ public class UserNotificationLogViewController {
     @RequestMapping(value = "/notifications-view/tasks", method = RequestMethod.POST)
     public @ResponseBody void notificationViewTask() {
         UserNotificationLogView userView = new UserNotificationLogView();
-        userView.setUser(security.getPrincipal().getUser());
+        //userView.setUser(security.getPrincipal().getUser());
         userView.setLastVisualization(new Date());
         userView.setTypeLogView(UserNotificationLogView.TypeLogView.TASK_NOTIFICATION);
 

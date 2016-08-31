@@ -52,7 +52,7 @@ public class CalendarActivitiesController {
 
     @RequestMapping(value="/calendar/calendar-activities", method = RequestMethod.POST)
     public ModelAndView saveActivity(@ModelAttribute CalendarActivity activity, @ModelAttribute PeriodDTO periodDTO, Model model) {
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; //security.getPrincipal().getUser();
 
         if (activity.getPeriod() == null) {
             activity.setPeriod(new Period());

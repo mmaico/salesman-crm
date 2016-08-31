@@ -34,7 +34,7 @@ public class AuditingSubscriberTest {
         BusinessProposalEntity businessProposalEntityMock = Mockito.mock(BusinessProposalEntity.class);
         UserEntity userMock = Mockito.mock(UserEntity.class);
         LoggedUser loggedUser = new LoggedUser();
-        loggedUser.setUser(userMock);
+       // loggedUser.setUser(userMock);
 
         given(security.getPrincipal()).willReturn(loggedUser);
 

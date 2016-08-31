@@ -81,7 +81,7 @@ public class PersonalActivitiesController {
     public  ModelAndView saveSubtask(@ModelAttribute PersonalActivity activity, @PathVariable("parentActivityId") Long parentActivityId, Model model) {
 
         normalizeEntityRequest.doNestedReference(activity);
-        activity.setOwner(security.getPrincipal().getUser());
+        //activity.setOwner(security.getPrincipal().getUser());
         application.registerSubtask(createActivity(parentActivityId).build(), activity);
 
         Optional<PersonalActivity> activityParentLoaded = application.getOne(parentActivityId);
@@ -95,7 +95,7 @@ public class PersonalActivitiesController {
         PersonalActivity activity = PersonalActivityBuilder.createActivity(activityId)
                 .withStatus(PersonalAcvitityStatus.get(status)).build();
 
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; //security.getPrincipal().getUser();
 
         application.changeStatus(activity, user);
     }

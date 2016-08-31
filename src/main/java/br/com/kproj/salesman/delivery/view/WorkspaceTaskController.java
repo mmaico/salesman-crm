@@ -23,7 +23,7 @@ public class WorkspaceTaskController {
     @RequestMapping(value="/delivery/workspace/list")
     public ModelAndView showMyWorkspace(Model model) {
 
-        List<SalesOrder> salesToWork = application.findBy(security.getPrincipal().getUser());
+        List<SalesOrder> salesToWork = application.findBy(null);
         model.addAttribute("salesOrders", salesToWork);
         return new ModelAndView("/delivery/tasks/list");
     }

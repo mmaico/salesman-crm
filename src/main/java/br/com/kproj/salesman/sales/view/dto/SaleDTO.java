@@ -27,13 +27,13 @@ public class SaleDTO {
         List<ProposalSaleableItem> saleableItems = Lists.newArrayList();
 
         for (SaleableItemDTO dto: items) {
-            ProposalSaleableItem item = SaleableItemBuilder.create()
-                    .withPackage(dto.getIpackage())
-                    .withPrice(dto.getPrice())
-                    .withQuantity(dto.getQuantity())
-                    .withSaleable(dto.getSaleableUnit()).build();
+//            ProposalSaleableItem item = SaleableItemBuilder.create()
+//                   // .withPackage(dto.getIpackage())
+//                    .withPrice(dto.getPrice())
+//                    .withQuantity(dto.getQuantity()).build();
+//                    //.withSaleable(dto.getSaleableUnit()).build();
 
-            saleableItems.add(item);
+          //  saleableItems.add(item);
         }
 
         proposal.setSaleableItems(saleableItems);

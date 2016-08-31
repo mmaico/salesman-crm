@@ -44,17 +44,17 @@ public class SalesOrderControllerTest extends AbstractIntegrationTest {
 
     private SecurityHelper security;
 
-    @Before
-    public void setUp() {
-        user = UserEntityBuilder.createUser(2l).build();
-        LoggedUser loggedUser = LoggedUserBuilder.createLoggedUser("admin", user, Sets.newHashSet()).build();
-
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-        this.security = mock(SecurityHelper.class);
-
-        given(this.security.getPrincipal()).willReturn(loggedUser);
-        ReflectionTestUtils.setField(controller, "security", security);
-    }
+//    @Before
+//    public void setUp() {
+//        user = UserEntityBuilder.createUser(2l).build();
+//        LoggedUser loggedUser = LoggedUserBuilder.createLoggedUser("admin", user, Sets.newHashSet()).build();
+//
+//        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+//        this.security = mock(SecurityHelper.class);
+//
+//        given(this.security.getPrincipal()).willReturn(loggedUser);
+//        ReflectionTestUtils.setField(controller, "security", security);
+//    }
 
     @Test
     public void shouldFindSalesOrder() throws Exception {

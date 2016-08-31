@@ -44,7 +44,7 @@ public class FileInfoController {
 
     @RequestMapping(value="/file-info/shared/list", method = RequestMethod.GET)
     public ModelAndView listSharedFiles(Model model) {
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null;//security.getPrincipal().getUser();
 
         Iterable<FileInfo> result = application.findPublicsAndSheredFiles(user);
 
@@ -54,7 +54,7 @@ public class FileInfoController {
 
     @RequestMapping(value="/file-info/own/list", method = RequestMethod.GET)
     public ModelAndView listMyFiles(Model model) {
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; //security.getPrincipal().getUser();
 
         Iterable<FileInfo> result = application.findOwnFiles(user);
 

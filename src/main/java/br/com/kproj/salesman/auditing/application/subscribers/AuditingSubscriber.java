@@ -27,14 +27,14 @@ public class AuditingSubscriber {
     @Subscribe
     public void persistAuditWhenDistinctLastVersion(BusinessProposalEntity proposal) {
         LoggedUser principal = security.getPrincipal();
-        application.registerAuditing(proposal, principal.getUser());
+        //application.registerAuditing(proposal, principal.getUser());
     }
 
     @Subscribe
     public void persistAuditWhenDistinctLastVersion(TaskChangeMessage taskChangeMessage) {
         LoggedUser principal = security.getPrincipal();
 
-        taskAuditingApplication.registerAuditing(taskChangeMessage.getTask(), principal.getUser());
+        //taskAuditingApplication.registerAuditing(taskChangeMessage.getTask(), principal.getUser());
     }
 
 

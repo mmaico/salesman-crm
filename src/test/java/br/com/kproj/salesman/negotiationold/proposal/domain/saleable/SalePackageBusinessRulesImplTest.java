@@ -25,85 +25,85 @@ public class SalePackageBusinessRulesImplTest {
     private PackageBusinessRulesImpl rules;
 
 
-    @Test
-    public void shouldReturnTrueWhenPackageInItemExist() {
+//    @Test
+//    public void shouldReturnTrueWhenPackageInItemExist() {
+//
+//        Boolean result = rules.verifyRules(getProposalStub());
+//
+//        assertThat(result, is(Boolean.TRUE));
+//    }
+//
+//
+//    @Test(expected = ValidationException.class)
+//    public void shouldReturnFaseWhenPackageInItemNotHaveInList() {
+//        List<ProposalSaleableItem> itemsStub = getProposalStub();
+//        itemsStub.remove(2);
+//
+//        rules.verifyRules(itemsStub);
+//    }
+//
+//    @Test(expected = ValidationException.class)
+//    public void shouldThrowExceptionWhenPackageToPersistNotHaveAllPackageInReferencesSaleable() {
+//        SalePackageEntity ipackage = new SalePackageEntity(3l);
+//        SalePackageEntity salePackage2 = new SalePackageEntity(9l);
+//        List<ProposalSaleableItem> items = getProposalStub();
+//
+//        ProposalSaleableItem newPackage = create()
+//                .withPackage(salePackage2)
+//                .withSaleable(null)
+//                .withQuantity(1)
+//                .withPrice(BigDecimal.ZERO).build();
+//
+//        items.add(newPackage);
+//
+//        items.get(0).setSalePackage(ipackage);
+//
+//        rules.verifyRules(items);
+//    }
 
-        Boolean result = rules.verifyRules(getProposalStub());
-
-        assertThat(result, is(Boolean.TRUE));
-    }
-
-
-    @Test(expected = ValidationException.class)
-    public void shouldReturnFaseWhenPackageInItemNotHaveInList() {
-        List<ProposalSaleableItem> itemsStub = getProposalStub();
-        itemsStub.remove(2);
-
-        rules.verifyRules(itemsStub);
-    }
-
-    @Test(expected = ValidationException.class)
-    public void shouldThrowExceptionWhenPackageToPersistNotHaveAllPackageInReferencesSaleable() {
-        SalePackageEntity ipackage = new SalePackageEntity(3l);
-        SalePackageEntity salePackage2 = new SalePackageEntity(9l);
-        List<ProposalSaleableItem> items = getProposalStub();
-
-        ProposalSaleableItem newPackage = create()
-                .withPackage(salePackage2)
-                .withSaleable(null)
-                .withQuantity(1)
-                .withPrice(BigDecimal.ZERO).build();
-
-        items.add(newPackage);
-
-        items.get(0).setSalePackage(ipackage);
-
-        rules.verifyRules(items);
-    }
-
-    @Test
-    public void shouldReturnTrueWhenPackageInItemsAndPackageWithoutReference() {
-        List<ProposalSaleableItem> itemsStub = getProposalStub();
-        SalePackageEntity salePackageWithoutRefereceSaleable = new SalePackageEntity(9l);
-
-        ProposalSaleableItem proposalSaleablePackage = create()
-                .withPackage(salePackageWithoutRefereceSaleable)
-                .withSaleable(null)
-                .withQuantity(1)
-                .withPrice(BigDecimal.ZERO).build();
-
-        itemsStub.add(proposalSaleablePackage);
-
-        Boolean result = rules.verifyRules(itemsStub);
-
-        assertThat(result, is(Boolean.TRUE));
-    }
-
-
-    private List<ProposalSaleableItem> getProposalStub() {
-        SaleableUnitEntity saleableUnitOne = createSaleableUnit(1l).build();
-        SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
-        SalePackageEntity ipackage = new SalePackageEntity(2l);
-
-        ProposalSaleableItem proposalSaleableOne = create()
-                .withPackage(ipackage)
-                .withSaleable(saleableUnitOne)
-                .withQuantity(2)
-                .withPrice(BigDecimal.TEN).build();
-
-        ProposalSaleableItem proposalSaleableTwo = create()
-                .withPackage(ipackage)
-                .withSaleable(saleableUnitTwo)
-                .withQuantity(1)
-                .withPrice(BigDecimal.TEN).build();
-
-        ProposalSaleableItem proposalSaleablePackage = create()
-                .withPackage(ipackage)
-                .withSaleable(null)
-                .withQuantity(1)
-                .withPrice(BigDecimal.ZERO).build();
-
-        return newArrayList(proposalSaleableOne, proposalSaleableTwo, proposalSaleablePackage);
-    }
+//    @Test
+//    public void shouldReturnTrueWhenPackageInItemsAndPackageWithoutReference() {
+//        List<ProposalSaleableItem> itemsStub = getProposalStub();
+//        SalePackageEntity salePackageWithoutRefereceSaleable = new SalePackageEntity(9l);
+//
+//        ProposalSaleableItem proposalSaleablePackage = create()
+//                .withPackage(salePackageWithoutRefereceSaleable)
+//                .withSaleable(null)
+//                .withQuantity(1)
+//                .withPrice(BigDecimal.ZERO).build();
+//
+//        itemsStub.add(proposalSaleablePackage);
+//
+//        Boolean result = rules.verifyRules(itemsStub);
+//
+//        assertThat(result, is(Boolean.TRUE));
+//    }
+//
+//
+//    private List<ProposalSaleableItem> getProposalStub() {
+//        SaleableUnitEntity saleableUnitOne = createSaleableUnit(1l).build();
+//        SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
+//        SalePackageEntity ipackage = new SalePackageEntity(2l);
+//
+//        ProposalSaleableItem proposalSaleableOne = create()
+//                .withPackage(ipackage)
+//                .withSaleable(saleableUnitOne)
+//                .withQuantity(2)
+//                .withPrice(BigDecimal.TEN).build();
+//
+//        ProposalSaleableItem proposalSaleableTwo = create()
+//                .withPackage(ipackage)
+//                .withSaleable(saleableUnitTwo)
+//                .withQuantity(1)
+//                .withPrice(BigDecimal.TEN).build();
+//
+//        ProposalSaleableItem proposalSaleablePackage = create()
+//                .withPackage(ipackage)
+//                .withSaleable(null)
+//                .withQuantity(1)
+//                .withPrice(BigDecimal.ZERO).build();
+//
+//        return newArrayList(proposalSaleableOne, proposalSaleableTwo, proposalSaleablePackage);
+//    }
 
 }

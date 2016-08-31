@@ -28,7 +28,7 @@ public class RequestApprovalHelper {
     }
 
     public Boolean isPendingApproval(BusinessProposalEntity proposal) {
-        UserEntity user = securityHelper.getPrincipal().getUser();
+        UserEntity user = null; //securityHelper.getPrincipal().getUser();
         Optional<RequestApprovalEntity> result = application.findLastRequestApproval(proposal);
         if (result.isPresent()) {
             if (result.get().getStatus().equals(RequestApprovalEntity.RequestApprovalStatus.WAITING)) {

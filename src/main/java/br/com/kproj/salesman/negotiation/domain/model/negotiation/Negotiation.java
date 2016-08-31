@@ -5,6 +5,8 @@ import br.com.kproj.salesman.negotiation.domain.model.account.Account;
 import br.com.kproj.salesman.negotiation.domain.model.operationregion.OperationRegion;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
+import br.com.kproj.salesman.negotiation.view.TesteSerializer2;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.List;
 
-
+@JsonDeserialize(using = TesteSerializer2.class)
 public class Negotiation extends ModelIdentifiable {
 
     private Long id;

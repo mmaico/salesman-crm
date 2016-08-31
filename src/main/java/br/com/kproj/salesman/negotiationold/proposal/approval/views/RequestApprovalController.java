@@ -27,8 +27,8 @@ public class RequestApprovalController {
 
         RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
                 .withProposal(BusinessProposalBuilder.createBusinessProposal(proposalId).build())
-                .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
-                .withUserRequester(security.getPrincipal().getUser()).build();
+                .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING).build();
+                //.withUserRequester(security.getPrincipal().getUser()).build();
 
         application.register(requestApprovalEntity);
     }

@@ -20,12 +20,12 @@ public class WorkspaceTasksHelper {
     private SecurityHelper security;
 
     public List<SalesOrder> getSalesOrderInMyWorkspace() {
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; //security.getPrincipal().getUser();
         return workspaceApplication.findBy(user);
     }
 
     public Boolean isInMyWorkspace(SalesOrder salesOrder) {
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; // security.getPrincipal().getUser();
         return workspaceApplication.isInMyWorkspace(salesOrder, user);
     }
 

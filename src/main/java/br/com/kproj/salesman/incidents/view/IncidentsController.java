@@ -44,7 +44,7 @@ public class IncidentsController {
         }
 
         if (incident.isNew()) {
-            incident.setCreatedBy(security.getPrincipal().getUser());
+            //incident.setCreatedBy(security.getPrincipal().getUser());
         }
 
         normalizeEntityRequest.doNestedReference(incident);

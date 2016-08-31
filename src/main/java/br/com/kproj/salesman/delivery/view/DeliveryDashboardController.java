@@ -32,7 +32,7 @@ public class DeliveryDashboardController {
     public void act(@PathVariable("salesId") Long salesId) {
 
         WorkspaceUnit workspaceUnit = ActDeliverySalesBuilder.createActDelivery()
-                .withUser(security.getPrincipal().getUser())
+                //.withUser(security.getPrincipal().getUser())
                 .withSalesOrder(createSalesOrder(salesId).build()).build();
 
         application.register(workspaceUnit);
@@ -42,6 +42,6 @@ public class DeliveryDashboardController {
     public @ResponseBody void delete(@PathVariable Long salesorderId) {
         SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(salesorderId).build();
 
-        application.removeItemWorkspaceBy(salesOrder, security.getPrincipal().getUser());
+        application.removeItemWorkspaceBy(salesOrder, null);
     }
 }

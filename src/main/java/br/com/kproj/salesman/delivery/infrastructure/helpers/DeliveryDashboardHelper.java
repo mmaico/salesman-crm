@@ -52,7 +52,7 @@ public class DeliveryDashboardHelper {
     }
 
     public Boolean isInMyWorkspace(SalesOrder salesOrder) {
-        return workspaceApplication.isInMyWorkspace(salesOrder, security.getPrincipal().getUser());
+        return workspaceApplication.isInMyWorkspace(salesOrder, null);
     }
 
     public Long countBySalesOrder(SalesOrder salesOrder) {

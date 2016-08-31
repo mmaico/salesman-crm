@@ -15,11 +15,11 @@ public class NotificationHelper {
     private SecurityHelper security;
 
     public Long countTasksNotifications() {
-        return application.findCountTaskNotificationBy(security.getPrincipal().getUser());
+        return application.findCountTaskNotificationBy(null);
     }
 
     public Long countProposalsNotifications() {
-        return application.findCountProposalBy(security.getPrincipal().getUser());
+        return application.findCountProposalBy(null);
     }
 
 }

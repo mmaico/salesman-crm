@@ -44,7 +44,7 @@ public class CampaignsController {
         }
 
         if (campaign.isNew()) {
-            campaign.setCreatedBy(security.getPrincipal().getUser());
+            //campaign.setCreatedBy(security.getPrincipal().getUser());
         }
 
         normalizeEntityRequest.doNestedReference(campaign);

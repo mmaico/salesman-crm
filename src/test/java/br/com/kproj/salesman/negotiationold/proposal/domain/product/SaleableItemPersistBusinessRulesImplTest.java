@@ -121,19 +121,19 @@ public class SaleableItemPersistBusinessRulesImplTest {
         SaleableUnitEntity saleableUnitTwo = createSaleableUnit(2l).build();
         BusinessProposalEntity businessProposalEntity = new BusinessProposalEntity();
 
-        ProposalSaleableItem proposalSaleableOne = create()
-                .withSaleable(saleableUnitOne)
-                .withQuantity(2)
-                .withPrice(BigDecimal.TEN)
-                .withOriginalPrice(BigDecimal.TEN).build();
+//        ProposalSaleableItem proposalSaleableOne = create()
+//                //.withSaleable(saleableUnitOne)
+//                .withQuantity(2)
+//                .withPrice(BigDecimal.TEN)
+//                .withOriginalPrice(BigDecimal.TEN).build();
+//
+//        ProposalSaleableItem proposalSaleableTwo = create()
+//                //.withSaleable(saleableUnitTwo)
+//                .withQuantity(1)
+//                .withPrice(BigDecimal.TEN)
+//                .withOriginalPrice(BigDecimal.TEN).build();
 
-        ProposalSaleableItem proposalSaleableTwo = create()
-                .withSaleable(saleableUnitTwo)
-                .withQuantity(1)
-                .withPrice(BigDecimal.TEN)
-                .withOriginalPrice(BigDecimal.TEN).build();
-
-        businessProposalEntity.setSaleableItems(Lists.newArrayList(proposalSaleableOne, proposalSaleableTwo));
+        //businessProposalEntity.setSaleableItems(Lists.newArrayList(proposalSaleableOne, proposalSaleableTwo));
 
         return businessProposalEntity;
     }

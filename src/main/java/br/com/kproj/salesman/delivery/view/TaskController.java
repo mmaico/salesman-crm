@@ -121,7 +121,7 @@ public class TaskController {
     @RequestMapping(value="/tasks/{taskId}/signed", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId) {
         Task task = createTaskBuilder(taskId).build();
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null;//security.getPrincipal().getUser();
 
         this.service.signedTask(user, task);
     }
@@ -129,7 +129,7 @@ public class TaskController {
     @RequestMapping(value="/tasks/{taskId}/unsigned", method = RequestMethod.PUT)
     public @ResponseBody void unsignedTask(@PathVariable Long taskId) {
         Task task = createTaskBuilder(taskId).build();
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null;//security.getPrincipal().getUser();
 
         this.service.unsignedTask(user, task);
     }
@@ -139,7 +139,7 @@ public class TaskController {
         Task task = createTaskBuilder(taskId)
                 .withStatus(TaskStatus.get(status)).build();
 
-        UserEntity user = security.getPrincipal().getUser();
+        UserEntity user = null; //security.getPrincipal().getUser();
 
         this.service.changeStatus(task, user);
     }

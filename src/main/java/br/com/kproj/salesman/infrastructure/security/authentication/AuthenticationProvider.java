@@ -37,7 +37,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
             throw new BadCredentialsException("security.user.not.found");
         }
 
-        LoggedUser loggedBuilt = LoggedUserBuilder.createLoggedUser(login, userFound.get(), Sets.newHashSet()).build();
+        LoggedUser loggedBuilt = null; //LoggedUserBuilder.createLoggedUser(login, userFound.get(), Sets.newHashSet()).build();
 
         authentication.setDetails(loggedBuilt);
         return new org.springframework.security.core.userdetails.User(login, password, true, true, true, true, loggedBuilt.getAuthorities());
