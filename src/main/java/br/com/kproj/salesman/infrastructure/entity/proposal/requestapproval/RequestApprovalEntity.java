@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import com.google.common.collect.Lists;
 
@@ -13,10 +12,6 @@ import java.util.List;
 @Table(name="proposal_request_approval")
 public class RequestApprovalEntity extends Identifiable {
 
-
-    public enum RequestApprovalStatus {
-        APPROVED, WAITING, DISAPPROVED
-    }
 
     @Id
     @GeneratedValue
@@ -30,11 +25,8 @@ public class RequestApprovalEntity extends Identifiable {
     @JoinColumn(name="user_requester_id")
     private UserEntity userRequester;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApprovalEntity")
-    private List<Approver> approvers = Lists.newArrayList();
-
-    @Enumerated(EnumType.STRING)
-    private RequestApprovalStatus status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApproval")
+    private List<ApprovalItemEntity> approvers = Lists.newArrayList();
 
 
     @Override
@@ -62,45 +54,12 @@ public class RequestApprovalEntity extends Identifiable {
         this.userRequester = userRequester;
     }
 
-    public List<Approver> getApprovers() {
+    public List<ApprovalItemEntity> getApprovers() {
         return approvers;
     }
 
-    public void setApprovers(List<Approver> approvers) {
+    public void setApprovers(List<ApprovalItemEntity> approvers) {
         this.approvers = approvers;
     }
 
-    public RequestApprovalStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(RequestApprovalStatus status) {
-        this.status = status;
-    }
-
-    public void addApprover(Approver approver) {
-        if (approvers == null) {
-            approvers = Lists.newArrayList();
-        }
-        approvers.add(approver);
-    }
-    
-    public void setCurrentStatus() {
-        long count = approvers.stream()
-                .filter(approver -> ApproverStatus.DISAPPROVED == approver.getStatus()).count();
-        
-        if (count > 0) {
-            this.status =  RequestApprovalStatus.DISAPPROVED;
-            return;
-        }
-
-        long stillLackAvaluation = approvers.stream().filter(approver -> ApproverStatus.WAITING == approver.getStatus()).count();
-
-        if (stillLackAvaluation > 0) {
-            this.status =  RequestApprovalStatus.WAITING;
-            return;
-        }
-
-        this.status = RequestApprovalStatus.APPROVED;
-    }
 }

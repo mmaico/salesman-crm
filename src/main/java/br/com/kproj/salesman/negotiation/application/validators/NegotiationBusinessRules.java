@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.negotiation.application.validators;
 
 import br.com.kproj.salesman.accounts.domain.model.account.AccountRepository;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.NegotiationValidate;
@@ -13,8 +14,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
+import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Component
@@ -49,5 +53,11 @@ public class NegotiationBusinessRules implements NegotiationValidate {
     @Override
     public void checkRules(Negotiation negotiation) {
 
+        Set<String> errors = persistRules.entrySet()
+                .stream()
+                .filter(e -> e.getValue().check(negotiation))
+                .map(Map.Entry::getKey).collect(Collectors.toSet());
+
+        hasErrors(errors).throwing(ValidationException.class);
     }
 }

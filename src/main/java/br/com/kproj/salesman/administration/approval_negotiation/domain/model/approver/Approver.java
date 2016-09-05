@@ -7,6 +7,8 @@ public class Approver extends ModelIdentifiable {
 
     private Long id;
 
+    private Boolean available;
+
     @Override
     public Long getId() {
         return id;
@@ -14,5 +16,17 @@ public class Approver extends ModelIdentifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
+    public Boolean isAvailable() {
+        return this.available;
     }
 }

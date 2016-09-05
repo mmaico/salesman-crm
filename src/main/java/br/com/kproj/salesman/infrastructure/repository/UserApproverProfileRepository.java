@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 
-public interface UserApproverProfileRepository extends BaseRepositoryLegacy<ApproverProfile, Long> {
+public interface UserApproverProfileRepository extends BaseRepositoryLegacy<ApproverEntity, Long> {
 
 
 }

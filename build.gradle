@@ -139,9 +139,7 @@ dependencies {
     compile("com.trex:ddd-reflection:1.8.3")
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile("cglib:cglib:3.2.4")
-
-
-
+    compile("com.github.wnameless:json-flattener:0.2.2")
 
 }
 

@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
-import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
@@ -8,7 +7,6 @@ import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import br.com.kproj.salesman.negotiationold.proposal.domain.saleable.contract.ProposalCalcTotalSaleableItems;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -85,16 +83,7 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.id = id;
     }
 
-    public BigDecimal getTotal() {
 
-        if (isEmptySafe(this.getSaleableItems())) {
-            return BigDecimal.ZERO;
-        }
-
-        ProposalCalcTotalSaleableItems calculator = ServiceLocator.getBean(ProposalCalcTotalSaleableItems.class);
-
-        return calculator.getTotal(this.getSaleableItems());
-    }
 
     public BigDecimal getTotalToPay() {
 

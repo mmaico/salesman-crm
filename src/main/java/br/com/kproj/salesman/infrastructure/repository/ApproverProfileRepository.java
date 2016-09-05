@@ -2,16 +2,16 @@ package br.com.kproj.salesman.infrastructure.repository;
 
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ApproverProfileRepository extends BaseRepositoryLegacy<ApproverProfile, Long> {
+public interface ApproverProfileRepository extends BaseRepositoryLegacy<ApproverEntity, Long> {
 
 
-    Optional<ApproverProfile> findByApprover(@Param("approver") UserEntity approver);
+    Optional<ApproverEntity> findByApprover(@Param("approver") UserEntity approver);
 
     @Query("SELECT " +
             " CASE WHEN count(*) > 0 " +

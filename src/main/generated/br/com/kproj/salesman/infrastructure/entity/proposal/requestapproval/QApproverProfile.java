@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QApproverProfile is a Querydsl query type for ApproverProfile
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QApproverProfile extends EntityPathBase<ApproverProfile> {
+public class QApproverProfile extends EntityPathBase<ApproverEntity> {
 
     private static final long serialVersionUID = 1077468923L;
 
@@ -31,10 +31,10 @@ public class QApproverProfile extends EntityPathBase<ApproverProfile> {
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public QApproverProfile(String variable) {
-        this(ApproverProfile.class, forVariable(variable), INITS);
+        this(ApproverEntity.class, forVariable(variable), INITS);
     }
 
-    public QApproverProfile(Path<? extends ApproverProfile> path) {
+    public QApproverProfile(Path<? extends ApproverEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -43,10 +43,10 @@ public class QApproverProfile extends EntityPathBase<ApproverProfile> {
     }
 
     public QApproverProfile(PathMetadata<?> metadata, PathInits inits) {
-        this(ApproverProfile.class, metadata, inits);
+        this(ApproverEntity.class, metadata, inits);
     }
 
-    public QApproverProfile(Class<? extends ApproverProfile> type, PathMetadata<?> metadata, PathInits inits) {
+    public QApproverProfile(Class<? extends ApproverEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
     }

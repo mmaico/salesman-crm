@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 import org.apache.commons.io.IOUtils;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -58,7 +58,7 @@ public class UserEntity extends Identifiable {
     private BranchEntity branch;
 
     @OneToOne(mappedBy = "approver")
-    private ApproverProfile approverProfile;
+    private ApproverEntity approverEntity;
 
     @OneToOne
     @JoinColumn(name="calendar_id")
@@ -161,12 +161,12 @@ public class UserEntity extends Identifiable {
         this.branch = branch;
     }
 
-    public ApproverProfile getApproverProfile() {
-        return approverProfile;
+    public ApproverEntity getApproverEntity() {
+        return approverEntity;
     }
 
-    public void setApproverProfile(ApproverProfile approverProfile) {
-        this.approverProfile = approverProfile;
+    public void setApproverEntity(ApproverEntity approverEntity) {
+        this.approverEntity = approverEntity;
     }
 
     public CalendarEntity getCalendarEntity() {

@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,7 +29,7 @@ public class ApproverProfileRepositoryIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnApproverProfileByUser() {
         UserEntity user = UserEntityBuilder.createUser(2l).build();
-        Optional<ApproverProfile> result = repository.findByApprover(user);
+        Optional<ApproverEntity> result = repository.findByApprover(user);
 
         assertThat(result.isPresent(), is(Boolean.TRUE));
     }

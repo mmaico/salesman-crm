@@ -1,16 +1,15 @@
 package br.com.kproj.salesman.negotiationold.proposal.approval.application;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.builders.ApproverProfileBuilder;
+import br.com.kproj.salesman.infrastructure.entity.builders.ApproverEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.RequestApprovalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.repository.ApproverProfileRepository;
-import br.com.kproj.salesman.infrastructure.repository.RequestApprovalRepository;
+import br.com.kproj.salesman.infrastructure.repository.RequestApprovalEntityRepository;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import org.junit.Test;
@@ -40,7 +39,7 @@ public class RequestApprovalEntityApplicationImplTest {
     private RequestApprovalApplicationImpl application;
 
     @Mock
-    private RequestApprovalRepository repository;
+    private RequestApprovalEntityRepository repository;
 
     @Mock
     private ApproverProfileRepository profileRepository;
@@ -73,7 +72,7 @@ public class RequestApprovalEntityApplicationImplTest {
         BusinessProposalEntity proposal = createBusinessProposal(1l).build();
         UserEntity userMock = Mockito.mock(UserEntity.class);
         Page pageProfilesMock = Mockito.mock(Page.class);
-        List<ApproverProfile> approverProfiles = getApproverProfilesStub();
+        List<ApproverEntity> approverEntities = getApproverProfilesStub();
 
         RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
                 .withProposal(proposal).withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING)
@@ -82,18 +81,18 @@ public class RequestApprovalEntityApplicationImplTest {
         given(repository.findByProposal(proposal)).willReturn(Optional.empty());
         given(profileRepository.hasApprovers()).willReturn(Boolean.TRUE);
         given(profileRepository.findAll(Mockito.any(Pageable.class))).willReturn(pageProfilesMock);
-        given(pageProfilesMock.getContent()).willReturn(approverProfiles);
+        given(pageProfilesMock.getContent()).willReturn(approverEntities);
         given(repository.save(requestApprovalEntity)).willReturn(requestApprovalEntity);
 
         Optional<RequestApprovalEntity> result = application.register(requestApprovalEntity);
         List<Approver> approvers = result.get().getApprovers();
 
         assertThat(approvers.size(), is(2));
-        assertThat(approvers.get(0).getApprover(), is(approverProfiles.get(0).getApprover()));
+        assertThat(approvers.get(0).getApprover(), is(approverEntities.get(0).getApprover()));
         assertThat(approvers.get(0).getStatus(), is(ApproverStatus.WAITING));
         assertThat(approvers.get(0).getRequestApprovalEntity(), sameInstance(requestApprovalEntity));
 
-        assertThat(approvers.get(1).getApprover(), is(approverProfiles.get(1).getApprover()));
+        assertThat(approvers.get(1).getApprover(), is(approverEntities.get(1).getApprover()));
         assertThat(approvers.get(1).getStatus(), is(ApproverStatus.WAITING));
         assertThat(approvers.get(1).getRequestApprovalEntity(), sameInstance(requestApprovalEntity));
 
@@ -237,16 +236,16 @@ public class RequestApprovalEntityApplicationImplTest {
 
     }
 
-    private List<ApproverProfile> getApproverProfilesStub() {
-        ApproverProfile profileOneActive = ApproverProfileBuilder.createProfile(1l)
+    private List<ApproverEntity> getApproverProfilesStub() {
+        ApproverEntity profileOneActive = ApproverEntityBuilder.createProfile(1l)
                 .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.TRUE).build();
 
-        ApproverProfile profileTwoActive = ApproverProfileBuilder.createProfile(2l)
+        ApproverEntity profileTwoActive = ApproverEntityBuilder.createProfile(2l)
                 .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.TRUE).build();
 
-        ApproverProfile profileTwoDisabled = ApproverProfileBuilder.createProfile(3l)
+        ApproverEntity profileTwoDisabled = ApproverEntityBuilder.createProfile(3l)
                 .withApprover(Mockito.mock(UserEntity.class))
                 .withStatusAvaliable(Boolean.FALSE).build();
 

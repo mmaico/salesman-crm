@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.register.application.users;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverProfile;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.UserApproverProfileRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyImpl<ApproverProfile> implements UserApproverProfileApplication {
+public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyImpl<ApproverEntity> implements UserApproverProfileApplication {
 
     @Autowired
     private UserApproverProfileRepository profileRepository;
@@ -23,7 +23,7 @@ public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyIm
 
 
     @Override
-    public Optional<ApproverProfile> register(ApproverProfile userProfile) {
+    public Optional<ApproverEntity> register(ApproverEntity userProfile) {
 
         if (userProfile.getApprover() == null || userProfile.getApprover().isNew()) {
             return Optional.empty();
@@ -31,18 +31,18 @@ public class UserApproverProfileApplicationImpl extends BaseModelServiceLegacyIm
 
         Optional<UserEntity> userLoaded = userApplication.getOne(userProfile.getApprover().getId());
 
-        ApproverProfile approverProfileSaved = super.save(userProfile);
+        ApproverEntity approverEntitySaved = super.save(userProfile);
 
         if (userLoaded.isPresent()) {
-            userLoaded.get().setApproverProfile(approverProfileSaved);
+            userLoaded.get().setApproverEntity(approverEntitySaved);
         }
 
-        return Optional.of(approverProfileSaved);
+        return Optional.of(approverEntitySaved);
     }
 
 
 
-    public BaseRepositoryLegacy<ApproverProfile, Long> getRepository() {
+    public BaseRepositoryLegacy<ApproverEntity, Long> getRepository() {
         return profileRepository;
     }
 
