@@ -11,5 +11,6 @@ public interface ApproverRepository extends BaseRepository<Approver, Long> {
     Boolean hasApproversAvailable();
 
     Collection<Approver> getApproversAvailable();
+
 }
 

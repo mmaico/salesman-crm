@@ -3,10 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Approver;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
-
-import java.util.List;
 
 public class RequestApprovalBuilder extends AbstractBuilder<RequestApprovalEntity>  {
 
@@ -29,15 +26,15 @@ public class RequestApprovalBuilder extends AbstractBuilder<RequestApprovalEntit
         return this;
     }
 
-    public RequestApprovalBuilder withStatus(RequestApprovalEntity.RequestApprovalStatus status) {
-        this.entity.setStatus(status);
-        return this;
-    }
+//    public RequestApprovalBuilder withStatus(RequestApprovalEntity.RequestApprovalStatus status) {
+//        this.entity.setStatus(status);
+//        return this;
+//    }
 
-    public RequestApprovalBuilder withApprovers(List<Approver> approvers) {
-        this.entity.setApprovers(approvers);
-        return this;
-    }
+//    public RequestApprovalBuilder withApprovers(List<Approver> approvers) {
+//        this.entity.setApprovers(approvers);
+//        return this;
+//    }
 
 
 	public static RequestApprovalBuilder createRequestApproval(Long id) {

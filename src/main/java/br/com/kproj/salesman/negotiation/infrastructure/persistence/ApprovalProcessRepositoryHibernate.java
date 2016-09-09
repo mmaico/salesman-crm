@@ -27,8 +27,8 @@ public class ApprovalProcessRepositoryHibernate extends BaseRespositoryImpl<Requ
         Optional<RequestApprovalEntity> result = repository.findOne(createBusinessProposal(negotiation.getId()).build());
 
         if (result.isPresent()) {
-            RequestApprovalEntity.RequestApprovalStatus status = result.get().getStatus();
-            return !RequestApprovalEntity.RequestApprovalStatus.APPROVED.equals(status);
+//            RequestApprovalEntity.RequestApprovalStatus status = result.get().getStatus();
+//            return !RequestApprovalEntity.RequestApprovalStatus.APPROVED.equals(status);
         }
 
         return Boolean.FALSE;

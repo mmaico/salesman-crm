@@ -41,13 +41,13 @@ public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Noti
         }
         List<Notification> notifications = Lists.newArrayList();
 
-        requestApprovalEntity.getApprovers().stream()
-                .forEach(approver ->
-                        notifications.add(createProposalNotification()
-                                .withBusinessProposal(requestApprovalEntity.getProposal())
-                                .setCurrentDate()
-                                .withNotified(approver.getApprover()).build())
-                );
+//        requestApprovalEntity.getApprovers().stream()
+//                .forEach(approver ->
+//                        notifications.add(createProposalNotification()
+//                                .withBusinessProposal(requestApprovalEntity.getProposal())
+//                                .setCurrentDate()
+//                                .withNotified(approver.getApprover()).build())
+//                );
 
         repository.save(notifications);
     }

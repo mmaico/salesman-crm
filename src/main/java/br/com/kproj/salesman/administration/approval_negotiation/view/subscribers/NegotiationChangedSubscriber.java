@@ -2,37 +2,30 @@ package br.com.kproj.salesman.administration.approval_negotiation.view.subscribe
 
 
 import br.com.kproj.salesman.administration.approval_negotiation.application.RequestApprovalFacade;
-import br.com.kproj.salesman.administration.approval_negotiation.application.predicates.StartApprovalProcessPredicate;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
-import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
+import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.RequestApproval;
+import br.com.kproj.salesman.infrastructure.events.NegotiationChangedMessage;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
-import static br.com.kproj.salesman.infrastructure.entity.builders.RequestApprovalBuilder.createRequestApproval;
+import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.RequestApprovalBuilder.createRequestApproval;
 
 @Component
 public class NegotiationChangedSubscriber {
 
-    @Autowired
-    private StartApprovalProcessPredicate predicate;
 
     @Autowired
     private RequestApprovalFacade application;
 
 
     @Subscribe
-    public void startApprovalProcessIfNeeded(ProposalAuditingAfterUpdateMessage message) {
+    public void startApprovalProcessIfNeeded(NegotiationChangedMessage message) {
 
-        if (predicate.test(message)) {
-            RequestApprovalEntity requestApprovalEntity = createRequestApproval()
-                    .withProposal(createBusinessProposal(message.getBefore().getEntityId()).build())
-                    .withUserRequester(message.getUserThatChanged())
-                    .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING).build();
+        RequestApproval requestApproval = createRequestApproval()
+                .withRequester(message.getUserWhoChangedId())
+                .withNegotiationId(message.getNegotiationId()).build();
 
-            //application.register(requestApprovalEntity);
-        }
+        application.register(requestApproval);
 
     }
 

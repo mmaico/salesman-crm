@@ -11,49 +11,44 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QApprover is a Querydsl query type for Approver
+ * QApproverEntity is a Querydsl query type for ApproverEntity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QApprover extends EntityPathBase<Approver> {
+public class QApproverEntity extends EntityPathBase<ApproverEntity> {
 
-    private static final long serialVersionUID = -986538290L;
+    private static final long serialVersionUID = -1114989487L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QApprover approver1 = new QApprover("approver1");
+    public static final QApproverEntity approverEntity = new QApproverEntity("approverEntity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity approver;
 
-    public final StringPath description = createString("description");
+    public final BooleanPath available = createBoolean("available");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QRequestApprovalEntity requestApprovalEntity;
-
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus.class);
-
-    public QApprover(String variable) {
-        this(Approver.class, forVariable(variable), INITS);
+    public QApproverEntity(String variable) {
+        this(ApproverEntity.class, forVariable(variable), INITS);
     }
 
-    public QApprover(Path<? extends Approver> path) {
+    public QApproverEntity(Path<? extends ApproverEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QApprover(PathMetadata<?> metadata) {
+    public QApproverEntity(PathMetadata<?> metadata) {
         this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QApprover(PathMetadata<?> metadata, PathInits inits) {
-        this(Approver.class, metadata, inits);
+    public QApproverEntity(PathMetadata<?> metadata, PathInits inits) {
+        this(ApproverEntity.class, metadata, inits);
     }
 
-    public QApprover(Class<? extends Approver> type, PathMetadata<?> metadata, PathInits inits) {
+    public QApproverEntity(Class<? extends ApproverEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
-        this.requestApprovalEntity = inits.isInitialized("requestApprovalEntity") ? new QRequestApprovalEntity(forProperty("requestApprovalEntity"), inits.get("requestApprovalEntity")) : null;
     }
 
 }

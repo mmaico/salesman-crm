@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
+import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApprovalItemEntity.StatusEntity;
 import com.google.common.collect.Lists;
 
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class RequestApprovalEntity extends Identifiable {
     private UserEntity userRequester;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestApproval")
-    private List<ApprovalItemEntity> approvers = Lists.newArrayList();
+    private List<ApprovalItemEntity> approvers;
 
 
     @Override
@@ -62,4 +63,8 @@ public class RequestApprovalEntity extends Identifiable {
         this.approvers = approvers;
     }
 
+    public Boolean isCompleted() {
+        return approvers.stream()
+                .filter(item -> StatusEntity.WAITING.equals(item.getStatus())).count() > 0;
+    }
 }

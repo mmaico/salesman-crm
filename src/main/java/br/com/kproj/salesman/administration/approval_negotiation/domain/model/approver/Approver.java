@@ -2,7 +2,9 @@ package br.com.kproj.salesman.administration.approval_negotiation.domain.model.a
 
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Model;
 
+@Model
 public class Approver extends ModelIdentifiable {
 
     private Long id;

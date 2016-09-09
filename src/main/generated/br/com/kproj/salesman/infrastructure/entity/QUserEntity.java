@@ -24,7 +24,7 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverProfile approverProfile;
+    public final br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverEntity approverEntity;
 
     public final ArrayPath<byte[], Byte> avatar = createArray("avatar", byte[].class);
 
@@ -64,7 +64,7 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public QUserEntity(Class<? extends UserEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.approverProfile = inits.isInitialized("approverProfile") ? new br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverProfile(forProperty("approverProfile"), inits.get("approverProfile")) : null;
+        this.approverEntity = inits.isInitialized("approverEntity") ? new br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverEntity(forProperty("approverEntity"), inits.get("approverEntity")) : null;
         this.branch = inits.isInitialized("branch") ? new QBranchEntity(forProperty("branch")) : null;
         this.calendarEntity = inits.isInitialized("calendarEntity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity(forProperty("calendarEntity"), inits.get("calendarEntity")) : null;
         this.position = inits.isInitialized("position") ? new QUserPositionEntity(forProperty("position")) : null;

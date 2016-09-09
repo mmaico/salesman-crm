@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.ApproverBuilder.createApprover;
 
@@ -37,11 +39,17 @@ public class ApproverRepositoryHibernate extends BaseRespositoryImpl<Approver, A
 
     @Override
     public Boolean hasApproversAvailable() {
-        return null;
+        return repository.hasApprovers();
     }
 
     @Override
     public Collection<Approver> getApproversAvailable() {
-        return null;
+        List<ApproverEntity> approvers = repository.getApprovers();
+
+        List<Approver> models = approvers.stream()
+                .map(item -> createApprover(item.getApprover().getId()).build())
+                .collect(Collectors.toList());
+
+        return models;
     }
 }

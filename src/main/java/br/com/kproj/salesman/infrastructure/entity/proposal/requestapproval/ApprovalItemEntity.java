@@ -18,7 +18,7 @@ public class ApprovalItemEntity extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="approver_id")
-    private ApproverEntity approverEntity;
+    private ApproverEntity approver;
 
     @Enumerated(EnumType.STRING)
     private StatusEntity status;
@@ -36,12 +36,12 @@ public class ApprovalItemEntity extends Identifiable {
         this.id = id;
     }
 
-    public ApproverEntity getApproverEntity() {
-        return approverEntity;
+    public ApproverEntity getApprover() {
+        return approver;
     }
 
-    public void setApproverEntity(ApproverEntity approverEntity) {
-        this.approverEntity = approverEntity;
+    public void setApprover(ApproverEntity approver) {
+        this.approver = approver;
     }
 
     public StatusEntity getStatus() {

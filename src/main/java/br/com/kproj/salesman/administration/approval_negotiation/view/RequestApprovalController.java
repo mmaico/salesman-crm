@@ -23,9 +23,9 @@ public class RequestApprovalController {
     @RequestMapping(value = "/request-approval/business-proposal/{proposalId}", method = RequestMethod.POST)
     public @ResponseBody void create(@PathVariable Long proposalId) {
 
-        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
-                .withProposal(BusinessProposalBuilder.createBusinessProposal(proposalId).build())
-                .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING).build();
+//        RequestApprovalEntity requestApprovalEntity = RequestApprovalBuilder.createRequestApproval()
+//                .withProposal(BusinessProposalBuilder.createBusinessProposal(proposalId).build())
+//                .withStatus(RequestApprovalEntity.RequestApprovalStatus.WAITING).build();
                 //.withUserRequester(security.getPrincipal().getUser()).build();
 
         //application.register(requestApprovalEntity);

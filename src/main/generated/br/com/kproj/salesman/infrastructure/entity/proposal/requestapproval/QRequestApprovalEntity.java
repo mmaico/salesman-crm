@@ -24,13 +24,11 @@ public class QRequestApprovalEntity extends EntityPathBase<RequestApprovalEntity
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<Approver, QApprover> approvers = this.<Approver, QApprover>createList("approvers", Approver.class, QApprover.class, PathInits.DIRECT2);
+    public final ListPath<ApprovalItemEntity, QApprovalItemEntity> approvers = this.<ApprovalItemEntity, QApprovalItemEntity>createList("approvers", ApprovalItemEntity.class, QApprovalItemEntity.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity proposal;
-
-    public final EnumPath<RequestApprovalEntity.RequestApprovalStatus> status = createEnum("status", RequestApprovalEntity.RequestApprovalStatus.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity userRequester;
 

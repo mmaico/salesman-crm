@@ -2,8 +2,12 @@ package br.com.kproj.salesman.administration.approval_negotiation.domain.model.a
 
 
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.Approver;
+import br.com.kproj.salesman.administration.approval_negotiation.infrastructure.persistence.translator.StatusConverter;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Attribute;
+import com.trex.shared.annotations.Model;
 
+@Model
 public class PersonApproval extends ModelIdentifiable {
 
     public enum Status {
@@ -14,6 +18,7 @@ public class PersonApproval extends ModelIdentifiable {
 
     private Approver approver;
 
+    @Attribute(converter = StatusConverter.class)
     private Status status;
 
     @Override
