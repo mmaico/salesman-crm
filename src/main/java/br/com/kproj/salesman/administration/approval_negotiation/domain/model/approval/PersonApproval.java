@@ -11,7 +11,17 @@ import com.trex.shared.annotations.Model;
 public class PersonApproval extends ModelIdentifiable {
 
     public enum Status {
-        APPROVED, WAITING, REJECTED
+        APPROVED, WAITING, REJECTED;
+
+        public static Status get(String name) {
+
+            for (Status status:values()) {
+                if (status.name().equalsIgnoreCase(name)) {
+                    return status;
+                }
+            }
+            return null;
+        }
     }
 
     private Long id;

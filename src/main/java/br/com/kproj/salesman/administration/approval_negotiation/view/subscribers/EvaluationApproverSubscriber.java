@@ -2,13 +2,16 @@ package br.com.kproj.salesman.administration.approval_negotiation.view.subscribe
 
 
 import br.com.kproj.salesman.administration.approval_negotiation.application.RequestApprovalFacade;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
-import br.com.kproj.salesman.infrastructure.events.messages.TimelineSaveMessage;
-import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
+import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.PersonApproval;
+import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.Approver;
+import br.com.kproj.salesman.administration.approval_negotiation.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.infrastructure.events.TimelineEvaluationMessage;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.EvaluationRequest.createEvaluation;
+import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.ApproverBuilder.createApprover;
 
 @Component
 public class EvaluationApproverSubscriber {
@@ -16,22 +19,14 @@ public class EvaluationApproverSubscriber {
     @Autowired
     private RequestApprovalFacade application;
 
-    @Autowired
-    private SecurityHelper security;
-
-
 
     @Subscribe
-    public void requestApprovalAvaluation(TimelineSaveMessage timelineSaveMessage) {
+    public void requestApprovalAvaluation(TimelineEvaluationMessage message) {
+        Negotiation negotiation = new Negotiation(message.getNegotiationId());
+        Approver approver = createApprover(message.getApproverId()).build();
+        PersonApproval.Status status = PersonApproval.Status.get(message.getStatus());
 
-        TimelineActivity activity = timelineSaveMessage.getActivity();
-
-        if (!(activity instanceof BusinessProposalApprovalActivity)) return;
-
-        BusinessProposalApprovalActivity approvalActivity = (BusinessProposalApprovalActivity) activity;
-
-//        application.evaluationApprover(timelineSaveMessage.getBusinessProposalEntity(),
-//                security.getPrincipal().getUser(), approvalActivity.getAvaluation());
+        application.makeEvaluation(createEvaluation(negotiation, approver, status));
     }
 
 }
