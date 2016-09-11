@@ -20,7 +20,7 @@ public class NewTaskTriggerNotificationSubscriber {
     public void generateNotificationBy(NewTaskTriggerToExecuteMessage message) {
         TaskNotification notification = new TaskNotification();
         notification.setCreateDate(message.getTriggerDate());
-        notification.setTask(message.getTask());
+        notification.setTask(message.getTaskEntity());
         notification.setNotified(message.getUserNotified());
 
         application.sendScheduledTaskdNotification(notification);

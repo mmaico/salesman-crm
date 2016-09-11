@@ -14,6 +14,6 @@ public class GenerateSalesOrderTasks {
 
     @Subscribe
     public void generateTaskBySalesOrder(NewSalesOrderMessage message) throws Exception {
-        application.generateTaskByNewSalesOrder(message.getSalesOrder());
+        application.generateTaskByNewSalesOrder(message.getSalesOrderEntity());
     }
 }

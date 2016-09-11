@@ -1,22 +1,22 @@
 package br.com.kproj.salesman.infrastructure.events.messages;
 
 
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 
 public class NewSalesOrderMessage {
 
-    private SalesOrder salesOrder;
+    private SalesOrderEntity salesOrderEntity;
 
-    public NewSalesOrderMessage(SalesOrder salesOrder) {
-        this.salesOrder = salesOrder;
+    public NewSalesOrderMessage(SalesOrderEntity salesOrderEntity) {
+        this.salesOrderEntity = salesOrderEntity;
     }
 
-    public static NewSalesOrderMessage create(SalesOrder salesOrder) {
-        return new NewSalesOrderMessage(salesOrder);
+    public static NewSalesOrderMessage create(SalesOrderEntity salesOrderEntity) {
+        return new NewSalesOrderMessage(salesOrderEntity);
     }
 
-    public SalesOrder getSalesOrder() {
-        return salesOrder;
+    public SalesOrderEntity getSalesOrderEntity() {
+        return salesOrderEntity;
     }
 
 }

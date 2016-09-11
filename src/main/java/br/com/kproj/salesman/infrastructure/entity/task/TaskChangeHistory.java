@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +18,7 @@ public class TaskChangeHistory extends Identifiable {
     @ManyToOne
     @JoinColumn(name="task_id")
     @NotNull(message = "checklist.task.null")
-    private Task taskChanged;
+    private TaskEntity taskEntityChanged;
 
     @Enumerated(EnumType.STRING)
     @Column(name="status_changed")
@@ -37,12 +36,12 @@ public class TaskChangeHistory extends Identifiable {
         this.id = id;
     }
 
-    public Task getTaskChanged() {
-        return taskChanged;
+    public TaskEntity getTaskEntityChanged() {
+        return taskEntityChanged;
     }
 
-    public void setTaskChanged(Task taskChanged) {
-        this.taskChanged = taskChanged;
+    public void setTaskEntityChanged(TaskEntity taskEntityChanged) {
+        this.taskEntityChanged = taskEntityChanged;
     }
 
     public TaskStatus getStatusChanged() {

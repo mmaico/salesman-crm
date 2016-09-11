@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -68,9 +68,9 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
     }
 
     @Override
-    public Timeline register(Task task, TimelineActivity activity) {
+    public Timeline register(TaskEntity taskEntity, TimelineActivity activity) {
 
-        Timeline timeline = service.register(task);
+        Timeline timeline = service.register(taskEntity);
         saveActivity(activity, timeline);
 
         return timeline;

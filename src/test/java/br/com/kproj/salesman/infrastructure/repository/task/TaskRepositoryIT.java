@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,20 +18,20 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnAllTasksAssociatedToSalesOrder() {
-        SalesOrder salesOrder = new SalesOrder();
-        salesOrder.setId(1l);
+        SalesOrderEntity salesOrderEntity = new SalesOrderEntity();
+        salesOrderEntity.setId(1l);
 
-        List<Task> result = repository.findBySalesOrder(salesOrder);
+        List<TaskEntity> result = repository.findBySalesOrder(salesOrderEntity);
 
         assertThat(result.size(), is(5));
     }
 
     @Test
     public void shouldReturnAllTasksOrderedByDeadline() {
-        SalesOrder salesOrder = new SalesOrder();
-        salesOrder.setId(1l);
+        SalesOrderEntity salesOrderEntity = new SalesOrderEntity();
+        salesOrderEntity.setId(1l);
 
-        List<Task> result = repository.findBySalesOrder(salesOrder);
+        List<TaskEntity> result = repository.findBySalesOrder(salesOrderEntity);
 
 
         assertThat(result.get(0).getId(), is(3l));
@@ -42,20 +42,20 @@ public class TaskRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnTrueWhenHasParent() {
-        Task task = new Task();
-        task.setId(4l);
+        TaskEntity taskEntity = new TaskEntity();
+        taskEntity.setId(4l);
 
-        Boolean result = repository.isSomeonesSon(task);
+        Boolean result = repository.isSomeonesSon(taskEntity);
 
         assertThat(result, is(Boolean.TRUE));
     }
 
     @Test
     public void shouldReturnFalseWhenNotHaveParent() {
-        Task task = new Task();
-        task.setId(1l);
+        TaskEntity taskEntity = new TaskEntity();
+        taskEntity.setId(1l);
 
-        Boolean result = repository.isSomeonesSon(task);
+        Boolean result = repository.isSomeonesSon(taskEntity);
 
         assertThat(result, is(Boolean.FALSE));
     }

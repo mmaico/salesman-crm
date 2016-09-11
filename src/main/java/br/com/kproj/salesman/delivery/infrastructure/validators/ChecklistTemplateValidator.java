@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.delivery.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplateEntity;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,13 +20,13 @@ public class ChecklistTemplateValidator implements Validator, InitializingBean {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return ChecklistTemplate.class.equals(clazz);
+        return ChecklistTemplateEntity.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        ChecklistTemplate checklistTemplate = (ChecklistTemplate) target;
-        Set<ConstraintViolation<Object>> constraints = validator.validate(checklistTemplate);
+        ChecklistTemplateEntity checklistTemplateEntity = (ChecklistTemplateEntity) target;
+        Set<ConstraintViolation<Object>> constraints = validator.validate(checklistTemplateEntity);
 
         constraints.forEach(error ->
                 errors.rejectValue(error.getPropertyPath().toString(), error.getMessage()));

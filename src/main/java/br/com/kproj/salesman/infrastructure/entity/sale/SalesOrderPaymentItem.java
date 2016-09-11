@@ -31,7 +31,7 @@ public class SalesOrderPaymentItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="order_id")
-    private SalesOrder salesOrder;
+    private SalesOrderEntity salesOrderEntity;
 
     @Override
     public Long getId() {
@@ -66,11 +66,11 @@ public class SalesOrderPaymentItem extends Identifiable {
         this.observation = observation;
     }
 
-    public SalesOrder getSalesOrder() {
-        return salesOrder;
+    public SalesOrderEntity getSalesOrderEntity() {
+        return salesOrderEntity;
     }
 
-    public void setSalesOrder(SalesOrder salesOrder) {
-        this.salesOrder = salesOrder;
+    public void setSalesOrderEntity(SalesOrderEntity salesOrderEntity) {
+        this.salesOrderEntity = salesOrderEntity;
     }
 }

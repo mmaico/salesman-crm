@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 
-public class TaskTemplateBuilder extends AbstractBuilder<TaskTemplate>  {
+public class TaskTemplateBuilder extends AbstractBuilder<TaskTemplateEntity>  {
 
 	public TaskTemplateBuilder() {
-		this.entity = new TaskTemplate();
+		this.entity = new TaskTemplateEntity();
 	}
 
 	public TaskTemplateBuilder(Long id) {

@@ -8,7 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.repository.*;
@@ -43,7 +43,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 		repositories.put(Person.class, personRepository);
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
 		repositories.put(ContactEntity.class, contactRepository);
-		repositories.put(Task.class, taskRepository);
+		repositories.put(TaskEntity.class, taskRepository);
 		repositories.put(PersonalActivity.class, personalAcvitityRepository);
 		repositories.put(Incident.class, incidentRepository);
 	}

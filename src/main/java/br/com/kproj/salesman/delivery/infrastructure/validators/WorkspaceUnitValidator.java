@@ -28,7 +28,7 @@ public class WorkspaceUnitValidator implements Validator, InitializingBean {
         WorkspaceUnit workspaceUnit = (WorkspaceUnit) target;
         Set<ConstraintViolation<Object>> constraints = validator.validate(workspaceUnit);
 
-        if (workspaceUnit.getSalesOrder() == null || workspaceUnit.getSalesOrder().isNew()) {
+        if (workspaceUnit.getSalesOrderEntity() == null || workspaceUnit.getSalesOrderEntity().isNew()) {
             errors.rejectValue("salesOrder", "act.delivery.sales.order.is.null");
         }
 

@@ -6,8 +6,8 @@ import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesO
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -31,7 +31,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Collections.emptySet;
 
 @Service
-public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implements TaskApplication {
+public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<TaskEntity> implements TaskApplication {
 
     @Autowired
     private TaskRepository repository;
@@ -51,92 +51,92 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
 
 
     @Override
-    public Task register(Task task) {
-        Task taskSaved;
+    public TaskEntity register(TaskEntity taskEntity) {
+        TaskEntity taskEntitySaved;
 
-        if (!task.isNew()) {
-            taskSaved =  super.save(task, service);
+        if (!taskEntity.isNew()) {
+            taskEntitySaved =  super.save(taskEntity, service);
         } else {
-            service.checkBusinessRulesFor(task);
-            service.prepareToSave(task);
-            taskSaved = super.save(task);
+            service.checkBusinessRulesFor(taskEntity);
+            service.prepareToSave(taskEntity);
+            taskEntitySaved = super.save(taskEntity);
         }
 
-        if (task.hasValidParent()) {
-            Optional<Task> parentLoaded = repository.getOne(task.getParent().getId());
+        if (taskEntity.hasValidParent()) {
+            Optional<TaskEntity> parentLoaded = repository.getOne(taskEntity.getParent().getId());
             if (parentLoaded.isPresent()) {
-                parentLoaded.get().addChild(taskSaved);
+                parentLoaded.get().addChild(taskEntitySaved);
             }
         }
-        eventBus.post(TaskChangeMessage.create(taskSaved));
-        return taskSaved;
+        eventBus.post(TaskChangeMessage.create(taskEntitySaved));
+        return taskEntitySaved;
     }
 
     @Override
-    public Task registerSubtask(Task parent, Task taskChild) {
+    public TaskEntity registerSubtask(TaskEntity parent, TaskEntity taskEntityChild) {
 
 
-        Optional<Task> taskParentLoaded = repository.getOne(parent.getId());
+        Optional<TaskEntity> taskParentLoaded = repository.getOne(parent.getId());
 
         if (!taskParentLoaded.isPresent()) {
             throw new ValidationException(Sets.newHashSet("subtask.with.invalid.parent"));
         }
 
-        taskChild.setParent(taskParentLoaded.get());
-        taskChild.setSalesOrder(taskParentLoaded.get().getSalesOrder());
-        taskChild.setRegion(taskParentLoaded.get().getRegion());
+        taskEntityChild.setParent(taskParentLoaded.get());
+        taskEntityChild.setSalesOrderEntity(taskParentLoaded.get().getSalesOrderEntity());
+        taskEntityChild.setRegion(taskParentLoaded.get().getRegion());
 
 
-        return register(taskChild);
+        return register(taskEntityChild);
     }
 
     @Override
-    public void generateTaskByNewSalesOrder(SalesOrder salesOrder) throws Exception {
+    public void generateTaskByNewSalesOrder(SalesOrderEntity salesOrderEntity) throws Exception {
 
-        List<Task> result = repository.findBySalesOrder(salesOrder);
+        List<TaskEntity> result = repository.findBySalesOrder(salesOrderEntity);
         if (!result.isEmpty()) {
-            hasErrors(Sets.newHashSet("already.generate.task.for.this.sale"))
+            hasErrors(Sets.newHashSet("already.generate.task.for.this.sales"))
                     .throwing(ValidationException.class);
         }
 
-        List<Task> tasks = processor.process(salesOrder);
+        List<TaskEntity> taskEntities = processor.process(salesOrderEntity);
 
-        if (tasks.isEmpty()) return;
+        if (taskEntities.isEmpty()) return;
 
-        this.repository.save(tasks);
+        this.repository.save(taskEntities);
     }
 
     @Override
-    public List<Task> findBySaleOrder(SalesOrder salesOrder) {
+    public List<TaskEntity> findBySaleOrder(SalesOrderEntity salesOrderEntity) {
 
-        hasErrors(isNull(salesOrder) || salesOrder.isNew() ? newHashSet("invalid.salesorder.list.tasks") : emptySet())
+        hasErrors(isNull(salesOrderEntity) || salesOrderEntity.isNew() ? newHashSet("invalid.salesorder.list.tasks") : emptySet())
                 .throwing(ValidationException.class);
 
-        return repository.findBySalesOrder(salesOrder);
+        return repository.findBySalesOrder(salesOrderEntity);
 
     }
 
     @Override
-    public Boolean isSomeonesSon(Task task) {
+    public Boolean isSomeonesSon(TaskEntity taskEntity) {
 
-        if (task == null || task.isNew()) {
+        if (taskEntity == null || taskEntity.isNew()) {
             return Boolean.FALSE;
         }
 
-        return repository.isSomeonesSon(task);
+        return repository.isSomeonesSon(taskEntity);
     }
 
     @Override
-    public void changeStatus(Task task, UserEntity userChange) {
+    public void changeStatus(TaskEntity taskEntity, UserEntity userChange) {
 
-        Task taskLoaded = repository.findOne(task.getId());
+        TaskEntity taskEntityLoaded = repository.findOne(taskEntity.getId());
 
-        hasErrors(isNull(taskLoaded) ? newHashSet("task.not.found") : emptySet())
+        hasErrors(isNull(taskEntityLoaded) ? newHashSet("task.not.found") : emptySet())
                 .throwing(ValidationException.class);
 
-        taskLoaded.setStatus(task.getStatus());
+        taskEntityLoaded.setStatus(taskEntity.getStatus());
 
-        TaskChangeHistory history = createTaskChangeHistory(taskLoaded, task.getStatus()).build();
+        TaskChangeHistory history = createTaskChangeHistory(taskEntityLoaded, taskEntity.getStatus()).build();
         this.changeHistoryRepository.save(history);
     }
 
@@ -153,30 +153,30 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public DeliveryResumeExecutionTaskDTO getResume(SalesOrder salesOrder) {
+    public DeliveryResumeExecutionTaskDTO getResume(SalesOrderEntity salesOrderEntity) {
         DeliveryResumeExecutionTaskDTO taskDTO = DeliveryResumeExecutionTaskDTO.create()
-                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE, salesOrder))
-                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED, salesOrder))
-                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING, salesOrder))
-                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM, salesOrder));
+                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE, salesOrderEntity))
+                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED, salesOrderEntity))
+                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING, salesOrderEntity))
+                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM, salesOrderEntity));
 
         return taskDTO;
     }
 
     @Override
-    public Long countBySalesOrder(SalesOrder salesOrder) {
-        if (salesOrder == null || salesOrder.isNew()) return 0l;
-        return this.repository.countBySalesOrder(salesOrder);
+    public Long countBySalesOrder(SalesOrderEntity salesOrderEntity) {
+        if (salesOrderEntity == null || salesOrderEntity.isNew()) return 0l;
+        return this.repository.countBySalesOrder(salesOrderEntity);
     }
 
     @Override
-    public void signedTask(UserEntity user, Task task) {
+    public void signedTask(UserEntity user, TaskEntity taskEntity) {
 
-        if (task == null || task.isNew()) {
+        if (taskEntity == null || taskEntity.isNew()) {
             hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
         }
 
-        Optional<Task> taskLoaded = this.repository.getOne(task.getId());
+        Optional<TaskEntity> taskLoaded = this.repository.getOne(taskEntity.getId());
 
         if (taskLoaded.isPresent()) {
             if (!taskLoaded.get().hasSigned(user)) {
@@ -186,12 +186,12 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public void unsignedTask(UserEntity user, Task task) {
-        if (task == null || task.isNew()) {
+    public void unsignedTask(UserEntity user, TaskEntity taskEntity) {
+        if (taskEntity == null || taskEntity.isNew()) {
             hasErrors(Sets.newHashSet("task.signed.task.is.invalid")).throwing(ValidationException.class);
         }
 
-        Optional<Task> taskLoaded = this.repository.getOne(task.getId());
+        Optional<TaskEntity> taskLoaded = this.repository.getOne(taskEntity.getId());
 
         if (taskLoaded.isPresent()) {
             if (taskLoaded.get().hasSigned(user)) {
@@ -203,17 +203,17 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<Task> implem
     }
 
     @Override
-    public List<Task> findTaskRootBy(SalesOrder salesOrder) {
+    public List<TaskEntity> findTaskRootBy(SalesOrderEntity salesOrderEntity) {
 
-        if (salesOrder.isNew()) {
+        if (salesOrderEntity.isNew()) {
             Lists.newArrayList();
         }
 
-        return this.repository.findTaskRootBy(salesOrder);
+        return this.repository.findTaskRootBy(salesOrderEntity);
     }
 
 
-    public BaseRepositoryLegacy<Task, Long> getRepository() {
+    public BaseRepositoryLegacy<TaskEntity, Long> getRepository() {
         return repository;
     }
 

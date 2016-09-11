@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.builders.ClientBuilder;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +22,7 @@ public class SalesOrderRepositoryIT extends AbstractIntegrationTest {
 
         Client client = ClientBuilder.createClient(2l).build();
 
-        List<SalesOrder> result = repository.getOrdersByClient(client);
+        List<SalesOrderEntity> result = repository.getOrdersByClient(client);
 
         assertThat(result.size(), is(3));
         assertThat(result.get(0).getId(), is(2l));

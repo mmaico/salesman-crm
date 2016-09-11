@@ -7,7 +7,7 @@ import br.com.kproj.salesman.delivery.infrastructure.repository.SalesOrderDelive
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.delivery.infrastructure.repository.UserWorkOnTasksRepository;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.RangeDateDTO;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -51,28 +51,28 @@ public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {
     }
 
     @Override
-    public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrder salesOrder) {
+    public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrderEntity salesOrderEntity) {
 
-        List<UserEntity> users = repository.findUsersWorksOnSalesOrder(salesOrder);
+        List<UserEntity> users = repository.findUsersWorksOnSalesOrder(salesOrderEntity);
 
         return users.stream().map(user -> SalesOrderSummaryExecutingDTO.createSummary(user)
-                        .addStatistic(DONE, repository.countOnTaskBy(user, salesOrder, DONE))
-                        .addStatistic(PROBLEM, repository.countOnTaskBy(user, salesOrder, PROBLEM))
-                        .addStatistic(WAITING, repository.countOnTaskBy(user, salesOrder, WAITING))
-                        .addStatistic(STATED, repository.countOnTaskBy(user, salesOrder, STATED)))
+                        .addStatistic(DONE, repository.countOnTaskBy(user, salesOrderEntity, DONE))
+                        .addStatistic(PROBLEM, repository.countOnTaskBy(user, salesOrderEntity, PROBLEM))
+                        .addStatistic(WAITING, repository.countOnTaskBy(user, salesOrderEntity, WAITING))
+                        .addStatistic(STATED, repository.countOnTaskBy(user, salesOrderEntity, STATED)))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrder salesOrder) {
+    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrderEntity salesOrderEntity) {
 
-        SalesOrder salesOrderLoaded = salesOrderDeliveryRepository.findOne(salesOrder.getId());
+        SalesOrderEntity salesOrderEntityLoaded = salesOrderDeliveryRepository.findOne(salesOrderEntity.getId());
 
-        Page<Date> startDateResult = taskChangeHistoryRepository.findDateFromNewestHistory(salesOrder, Pager.build().one());
-        Page<Date> endDateResult = taskChangeHistoryRepository.findDateFromOldestHistory(salesOrder, Pager.build().one());
+        Page<Date> startDateResult = taskChangeHistoryRepository.findDateFromNewestHistory(salesOrderEntity, Pager.build().one());
+        Page<Date> endDateResult = taskChangeHistoryRepository.findDateFromOldestHistory(salesOrderEntity, Pager.build().one());
 
 
-        Date startDate = startDateResult.getContent().size() > 0 ? startDateResult.getContent().get(0) : salesOrderLoaded.getCreationDate();
+        Date startDate = startDateResult.getContent().size() > 0 ? startDateResult.getContent().get(0) : salesOrderEntityLoaded.getCreationDate();
         Date endDate = endDateResult.getContent().size() > 0 ? endDateResult.getContent().get(0) : new Date();
 
         List<RangeDateDTO> rangeWeeks = DateHelper.getRangeWeeks(startDate, endDate);

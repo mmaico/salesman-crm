@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderPaymentItem;
 
 import java.math.BigDecimal;
@@ -41,8 +41,8 @@ public class SalesOrderPaymentItemBuilder extends AbstractBuilder<SalesOrderPaym
         return this;
     }
 
-    public SalesOrderPaymentItemBuilder withSalesOrder(SalesOrder salesOrder) {
-        this.entity.setSalesOrder(salesOrder);
+    public SalesOrderPaymentItemBuilder withSalesOrder(SalesOrderEntity salesOrderEntity) {
+        this.entity.setSalesOrderEntity(salesOrderEntity);
         return this;
     }
 

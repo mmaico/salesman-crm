@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnOnlyItemsInActDelivery() {
-        List<SalesOrder> result = repository.findSalesOrderOutActDelivery();
+        List<SalesOrderEntity> result = repository.findSalesOrderOutActDelivery();
 
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getId(), is(3l));
@@ -31,7 +31,7 @@ public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnOnlyInActWithDistinctAndOrderingByDeliveryForecast() {
-        List<SalesOrder> result = repository.findSalesOrderNotInWorkspace();
+        List<SalesOrderEntity> result = repository.findSalesOrderNotInWorkspace();
 
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getId(), is(2l));

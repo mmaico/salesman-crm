@@ -2,19 +2,19 @@ package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
-public interface TaskTemplateApplication extends ModelLegacyService<TaskTemplate> {
+public interface TaskTemplateApplication extends ModelLegacyService<TaskTemplateEntity> {
 
-    TaskTemplate register(TaskTemplate taskTemplate);
+    TaskTemplateEntity register(TaskTemplateEntity taskTemplateEntity);
 
-    List<TaskTemplate> findTaskTemplateBy(SaleableUnitEntity saleable);
+    List<TaskTemplateEntity> findTaskTemplateBy(SaleableUnitEntity saleable);
 
-    List<TaskTemplate> findTaskTemplateOnlyRootBy(SaleableUnitEntity saleable);
+    List<TaskTemplateEntity> findTaskTemplateOnlyRootBy(SaleableUnitEntity saleable);
 
-    void remove(TaskTemplate taskTemplate);
+    void remove(TaskTemplateEntity taskTemplateEntity);
 
 }

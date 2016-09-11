@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,16 +21,16 @@ public class TaskValidator implements Validator, InitializingBean {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Task.class.equals(clazz);
+        return TaskEntity.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        Task task = (Task) target;
-        Set<ConstraintViolation<Object>> constraints = validator.validate(task);
+        TaskEntity taskEntity = (TaskEntity) target;
+        Set<ConstraintViolation<Object>> constraints = validator.validate(taskEntity);
 
-        if (task.isNew()) {
-             if (task.getDeadline().before(new Date())) {
+        if (taskEntity.isNew()) {
+             if (taskEntity.getDeadline().before(new Date())) {
                  errors.rejectValue("deadline", "task.deadline.invalid");
              }
         }

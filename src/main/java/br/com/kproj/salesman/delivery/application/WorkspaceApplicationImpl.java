@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.application;
 import br.com.kproj.salesman.delivery.infrastructure.validators.WorkspaceUnitValidator;
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.repository.WorkspaceUnitRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
@@ -29,7 +29,7 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
 
         hasContraintViolated(workspaceUnit, validator);
 
-        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(workspaceUnit.getSalesOrder(), workspaceUnit.getUser());
+        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(workspaceUnit.getSalesOrderEntity(), workspaceUnit.getUser());
 
         if (!result.isPresent()) {
             return super.save(workspaceUnit);
@@ -39,24 +39,24 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public List<UserEntity> findUsersResponsibles(SalesOrder salesOrder) {
-        if (salesOrder == null || salesOrder.isNew()) {
+    public List<UserEntity> findUsersResponsibles(SalesOrderEntity salesOrderEntity) {
+        if (salesOrderEntity == null || salesOrderEntity.isNew()) {
             return Lists.newArrayList();
         }
-        return repository.findUserWithItemsInWorkspace(salesOrder);
+        return repository.findUserWithItemsInWorkspace(salesOrderEntity);
     }
 
     @Override
-    public Boolean isInMyWorkspace(SalesOrder salesOrder, UserEntity user) {
-        if (salesOrder == null || salesOrder.isNew() || user == null || user.isNew()) {
+    public Boolean isInMyWorkspace(SalesOrderEntity salesOrderEntity, UserEntity user) {
+        if (salesOrderEntity == null || salesOrderEntity.isNew() || user == null || user.isNew()) {
             return Boolean.FALSE;
         }
-        return repository.findBySalesOrderAndUser(salesOrder, user).isPresent();
+        return repository.findBySalesOrderAndUser(salesOrderEntity, user).isPresent();
     }
 
     @Override
-    public void removeItemWorkspaceBy(SalesOrder salesOrder, UserEntity user) {
-        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(salesOrder, user);
+    public void removeItemWorkspaceBy(SalesOrderEntity salesOrderEntity, UserEntity user) {
+        Optional<WorkspaceUnit> result = repository.findBySalesOrderAndUser(salesOrderEntity, user);
 
         if (result.isPresent()) {
             repository.delete(result.get());
@@ -69,17 +69,17 @@ public class WorkspaceApplicationImpl extends BaseModelServiceLegacyImpl<Workspa
     }
 
     @Override
-    public List<SalesOrder> findNewSalesOrder() {
+    public List<SalesOrderEntity> findNewSalesOrder() {
         return this.repository.findSalesOrderOutActDelivery();
     }
 
     @Override
-    public List<SalesOrder> findBy(UserEntity user) {
+    public List<SalesOrderEntity> findBy(UserEntity user) {
         return this.repository.findByUser(user);
     }
 
     @Override
-    public List<SalesOrder> findSalesOrderNotInWorkspace() {
+    public List<SalesOrderEntity> findSalesOrderNotInWorkspace() {
         return this.repository.findSalesOrderNotInWorkspace();
     }
 }

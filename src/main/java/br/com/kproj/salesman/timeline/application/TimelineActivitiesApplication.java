@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
@@ -20,7 +20,7 @@ public interface TimelineActivitiesApplication extends ModelLegacyService<Timeli
 
     Timeline register(ContactEntity contact, TimelineActivity item);
 
-    Timeline register(Task task, TimelineActivity item);
+    Timeline register(TaskEntity taskEntity, TimelineActivity item);
 
     Timeline register(PersonalActivity activity, TimelineActivity item);
 

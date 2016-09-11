@@ -9,7 +9,7 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecuti
 import br.com.kproj.salesman.delivery.infrastructure.dtos.SalesOrderSummaryExecutingDTO;
 import br.com.kproj.salesman.delivery.infrastructure.dtos.TaskExecutingHistoryDTO;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,39 +35,39 @@ public class DeliveryDashboardHelper {
         return application.getResume();
     }
 
-    public DeliveryResumeExecutionTaskDTO getResumeTasks(SalesOrder salesOrder) {
-        return application.getResume(salesOrder);
+    public DeliveryResumeExecutionTaskDTO getResumeTasks(SalesOrderEntity salesOrderEntity) {
+        return application.getResume(salesOrderEntity);
     }
 
-    public List<SalesOrder> findNewSalesOrder() {
+    public List<SalesOrderEntity> findNewSalesOrder() {
         return workspaceApplication.findNewSalesOrder();
     }
 
-    public List<SalesOrder> findSalesOrderInActDelivery() {
+    public List<SalesOrderEntity> findSalesOrderInActDelivery() {
         return workspaceApplication.findSalesOrderNotInWorkspace();
     }
 
-    public List<UserEntity> findUsersResponsibles(SalesOrder salesOrder) {
-        return workspaceApplication.findUsersResponsibles(salesOrder);
+    public List<UserEntity> findUsersResponsibles(SalesOrderEntity salesOrderEntity) {
+        return workspaceApplication.findUsersResponsibles(salesOrderEntity);
     }
 
-    public Boolean isInMyWorkspace(SalesOrder salesOrder) {
-        return workspaceApplication.isInMyWorkspace(salesOrder, null);
+    public Boolean isInMyWorkspace(SalesOrderEntity salesOrderEntity) {
+        return workspaceApplication.isInMyWorkspace(salesOrderEntity, null);
     }
 
-    public Long countBySalesOrder(SalesOrder salesOrder) {
-        return this.application.countBySalesOrder(salesOrder);
+    public Long countBySalesOrder(SalesOrderEntity salesOrderEntity) {
+        return this.application.countBySalesOrder(salesOrderEntity);
     }
 
     public List<DeliverySummaryExecutingDTO> getSummaryTasksExecuting() {
         return userWorkTaskApplication.getSummaryTasksExecuting();
     }
 
-    public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrder salesOrder) {
-        return userWorkTaskApplication.getSummarySalesOrderTasksExecuting(salesOrder);
+    public List<SalesOrderSummaryExecutingDTO> getSummarySalesOrderTasksExecuting(SalesOrderEntity salesOrderEntity) {
+        return userWorkTaskApplication.getSummarySalesOrderTasksExecuting(salesOrderEntity);
     }
 
-    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrder salesOrder) {
-        return userWorkTaskApplication.getTaskExecutingHistory(salesOrder);
+    public List<TaskExecutingHistoryDTO> getTaskExecutingHistory(SalesOrderEntity salesOrderEntity) {
+        return userWorkTaskApplication.getTaskExecutingHistory(salesOrderEntity);
     }
 }

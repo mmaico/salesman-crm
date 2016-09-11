@@ -3,23 +3,23 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 public class TaskChangeStatusMessage {
 
 
     private UserEntity user;
     private TaskStatus oldStatus;
-    private Task task;
+    private TaskEntity taskEntity;
 
-    public TaskChangeStatusMessage(UserEntity user, Task task, TaskStatus oldStatus) {
+    public TaskChangeStatusMessage(UserEntity user, TaskEntity taskEntity, TaskStatus oldStatus) {
         this.user = user;
-        this.task = task;
+        this.taskEntity = taskEntity;
         this.oldStatus = oldStatus;
     }
 
-    public static TaskChangeStatusMessage create(Task task, UserEntity userChange, TaskStatus oldStatus) {
-          return new TaskChangeStatusMessage(userChange, task, oldStatus);
+    public static TaskChangeStatusMessage create(TaskEntity taskEntity, UserEntity userChange, TaskStatus oldStatus) {
+          return new TaskChangeStatusMessage(userChange, taskEntity, oldStatus);
     }
 
     public UserEntity getUser() {
@@ -38,11 +38,11 @@ public class TaskChangeStatusMessage {
         this.oldStatus = oldStatus;
     }
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTaskEntity() {
+        return taskEntity;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskEntity(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 }

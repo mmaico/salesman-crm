@@ -4,8 +4,8 @@ package br.com.kproj.salesman.delivery.infrastructure.helpers;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,12 +34,12 @@ public class TaskHelper {
 
 
 
-    public List<Task> getTasks(SalesOrder salesOrder) {
-        return application.findBySaleOrder(salesOrder);
+    public List<TaskEntity> getTasks(SalesOrderEntity salesOrderEntity) {
+        return application.findBySaleOrder(salesOrderEntity);
     }
 
-    public Task load(Task task) {
-        Optional<Task> result = application.getOne(task.getId());
+    public TaskEntity load(TaskEntity taskEntity) {
+        Optional<TaskEntity> result = application.getOne(taskEntity.getId());
 
         return result.isPresent() ? result.get() : null;
     }
@@ -49,19 +49,19 @@ public class TaskHelper {
         return mapStatus.get(status);
     }
 
-    public Boolean isSomeonesSon(Task task) {
-        return application.isSomeonesSon(task);
+    public Boolean isSomeonesSon(TaskEntity taskEntity) {
+        return application.isSomeonesSon(taskEntity);
     }
 
-    public List<Task> findTaskRootBy(SalesOrder salesOrder) {
-        return application.findTaskRootBy(salesOrder);
+    public List<TaskEntity> findTaskRootBy(SalesOrderEntity salesOrderEntity) {
+        return application.findTaskRootBy(salesOrderEntity);
     }
 
 
-    public ScheduleTriggerNotification getValidTaskNotification(Task task) {
+    public ScheduleTriggerNotification getValidTaskNotification(TaskEntity taskEntity) {
 
-        if (!isEmptySafe(task.getTriggerNotifications())) {
-            return task.getTriggerNotifications().get(0);
+        if (!isEmptySafe(taskEntity.getTriggerNotifications())) {
+            return taskEntity.getTriggerNotifications().get(0);
         }
 
         return null;

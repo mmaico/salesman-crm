@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 
 import java.math.BigDecimal;
@@ -32,8 +32,8 @@ public class TaskCostBuilder extends AbstractBuilder<TaskCost>  {
         return this;
     }
 
-    public TaskCostBuilder withTask(Task task) {
-        this.entity.setTask(task);
+    public TaskCostBuilder withTask(TaskEntity taskEntity) {
+        this.entity.setTaskEntity(taskEntity);
         return this;
     }
 

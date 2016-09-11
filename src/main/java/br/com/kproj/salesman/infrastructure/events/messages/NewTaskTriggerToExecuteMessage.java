@@ -2,30 +2,30 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import java.util.Date;
 
 public class NewTaskTriggerToExecuteMessage {
 
-    private Task task;
+    private TaskEntity taskEntity;
 
     private Date triggerDate;
 
     private UserEntity userNotified;
 
-    public NewTaskTriggerToExecuteMessage(Task task, Date triggerDate, UserEntity userNotified) {
-        this.task = task;
+    public NewTaskTriggerToExecuteMessage(TaskEntity taskEntity, Date triggerDate, UserEntity userNotified) {
+        this.taskEntity = taskEntity;
         this.triggerDate = triggerDate;
         this.userNotified = userNotified;
     }
 
-    public static NewTaskTriggerToExecuteMessage create(Task task, Date triggerDate, UserEntity userNotified) {
-        return new NewTaskTriggerToExecuteMessage(task, triggerDate, userNotified);
+    public static NewTaskTriggerToExecuteMessage create(TaskEntity taskEntity, Date triggerDate, UserEntity userNotified) {
+        return new NewTaskTriggerToExecuteMessage(taskEntity, triggerDate, userNotified);
     }
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTaskEntity() {
+        return taskEntity;
     }
 
     public Date getTriggerDate() {

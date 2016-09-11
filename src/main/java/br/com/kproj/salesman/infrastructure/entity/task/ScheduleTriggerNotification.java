@@ -24,7 +24,7 @@ public class ScheduleTriggerNotification extends Identifiable {
     @ManyToOne
     @JoinColumn(name="task_id")
     @ExcludeField
-    private Task task;
+    private TaskEntity taskEntity;
 
     private Boolean executed = Boolean.FALSE;
 
@@ -45,12 +45,12 @@ public class ScheduleTriggerNotification extends Identifiable {
         this.triggerDate = triggerDate;
     }
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTaskEntity() {
+        return taskEntity;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskEntity(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 
     public Boolean getExecuted() {

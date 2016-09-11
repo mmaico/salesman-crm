@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.application.tasks;
 
-import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.ChecklistRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
@@ -13,33 +13,33 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ChecklistApplicationImpl extends BaseModelServiceLegacyImpl<Checklist> implements ChecklistApplication {
+public class ChecklistApplicationImpl extends BaseModelServiceLegacyImpl<ChecklistEntity> implements ChecklistApplication {
 
     @Autowired
     private ChecklistRepository repository;
 
 
     @Override
-    public Checklist register(Checklist checklist) {
+    public ChecklistEntity register(ChecklistEntity checklistEntity) {
 
-        return super.save(checklist);
+        return super.save(checklistEntity);
     }
 
     @Override
-    public List<Checklist> findCheckListBy(Task task) {
+    public List<ChecklistEntity> findCheckListBy(TaskEntity taskEntity) {
 
-        if (task == null || task.isNew()) {
+        if (taskEntity == null || taskEntity.isNew()) {
             return Lists.newArrayList();
         }
-        return repository.findCheckListBy(task);
+        return repository.findCheckListBy(taskEntity);
     }
 
     @Override
-    public void completed(Checklist checklist) {
+    public void completed(ChecklistEntity checklistEntity) {
 
-        if (checklist.isNew()) return;
+        if (checklistEntity.isNew()) return;
 
-        Optional<Checklist> result = repository.getOne(checklist.getId());
+        Optional<ChecklistEntity> result = repository.getOne(checklistEntity.getId());
 
         if(result.isPresent()) {
             result.get().setIsDone(Boolean.TRUE);
@@ -47,7 +47,7 @@ public class ChecklistApplicationImpl extends BaseModelServiceLegacyImpl<Checkli
 
     }
 
-    public BaseRepositoryLegacy<Checklist, Long> getRepository() {
+    public BaseRepositoryLegacy<ChecklistEntity, Long> getRepository() {
         return repository;
     }
 

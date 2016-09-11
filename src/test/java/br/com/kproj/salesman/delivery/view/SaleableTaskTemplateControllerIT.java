@@ -1,14 +1,12 @@
 package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import org.dbunit.DatabaseUnitException;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
@@ -82,9 +80,9 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
         Map<String, Object> model = modelAndView.getModel();
 
 
-        List<TaskTemplate> taskTemplates =  (List<TaskTemplate>) model.get("taskTemplates");
+        List<TaskTemplateEntity> taskTemplateEntities =  (List<TaskTemplateEntity>) model.get("taskTemplates");
 
-        assertThat(taskTemplates.size(), Matchers.is(2));
+        assertThat(taskTemplateEntities.size(), Matchers.is(2));
 
     }
 
@@ -96,7 +94,7 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
         Map<String, Object> model = modelAndView.getModel();
 
 
-        TaskTemplate template =  (TaskTemplate) model.get("taskTemplate");
+        TaskTemplateEntity template =  (TaskTemplateEntity) model.get("taskTemplate");
 
 
         assertThat(template.getId(), is(1l));

@@ -22,7 +22,7 @@ public class TaskCostTemplate extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="task_template_id")
-    private TaskTemplate taskTemplate;
+    private TaskTemplateEntity taskTemplateEntity;
 
     @Override
     public Long getId() {
@@ -49,11 +49,11 @@ public class TaskCostTemplate extends Identifiable {
         this.isInternal = isInternal;
     }
 
-    public TaskTemplate getTaskTemplate() {
-        return taskTemplate;
+    public TaskTemplateEntity getTaskTemplateEntity() {
+        return taskTemplateEntity;
     }
 
-    public void setTaskTemplate(TaskTemplate taskTemplate) {
-        this.taskTemplate = taskTemplate;
+    public void setTaskTemplateEntity(TaskTemplateEntity taskTemplateEntity) {
+        this.taskTemplateEntity = taskTemplateEntity;
     }
 }

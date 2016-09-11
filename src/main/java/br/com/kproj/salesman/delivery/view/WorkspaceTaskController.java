@@ -1,8 +1,7 @@
 package br.com.kproj.salesman.delivery.view;
 
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
-import br.com.kproj.salesman.infrastructure.entity.builders.WorkspaceUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class WorkspaceTaskController {
     @RequestMapping(value="/delivery/workspace/list")
     public ModelAndView showMyWorkspace(Model model) {
 
-        List<SalesOrder> salesToWork = application.findBy(null);
+        List<SalesOrderEntity> salesToWork = application.findBy(null);
         model.addAttribute("salesOrders", salesToWork);
         return new ModelAndView("/delivery/tasks/list");
     }

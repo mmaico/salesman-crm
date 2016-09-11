@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ public class WorkspaceUnit extends Identifiable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="sales_order_id")
     @NotNull(message = "act.delivery.sales.order.is.null")
-	private SalesOrder salesOrder;
+	private SalesOrderEntity salesOrderEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -34,12 +34,12 @@ public class WorkspaceUnit extends Identifiable {
         this.id = id;
     }
 
-    public SalesOrder getSalesOrder() {
-        return salesOrder;
+    public SalesOrderEntity getSalesOrderEntity() {
+        return salesOrderEntity;
     }
 
-    public void setSalesOrder(SalesOrder salesOrder) {
-        this.salesOrder = salesOrder;
+    public void setSalesOrderEntity(SalesOrderEntity salesOrderEntity) {
+        this.salesOrderEntity = salesOrderEntity;
     }
 
     public UserEntity getUser() {

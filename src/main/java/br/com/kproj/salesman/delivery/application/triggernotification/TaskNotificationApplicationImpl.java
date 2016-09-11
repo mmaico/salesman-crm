@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.application.triggernotification;
 import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.NewTaskTriggerToExecuteMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
@@ -14,7 +14,6 @@ import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import com.google.common.collect.Sets;
 import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,21 +46,21 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceLegacyImpl<
         if (!notification.isValidTrigger()) {
             throw new ValidationException(Sets.newHashSet("task.notification.invalid.date"));
         }
-        Optional<Task> taskLoaded = taskRepository.getOne(notification.getTask().getId());
+        Optional<TaskEntity> taskLoaded = taskRepository.getOne(notification.getTaskEntity().getId());
 
         if(!taskLoaded.isPresent()) {
             throw new ValidationException(Sets.newHashSet("task.notification.invalid.task"));
         }
 
-        Task task = taskLoaded.get();
-        if (!task.getTriggerNotifications().isEmpty()) {
-            task.getTriggerNotifications().forEach(value -> repository.delete(value));
-            task.getTriggerNotifications().clear();
+        TaskEntity taskEntity = taskLoaded.get();
+        if (!taskEntity.getTriggerNotifications().isEmpty()) {
+            taskEntity.getTriggerNotifications().forEach(value -> repository.delete(value));
+            taskEntity.getTriggerNotifications().clear();
 
         }
         ScheduleTriggerNotification triggerSaved = repository.save(notification);
 
-        task.addTriggerNotification(triggerSaved);
+        taskEntity.addTriggerNotification(triggerSaved);
 
         return triggerSaved;
     }
@@ -75,10 +74,10 @@ public class TaskNotificationApplicationImpl extends BaseModelServiceLegacyImpl<
         List<ScheduleTriggerNotification> result = repository.findAllAvailableToday(DateHelper.now());
 
         for (ScheduleTriggerNotification trigger: result) {
-            List<UserEntity> users = workspaceApplication.findUsersResponsibles(trigger.getTask().getSalesOrder());
+            List<UserEntity> users = workspaceApplication.findUsersResponsibles(trigger.getTaskEntity().getSalesOrderEntity());
             users.forEach(user ->
                     eventBus.post(NewTaskTriggerToExecuteMessage
-                            .create(trigger.getTask(), trigger.getTriggerDate(), user))
+                            .create(trigger.getTaskEntity(), trigger.getTriggerDate(), user))
             );
             trigger.setExecuted(Boolean.TRUE);
         }

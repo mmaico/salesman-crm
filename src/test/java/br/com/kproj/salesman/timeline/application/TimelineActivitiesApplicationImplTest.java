@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
@@ -114,7 +114,7 @@ public class TimelineActivitiesApplicationImplTest {
 
     @Test
     public void shouldRegisterTimeActivyTask() {
-        Task task = mock(Task.class);
+        TaskEntity taskEntity = mock(TaskEntity.class);
         Timeline timelineMock = mock(Timeline.class);
         TimelineActivity activity = mock(LogActivity.class);
 
@@ -124,10 +124,10 @@ public class TimelineActivitiesApplicationImplTest {
         given(timelineMock.isNew()).willReturn(Boolean.TRUE);
         given(activity.isNew()).willReturn(Boolean.TRUE);
         given(activity.getFiles()).willReturn(files);
-        given(service.register(task)).willReturn(timelineMock);
+        given(service.register(taskEntity)).willReturn(timelineMock);
         given(repository.save(activity)).willReturn(activitySaved);
 
-        Timeline timelineResult = timelineActivitiesApplication.register(task, activity);
+        Timeline timelineResult = timelineActivitiesApplication.register(taskEntity, activity);
 
         assertThat(timelineResult, sameInstance(timelineMock));
         verify(this.filePersistHelper).saveFile(activitySaved, files);

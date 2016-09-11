@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.view.dtos;
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 
 public class TaskTemplateDTO {
 
@@ -62,7 +62,7 @@ public class TaskTemplateDTO {
         this.region = region;
     }
 
-    public static TaskTemplateDTO build(TaskTemplate template) {
+    public static TaskTemplateDTO build(TaskTemplateEntity template) {
         TaskTemplateDTO taskTemplate = new TaskTemplateDTO();
         taskTemplate.setId(template.getId());
         taskTemplate.setDescription(template.getDescription());

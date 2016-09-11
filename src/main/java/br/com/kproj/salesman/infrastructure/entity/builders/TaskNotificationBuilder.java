@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import java.util.Date;
 
@@ -22,8 +22,8 @@ public class TaskNotificationBuilder extends AbstractBuilder<ScheduleTriggerNoti
 		return this;
 	}
 
-	public TaskNotificationBuilder withTask(Task task) {
-		this.entity.setTask(task);
+	public TaskNotificationBuilder withTask(TaskEntity taskEntity) {
+		this.entity.setTaskEntity(taskEntity);
 		return this;
 	}
 

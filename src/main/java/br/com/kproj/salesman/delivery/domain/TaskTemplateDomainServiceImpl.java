@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.domain;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.RegionRepository;
 import br.com.kproj.salesman.infrastructure.repository.Saleable.SaleableUnitRepository;
@@ -30,7 +30,7 @@ public class TaskTemplateDomainServiceImpl implements TaskTemplateDomainService 
     @Autowired
     private RegionRepository regionRepository;
 
-    Map<String, CheckRuleLegacy<TaskTemplate>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<TaskTemplateEntity>> persistRules = new HashMap<>();
     {
         persistRules.put(description("task.template.verify.valid.saleableunit"), (tp) ->
                 tp.getSaleable() == null || tp.getSaleable().isNew() || !saleableUnitRepository.exists(tp.getSaleable().getId()));
@@ -41,11 +41,11 @@ public class TaskTemplateDomainServiceImpl implements TaskTemplateDomainService 
     }
 
     @Override
-    public void checkBusinessRulesFor(TaskTemplate taskTemplate) {
+    public void checkBusinessRulesFor(TaskTemplateEntity taskTemplateEntity) {
 
         Set<String> violations = persistRules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(taskTemplate))
+                .filter(e -> e.getValue().check(taskTemplateEntity))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);

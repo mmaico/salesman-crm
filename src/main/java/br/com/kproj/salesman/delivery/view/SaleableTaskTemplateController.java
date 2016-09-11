@@ -4,7 +4,7 @@ import br.com.kproj.salesman.delivery.application.tasktemplates.TaskTemplateAppl
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskTemplateValidator;
 import br.com.kproj.salesman.delivery.view.dtos.TaskTemplateDTO;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskTemplateBuilder;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -30,24 +30,24 @@ public class SaleableTaskTemplateController {
 
 
     @RequestMapping(value = "/saleables/{saleableId}/task-template/save", method = RequestMethod.POST)
-    public  @ResponseBody TaskTemplateDTO save(@ModelAttribute TaskTemplate taskTemplate,  @PathVariable Long saleableId) {
+    public  @ResponseBody TaskTemplateDTO save(@ModelAttribute TaskTemplateEntity taskTemplateEntity, @PathVariable Long saleableId) {
 
-        hasContraintViolated(taskTemplate, validator);
+        hasContraintViolated(taskTemplateEntity, validator);
 
-        normalizeEntityRequest.doNestedReference(taskTemplate);
-        taskTemplate.setSaleable(createSaleableUnit(saleableId).build());
-        TaskTemplate result = service.register(taskTemplate);
+        normalizeEntityRequest.doNestedReference(taskTemplateEntity);
+        taskTemplateEntity.setSaleable(createSaleableUnit(saleableId).build());
+        TaskTemplateEntity result = service.register(taskTemplateEntity);
 
         return TaskTemplateDTO.build(result);
 
     }
 
     @RequestMapping(value = "/saleables/{saleableId}/task-template/save", method = RequestMethod.PUT)
-    public @ResponseBody TaskTemplateDTO update(@ModelAttribute TaskTemplate taskTemplate,  @PathVariable Long saleableId) {
+    public @ResponseBody TaskTemplateDTO update(@ModelAttribute TaskTemplateEntity taskTemplateEntity, @PathVariable Long saleableId) {
 
-        normalizeEntityRequest.addFieldsToUpdate(taskTemplate);
-        taskTemplate.setSaleable(createSaleableUnit(saleableId).build());
-        TaskTemplate result = service.register(taskTemplate);
+        normalizeEntityRequest.addFieldsToUpdate(taskTemplateEntity);
+        taskTemplateEntity.setSaleable(createSaleableUnit(saleableId).build());
+        TaskTemplateEntity result = service.register(taskTemplateEntity);
 
         return TaskTemplateDTO.build(result);
     }
@@ -63,7 +63,7 @@ public class SaleableTaskTemplateController {
     @RequestMapping(value="/saleables/{saleableId}/task-template/list")
     public ModelAndView list(@PathVariable Long saleableId, Model model) {
 
-        Iterable<TaskTemplate> result = this.service.findTaskTemplateOnlyRootBy(createSaleableUnit(saleableId).build());
+        Iterable<TaskTemplateEntity> result = this.service.findTaskTemplateOnlyRootBy(createSaleableUnit(saleableId).build());
 
         model.addAttribute("taskTemplates", result);
         model.addAttribute("saleable", createSaleableUnit(saleableId).build());
@@ -74,7 +74,7 @@ public class SaleableTaskTemplateController {
     @RequestMapping(value="/saleables/task-template/{templateId}")
     public ModelAndView viewInfo(@PathVariable Long templateId, Model model) {
 
-        Optional<TaskTemplate> result = this.service.getOne(templateId);
+        Optional<TaskTemplateEntity> result = this.service.getOne(templateId);
 
         model.addAttribute("saleable", result.isPresent() ? result.get().getSaleable() : null);
         model.addAttribute("taskTemplate", result.isPresent() ? result.get() : null);

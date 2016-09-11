@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplateEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
-public interface ChecklistTemplateApplication extends ModelLegacyService<ChecklistTemplate> {
+public interface ChecklistTemplateApplication extends ModelLegacyService<ChecklistTemplateEntity> {
 
-    ChecklistTemplate register(ChecklistTemplate checklistTemplate);
+    ChecklistTemplateEntity register(ChecklistTemplateEntity checklistTemplateEntity);
 
-    List<ChecklistTemplate> findCheckListBy(TaskTemplate taskTemplate);
+    List<ChecklistTemplateEntity> findCheckListBy(TaskTemplateEntity taskTemplateEntity);
 
-    void delete(ChecklistTemplate checklistTemplate);
+    void delete(ChecklistTemplateEntity checklistTemplateEntity);
 
 }

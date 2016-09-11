@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QChecklistTemplate is a Querydsl query type for ChecklistTemplate
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QChecklistTemplate extends EntityPathBase<ChecklistTemplate> {
+public class QChecklistTemplate extends EntityPathBase<ChecklistTemplateEntity> {
 
     private static final long serialVersionUID = 298206406L;
 
@@ -31,10 +31,10 @@ public class QChecklistTemplate extends EntityPathBase<ChecklistTemplate> {
     public final QTaskTemplate taskTemplate;
 
     public QChecklistTemplate(String variable) {
-        this(ChecklistTemplate.class, forVariable(variable), INITS);
+        this(ChecklistTemplateEntity.class, forVariable(variable), INITS);
     }
 
-    public QChecklistTemplate(Path<? extends ChecklistTemplate> path) {
+    public QChecklistTemplate(Path<? extends ChecklistTemplateEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -43,10 +43,10 @@ public class QChecklistTemplate extends EntityPathBase<ChecklistTemplate> {
     }
 
     public QChecklistTemplate(PathMetadata<?> metadata, PathInits inits) {
-        this(ChecklistTemplate.class, metadata, inits);
+        this(ChecklistTemplateEntity.class, metadata, inits);
     }
 
-    public QChecklistTemplate(Class<? extends ChecklistTemplate> type, PathMetadata<?> metadata, PathInits inits) {
+    public QChecklistTemplate(Class<? extends ChecklistTemplateEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.taskTemplate = inits.isInitialized("taskTemplate") ? new QTaskTemplate(forProperty("taskTemplate"), inits.get("taskTemplate")) : null;
     }

@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
@@ -36,9 +36,9 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this.entity.setContact(contact);
 	}
 
-	public TimelineBuilder(Task task) {
+	public TimelineBuilder(TaskEntity taskEntity) {
 		this();
-		this.entity.setTask(task);
+		this.entity.setTaskEntity(taskEntity);
 	}
 	
 	public TimelineBuilder(BusinessProposalEntity businessProposalEntity) {
@@ -105,8 +105,8 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 			return new TimelineBuilder((ContactEntity) timelinePresent);
 		} else if (timelinePresent instanceof BusinessProposalEntity) {
 			return new TimelineBuilder((BusinessProposalEntity) timelinePresent);
-		} else if (timelinePresent instanceof Task) {
-			return new TimelineBuilder((Task) timelinePresent);
+		} else if (timelinePresent instanceof TaskEntity) {
+			return new TimelineBuilder((TaskEntity) timelinePresent);
 		} else if (timelinePresent instanceof PersonalActivity) {
 			return new TimelineBuilder((PersonalActivity) timelinePresent);
 		} else {

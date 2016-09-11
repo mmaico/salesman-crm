@@ -2,9 +2,9 @@ package br.com.kproj.salesman.delivery.domain;
 
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.SalesOrderRepository;
 import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.validators.ValidatorHelper.hasContraintViolated;
 
 @Service
 public class TaskDomainServiceImpl implements TaskDomainService {
@@ -36,11 +36,11 @@ public class TaskDomainServiceImpl implements TaskDomainService {
     @Autowired
     private TaskValidator taskValidator;
 
-    Map<String, CheckRuleLegacy<Task>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<TaskEntity>> persistRules = new HashMap<>();
 
     {
-        persistRules.put(description("task.verify.sales.order.valid"), (task) -> task.getSalesOrder() == null
-                                                                || task.getSalesOrder().isNew() || !salesOrderRepository.exists(task.getSalesOrder().getId()));
+        persistRules.put(description("task.verify.sales.order.valid"), (task) -> task.getSalesOrderEntity() == null
+                                                                || task.getSalesOrderEntity().isNew() || !salesOrderRepository.exists(task.getSalesOrderEntity().getId()));
 
         persistRules.put(description("task.verify.users.valid"), (task) -> !isEmptySafe(task.getSignedBy()) && task.getSignedBy().stream()
                                                                            .filter(user -> user == null || user.isNew() || !userEntityRepository.exists(user.getId()))
@@ -50,37 +50,37 @@ public class TaskDomainServiceImpl implements TaskDomainService {
 
         persistRules.put(description("task.deadline.great.than.or.equals.today"), (task) -> task.getDeadline() == null || task.getDeadline().before(new Date()));
 
-        persistRules.put(description("task.has.childs.and.parent"), (task) -> !isEmptySafe(task.getTasksChilds())
+        persistRules.put(description("task.has.childs.and.parent"), (task) -> !isEmptySafe(task.getTasksChildren())
                 && task.getParent() != null);
 
     }
 
     @Override
-    public void checkBusinessRulesFor(Task task) {
+    public void checkBusinessRulesFor(TaskEntity taskEntity) {
 
 
         Set<String> violations = persistRules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(task))
+                .filter(e -> e.getValue().check(taskEntity))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
     }
 
     @Override
-    public void prepareToSave(Task task) {
+    public void prepareToSave(TaskEntity taskEntity) {
 
-        if (task.getTaskCosts() == null || task.getTaskCosts().isEmpty()) {
-            task.setTaskCosts(Lists.newArrayList(TaskCost.getDefault()));
+        if (taskEntity.getTaskCosts() == null || taskEntity.getTaskCosts().isEmpty()) {
+            taskEntity.setTaskCosts(Lists.newArrayList(TaskCost.getDefault()));
         }
 
-        if (task.isNew()) {
-            task.setStatus(TaskStatus.WAITING);
+        if (taskEntity.isNew()) {
+            taskEntity.setStatus(TaskStatus.WAITING);
         }
 
-        if (task.getRegion() == null || task.getRegion().isNew()) {
-            SalesOrder saleOrder = salesOrderRepository.findOne(task.getSalesOrder().getId());
-            task.setRegion(saleOrder.getOperationRegionEntity());
+        if (taskEntity.getRegion() == null || taskEntity.getRegion().isNew()) {
+            SalesOrderEntity saleOrder = salesOrderRepository.findOne(taskEntity.getSalesOrderEntity().getId());
+            taskEntity.setRegion(saleOrder.getOperationRegionEntity());
         }
     }
 }

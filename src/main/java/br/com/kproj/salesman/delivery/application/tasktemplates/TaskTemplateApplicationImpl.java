@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.application.tasktemplates;
 
 import br.com.kproj.salesman.delivery.domain.TaskTemplateDomainService;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.task.TaskTemplateRepository;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<TaskTemplate> implements TaskTemplateApplication {
+public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<TaskTemplateEntity> implements TaskTemplateApplication {
 
     @Autowired
     private TaskTemplateRepository repository;
@@ -28,11 +28,11 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<Task
 
 
     @Override
-    public TaskTemplate register(TaskTemplate taskTemplate) {
-        TaskTemplate templateSaved = super.save(taskTemplate, domainService);
+    public TaskTemplateEntity register(TaskTemplateEntity taskTemplateEntity) {
+        TaskTemplateEntity templateSaved = super.save(taskTemplateEntity, domainService);
 
         if (templateSaved.hasValidParent()) {
-            TaskTemplate parent = repository.findOne(templateSaved.getParent().getId());
+            TaskTemplateEntity parent = repository.findOne(templateSaved.getParent().getId());
             parent.addChild(templateSaved);
         }
 
@@ -40,7 +40,7 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<Task
     }
 
     @Override
-    public List<TaskTemplate> findTaskTemplateBy(SaleableUnitEntity saleable) {
+    public List<TaskTemplateEntity> findTaskTemplateBy(SaleableUnitEntity saleable) {
         if (saleable == null || saleable.isNew()) {
             return Lists.newArrayList();
         }
@@ -48,7 +48,7 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<Task
     }
 
     @Override
-    public List<TaskTemplate> findTaskTemplateOnlyRootBy(SaleableUnitEntity saleable) {
+    public List<TaskTemplateEntity> findTaskTemplateOnlyRootBy(SaleableUnitEntity saleable) {
         if (saleable == null || saleable.isNew()) {
             return Lists.newArrayList();
         }
@@ -56,36 +56,36 @@ public class TaskTemplateApplicationImpl extends BaseModelServiceLegacyImpl<Task
     }
 
     @Override
-    public void remove(TaskTemplate taskTemplate) {
+    public void remove(TaskTemplateEntity taskTemplateEntity) {
 
-        if (taskTemplate == null || taskTemplate.isNew()) {
+        if (taskTemplateEntity == null || taskTemplateEntity.isNew()) {
             hasErrors(Sets.newHashSet("tasktemplate.not.id")).throwing(ValidationException.class);
         }
-        Optional<TaskTemplate> result = repository.getOne(taskTemplate.getId());
+        Optional<TaskTemplateEntity> result = repository.getOne(taskTemplateEntity.getId());
 
         if (!result.isPresent()) {
             hasErrors(Sets.newHashSet("tasktemplate.notfound")).throwing(ValidationException.class);
         }
-        TaskTemplate tasktemplateLoaded = result.get();
+        TaskTemplateEntity tasktemplateLoaded = result.get();
 
         repository.delete(tasktemplateLoaded);
     }
 
-    public Optional<TaskTemplate> getOne(Long id) {
+    public Optional<TaskTemplateEntity> getOne(Long id) {
 
-        Optional<TaskTemplate> result = repository.getOne(id);
+        Optional<TaskTemplateEntity> result = repository.getOne(id);
 
         if (!result.isPresent()) {
             hasErrors(Sets.newHashSet("tasktemplate.notfound")).throwing(ValidationException.class);
         }
-        Optional<TaskTemplate> parent = repository.findParent(result.get());
+        Optional<TaskTemplateEntity> parent = repository.findParent(result.get());
 
         result.get().setParent(parent.isPresent() ? parent.get() : null);
 
         return result;
     }
 
-    public BaseRepositoryLegacy<TaskTemplate, Long> getRepository() {
+    public BaseRepositoryLegacy<TaskTemplateEntity, Long> getRepository() {
         return repository;
     }
 

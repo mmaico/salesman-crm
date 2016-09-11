@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 
 public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
 
@@ -16,8 +16,8 @@ public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
 		this.entity.setId(id);
 	}
 
-	public ActDeliverySalesBuilder withSalesOrder(SalesOrder salesOrder) {
-		this.entity.setSalesOrder(salesOrder);
+	public ActDeliverySalesBuilder withSalesOrder(SalesOrderEntity salesOrderEntity) {
+		this.entity.setSalesOrderEntity(salesOrderEntity);
 		return this;
 	}
 

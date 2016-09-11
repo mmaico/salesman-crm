@@ -8,7 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import com.google.common.collect.Lists;
 
@@ -41,7 +41,7 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="task_id")
-    private Task task;
+    private TaskEntity taskEntity;
 
     @OneToOne
     @JoinColumn(name="personal_activity_id")
@@ -114,12 +114,12 @@ public class Timeline extends Identifiable {
         this.contact = contact;
     }
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTaskEntity() {
+        return taskEntity;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskEntity(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 
     public PersonalActivity getPersonalActivity() {

@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QTaskTemplate is a Querydsl query type for TaskTemplate
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
+public class QTaskTemplate extends EntityPathBase<TaskTemplateEntity> {
 
     private static final long serialVersionUID = 1882787033L;
 
@@ -24,7 +24,7 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<ChecklistTemplate, QChecklistTemplate> checklistTemplates = this.<ChecklistTemplate, QChecklistTemplate>createList("checklistTemplates", ChecklistTemplate.class, QChecklistTemplate.class, PathInits.DIRECT2);
+    public final ListPath<ChecklistTemplateEntity, QChecklistTemplate> checklistTemplates = this.<ChecklistTemplateEntity, QChecklistTemplate>createList("checklistTemplates", ChecklistTemplateEntity.class, QChecklistTemplate.class, PathInits.DIRECT2);
 
     public final StringPath description = createString("description");
 
@@ -42,15 +42,15 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
 
     public final ListPath<TaskCostTemplate, QTaskCostTemplate> tasksCostsTemplates = this.<TaskCostTemplate, QTaskCostTemplate>createList("tasksCostsTemplates", TaskCostTemplate.class, QTaskCostTemplate.class, PathInits.DIRECT2);
 
-    public final ListPath<TaskTemplate, QTaskTemplate> templatesChilds = this.<TaskTemplate, QTaskTemplate>createList("templatesChilds", TaskTemplate.class, QTaskTemplate.class, PathInits.DIRECT2);
+    public final ListPath<TaskTemplateEntity, QTaskTemplate> templatesChilds = this.<TaskTemplateEntity, QTaskTemplate>createList("templatesChilds", TaskTemplateEntity.class, QTaskTemplate.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
     public QTaskTemplate(String variable) {
-        this(TaskTemplate.class, forVariable(variable), INITS);
+        this(TaskTemplateEntity.class, forVariable(variable), INITS);
     }
 
-    public QTaskTemplate(Path<? extends TaskTemplate> path) {
+    public QTaskTemplate(Path<? extends TaskTemplateEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -59,10 +59,10 @@ public class QTaskTemplate extends EntityPathBase<TaskTemplate> {
     }
 
     public QTaskTemplate(PathMetadata<?> metadata, PathInits inits) {
-        this(TaskTemplate.class, metadata, inits);
+        this(TaskTemplateEntity.class, metadata, inits);
     }
 
-    public QTaskTemplate(Class<? extends TaskTemplate> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTaskTemplate(Class<? extends TaskTemplateEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;

@@ -4,7 +4,7 @@ import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -46,15 +46,15 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/tasks/save", method = RequestMethod.POST)
-    public  @ResponseBody String save(@ModelAttribute @Validated Task task, BindingResult bindingResult) {
+    public  @ResponseBody String save(@ModelAttribute @Validated TaskEntity taskEntity, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        normalizeEntityRequest.doNestedReference(task);
-        Task taskSaved = service.register(task);
+        normalizeEntityRequest.doNestedReference(taskEntity);
+        TaskEntity taskEntitySaved = service.register(taskEntity);
 
-        return "/tasks/" + taskSaved.getId();
+        return "/tasks/" + taskEntitySaved.getId();
     }
 
     @RequestMapping(value = "/tasks/new", method = RequestMethod.GET)
@@ -64,36 +64,36 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/tasks/{parentTaskId}/subtask", method = RequestMethod.POST)
-    public  ModelAndView saveSubtask(@ModelAttribute Task task, @PathVariable("parentTaskId") Long parentTaskId, Model model) {
+    public  ModelAndView saveSubtask(@ModelAttribute TaskEntity taskEntity, @PathVariable("parentTaskId") Long parentTaskId, Model model) {
 
-        hasContraintViolated(task, validator);
+        hasContraintViolated(taskEntity, validator);
 
-        normalizeEntityRequest.doNestedReference(task);
-        service.registerSubtask(createTaskBuilder(parentTaskId).build(), task);
+        normalizeEntityRequest.doNestedReference(taskEntity);
+        service.registerSubtask(createTaskBuilder(parentTaskId).build(), taskEntity);
 
-        Optional<Task> taskParentLoaded = service.getOne(parentTaskId);
+        Optional<TaskEntity> taskParentLoaded = service.getOne(parentTaskId);
 
         model.addAttribute("task", taskParentLoaded.isPresent() ? taskParentLoaded.get() : null);
         return new ModelAndView("/delivery/tasks/includes/subtask");
     }
 
     @RequestMapping(value = "/tasks/save", method = RequestMethod.PUT)
-    public @ResponseBody String update(@ModelAttribute @Validated Task task, BindingResult bindingResult) {
+    public @ResponseBody String update(@ModelAttribute @Validated TaskEntity taskEntity, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
         }
 
-        if (task.isNew()) {
+        if (taskEntity.isNew()) {
             throw new ValidationException(Sets.newHashSet("task.update.without.id"));
         }
 
-        normalizeEntityRequest.addFieldsToUpdate(task);
+        normalizeEntityRequest.addFieldsToUpdate(taskEntity);
 
-        normalizeEntityRequest.doNestedReference(task);
-        Task taskSaved = service.register(task);
+        normalizeEntityRequest.doNestedReference(taskEntity);
+        TaskEntity taskEntitySaved = service.register(taskEntity);
 
-        return "/task/" + taskSaved.getId();
+        return "/task/" + taskEntitySaved.getId();
     }
 
 
@@ -101,7 +101,7 @@ public class TaskController {
     public ModelAndView list(@PageableDefault(page=0, size=150000)Pageable pageable, Model model) {
         Pager pager = Pager.binding(pageable);
 
-        Iterable<Task> result = this.service.findAll(pager);
+        Iterable<TaskEntity> result = this.service.findAll(pager);
 
         model.addAttribute("tasks", result);
         return new ModelAndView("/task/list-items");
@@ -112,7 +112,7 @@ public class TaskController {
     public ModelAndView viewInfo(@RequestParam(defaultValue="detail",required=false, value="template") String templateName,
                                  @PathVariable Long taskId, Model model) {
 
-        Optional<Task> result = this.service.getOne(taskId);
+        Optional<TaskEntity> result = this.service.getOne(taskId);
 
         model.addAttribute(result.isPresent() ? result.get() : null);
         return new ModelAndView("/delivery/tasks/" + templateName);
@@ -120,28 +120,28 @@ public class TaskController {
 
     @RequestMapping(value="/tasks/{taskId}/signed", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId) {
-        Task task = createTaskBuilder(taskId).build();
+        TaskEntity taskEntity = createTaskBuilder(taskId).build();
         UserEntity user = null;//security.getPrincipal().getUser();
 
-        this.service.signedTask(user, task);
+        this.service.signedTask(user, taskEntity);
     }
 
     @RequestMapping(value="/tasks/{taskId}/unsigned", method = RequestMethod.PUT)
     public @ResponseBody void unsignedTask(@PathVariable Long taskId) {
-        Task task = createTaskBuilder(taskId).build();
+        TaskEntity taskEntity = createTaskBuilder(taskId).build();
         UserEntity user = null;//security.getPrincipal().getUser();
 
-        this.service.unsignedTask(user, task);
+        this.service.unsignedTask(user, taskEntity);
     }
 
     @RequestMapping(value="/tasks/{taskId}/change-status/{status}", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId, @PathVariable String status) {
-        Task task = createTaskBuilder(taskId)
+        TaskEntity taskEntity = createTaskBuilder(taskId)
                 .withStatus(TaskStatus.get(status)).build();
 
         UserEntity user = null; //security.getPrincipal().getUser();
 
-        this.service.changeStatus(task, user);
+        this.service.changeStatus(taskEntity, user);
     }
 
 }

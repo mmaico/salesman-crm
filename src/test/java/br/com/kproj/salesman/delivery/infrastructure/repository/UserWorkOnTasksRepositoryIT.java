@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,9 +41,9 @@ public class UserWorkOnTasksRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnUsersWorkInTask() {
-        SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(1l).build();
+        SalesOrderEntity salesOrderEntity = SalesOrderBuilder.createSalesOrder(1l).build();
 
-        List<UserEntity> result = repository.findUsersWorksOnSalesOrder(salesOrder);
+        List<UserEntity> result = repository.findUsersWorksOnSalesOrder(salesOrderEntity);
 
         assertThat(result.size(), is(2));
         assertThat(result.contains(createUser(1l).build()), is(Boolean.TRUE));
@@ -54,9 +54,9 @@ public class UserWorkOnTasksRepositoryIT extends AbstractIntegrationTest {
     public void shouldCountActingOnTaskByUserAndStatus() {
         UserEntity user = createUser(1l).build();
         TaskStatus status = TaskStatus.PROBLEM;
-        SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(1l).build();
+        SalesOrderEntity salesOrderEntity = SalesOrderBuilder.createSalesOrder(1l).build();
 
-        Long result = repository.countOnTaskBy(user, salesOrder, status);
+        Long result = repository.countOnTaskBy(user, salesOrderEntity, status);
 
         assertThat(result, is(2l));
     }

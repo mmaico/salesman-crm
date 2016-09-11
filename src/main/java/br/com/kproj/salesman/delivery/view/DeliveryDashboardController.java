@@ -4,8 +4,7 @@ import br.com.kproj.salesman.delivery.application.WorkspaceApplication;
 import br.com.kproj.salesman.infrastructure.entity.WorkspaceUnit;
 import br.com.kproj.salesman.infrastructure.entity.builders.ActDeliverySalesBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.WorkspaceUnitBuilder;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +39,8 @@ public class DeliveryDashboardController {
 
     @RequestMapping(value="/delivery/salesorder/{salesorderId}", method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable Long salesorderId) {
-        SalesOrder salesOrder = SalesOrderBuilder.createSalesOrder(salesorderId).build();
+        SalesOrderEntity salesOrderEntity = SalesOrderBuilder.createSalesOrder(salesorderId).build();
 
-        application.removeItemWorkspaceBy(salesOrder, null);
+        application.removeItemWorkspaceBy(salesOrderEntity, null);
     }
 }

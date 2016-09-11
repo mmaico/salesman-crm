@@ -5,18 +5,18 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.task.Checklist;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
 
 import java.util.Date;
 import java.util.List;
 
-public class TaskBuilder extends AbstractBuilder<Task>  {
+public class TaskBuilder extends AbstractBuilder<TaskEntity>  {
 
 	public TaskBuilder() {
-		this.entity = new Task();
+		this.entity = new TaskEntity();
 	}
 
 	public TaskBuilder(Long id) {
@@ -44,13 +44,13 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder withParent(Task parent) {
+    public TaskBuilder withParent(TaskEntity parent) {
         this.entity.setParent(parent);
         return this;
     }
 
-    public TaskBuilder withSalesOrder(SalesOrder order) {
-        this.entity.setSalesOrder(order);
+    public TaskBuilder withSalesOrder(SalesOrderEntity order) {
+        this.entity.setSalesOrderEntity(order);
         return this;
     }
 
@@ -69,7 +69,7 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder addCheckList(Checklist checkList) {
+    public TaskBuilder addCheckList(ChecklistEntity checkList) {
         this.entity.addCheckList(checkList);
         return this;
     }
@@ -79,8 +79,8 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
         return this;
     }
 
-    public TaskBuilder addChild(Task task) {
-        this.entity.addChild(task);
+    public TaskBuilder addChild(TaskEntity taskEntity) {
+        this.entity.addChild(taskEntity);
         return this;
     }
 

@@ -1,13 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplate;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplateEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 
-public class ChecklistTemplateBuilder extends AbstractBuilder<ChecklistTemplate>  {
+public class ChecklistTemplateBuilder extends AbstractBuilder<ChecklistTemplateEntity>  {
 
 	public ChecklistTemplateBuilder() {
-		this.entity = new ChecklistTemplate();
+		this.entity = new ChecklistTemplateEntity();
 	}
 
 	public ChecklistTemplateBuilder(Long id) {
@@ -22,8 +22,8 @@ public class ChecklistTemplateBuilder extends AbstractBuilder<ChecklistTemplate>
 
 
 
-    public ChecklistTemplateBuilder withTaskTemplate(TaskTemplate tasktemplate) {
-        this.entity.setTaskTemplate(tasktemplate);
+    public ChecklistTemplateBuilder withTaskTemplate(TaskTemplateEntity tasktemplate) {
+        this.entity.setTaskTemplateEntity(tasktemplate);
         return this;
     }
 

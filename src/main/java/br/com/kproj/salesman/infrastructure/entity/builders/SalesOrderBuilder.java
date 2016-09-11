@@ -5,17 +5,17 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderPaymentItem;
 
 import java.util.Date;
 import java.util.List;
 
-public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
+public class SalesOrderBuilder extends AbstractBuilder<SalesOrderEntity>  {
 
 	public SalesOrderBuilder() {
-		this.entity = new SalesOrder();
+		this.entity = new SalesOrderEntity();
 	}
 
 	public SalesOrderBuilder(Long id) {
@@ -67,13 +67,13 @@ public class SalesOrderBuilder extends AbstractBuilder<SalesOrder>  {
     }
 
     public SalesOrderBuilder addSalesOrderItem(SalesOrderItem item) {
-        item.setSalesOrder(this.entity);
+        item.setSalesOrderEntity(this.entity);
         this.entity.addSalesOrderItem(item);
         return this;
     }
 
     public SalesOrderBuilder addPayment(SalesOrderPaymentItem item) {
-        item.setSalesOrder(this.entity);
+        item.setSalesOrderEntity(this.entity);
         this.entity.addPayment(item);
         return this;
     }

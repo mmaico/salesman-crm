@@ -2,7 +2,7 @@ package br.com.kproj.salesman.sales.application;
 
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.NewSalesOrderMessage;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class SalesOrderApplicationImpl extends BaseModelServiceLegacyImpl<SalesOrder> implements SalesOrderApplication {
+public class SalesOrderApplicationImpl extends BaseModelServiceLegacyImpl<SalesOrderEntity> implements SalesOrderApplication {
 
 
     @Autowired
@@ -34,28 +34,28 @@ public class SalesOrderApplicationImpl extends BaseModelServiceLegacyImpl<SalesO
 
 
     @Override
-    public SalesOrder register(BusinessProposalEntity businessProposalEntity) {
-        Optional<SalesOrder> result = repository.findByProposal(businessProposalEntity);
+    public SalesOrderEntity register(BusinessProposalEntity businessProposalEntity) {
+        Optional<SalesOrderEntity> result = repository.findByProposal(businessProposalEntity);
         if (result.isPresent()) {
             hasErrors(Sets.newHashSet("already.exists.sales.order.to.domain"))
                         .throwing(ValidationException.class);
         }
 
-        SalesOrder salesOrder = converter.convert(businessProposalEntity);
-        SalesOrder salesOrderSaved = super.save(salesOrder);
+        SalesOrderEntity salesOrderEntity = converter.convert(businessProposalEntity);
+        SalesOrderEntity salesOrderEntitySaved = super.save(salesOrderEntity);
 
-        eventBus.post(NewSalesOrderMessage.create(salesOrderSaved));
+        eventBus.post(NewSalesOrderMessage.create(salesOrderEntitySaved));
 
-        return salesOrderSaved;
+        return salesOrderEntitySaved;
     }
 
     @Override
-    public List<SalesOrder> findAllOrdered() {
+    public List<SalesOrderEntity> findAllOrdered() {
         return repository.findAllOrdered();
     }
 
 
-    public BaseRepositoryLegacy<SalesOrder, Long> getRepository() {
+    public BaseRepositoryLegacy<SalesOrderEntity, Long> getRepository() {
         return repository;
     }
 

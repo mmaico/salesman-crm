@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QSalesOrder is a Querydsl query type for SalesOrder
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QSalesOrder extends EntityPathBase<SalesOrder> {
+public class QSalesOrder extends EntityPathBase<SalesOrderEntity> {
 
     private static final long serialVersionUID = -1527365670L;
 
@@ -45,10 +45,10 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
     public final BooleanPath taskGenerated = createBoolean("taskGenerated");
 
     public QSalesOrder(String variable) {
-        this(SalesOrder.class, forVariable(variable), INITS);
+        this(SalesOrderEntity.class, forVariable(variable), INITS);
     }
 
-    public QSalesOrder(Path<? extends SalesOrder> path) {
+    public QSalesOrder(Path<? extends SalesOrderEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -57,10 +57,10 @@ public class QSalesOrder extends EntityPathBase<SalesOrder> {
     }
 
     public QSalesOrder(PathMetadata<?> metadata, PathInits inits) {
-        this(SalesOrder.class, metadata, inits);
+        this(SalesOrderEntity.class, metadata, inits);
     }
 
-    public QSalesOrder(Class<? extends SalesOrder> type, PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrder(Class<? extends SalesOrderEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;

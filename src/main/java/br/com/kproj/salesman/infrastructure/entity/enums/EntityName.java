@@ -3,11 +3,11 @@ package br.com.kproj.salesman.infrastructure.entity.enums;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 
 public enum EntityName {
 
-    BUSINESS_PROPOSAL(BusinessProposalEntity.class), PERSON(Person.class), SALES_ORDER(SalesOrder.class);
+    BUSINESS_PROPOSAL(BusinessProposalEntity.class), PERSON(Person.class), SALES_ORDER(SalesOrderEntity.class);
 
     private Class clazz;
 

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -19,13 +19,13 @@ public class TaskNotification extends Notification {
 
     @ManyToOne
     @JoinColumn(name="task_id")
-    private Task task;
+    private TaskEntity taskEntity;
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTask() {
+        return taskEntity;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTask(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 }

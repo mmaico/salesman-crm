@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QChecklist is a Querydsl query type for Checklist
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QChecklist extends EntityPathBase<Checklist> {
+public class QChecklist extends EntityPathBase<ChecklistEntity> {
 
     private static final long serialVersionUID = -1360134100L;
 
@@ -33,10 +33,10 @@ public class QChecklist extends EntityPathBase<Checklist> {
     public final QTask task;
 
     public QChecklist(String variable) {
-        this(Checklist.class, forVariable(variable), INITS);
+        this(ChecklistEntity.class, forVariable(variable), INITS);
     }
 
-    public QChecklist(Path<? extends Checklist> path) {
+    public QChecklist(Path<? extends ChecklistEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -45,10 +45,10 @@ public class QChecklist extends EntityPathBase<Checklist> {
     }
 
     public QChecklist(PathMetadata<?> metadata, PathInits inits) {
-        this(Checklist.class, metadata, inits);
+        this(ChecklistEntity.class, metadata, inits);
     }
 
-    public QChecklist(Class<? extends Checklist> type, PathMetadata<?> metadata, PathInits inits) {
+    public QChecklist(Class<? extends ChecklistEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.task = inits.isInitialized("task") ? new QTask(forProperty("task"), inits.get("task")) : null;
     }

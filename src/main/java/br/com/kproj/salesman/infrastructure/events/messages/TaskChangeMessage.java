@@ -2,20 +2,20 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.Task;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 public class TaskChangeMessage {
 
 
     private UserEntity user;
-    private Task task;
+    private TaskEntity taskEntity;
 
-    public TaskChangeMessage(Task task) {
-        this.task = task;
+    public TaskChangeMessage(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 
-    public static TaskChangeMessage create(Task task) {
-          return new TaskChangeMessage(task);
+    public static TaskChangeMessage create(TaskEntity taskEntity) {
+          return new TaskChangeMessage(taskEntity);
     }
 
     public UserEntity getUser() {
@@ -26,11 +26,11 @@ public class TaskChangeMessage {
         this.user = user;
     }
 
-    public Task getTask() {
-        return task;
+    public TaskEntity getTaskEntity() {
+        return taskEntity;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskEntity(TaskEntity taskEntity) {
+        this.taskEntity = taskEntity;
     }
 }

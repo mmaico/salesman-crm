@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.repository.task;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.builders.SaleableUnitBuilder;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplate;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,27 +24,27 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
     public void shouldReturnAllTemplateAssociatedToTask() {
         SaleableUnitEntity saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
 
-        List<TaskTemplate> result = repository.findTaskTemplateBy(saleable);
+        List<TaskTemplateEntity> result = repository.findTaskTemplateBy(saleable);
 
         assertThat(result.size(), is(2));
     }
 
     @Test
     public void shouldReturnTrueWhenTaksIsSonOfOtherTaksTemplate() {
-        TaskTemplate taskTemplate = new TaskTemplate();
-        taskTemplate.setId(3l);
+        TaskTemplateEntity taskTemplateEntity = new TaskTemplateEntity();
+        taskTemplateEntity.setId(3l);
 
-        Boolean result = repository.isSomeonesSon(taskTemplate);
+        Boolean result = repository.isSomeonesSon(taskTemplateEntity);
 
         assertThat(result, is(Boolean.TRUE));
     }
 
     @Test
     public void shouldReturnFalseWhenTaskIsNotSonOfOtherTaskTempalte() {
-        TaskTemplate taskTemplate = new TaskTemplate();
-        taskTemplate.setId(1l);
+        TaskTemplateEntity taskTemplateEntity = new TaskTemplateEntity();
+        taskTemplateEntity.setId(1l);
 
-        Boolean result = repository.isSomeonesSon(taskTemplate);
+        Boolean result = repository.isSomeonesSon(taskTemplateEntity);
 
         assertThat(result, is(Boolean.FALSE));
     }
@@ -52,19 +52,19 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
     @Test
     @Transactional
     public void shouldLoadChecklistOfTaskTemplate() {
-        TaskTemplate taskTemplate = new TaskTemplate();
-        taskTemplate.setId(1l);
+        TaskTemplateEntity taskTemplateEntity = new TaskTemplateEntity();
+        taskTemplateEntity.setId(1l);
 
-        TaskTemplate result = repository.findOne(1l);
+        TaskTemplateEntity result = repository.findOne(1l);
 
-        assertThat(result.getChecklistTemplates().size(), is(2));
+        assertThat(result.getChecklistTemplateEntities().size(), is(2));
     }
 
     @Test
     public void shouldReturnAllTemplatesOnlyRoot() {
         SaleableUnitEntity saleable = SaleableUnitBuilder.createSaleableUnit(1l).build();
 
-        List<TaskTemplate> result = repository.findTaskTemplateRootBy(saleable);
+        List<TaskTemplateEntity> result = repository.findTaskTemplateRootBy(saleable);
 
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getId(), is(1l));
@@ -73,10 +73,10 @@ public class TaskTemplateRepositoryIT extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnTheTemplateTaskParent() {
-        TaskTemplate taskTemplate = new TaskTemplate();
-        taskTemplate.setId(3l);
+        TaskTemplateEntity taskTemplateEntity = new TaskTemplateEntity();
+        taskTemplateEntity.setId(3l);
 
-        Optional<TaskTemplate> result = repository.findParent(taskTemplate);
+        Optional<TaskTemplateEntity> result = repository.findParent(taskTemplateEntity);
 
         assertThat(result.isPresent(), is(Boolean.TRUE));
         assertThat(result.get().getId(), is(1l));

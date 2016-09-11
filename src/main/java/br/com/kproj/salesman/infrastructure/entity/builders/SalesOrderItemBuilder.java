@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrder;
+import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
@@ -52,8 +52,8 @@ public class SalesOrderItemBuilder extends AbstractBuilder<SalesOrderItem>  {
         return this;
     }
 
-    public SalesOrderItemBuilder withSalesOrder(SalesOrder salesOrder) {
-        this.entity.setSalesOrder(salesOrder);
+    public SalesOrderItemBuilder withSalesOrder(SalesOrderEntity salesOrderEntity) {
+        this.entity.setSalesOrderEntity(salesOrderEntity);
         return this;
     }
 
