@@ -1,10 +1,10 @@
-package br.com.kproj.salesman.delivery2.tasks_template.model.user;
+package br.com.kproj.salesman.delivery2.workspaces.domain.model.sales;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
 @Model
-public class User extends ModelIdentifiable {
+public class SalesOrder extends ModelIdentifiable {
 
     private Long id;
 

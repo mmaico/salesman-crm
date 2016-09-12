@@ -35,7 +35,7 @@ public class TaskToSaleableBusinessRules implements TaskToSaleableValidator {
     {
         rules.put("task.create.invalid.saleable", taskToSaleable ->
                 taskToSaleable.getSaleableId() == null
-                || !userRepository.findOne(taskToSaleable.getSaleableId()).isPresent());
+                || !repository.findOne(taskToSaleable.getSaleableId()).isPresent());
 
         rules.put("task.create.invalid.title", taskToSaleable -> isBlank(taskToSaleable.getTask().getTitle()));
 
