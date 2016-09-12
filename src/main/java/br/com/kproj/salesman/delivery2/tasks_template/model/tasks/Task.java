@@ -14,8 +14,7 @@ public class Task extends ModelIdentifiable {
     private Long id;
     private String title;
     private String description;
-    private List<Task> children;
-    private Task parent;
+    private List<Subtask> children;
     private Integer quantityDaysToFinish;
     private List<Checklist> checklists;
     private Saleable saleable;
@@ -46,20 +45,12 @@ public class Task extends ModelIdentifiable {
         this.description = description;
     }
 
-    public List<Task> getChildren() {
+    public List<Subtask> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Task> children) {
+    public void setChildren(List<Subtask> children) {
         this.children = children;
-    }
-
-    public Task getParent() {
-        return parent;
-    }
-
-    public void setParent(Task parent) {
-        this.parent = parent;
     }
 
     public Integer getQuantityDaysToFinish() {

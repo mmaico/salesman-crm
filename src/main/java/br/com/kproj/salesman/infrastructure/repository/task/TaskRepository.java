@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.repository.task;
 
 
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -32,10 +32,10 @@ public interface TaskRepository extends BaseRepositoryLegacy<TaskEntity, Long> {
 
 
     @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status")
-    Long countByStatus(@Param("status")TaskStatus status);
+    Long countByStatus(@Param("status")TaskStatusEntity status);
 
     @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status AND t.salesOrder = :salesOrder")
-    Long countByStatus(@Param("status")TaskStatus status, @Param("salesOrder") SalesOrderEntity salesOrderEntity);
+    Long countByStatus(@Param("status")TaskStatusEntity status, @Param("salesOrder") SalesOrderEntity salesOrderEntity);
 
     @Query("SELECT COUNT(t) FROM Task AS t WHERE t.salesOrder = :salesOrder")
     Long countBySalesOrder(@Param("salesOrder")SalesOrderEntity salesOrderEntity);

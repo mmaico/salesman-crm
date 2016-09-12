@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery2.tasks.application;
 
 
+import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.ChecklistForTask;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.Subtask;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.Task;
@@ -12,6 +13,8 @@ import java.util.Optional;
 public interface TaskFacade extends ModelFacade<Task> {
 
     Optional<Task> register(Task task);
+
+    void addChecklist(ChecklistForTask checklistForTask);
 
     Optional<Subtask> register(Subtask subtask);
 

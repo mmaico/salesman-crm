@@ -1,13 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.enums;
 
 
-public enum TaskStatus {
+public enum TaskStatusEntity {
 
     WAITING("Aguardadndo"), STATED("Iniciado"), PROBLEM("Com problemas"), DONE("Finalizado");
 
     private String message;
 
-    private TaskStatus(String value) {
+    private TaskStatusEntity(String value) {
         this.message = value;
     }
 
@@ -15,9 +15,9 @@ public enum TaskStatus {
         return message;
     }
 
-    public static TaskStatus get(String status) {
+    public static TaskStatusEntity get(String status) {
 
-        for (TaskStatus value: values()) {
+        for (TaskStatusEntity value: values()) {
             if (value.name().equalsIgnoreCase(status)) {
                 return value;
             }

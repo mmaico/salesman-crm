@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.timeline.application.subscrivers;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TaskActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
@@ -34,11 +34,11 @@ public class TaskEntityEventSubscriberTest {
     public void shouldPostInTimelineChangeStatusFromTask() {
         TaskEntity taskmock = mock(TaskEntity.class);
         UserEntity userMock = mock(UserEntity.class);
-        TaskStatus oldStatus = TaskStatus.STATED;
+        TaskStatusEntity oldStatus = TaskStatusEntity.STATED;
 
         TaskChangeStatusMessage message = TaskChangeStatusMessage.create(taskmock, userMock, oldStatus);
 
-        given(taskmock.getStatus()).willReturn(TaskStatus.DONE);
+        given(taskmock.getStatus()).willReturn(TaskStatusEntity.DONE);
         subscriber.createActivityTimelineOnChangeTaskStatus(message);
 
         verify(application).register(eq(taskmock), Mockito.any(TaskActivity.class));
@@ -48,15 +48,15 @@ public class TaskEntityEventSubscriberTest {
     @Test
     public void shouldbuildCorreclyTaskActivity() {
         String descriptionExpected = TaskEventSubscriber.MESSAGE
-                .replace("{OLD}", TaskStatus.STATED.get()).replace("{NEW}", TaskStatus.DONE.get());
+                .replace("{OLD}", TaskStatusEntity.STATED.get()).replace("{NEW}", TaskStatusEntity.DONE.get());
         TaskEntity taskmock = mock(TaskEntity.class);
         UserEntity userMock = mock(UserEntity.class);
-        TaskStatus oldStatus = TaskStatus.STATED;
+        TaskStatusEntity oldStatus = TaskStatusEntity.STATED;
 
         TaskChangeStatusMessage message = TaskChangeStatusMessage.create(taskmock, userMock, oldStatus);
 
         given(userMock.getId()).willReturn(10l);
-        given(taskmock.getStatus()).willReturn(TaskStatus.DONE);
+        given(taskmock.getStatus()).willReturn(TaskStatusEntity.DONE);
         subscriber.createActivityTimelineOnChangeTaskStatus(message);
 
         verify(application).register(eq(taskmock), taskActivityCaptor.capture());

@@ -5,9 +5,12 @@ import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.Subtask;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.TaskRepository;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.user.ChangeStatus;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.user.Subscribe;
 import br.com.kproj.salesman.delivery2.tasks.infrastructure.persistence.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery2.tasks.infrastructure.persistence.springdata.TaskRepositorySpringData;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -21,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper.copyProperties;
 import static com.trex.clone.BusinessModelClone.from;
 
@@ -41,7 +45,7 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         TaskEntity taskToSave = from(task).convertTo(TaskEntity.class);
 
         if (task.isNew()) {
-            taskToSave.setStatus(TaskStatus.WAITING);
+            taskToSave.setStatus(TaskStatusEntity.WAITING);
             TaskEntity tasksaved = repository.save(taskToSave);
             return Optional.of(getConverter().convert(tasksaved));
         } else {
@@ -91,6 +95,35 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
             throw new CouldNotGenerateTasksException(e);
         }
     }
+
+    @Override
+    public void register(Subscribe subscribe) {
+        TaskEntity taskEntity = this.repository.findOne(subscribe.getTaskId());
+        UserEntity userEntity = new UserEntity(subscribe.getUserId());
+
+        if (!taskEntity.hasSigned(userEntity)) {
+            taskEntity.addSignedBy(userEntity);
+        }
+    }
+
+    @Override
+    public void unregister(Subscribe subscribe) {
+        TaskEntity taskEntity = this.repository.findOne(subscribe.getTaskId());
+
+        if (!isEmptySafe(taskEntity.getSignedBy())) {
+            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUserId()));
+        }
+    }
+
+    @Override
+    public void changeStatus(ChangeStatus changeStatus) {
+
+        TaskEntity taskEntity = this.repository.findOne(changeStatus.getTaskId());
+
+        TaskStatusEntity newStatus = TaskStatusEntity.get(changeStatus.getNewStatus().name());
+        taskEntity.setStatus(newStatus);
+    }
+
 
     @Override
     public BaseRepositoryLegacy<TaskEntity, Long> getRepository() {

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
@@ -19,13 +19,13 @@ import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isE
 @Component
 public class TaskHelper {
 
-    private static Map<TaskStatus, String> mapStatus = new HashMap<>();
+    private static Map<TaskStatusEntity, String> mapStatus = new HashMap<>();
 
     static {
-        mapStatus.put(TaskStatus.WAITING, "icon entypo-right-open-big");
-        mapStatus.put(TaskStatus.STATED, "icon entypo-clock");
-        mapStatus.put(TaskStatus.DONE, "icon entypo-check");
-        mapStatus.put(TaskStatus.PROBLEM, "icon entypo-cancel");
+        mapStatus.put(TaskStatusEntity.WAITING, "icon entypo-right-open-big");
+        mapStatus.put(TaskStatusEntity.STATED, "icon entypo-clock");
+        mapStatus.put(TaskStatusEntity.DONE, "icon entypo-check");
+        mapStatus.put(TaskStatusEntity.PROBLEM, "icon entypo-cancel");
     }
 
     @Autowired
@@ -44,7 +44,7 @@ public class TaskHelper {
         return result.isPresent() ? result.get() : null;
     }
 
-    public String getIconStatus(TaskStatus status) {
+    public String getIconStatus(TaskStatusEntity status) {
 
         return mapStatus.get(status);
     }

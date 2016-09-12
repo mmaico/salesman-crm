@@ -1,6 +1,9 @@
 package br.com.kproj.salesman.delivery2.tasks.application.impl;
 
 import br.com.kproj.salesman.delivery2.tasks.application.TaskFacade;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.ChecklistForTask;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.ChecklistValidator;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesValidator;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.tasks.*;
@@ -27,12 +30,23 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     @Autowired
     private SubtaskValidator subtaskValidator;
 
+    @Autowired
+    private ChecklistValidator checklistValidator;
+
 
     public Optional<Task> register(Task task) {
         validator.checkRules(task);
         Optional<Task> result = repository.save(task);
 
         return result;
+    }
+
+    @Override
+    public void addChecklist(ChecklistForTask checklistForTask) {
+        checklistValidator.checkRules(checklistForTask);
+        Optional<Task> task = repository.findOne(checklistForTask.getTaskId());
+
+        task.get().addCheckList(checklistForTask.getChecklist());
     }
 
     @Override

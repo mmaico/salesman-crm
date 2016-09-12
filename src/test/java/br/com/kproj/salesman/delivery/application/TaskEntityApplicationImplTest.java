@@ -10,7 +10,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
@@ -207,7 +207,7 @@ public class TaskEntityApplicationImplTest {
     public void shouldChangeStatus() {
         UserEntity userChange = UserEntityBuilder.createUser(2l).build();
         TaskEntity taskEntityParam = TaskBuilder.createTaskBuilder(1l)
-                .withStatus(TaskStatus.DONE).build();
+                .withStatus(TaskStatusEntity.DONE).build();
 
         TaskEntity taskEntityDB = Mockito.mock(TaskEntity.class);
 
@@ -215,7 +215,7 @@ public class TaskEntityApplicationImplTest {
 
         this.service.changeStatus(taskEntityParam, userChange);
 
-        verify(taskEntityDB).setStatus(TaskStatus.DONE);
+        verify(taskEntityDB).setStatus(TaskStatusEntity.DONE);
         verify(changeHistoryRepository).save(Mockito.any(TaskChangeHistory.class));
     }
 
@@ -223,7 +223,7 @@ public class TaskEntityApplicationImplTest {
     public void shouldThrowExceptionWhenTaskNoFoundONChangeStatus() {
         UserEntity userChange = UserEntityBuilder.createUser(2l).build();
         TaskEntity taskEntityParam = TaskBuilder.createTaskBuilder(1l)
-                .withStatus(TaskStatus.DONE).build();
+                .withStatus(TaskStatusEntity.DONE).build();
 
         given(repository.findOne(1l)).willReturn(null);
 
@@ -233,17 +233,17 @@ public class TaskEntityApplicationImplTest {
     @Test
     public void shouldReturnStatisticsOfDeliveryExecutionTasks() {
 
-        given(repository.countByStatus(TaskStatus.DONE)).willReturn(1l);
-        given(repository.countByStatus(TaskStatus.STATED)).willReturn(2l);
-        given(repository.countByStatus(TaskStatus.WAITING)).willReturn(3l);
-        given(repository.countByStatus(TaskStatus.PROBLEM)).willReturn(4l);
+        given(repository.countByStatus(TaskStatusEntity.DONE)).willReturn(1l);
+        given(repository.countByStatus(TaskStatusEntity.STATED)).willReturn(2l);
+        given(repository.countByStatus(TaskStatusEntity.WAITING)).willReturn(3l);
+        given(repository.countByStatus(TaskStatusEntity.PROBLEM)).willReturn(4l);
 
         DeliveryResumeExecutionTaskDTO result = this.service.getResume();
 
-        assertThat(result.getByName(TaskStatus.DONE.name()).getCount(), is(1l));
-        assertThat(result.getByName(TaskStatus.STATED.name()).getCount(), is(2l));
-        assertThat(result.getByName(TaskStatus.WAITING.name()).getCount(), is(3l));
-        assertThat(result.getByName(TaskStatus.PROBLEM.name()).getCount(), is(4l));
+        assertThat(result.getByName(TaskStatusEntity.DONE.name()).getCount(), is(1l));
+        assertThat(result.getByName(TaskStatusEntity.STATED.name()).getCount(), is(2l));
+        assertThat(result.getByName(TaskStatusEntity.WAITING.name()).getCount(), is(3l));
+        assertThat(result.getByName(TaskStatusEntity.PROBLEM.name()).getCount(), is(4l));
 
 
     }
@@ -252,17 +252,17 @@ public class TaskEntityApplicationImplTest {
     public void shouldReturnStatisticsOfDeliveryExecutionTasksBySalesOrder() {
         SalesOrderEntity salesOrderEntity = mock(SalesOrderEntity.class);
 
-        given(repository.countByStatus(TaskStatus.DONE, salesOrderEntity)).willReturn(1l);
-        given(repository.countByStatus(TaskStatus.STATED, salesOrderEntity)).willReturn(2l);
-        given(repository.countByStatus(TaskStatus.WAITING, salesOrderEntity)).willReturn(3l);
-        given(repository.countByStatus(TaskStatus.PROBLEM, salesOrderEntity)).willReturn(4l);
+        given(repository.countByStatus(TaskStatusEntity.DONE, salesOrderEntity)).willReturn(1l);
+        given(repository.countByStatus(TaskStatusEntity.STATED, salesOrderEntity)).willReturn(2l);
+        given(repository.countByStatus(TaskStatusEntity.WAITING, salesOrderEntity)).willReturn(3l);
+        given(repository.countByStatus(TaskStatusEntity.PROBLEM, salesOrderEntity)).willReturn(4l);
 
         DeliveryResumeExecutionTaskDTO result = this.service.getResume(salesOrderEntity);
 
-        assertThat(result.getByName(TaskStatus.DONE.name()).getCount(), is(1l));
-        assertThat(result.getByName(TaskStatus.STATED.name()).getCount(), is(2l));
-        assertThat(result.getByName(TaskStatus.WAITING.name()).getCount(), is(3l));
-        assertThat(result.getByName(TaskStatus.PROBLEM.name()).getCount(), is(4l));
+        assertThat(result.getByName(TaskStatusEntity.DONE.name()).getCount(), is(1l));
+        assertThat(result.getByName(TaskStatusEntity.STATED.name()).getCount(), is(2l));
+        assertThat(result.getByName(TaskStatusEntity.WAITING.name()).getCount(), is(3l));
+        assertThat(result.getByName(TaskStatusEntity.PROBLEM.name()).getCount(), is(4l));
     }
 
     @Test

@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreFiel
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -43,7 +43,7 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     private Date deadline;
 
     @Enumerated(EnumType.STRING)
-    private TaskStatus status;
+    private TaskStatusEntity status;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
     private List<ChecklistEntity> checklistEntity;
@@ -78,6 +78,11 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     @IgnoreField
     @ExcludeField
     private TaskEntity parent;
+
+
+    public TaskEntity(Long id) {
+        this.id = id;
+    }
 
     public void addChild(TaskEntity taskEntity) {
         if (this.tasksChildren == null) {
@@ -155,11 +160,11 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
         this.deadline = deadline;
     }
 
-    public TaskStatus getStatus() {
+    public TaskStatusEntity getStatus() {
         return status;
     }
 
-    public void setStatus(TaskStatus status) {
+    public void setStatus(TaskStatusEntity status) {
         this.status = status;
     }
 

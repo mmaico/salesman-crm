@@ -1,10 +1,13 @@
 package br.com.kproj.salesman.delivery2.tasks.domain.model.tasks;
 
 import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.checklist.ChecklistRepository;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery2.tasks.domain.model.user.User;
+import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -26,6 +29,23 @@ public class Task extends ModelIdentifiable {
     private List<Checklist> checklists;
     private SalesOrder salesOrder;
     private List<User> signedBy;
+
+    @Autowired
+    private ChecklistRepository checklistRepository;
+
+    public Task() {
+        AutowireHelper.autowire(this);
+    }
+
+
+    public void addCheckList(Checklist checklist) {
+        checklistRepository.register(checklist, this);
+    }
+
+
+
+
+
 
     @Override
     public Long getId() {

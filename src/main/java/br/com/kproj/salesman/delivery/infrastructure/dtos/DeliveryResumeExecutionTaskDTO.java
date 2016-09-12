@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.delivery.infrastructure.dtos;
 
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -14,19 +14,19 @@ public class DeliveryResumeExecutionTaskDTO {
     
     public static class ExecutingResumeItem {
         
-        TaskStatus status;
+        TaskStatusEntity status;
         Long count = 0l;
 
-        public ExecutingResumeItem(TaskStatus status, Long count) {
+        public ExecutingResumeItem(TaskStatusEntity status, Long count) {
             this.status = status;
             this.count = count;
         }
         
-        public static ExecutingResumeItem create(TaskStatus status, Long count) {
+        public static ExecutingResumeItem create(TaskStatusEntity status, Long count) {
             return new ExecutingResumeItem(status, count);
         }
 
-        public TaskStatus getStatus() {
+        public TaskStatusEntity getStatus() {
             return status;
         }
 
@@ -40,7 +40,7 @@ public class DeliveryResumeExecutionTaskDTO {
         return items;
     }
 
-    public DeliveryResumeExecutionTaskDTO add(TaskStatus status, Long count) {
+    public DeliveryResumeExecutionTaskDTO add(TaskStatusEntity status, Long count) {
         this.items.add(ExecutingResumeItem.create(status, count));
         return this;
     }
@@ -68,7 +68,7 @@ public class DeliveryResumeExecutionTaskDTO {
 
     public Long getPercentageTotalDone() {
         Long total = getTotal();
-        Long totalDone = getByName(TaskStatus.DONE.name()).getCount();
+        Long totalDone = getByName(TaskStatusEntity.DONE.name()).getCount();
 
         if (totalDone.equals(0l)) {
             return 0l;

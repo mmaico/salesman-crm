@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.view;
 import br.com.kproj.salesman.delivery.application.tasks.TaskApplication;
 import br.com.kproj.salesman.delivery.infrastructure.validators.TaskValidator;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
@@ -137,7 +137,7 @@ public class TaskController {
     @RequestMapping(value="/tasks/{taskId}/change-status/{status}", method = RequestMethod.PUT)
     public @ResponseBody void signedTask(@PathVariable Long taskId, @PathVariable String status) {
         TaskEntity taskEntity = createTaskBuilder(taskId)
-                .withStatus(TaskStatus.get(status)).build();
+                .withStatus(TaskStatusEntity.get(status)).build();
 
         UserEntity user = null; //security.getPrincipal().getUser();
 

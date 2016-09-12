@@ -2,23 +2,23 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 public class TaskChangeStatusMessage {
 
 
     private UserEntity user;
-    private TaskStatus oldStatus;
+    private TaskStatusEntity oldStatus;
     private TaskEntity taskEntity;
 
-    public TaskChangeStatusMessage(UserEntity user, TaskEntity taskEntity, TaskStatus oldStatus) {
+    public TaskChangeStatusMessage(UserEntity user, TaskEntity taskEntity, TaskStatusEntity oldStatus) {
         this.user = user;
         this.taskEntity = taskEntity;
         this.oldStatus = oldStatus;
     }
 
-    public static TaskChangeStatusMessage create(TaskEntity taskEntity, UserEntity userChange, TaskStatus oldStatus) {
+    public static TaskChangeStatusMessage create(TaskEntity taskEntity, UserEntity userChange, TaskStatusEntity oldStatus) {
           return new TaskChangeStatusMessage(userChange, taskEntity, oldStatus);
     }
 
@@ -30,11 +30,11 @@ public class TaskChangeStatusMessage {
         this.user = user;
     }
 
-    public TaskStatus getOldStatus() {
+    public TaskStatusEntity getOldStatus() {
         return oldStatus;
     }
 
-    public void setOldStatus(TaskStatus oldStatus) {
+    public void setOldStatus(TaskStatusEntity oldStatus) {
         this.oldStatus = oldStatus;
     }
 

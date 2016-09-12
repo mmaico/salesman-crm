@@ -5,7 +5,7 @@ import br.com.kproj.salesman.delivery.infrastructure.dtos.DeliveryResumeExecutio
 import br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.infrastructure.repository.TaskChangeHistoryRepository;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
@@ -144,10 +144,10 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<TaskEntity> 
     public DeliveryResumeExecutionTaskDTO getResume() {
 
         DeliveryResumeExecutionTaskDTO taskDTO = DeliveryResumeExecutionTaskDTO.create()
-                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE))
-                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED))
-                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING))
-                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM));
+                .add(TaskStatusEntity.DONE, repository.countByStatus(TaskStatusEntity.DONE))
+                .add(TaskStatusEntity.STATED, repository.countByStatus(TaskStatusEntity.STATED))
+                .add(TaskStatusEntity.WAITING, repository.countByStatus(TaskStatusEntity.WAITING))
+                .add(TaskStatusEntity.PROBLEM, repository.countByStatus(TaskStatusEntity.PROBLEM));
 
         return taskDTO;
     }
@@ -155,10 +155,10 @@ public class TaskApplicationImpl extends BaseModelServiceLegacyImpl<TaskEntity> 
     @Override
     public DeliveryResumeExecutionTaskDTO getResume(SalesOrderEntity salesOrderEntity) {
         DeliveryResumeExecutionTaskDTO taskDTO = DeliveryResumeExecutionTaskDTO.create()
-                .add(TaskStatus.DONE, repository.countByStatus(TaskStatus.DONE, salesOrderEntity))
-                .add(TaskStatus.STATED, repository.countByStatus(TaskStatus.STATED, salesOrderEntity))
-                .add(TaskStatus.WAITING, repository.countByStatus(TaskStatus.WAITING, salesOrderEntity))
-                .add(TaskStatus.PROBLEM, repository.countByStatus(TaskStatus.PROBLEM, salesOrderEntity));
+                .add(TaskStatusEntity.DONE, repository.countByStatus(TaskStatusEntity.DONE, salesOrderEntity))
+                .add(TaskStatusEntity.STATED, repository.countByStatus(TaskStatusEntity.STATED, salesOrderEntity))
+                .add(TaskStatusEntity.WAITING, repository.countByStatus(TaskStatusEntity.WAITING, salesOrderEntity))
+                .add(TaskStatusEntity.PROBLEM, repository.countByStatus(TaskStatusEntity.PROBLEM, salesOrderEntity));
 
         return taskDTO;
     }

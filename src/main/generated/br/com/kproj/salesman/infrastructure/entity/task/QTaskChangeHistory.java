@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -28,7 +29,7 @@ public class QTaskChangeHistory extends EntityPathBase<TaskChangeHistory> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus> statusChanged = createEnum("statusChanged", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus.class);
+    public final EnumPath<TaskStatusEntity> statusChanged = createEnum("statusChanged", TaskStatusEntity.class);
 
     public final QTask taskChanged;
 

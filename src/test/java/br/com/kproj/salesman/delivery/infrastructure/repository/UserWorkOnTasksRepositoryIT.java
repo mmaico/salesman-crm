@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery.infrastructure.repository;
 import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class UserWorkOnTasksRepositoryIT extends AbstractIntegrationTest {
     public void shouldCountActingByOnTasksByUser() {
         UserEntity user = createUser(1l).build();
 
-        Long result = repository.countOnAllTasksBy(user, TaskStatus.WAITING);
+        Long result = repository.countOnAllTasksBy(user, TaskStatusEntity.WAITING);
 
         assertThat(result, is(2l));
     }
@@ -53,7 +53,7 @@ public class UserWorkOnTasksRepositoryIT extends AbstractIntegrationTest {
     @Test
     public void shouldCountActingOnTaskByUserAndStatus() {
         UserEntity user = createUser(1l).build();
-        TaskStatus status = TaskStatus.PROBLEM;
+        TaskStatusEntity status = TaskStatusEntity.PROBLEM;
         SalesOrderEntity salesOrderEntity = SalesOrderBuilder.createSalesOrder(1l).build();
 
         Long result = repository.countOnTaskBy(user, salesOrderEntity, status);

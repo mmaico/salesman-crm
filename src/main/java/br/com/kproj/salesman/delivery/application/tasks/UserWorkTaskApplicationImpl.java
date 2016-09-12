@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.delivery.infrastructure.dtos.DeliverySummaryExecutingDTO.createSummary;
-import static br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus.*;
+import static br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity.*;
 
 @Service
 public class UserWorkTaskApplicationImpl implements UserWorkTaskApplication {

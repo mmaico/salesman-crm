@@ -2,6 +2,8 @@ package br.com.kproj.salesman.delivery2.tasks.domain.model.tasks;
 
 
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.user.ChangeStatus;
+import br.com.kproj.salesman.delivery2.tasks.domain.model.user.Subscribe;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 
 import java.util.Collection;
@@ -14,4 +16,10 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
     Collection<Task> findAll(SalesOrder salesOrder);
 
     void generateTaskFor(SalesOrder salesOrder);
+
+    void register(Subscribe subscribe);
+
+    void unregister(Subscribe subscribe);
+
+    void changeStatus(ChangeStatus changeStatus);
 }

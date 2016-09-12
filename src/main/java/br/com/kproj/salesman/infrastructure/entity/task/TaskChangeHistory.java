@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +22,7 @@ public class TaskChangeHistory extends Identifiable {
 
     @Enumerated(EnumType.STRING)
     @Column(name="status_changed")
-    private TaskStatus statusChanged;
+    private TaskStatusEntity statusChanged;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfChange;
@@ -44,11 +44,11 @@ public class TaskChangeHistory extends Identifiable {
         this.taskEntityChanged = taskEntityChanged;
     }
 
-    public TaskStatus getStatusChanged() {
+    public TaskStatusEntity getStatusChanged() {
         return statusChanged;
     }
 
-    public void setStatusChanged(TaskStatus statusChanged) {
+    public void setStatusChanged(TaskStatusEntity statusChanged) {
         this.statusChanged = statusChanged;
     }
 

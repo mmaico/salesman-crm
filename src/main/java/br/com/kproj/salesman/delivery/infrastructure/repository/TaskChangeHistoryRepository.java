@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.infrastructure.repository;
 
 
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskChangeHistory;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -27,5 +27,5 @@ public interface TaskChangeHistoryRepository extends BaseRepositoryLegacy<TaskCh
     @Query("SELECT COUNT(*) FROM TaskChangeHistory AS tch " +
             " WHERE tch.dateOfChange >= :startDate AND tch.dateOfChange <= :endDate " +
             " AND tch.statusChanged = :status")
-    Long countHistoryByRangeDatesAndStatus(@Param("startDate")Date startDate, @Param("endDate")Date endDate, @Param("status")TaskStatus status);
+    Long countHistoryByRangeDatesAndStatus(@Param("startDate")Date startDate, @Param("endDate")Date endDate, @Param("status")TaskStatusEntity status);
 }

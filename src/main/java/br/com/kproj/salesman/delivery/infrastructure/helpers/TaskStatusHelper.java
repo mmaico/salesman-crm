@@ -1,24 +1,24 @@
 package br.com.kproj.salesman.delivery.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 
 
 public class TaskStatusHelper {
 
-    public TaskStatus waiting() {
-        return TaskStatus.WAITING;
+    public TaskStatusEntity waiting() {
+        return TaskStatusEntity.WAITING;
     }
 
-    public TaskStatus done() {
-        return TaskStatus.DONE;
+    public TaskStatusEntity done() {
+        return TaskStatusEntity.DONE;
     }
 
-    public TaskStatus problem() {
-        return TaskStatus.PROBLEM;
+    public TaskStatusEntity problem() {
+        return TaskStatusEntity.PROBLEM;
     }
 
-    public TaskStatus started() {
-        return TaskStatus.STATED;
+    public TaskStatusEntity started() {
+        return TaskStatusEntity.STATED;
     }
 }

@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
@@ -40,7 +41,7 @@ public class QTask extends EntityPathBase<TaskEntity> {
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity> signedBy = this.<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity>createList("signedBy", br.com.kproj.salesman.infrastructure.entity.UserEntity.class, br.com.kproj.salesman.infrastructure.entity.QUserEntity.class, PathInits.DIRECT2);
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus.class);
+    public final EnumPath<TaskStatusEntity> status = createEnum("status", TaskStatusEntity.class);
 
     public final ListPath<TaskCost, QTaskCost> taskCosts = this.<TaskCost, QTaskCost>createList("taskCosts", TaskCost.class, QTaskCost.class, PathInits.DIRECT2);
 

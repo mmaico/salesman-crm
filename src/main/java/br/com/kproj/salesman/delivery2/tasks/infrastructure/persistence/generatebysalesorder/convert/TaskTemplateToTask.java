@@ -3,7 +3,7 @@ package br.com.kproj.salesman.delivery2.tasks.infrastructure.persistence.generat
 import br.com.kproj.salesman.delivery2.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
@@ -31,7 +31,7 @@ public class TaskTemplateToTask implements Converter<TaskTemplateEntity, TaskEnt
         TaskBuilder builder = TaskBuilder.createTaskBuilder()
                 .withDeadline(addDayToDate(quantityDays, new Date()))
                 .withDescription(source.getDescription())
-                .withStatus(TaskStatus.WAITING)
+                .withStatus(TaskStatusEntity.WAITING)
                 .withTitle(source.getTitle())
                 .withRegion(source.getRegion())
                 .withSalesOrder(new SalesOrderEntity(salesOrder.getId()));

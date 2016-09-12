@@ -1,16 +1,9 @@
 package br.com.kproj.salesman.delivery.infrastructure.generatebysalesorder.convert;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import org.springframework.core.convert.converter.Converter;
-
-import java.util.Date;
-
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.safeIterable;
-import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.addDayToDate;
 
 
 public class TaskTemplateToTask implements Converter<TaskTemplateEntity, TaskEntity> {

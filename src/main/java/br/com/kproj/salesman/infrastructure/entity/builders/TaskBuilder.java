@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatus;
+import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
@@ -39,7 +39,7 @@ public class TaskBuilder extends AbstractBuilder<TaskEntity>  {
         return this;
     }
 
-    public TaskBuilder withStatus(TaskStatus status) {
+    public TaskBuilder withStatus(TaskStatusEntity status) {
         this.entity.setStatus(status);
         return this;
     }
