@@ -25,7 +25,7 @@ public class FileInfoController {
     private FileInfoApplication application;
 
 
-    @RequestMapping(value="/file-info/save")
+    @RequestMapping(value="/file-info/add")
     public @ResponseBody void saveFileInfo(@ModelAttribute("fileInfo") FileInfo fileInfo, @RequestParam(value="file", required=false) MultipartFile file) throws IOException {
 
         AppFileBuilder builder = AppFileBuilder.create(file);

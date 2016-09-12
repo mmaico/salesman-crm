@@ -3,10 +3,12 @@ package br.com.kproj.salesman.delivery2.tasks_template.application.impl;
 
 import br.com.kproj.salesman.delivery2.tasks_template.application.TaskFacade;
 import br.com.kproj.salesman.delivery2.tasks_template.model.product.Saleable;
+import br.com.kproj.salesman.delivery2.tasks_template.model.product.SaleableRepository;
 import br.com.kproj.salesman.delivery2.tasks_template.model.region.Region;
 import br.com.kproj.salesman.delivery2.tasks_template.model.tasks.Task;
 import br.com.kproj.salesman.delivery2.tasks_template.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery2.tasks_template.model.tasks.TaskToSaleable;
+import br.com.kproj.salesman.delivery2.tasks_template.model.tasks.TaskToSaleableValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -24,6 +26,12 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
 
     @Autowired
     private TaskRepository repository;
+
+    @Autowired
+    private SaleableRepository saleableRepository;
+
+    @Autowired
+    private TaskToSaleableValidator validator;
 
 
     @Override
@@ -46,7 +54,10 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     }
 
     public Optional<Task> register(TaskToSaleable taskToSaleable) {
+        validator.checkRules(taskToSaleable);
+        Optional<Saleable> saleable = saleableRepository.findOne(taskToSaleable.getSaleableId());
 
+        return saleable.get().addTask(taskToSaleable.getTask());
     }
 
 

@@ -43,7 +43,7 @@ public class ProviderController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/providers/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/providers/add", method = RequestMethod.POST)
     public @ResponseBody String save(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -61,7 +61,7 @@ public class ProviderController {
         return "/providers/" + providerSaved.getId();
     }
 
-    @RequestMapping(value = "/providers/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/providers/add", method = RequestMethod.PUT)
     public @ResponseBody ResponseEntity update(@ModelAttribute @Validated ProviderDTO providerDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {

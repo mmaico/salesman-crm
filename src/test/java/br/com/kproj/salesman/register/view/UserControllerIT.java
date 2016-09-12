@@ -37,7 +37,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldUpdateUser() throws Exception {
 
-        mockMvc.perform(put("/users/save")
+        mockMvc.perform(put("/users/add")
                         .param("id", "1")
                         .param("name", "Bob")
                         .param("lastname", "Stark")
@@ -50,7 +50,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveUser() throws Exception {
 
-        mockMvc.perform(fileUpload("/users/save")
+        mockMvc.perform(fileUpload("/users/add")
                 .param("login", "bobstark")
                 .param("password", "1234")
                 .param("passwordConfirm", "1234")
@@ -64,7 +64,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorsWhenInvalidName() throws Exception {
 
-        mockMvc.perform(fileUpload("/users/save")
+        mockMvc.perform(fileUpload("/users/add")
                         .param("login", "bobstark")
                         .param("password", "1234")
                         .param("passwordConfirm", "1234")
@@ -76,7 +76,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     public void shouldReturnErrorWhenInvalidAvatar() throws Exception {
     	MockMultipartFile invalidAvatarFile = new MockMultipartFile("avatarFile", "filename.txt", "text/plain", "some xml".getBytes());
     	
-        mockMvc.perform(fileUpload("/users/save")
+        mockMvc.perform(fileUpload("/users/add")
         		.file(invalidAvatarFile)
         		.param("login", "bobstark")
                 .param("password", "1234")
@@ -92,7 +92,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     public void shouldSaveUserWithAvatar() throws Exception {
     	MockMultipartFile invalidAvatarFile = new MockMultipartFile("avatarFile", "image.png", "image/png", "image".getBytes());
     	
-        mockMvc.perform(fileUpload("/users/save")
+        mockMvc.perform(fileUpload("/users/add")
         		.file(invalidAvatarFile)
         		.param("login", "bobstark")
                 .param("password", "1234")
@@ -110,7 +110,7 @@ public class UserControllerIT extends AbstractIntegrationTest {
     	MockMultipartFile invalidAvatarFile = new MockMultipartFile("avatarFile", "big-image.jpg", "image/jpeg", 
     			IOUtils.toByteArray(inputStream));
     	
-        mockMvc.perform(fileUpload("/users/save")
+        mockMvc.perform(fileUpload("/users/add")
         		.file(invalidAvatarFile)
         		.param("login", "bobstark")
                 .param("password", "1234")

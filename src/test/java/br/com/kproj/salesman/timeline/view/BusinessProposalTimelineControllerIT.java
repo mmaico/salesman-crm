@@ -60,7 +60,7 @@ public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTes
     @Test
     public void shouldSaveTimelineActivityByBusinessProposal() throws Exception {
 
-        mockMvc.perform(post("/business-proposal/1/logactivity/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/business-proposal/1/logactivity/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("logActivity.type", "EMAIL")
                 .param("logActivity.description", "descricao da atividade")
         ).andExpect(status().isOk());
@@ -83,7 +83,7 @@ public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTes
     @Test
     public void shouldSaveTimelineActivityProposalActivity() throws Exception {
 
-        mockMvc.perform(post("/business-proposal/2/approval-activity/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/business-proposal/2/approval-activity/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("logActivity.avaluation", "APPROVED")
                 .param("logActivity.description", "descricao da atividade 01")
         ).andExpect(status().isOk());

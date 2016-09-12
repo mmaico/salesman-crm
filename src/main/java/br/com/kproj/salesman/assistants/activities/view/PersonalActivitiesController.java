@@ -32,7 +32,7 @@ public class PersonalActivitiesController {
     private PersonalActivityApplication application;
 
 
-    @RequestMapping(value = "/users/personal-activities/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/personal-activities/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute PersonalActivity activity, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -44,7 +44,7 @@ public class PersonalActivitiesController {
         return "/users/personal-activities/" + activitySaved.getId();
     }
 
-    @RequestMapping(value = "/users/personal-activities/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/users/personal-activities/add", method = RequestMethod.PUT)
     public  @ResponseBody String update(@ModelAttribute PersonalActivity activity) {
 
         normalizeEntityRequest.addFieldsToUpdate(activity);

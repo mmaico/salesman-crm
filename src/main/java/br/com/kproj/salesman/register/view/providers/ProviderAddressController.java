@@ -35,7 +35,7 @@ public class ProviderAddressController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/providers/{providerId}/addresses/save", method = {RequestMethod.POST, RequestMethod.PUT})
+    @RequestMapping(value = "/providers/{providerId}/addresses/add", method = {RequestMethod.POST, RequestMethod.PUT})
     public  @ResponseBody void clientAddress(@ModelAttribute @Validated Address address,
                                              @PathVariable Long providerId, BindingResult bindingResult) {
 

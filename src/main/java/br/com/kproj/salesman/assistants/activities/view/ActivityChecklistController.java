@@ -29,7 +29,7 @@ public class ActivityChecklistController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
 
-    @RequestMapping(value = "/personal-activities/{activityId}/checklists/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/personal-activities/{activityId}/checklists/add", method = RequestMethod.POST)
     public  @ResponseBody
     ActivityChecklist save(@ModelAttribute ActivityChecklist checklist, @PathVariable Long activityId ) {
 

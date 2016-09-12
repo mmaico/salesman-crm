@@ -68,7 +68,7 @@ public class BusinessProposalEntityControllerTest extends AbstractIntegrationTes
         ProposalSaleablesDTO dto = createProposalSaleableDTO();
         ReflectionTestUtils.setField(controller, "proposalSaleablesDTO", dto);
 
-        mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/proposals/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .session(mockSession)
                         .param("client.id", "1")
                         .param("seller.id", "1")
@@ -84,7 +84,7 @@ public class BusinessProposalEntityControllerTest extends AbstractIntegrationTes
     @Test
     public void shouldReturnErrorWhenInvalidVendor() throws Exception {
 
-        mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/proposals/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("domain.person.id", "1")
                         .param("domain.careOf", "Jose Luiz")
                         .param("domain.deliveryForeCast", "10/02/2018")
@@ -105,7 +105,7 @@ public class BusinessProposalEntityControllerTest extends AbstractIntegrationTes
     @Test
     public void shouldReturnErrorWhenProductItemNotHaveDueDate() throws Exception {
 
-        mockMvc.perform(post("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/proposals/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("domain.person.id", "1")
                         .param("domain.vendor.id", "1")
                         .param("domain.careOf", "Jose Luiz")
@@ -126,7 +126,7 @@ public class BusinessProposalEntityControllerTest extends AbstractIntegrationTes
     @Test
     public void shouldReturnErrorWhenAddPaymentWithDiferentValuesBetweenPaymentsAndProducts() throws Exception {
 
-        mockMvc.perform(put("/proposals/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(put("/proposals/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", "1")
                         .param("person.id", "1")
                         .param("vendor.id", "1")

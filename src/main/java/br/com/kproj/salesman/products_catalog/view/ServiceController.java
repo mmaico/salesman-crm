@@ -39,7 +39,7 @@ public class ServiceController {
         
     }
 
-    @RequestMapping(value = "/services/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/services/add", method = RequestMethod.POST)
     public @ResponseBody
     SaleableUnitEntity save(@ModelAttribute @Validated ServiceEntity service, BindingResult bindingResult) {
 
@@ -52,7 +52,7 @@ public class ServiceController {
         return saleable;
     }
 
-    @RequestMapping(value = "/services/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/services/add", method = RequestMethod.PUT)
     public @ResponseBody void update(@ModelAttribute ServiceEntity service, BindingResult bindingResult) {
         normalizeEntityRequest.addFieldsToUpdate(service);
         this.service.register(service);

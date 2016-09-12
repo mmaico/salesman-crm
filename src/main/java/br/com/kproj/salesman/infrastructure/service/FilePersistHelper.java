@@ -46,7 +46,7 @@ public class FilePersistHelper {
 		this.appFileValidator.hasFileAndRequiredInfos(appFile);
 
 		if (entity == null || entity.isNew()) {
-			throw new ValidationException(Sets.newHashSet("save.file.entity.not.have.id"));
+			throw new ValidationException(Sets.newHashSet("add.file.entity.not.have.id"));
 		}
 		
 		String basePath = this.fileSystemHelper.getBasePath(entity);

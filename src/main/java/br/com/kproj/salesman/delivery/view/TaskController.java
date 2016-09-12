@@ -45,7 +45,7 @@ public class TaskController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/tasks/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/tasks/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated TaskEntity taskEntity, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult.getAllErrors());
@@ -77,7 +77,7 @@ public class TaskController {
         return new ModelAndView("/delivery/tasks/includes/subtask");
     }
 
-    @RequestMapping(value = "/tasks/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/tasks/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute @Validated TaskEntity taskEntity, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

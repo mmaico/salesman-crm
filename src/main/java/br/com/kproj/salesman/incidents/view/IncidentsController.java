@@ -36,7 +36,7 @@ public class IncidentsController {
     }
 
 
-    @RequestMapping(value = "/incidents/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/incidents/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated Incident incident, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -53,7 +53,7 @@ public class IncidentsController {
         return "/incidents/" + incidentLoad.getId();
     }
 
-    @RequestMapping(value = "/incidents/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/incidents/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute Incident incident, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

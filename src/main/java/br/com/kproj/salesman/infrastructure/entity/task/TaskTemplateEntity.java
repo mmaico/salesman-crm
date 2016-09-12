@@ -64,6 +64,11 @@ public class TaskTemplateEntity extends Identifiable {
     @Transient
     private TaskTemplateEntity parent;
 
+    public TaskTemplateEntity() {}
+    public TaskTemplateEntity(Long id) {
+        this.id = id;
+    }
+
 
     public void addChild(TaskTemplateEntity taskTemplateEntity) {
         if(this.templatesChilds == null) {

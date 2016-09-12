@@ -42,7 +42,7 @@ public class ContactController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/contacts/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/contacts/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated ContactEntity contact,
                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -55,7 +55,7 @@ public class ContactController {
         return "/contacts/" + contactLoaded.getId();
     }
 
-    @RequestMapping(value = "/contacts/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/contacts/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute @Validated ContactEntity contact,
                                                BindingResult bindingResult) {
 

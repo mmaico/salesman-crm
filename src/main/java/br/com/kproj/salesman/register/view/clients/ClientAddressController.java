@@ -34,7 +34,7 @@ public class ClientAddressController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/clients/{clientId}/addresses/save", method = {RequestMethod.POST, RequestMethod.PUT})
+    @RequestMapping(value = "/clients/{clientId}/addresses/add", method = {RequestMethod.POST, RequestMethod.PUT})
     public  @ResponseBody void clientAddress(@ModelAttribute @Validated Address address,
                                              @PathVariable Long clientId, BindingResult bindingResult) {
 

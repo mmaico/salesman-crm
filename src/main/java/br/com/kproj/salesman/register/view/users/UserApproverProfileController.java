@@ -19,7 +19,7 @@ public class UserApproverProfileController {
 
 
 
-    @RequestMapping(value = "/users/{userId}/approver-profile/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/{userId}/approver-profile/add", method = RequestMethod.POST)
     public  @ResponseBody void save(@ModelAttribute ApproverEntity approverEntity, @PathVariable Long userId) {
 
         UserEntity user = UserEntityBuilder.createUser(userId).build();

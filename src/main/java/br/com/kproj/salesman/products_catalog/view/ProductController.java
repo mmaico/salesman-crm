@@ -30,7 +30,7 @@ public class ProductController {
     private NormalizeAttrUpdateHelper attributesToUpdate;
 
 
-    @RequestMapping(value = "/products/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/products/add", method = RequestMethod.POST)
     public @ResponseBody Product save(@ModelAttribute Product product) {
 
         validator.checkRules(product);
@@ -40,7 +40,7 @@ public class ProductController {
         return saleable.isPresent() ? saleable.get() : null;
     }
 
-    @RequestMapping(value = "/products/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/products/add", method = RequestMethod.PUT)
     public @ResponseBody void update(@ModelAttribute Product product) {
 
         attributesToUpdate.addAttributesToUpdate(product);

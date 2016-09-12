@@ -35,7 +35,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSavePackage() throws Exception {
 
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -48,7 +48,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenPackageWithoutPrice() throws Exception {
 
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -61,7 +61,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenPackageWithoutName() throws Exception {
 
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("description", "descricao do produto")
                 .param("active", "true")
                 .param("price", "56.45")
@@ -85,7 +85,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenPackagePriceLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -98,7 +98,7 @@ public class SalesPackageControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenPackagePriceCostLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/sales-package/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/sales-package/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")

@@ -30,7 +30,7 @@ public class LeadsController {
 
 
 
-    @RequestMapping(value = "/leads/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/leads/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated Lead lead, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -43,7 +43,7 @@ public class LeadsController {
         return "/leads/" + leadLoaded.getId();
     }
 
-    @RequestMapping(value = "/leads/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/leads/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute Lead lead, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

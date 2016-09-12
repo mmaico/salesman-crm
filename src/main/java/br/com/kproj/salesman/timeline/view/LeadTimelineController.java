@@ -36,7 +36,7 @@ public class LeadTimelineController {
     private SecurityHelper security;
 
 
-    @RequestMapping(value = "/leads/{leadId}/logactivity/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/leads/{leadId}/logactivity/add", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity saveOfContact(@PathVariable Long leadId, @ModelAttribute LogActivityVO logActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 

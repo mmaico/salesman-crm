@@ -40,7 +40,7 @@ public class BusinessProposalTimelineController {
     private SecurityHelper security;
 
 
-    @RequestMapping(value = "/business-proposal/{businessId}/logactivity/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/business-proposal/{businessId}/logactivity/add", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute LogActivityVO logActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 
@@ -55,7 +55,7 @@ public class BusinessProposalTimelineController {
     }
 
 
-    @RequestMapping(value = "/business-proposal/{businessId}/approval-activity/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/business-proposal/{businessId}/approval-activity/add", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity saveOfProposal(@PathVariable Long businessId, @ModelAttribute BusinessProposalApprovalActivityVO approvalActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 

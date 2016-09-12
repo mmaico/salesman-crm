@@ -43,7 +43,7 @@ public class ClientController {
 
 
 
-    @RequestMapping(value = "/clients/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/clients/add", method = RequestMethod.POST)
     public @ResponseBody String save(@ModelAttribute @Validated ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -60,7 +60,7 @@ public class ClientController {
         return "/clients/" + clientSaved.getId();
     }
 
-    @RequestMapping(value = "/clients/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/clients/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute ClientDTO clientDTO, BindingResult bindingResult, Model model) {
 
 

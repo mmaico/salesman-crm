@@ -43,7 +43,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveClient() throws Exception {
 
-        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("type", "company")
                 .param("name", "test name")
                 .param("profile.id", COMPANY_CLIENT.get().getId().toString())
@@ -55,7 +55,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenClientNotHaveName() throws Exception {
 
-        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("tradingName", "nome fantasia")
                         .param("profile.id", "1")
@@ -65,7 +65,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenClientNameLessThan2Characters() throws Exception {
 
-        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "t")
                         .param("tradingName", "nome fantasia")
@@ -75,7 +75,7 @@ public class ClientControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenClientTradingnameGreaterThan30Characters() throws Exception {
 
-        mockMvc.perform(post("/clients/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/clients/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "Client Name")
                         .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")

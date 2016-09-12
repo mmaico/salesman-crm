@@ -30,7 +30,7 @@ public class TaskTemplateChecklistController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
 
-    @RequestMapping(value = "/saleables/task-template/{taskTemplateId}/checklist-template/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/saleables/task-template/{taskTemplateId}/checklist-template/add", method = RequestMethod.POST)
     public  @ResponseBody
     ChecklistTemplateEntity save(@ModelAttribute ChecklistTemplateEntity checklistTemplateEntity, @PathVariable Long taskTemplateId) {
 
@@ -44,7 +44,7 @@ public class TaskTemplateChecklistController {
 
     }
 
-    @RequestMapping(value="/saleables/task-template/{taskTemplateId}/checklist-template/save")
+    @RequestMapping(value="/saleables/task-template/{taskTemplateId}/checklist-template/add")
     public @ResponseBody void update(@ModelAttribute ChecklistTemplateEntity checklistTemplateEntity, @PathVariable Long taskTemplateId, Model model) {
 
         hasContraintViolated(checklistTemplateEntity, validator);

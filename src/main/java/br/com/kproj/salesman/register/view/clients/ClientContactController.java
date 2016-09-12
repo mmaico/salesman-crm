@@ -34,7 +34,7 @@ public class ClientContactController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping(value = "/clients/{clientId}/contacts/save", method = {RequestMethod.POST, RequestMethod.PUT})
+    @RequestMapping(value = "/clients/{clientId}/contacts/add", method = {RequestMethod.POST, RequestMethod.PUT})
     public  @ResponseBody void clientContact(@ModelAttribute @Validated ContactEntity contact,
                                       @PathVariable Long clientId, BindingResult bindingResult) {
 

@@ -36,7 +36,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveProduct() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/products/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -48,7 +48,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenProductWithoutPrice() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/products/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("name", "bobstark")
                 .param("description", "descricao do produto")
                 .param("active", "true")
@@ -60,7 +60,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenProductWithoutName() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/products/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("description", "descricao do produto")
                 .param("active", "true")
                 .param("price", "56.45")
@@ -83,7 +83,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenProductPriceLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/products/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -96,7 +96,7 @@ public class ProductControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenProductPriceCostLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/products/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/products/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")

@@ -36,7 +36,7 @@ public class CampaignsController {
     }
 
 
-    @RequestMapping(value = "/campaigns/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/campaigns/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute @Validated Campaign campaign, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -53,7 +53,7 @@ public class CampaignsController {
         return "/campaigns/" + campaignLoad.getId();
     }
 
-    @RequestMapping(value = "/campaigns/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/campaigns/add", method = RequestMethod.PUT)
     public @ResponseBody String update(@ModelAttribute Campaign campaign, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

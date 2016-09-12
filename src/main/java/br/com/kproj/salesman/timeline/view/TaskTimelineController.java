@@ -38,7 +38,7 @@ public class TaskTimelineController {
     private SecurityHelper security;
 
 
-    @RequestMapping(value = "/tasks/{taskId}/logactivity/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/tasks/{taskId}/logactivity/add", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity saveOfTask(@PathVariable Long taskId, @ModelAttribute LogActivityVO logActivityVO,
                                                       BindingResult bindingResult) throws IOException {
 

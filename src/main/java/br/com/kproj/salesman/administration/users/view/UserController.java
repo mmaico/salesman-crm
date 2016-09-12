@@ -44,7 +44,7 @@ public class UserController {
     private NormalizeAttrUpdateHelper attributesToUpdate;
 
 
-    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public  @ResponseBody String save(@ModelAttribute User user, @RequestParam(value="avatarFile", required = false) MultipartFile file) throws IOException {
 
         validator.checkRules(user);
@@ -56,7 +56,7 @@ public class UserController {
         return "/users/" + userSaved.get().getId();
     }
 
-    @RequestMapping(value = "/users/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/users/add", method = RequestMethod.PUT)
     public @ResponseBody
     ResponseEntity<Void> update(@ModelAttribute User user) throws IOException {
 

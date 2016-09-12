@@ -29,7 +29,7 @@ public class SaleableTaskTemplateController {
     private NormalizeEntityRequest normalizeEntityRequest;
 
 
-    @RequestMapping(value = "/saleables/{saleableId}/task-template/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/saleables/{saleableId}/task-template/add", method = RequestMethod.POST)
     public  @ResponseBody TaskTemplateDTO save(@ModelAttribute TaskTemplateEntity taskTemplateEntity, @PathVariable Long saleableId) {
 
         hasContraintViolated(taskTemplateEntity, validator);
@@ -42,7 +42,7 @@ public class SaleableTaskTemplateController {
 
     }
 
-    @RequestMapping(value = "/saleables/{saleableId}/task-template/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/saleables/{saleableId}/task-template/add", method = RequestMethod.PUT)
     public @ResponseBody TaskTemplateDTO update(@ModelAttribute TaskTemplateEntity taskTemplateEntity, @PathVariable Long saleableId) {
 
         normalizeEntityRequest.addFieldsToUpdate(taskTemplateEntity);

@@ -35,7 +35,7 @@ public class SalesPackageController {
 
 
 
-    @RequestMapping(value = "/sales-package/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/sales-package/add", method = RequestMethod.POST)
     public @ResponseBody SalePackage save(@ModelAttribute SalePackage salePackage) {
 
         validator.checkRules(salePackage);
@@ -45,7 +45,7 @@ public class SalesPackageController {
         return result.isPresent() ? result.get() : null;
     }
 
-    @RequestMapping(value = "/sales-package/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/sales-package/add", method = RequestMethod.PUT)
     public @ResponseBody
     void update(@ModelAttribute SalePackage salePackage) {
 

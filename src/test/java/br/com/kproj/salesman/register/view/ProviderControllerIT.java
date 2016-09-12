@@ -43,7 +43,7 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveProvider() throws Exception {
 
-        mockMvc.perform(post("/providers/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/providers/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("type", "company")
                 .param("name", "test name")
                 .param("profile.id", PersonProfilesEnum.COMPANY_PROVIDER.get().getId().toString())
@@ -54,7 +54,7 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenProviderNotHaveName() throws Exception {
 
-        mockMvc.perform(post("/providers/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/providers/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("tradingName", "nome fantasia")
                         .param("profile.id", PersonProfilesEnum.COMPANY_PROVIDER.get().getId().toString())
@@ -64,7 +64,7 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenProviderNameLessThan2Characters() throws Exception {
 
-        mockMvc.perform(post("/providers/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/providers/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "t")
                         .param("tradingName", "nome fantasia")
@@ -75,7 +75,7 @@ public class ProviderControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenProviderTradingnameGreaterThan120Characters() throws Exception {
 
-        mockMvc.perform(post("/providers/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/providers/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("type", "company")
                         .param("name", "Client Name")
                         .param("company.tradingName", "qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35qwertyghg10GGGGGGGGG20FFFFFFFFF30GGGGG35")

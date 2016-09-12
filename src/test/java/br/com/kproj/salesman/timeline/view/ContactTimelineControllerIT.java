@@ -59,7 +59,7 @@ public class ContactTimelineControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveTimelineActivityByContact() throws Exception {
 
-        mockMvc.perform(post("/contact/1/logactivity/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/contact/1/logactivity/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("logActivity.type", "EMAIL")
                 .param("logActivity.description", "descricao da atividade")
         ).andExpect(status().isOk());

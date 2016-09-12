@@ -6,6 +6,7 @@ import br.com.kproj.salesman.delivery2.tasks_template.model.region.Region;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface TaskRepository extends BaseRepository<Task, Long> {
 
@@ -14,5 +15,7 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
     Collection<Task> findAll(Saleable saleable, Region region);
 
     void delete(Task task);
+
+    Optional<Task> add(Task task, Saleable saleable);
 
 }

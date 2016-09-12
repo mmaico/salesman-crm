@@ -43,7 +43,7 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveTaskTemplateOnlyRequiredFields() throws Exception {
 
-        mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/saleables/1/task-template/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("region.id", "2")
         ).andExpect(status().isOk());
@@ -52,7 +52,7 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenNotHaveTitle() throws Exception {
 
-        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("region.id", "2")
         ).andExpect(status().isBadRequest()).andReturn().getResponse();
 
@@ -64,7 +64,7 @@ public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnUrlWithNewId() throws Exception {
 
-        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        MockHttpServletResponse response = mockMvc.perform(post("/saleables/1/task-template/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("region.id", "2")
         ).andExpect(status().isOk()).andReturn().getResponse();

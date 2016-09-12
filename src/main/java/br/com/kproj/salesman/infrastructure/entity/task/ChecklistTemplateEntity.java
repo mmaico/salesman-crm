@@ -23,6 +23,11 @@ public class ChecklistTemplateEntity extends Identifiable {
     @NotNull(message = "checklist.template.tasktemplate.null")
     private TaskTemplateEntity taskTemplateEntity;
 
+    public ChecklistTemplateEntity(){}
+    public ChecklistTemplateEntity(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return this.id;

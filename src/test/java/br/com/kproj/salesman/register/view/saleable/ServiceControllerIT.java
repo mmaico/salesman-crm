@@ -36,7 +36,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveService() throws Exception {
 
-        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -48,7 +48,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenServiceWithoutPrice() throws Exception {
 
-        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -60,7 +60,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenServiceWithoutName() throws Exception {
 
-        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("description", "descricao do produto")
                         .param("active", "true")
                         .param("price", "56.45")
@@ -84,7 +84,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenServicePriceLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
@@ -97,7 +97,7 @@ public class ServiceControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldNotSaveWhenServicePriceCostLessThanZero() throws Exception {
 
-        mockMvc.perform(post("/services/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/services/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "bobstark")
                         .param("description", "descricao do produto")
                         .param("active", "true")
