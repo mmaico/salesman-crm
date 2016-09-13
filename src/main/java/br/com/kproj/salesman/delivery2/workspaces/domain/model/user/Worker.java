@@ -9,6 +9,11 @@ public class Worker extends ModelIdentifiable {
 
     private Long id;
 
+    public Worker(){}
+    public Worker(Long id) {
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;
