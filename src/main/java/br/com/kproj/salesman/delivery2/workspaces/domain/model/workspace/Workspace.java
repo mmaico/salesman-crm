@@ -5,6 +5,8 @@ import br.com.kproj.salesman.delivery2.workspaces.domain.model.user.Worker;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
+import java.util.List;
+
 @Model
 public class Workspace extends ModelIdentifiable {
 
@@ -12,7 +14,7 @@ public class Workspace extends ModelIdentifiable {
 
     private SalesOrder salesOrder;
 
-    private Worker user;
+    private List<Worker> workers;
 
     @Override
     public Long getId() {
@@ -31,11 +33,11 @@ public class Workspace extends ModelIdentifiable {
         this.salesOrder = salesOrder;
     }
 
-    public Worker getUser() {
-        return user;
+    public List<Worker> getWorkers() {
+        return workers;
     }
 
-    public void setUser(Worker user) {
-        this.user = user;
+    public void setWorkers(List<Worker> workers) {
+        this.workers = workers;
     }
 }
