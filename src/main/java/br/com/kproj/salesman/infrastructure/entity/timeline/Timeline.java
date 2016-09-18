@@ -4,7 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.timeline;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -45,7 +45,7 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="personal_activity_id")
-    private PersonalActivity personalActivity;
+    private PersonalActivityEntity personalActivityEntity;
 
     @OneToOne
     @JoinColumn(name="campaign_id")
@@ -122,12 +122,12 @@ public class Timeline extends Identifiable {
         this.taskEntity = taskEntity;
     }
 
-    public PersonalActivity getPersonalActivity() {
-        return personalActivity;
+    public PersonalActivityEntity getPersonalActivityEntity() {
+        return personalActivityEntity;
     }
 
-    public void setPersonalActivity(PersonalActivity personalActivity) {
-        this.personalActivity = personalActivity;
+    public void setPersonalActivityEntity(PersonalActivityEntity personalActivityEntity) {
+        this.personalActivityEntity = personalActivityEntity;
     }
 
     public Campaign getCampaign() {

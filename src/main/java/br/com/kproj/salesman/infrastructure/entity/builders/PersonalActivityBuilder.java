@@ -1,13 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
 
-public class PersonalActivityBuilder extends AbstractBuilder<PersonalActivity>  {
+public class PersonalActivityBuilder extends AbstractBuilder<PersonalActivityEntity>  {
 
 	public PersonalActivityBuilder() {
-		this.entity = new PersonalActivity();
+		this.entity = new PersonalActivityEntity();
 	}
 
 	public PersonalActivityBuilder(Long id) {

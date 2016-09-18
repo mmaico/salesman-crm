@@ -3,7 +3,7 @@ package br.com.kproj.salesman.timeline.application;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -77,7 +77,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
     }
 
     @Override
-    public Timeline register(PersonalActivity activity, TimelineActivity item) {
+    public Timeline register(PersonalActivityEntity activity, TimelineActivity item) {
         Timeline timeline = service.register(activity);
         saveActivity(item, timeline);
 

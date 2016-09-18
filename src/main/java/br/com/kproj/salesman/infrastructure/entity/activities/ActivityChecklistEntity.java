@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="personal_activity_checklists")
-public class ActivityChecklist extends Identifiable {
+public class ActivityChecklistEntity extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -23,7 +23,7 @@ public class ActivityChecklist extends Identifiable {
     @ManyToOne
     @JoinColumn(name="personal_activity_id")
     @NotNull(message = "personal.activity.checklist.task.null")
-    private PersonalActivity activity;
+    private PersonalActivityEntity activity;
 
     public Long getId() {
         return id;
@@ -57,11 +57,11 @@ public class ActivityChecklist extends Identifiable {
         isDone = done;
     }
 
-    public PersonalActivity getActivity() {
+    public PersonalActivityEntity getActivity() {
         return activity;
     }
 
-    public void setActivity(PersonalActivity activity) {
+    public void setActivity(PersonalActivityEntity activity) {
         this.activity = activity;
     }
 }

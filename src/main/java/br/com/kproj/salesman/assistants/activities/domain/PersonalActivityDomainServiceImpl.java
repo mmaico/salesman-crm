@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.assistants.activities.domain;
 
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRuleLegacy;
@@ -24,7 +24,7 @@ public class PersonalActivityDomainServiceImpl implements PersonalActivityDomain
     private UserEntityRepository userEntityRepository;
 
 
-    Map<String, CheckRuleLegacy<PersonalActivity>> persistRules = new HashMap<>();
+    Map<String, CheckRuleLegacy<PersonalActivityEntity>> persistRules = new HashMap<>();
 
     {
         persistRules.put(description("activity.invalid.title"), (activity) -> isBlank(activity.getTitle()));
@@ -39,7 +39,7 @@ public class PersonalActivityDomainServiceImpl implements PersonalActivityDomain
     }
 
     @Override
-    public void checkBusinessRulesFor(PersonalActivity activity) {
+    public void checkBusinessRulesFor(PersonalActivityEntity activity) {
 
 
         Set<String> violations = persistRules.entrySet()

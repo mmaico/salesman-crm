@@ -1,16 +1,16 @@
 package br.com.kproj.salesman.assistants.activities.application;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
-public interface PersonalActivityApplication extends ModelLegacyService<PersonalActivity> {
+public interface PersonalActivityApplication extends ModelLegacyService<PersonalActivityEntity> {
 
-    PersonalActivity register(PersonalActivity personalActivity);
+    PersonalActivityEntity register(PersonalActivityEntity personalActivityEntity);
 
-    PersonalActivity registerSubtask(PersonalActivity parent, PersonalActivity taskChild);
+    PersonalActivityEntity registerSubtask(PersonalActivityEntity parent, PersonalActivityEntity taskChild);
 
 
-    void changeStatus(PersonalActivity activity, UserEntity userChanger);
+    void changeStatus(PersonalActivityEntity activity, UserEntity userChanger);
 
 }

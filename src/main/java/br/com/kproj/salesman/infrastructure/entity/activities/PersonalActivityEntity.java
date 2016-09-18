@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name="personal_activity")
-public class PersonalActivity extends Identifiable implements TimelinePresent {
+public class PersonalActivityEntity extends Identifiable implements TimelinePresent {
 
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
 
     @OneToMany(cascade =CascadeType.ALL)
     @JoinColumn(name="parent_id")
-    private List<PersonalActivity> activitiesChildren;
+    private List<PersonalActivityEntity> activitiesChildren;
 
     @Column(name = "parent_id", updatable =false, insertable = false)
     private Long parentId;
@@ -42,7 +42,7 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
     private PersonalAcvitityStatus status;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-    private List<ActivityChecklist> checklist;
+    private List<ActivityChecklistEntity> checklist;
 
     @ManyToOne
     @JoinColumn(name="owner_id")
@@ -59,16 +59,16 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
 
     @Transient
     @IgnoreField
-    private PersonalActivity parent;
+    private PersonalActivityEntity parent;
 
-    public void addChild(PersonalActivity task) {
+    public void addChild(PersonalActivityEntity task) {
         if (this.activitiesChildren == null) {
             this.activitiesChildren = Lists.newArrayList();
         }
         this.activitiesChildren.add(task);
     }
 
-    public void addCheckList(ActivityChecklist checklist) {
+    public void addCheckList(ActivityChecklistEntity checklist) {
         if (this.checklist == null) {
             this.checklist = Lists.newArrayList();
         }
@@ -100,11 +100,11 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
         this.description = description;
     }
 
-    public List<PersonalActivity> getActivitiesChildren() {
+    public List<PersonalActivityEntity> getActivitiesChildren() {
         return activitiesChildren;
     }
 
-    public void setActivitiesChildren(List<PersonalActivity> activitiesChildren) {
+    public void setActivitiesChildren(List<PersonalActivityEntity> activitiesChildren) {
         this.activitiesChildren = activitiesChildren;
     }
 
@@ -116,11 +116,11 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
         this.deadline = deadline;
     }
 
-    public List<ActivityChecklist> getChecklist() {
+    public List<ActivityChecklistEntity> getChecklist() {
         return checklist;
     }
 
-    public void setChecklist(List<ActivityChecklist> checklist) {
+    public void setChecklist(List<ActivityChecklistEntity> checklist) {
         this.checklist = checklist;
     }
 
@@ -140,11 +140,11 @@ public class PersonalActivity extends Identifiable implements TimelinePresent {
         this.parentId = parentId;
     }
 
-    public PersonalActivity getParent() {
+    public PersonalActivityEntity getParent() {
         return parent;
     }
 
-    public void setParent(PersonalActivity parent) {
+    public void setParent(PersonalActivityEntity parent) {
         this.parent = parent;
     }
 

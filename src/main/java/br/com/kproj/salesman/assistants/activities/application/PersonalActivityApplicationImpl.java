@@ -3,7 +3,7 @@ package br.com.kproj.salesman.assistants.activities.application;
 import br.com.kproj.salesman.assistants.activities.domain.PersonalActivityDomainService;
 import br.com.kproj.salesman.assistants.activities.infrastructure.PersonalAcvitityRepository;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -20,7 +20,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Collections.emptySet;
 
 @Service
-public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<PersonalActivity> implements PersonalActivityApplication {
+public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<PersonalActivityEntity> implements PersonalActivityApplication {
 
 	@Autowired
 	private PersonalAcvitityRepository repository;
@@ -29,8 +29,8 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     private PersonalActivityDomainService service;
 
     @Override
-    public PersonalActivity register(PersonalActivity activity) {
-        PersonalActivity activitySaved;
+    public PersonalActivityEntity register(PersonalActivityEntity activity) {
+        PersonalActivityEntity activitySaved;
 
         if (!activity.isNew()) {
             activity.setStatus(PersonalAcvitityStatus.WAITING);
@@ -41,7 +41,7 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
         }
 
         if (activity.hasValidParent()) {
-            Optional<PersonalActivity> parentLoaded = repository.getOne(activity.getParent().getId());
+            Optional<PersonalActivityEntity> parentLoaded = repository.getOne(activity.getParent().getId());
             if (parentLoaded.isPresent()) {
                 parentLoaded.get().addChild(activitySaved);
             }
@@ -51,10 +51,10 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     }
 
     @Override
-    public PersonalActivity registerSubtask(PersonalActivity parent, PersonalActivity activityChild) {
+    public PersonalActivityEntity registerSubtask(PersonalActivityEntity parent, PersonalActivityEntity activityChild) {
 
 
-        Optional<PersonalActivity> activityParentLoaded = repository.getOne(parent.getId());
+        Optional<PersonalActivityEntity> activityParentLoaded = repository.getOne(parent.getId());
 
         if (!activityParentLoaded.isPresent()) {
             throw new ValidationException(Sets.newHashSet("activity.child.with.invalid.parent"));
@@ -66,9 +66,9 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     }
 
     @Override
-    public void changeStatus(PersonalActivity activity, UserEntity userChange) {
+    public void changeStatus(PersonalActivityEntity activity, UserEntity userChange) {
 
-        PersonalActivity activityLoaded = repository.findOne(activity.getId());
+        PersonalActivityEntity activityLoaded = repository.findOne(activity.getId());
 
         hasErrors(isNull(activityLoaded) ? newHashSet("activity.not.found") : emptySet())
                 .throwing(ValidationException.class);
@@ -78,7 +78,7 @@ public class PersonalActivityApplicationImpl extends BaseModelServiceLegacyImpl<
     }
 
 
-    public BaseRepositoryLegacy<PersonalActivity, Long> getRepository() {
+    public BaseRepositoryLegacy<PersonalActivityEntity, Long> getRepository() {
         return repository;
     }
 }

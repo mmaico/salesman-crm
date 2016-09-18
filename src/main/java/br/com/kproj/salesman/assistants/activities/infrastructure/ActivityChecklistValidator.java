@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.assistants.activities.infrastructure;
 
-import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
+import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklistEntity;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -20,12 +20,12 @@ public class ActivityChecklistValidator implements Validator, InitializingBean {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return ActivityChecklist.class.equals(clazz);
+        return ActivityChecklistEntity.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        ActivityChecklist checklist = (ActivityChecklist) target;
+        ActivityChecklistEntity checklist = (ActivityChecklistEntity) target;
         Set<ConstraintViolation<Object>> constraints = validator.validate(checklist);
 
         constraints.forEach(error ->

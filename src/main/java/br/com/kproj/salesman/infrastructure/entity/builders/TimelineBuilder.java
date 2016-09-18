@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
@@ -46,9 +46,9 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 		this.entity.setProposal(businessProposalEntity);
 	}
 
-	public TimelineBuilder(PersonalActivity personal) {
+	public TimelineBuilder(PersonalActivityEntity personal) {
 		this();
-		this.entity.setPersonalActivity(personal);
+		this.entity.setPersonalActivityEntity(personal);
 	}
 	
 	public TimelineBuilder withContact(ContactEntity contact) {
@@ -66,8 +66,8 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
         return this;
     }
 
-	public TimelineBuilder withPersonalActivity(PersonalActivity personalActivity) {
-		this.entity.setPersonalActivity(personalActivity);
+	public TimelineBuilder withPersonalActivity(PersonalActivityEntity personalActivityEntity) {
+		this.entity.setPersonalActivityEntity(personalActivityEntity);
 		return this;
 	}
 
@@ -107,8 +107,8 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 			return new TimelineBuilder((BusinessProposalEntity) timelinePresent);
 		} else if (timelinePresent instanceof TaskEntity) {
 			return new TimelineBuilder((TaskEntity) timelinePresent);
-		} else if (timelinePresent instanceof PersonalActivity) {
-			return new TimelineBuilder((PersonalActivity) timelinePresent);
+		} else if (timelinePresent instanceof PersonalActivityEntity) {
+			return new TimelineBuilder((PersonalActivityEntity) timelinePresent);
 		} else {
 			throw new ValidationException(Sets.newHashSet("timeline.builder.invalid.type"));
 		}

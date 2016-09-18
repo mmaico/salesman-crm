@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QPersonalActivity is a Querydsl query type for PersonalActivity
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
+public class QPersonalActivity extends EntityPathBase<PersonalActivityEntity> {
 
     private static final long serialVersionUID = 1695703553L;
 
@@ -24,11 +24,11 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<PersonalActivity, QPersonalActivity> activitiesChildren = this.<PersonalActivity, QPersonalActivity>createList("activitiesChildren", PersonalActivity.class, QPersonalActivity.class, PathInits.DIRECT2);
+    public final ListPath<PersonalActivityEntity, QPersonalActivity> activitiesChildren = this.<PersonalActivityEntity, QPersonalActivity>createList("activitiesChildren", PersonalActivityEntity.class, QPersonalActivity.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity assignment;
 
-    public final ListPath<ActivityChecklist, QActivityChecklist> checklist = this.<ActivityChecklist, QActivityChecklist>createList("checklist", ActivityChecklist.class, QActivityChecklist.class, PathInits.DIRECT2);
+    public final ListPath<ActivityChecklistEntity, QActivityChecklist> checklist = this.<ActivityChecklistEntity, QActivityChecklist>createList("checklist", ActivityChecklistEntity.class, QActivityChecklist.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.util.Date> deadline = createDateTime("deadline", java.util.Date.class);
 
@@ -47,10 +47,10 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
     public final StringPath title = createString("title");
 
     public QPersonalActivity(String variable) {
-        this(PersonalActivity.class, forVariable(variable), INITS);
+        this(PersonalActivityEntity.class, forVariable(variable), INITS);
     }
 
-    public QPersonalActivity(Path<? extends PersonalActivity> path) {
+    public QPersonalActivity(Path<? extends PersonalActivityEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -59,10 +59,10 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivity> {
     }
 
     public QPersonalActivity(PathMetadata<?> metadata, PathInits inits) {
-        this(PersonalActivity.class, metadata, inits);
+        this(PersonalActivityEntity.class, metadata, inits);
     }
 
-    public QPersonalActivity(Class<? extends PersonalActivity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QPersonalActivity(Class<? extends PersonalActivityEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assignment"), inits.get("assignment")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;

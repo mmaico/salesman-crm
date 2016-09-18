@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.assistants.activities.application;
 
 
-import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivity;
+import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklistEntity;
+import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
 import java.util.List;
 
-public interface ActivityChecklistApplication extends ModelLegacyService<ActivityChecklist> {
+public interface ActivityChecklistApplication extends ModelLegacyService<ActivityChecklistEntity> {
 
-    ActivityChecklist register(ActivityChecklist checklist);
+    ActivityChecklistEntity register(ActivityChecklistEntity checklist);
 
-    List<ActivityChecklist> findCheckListBy(PersonalActivity personalActivity);
+    List<ActivityChecklistEntity> findCheckListBy(PersonalActivityEntity personalActivityEntity);
 
-    void completed(ActivityChecklist activityChecklist);
+    void completed(ActivityChecklistEntity activityChecklistEntity);
 
 }

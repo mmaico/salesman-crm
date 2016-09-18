@@ -1,17 +1,16 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklist;
+import br.com.kproj.salesman.infrastructure.entity.activities.ActivityChecklistEntity;
 
 
-public class ActivityChecklistBuilder extends AbstractBuilder<ActivityChecklist> {
+public class ActivityChecklistBuilder extends AbstractBuilder<ActivityChecklistEntity> {
 
-	private ActivityChecklist activityChecklist = new ActivityChecklist();
+	private ActivityChecklistEntity activityChecklistEntity = new ActivityChecklistEntity();
 
     public ActivityChecklistBuilder() {}
 
     public ActivityChecklistBuilder(Long id) {
-        activityChecklist.setId(id);
+        activityChecklistEntity.setId(id);
     }
 
 
@@ -21,8 +20,8 @@ public class ActivityChecklistBuilder extends AbstractBuilder<ActivityChecklist>
     }
 
 
-	public ActivityChecklist build() {
-		return this.activityChecklist;
+	public ActivityChecklistEntity build() {
+		return this.activityChecklistEntity;
 	}
 
 

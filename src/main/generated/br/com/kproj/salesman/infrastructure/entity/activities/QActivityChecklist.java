@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QActivityChecklist is a Querydsl query type for ActivityChecklist
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QActivityChecklist extends EntityPathBase<ActivityChecklist> {
+public class QActivityChecklist extends EntityPathBase<ActivityChecklistEntity> {
 
     private static final long serialVersionUID = -2137363195L;
 
@@ -33,10 +33,10 @@ public class QActivityChecklist extends EntityPathBase<ActivityChecklist> {
     public final StringPath name = createString("name");
 
     public QActivityChecklist(String variable) {
-        this(ActivityChecklist.class, forVariable(variable), INITS);
+        this(ActivityChecklistEntity.class, forVariable(variable), INITS);
     }
 
-    public QActivityChecklist(Path<? extends ActivityChecklist> path) {
+    public QActivityChecklist(Path<? extends ActivityChecklistEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -45,10 +45,10 @@ public class QActivityChecklist extends EntityPathBase<ActivityChecklist> {
     }
 
     public QActivityChecklist(PathMetadata<?> metadata, PathInits inits) {
-        this(ActivityChecklist.class, metadata, inits);
+        this(ActivityChecklistEntity.class, metadata, inits);
     }
 
-    public QActivityChecklist(Class<? extends ActivityChecklist> type, PathMetadata<?> metadata, PathInits inits) {
+    public QActivityChecklist(Class<? extends ActivityChecklistEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.activity = inits.isInitialized("activity") ? new QPersonalActivity(forProperty("activity"), inits.get("activity")) : null;
     }

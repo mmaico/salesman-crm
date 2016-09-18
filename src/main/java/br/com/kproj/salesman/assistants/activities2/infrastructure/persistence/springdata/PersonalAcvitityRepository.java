@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.assistants.activities.infrastructure;
+package br.com.kproj.salesman.assistants.activities2.infrastructure.persistence.springdata;
 
 
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface PersonalAcvitityRepository extends BaseRepositoryLegacy<PersonalActivityEntity, Long> {
 
-    @Query("SELECT pa FROM PersonalActivity AS pa WHERE pa.id = :id")
-    Optional<PersonalActivityEntity> getOne(@Param("id")Long id);
+    @Query("SELECT pa FROM PersonalActivityEntity AS pa WHERE pa.id = :id")
+    Optional<PersonalActivityEntity> getOne(@Param("id") Long id);
 }
