@@ -2,10 +2,8 @@ package br.com.kproj.salesman.assistants.activities2.application.impl;
 
 import br.com.kproj.salesman.assistants.activities2.application.ActivityFacade;
 import br.com.kproj.salesman.assistants.activities2.application.validators.ActivityBusinessRules;
-import br.com.kproj.salesman.assistants.activities2.domain.model.personal.Activity;
-import br.com.kproj.salesman.assistants.activities2.domain.model.personal.ActivityRepository;
-import br.com.kproj.salesman.assistants.activities2.domain.model.personal.ActivityValidator;
-import br.com.kproj.salesman.assistants.activities2.domain.model.personal.SubActivity;
+import br.com.kproj.salesman.assistants.activities2.domain.model.personal.*;
+import br.com.kproj.salesman.assistants.activities2.domain.model.user.Owner;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +18,34 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
     private ActivityRepository repository;
 
     @Autowired
-    private ActivityValidator validator;
+    private ActivityValidator activityRules;
 
     @Autowired
-    private ActivityBusinessRules activityRules;
+    private SubActivityValidator subactivityValidator;
+
+    @Autowired
+    private ChangeStatusValidator changeStatusRules;
 
 
     @Override
     public Optional<Activity> register(Activity activity) {
         activityRules.checkRules(activity);
 
-        return null;
+        return repository.save(activity);
     }
 
     @Override
     public Optional<SubActivity> register(SubActivity subActivity) {
-        return null;
+        subactivityValidator.checkRules(subActivity);
+
+        return repository.save(subActivity);
+    }
+
+    @Override
+    public void changeStatus(Owner owner, ChangeStatus changeStatus) {
+        changeStatusRules.checkRules(owner, changeStatus);
+
+        owner.changeStatus(changeStatus.getActivity()).toNewStatus(changeStatus.getNewStatus());
     }
 
     @Override

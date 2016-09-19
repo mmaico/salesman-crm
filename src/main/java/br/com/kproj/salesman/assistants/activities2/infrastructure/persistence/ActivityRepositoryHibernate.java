@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.activities2.infrastructure.persistence;
 
 import br.com.kproj.salesman.assistants.activities2.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities2.domain.model.personal.ActivityRepository;
+import br.com.kproj.salesman.assistants.activities2.domain.model.personal.Status;
 import br.com.kproj.salesman.assistants.activities2.domain.model.personal.SubActivity;
 import br.com.kproj.salesman.assistants.activities2.infrastructure.persistence.springdata.PersonalAcvitityRepository;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
@@ -59,7 +60,13 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, P
         return Optional.of(subactivity);
     }
 
+    @Override
+    public void changeStatus(Activity activity, Status newStatus) {
+        PersonalActivityEntity activityEntity = repository.findOne(activity.getId());
 
+        PersonalAcvitityStatus newStatusEntity = PersonalAcvitityStatus.get(newStatus.name());
+        activityEntity.setStatus(newStatusEntity);
+    }
 
 
     @Override

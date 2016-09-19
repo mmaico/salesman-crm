@@ -19,6 +19,8 @@ public abstract class ModelIdentifiable implements Serializable {
     @UpdateAttributes
     private Set<String> fields = new HashSet<>();
 
+    protected DslContext context = new DslContext();
+
     public abstract Long getId();
 
 
