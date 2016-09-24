@@ -80,6 +80,7 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     private TaskEntity parent;
 
 
+    public TaskEntity() {}
     public TaskEntity(Long id) {
         this.id = id;
     }

@@ -46,8 +46,6 @@ public class Activity extends ModelIdentifiable {
 
 
 
-
-
     @Override
     public Long getId() {
         return id;

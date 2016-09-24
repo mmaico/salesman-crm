@@ -1,18 +1,16 @@
 package br.com.kproj.salesman.products_catalog.view;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
+import br.com.kproj.salesman.products_catalog.application.SaleableUnitFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController
 public class SaleableEndpoint {
 
     @Autowired
-    private SaleableApplication service;
+    private SaleableUnitFacade service;
 
 
 
@@ -20,9 +18,9 @@ public class SaleableEndpoint {
     public @ResponseBody
     SaleableUnitEntity getSaleable(@PathVariable Long saleableId) {
 
-        Optional<SaleableUnitEntity> saleable = service.getOne(saleableId);
+        //Optional<SaleableUnitEntity> saleable = service.getOne(saleableId);
 
-        return saleable.isPresent() ? saleable.get() : null;
+        return null; //saleable.isPresent() ? saleable.get() : null;
     }
 
 

@@ -41,7 +41,6 @@ public abstract class BaseRespositoryImpl<T extends ModelIdentifiable, ENTITY ex
     @Override
     public Optional<T> save(T entity) {
 
-
         if (entity.isNew()) {
             ENTITY resultEntity = BusinessModelClone.from(entity).convertTo(getEntityClass());
             return Optional.ofNullable(getConverter().convert(getRepository().save(resultEntity)));

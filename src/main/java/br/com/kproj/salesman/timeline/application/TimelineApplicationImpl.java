@@ -1,10 +1,8 @@
 package br.com.kproj.salesman.timeline.application;
 
-import br.com.kproj.salesman.assistants.activities.infrastructure.PersonalAcvitityRepository;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
-import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -35,7 +33,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
 								   ContactRepository contactRepository, TaskRepository taskRepository,
-								   PersonalAcvitityRepository personalAcvitityRepository, IncidentRepository incidentRepository
+								    IncidentRepository incidentRepository
 								   ) {
 		this.timelineRepository = timelineRepository;
 
@@ -44,7 +42,6 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
 		repositories.put(ContactEntity.class, contactRepository);
 		repositories.put(TaskEntity.class, taskRepository);
-		repositories.put(PersonalActivityEntity.class, personalAcvitityRepository);
 		repositories.put(Incident.class, incidentRepository);
 	}
 

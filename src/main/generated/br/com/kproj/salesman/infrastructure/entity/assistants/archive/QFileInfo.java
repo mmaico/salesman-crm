@@ -14,7 +14,7 @@ import com.mysema.query.types.path.PathInits;
  * QFileInfo is a Querydsl query type for FileInfo
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QFileInfo extends EntityPathBase<FileInfo> {
+public class QFileInfo extends EntityPathBase<FileInfoEntity> {
 
     private static final long serialVersionUID = 856068128L;
 
@@ -34,15 +34,15 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity owner;
 
-    public final ListPath<SharedWith, QSharedWith> sharedWith = this.<SharedWith, QSharedWith>createList("sharedWith", SharedWith.class, QSharedWith.class, PathInits.DIRECT2);
+    public final ListPath<SharedWithEntity, QSharedWith> sharedWith = this.<SharedWithEntity, QSharedWith>createList("sharedWith", SharedWithEntity.class, QSharedWith.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
     public QFileInfo(String variable) {
-        this(FileInfo.class, forVariable(variable), INITS);
+        this(FileInfoEntity.class, forVariable(variable), INITS);
     }
 
-    public QFileInfo(Path<? extends FileInfo> path) {
+    public QFileInfo(Path<? extends FileInfoEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -51,10 +51,10 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
     }
 
     public QFileInfo(PathMetadata<?> metadata, PathInits inits) {
-        this(FileInfo.class, metadata, inits);
+        this(FileInfoEntity.class, metadata, inits);
     }
 
-    public QFileInfo(Class<? extends FileInfo> type, PathMetadata<?> metadata, PathInits inits) {
+    public QFileInfo(Class<? extends FileInfoEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFile(forProperty("file")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;

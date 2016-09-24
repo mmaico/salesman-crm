@@ -2,8 +2,6 @@ package br.com.kproj.salesman.products_catalog.view;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
-import br.com.kproj.salesman.register.application.contract.saleable.SaleableApplication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
@@ -15,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class SaleableController {
 
-    @Autowired
-    private SaleableApplication application;
+//    @Autowired
+//    private SaleableApplication application;
 
 
 
@@ -26,7 +24,7 @@ public class SaleableController {
 
         Pager pager = Pager.binding(pageable);
 
-        Iterable<SaleableUnitEntity> result = this.application.findAll(pager);
+        Iterable<SaleableUnitEntity> result = null; //this.application.findAll(pager);
 
         model.addAttribute("saleables", result);
         return new ModelAndView("/saleables/saleablesList");

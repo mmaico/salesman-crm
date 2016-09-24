@@ -17,10 +17,6 @@ public class OwnerRepositoryHibernate extends BaseRespositoryImpl<Owner, UserEnt
     @Autowired
     private UserEntityRepository repository;
 
-
-
-
-
     @Override
     public BaseRepositoryLegacy<UserEntity, Long> getRepository() {
         return repository;

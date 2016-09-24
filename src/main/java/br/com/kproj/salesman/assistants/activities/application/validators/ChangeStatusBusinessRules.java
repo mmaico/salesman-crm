@@ -32,7 +32,7 @@ public class ChangeStatusBusinessRules implements ChangeStatusValidator {
         rules.put(description("activity.is.invalid"), change -> change.changeStatus.getActivity() == null
                 && change.changeStatus.getActivity().isNew() && !activityRepository.findOne(change.changeStatus.getActivity().getId()).isPresent());
 
-        rules.put(description("activity.invalid.status"), change -> change.changeStatus.getNewStatus() == null);
+        rules.put(description("activity.invalid.status"), change -> change.changeStatus.getStatus() == null);
         rules.put(description("activity.invalid.status"), change -> change.owner == null
                 || change.owner.isNew() || !repository.findOne(change.owner.getId()).isPresent());
     }

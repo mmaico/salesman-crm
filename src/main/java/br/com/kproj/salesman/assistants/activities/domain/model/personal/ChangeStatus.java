@@ -15,7 +15,7 @@ public class ChangeStatus {
         return activity;
     }
 
-    public Status getNewStatus() {
+    public Status getStatus() {
         return newStatus;
     }
 }

@@ -18,9 +18,6 @@ public class AssignerRepositoryHibernate extends BaseRespositoryImpl<Assigner, U
     private UserEntityRepository repository;
 
 
-
-
-
     @Override
     public BaseRepositoryLegacy<UserEntity, Long> getRepository() {
         return repository;

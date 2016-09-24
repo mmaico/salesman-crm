@@ -44,7 +44,7 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
     public void changeStatus(Owner owner, ChangeStatus changeStatus) {
         changeStatusRules.checkRules(owner, changeStatus);
 
-        owner.changeStatus(changeStatus.getActivity()).toNewStatus(changeStatus.getNewStatus());
+        owner.changeStatus(changeStatus.getActivity()).toNewStatus(changeStatus.getStatus());
     }
 
     @Override
