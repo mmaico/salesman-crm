@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="campaings")
-public class Campaign extends Identifiable {
+public class CampaignEntity extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 

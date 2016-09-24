@@ -54,15 +54,13 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
     }
 
     @Override
-    public void changeTemperature(Seller sellerWillChange, NegotiationChangeTemperature negotiationToChange) {
+    public void changeTemperature(Seller seller, NegotiationChangeTemperature negotiationToChange) {
 
-        businessRules.isValidBusinessRulesFor(sellerWillChange, negotiationToChange);
+        businessRules.isValidBusinessRulesFor(seller, negotiationToChange);
+        Negotiation negotiation = negotiationToChange.getNegotiation();
+        Temperature newTemperature = negotiationToChange.getNewTemperature();
 
-        Seller seller = sellerRepository.findOne(sellerWillChange.getId()).get();
-
-        seller.changeTemperatureFrom(negotiationToChange);
-
-        Negotiation negotiation = repository.findOne(negotiationToChange.getNegotiation().getId()).get();
+        seller.changeTemperature(newTemperature).from(negotiation);
 
         if (negotiation.temperatureWasClosedWon()) {
             eventHandler.negotiationClosedWon(negotiation);

@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.Incident;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
-import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
+import br.com.kproj.salesman.infrastructure.entity.campaigns.CampaignEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
@@ -49,7 +49,7 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="campaign_id")
-    private Campaign campaign;
+    private CampaignEntity campaignEntity;
 
     @OneToOne
     @JoinColumn(name="incident_id")
@@ -130,12 +130,12 @@ public class Timeline extends Identifiable {
         this.personalActivityEntity = personalActivityEntity;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public CampaignEntity getCampaignEntity() {
+        return campaignEntity;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setCampaignEntity(CampaignEntity campaignEntity) {
+        this.campaignEntity = campaignEntity;
     }
 
     public Incident getIncident() {

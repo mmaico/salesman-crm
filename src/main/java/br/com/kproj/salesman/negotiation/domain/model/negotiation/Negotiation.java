@@ -7,10 +7,14 @@ import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+import static br.com.kproj.salesman.infrastructure.helpers.AutowireHelper.autowire;
 
 
 public class Negotiation extends ModelIdentifiable {
@@ -36,16 +40,27 @@ public class Negotiation extends ModelIdentifiable {
 
     private Temperature temperature;
 
+    @Autowired
+    private NegotiationRepository repository;
+
+    public Negotiation() {
+        autowire(this);
+    }
 
     public boolean temperatureWasClosedWon() {
-        return Temperature.CLOSED_WON.equals(this.temperature);
+        Optional<Negotiation> negotiation = repository.findOne(this.getId());
+        return Temperature.CLOSED_WON.equals(negotiation.get().getTemperature());
     }
 
     public void useInitialTemperature() {
         this.temperature = Temperature.COLD;
     }
 
-
+    public void changeTemperatureFor(Temperature newTemperature) {
+        Optional<Negotiation> negotiation = repository.findOne(this.getId());
+        negotiation.get().setTemperature(newTemperature);
+        repository.save(negotiation.get());
+    }
 
     //getters and setters
 

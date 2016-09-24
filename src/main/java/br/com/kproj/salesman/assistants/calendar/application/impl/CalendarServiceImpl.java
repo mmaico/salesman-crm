@@ -37,7 +37,7 @@ public class CalendarServiceImpl extends BaseModelServiceImpl<Calendar> implemen
         rules.checkRules(params);
         User user = params.getUser();
 
-        return user.add(params.getActivity()).in(params.getCalendar());
+        return user.addAn(params.getActivity()).in(params.getCalendar());
     }
 
     @Override

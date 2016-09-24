@@ -14,7 +14,7 @@ public class User extends ModelIdentifiable {
     private Long id;
 
 
-    public User add(Activity activity) {
+    public User addAn(Activity activity) {
         this.context.add(Activity.class, activity);
         return this;
     }

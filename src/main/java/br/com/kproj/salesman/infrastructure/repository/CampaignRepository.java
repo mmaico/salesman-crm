@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
 
-import br.com.kproj.salesman.infrastructure.entity.campaigns.Campaign;
+import br.com.kproj.salesman.infrastructure.entity.campaigns.CampaignEntity;
 
-public interface CampaignRepository extends BaseRepositoryLegacy<Campaign, Long> {
+public interface CampaignRepository extends BaseRepositoryLegacy<CampaignEntity, Long> {
 
 
 
