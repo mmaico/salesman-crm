@@ -1,20 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
-
+import com.mysema.query.types.Path;
+import com.mysema.query.types.PathMetadata;
 import com.mysema.query.types.path.*;
 
-import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+
+import static com.mysema.query.types.PathMetadataFactory.forVariable;
 
 
 /**
  * QPeriod is a Querydsl query type for Period
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QPeriod extends EntityPathBase<Period> {
+public class QPeriod extends EntityPathBase<PeriodEntity> {
 
     private static final long serialVersionUID = 1307816263L;
 
@@ -35,10 +34,10 @@ public class QPeriod extends EntityPathBase<Period> {
     public final DateTimePath<java.util.Date> startDate = createDateTime("startDate", java.util.Date.class);
 
     public QPeriod(String variable) {
-        this(Period.class, forVariable(variable), INITS);
+        this(PeriodEntity.class, forVariable(variable), INITS);
     }
 
-    public QPeriod(Path<? extends Period> path) {
+    public QPeriod(Path<? extends PeriodEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -47,10 +46,10 @@ public class QPeriod extends EntityPathBase<Period> {
     }
 
     public QPeriod(PathMetadata<?> metadata, PathInits inits) {
-        this(Period.class, metadata, inits);
+        this(PeriodEntity.class, metadata, inits);
     }
 
-    public QPeriod(Class<? extends Period> type, PathMetadata<?> metadata, PathInits inits) {
+    public QPeriod(Class<? extends PeriodEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.calendarActivity = inits.isInitialized("calendarActivity") ? new QCalendarActivity(forProperty("calendarActivity"), inits.get("calendarActivity")) : null;
     }

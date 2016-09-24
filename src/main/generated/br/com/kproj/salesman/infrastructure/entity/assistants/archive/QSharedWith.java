@@ -1,14 +1,16 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
-
 import br.com.kproj.salesman.infrastructure.entity.enums.SharedTypeEntity;
-import com.mysema.query.types.path.*;
-
-import com.mysema.query.types.PathMetadata;
-import javax.annotation.Generated;
 import com.mysema.query.types.Path;
+import com.mysema.query.types.PathMetadata;
+import com.mysema.query.types.path.EntityPathBase;
+import com.mysema.query.types.path.EnumPath;
+import com.mysema.query.types.path.NumberPath;
 import com.mysema.query.types.path.PathInits;
+
+import javax.annotation.Generated;
+
+import static com.mysema.query.types.PathMetadataFactory.forVariable;
 
 
 /**

@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
-
+import com.mysema.query.types.Path;
+import com.mysema.query.types.PathMetadata;
 import com.mysema.query.types.path.*;
 
-import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+
+import static com.mysema.query.types.PathMetadataFactory.forVariable;
 
 
 /**
@@ -57,7 +56,7 @@ public class QFileInfo extends EntityPathBase<FileInfoEntity> {
     public QFileInfo(Class<? extends FileInfoEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFile(forProperty("file")) : null;
-        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
+        this.owner = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 
 }

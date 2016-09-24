@@ -3,7 +3,6 @@ package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackag
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import com.google.common.collect.Lists;
 import com.trex.shared.annotations.EntityReference;
 import org.springframework.beans.factory.annotation.Autowired;
 

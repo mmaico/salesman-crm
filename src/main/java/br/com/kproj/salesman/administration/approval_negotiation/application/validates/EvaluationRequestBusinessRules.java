@@ -8,7 +8,6 @@ import br.com.kproj.salesman.administration.approval_negotiation.domain.model.ap
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.negotiation.NegotiationRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

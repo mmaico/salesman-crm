@@ -35,7 +35,7 @@ public class ActivityBusinessRules implements ActivityValidator {
 
         rules.put(description("activity.invalid.deadline"), (activity) -> activity.getDeadline() == null || activity.getDeadline().before(new Date()));
 
-        rules.put(description("activity.invalid.owner"), (activity) -> activity.getOwner() == null
+        rules.put(description("activity.invalid.user"), (activity) -> activity.getOwner() == null
                 || activity.getOwner().isNew()
                 || !ownerRepository.findOne(activity.getOwner().getId()).isPresent());
 

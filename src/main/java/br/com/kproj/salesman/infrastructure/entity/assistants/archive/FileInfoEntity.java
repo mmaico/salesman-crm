@@ -25,7 +25,7 @@ public class FileInfoEntity extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="owner_id")
-    @NotNull(message = "files.owner.is.required")
+    @NotNull(message = "files.user.is.required")
     private UserEntity owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fileInfo")

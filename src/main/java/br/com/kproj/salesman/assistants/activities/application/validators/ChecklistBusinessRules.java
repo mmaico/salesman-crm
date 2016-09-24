@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.assistants.activities.application.validators;
 
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistValidator;
+import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.beans.factory.annotation.Autowired;

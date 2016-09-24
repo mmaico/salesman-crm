@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
-import static br.com.kproj.salesman.infrastructure.entity.builders.ContactBuilder.createContact;
 
 @RestController
 public class BusinessProposalTimelineController {

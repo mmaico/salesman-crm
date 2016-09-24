@@ -4,7 +4,6 @@ package br.com.kproj.salesman.timeline.view.dto;
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.BusinessProposalApprovalActivity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import com.google.common.collect.Lists;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

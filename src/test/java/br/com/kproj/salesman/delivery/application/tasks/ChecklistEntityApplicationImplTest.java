@@ -1,26 +1,17 @@
 package br.com.kproj.salesman.delivery.application.tasks;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.task.ChecklistRepository;
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.List;
-import java.util.Optional;
-
 import static com.google.common.collect.Lists.newArrayList;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChecklistEntityApplicationImplTest {

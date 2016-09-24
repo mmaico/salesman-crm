@@ -28,7 +28,7 @@ public class CalendarActivity extends Identifiable {
     private CalendarEntity calendarEntity;
 
     @OneToOne(mappedBy = "calendarActivity", cascade = CascadeType.ALL)
-    private Period period;
+    private PeriodEntity periodEntity;
 
     private String location;
 
@@ -70,12 +70,12 @@ public class CalendarActivity extends Identifiable {
         this.description = description;
     }
 
-    public Period getPeriod() {
-        return period;
+    public PeriodEntity getPeriodEntity() {
+        return periodEntity;
     }
 
-    public void setPeriod(Period period) {
-        this.period = period;
+    public void setPeriodEntity(PeriodEntity periodEntity) {
+        this.periodEntity = periodEntity;
     }
 
     public CalendarEntity getCalendarEntity() {

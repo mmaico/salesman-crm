@@ -10,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder.createUser;
-import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 
 public class ActDeliverySalesRepositoryIT extends AbstractIntegrationTest {

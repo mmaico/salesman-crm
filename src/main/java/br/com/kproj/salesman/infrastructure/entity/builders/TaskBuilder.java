@@ -4,11 +4,11 @@ package br.com.kproj.salesman.infrastructure.entity.builders;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.ScheduleTriggerNotification;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import java.util.Date;
 import java.util.List;

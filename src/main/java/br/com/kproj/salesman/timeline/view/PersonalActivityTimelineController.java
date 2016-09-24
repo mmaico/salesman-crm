@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.PersonBuilder.createPerson;
 import static br.com.kproj.salesman.infrastructure.entity.builders.PersonalActivityBuilder.createActivity;
 
 @RestController

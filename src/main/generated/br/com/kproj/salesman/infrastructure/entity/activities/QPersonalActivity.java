@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.activities;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
-
+import com.mysema.query.types.Path;
+import com.mysema.query.types.PathMetadata;
 import com.mysema.query.types.path.*;
 
-import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+
+import static com.mysema.query.types.PathMetadataFactory.forVariable;
 
 
 /**
@@ -65,7 +64,7 @@ public class QPersonalActivity extends EntityPathBase<PersonalActivityEntity> {
     public QPersonalActivity(Class<? extends PersonalActivityEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assignment"), inits.get("assignment")) : null;
-        this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
+        this.owner = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

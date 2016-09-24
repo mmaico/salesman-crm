@@ -1,10 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers.files.annotations;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Anotacao responsavel por marcar o atributo que tem arquivo para ser salvo

@@ -18,8 +18,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static br.com.kproj.salesman.infrastructure.entity.builders.ApprovalBusinessProposalNotificationBuilder.createProposalNotification;
-
 @Service
 public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Notification> implements NotificationApplication {
 

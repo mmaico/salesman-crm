@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.repository.Saleable;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.*;
+import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

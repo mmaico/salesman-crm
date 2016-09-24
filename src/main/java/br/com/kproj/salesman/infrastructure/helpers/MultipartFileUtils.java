@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.springframework.web.multipart.MultipartFile;
 
 public class MultipartFileUtils {
 

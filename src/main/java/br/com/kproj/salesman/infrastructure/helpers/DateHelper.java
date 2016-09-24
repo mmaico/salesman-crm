@@ -9,7 +9,6 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -214,7 +213,7 @@ public class DateHelper {
 			this.date = date;
 
 		}
-		public static Greater create(Date date) {
+		public static Greater greater(Date date) {
 			return new Greater(date);
 		}
 	}
@@ -224,7 +223,7 @@ public class DateHelper {
 		Than(Date date) {
 			this.date = date;
 		}
-		public static Than create(Date date) {
+		public static Than than(Date date) {
 			return new Than(date);
 		}
 	}

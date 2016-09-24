@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.sales.view.dto;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.SaleableItemBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalSaleableItem;
 import com.google.common.collect.Lists;

@@ -7,7 +7,6 @@ import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tools.ant.taskdefs.condition.And;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;

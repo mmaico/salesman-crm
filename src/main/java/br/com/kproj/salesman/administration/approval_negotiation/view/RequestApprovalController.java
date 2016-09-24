@@ -1,9 +1,6 @@
 package br.com.kproj.salesman.administration.approval_negotiation.view;
 
 import br.com.kproj.salesman.administration.approval_negotiation.application.RequestApprovalFacade;
-import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder;
-import br.com.kproj.salesman.infrastructure.entity.builders.RequestApprovalBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

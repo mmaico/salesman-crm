@@ -1,9 +1,7 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.MeasurementUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import org.springframework.stereotype.Component;
 

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 

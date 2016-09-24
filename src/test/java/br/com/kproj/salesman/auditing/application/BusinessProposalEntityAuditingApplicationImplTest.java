@@ -7,7 +7,6 @@ import br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuil
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.events.messages.ProposalAuditingAfterUpdateMessage;
 import br.com.kproj.salesman.infrastructure.repository.BusinessProposalAuditingRepository;
-import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
@@ -19,14 +18,12 @@ import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;

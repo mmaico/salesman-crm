@@ -5,12 +5,9 @@ import br.com.kproj.salesman.administration.users.domain.model.user.UserReposito
 import br.com.kproj.salesman.administration.users.domain.model.user.UserValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

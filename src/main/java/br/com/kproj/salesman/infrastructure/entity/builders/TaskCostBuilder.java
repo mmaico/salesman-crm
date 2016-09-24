@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskCost;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import java.math.BigDecimal;
 

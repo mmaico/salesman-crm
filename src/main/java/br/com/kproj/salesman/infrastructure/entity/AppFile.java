@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import com.google.common.collect.Sets;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
 
 import javax.persistence.*;
 import java.util.Date;

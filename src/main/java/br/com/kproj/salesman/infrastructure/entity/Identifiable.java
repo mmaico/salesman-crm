@@ -4,7 +4,8 @@ import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;

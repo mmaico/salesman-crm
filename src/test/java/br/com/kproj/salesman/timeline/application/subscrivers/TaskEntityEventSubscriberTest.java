@@ -6,14 +6,11 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TaskActivity;
 import br.com.kproj.salesman.infrastructure.events.messages.TaskChangeStatusMessage;
 import br.com.kproj.salesman.timeline.application.TimelineActivitiesApplication;
-import com.google.common.base.Supplier;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;

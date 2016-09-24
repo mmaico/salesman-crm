@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
-import br.com.kproj.salesman.infrastructure.entity.enums.LogActivityTypeEnum;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 
 import javax.persistence.DiscriminatorValue;

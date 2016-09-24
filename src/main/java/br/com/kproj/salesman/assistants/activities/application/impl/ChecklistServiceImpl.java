@@ -2,9 +2,9 @@ package br.com.kproj.salesman.assistants.activities.application.impl;
 
 import br.com.kproj.salesman.assistants.activities.application.ChecklistFacade;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.AddChecklistInActivity;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistRepository;
+import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

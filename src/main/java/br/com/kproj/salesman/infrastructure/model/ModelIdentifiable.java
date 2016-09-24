@@ -4,7 +4,6 @@ import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import com.trex.shared.annotations.UpdateAttributes;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

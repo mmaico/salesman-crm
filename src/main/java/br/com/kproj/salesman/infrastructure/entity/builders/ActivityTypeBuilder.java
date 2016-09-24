@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.ActivityType;
 
 

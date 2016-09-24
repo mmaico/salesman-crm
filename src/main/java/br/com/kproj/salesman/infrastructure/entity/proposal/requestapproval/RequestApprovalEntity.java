@@ -4,7 +4,6 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApprovalItemEntity.StatusEntity;
-import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import java.util.List;

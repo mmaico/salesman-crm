@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.trex.clone.BusinessModelClone.from;
-
 
 @Repository
 public class ChecklistRepositoryHibernate extends BaseRespositoryImpl<Checklist, ChecklistEntity> implements ChecklistRepository {

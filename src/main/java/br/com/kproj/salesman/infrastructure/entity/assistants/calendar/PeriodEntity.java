@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="periods")
-public class Period extends Identifiable {
+public class PeriodEntity extends Identifiable {
 
     @Id
     @GeneratedValue

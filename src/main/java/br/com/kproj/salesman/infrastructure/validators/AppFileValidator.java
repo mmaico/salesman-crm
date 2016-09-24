@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.infrastructure.validators;
 
 import br.com.kproj.salesman.infrastructure.entity.AppFile;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import com.google.common.collect.Sets;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

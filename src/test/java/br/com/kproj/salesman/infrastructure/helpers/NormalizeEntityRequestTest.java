@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
 
-import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
+import br.com.kproj.salesman.infrastructure.entity.person.Company;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeEntityRequest;
 import com.google.common.collect.Sets;
 import org.junit.Test;
