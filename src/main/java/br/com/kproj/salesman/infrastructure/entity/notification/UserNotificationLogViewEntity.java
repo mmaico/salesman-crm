@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="notifications_log_view")
-public class UserNotificationLogView extends Identifiable {
+public class UserNotificationLogViewEntity extends Identifiable {
 
     /**
      *

@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="tasks")
+@Table(name="delivery")
 public class TaskEntity extends Identifiable implements TimelinePresent {
 
     @Id

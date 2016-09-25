@@ -50,12 +50,12 @@ public class TaskTimelineControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveTimelineActivityByTask() throws Exception {
 
-        mockMvc.perform(post("/tasks/1/logactivity/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/delivery/1/logactivity/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("logActivity.type", "EMAIL")
                 .param("logActivity.description", "descricao da atividade")
         ).andExpect(status().isOk());
 
-        MvcResult mvcResult = mockMvc.perform(get("/tasks/1/activities").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        MvcResult mvcResult = mockMvc.perform(get("/delivery/1/activities").contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
 
         Map<String, Object> model = mvcResult.getModelAndView().getModel();

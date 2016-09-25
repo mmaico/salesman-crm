@@ -31,8 +31,8 @@ public class RequestApprovalBuilder extends AbstractBuilder<RequestApprovalEntit
 //        return this;
 //    }
 
-//    public RequestApprovalBuilder withApprovers(List<Approver> approvers) {
-//        this.entity.setApprovers(approvers);
+//    public RequestApprovalBuilder withApprovers(List<Approver> approval) {
+//        this.entity.setApprovers(approval);
 //        return this;
 //    }
 

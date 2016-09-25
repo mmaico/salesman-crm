@@ -31,7 +31,7 @@ public class RequestApprovalBusinessRules implements RequestApprovalValidator {
         persistRules.put(description("request.has.valid.negotiation"), (request) -> request.getNegotiation() == null && request.getNegotiation().isNew());
         persistRules.put(description("negotiation.is.already.in.approval.process"), (request) -> repository.findOne(request.getNegotiation()).isPresent());
         persistRules.put(description("request.dont.have.requester"), (request) -> request.getRequester() == null && request.getRequester().isNew());
-        persistRules.put(description("request.not.have.approvers.available"), (request) -> !approverRepository.hasApproversAvailable());
+        persistRules.put(description("request.not.have.approval.available"), (request) -> !approverRepository.hasApproversAvailable());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.notifications.view;
 
-import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
+import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogViewEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
 import br.com.kproj.salesman.notifications.application.UserNotificationLogViewApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +23,20 @@ public class UserNotificationLogViewController {
 
     @RequestMapping(value = "/notifications-view/proposals", method = RequestMethod.POST)
     public @ResponseBody void notificationViewProposal() {
-        UserNotificationLogView userView = new UserNotificationLogView();
+        UserNotificationLogViewEntity userView = new UserNotificationLogViewEntity();
         //userView.setUser(security.getPrincipal().getUser());
         userView.setLastVisualization(new Date());
-        userView.setTypeLogView(UserNotificationLogView.TypeLogView.PROPOSAL_NOTIFICATION);
+        userView.setTypeLogView(UserNotificationLogViewEntity.TypeLogView.PROPOSAL_NOTIFICATION);
 
         application.register(userView);
     }
 
     @RequestMapping(value = "/notifications-view/tasks", method = RequestMethod.POST)
     public @ResponseBody void notificationViewTask() {
-        UserNotificationLogView userView = new UserNotificationLogView();
+        UserNotificationLogViewEntity userView = new UserNotificationLogViewEntity();
         //userView.setUser(security.getPrincipal().getUser());
         userView.setLastVisualization(new Date());
-        userView.setTypeLogView(UserNotificationLogView.TypeLogView.TASK_NOTIFICATION);
+        userView.setTypeLogView(UserNotificationLogViewEntity.TypeLogView.TASK_NOTIFICATION);
 
         application.register(userView);
     }

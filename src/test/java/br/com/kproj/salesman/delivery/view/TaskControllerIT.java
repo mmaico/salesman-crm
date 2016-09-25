@@ -35,7 +35,7 @@ public class TaskControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveTaskTemplateOnlyRequiredFields() throws Exception {
 
-        mockMvc.perform(post("/tasks/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/delivery/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("description", "description")
                         .param("salesOrder.id", "2")
@@ -49,7 +49,7 @@ public class TaskControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenInvalidSignedUser() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(post("/tasks/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        MvcResult mvcResult = mockMvc.perform(post("/delivery/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("description", "description")
                         .param("salesOrder.id", "2")
@@ -69,7 +69,7 @@ public class TaskControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenInvalidSalesOrder() throws Exception {
 
-        mockMvc.perform(post("/tasks/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/delivery/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("description", "description")
                         .param("salesOrder.id", "9999")
@@ -84,7 +84,7 @@ public class TaskControllerIT extends AbstractIntegrationTest {
     @Test
     public void shouldReturnErrorWhenInvalidDeadline() throws Exception {
 
-        mockMvc.perform(post("/tasks/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        mockMvc.perform(post("/delivery/add").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("title", "titulo")
                         .param("description", "description")
                         .param("salesOrder.id", "2")

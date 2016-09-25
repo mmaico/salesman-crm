@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.notification.ApprovalBusinessProposalNotification;
 import br.com.kproj.salesman.infrastructure.entity.notification.Notification;
 import br.com.kproj.salesman.infrastructure.entity.notification.TaskNotification;
-import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
+import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogViewEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.RequestApprovalEntity;
 import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -68,7 +68,7 @@ public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Noti
 
     @Override
     public Long findCountTaskNotificationBy(UserEntity user) {
-        Optional<UserNotificationLogView> logView = logViewApplication.getLastViewTaskNotification(user);
+        Optional<UserNotificationLogViewEntity> logView = logViewApplication.getLastViewTaskNotification(user);
         Date lastVisualization = logView.isPresent() ? logView.get().getLastVisualization() : DateHelper.convertToDate("01/01/1900");
 
         return this.repository.findCountTaskNotificationBy(user, lastVisualization);
@@ -76,7 +76,7 @@ public class NotificationApplicationImpl extends BaseModelServiceLegacyImpl<Noti
 
     @Override
     public Long findCountProposalBy(UserEntity user) {
-        Optional<UserNotificationLogView> logView = logViewApplication.getLastViewProposalNotification(user);
+        Optional<UserNotificationLogViewEntity> logView = logViewApplication.getLastViewProposalNotification(user);
         Date lastVisualization = logView.isPresent() ? logView.get().getLastVisualization() : DateHelper.convertToDate("01/01/1900");
 
         return this.repository.findCountProposalBy(user, lastVisualization);

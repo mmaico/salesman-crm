@@ -22,11 +22,11 @@ public class SalesOrderBusinessRules implements SalesValidator {
 
     Map<String, CheckRule<SalesOrder>> rules = new HashMap<>();
     {
-        rules.put(description("generate.tasks.salesorder.without.id"), sales -> sales.isNew());
-        rules.put(description("generate.tasks.salesorder.with.invalid.region"), sales ->
+        rules.put(description("generate.delivery.salesorder.without.id"), sales -> sales.isNew());
+        rules.put(description("generate.delivery.salesorder.with.invalid.region"), sales ->
                 sales.getRegion() == null || sales.getRegion().isNew());
 
-        rules.put(description("generate.tasks.invalis.products.salesorder"), sales ->
+        rules.put(description("generate.delivery.invalis.products.salesorder"), sales ->
                 isEmptySafe(sales.getItems()) || sales.getItems().stream()
                         .filter(item -> item.getProduct() == null || item.getProduct().isNew())
                         .count() > 0);

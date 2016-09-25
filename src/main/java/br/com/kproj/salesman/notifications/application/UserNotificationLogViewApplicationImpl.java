@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.notifications.application;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
+import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogViewEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.infrastructure.repository.UserNotificationLogViewRepository;
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLegacyImpl<UserNotificationLogView> implements UserNotificationLogViewApplication {
+public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLegacyImpl<UserNotificationLogViewEntity> implements UserNotificationLogViewApplication {
 
 
     @Autowired
@@ -22,13 +22,13 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLega
 
 
 
-    public BaseRepositoryLegacy<UserNotificationLogView, Long> getRepository() {
+    public BaseRepositoryLegacy<UserNotificationLogViewEntity, Long> getRepository() {
         return repository;
     }
 
 
     @Override
-    public Optional<UserNotificationLogView> register(UserNotificationLogView view) {
+    public Optional<UserNotificationLogViewEntity> register(UserNotificationLogViewEntity view) {
         if(view.getUser() == null || view.getUser().isNew()) return Optional.empty();
 
         view.setLastVisualization(new Date());
@@ -36,16 +36,16 @@ public class UserNotificationLogViewApplicationImpl extends BaseModelServiceLega
     }
 
     @Override
-    public Optional<UserNotificationLogView> getLastViewProposalNotification(UserEntity user) {
+    public Optional<UserNotificationLogViewEntity> getLastViewProposalNotification(UserEntity user) {
 
-        Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.PROPOSAL_NOTIFICATION, Pager.build().one());
+        Page<UserNotificationLogViewEntity> result = repository.findLastVisualization(user, UserNotificationLogViewEntity.TypeLogView.PROPOSAL_NOTIFICATION, Pager.build().one());
 
         return Optional.ofNullable(result.getContent().size() > 0 ? result.getContent().get(0) : null);
     }
 
     @Override
-    public Optional<UserNotificationLogView> getLastViewTaskNotification(UserEntity user) {
-        Page<UserNotificationLogView> result = repository.findLastVisualization(user, UserNotificationLogView.TypeLogView.TASK_NOTIFICATION, Pager.build().one());
+    public Optional<UserNotificationLogViewEntity> getLastViewTaskNotification(UserEntity user) {
+        Page<UserNotificationLogViewEntity> result = repository.findLastVisualization(user, UserNotificationLogViewEntity.TypeLogView.TASK_NOTIFICATION, Pager.build().one());
 
         return Optional.ofNullable(result.getContent().size() > 0 ? result.getContent().get(0) : null);
     }

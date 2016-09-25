@@ -33,7 +33,7 @@ public class TaskLogController {
 
         model.addAttribute("task", TaskBuilder.createTaskBuilder(taskId).build());
         model.addAttribute("taskLogs", result);
-        return new ModelAndView("/delivery/tasks/logs/logs");
+        return new ModelAndView("/delivery/delivery/logs/logs");
 
     }
 

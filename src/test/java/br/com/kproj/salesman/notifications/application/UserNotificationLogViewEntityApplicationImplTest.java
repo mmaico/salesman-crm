@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.notifications.application;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.UserEntityBuilder;
-import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogView;
+import br.com.kproj.salesman.infrastructure.entity.notification.UserNotificationLogViewEntity;
 import br.com.kproj.salesman.infrastructure.repository.UserNotificationLogViewRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserNotificationLogViewApplicationImplTest {
+public class UserNotificationLogViewEntityApplicationImplTest {
 
     @InjectMocks
     private UserNotificationLogViewApplicationImpl application;
@@ -30,13 +30,13 @@ public class UserNotificationLogViewApplicationImplTest {
 
     @Test
     public void shouldRegisterUserNotificationLogView() {
-        UserNotificationLogView logView = new UserNotificationLogView();
+        UserNotificationLogViewEntity logView = new UserNotificationLogViewEntity();
         logView.setUser(UserEntityBuilder.createUser(1l).build());
-        UserNotificationLogView logViewDBMock = mock(UserNotificationLogView.class);
+        UserNotificationLogViewEntity logViewDBMock = mock(UserNotificationLogViewEntity.class);
 
         given(repository.save(logView)).willReturn(logViewDBMock);
 
-        Optional<UserNotificationLogView> result = application.register(logView);
+        Optional<UserNotificationLogViewEntity> result = application.register(logView);
 
 
         assertThat(result.get(), sameInstance(logViewDBMock));
@@ -45,10 +45,10 @@ public class UserNotificationLogViewApplicationImplTest {
 
     @Test
     public void shouldReturnEmptyWhenUserWithoutId() {
-        UserNotificationLogView logView = new UserNotificationLogView();
+        UserNotificationLogViewEntity logView = new UserNotificationLogViewEntity();
         logView.setUser(UserEntityBuilder.createUser().build());
 
-        Optional<UserNotificationLogView> result = application.register(logView);
+        Optional<UserNotificationLogViewEntity> result = application.register(logView);
 
         verifyNoMoreInteractions(repository);
         assertThat(result.isPresent(), is(Boolean.FALSE));
