@@ -6,7 +6,7 @@ import br.com.kproj.salesman.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.NegotiationBuilder;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.SaleableItem;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Temperature;
-import br.com.kproj.salesman.negotiation.domain.model.operationregion.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import org.springframework.beans.factory.annotation.Autowired;

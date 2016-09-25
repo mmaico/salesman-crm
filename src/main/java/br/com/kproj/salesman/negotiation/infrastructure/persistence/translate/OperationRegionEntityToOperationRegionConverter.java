@@ -2,8 +2,8 @@ package br.com.kproj.salesman.negotiation.infrastructure.persistence.translate;
 
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.negotiation.domain.model.operationregion.OperationRegion;
-import br.com.kproj.salesman.negotiation.domain.model.operationregion.OperationRegionBuilder;
+import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegionBuilder;
 import org.springframework.stereotype.Component;
 
 @Component

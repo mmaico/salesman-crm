@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.domain.model.negotiation;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.domain.model.account.Account;
-import br.com.kproj.salesman.negotiation.domain.model.operationregion.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import com.google.common.collect.Lists;

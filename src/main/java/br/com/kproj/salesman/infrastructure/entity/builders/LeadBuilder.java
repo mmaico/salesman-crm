@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.leads.Lead;
+import br.com.kproj.salesman.infrastructure.entity.leads.LeadEntity;
 
-public class LeadBuilder extends AbstractBuilder<Lead>  {
+public class LeadBuilder extends AbstractBuilder<LeadEntity>  {
 
 	public LeadBuilder() {
-		this.entity = new Lead();
+		this.entity = new LeadEntity();
 	}
 
 	public LeadBuilder(Long id) {

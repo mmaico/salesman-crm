@@ -1,16 +1,11 @@
-package br.com.kproj.salesman.infrastructure.entity.leads;
+package br.com.kproj.salesman.business_prospecting.leads.domain.model.address;
 
-import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Model;
 
-import javax.persistence.*;
+@Model
+public class Address extends ModelIdentifiable {
 
-@Entity
-@Table(name="lead_address")
-public class LeadAddress extends Identifiable {
-
-    @Id
-    @GeneratedValue
     private Long id;
 
     private String street;
@@ -20,13 +15,9 @@ public class LeadAddress extends Identifiable {
     private String country;
     private String zipcode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @ExcludeField
-    private LeadEntity leadEntity;
-
     @Override
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -79,13 +70,5 @@ public class LeadAddress extends Identifiable {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
-    }
-
-    public LeadEntity getLeadEntity() {
-        return leadEntity;
-    }
-
-    public void setLeadEntity(LeadEntity leadEntity) {
-        this.leadEntity = leadEntity;
     }
 }

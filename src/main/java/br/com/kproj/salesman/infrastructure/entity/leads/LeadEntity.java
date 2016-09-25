@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name="leads")
-public class Lead extends Identifiable implements TimelinePresent {
+public class LeadEntity extends Identifiable implements TimelinePresent {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -47,9 +47,9 @@ public class Lead extends Identifiable implements TimelinePresent {
     @OneToOne(mappedBy = "lead")
     private Timeline timeline;
 
-    public Lead() {}
+    public LeadEntity() {}
 
-    public Lead(Long id) {
+    public LeadEntity(Long id) {
         this.id = id;
     }
 

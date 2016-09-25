@@ -13,7 +13,7 @@ import static com.mysema.query.types.PathMetadataFactory.forVariable;
  * QLead is a Querydsl query type for Lead
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QLead extends EntityPathBase<Lead> {
+public class QLead extends EntityPathBase<LeadEntity> {
 
     private static final long serialVersionUID = -164860478L;
 
@@ -42,10 +42,10 @@ public class QLead extends EntityPathBase<Lead> {
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public QLead(String variable) {
-        this(Lead.class, forVariable(variable), INITS);
+        this(LeadEntity.class, forVariable(variable), INITS);
     }
 
-    public QLead(Path<? extends Lead> path) {
+    public QLead(Path<? extends LeadEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -54,10 +54,10 @@ public class QLead extends EntityPathBase<Lead> {
     }
 
     public QLead(PathMetadata<?> metadata, PathInits inits) {
-        this(Lead.class, metadata, inits);
+        this(LeadEntity.class, metadata, inits);
     }
 
-    public QLead(Class<? extends Lead> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLead(Class<? extends LeadEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

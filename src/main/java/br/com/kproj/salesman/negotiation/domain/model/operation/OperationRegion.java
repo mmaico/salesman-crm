@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.negotiation.domain.model.operationregion;
+package br.com.kproj.salesman.negotiation.domain.model.operation;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 

@@ -21,6 +21,9 @@ public class ChecklistEntityApplicationImplTest {
     @Mock
     private ChecklistRepository repository;
 
+
+
+
 //    @Test
 //    public void shouldRegisterChecklist() {
 //        ChecklistEntity checklistEntityMock = mock(ChecklistEntity.class);
