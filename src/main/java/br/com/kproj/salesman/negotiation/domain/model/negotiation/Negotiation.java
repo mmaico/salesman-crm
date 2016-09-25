@@ -2,7 +2,7 @@ package br.com.kproj.salesman.negotiation.domain.model.negotiation;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.domain.model.account.Account;
-import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.Region;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import com.google.common.collect.Lists;
@@ -25,7 +25,7 @@ public class Negotiation extends ModelIdentifiable {
 
     private Seller seller;
 
-    private OperationRegion operationRegion;
+    private Region region;
 
     @DateTimeFormat(pattern = "dd/M/Y")
     private Date deliveryForeCast;
@@ -129,12 +129,12 @@ public class Negotiation extends ModelIdentifiable {
         this.installments = installments;
     }
 
-    public OperationRegion getOperationRegion() {
-        return operationRegion;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setOperationRegion(OperationRegion operationRegion) {
-        this.operationRegion = operationRegion;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     public Temperature getTemperature() {

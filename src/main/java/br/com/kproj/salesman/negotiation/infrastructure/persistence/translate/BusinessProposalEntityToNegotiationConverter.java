@@ -6,7 +6,7 @@ import br.com.kproj.salesman.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.NegotiationBuilder;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.SaleableItem;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Temperature;
-import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.Region;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class BusinessProposalEntityToNegotiationConverter implements Converter<B
                 .withDeliveryForeCast(proposalEntity.getDeliveryForeCast())
                 .withIntroduction(proposalEntity.getIntroduction());
 
-        OperationRegion operationRegion = regionConverter.convert(proposalEntity.getOperationRegionEntity());
+        Region operationRegion = regionConverter.convert(proposalEntity.getOperationRegionEntity());
         Seller seller = userEntityConverter.convert(proposalEntity.getSeller());
         List<SaleableItem> saleableItems = proposalItemConverter.convert(proposalEntity.getSaleableItems());
         List<InstallmentItem> installmentItems = paymentConverter.convert(proposalEntity.getPaymentItems());

@@ -3,7 +3,7 @@ package br.com.kproj.salesman.negotiation.domain.model.negotiation;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 import br.com.kproj.salesman.negotiation.domain.model.account.Account;
-import br.com.kproj.salesman.negotiation.domain.model.operation.OperationRegion;
+import br.com.kproj.salesman.negotiation.domain.model.operation.Region;
 import br.com.kproj.salesman.negotiation.domain.model.payment.InstallmentItem;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
 import com.google.common.collect.Lists;
@@ -32,8 +32,8 @@ public class NegotiationBuilder extends AbstractBuilder<Negotiation>  {
 		return this;
 	}
 
-	public NegotiationBuilder withOperation(OperationRegion operation) {
-		this.entity.setOperationRegion(operation);
+	public NegotiationBuilder withOperation(Region operation) {
+		this.entity.setRegion(operation);
 		return this;
 	}
 

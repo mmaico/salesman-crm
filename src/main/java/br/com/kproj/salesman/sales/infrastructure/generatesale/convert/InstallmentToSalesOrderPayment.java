@@ -1,17 +1,17 @@
-package br.com.kproj.salesman.sales.infrastructure.generatebyproposal.convert;
+package br.com.kproj.salesman.sales.infrastructure.generatesale.convert;
 
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderPaymentItemBuilder;
-import br.com.kproj.salesman.infrastructure.entity.proposal.ProposalPaymentItem;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderPaymentItem;
+import br.com.kproj.salesman.sales.view.dtos.negotiation.InstallmentItemDTO;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProposalPaymentToSalesOrderPayment implements Converter<ProposalPaymentItem, SalesOrderPaymentItem> {
+public class InstallmentToSalesOrderPayment implements Converter<InstallmentItemDTO, SalesOrderPaymentItem> {
 
 
     @Override
-    public SalesOrderPaymentItem convert(ProposalPaymentItem source) {
+    public SalesOrderPaymentItem convert(InstallmentItemDTO source) {
 
         return SalesOrderPaymentItemBuilder.createSalesOrderPaymentItem()
                     .withDueDate(source.getDueDate())

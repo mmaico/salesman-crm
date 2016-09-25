@@ -1,9 +1,10 @@
-package br.com.kproj.salesman.negotiation.domain.model.operation;
+package br.com.kproj.salesman.sales.domain.model.payments;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Model;
 
-
-public class OperationRegion extends ModelIdentifiable {
+@Model
+public class Installment extends ModelIdentifiable {
 
     private Long id;
 
