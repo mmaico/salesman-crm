@@ -2,7 +2,7 @@ package br.com.kproj.salesman.timeline.application;
 
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.Incident;
+import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Individual;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -42,7 +42,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
 		repositories.put(ContactEntity.class, contactRepository);
 		repositories.put(TaskEntity.class, taskRepository);
-		repositories.put(Incident.class, incidentRepository);
+		repositories.put(IncidentEntity.class, incidentRepository);
 	}
 
 	@Override

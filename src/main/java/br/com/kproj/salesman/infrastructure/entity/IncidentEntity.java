@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="incidents")
-public class Incident extends Identifiable implements TimelinePresent {
+public class IncidentEntity extends Identifiable implements TimelinePresent {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -64,9 +64,9 @@ public class Incident extends Identifiable implements TimelinePresent {
     @NotNull
     private IncidentPriority priority;
 
-    public Incident() {}
+    public IncidentEntity() {}
 
-    public Incident(Long id) {
+    public IncidentEntity(Long id) {
         this.id = id;
     }
 

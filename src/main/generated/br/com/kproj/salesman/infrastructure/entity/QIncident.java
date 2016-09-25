@@ -13,7 +13,7 @@ import static com.mysema.query.types.PathMetadataFactory.forVariable;
  * QIncident is a Querydsl query type for Incident
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
-public class QIncident extends EntityPathBase<Incident> {
+public class QIncident extends EntityPathBase<IncidentEntity> {
 
     private static final long serialVersionUID = 985618433L;
 
@@ -33,21 +33,21 @@ public class QIncident extends EntityPathBase<Incident> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final EnumPath<Incident.IncidentPriority> priority = createEnum("priority", Incident.IncidentPriority.class);
+    public final EnumPath<IncidentEntity.IncidentPriority> priority = createEnum("priority", IncidentEntity.IncidentPriority.class);
 
     public final QUserEntity responsible;
 
-    public final EnumPath<Incident.IncidentStatus> status = createEnum("status", Incident.IncidentStatus.class);
+    public final EnumPath<IncidentEntity.IncidentStatus> status = createEnum("status", IncidentEntity.IncidentStatus.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public final StringPath title = createString("title");
 
     public QIncident(String variable) {
-        this(Incident.class, forVariable(variable), INITS);
+        this(IncidentEntity.class, forVariable(variable), INITS);
     }
 
-    public QIncident(Path<? extends Incident> path) {
+    public QIncident(Path<? extends IncidentEntity> path) {
         this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
@@ -56,10 +56,10 @@ public class QIncident extends EntityPathBase<Incident> {
     }
 
     public QIncident(PathMetadata<?> metadata, PathInits inits) {
-        this(Incident.class, metadata, inits);
+        this(IncidentEntity.class, metadata, inits);
     }
 
-    public QIncident(Class<? extends Incident> type, PathMetadata<?> metadata, PathInits inits) {
+    public QIncident(Class<? extends IncidentEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.contact = inits.isInitialized("contact") ? new QContactEntity(forProperty("contact"), inits.get("contact")) : null;
