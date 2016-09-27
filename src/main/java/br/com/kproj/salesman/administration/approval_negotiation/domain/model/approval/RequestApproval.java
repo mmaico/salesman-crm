@@ -5,13 +5,11 @@ import br.com.kproj.salesman.administration.approval_negotiation.domain.model.ap
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.requester.Requester;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Attribute;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.PersonApprovalBuilder.createPersonApproval;
@@ -28,7 +26,7 @@ public class RequestApproval extends ModelIdentifiable {
     @Attribute(destinationName = "proposal")
     private Negotiation negotiation;
 
-    private List<PersonApproval> approvers = Lists.newArrayList();
+    private Approvers approvers = new Approvers();
 
     @Autowired
     private PersonApprovalRepository personRepository;
@@ -42,33 +40,24 @@ public class RequestApproval extends ModelIdentifiable {
         approversAvailable.forEach(approver -> {
             PersonApproval approval = createPersonApproval()
                     .withApprover(approver).waitingStatus().build();
-
             this.approvers.add(approval);
         });
     }
 
     public Boolean stillNeedsToBeEvaluationBy(Approver approver) {
-
-        Optional<PersonApproval> approval = approvers.stream()
-                .filter(item -> item.getApprover().equals(approver) && PersonApproval.Status.WAITING.equals(item.getStatus()))
-                .findFirst();
-
-        return !approval.isPresent();
+        return approvers.needsToBeEvaluationBy(approver);
     }
 
     public void makeEvaluation(Approver approver, PersonApproval.Status status) {
-        Optional<PersonApproval> personApproval = approvers.stream()
-                    .filter(item -> item.getApprover().equals(approver)).findFirst();
+        Optional<PersonApproval> personApproval = approvers.getOne(approver);
 
         personApproval.get().setStatus(status);
         personRepository.save(personApproval.get());
     }
 
     public Boolean evaluationWasCompleted() {
-        return approvers.stream()
-                .filter(item -> !PersonApproval.Status.APPROVED.equals(item.getStatus())).count() > 0;
+        return approvers.wasCompleted();
     }
-
 
     //Getters and Setters
 
@@ -97,11 +86,11 @@ public class RequestApproval extends ModelIdentifiable {
         this.negotiation = negotiation;
     }
 
-    public List<PersonApproval> getApprovers() {
+    public Approvers getApprovers() {
         return approvers;
     }
 
-    public void setApprovers(List<PersonApproval> persons) {
+    public void setApprovers(Approvers persons) {
         this.approvers = persons;
     }
 
