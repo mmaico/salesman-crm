@@ -14,12 +14,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountRepositoryHibernate extends BaseRespositoryImpl<Account, AccountEntity> implements AccountRepository {
 
-    @Autowired
     private AccountEntityRepositorySpringData repository;
 
-    @Autowired
     private AccountEntityToAccountConverter converter;
 
+    @Autowired
+    public AccountRepositoryHibernate(AccountEntityRepositorySpringData repository, AccountEntityToAccountConverter converter) {
+        this.repository = repository;
+        this.converter = converter;
+    }
 
 
     @Override

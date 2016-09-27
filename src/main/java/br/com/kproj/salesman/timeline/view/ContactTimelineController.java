@@ -44,7 +44,7 @@ public class ContactTimelineController {
         validator.validate(logActivity, new BindException(bindingResult));
 
         logActivity.setFiles(logActivityVO.getAppFiles());
-        //logActivity.setUser(security.getPrincipal().getUser());
+        //logActivity.setUser(security.getPrincipal().getOwner());
         service.register(createContact(contactId).build(), logActivity);
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -14,12 +14,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AddressRepositoryHibernate extends BaseRespositoryImpl<Address, AddressEntity> implements AddressRepository {
 
-    @Autowired
     private AddressEntityRepositorySpringData repository;
 
-    @Autowired
     private AddressEntityToAddressConverter converter;
 
+    @Autowired
+    public AddressRepositoryHibernate(AddressEntityRepositorySpringData repository, AddressEntityToAddressConverter converter) {
+        this.repository = repository;
+        this.converter = converter;
+    }
 
 
     @Override

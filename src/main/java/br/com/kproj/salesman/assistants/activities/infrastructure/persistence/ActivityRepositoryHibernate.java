@@ -1,18 +1,19 @@
 package br.com.kproj.salesman.assistants.activities.infrastructure.persistence;
 
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.Status;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SubActivity;
+import br.com.kproj.salesman.assistants.activities.domain.model.personal.*;
+import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.assistants.activities.infrastructure.persistence.springdata.PersonalAcvitityRepository;
+import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper.copyProperties;
@@ -58,6 +59,18 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, P
         subactivity.setParent(parent);
 
         return Optional.of(subactivity);
+    }
+
+    public Activities findAll(Owner owner) {
+        Collection<PersonalActivityEntity> result = repository.findAll(new UserEntity(owner.getId()));
+        Activities activities = Activities.createActivities(Lists.newArrayList());
+
+        result.stream().forEach(entity -> {
+            Activity activity = getConverter().convert(entity);
+            activities.add(activity);
+        });
+
+        return activities;
     }
 
     @Override

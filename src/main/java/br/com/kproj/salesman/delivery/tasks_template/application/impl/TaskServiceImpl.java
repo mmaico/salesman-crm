@@ -24,14 +24,19 @@ import static com.google.common.collect.Sets.newHashSet;
 @Service("taskTemplateService")
 public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskFacade {
 
-    @Autowired
+
     private TaskRepository repository;
 
-    @Autowired
     private SaleableRepository saleableRepository;
 
-    @Autowired
     private TaskToSaleableValidator validator;
+
+    @Autowired
+    public TaskServiceImpl(TaskRepository repository, SaleableRepository saleableRepository, TaskToSaleableValidator validator) {
+        this.repository = repository;
+        this.saleableRepository = saleableRepository;
+        this.validator = validator;
+    }
 
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.assistants.activities.domain.model.checklist;
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.google.common.collect.Sets;
 import com.trex.shared.annotations.Model;
@@ -22,12 +23,15 @@ public class Checklist extends ModelIdentifiable {
     @Autowired
     private ChecklistRepository repository;
 
-    public void makeCompleted() {
+    public Checklist() {
+        AutowireHelper.autowire(this);
+    }
+
+    public void marksAsCompleted() {
         Optional<Checklist> checkList = repository.findOne(this.id);
 
         if (!checkList.isPresent()) {
-            hasErrors(Sets.newHashSet("invalid.checklist.to.change.status"))
-                    .throwing(ValidationException.class);
+            hasErrors(Sets.newHashSet("invalid.checklist.to.change.status")).throwing(ValidationException.class);
         }
 
         repository.complete(checkList.get());

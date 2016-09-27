@@ -13,10 +13,12 @@ import java.util.Optional;
 @Service
 public class ApproverServiceImpl extends BaseModelServiceImpl<Approver> implements ApproverFacade {
 
-    @Autowired
     private ApproverRepository repository;
 
-
+    @Autowired
+    public ApproverServiceImpl(ApproverRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Optional<Approver> register(Approver approver) {

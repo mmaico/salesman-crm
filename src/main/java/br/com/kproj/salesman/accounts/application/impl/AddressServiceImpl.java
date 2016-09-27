@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddressServiceImpl extends BaseModelServiceImpl<Address> implements AddressFacade {
 
-    @Autowired
     private AddressRepository repository;
 
+    @Autowired
+    public AddressServiceImpl(AddressRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public BaseRepository<Address, Long> getRepository() {

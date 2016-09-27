@@ -76,7 +76,7 @@ public class UserController {
 //            throw new ValidationException(bindingResult.getAllErrors());
 //        }
 //
-//        UserEntity user = userVO.getUser();
+//        UserEntity user = userVO.getOwner();
 //        user.setAvatar(file.getBytes());
 //        user.addFields("avatar");
 //        service.register(user);

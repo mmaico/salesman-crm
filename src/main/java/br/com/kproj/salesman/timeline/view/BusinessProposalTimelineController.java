@@ -46,7 +46,7 @@ public class BusinessProposalTimelineController {
         validator.validate(logActivity, new BindException(bindingResult));
 
         logActivity.setFiles(logActivityVO.getAppFiles());
-        //logActivity.setUser(security.getPrincipal().getUser());
+        //logActivity.setUser(security.getPrincipal().getOwner());
         service.register(createBusinessProposal(businessId).build(), logActivity);
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -62,7 +62,7 @@ public class BusinessProposalTimelineController {
         validator.validate(activity, new BindException(bindingResult));
 
         activity.setFiles(approvalActivityVO.getAppFiles());
-        //activity.setUser(security.getPrincipal().getUser());
+        //activity.setUser(security.getPrincipal().getOwner());
         service.register(createBusinessProposal(businessId).build(), activity);
 
         return new ResponseEntity<>(HttpStatus.OK);

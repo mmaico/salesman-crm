@@ -15,8 +15,12 @@ import java.util.Collection;
 @Service("checklistTemplateService")
 public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implements ChecklistFacade {
 
-    @Autowired
     private ChecklistRepository repository;
+
+    @Autowired
+    public ChecklistServiceImpl(ChecklistRepository repository) {
+        this.repository = repository;
+    }
 
 
     @Override

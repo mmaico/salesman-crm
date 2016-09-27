@@ -28,22 +28,6 @@ public class Activity extends ModelIdentifiable {
     private Owner owner;
     private Assigner assigner;
 
-    @Autowired
-    private ChecklistRepository repository;
-
-    public Activity() {
-        AutowireHelper.autowire(this);
-    }
-
-
-    public Optional<Checklist> addChecklist(Checklist checklist) {
-        return repository.newCheckList(checklist, this);
-    }
-
-
-
-
-
 
 
     @Override

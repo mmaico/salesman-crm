@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContactServiceImpl extends BaseModelServiceImpl<Contact> implements ContactFacade {
 
-    @Autowired
     private ContactRepository repository;
+
+    @Autowired
+    public ContactServiceImpl(ContactRepository repository) {
+        this.repository = repository;
+    }
 
 
     @Override

@@ -1,9 +1,6 @@
 package br.com.kproj.salesman.assistants.activities.application.validators;
 
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityValidator;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SubActivity;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SubActivityValidator;
+import br.com.kproj.salesman.assistants.activities.domain.model.personal.*;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +23,20 @@ public class SubActivityBusinessRules implements SubActivityValidator {
     @Autowired
     private ActivityValidator activityValidator;
 
-    Map<String, CheckRule<SubActivity>> rules = new HashMap<>();
+    Map<String, CheckRule<SaveSubActivity>> rules = new HashMap<>();
     {
         rules.put(description("subactivity.with.invalid.parent"), subActivity -> subActivity.getParent() == null
                 && subActivity.getParent().isNew() && !repository.findOne(subActivity.getParent().getId()).isPresent());
     }
 
     @Override
-    public void checkRules(SubActivity subActivity) {
-
-        activityValidator.checkRules(subActivity);
+    public void checkRules(SaveSubActivity saveSubactivity) {
+        SubActivity subactivity = saveSubactivity.getSubActivity();
+        activityValidator.checkRules(subactivity);
 
         Set<String> violations = rules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(subActivity))
+                .filter(e -> e.getValue().check(saveSubactivity))
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);

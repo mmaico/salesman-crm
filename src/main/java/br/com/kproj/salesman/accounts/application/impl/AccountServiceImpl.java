@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl extends BaseModelServiceImpl<Account> implements AccountFacade {
 
-    @Autowired
     private AccountRepository repository;
+
+    @Autowired
+    public AccountServiceImpl(AccountRepository repository) {
+        this.repository = repository;
+    }
 
 
     @Override

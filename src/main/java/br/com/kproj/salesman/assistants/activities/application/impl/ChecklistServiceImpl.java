@@ -5,6 +5,7 @@ import br.com.kproj.salesman.assistants.activities.domain.model.checklist.AddChe
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
+import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,15 @@ public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implem
 
     public Optional<Checklist> register(AddChecklistInActivity addChecklistInActivity) {
         Activity activity = addChecklistInActivity.getActivity();
-        Optional<Checklist> checklist = activity.addChecklist(addChecklistInActivity.getChecklist());
+        Owner owner = addChecklistInActivity.getOwner();
+        Checklist checklist = addChecklistInActivity.getChecklist();
 
-        return checklist;
+        return owner.add(checklist).in(activity);
     }
 
     @Override
-    public void completed(Checklist checklist) {
-        checklist.makeCompleted();
+    public void completed(Owner owner, Checklist checklist) {
+        owner.masks(checklist).asCompleted();
     }
 
     @Override

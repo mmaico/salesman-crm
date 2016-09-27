@@ -25,7 +25,7 @@ public class Checklist extends ModelIdentifiable {
         AutowireHelper.autowire(this);
     }
 
-    public void makeCompleted() {
+    public void marksAsCompleted() {
         Optional<Checklist> checkList = repository.findOne(this.id);
 
         if (!checkList.isPresent()) {

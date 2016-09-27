@@ -14,12 +14,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ContactRepositoryHibernate extends BaseRespositoryImpl<Contact, ContactEntity> implements ContactRepository {
 
-    @Autowired
     private ContactEntityRepositorySpringData repository;
 
-    @Autowired
     private ContactEntityToContactConverter converter;
 
+    @Autowired
+    public ContactRepositoryHibernate(ContactEntityRepositorySpringData repository, ContactEntityToContactConverter converter) {
+        this.repository = repository;
+        this.converter = converter;
+    }
 
 
     @Override

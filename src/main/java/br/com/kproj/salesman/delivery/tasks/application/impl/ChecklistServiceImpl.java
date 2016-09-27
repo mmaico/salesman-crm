@@ -24,6 +24,6 @@ public class ChecklistServiceImpl implements ChecklistFacade {
     @Override
     public void completed(Checklist checklist) {
 
-        checklist.makeCompleted();
+        checklist.marksAsCompleted();
     }
 }
