@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.model.CollectionBehavior;
 import com.google.common.collect.Lists;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 
 public class Phones extends CollectionBehavior<Phone> {
@@ -22,5 +23,10 @@ public class Phones extends CollectionBehavior<Phone> {
     @Override
     public Collection<Phone> getCollection() {
         return phones;
+    }
+
+    public Collection<Phone> getCellphones() {
+        return phones.stream().filter(phone -> phone.getType().equals(Type.CELL))
+                .collect(Collectors.toList());
     }
 }

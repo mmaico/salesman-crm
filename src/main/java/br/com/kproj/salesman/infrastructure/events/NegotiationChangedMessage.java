@@ -4,35 +4,34 @@ public class NegotiationChangedMessage {
 
     private final Long negotiationId;
     private final Long userWhoChangedId;
-
-    private final String negotiationBefore;
-    private final String negotiationAfter;
+    private final String before;
+    private final String after;
 
     public NegotiationChangedMessage(Long negotiationId, Long userWhoChangedId,
-                                     String negotiationBefore, String negotiationAfter) {
+                                     String before, String after) {
         this.negotiationId = negotiationId;
         this.userWhoChangedId = userWhoChangedId;
-        this.negotiationBefore = negotiationBefore;
-        this.negotiationAfter = negotiationAfter;
+        this.before = before;
+        this.after = after;
     }
 
-    public static NegotiationChangedMessage create(Long negotiationId, Long userWhoChangedId, String negotiationBefore, String negotiationAfter) {
+    public static NegotiationChangedMessage newChanged(Long negotiationId, Long userWhoChangedId, String negotiationBefore, String negotiationAfter) {
         return new NegotiationChangedMessage(negotiationId, userWhoChangedId, negotiationBefore, negotiationAfter);
-    }
-
-    public Long getNegotiationId() {
-        return negotiationId;
     }
 
     public Long getUserWhoChangedId() {
         return userWhoChangedId;
     }
 
-    public String getNegotiationBefore() {
-        return negotiationBefore;
+    public String getBefore() {
+        return before;
     }
 
-    public String getNegotiationAfter() {
-        return negotiationAfter;
+    public String getAfter() {
+        return after;
+    }
+
+    public Long getNegotiationId() {
+        return negotiationId;
     }
 }

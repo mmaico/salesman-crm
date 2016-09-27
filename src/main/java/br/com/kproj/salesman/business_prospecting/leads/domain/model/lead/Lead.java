@@ -22,6 +22,7 @@ public class Lead extends ModelIdentifiable {
 
     @Override
     public Long getId() {
+
         return id;
     }
 

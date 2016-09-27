@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.configuration;
 
-import br.com.kproj.salesman.auditing.infrastructure.HibernateProxyTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +13,6 @@ public class GsonConfiguration {
     public Gson gson() {
         return new GsonBuilder()
                 .setExclusionStrategies(GsonExclusionStrategy.create())
-                .registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY)
                 .create();
     }
 }

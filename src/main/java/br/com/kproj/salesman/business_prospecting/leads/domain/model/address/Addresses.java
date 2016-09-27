@@ -22,4 +22,9 @@ public class Addresses extends CollectionBehavior<Address> {
     public Collection<Address> getCollection() {
         return addresses;
     }
+
+
+    public void getBusiness() {
+
+    }
 }
