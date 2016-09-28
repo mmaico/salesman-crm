@@ -86,7 +86,7 @@ public class Owner extends ModelIdentifiable {
         return checkListRepository.newCheckList(checklist, activity);
     }
 
-    public Owner masks(Checklist checklist) {
+    public Owner marks(Checklist checklist) {
         this.context.add(Checklist.class, checklist);
         return this;
     }

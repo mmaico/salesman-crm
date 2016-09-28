@@ -31,7 +31,7 @@ public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implem
 
     @Override
     public void completed(Owner owner, Checklist checklist) {
-        owner.masks(checklist).asCompleted();
+        owner.marks(checklist).asCompleted();
     }
 
     @Override
