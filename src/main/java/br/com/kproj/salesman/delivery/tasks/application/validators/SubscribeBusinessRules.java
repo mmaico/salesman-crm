@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.delivery.tasks.application.validators;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.Subscribe;
+import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeValidator;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.UserRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
@@ -26,7 +26,7 @@ public class SubscribeBusinessRules implements SubscribeValidator {
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<Subscribe>> rules = new HashMap<>();
+    Map<String, CheckRule<SubscribeTask>> rules = new HashMap<>();
     {
         rules.put(description("subscriber.task.invalid.user"), subscribe ->
                 subscribe.getUserId() == null
@@ -39,7 +39,7 @@ public class SubscribeBusinessRules implements SubscribeValidator {
     }
 
     @Override
-    public void checkRules(Subscribe subscribe) {
+    public void checkRules(SubscribeTask subscribe) {
 
         Set<String> violations = rules.entrySet()
                 .stream()

@@ -1,10 +1,12 @@
 package br.com.kproj.salesman.delivery.tasks.application.impl;
 
 import br.com.kproj.salesman.delivery.tasks.application.UserFacade;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.Subscribe;
+import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeValidator;
+import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +20,21 @@ public class UserServiceImpl implements UserFacade {
     private SubscribeValidator validator;
 
     @Override
-    public void register(Subscribe subscribe) {
+    public void register(SubscribeTask subscribe) {
         validator.checkRules(subscribe);
-        repository.register(subscribe);
+        User user = subscribe.getUser();
+        Task task = subscribe.getTask();
+
+        user.subscribes().the(task);
     }
 
     @Override
-    public void unregister(Subscribe subscribe) {
+    public void unregister(SubscribeTask subscribe) {
         validator.checkRules(subscribe);
-        repository.unregister(subscribe);
+        User user = subscribe.getUser();
+        Task task = subscribe.getTask();
+
+        user.unsubscribes().the(task);
     }
 
     @Override

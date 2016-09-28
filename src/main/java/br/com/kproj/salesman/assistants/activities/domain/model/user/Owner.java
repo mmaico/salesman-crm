@@ -8,6 +8,7 @@ import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activit
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Status;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.SubActivity;
 import br.com.kproj.salesman.assistants.activities.domain.model.workspace.Workspace;
+import br.com.kproj.salesman.assistants.activities.domain.services.*;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
@@ -42,57 +43,27 @@ public class Owner extends ModelIdentifiable {
         this.id = id;
     }
 
-    //DSL
-    public Owner changeStatus(Activity activity) {
-        this.context.add(Activity.class, activity);
-        return this;
+    public ChangeStatusActivity changeStatus(Activity activity) {
+        return newStatus -> repository.changeStatus(activity, newStatus);
     }
 
-    public void toNewStatus(Status newStatus) {
-        Activity activity = (Activity) this.context.get(Activity.class);
-        repository.changeStatus(activity, newStatus);
-
+    public SaveActivityInWorkspace save(Activity activity) {
+        return (workspace) -> repository.save(activity);
     }
 
-    public Owner save(Activity activity) {
-        this.context.add(Activity.class, activity);
-        return this;
+    public SaveSubActivityInWorkspace save(SubActivity subactivity) {
+        return activityParent -> {
+            subactivity.setParent(activityParent);
+            subactivity.setOwner(createOwner(this.id).build());
+            return repository.save(subactivity);
+        };
     }
 
-    public Owner save(SubActivity activity) {
-        this.context.add(SubActivity.class, activity);
-        return this;
+    public AddChecklistInActivity add(Checklist checklist) {
+        return activity -> checkListRepository.newCheckList(checklist, activity);
     }
 
-    public Optional<Activity> ofYour(Workspace workspace) {
-        Activity activity = (Activity) this.context.get(Activity.class);
-        return repository.save(activity);
-    }
-
-    public Optional<SubActivity> childOf(Activity parent) {
-        SubActivity subactivity = (SubActivity) this.context.get(SubActivity.class);
-        subactivity.setParent(parent);
-        subactivity.setOwner(createOwner(this.id).build());
-        return repository.save(subactivity);
-    }
-
-    public Owner add(Checklist checklist) {
-        this.context.add(Checklist.class, checklist);
-        return this;
-    }
-
-    public Optional<Checklist> in(Activity activity) {
-        Checklist checklist = (Checklist) this.context.get(Checklist.class);
-        return checkListRepository.newCheckList(checklist, activity);
-    }
-
-    public Owner marks(Checklist checklist) {
-        this.context.add(Checklist.class, checklist);
-        return this;
-    }
-
-    public void asCompleted() {
-        Checklist checklist = (Checklist) this.context.get(Checklist.class);
-        checklist.marksAsCompleted();
+    public MasksAsCompletedActivity marks(Checklist checklist) {
+        return () -> checklist.marksAsCompleted();
     }
 }

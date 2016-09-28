@@ -43,10 +43,6 @@ public class Task extends ModelIdentifiable {
     }
 
 
-
-
-
-
     @Override
     public Long getId() {
         return id;

@@ -6,7 +6,7 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.Subscribe;
+import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.TaskRepositorySpringData;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
@@ -97,9 +97,9 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
     }
 
     @Override
-    public void register(Subscribe subscribe) {
-        TaskEntity taskEntity = this.repository.findOne(subscribe.getTaskId());
-        UserEntity userEntity = new UserEntity(subscribe.getUserId());
+    public void register(SubscribeTask subscribe) {
+        TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
+        UserEntity userEntity = new UserEntity(subscribe.getUser().getId());
 
         if (!taskEntity.hasSigned(userEntity)) {
             taskEntity.addSignedBy(userEntity);
@@ -107,11 +107,11 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
     }
 
     @Override
-    public void unregister(Subscribe subscribe) {
-        TaskEntity taskEntity = this.repository.findOne(subscribe.getTaskId());
+    public void unregister(SubscribeTask subscribe) {
+        TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
 
         if (!isEmptySafe(taskEntity.getSignedBy())) {
-            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUserId()));
+            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUser().getId()));
         }
     }
 
