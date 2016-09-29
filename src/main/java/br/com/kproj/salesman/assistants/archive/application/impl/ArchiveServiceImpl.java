@@ -29,12 +29,6 @@ public class ArchiveServiceImpl extends BaseModelServiceImpl<Archive> implements
         this.validator = validator;
     }
 
-    @Override
-    public Optional<Archive> register(Archive archive) {
-        this.validator.checkRules(archive);
-
-        return repository.save(archive);
-    }
 
     @Override
     public Optional<Archive> register(OwnerChangeArchive changeArchive) {
