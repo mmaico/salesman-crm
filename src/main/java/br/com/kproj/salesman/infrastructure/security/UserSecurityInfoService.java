@@ -4,17 +4,22 @@ package br.com.kproj.salesman.infrastructure.security;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 
-@Component
+@Service
 public class UserSecurityInfoService {
 
-    @Autowired
+
     private UserEntityRepository repository;
+
+    @Autowired
+    public UserSecurityInfoService(UserEntityRepository repository) {
+        this.repository = repository;
+    }
 
 
     public Optional<UserEntity> getUser(String login, String password) {

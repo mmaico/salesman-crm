@@ -25,7 +25,7 @@ public class ChecklistEntity extends Identifiable {
     @JoinColumn(name="task_id")
     @NotNull(message = "checklist.task.null")
     @ExcludeField
-    private TaskEntity taskEntity;
+    private TaskEntity task;
 
     public Long getId() {
         return id;
@@ -52,10 +52,10 @@ public class ChecklistEntity extends Identifiable {
     }
 
     public TaskEntity getTask() {
-        return taskEntity;
+        return task;
     }
 
     public void setTask(TaskEntity taskEntity) {
-        this.taskEntity = taskEntity;
+        this.task = taskEntity;
     }
 }

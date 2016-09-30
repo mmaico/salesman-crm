@@ -24,7 +24,7 @@ public class TaskCost extends Identifiable {
     @ManyToOne
     @JoinColumn(name="task_id")
     @ExcludeField
-    private TaskEntity taskEntity;
+    private TaskEntity task;
 
     public Long getId() {
         return id;
@@ -58,12 +58,12 @@ public class TaskCost extends Identifiable {
         this.description = description;
     }
 
-    public TaskEntity getTaskEntity() {
-        return taskEntity;
+    public TaskEntity getTask() {
+        return task;
     }
 
-    public void setTaskEntity(TaskEntity taskEntity) {
-        this.taskEntity = taskEntity;
+    public void setTask(TaskEntity task) {
+        this.task = task;
     }
 
     public static TaskCost getDefault() {

@@ -38,7 +38,7 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 
 	public TimelineBuilder(TaskEntity taskEntity) {
 		this();
-		this.entity.setTaskEntity(taskEntity);
+		this.entity.setTask(taskEntity);
 	}
 	
 	public TimelineBuilder(BusinessProposalEntity businessProposalEntity) {
@@ -48,7 +48,7 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
 
 	public TimelineBuilder(PersonalActivityEntity personal) {
 		this();
-		this.entity.setPersonalActivityEntity(personal);
+		this.entity.setPersonalActivity(personal);
 	}
 	
 	public TimelineBuilder withContact(ContactEntity contact) {
@@ -67,7 +67,7 @@ public class TimelineBuilder extends AbstractBuilder<Timeline>  {
     }
 
 	public TimelineBuilder withPersonalActivity(PersonalActivityEntity personalActivityEntity) {
-		this.entity.setPersonalActivityEntity(personalActivityEntity);
+		this.entity.setPersonalActivity(personalActivityEntity);
 		return this;
 	}
 

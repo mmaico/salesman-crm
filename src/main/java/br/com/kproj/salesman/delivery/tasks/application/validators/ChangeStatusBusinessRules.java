@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
-@Component
+@Component("changeStatusBusinessRulesDeliveryModule")
 public class ChangeStatusBusinessRules implements ChangeStatusValidator {
 
     @Autowired

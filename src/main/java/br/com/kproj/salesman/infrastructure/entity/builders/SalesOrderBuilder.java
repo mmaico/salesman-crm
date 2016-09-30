@@ -67,13 +67,13 @@ public class SalesOrderBuilder extends AbstractBuilder<SalesOrderEntity>  {
     }
 
     public SalesOrderBuilder addSalesOrderItem(SalesOrderItem item) {
-        item.setSalesOrderEntity(this.entity);
+        item.setSalesOrder(this.entity);
         this.entity.addSalesOrderItem(item);
         return this;
     }
 
     public SalesOrderBuilder addPayment(SalesOrderPaymentItem item) {
-        item.setSalesOrderEntity(this.entity);
+        item.setSalesOrder(this.entity);
         this.entity.addPayment(item);
         return this;
     }

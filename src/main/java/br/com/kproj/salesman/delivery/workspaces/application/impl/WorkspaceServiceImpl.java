@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+@Service("workspaceFacadeDeliveryModule")
 public class WorkspaceServiceImpl extends BaseModelServiceImpl<Workspace> implements WorkspaceFacade {
 
     @Autowired

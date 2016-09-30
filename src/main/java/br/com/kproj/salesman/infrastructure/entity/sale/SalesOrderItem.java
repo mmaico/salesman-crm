@@ -43,7 +43,7 @@ public class SalesOrderItem extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="sales_order_id")
-    private SalesOrderEntity salesOrderEntity;
+    private SalesOrderEntity salesOrder;
 
 
     @Override
@@ -95,12 +95,12 @@ public class SalesOrderItem extends Identifiable {
         this.salePackage = salePackage;
     }
 
-    public SalesOrderEntity getSalesOrderEntity() {
-        return salesOrderEntity;
+    public SalesOrderEntity getSalesOrder() {
+        return salesOrder;
     }
 
-    public void setSalesOrderEntity(SalesOrderEntity salesOrderEntity) {
-        this.salesOrderEntity = salesOrderEntity;
+    public void setSalesOrder(SalesOrderEntity salesOrder) {
+        this.salesOrder = salesOrder;
     }
 
     public SaleableUnitEntity getSaleableAvailable() {

@@ -23,7 +23,7 @@ public class TaskNotificationBuilder extends AbstractBuilder<ScheduleTriggerNoti
 	}
 
 	public TaskNotificationBuilder withTask(TaskEntity taskEntity) {
-		this.entity.setTaskEntity(taskEntity);
+		this.entity.setTask(taskEntity);
 		return this;
 	}
 

@@ -6,9 +6,11 @@ import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.Requ
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("requestApprovalEntityRepositoryApprovalModule")
 public interface RequestApprovalEntityRepository extends BaseRepositoryLegacy<RequestApprovalEntity, Long> {
 
     @Query("SELECT request FROM RequestApprovalEntity AS request WHERE request.proposal = :proposal")

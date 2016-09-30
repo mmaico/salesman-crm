@@ -2,7 +2,7 @@ package br.com.kproj.salesman.administration.users.infrastructure.persistence;
 
 import br.com.kproj.salesman.administration.users.domain.model.user.User;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserRepository;
-import br.com.kproj.salesman.administration.users.infrastructure.persistence.springdata.UserEntityURepository;
+import br.com.kproj.salesman.administration.users.infrastructure.persistence.springdata.UserEntityRepository;
 import br.com.kproj.salesman.administration.users.infrastructure.persistence.translator.UserEntityToUserConverter;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class UserRepositoryHibernate extends BaseRespositoryImpl<User, UserEntity> implements UserRepository {
 
     @Autowired
-    private UserEntityURepository repository;
+    private UserEntityRepository repository;
 
     @Autowired
     private UserEntityToUserConverter converter;

@@ -21,7 +21,7 @@ public class ChecklistTemplateEntity extends Identifiable {
     @ManyToOne
     @JoinColumn(name="task_template_id")
     @NotNull(message = "checklist.template.tasktemplate.null")
-    private TaskTemplateEntity taskTemplateEntity;
+    private TaskTemplateEntity taskTemplate;
 
     public ChecklistTemplateEntity(){}
     public ChecklistTemplateEntity(Long id){
@@ -45,11 +45,11 @@ public class ChecklistTemplateEntity extends Identifiable {
         this.name = name;
     }
 
-    public TaskTemplateEntity getTaskTemplateEntity() {
-        return taskTemplateEntity;
+    public TaskTemplateEntity getTaskTemplate() {
+        return taskTemplate;
     }
 
-    public void setTaskTemplateEntity(TaskTemplateEntity taskTemplateEntity) {
-        this.taskTemplateEntity = taskTemplateEntity;
+    public void setTaskTemplate(TaskTemplateEntity taskTemplate) {
+        this.taskTemplate = taskTemplate;
     }
 }

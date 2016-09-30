@@ -20,7 +20,7 @@ public class SharedWithEntity extends Identifiable {
 
     @ManyToOne
     @JoinColumn(name="file_info_id")
-    private FileInfoEntity fileInfoEntity;
+    private FileInfoEntity fileInfo;
 
     @Enumerated(EnumType.STRING)
     private SharedTypeEntity type;
@@ -42,12 +42,12 @@ public class SharedWithEntity extends Identifiable {
         this.user = user;
     }
 
-    public FileInfoEntity getFileInfoEntity() {
-        return fileInfoEntity;
+    public FileInfoEntity getFileInfo() {
+        return fileInfo;
     }
 
-    public void setFileInfoEntity(FileInfoEntity fileInfoEntity) {
-        this.fileInfoEntity = fileInfoEntity;
+    public void setFileInfo(FileInfoEntity fileInfo) {
+        this.fileInfo = fileInfo;
     }
 
     public SharedTypeEntity getType() {

@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.CampaignEntity;
+import br.com.kproj.salesman.infrastructure.entity.leads.LeadEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
@@ -41,23 +42,24 @@ public class Timeline extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="task_id")
-    private TaskEntity taskEntity;
+    private TaskEntity task;
 
     @OneToOne
     @JoinColumn(name="personal_activity_id")
-    private PersonalActivityEntity personalActivityEntity;
+    private PersonalActivityEntity personalActivity;
 
     @OneToOne
     @JoinColumn(name="campaign_id")
-    private CampaignEntity campaignEntity;
+    private CampaignEntity campaign;
 
     @OneToOne
     @JoinColumn(name="incident_id")
-    private IncidentEntity incidentEntity;
+    private IncidentEntity incident;
 
     @OneToOne
     @JoinColumn(name="lead_id")
-    private IncidentEntity lead;
+    private LeadEntity lead;
+
 
     public  Timeline() {}
 
@@ -114,43 +116,43 @@ public class Timeline extends Identifiable {
         this.contact = contact;
     }
 
-    public TaskEntity getTaskEntity() {
-        return taskEntity;
+    public TaskEntity getTask() {
+        return task;
     }
 
-    public void setTaskEntity(TaskEntity taskEntity) {
-        this.taskEntity = taskEntity;
+    public void setTask(TaskEntity task) {
+        this.task = task;
     }
 
-    public PersonalActivityEntity getPersonalActivityEntity() {
-        return personalActivityEntity;
+    public PersonalActivityEntity getPersonalActivity() {
+        return personalActivity;
     }
 
-    public void setPersonalActivityEntity(PersonalActivityEntity personalActivityEntity) {
-        this.personalActivityEntity = personalActivityEntity;
+    public void setPersonalActivity(PersonalActivityEntity personalActivity) {
+        this.personalActivity = personalActivity;
     }
 
-    public CampaignEntity getCampaignEntity() {
-        return campaignEntity;
+    public CampaignEntity getCampaign() {
+        return campaign;
     }
 
-    public void setCampaignEntity(CampaignEntity campaignEntity) {
-        this.campaignEntity = campaignEntity;
+    public void setCampaign(CampaignEntity campaign) {
+        this.campaign = campaign;
     }
 
-    public IncidentEntity getIncidentEntity() {
-        return incidentEntity;
+    public IncidentEntity getIncident() {
+        return incident;
     }
 
-    public void setIncidentEntity(IncidentEntity incidentEntity) {
-        this.incidentEntity = incidentEntity;
+    public void setIncident(IncidentEntity incident) {
+        this.incident = incident;
     }
 
-    public IncidentEntity getLead() {
+    public LeadEntity getLead() {
         return lead;
     }
 
-    public void setLead(IncidentEntity lead) {
+    public void setLead(LeadEntity lead) {
         this.lead = lead;
     }
 }

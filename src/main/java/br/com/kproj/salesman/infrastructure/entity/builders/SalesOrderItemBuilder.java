@@ -53,7 +53,7 @@ public class SalesOrderItemBuilder extends AbstractBuilder<SalesOrderItem>  {
     }
 
     public SalesOrderItemBuilder withSalesOrder(SalesOrderEntity salesOrderEntity) {
-        this.entity.setSalesOrderEntity(salesOrderEntity);
+        this.entity.setSalesOrder(salesOrderEntity);
         return this;
     }
 

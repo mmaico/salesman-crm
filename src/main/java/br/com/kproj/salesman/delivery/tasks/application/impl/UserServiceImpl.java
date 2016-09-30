@@ -10,7 +10,7 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userFacadeDeliveryModule")
 public class UserServiceImpl implements UserFacade {
 
     @Autowired

@@ -20,7 +20,7 @@ import java.util.Optional;
 import static br.com.kproj.salesman.auditing.delivery.domain.model.audit.AuditingBuilder.createAudit;
 
 
-@Repository
+@Repository("auditingRepositoryDelivery")
 public class AuditingRepositoryHibernate extends BaseRespositoryImpl<Auditing, TaskAudinting> implements AuditingRepository {
 
     private TaskAuditingRepositorySpringdata repository;

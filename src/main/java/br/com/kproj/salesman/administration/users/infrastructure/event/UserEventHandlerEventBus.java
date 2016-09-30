@@ -5,6 +5,7 @@ import br.com.kproj.salesman.administration.users.domain.model.user.User;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserEventHandler;
 import com.google.common.eventbus.EventBus;
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static br.com.kproj.salesman.infrastructure.events.UserChangedMessage.createMessage;
@@ -16,6 +17,7 @@ public class UserEventHandlerEventBus implements UserEventHandler {
 
     private Gson gson;
 
+    @Autowired
     public UserEventHandlerEventBus(EventBus eventBus, Gson gson) {
         this.eventBus = eventBus;
         this.gson = gson;

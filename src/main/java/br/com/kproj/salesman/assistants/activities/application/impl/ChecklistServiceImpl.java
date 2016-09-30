@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 
-@Service
+@Service("checklistFacadeActivitiesModule")
 public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implements ChecklistFacade {
 
     @Autowired

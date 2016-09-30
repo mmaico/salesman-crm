@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.security.authentication;
 
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.security.UserSecurityInfoService;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,10 +18,12 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 @Component
 public class AuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
-    @Autowired
     private UserSecurityInfoService service;
 
-
+    @Autowired
+    public AuthenticationProvider(UserSecurityInfoService service) {
+        this.service = service;
+    }
 
     @Override
     protected UserDetails retrieveUser(String login, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
@@ -36,10 +39,12 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
             throw new BadCredentialsException("security.user.not.found");
         }
 
-        LoggedUser loggedBuilt = null; //LoggedUserBuilder.createLoggedUser(login, userFound.get(), Sets.newHashSet()).build();
+        LoggedUser loggedUser = LoggedUserBuilder.createLoggedUser(login, Sets.newHashSet()).build();
+        loggedUser.setName(userFound.get().getName());
+        loggedUser.setId(userFound.get().getId());
 
-        authentication.setDetails(loggedBuilt);
-        return new org.springframework.security.core.userdetails.User(login, password, true, true, true, true, loggedBuilt.getAuthorities());
+        authentication.setDetails(loggedUser);
+        return new org.springframework.security.core.userdetails.User(login, password, true, true, true, true, loggedUser.getAuthorities());
     }
 
     @Override

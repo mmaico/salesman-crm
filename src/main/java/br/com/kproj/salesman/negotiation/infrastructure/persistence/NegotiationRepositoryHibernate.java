@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Repository
+@Repository("negotiationRepositoryNegotiationModule")
 public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiation, BusinessProposalEntity> implements NegotiationRepository {
 
     @Autowired

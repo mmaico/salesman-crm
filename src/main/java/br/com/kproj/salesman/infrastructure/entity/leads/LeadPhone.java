@@ -24,7 +24,7 @@ public class LeadPhone extends Identifiable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ExcludeField
-    private LeadEntity leadEntity;
+    private LeadEntity lead;
 
     @Override
     public Long getId() {
@@ -51,11 +51,11 @@ public class LeadPhone extends Identifiable {
         this.phone = phone;
     }
 
-    public LeadEntity getLeadEntity() {
-        return leadEntity;
+    public LeadEntity getLead() {
+        return lead;
     }
 
-    public void setLeadEntity(LeadEntity leadEntity) {
-        this.leadEntity = leadEntity;
+    public void setLead(LeadEntity lead) {
+        this.lead = lead;
     }
 }

@@ -23,7 +23,7 @@ public class ChecklistTemplateBuilder extends AbstractBuilder<ChecklistTemplateE
 
 
     public ChecklistTemplateBuilder withTaskTemplate(TaskTemplateEntity tasktemplate) {
-        this.entity.setTaskTemplateEntity(tasktemplate);
+        this.entity.setTaskTemplate(tasktemplate);
         return this;
     }
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-@Service("checklistTemplateService")
+@Service("checklistFacadeTaskTemplateModule")
 public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implements ChecklistFacade {
 
     private ChecklistRepository repository;

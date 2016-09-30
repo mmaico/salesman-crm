@@ -33,7 +33,7 @@ public class TaskCostBuilder extends AbstractBuilder<TaskCost>  {
     }
 
     public TaskCostBuilder withTask(TaskEntity taskEntity) {
-        this.entity.setTaskEntity(taskEntity);
+        this.entity.setTask(taskEntity);
         return this;
     }
 

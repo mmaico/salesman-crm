@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-@Service
+@Service("checklistFacadeDeliveryModule")
 public class ChecklistServiceImpl implements ChecklistFacade {
 
     @Autowired
