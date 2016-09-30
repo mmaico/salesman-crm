@@ -29,13 +29,15 @@ public class SubscribeBusinessRules implements SubscribeValidator {
     Map<String, CheckRule<SubscribeTask>> rules = new HashMap<>();
     {
         rules.put(description("subscriber.task.invalid.user"), subscribe ->
-                subscribe.getUserId() == null
-                || !userRepository.findOne(subscribe.getUserId()).isPresent());
+                subscribe.getUser() == null
+                || subscribe.getUser().isNew()
+                || !userRepository.findOne(subscribe.getUser().getId()).isPresent());
 
 
         rules.put(description("subscriber.task.invalid.task"), subscribe ->
-                subscribe.getTaskId() == null
-                || !repository.findOne(subscribe.getTaskId()).isPresent());
+                subscribe.getTask() == null
+                || subscribe.getTask().isNew()
+                || !repository.findOne(subscribe.getTask().getId()).isPresent());
     }
 
     @Override

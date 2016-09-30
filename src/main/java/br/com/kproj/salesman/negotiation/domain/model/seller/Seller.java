@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.NegotiationRepository;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Temperature;
+import br.com.kproj.salesman.negotiation.domain.service.NegotiationChangeTemperatureService;
+import br.com.kproj.salesman.negotiation.domain.service.SaveNegotiationService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.AutowireHelper.autowire;
 
@@ -22,32 +22,20 @@ public class Seller extends ModelIdentifiable {
         autowire(this);
     }
 
-    public Seller changeTemperature(Temperature newTemperature) {
-        this.context.add(Temperature.class, newTemperature);
-        return this;
+    public NegotiationChangeTemperatureService changeTemperature(Temperature newTemperature) {
+        return (negotiation -> negotiation.changeTemperatureFor(newTemperature));
     }
 
-    public void from(Negotiation negotiation) {
-        Temperature newTemperature = (Temperature) this.context.get(Temperature.class);
-        negotiation.changeTemperatureFor(newTemperature);
+    public SaveNegotiationService save(Negotiation negotiation) {
+        return (temperature -> {
+            if (negotiation.isNew()) {
+                negotiation.setTemperature(temperature);
+                return repository.save(negotiation);
+            } else {
+                return repository.save(negotiation);
+            }
+        });
     }
-
-    public Seller save(Negotiation negotiation) {
-        this.context.add(Negotiation.class, negotiation);
-        return this;
-    }
-
-    public Optional<Negotiation> whenNewUse(Temperature temperature) {
-        Negotiation negotiation = (Negotiation) this.context.get(Negotiation.class);
-
-        if (negotiation.isNew()) {
-            negotiation.setTemperature(temperature);
-            return repository.save(negotiation);
-        } else {
-            return repository.save(negotiation);
-        }
-    }
-
 
     @Override
     public Long getId() {
