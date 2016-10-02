@@ -1,14 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -27,7 +26,7 @@ public class QWorkspaceUnit extends EntityPathBase<WorkspaceUnit> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder salesOrder;
+    public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity salesOrderEntity;
 
     public final QUserEntity user;
 
@@ -49,7 +48,7 @@ public class QWorkspaceUnit extends EntityPathBase<WorkspaceUnit> {
 
     public QWorkspaceUnit(Class<? extends WorkspaceUnit> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
+        this.salesOrderEntity = inits.isInitialized("salesOrderEntity") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity(forProperty("salesOrderEntity"), inits.get("salesOrderEntity")) : null;
         this.user = inits.isInitialized("user") ? new QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 

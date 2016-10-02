@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderItemBuilde
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderItem;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.sales.view.dtos.negotiation.SaleableItemDTO;
+import br.com.kproj.salesman.sales.application.dto.SaleableItemDTO;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

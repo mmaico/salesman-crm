@@ -50,7 +50,7 @@ public class TaskBuilder extends AbstractBuilder<TaskEntity>  {
     }
 
     public TaskBuilder withSalesOrder(SalesOrderEntity order) {
-        this.entity.setSalesOrderEntity(order);
+        this.entity.setSalesOrder(order);
         return this;
     }
 

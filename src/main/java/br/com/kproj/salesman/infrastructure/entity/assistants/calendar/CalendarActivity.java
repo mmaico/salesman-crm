@@ -25,10 +25,10 @@ public class CalendarActivity extends Identifiable {
     @ManyToOne
     @JoinColumn(name="calendar_id")
     @ExcludeField
-    private CalendarEntity calendarEntity;
+    private CalendarEntity calendar;
 
     @OneToOne(mappedBy = "calendarActivity", cascade = CascadeType.ALL)
-    private PeriodEntity periodEntity;
+    private PeriodEntity period;
 
     private String location;
 
@@ -70,20 +70,20 @@ public class CalendarActivity extends Identifiable {
         this.description = description;
     }
 
-    public PeriodEntity getPeriodEntity() {
-        return periodEntity;
+    public PeriodEntity getPeriod() {
+        return period;
     }
 
-    public void setPeriodEntity(PeriodEntity periodEntity) {
-        this.periodEntity = periodEntity;
+    public void setPeriod(PeriodEntity period) {
+        this.period = period;
     }
 
-    public CalendarEntity getCalendarEntity() {
-        return calendarEntity;
+    public CalendarEntity getCalendar() {
+        return calendar;
     }
 
-    public void setCalendarEntity(CalendarEntity calendarEntity) {
-        this.calendarEntity = calendarEntity;
+    public void setCalendar(CalendarEntity calendar) {
+        this.calendar = calendar;
     }
 
     public ActivityType getType() {

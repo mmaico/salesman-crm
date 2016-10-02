@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-import com.mysema.query.types.path.StringPath;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -34,7 +32,7 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
 
     public final StringPath location = createString("location");
 
-    public final QPeriod period;
+    public final QPeriodEntity periodEntity;
 
     public final StringPath title = createString("title");
 
@@ -59,7 +57,7 @@ public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
     public QCalendarActivity(Class<? extends CalendarActivity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.calendarEntity = inits.isInitialized("calendarEntity") ? new QCalendarEntity(forProperty("calendarEntity"), inits.get("calendarEntity")) : null;
-        this.period = inits.isInitialized("period") ? new QPeriod(forProperty("period"), inits.get("period")) : null;
+        this.periodEntity = inits.isInitialized("periodEntity") ? new QPeriodEntity(forProperty("periodEntity"), inits.get("periodEntity")) : null;
         this.type = inits.isInitialized("type") ? new QActivityType(forProperty("type")) : null;
     }
 

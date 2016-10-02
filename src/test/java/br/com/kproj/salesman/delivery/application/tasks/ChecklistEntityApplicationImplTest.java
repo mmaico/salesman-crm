@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.application.tasks;
 
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
-import br.com.kproj.salesman.infrastructure.repository.task.ChecklistRepository;
+import br.com.kproj.salesman.infrastructure.repository.task.ChecklistEntityRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -19,7 +19,7 @@ public class ChecklistEntityApplicationImplTest {
 
 
     @Mock
-    private ChecklistRepository repository;
+    private ChecklistEntityRepository repository;
 
 
 

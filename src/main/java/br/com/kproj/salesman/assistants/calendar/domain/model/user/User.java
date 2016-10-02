@@ -11,6 +11,11 @@ public class User extends ModelIdentifiable {
 
     private Long id;
 
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User() {}
 
     public ActivityInCalendarService addAn(Activity activity) {
         return calendar -> calendar.addNew(activity);

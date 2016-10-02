@@ -15,12 +15,17 @@ public class CalendarEntity extends Identifiable {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "calendarEntity")
+    @OneToMany(mappedBy = "calendar")
     private List<CalendarActivity> activities;
 
-    @OneToOne(mappedBy = "calendarEntity")
+    @OneToOne(mappedBy = "calendar")
     @ExcludeField
     private UserEntity user;
+
+    public CalendarEntity(){}
+    public CalendarEntity(Long id){
+        this.id = id;
+    }
 
     @Override
     public Long getId() {

@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.DateTimePath;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -35,7 +33,7 @@ public class QTaskNotification extends EntityPathBase<TaskNotification> {
     // inherited
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity notified;
 
-    public final br.com.kproj.salesman.infrastructure.entity.task.QTask task;
+    public final br.com.kproj.salesman.infrastructure.entity.task.QTaskEntity taskEntity;
 
     public QTaskNotification(String variable) {
         this(TaskNotification.class, forVariable(variable), INITS);
@@ -59,7 +57,7 @@ public class QTaskNotification extends EntityPathBase<TaskNotification> {
         this.createDate = _super.createDate;
         this.id = _super.id;
         this.notified = _super.notified;
-        this.task = inits.isInitialized("task") ? new br.com.kproj.salesman.infrastructure.entity.task.QTask(forProperty("task"), inits.get("task")) : null;
+        this.taskEntity = inits.isInitialized("taskEntity") ? new br.com.kproj.salesman.infrastructure.entity.task.QTaskEntity(forProperty("taskEntity"), inits.get("taskEntity")) : null;
     }
 
 }

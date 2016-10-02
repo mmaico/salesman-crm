@@ -16,11 +16,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository("checklistTemplateRepository")
+@Repository("checklistTemplateRepositoryTaskTemplateModule1")
 public class ChecklistRepositoryHibernate extends BaseRespositoryImpl<Checklist, ChecklistTemplateEntity> implements ChecklistRepository {
 
-    @Autowired
     private ChecklistRepositorySpringData repository;
+
+    @Autowired
+    public ChecklistRepositoryHibernate (ChecklistRepositorySpringData repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Collection<Checklist> findAll(Task task) {

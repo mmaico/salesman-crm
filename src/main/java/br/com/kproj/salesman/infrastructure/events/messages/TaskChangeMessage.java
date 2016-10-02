@@ -4,6 +4,7 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
+@Deprecated
 public class TaskChangeMessage {
 
 

@@ -4,7 +4,6 @@ package br.com.kproj.salesman.sales.domain.model.system;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrderRepository;
-import br.com.kproj.salesman.sales.view.dtos.negotiation.NegotiationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SystemEvent {
@@ -24,7 +23,7 @@ public class SystemEvent {
     }
 
     public SalesOrder successfullyClosed() {
-        return repository.generateBy((NegotiationDTO) event.getObject());
+        return repository.generateBy(event.getObject());
     }
 
     public static SystemEvent start() {

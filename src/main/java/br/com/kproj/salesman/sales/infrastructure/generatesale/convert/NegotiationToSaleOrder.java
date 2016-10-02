@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.SalesOrderBuilder;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
-import br.com.kproj.salesman.sales.view.dtos.negotiation.NegotiationDTO;
+import br.com.kproj.salesman.sales.application.dto.NegotiationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

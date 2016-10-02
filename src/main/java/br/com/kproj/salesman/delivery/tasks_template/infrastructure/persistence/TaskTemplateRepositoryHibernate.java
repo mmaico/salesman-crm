@@ -21,12 +21,16 @@ import java.util.stream.Collectors;
 
 import static com.trex.clone.BusinessModelClone.from;
 
-@Repository("taskTemplateRepository")
+@Repository("taskTemplateRepositoryTaskTemplateModule")
 public class TaskTemplateRepositoryHibernate extends BaseRespositoryImpl<Task, TaskTemplateEntity> implements TaskRepository {
 
-    @Autowired
+
     private TaskTemplate2RepositorySpringData repository;
 
+    @Autowired
+    public TaskTemplateRepositoryHibernate (TaskTemplate2RepositorySpringData repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Collection<Task> findAll(Saleable saleable) {

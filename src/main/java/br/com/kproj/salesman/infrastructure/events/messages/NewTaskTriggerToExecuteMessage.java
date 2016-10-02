@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
 import java.util.Date;
 
+@Deprecated
 public class NewTaskTriggerToExecuteMessage {
 
     private TaskEntity taskEntity;

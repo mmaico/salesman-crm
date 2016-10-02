@@ -1,12 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
-import com.mysema.query.types.Path;
-import com.mysema.query.types.PathMetadata;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
 import com.mysema.query.types.path.*;
 
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -29,7 +30,7 @@ public class QSalesOrderPaymentItem extends EntityPathBase<SalesOrderPaymentItem
 
     public final StringPath observation = createString("observation");
 
-    public final QSalesOrder salesOrder;
+    public final QSalesOrderEntity salesOrder;
 
     public final NumberPath<java.math.BigDecimal> value = createNumber("value", java.math.BigDecimal.class);
 
@@ -51,7 +52,7 @@ public class QSalesOrderPaymentItem extends EntityPathBase<SalesOrderPaymentItem
 
     public QSalesOrderPaymentItem(Class<? extends SalesOrderPaymentItem> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
+        this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
     }
 
 }

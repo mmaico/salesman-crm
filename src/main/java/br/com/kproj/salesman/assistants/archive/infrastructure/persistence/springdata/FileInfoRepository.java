@@ -14,10 +14,10 @@ import java.util.List;
 public interface FileInfoRepository extends BaseRepositoryLegacy<FileInfoEntity, Long> {
 
 
-    @Query("SELECT fi FROM FileInfo AS fi JOIN fi.sharedWith AS sw " +
+    @Query("SELECT fi FROM FileInfoEntity AS fi JOIN fi.sharedWith AS sw " +
             " WHERE fi.isPublic = true OR sw.user = :user")
     List<FileInfoEntity> findPublicsAndSheredFiles(@Param("user") UserEntity user);
 
-    @Query("SELECT fi FROM FileInfo AS fi WHERE fi.owner = :user")
+    @Query("SELECT fi FROM FileInfoEntity AS fi WHERE fi.owner = :user")
     List<FileInfoEntity> findOwnFiles(@Param("user") UserEntity user);
 }

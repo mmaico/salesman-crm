@@ -1,13 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.PathMetadata;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
 import com.mysema.query.types.path.*;
 
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -28,9 +28,9 @@ public class QTaskChangeHistory extends EntityPathBase<TaskChangeHistory> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final EnumPath<TaskStatusEntity> statusChanged = createEnum("statusChanged", TaskStatusEntity.class);
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity> statusChanged = createEnum("statusChanged", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity.class);
 
-    public final QTask taskChanged;
+    public final QTaskEntity taskEntityChanged;
 
     public QTaskChangeHistory(String variable) {
         this(TaskChangeHistory.class, forVariable(variable), INITS);
@@ -50,7 +50,7 @@ public class QTaskChangeHistory extends EntityPathBase<TaskChangeHistory> {
 
     public QTaskChangeHistory(Class<? extends TaskChangeHistory> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.taskChanged = inits.isInitialized("taskChanged") ? new QTask(forProperty("taskChanged"), inits.get("taskChanged")) : null;
+        this.taskEntityChanged = inits.isInitialized("taskEntityChanged") ? new QTaskEntity(forProperty("taskEntityChanged"), inits.get("taskEntityChanged")) : null;
     }
 
 }

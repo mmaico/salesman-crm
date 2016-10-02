@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.ListPath;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -26,7 +24,7 @@ public class QRequestApprovalEntity extends EntityPathBase<RequestApprovalEntity
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<ApprovalItemEntity, QApprovalItemEntity> approvers = this.<ApprovalItemEntity, QApprovalItemEntity>createList("approval", ApprovalItemEntity.class, QApprovalItemEntity.class, PathInits.DIRECT2);
+    public final ListPath<ApprovalItemEntity, QApprovalItemEntity> approvers = this.<ApprovalItemEntity, QApprovalItemEntity>createList("approvers", ApprovalItemEntity.class, QApprovalItemEntity.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

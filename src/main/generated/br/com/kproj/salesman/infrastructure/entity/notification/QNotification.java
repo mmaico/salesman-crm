@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.DateTimePath;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -50,7 +48,7 @@ public class QNotification extends EntityPathBase<Notification> {
 
     public QNotification(Class<? extends Notification> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.notified = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
+        this.notified = inits.isInitialized("notified") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("notified"), inits.get("notified")) : null;
     }
 
 }

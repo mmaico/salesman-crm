@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.BooleanPath;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -32,7 +30,7 @@ public class QTaskCostTemplate extends EntityPathBase<TaskCostTemplate> {
 
     public final BooleanPath isInternal = createBoolean("isInternal");
 
-    public final QTaskTemplate taskTemplate;
+    public final QTaskTemplateEntity taskTemplate;
 
     public QTaskCostTemplate(String variable) {
         this(TaskCostTemplate.class, forVariable(variable), INITS);
@@ -52,7 +50,7 @@ public class QTaskCostTemplate extends EntityPathBase<TaskCostTemplate> {
 
     public QTaskCostTemplate(Class<? extends TaskCostTemplate> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.taskTemplate = inits.isInitialized("taskTemplate") ? new QTaskTemplate(forProperty("taskTemplate"), inits.get("taskTemplate")) : null;
+        this.taskTemplate = inits.isInitialized("taskTemplate") ? new QTaskTemplateEntity(forProperty("taskTemplate"), inits.get("taskTemplate")) : null;
     }
 
 }

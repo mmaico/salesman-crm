@@ -62,7 +62,7 @@ public class UserEntity extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="calendar_id")
-    private CalendarEntity calendarEntity;
+    private CalendarEntity calendar;
 
     @Transient
     private List<GrantedAuthority> authorities = new ArrayList<>();
@@ -169,12 +169,12 @@ public class UserEntity extends Identifiable {
         this.approverEntity = approverEntity;
     }
 
-    public CalendarEntity getCalendarEntity() {
-        return calendarEntity;
+    public CalendarEntity getCalendar() {
+        return calendar;
     }
 
-    public void setCalendarEntity(CalendarEntity calendarEntity) {
-        this.calendarEntity = calendarEntity;
+    public void setCalendar(CalendarEntity calendar) {
+        this.calendar = calendar;
     }
 
     @Override

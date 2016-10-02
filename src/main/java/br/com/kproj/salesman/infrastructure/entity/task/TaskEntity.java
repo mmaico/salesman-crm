@@ -54,7 +54,7 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     @ManyToOne
     @JoinColumn(name="sales_order_id")
     @ExcludeField
-    private SalesOrderEntity salesOrderEntity;
+    private SalesOrderEntity salesOrder;
 
     @ManyToMany
     @JoinTable(name="task_user",
@@ -193,12 +193,12 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
         this.signedBy = signedBy;
     }
 
-    public SalesOrderEntity getSalesOrderEntity() {
-        return salesOrderEntity;
+    public SalesOrderEntity getSalesOrder() {
+        return salesOrder;
     }
 
-    public void setSalesOrderEntity(SalesOrderEntity salesOrderEntity) {
-        this.salesOrderEntity = salesOrderEntity;
+    public void setSalesOrder(SalesOrderEntity salesOrder) {
+        this.salesOrder = salesOrder;
     }
 
     public Timeline getTimeline() {

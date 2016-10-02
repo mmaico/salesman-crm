@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 
+@Deprecated
 public class TaskChangeStatusMessage {
 
 

@@ -18,6 +18,11 @@ public class User extends ModelIdentifiable {
     @Autowired
     private LeadRepository repository;
 
+
+    public User(Long id) {
+        this.id = id;
+    }
+
     public User() {
         autowire(this);
     }

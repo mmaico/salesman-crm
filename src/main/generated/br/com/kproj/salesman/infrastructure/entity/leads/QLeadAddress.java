@@ -1,15 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-import com.mysema.query.types.path.StringPath;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -34,7 +32,7 @@ public class QLeadAddress extends EntityPathBase<LeadAddress> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QLead lead;
+    public final QLeadEntity lead;
 
     public final StringPath number = createString("number");
 
@@ -60,7 +58,7 @@ public class QLeadAddress extends EntityPathBase<LeadAddress> {
 
     public QLeadAddress(Class<? extends LeadAddress> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.lead = inits.isInitialized("lead") ? new QLead(forProperty("lead"), inits.get("lead")) : null;
+        this.lead = inits.isInitialized("lead") ? new QLeadEntity(forProperty("lead"), inits.get("lead")) : null;
     }
 
 }

@@ -14,6 +14,12 @@ public class SalesOrder extends ModelIdentifiable {
 
     private List<SalesItem> items = Lists.newArrayList();
 
+    public SalesOrder(Long id) {
+        this.id = id;
+    }
+
+    public SalesOrder() {}
+
     @Override
     public Long getId() {
         return id;

@@ -29,7 +29,7 @@ public class FileInfoEntity extends Identifiable {
     private UserEntity owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fileInfo")
-    private List<SharedWithEntity> sharedWithEntity;
+    private List<SharedWithEntity> sharedWith;
 
     @Column(name="is_public")
     private Boolean isPublic = Boolean.FALSE;
@@ -72,12 +72,12 @@ public class FileInfoEntity extends Identifiable {
         this.owner = owner;
     }
 
-    public List<SharedWithEntity> getSharedWithEntity() {
-        return sharedWithEntity;
+    public List<SharedWithEntity> getSharedWith() {
+        return sharedWith;
     }
 
-    public void setSharedWithEntity(List<SharedWithEntity> sharedWithEntity) {
-        this.sharedWithEntity = sharedWithEntity;
+    public void setSharedWith(List<SharedWithEntity> sharedWith) {
+        this.sharedWith = sharedWith;
     }
 
     public Boolean getPublic() {

@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.events.messages;
 
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 
+@Deprecated
 public class BusinessProposalClosedWonMessage {
 
     private BusinessProposalEntity proposal;

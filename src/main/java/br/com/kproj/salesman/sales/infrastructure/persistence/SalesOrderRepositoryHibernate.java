@@ -5,11 +5,12 @@ import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import br.com.kproj.salesman.sales.application.dto.NegotiationDTO;
+import br.com.kproj.salesman.sales.domain.model.negotiation.INegotiation;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrderRepository;
 import br.com.kproj.salesman.sales.infrastructure.generatesale.convert.NegotiationToSaleOrder;
 import br.com.kproj.salesman.sales.infrastructure.persistence.springdata.SalesOrderRepositorySpringdata;
-import br.com.kproj.salesman.sales.view.dtos.negotiation.NegotiationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,9 @@ public class SalesOrderRepositoryHibernate extends BaseRespositoryImpl<SalesOrde
     }
 
     @Override
-    public SalesOrder generateBy(NegotiationDTO negotiationDTO) {
+    public SalesOrder generateBy(INegotiation negotiation) {
+        NegotiationDTO negotiationDTO = (NegotiationDTO) negotiation;
+
         SalesOrderEntity orderEntity = converter.convert(negotiationDTO);
         return getConverter().convert(repository.save(orderEntity));
     }

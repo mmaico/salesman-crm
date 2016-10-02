@@ -34,10 +34,10 @@ public class ArchiveTranslate implements TwoWayMerge<Archive, FileInfoEntity> {
         set(target).ifPresent(source.getFields()).setDescription(source.getDescription());
         set(target).when(source.getFields().contains("isPublic")).setPublic(source.getIsPublic());
 
-        if (isEmptySafe(target.getSharedWithEntity())) {
-            target.setSharedWithEntity(Lists.newArrayList());
+        if (isEmptySafe(target.getSharedWith())) {
+            target.setSharedWith(Lists.newArrayList());
         }
-        this.participantsTranslate.merge(source.getParticipants(), target.getSharedWithEntity());
+        this.participantsTranslate.merge(source.getParticipants(), target.getSharedWith());
 
         if (source.getPhysical() != null && target.getFile() == null) {
             target.setFile(new AppFile());

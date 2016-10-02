@@ -10,11 +10,15 @@ import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("regionTemplateRepository")
+@Repository("regionTemplateRepositoryTaskTemplateModule")
 public class RegionRepositoryHibernate extends BaseRespositoryImpl<Region, OperationRegionEntity> implements RegionRepository {
 
-    @Autowired
     private RegionRepositorySpringData repository;
+
+    @Autowired
+    public RegionRepositoryHibernate(RegionRepositorySpringData repository) {
+        this.repository = repository;
+    }
 
     @Override
     public BaseRepositoryLegacy<OperationRegionEntity, Long> getRepository() {

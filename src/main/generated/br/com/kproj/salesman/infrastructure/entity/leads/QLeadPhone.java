@@ -1,12 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import com.mysema.query.types.Path;
-import com.mysema.query.types.PathMetadata;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
 import com.mysema.query.types.path.*;
 
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -25,7 +26,7 @@ public class QLeadPhone extends EntityPathBase<LeadPhone> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QLead lead;
+    public final QLeadEntity lead;
 
     public final StringPath phone = createString("phone");
 
@@ -49,7 +50,7 @@ public class QLeadPhone extends EntityPathBase<LeadPhone> {
 
     public QLeadPhone(Class<? extends LeadPhone> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.lead = inits.isInitialized("lead") ? new QLead(forProperty("lead"), inits.get("lead")) : null;
+        this.lead = inits.isInitialized("lead") ? new QLeadEntity(forProperty("lead"), inits.get("lead")) : null;
     }
 
 }

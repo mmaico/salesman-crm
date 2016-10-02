@@ -15,6 +15,5 @@ public interface ChecklistRepository extends BaseRepository<Checklist, Long> {
 
     void complete(Checklist checklist);
 
-
     Optional<Checklist> newCheckList(Checklist checklist, Activity activity);
 }

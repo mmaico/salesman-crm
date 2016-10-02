@@ -1,14 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
-import com.mysema.query.types.Path;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
+import com.mysema.query.types.path.*;
+
 import com.mysema.query.types.PathMetadata;
-import com.mysema.query.types.path.EntityPathBase;
-import com.mysema.query.types.path.NumberPath;
-import com.mysema.query.types.path.PathInits;
-
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -37,7 +36,7 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
 
     public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity salePackage;
 
-    public final QSalesOrder salesOrder;
+    public final QSalesOrderEntity salesOrder;
 
     public QSalesOrderItem(String variable) {
         this(SalesOrderItem.class, forVariable(variable), INITS);
@@ -59,7 +58,7 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
         super(type, metadata, inits);
         this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
         this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;
-        this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrder(forProperty("salesOrder"), inits.get("salesOrder")) : null;
+        this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
     }
 
 }

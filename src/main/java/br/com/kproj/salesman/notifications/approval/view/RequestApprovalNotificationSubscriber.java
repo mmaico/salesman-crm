@@ -1,45 +1,49 @@
 package br.com.kproj.salesman.notifications.approval.view;
 
 
-import br.com.kproj.salesman.infrastructure.configuration.encapsulating.JsonSerializer;
 import br.com.kproj.salesman.infrastructure.events.NewRequestApprovalMessage;
+import br.com.kproj.salesman.infrastructure.service.Serializer;
+import br.com.kproj.salesman.notifications.approval.application.ApprovalNotificationFacade;
 import br.com.kproj.salesman.notifications.approval.domain.model.negotiation.Negotiation;
-import br.com.kproj.salesman.notifications.approval.domain.model.notification.Notification;
-import br.com.kproj.salesman.notifications.approval.domain.model.notification.NotificationBuilder;
+import br.com.kproj.salesman.notifications.approval.domain.model.notification.Receivers;
+import br.com.kproj.salesman.notifications.approval.domain.model.notification.RequestNotification;
 import br.com.kproj.salesman.notifications.approval.domain.model.user.Receiver;
 import br.com.kproj.salesman.notifications.approval.view.dtos.RequestApprovalDTO;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static br.com.kproj.salesman.notifications.approval.domain.model.notification.RequestNotification.createRequest;
 
 @Component
 public class RequestApprovalNotificationSubscriber {
 
-    private JsonSerializer<RequestApprovalDTO> serializer;
+    private Serializer serializer;
+
+    private ApprovalNotificationFacade service;
 
     @Autowired
-    public RequestApprovalNotificationSubscriber(JsonSerializer<RequestApprovalDTO> serializer) {
+    public RequestApprovalNotificationSubscriber(Serializer serializer, ApprovalNotificationFacade service) {
         this.serializer = serializer;
+        this.service = service;
     }
 
 
     @Subscribe
     public void receiveRequestApproval(NewRequestApprovalMessage message) {
         RequestApprovalDTO approvalDTO = serializer.deserialize(message.getMessage(), RequestApprovalDTO.class);
+        Long negotiationId = approvalDTO.getNegotiation().getId();
+        Receivers receivers = new Receivers();
 
-        List<Notification> notificationList = approvalDTO.getApprovers().stream()
-                .map(approver -> {
-                    Negotiation negotiation = new Negotiation(approvalDTO.getNegotiation().getId());
-                    return NotificationBuilder
-                            .createView()
-                            .createNow()
-                            .withNegotiation(negotiation)
-                            .withReceiver(new Receiver(approver.getApprover().getId())).build();
-                }).collect(Collectors.toList());
 
+        approvalDTO.getApprovers().stream()
+                .forEach(approver -> {
+                    Long id = approver.getApprover().getId();
+                    receivers.add(new Receiver(id));
+                });
+
+        RequestNotification requestNotification = createRequest(new Negotiation(negotiationId), receivers);
+        service.register(requestNotification);
     }
 
 

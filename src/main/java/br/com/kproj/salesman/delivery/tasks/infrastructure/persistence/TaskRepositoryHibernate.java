@@ -60,7 +60,7 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         TaskEntity taskEntityParent = repository.findOne(parent.getId());
 
         TaskEntity taskToSave = from(subtask).convertTo(TaskEntity.class);
-        taskToSave.setSalesOrderEntity(taskEntityParent.getSalesOrderEntity());
+        taskToSave.setSalesOrder(taskEntityParent.getSalesOrder());
 
         TaskEntity tasksaved = repository.save(taskToSave);
         taskEntityParent.addChild(tasksaved);

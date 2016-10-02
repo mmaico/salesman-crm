@@ -16,6 +16,10 @@ public class User extends ModelIdentifiable {
     @Autowired
     private TaskRepository repository;
 
+    public User(Long id) {
+        this.id = id;
+    }
+
     public User() {
         AutowireHelper.autowire(this);
     }

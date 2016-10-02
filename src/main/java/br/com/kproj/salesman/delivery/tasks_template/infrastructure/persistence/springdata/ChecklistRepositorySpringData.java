@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("checklistTemplateRepository")
+@Repository("checklistTemplateRepositoryTaskTemplateModule")
 public interface ChecklistRepositorySpringData extends BaseRepositoryLegacy<ChecklistTemplateEntity, Long> {
 
-    @Query("SELECT c FROM ChecklistTemplateEntity AS c WHERE c.taskTemplateEntity = :task")
+    @Query("SELECT c FROM ChecklistTemplateEntity AS c WHERE c.taskTemplate = :task")
     List<ChecklistTemplateEntity> findCheckListBy(@Param("task") TaskTemplateEntity taskEntity);
 
 }

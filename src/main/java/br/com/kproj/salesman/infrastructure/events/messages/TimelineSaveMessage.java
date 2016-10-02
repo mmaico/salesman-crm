@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 
+@Deprecated
 public class TimelineSaveMessage {
 
 

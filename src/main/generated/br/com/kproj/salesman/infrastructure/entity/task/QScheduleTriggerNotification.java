@@ -1,12 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import com.mysema.query.types.Path;
-import com.mysema.query.types.PathMetadata;
+import static com.mysema.query.types.PathMetadataFactory.*;
+
 import com.mysema.query.types.path.*;
 
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-
-import static com.mysema.query.types.PathMetadataFactory.forVariable;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -27,7 +28,7 @@ public class QScheduleTriggerNotification extends EntityPathBase<ScheduleTrigger
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QTask task;
+    public final QTaskEntity task;
 
     public final DateTimePath<java.util.Date> triggerDate = createDateTime("triggerDate", java.util.Date.class);
 
@@ -49,7 +50,7 @@ public class QScheduleTriggerNotification extends EntityPathBase<ScheduleTrigger
 
     public QScheduleTriggerNotification(Class<? extends ScheduleTriggerNotification> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.task = inits.isInitialized("task") ? new QTask(forProperty("task"), inits.get("task")) : null;
+        this.task = inits.isInitialized("task") ? new QTaskEntity(forProperty("task"), inits.get("task")) : null;
     }
 
 }

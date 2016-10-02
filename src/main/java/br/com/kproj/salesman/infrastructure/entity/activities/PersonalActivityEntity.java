@@ -61,6 +61,12 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
     @IgnoreField
     private PersonalActivityEntity parent;
 
+    public PersonalActivityEntity(Long id) {
+        this.id = id;
+    }
+
+    public PersonalActivityEntity() {}
+
     public void addChild(PersonalActivityEntity task) {
         if (this.activitiesChildren == null) {
             this.activitiesChildren = Lists.newArrayList();
