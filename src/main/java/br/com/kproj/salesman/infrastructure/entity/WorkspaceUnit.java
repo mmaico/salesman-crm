@@ -18,7 +18,7 @@ public class WorkspaceUnit extends Identifiable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="sales_order_id")
     @NotNull(message = "act.delivery.sales.order.is.null")
-	private SalesOrderEntity salesOrderEntity;
+	private SalesOrderEntity salesOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
@@ -34,12 +34,12 @@ public class WorkspaceUnit extends Identifiable {
         this.id = id;
     }
 
-    public SalesOrderEntity getSalesOrderEntity() {
-        return salesOrderEntity;
+    public SalesOrderEntity getSalesOrder() {
+        return salesOrder;
     }
 
-    public void setSalesOrderEntity(SalesOrderEntity salesOrderEntity) {
-        this.salesOrderEntity = salesOrderEntity;
+    public void setSalesOrder(SalesOrderEntity salesOrder) {
+        this.salesOrder = salesOrder;
     }
 
     public UserEntity getUser() {

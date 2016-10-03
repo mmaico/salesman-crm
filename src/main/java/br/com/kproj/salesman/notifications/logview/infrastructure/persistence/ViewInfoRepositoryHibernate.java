@@ -23,8 +23,13 @@ import static br.com.kproj.salesman.notifications.logview.domain.model.view.View
 @Repository
 public class ViewInfoRepositoryHibernate extends BaseRespositoryImpl<ViewInfo, UserNotificationLogViewEntity> implements ViewInfoRepository {
 
-    @Autowired
+
     private UserNotificationLogViewRepositorySpringdata repository;
+
+    @Autowired
+    public ViewInfoRepositoryHibernate(UserNotificationLogViewRepositorySpringdata repository) {
+        this.repository = repository;
+    }
 
 
     public Optional<ViewInfo> save(ViewInfo entity) {

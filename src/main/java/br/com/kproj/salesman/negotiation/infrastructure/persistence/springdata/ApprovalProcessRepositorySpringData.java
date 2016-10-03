@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+@Repository("approvalProcessRepositorySpringDataNegotiationModule")
 public interface ApprovalProcessRepositorySpringData extends BaseRepositoryLegacy<RequestApprovalEntity, Long> {
 
-    @Query("SELECT ra FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal AND ra.status = 'WAITING'")
+    //AND ra.status = 'WAITING'
+    @Query("SELECT ra FROM RequestApprovalEntity AS ra WHERE ra.proposal = :proposal")
     Optional<RequestApprovalEntity> findOne(@Param("proposal") BusinessProposalEntity proposal);
 
 

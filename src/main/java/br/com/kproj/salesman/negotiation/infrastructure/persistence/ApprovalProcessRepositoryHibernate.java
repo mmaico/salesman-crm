@@ -18,8 +18,13 @@ import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessPropo
 @Repository
 public class ApprovalProcessRepositoryHibernate extends BaseRespositoryImpl<RequestApproval, RequestApprovalEntity> implements ApprovalProcessRepository {
 
-    @Autowired
+
     private ApprovalProcessRepositorySpringData repository;
+
+    @Autowired
+    public ApprovalProcessRepositoryHibernate(ApprovalProcessRepositorySpringData repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Boolean isInApprovalProcess(Negotiation negotiation) {

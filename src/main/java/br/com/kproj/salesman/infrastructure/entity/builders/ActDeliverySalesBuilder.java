@@ -17,7 +17,7 @@ public class ActDeliverySalesBuilder extends AbstractBuilder<WorkspaceUnit>  {
 	}
 
 	public ActDeliverySalesBuilder withSalesOrder(SalesOrderEntity salesOrderEntity) {
-		this.entity.setSalesOrderEntity(salesOrderEntity);
+		this.entity.setSalesOrder(salesOrderEntity);
 		return this;
 	}
 

@@ -6,10 +6,8 @@ import br.com.kproj.salesman.negotiation.application.NegotiationFacade;
 import br.com.kproj.salesman.negotiation.domain.model.account.Account;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.*;
 import br.com.kproj.salesman.negotiation.domain.model.seller.Seller;
-import br.com.kproj.salesman.negotiation.domain.model.seller.SellerRepository;
 import br.com.kproj.salesman.negotiation.domain.model.seller.SellerSaveNegotiation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -22,10 +20,6 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
     private NegotiationRepository repository;
 
     @Autowired
-    private SellerRepository sellerRepository;
-
-    @Autowired
-    @Qualifier("rulesToChangeTemperature")
     private RulesToChangeTemperature businessRules;
 
     @Autowired

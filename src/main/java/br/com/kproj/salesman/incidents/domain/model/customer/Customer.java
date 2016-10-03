@@ -8,6 +8,13 @@ public class Customer extends ModelIdentifiable {
 
     private Long id;
 
+    public Customer(Long id) {
+        this.id = id;
+    }
+
+    public Customer() {
+    }
+
     @Override
     public Long getId() {
         return id;
