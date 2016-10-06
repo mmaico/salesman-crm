@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController
+@RestController("taskEndpointTemplateModule")
 public class TaskEndpoint {
 
     @Autowired
     private TaskFacade service;
 
 
-    @RequestMapping(value = "/rs/tasks/{taskId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/products/tasks/{taskId}", method = RequestMethod.GET)
     public @ResponseBody Task getTask(@PathVariable Long taskId) {
 
         return null;

@@ -13,20 +13,20 @@ public interface ApproverProfileRepository extends BaseRepositoryLegacy<Approver
 
     Optional<ApproverEntity> findByApprover(@Param("approver") UserEntity approver);
 
-    @Query("SELECT " +
-            " CASE WHEN count(*) > 0 " +
-            "      THEN true " +
-            "      ELSE false " +
-            " END " +
-            "FROM ApproverProfile AS ap WHERE ap.available is true ")
-    Boolean hasApprovers();
-
-    @Query("SELECT " +
-            " CASE WHEN count(*) > 0 " +
-            "      THEN true " +
-            "      ELSE false " +
-            " END " +
-            "FROM ApproverProfile AS ap WHERE ap.available is true AND ap.approver <> :user ")
-    Boolean hasApproversExcludeParam(@Param("user") UserEntity user);
+//    @Query("SELECT " +
+//            " CASE WHEN count(*) > 0 " +
+//            "      THEN true " +
+//            "      ELSE false " +
+//            " END " +
+//            "FROM ApproverProfile AS ap WHERE ap.available is true ")
+//    Boolean hasApprovers();
+//
+//    @Query("SELECT " +
+//            " CASE WHEN count(*) > 0 " +
+//            "      THEN true " +
+//            "      ELSE false " +
+//            " END " +
+//            "FROM ApproverProfile AS ap WHERE ap.available is true AND ap.approver <> :user ")
+//    Boolean hasApproversExcludeParam(@Param("user") UserEntity user);
 
 }

@@ -18,13 +18,6 @@ public class ApproverProfileRepositoryIT extends AbstractIntegrationTest {
     @Autowired
     private ApproverProfileRepository repository;
 
-    @Test
-    public void shouldReturnTrueWheHasApproversAvailable() {
-
-        Boolean result = repository.hasApprovers();
-
-        assertThat(result, is(Boolean.TRUE));
-    }
 
     @Test
     public void shouldReturnApproverProfileByUser() {

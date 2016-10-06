@@ -43,8 +43,9 @@ public class WebAutorizationConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public void configureGlobal(AuthenticationManagerBuilder auth, AuthenticationProvider provider) throws Exception {
+    public Object configureGlobal(AuthenticationManagerBuilder auth, AuthenticationProvider provider) throws Exception {
         auth.authenticationProvider(provider);
+        return null;
     }
 
    public  class AuthenticationFailureHandlerCustom implements AuthenticationFailureHandler {

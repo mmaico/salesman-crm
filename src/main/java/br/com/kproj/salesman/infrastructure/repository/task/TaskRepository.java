@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface TaskRepository extends BaseRepositoryLegacy<TaskEntity, Long> {
 
-    @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
+    @Query("SELECT t FROM TaskEntity AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
     List<TaskEntity> findBySalesOrder(@Param("salesOrder") SalesOrderEntity salesOrderEntity);
 
     @Query("SELECT " +
@@ -21,26 +21,26 @@ public interface TaskRepository extends BaseRepositoryLegacy<TaskEntity, Long> {
             "       THEN true " +
             "       ELSE false " +
             "   END  " +
-            "FROM Task AS t JOIN t.tasksChilds AS taskChild " +
+            "FROM TaskEntity AS t JOIN t.tasksChildren AS taskChild " +
             "WHERE taskChild = :task")
     Boolean isSomeonesSon(@Param("task")TaskEntity taskEntity);
 
-    @Query("SELECT t FROM Task AS t WHERE t.salesOrder = :salesOrder AND t " +
-            " NOT IN (SELECT child FROM Task AS ta JOIN ta.tasksChilds AS child " +
+    @Query("SELECT t FROM TaskEntity AS t WHERE t.salesOrder = :salesOrder AND t " +
+            " NOT IN (SELECT child FROM TaskEntity AS ta JOIN ta.tasksChildren AS child " +
             "   WHERE ta.salesOrder = :salesOrder)")
     List<TaskEntity> findTaskRootBy(@Param("salesOrder")SalesOrderEntity salesOrderEntity);
 
 
-    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status")
+    @Query("SELECT COUNT(t) FROM TaskEntity AS t WHERE t.status = :status")
     Long countByStatus(@Param("status")TaskStatusEntity status);
 
-    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.status = :status AND t.salesOrder = :salesOrder")
+    @Query("SELECT COUNT(t) FROM TaskEntity AS t WHERE t.status = :status AND t.salesOrder = :salesOrder")
     Long countByStatus(@Param("status")TaskStatusEntity status, @Param("salesOrder") SalesOrderEntity salesOrderEntity);
 
-    @Query("SELECT COUNT(t) FROM Task AS t WHERE t.salesOrder = :salesOrder")
+    @Query("SELECT COUNT(t) FROM TaskEntity AS t WHERE t.salesOrder = :salesOrder")
     Long countBySalesOrder(@Param("salesOrder")SalesOrderEntity salesOrderEntity);
 
-    @Query("SELECT t FROM Task AS t WHERE t.id = :id")
+    @Query("SELECT t FROM TaskEntity AS t WHERE t.id = :id")
     Optional<TaskEntity> getOne(@Param("id")Long id);
 
 }

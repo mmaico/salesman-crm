@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ChecklistTemplateRepository extends BaseRepositoryLegacy<ChecklistTemplateEntity, Long> {
 
-    @Query("SELECT ct FROM ChecklistTemplate AS ct WHERE ct.taskTemplate = :taskTemplate")
+    @Query("SELECT ct FROM ChecklistTemplateEntity AS ct WHERE ct.taskTemplate = :taskTemplate")
     List<ChecklistTemplateEntity> findCheckListBy(@Param("taskTemplate") TaskTemplateEntity taskTemplateEntity);
 
 }

@@ -12,10 +12,10 @@ import java.util.Optional;
 
 public interface ChecklistEntityRepository extends BaseRepositoryLegacy<ChecklistEntity, Long> {
 
-    @Query("SELECT c FROM Checklist AS c WHERE c.task = :task")
+    @Query("SELECT c FROM ChecklistEntity AS c WHERE c.task = :task")
     List<ChecklistEntity> findCheckListBy(@Param("task") TaskEntity taskEntity);
 
-    @Query("SELECT c FROM Checklist AS c WHERE c.id = :id")
+    @Query("SELECT c FROM ChecklistEntity AS c WHERE c.id = :id")
     Optional<ChecklistEntity> getOne(@Param("id")Long id);
 
 }

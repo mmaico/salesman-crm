@@ -11,6 +11,6 @@ public interface BusinessProposalRepository extends BaseRepositoryLegacy<Busines
 
     //List<BusinessProposalEntity> findByClient(@Param("client") Person client);
 
-    @Query("SELECT so FROM SalesOrder AS so WHERE so.proposal = :proposal")
+    @Query("SELECT so FROM SalesOrderEntity AS so WHERE so.proposal = :proposal")
     SalesOrderEntity findByProposal(@Param("proposal") BusinessProposalEntity proposal);
 }

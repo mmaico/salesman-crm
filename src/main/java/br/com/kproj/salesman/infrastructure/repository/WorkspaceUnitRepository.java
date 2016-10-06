@@ -17,7 +17,7 @@ public interface WorkspaceUnitRepository extends BaseRepositoryLegacy<WorkspaceU
     Optional<WorkspaceUnit> findBySalesOrderAndUser(@Param("salesOrder")SalesOrderEntity salesOrderEntity,
                                                     @Param("user") UserEntity user);
 
-    @Query("SELECT so FROM SalesOrder AS so WHERE so NOT IN " +
+    @Query("SELECT so FROM SalesOrderEntity AS so WHERE so NOT IN " +
             " (SELECT wu.salesOrder FROM WorkspaceUnit AS wu ) ")
     List<SalesOrderEntity> findSalesOrderOutActDelivery();
 

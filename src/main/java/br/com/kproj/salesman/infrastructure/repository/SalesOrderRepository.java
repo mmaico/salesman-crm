@@ -12,11 +12,11 @@ import java.util.Optional;
 
 public interface SalesOrderRepository extends BaseRepositoryLegacy<SalesOrderEntity, Long> {
 
-    @Query("SELECT so FROM SalesOrder AS so WHERE so.client = :client")
+    @Query("SELECT so FROM SalesOrderEntity AS so WHERE so.client = :client")
     List<SalesOrderEntity> getOrdersByClient(@Param("client")Client client);
 
     Optional<SalesOrderEntity> findByProposal(@Param("domain")BusinessProposalEntity proposal);
 
-    @Query("SELECT so FROM SalesOrder AS so ORDER BY so.creationDate DESC")
+    @Query("SELECT so FROM SalesOrderEntity AS so ORDER BY so.creationDate DESC")
     List<SalesOrderEntity> findAllOrdered();
 }
