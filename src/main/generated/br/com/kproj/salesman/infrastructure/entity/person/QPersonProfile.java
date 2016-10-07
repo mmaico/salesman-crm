@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QPersonProfile is a Querydsl query type for PersonProfile
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QPersonProfile extends EntityPathBase<PersonProfile> {
 
     private static final long serialVersionUID = -267146710L;
@@ -33,7 +33,7 @@ public class QPersonProfile extends EntityPathBase<PersonProfile> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QPersonProfile(PathMetadata<?> metadata) {
+    public QPersonProfile(PathMetadata metadata) {
         super(PersonProfile.class, metadata);
     }
 

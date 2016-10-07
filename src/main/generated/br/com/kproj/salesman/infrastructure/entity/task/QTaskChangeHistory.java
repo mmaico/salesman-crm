@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QTaskChangeHistory is a Querydsl query type for TaskChangeHistory
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QTaskChangeHistory extends EntityPathBase<TaskChangeHistory> {
 
     private static final long serialVersionUID = -991230523L;
@@ -37,18 +37,18 @@ public class QTaskChangeHistory extends EntityPathBase<TaskChangeHistory> {
     }
 
     public QTaskChangeHistory(Path<? extends TaskChangeHistory> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTaskChangeHistory(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QTaskChangeHistory(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTaskChangeHistory(PathMetadata<?> metadata, PathInits inits) {
+    public QTaskChangeHistory(PathMetadata metadata, PathInits inits) {
         this(TaskChangeHistory.class, metadata, inits);
     }
 
-    public QTaskChangeHistory(Class<? extends TaskChangeHistory> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTaskChangeHistory(Class<? extends TaskChangeHistory> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.taskEntityChanged = inits.isInitialized("taskEntityChanged") ? new QTaskEntity(forProperty("taskEntityChanged"), inits.get("taskEntityChanged")) : null;
     }

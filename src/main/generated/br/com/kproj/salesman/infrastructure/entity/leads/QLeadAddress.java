@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QLeadAddress is a Querydsl query type for LeadAddress
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QLeadAddress extends EntityPathBase<LeadAddress> {
 
     private static final long serialVersionUID = -1209849902L;
@@ -45,18 +45,18 @@ public class QLeadAddress extends EntityPathBase<LeadAddress> {
     }
 
     public QLeadAddress(Path<? extends LeadAddress> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QLeadAddress(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QLeadAddress(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QLeadAddress(PathMetadata<?> metadata, PathInits inits) {
+    public QLeadAddress(PathMetadata metadata, PathInits inits) {
         this(LeadAddress.class, metadata, inits);
     }
 
-    public QLeadAddress(Class<? extends LeadAddress> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLeadAddress(Class<? extends LeadAddress> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.lead = inits.isInitialized("lead") ? new QLeadEntity(forProperty("lead"), inits.get("lead")) : null;
     }

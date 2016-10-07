@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.accounts;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QAddressEntity is a Querydsl query type for AddressEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QAddressEntity extends EntityPathBase<AddressEntity> {
 
     private static final long serialVersionUID = -13456994L;
@@ -45,18 +45,18 @@ public class QAddressEntity extends EntityPathBase<AddressEntity> {
     }
 
     public QAddressEntity(Path<? extends AddressEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QAddressEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QAddressEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QAddressEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QAddressEntity(PathMetadata metadata, PathInits inits) {
         this(AddressEntity.class, metadata, inits);
     }
 
-    public QAddressEntity(Class<? extends AddressEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QAddressEntity(Class<? extends AddressEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.account = inits.isInitialized("account") ? new QAccountEntity(forProperty("account")) : null;
     }

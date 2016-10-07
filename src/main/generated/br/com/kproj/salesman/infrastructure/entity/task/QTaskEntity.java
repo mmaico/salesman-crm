@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QTaskEntity is a Querydsl query type for TaskEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     private static final long serialVersionUID = 1855893506L;
@@ -36,7 +36,7 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
-    public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity salesOrderEntity;
+    public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity salesOrder;
 
     public final ListPath<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity> signedBy = this.<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity>createList("signedBy", br.com.kproj.salesman.infrastructure.entity.UserEntity.class, br.com.kproj.salesman.infrastructure.entity.QUserEntity.class, PathInits.DIRECT2);
 
@@ -57,21 +57,21 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
     }
 
     public QTaskEntity(Path<? extends TaskEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTaskEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QTaskEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTaskEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QTaskEntity(PathMetadata metadata, PathInits inits) {
         this(TaskEntity.class, metadata, inits);
     }
 
-    public QTaskEntity(Class<? extends TaskEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTaskEntity(Class<? extends TaskEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
-        this.salesOrderEntity = inits.isInitialized("salesOrderEntity") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity(forProperty("salesOrderEntity"), inits.get("salesOrderEntity")) : null;
+        this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

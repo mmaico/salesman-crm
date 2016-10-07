@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QApproverEntity is a Querydsl query type for ApproverEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QApproverEntity extends EntityPathBase<ApproverEntity> {
 
     private static final long serialVersionUID = -1114989487L;
@@ -35,18 +35,18 @@ public class QApproverEntity extends EntityPathBase<ApproverEntity> {
     }
 
     public QApproverEntity(Path<? extends ApproverEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QApproverEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QApproverEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QApproverEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QApproverEntity(PathMetadata metadata, PathInits inits) {
         this(ApproverEntity.class, metadata, inits);
     }
 
-    public QApproverEntity(Class<? extends ApproverEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QApproverEntity(Class<? extends ApproverEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.approver = inits.isInitialized("approver") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("approver"), inits.get("approver")) : null;
     }

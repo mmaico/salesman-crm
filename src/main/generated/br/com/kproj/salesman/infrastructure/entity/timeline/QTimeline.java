@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QTimeline is a Querydsl query type for Timeline
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QTimeline extends EntityPathBase<Timeline> {
 
     private static final long serialVersionUID = 772235583L;
@@ -49,18 +49,18 @@ public class QTimeline extends EntityPathBase<Timeline> {
     }
 
     public QTimeline(Path<? extends Timeline> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTimeline(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QTimeline(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTimeline(PathMetadata<?> metadata, PathInits inits) {
+    public QTimeline(PathMetadata metadata, PathInits inits) {
         this(Timeline.class, metadata, inits);
     }
 
-    public QTimeline(Class<? extends Timeline> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTimeline(Class<? extends Timeline> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.campaign = inits.isInitialized("campaign") ? new br.com.kproj.salesman.infrastructure.entity.campaigns.QCampaignEntity(forProperty("campaign"), inits.get("campaign")) : null;
         this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContactEntity(forProperty("contact"), inits.get("contact")) : null;

@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QProductEntity is a Querydsl query type for ProductEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QProductEntity extends EntityPathBase<ProductEntity> {
 
     private static final long serialVersionUID = -942404268L;
@@ -52,18 +52,18 @@ public class QProductEntity extends EntityPathBase<ProductEntity> {
     }
 
     public QProductEntity(Path<? extends ProductEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QProductEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QProductEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QProductEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QProductEntity(PathMetadata metadata, PathInits inits) {
         this(ProductEntity.class, metadata, inits);
     }
 
-    public QProductEntity(Class<? extends ProductEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QProductEntity(Class<? extends ProductEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.measurementUnit = inits.isInitialized("measurementUnit") ? new QMeasurementUnitEntity(forProperty("measurementUnit")) : null;
     }

@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QAppFile is a Querydsl query type for AppFile
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QAppFile extends EntityPathBase<AppFile> {
 
     private static final long serialVersionUID = 1312831022L;
@@ -45,7 +45,7 @@ public class QAppFile extends EntityPathBase<AppFile> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QAppFile(PathMetadata<?> metadata) {
+    public QAppFile(PathMetadata metadata) {
         super(AppFile.class, metadata);
     }
 

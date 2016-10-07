@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QUserPositionEntity is a Querydsl query type for UserPositionEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QUserPositionEntity extends EntityPathBase<UserPositionEntity> {
 
     private static final long serialVersionUID = 800260998L;
@@ -33,7 +33,7 @@ public class QUserPositionEntity extends EntityPathBase<UserPositionEntity> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QUserPositionEntity(PathMetadata<?> metadata) {
+    public QUserPositionEntity(PathMetadata metadata) {
         super(UserPositionEntity.class, metadata);
     }
 

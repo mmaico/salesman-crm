@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.activities;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QPersonalActivityEntity is a Querydsl query type for PersonalActivityEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEntity> {
 
     private static final long serialVersionUID = -1557533372L;
@@ -51,18 +51,18 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
     }
 
     public QPersonalActivityEntity(Path<? extends PersonalActivityEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QPersonalActivityEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QPersonalActivityEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QPersonalActivityEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QPersonalActivityEntity(PathMetadata metadata, PathInits inits) {
         this(PersonalActivityEntity.class, metadata, inits);
     }
 
-    public QPersonalActivityEntity(Class<? extends PersonalActivityEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QPersonalActivityEntity(Class<? extends PersonalActivityEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assignment"), inits.get("assignment")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;

@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QLeadEntity is a Querydsl query type for LeadEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QLeadEntity extends EntityPathBase<LeadEntity> {
 
     private static final long serialVersionUID = 1055024197L;
@@ -47,18 +47,18 @@ public class QLeadEntity extends EntityPathBase<LeadEntity> {
     }
 
     public QLeadEntity(Path<? extends LeadEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QLeadEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QLeadEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QLeadEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QLeadEntity(PathMetadata metadata, PathInits inits) {
         this(LeadEntity.class, metadata, inits);
     }
 
-    public QLeadEntity(Class<? extends LeadEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLeadEntity(Class<? extends LeadEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

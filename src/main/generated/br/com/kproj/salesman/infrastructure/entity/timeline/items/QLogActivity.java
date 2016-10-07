@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QLogActivity is a Querydsl query type for LogActivity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QLogActivity extends EntityPathBase<LogActivity> {
 
     private static final long serialVersionUID = -136245753L;
@@ -46,18 +46,18 @@ public class QLogActivity extends EntityPathBase<LogActivity> {
     }
 
     public QLogActivity(Path<? extends LogActivity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QLogActivity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QLogActivity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QLogActivity(PathMetadata<?> metadata, PathInits inits) {
+    public QLogActivity(PathMetadata metadata, PathInits inits) {
         this(LogActivity.class, metadata, inits);
     }
 
-    public QLogActivity(Class<? extends LogActivity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLogActivity(Class<? extends LogActivity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this._super = new QTimelineActivity(type, metadata, inits);
         this.creation = _super.creation;

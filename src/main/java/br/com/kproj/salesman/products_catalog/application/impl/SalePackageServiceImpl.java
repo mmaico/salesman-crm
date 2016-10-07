@@ -29,7 +29,6 @@ public class SalePackageServiceImpl extends BaseModelServiceImpl<SalePackage> im
     private SaleableValidator validator;
 
     @Autowired
-    @Qualifier("salePackageDomainValidator")
     private SalePackageValidator salePackageValidator;
 
     @Override

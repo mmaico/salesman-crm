@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QSaleableUnitEntity is a Querydsl query type for SaleableUnitEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QSaleableUnitEntity extends EntityPathBase<SaleableUnitEntity> {
 
     private static final long serialVersionUID = -2037707482L;
@@ -43,7 +43,7 @@ public class QSaleableUnitEntity extends EntityPathBase<SaleableUnitEntity> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QSaleableUnitEntity(PathMetadata<?> metadata) {
+    public QSaleableUnitEntity(PathMetadata metadata) {
         super(SaleableUnitEntity.class, metadata);
     }
 

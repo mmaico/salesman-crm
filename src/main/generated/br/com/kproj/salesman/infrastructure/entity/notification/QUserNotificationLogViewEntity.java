@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.notification;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QUserNotificationLogViewEntity is a Querydsl query type for UserNotificationLogViewEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QUserNotificationLogViewEntity extends EntityPathBase<UserNotificationLogViewEntity> {
 
     private static final long serialVersionUID = -880919038L;
@@ -37,18 +37,18 @@ public class QUserNotificationLogViewEntity extends EntityPathBase<UserNotificat
     }
 
     public QUserNotificationLogViewEntity(Path<? extends UserNotificationLogViewEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QUserNotificationLogViewEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QUserNotificationLogViewEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QUserNotificationLogViewEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QUserNotificationLogViewEntity(PathMetadata metadata, PathInits inits) {
         this(UserNotificationLogViewEntity.class, metadata, inits);
     }
 
-    public QUserNotificationLogViewEntity(Class<? extends UserNotificationLogViewEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QUserNotificationLogViewEntity(Class<? extends UserNotificationLogViewEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }

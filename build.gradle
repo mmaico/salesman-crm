@@ -5,6 +5,7 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -31,6 +32,7 @@ repositories {
     maven { url "https://repo.spring.io/libs-release" }
     maven { url "https://repo.spring.io/milestone" }
     mavenCentral()
+    mavenLocal()
     jcenter()
 }
 
@@ -49,11 +51,12 @@ sourceSets {
 
 buildscript {
     ext {
-        springBootVersion = '1.2.4.RELEASE'
-        querydslVersion = '3.6.5'
+        springBootVersion = '1.4.1.RELEASE'
+        querydslVersion = '4.1.4'
     }
     repositories {
         mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -76,13 +79,14 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-ws")
-    testCompile("com.h2database:h2")
+    compile('org.springframework.data:spring-data-jpa:1.9.2.RELEASE')
+
     compile("com.google.guava:guava:18.0")
     compile("org.azeckoski:reflectutils:0.9.20")
 
     compile("commons-beanutils:commons-beanutils:1.9.2")
     compile("org.springframework:spring-agent:2.5.6.SEC03")
-    compile('org.springframework.data:spring-data-jpa:1.9.2.RELEASE')
+
     compile("org.apache.commons:commons-io:1.3.2")
     compile("commons-fileupload:commons-fileupload:1.3.1")
     compile("net.vidageek:mirror:1.6.1")
@@ -90,6 +94,7 @@ dependencies {
     
     compile("mysql:mysql-connector-java:5.1.36")
 
+    testCompile("com.h2database:h2")
     testCompile("org.spockframework:spock-core:1.0-groovy-2.4")
     testCompile("org.codehaus.groovy:groovy-all:2.4.5")
     testCompile("junit:junit:4.12")
@@ -107,24 +112,24 @@ dependencies {
         exclude group: "org.hamcrest"
     }
 
-    querydslapt("com.mysema.querydsl:querydsl-apt:$querydslVersion") {
+    querydslapt("com.querydsl:querydsl-apt:$querydslVersion") {
         exclude module: "guava"
     }
-    compile("com.mysema.querydsl:querydsl-jpa:${querydslVersion}") {
+    compile("com.querydsl:querydsl-jpa:${querydslVersion}") {
         exclude module: "guava"
         exclude module: 'querydsl-core'
     }
 
-    compile("com.mysema.querydsl:querydsl-collections:${querydslVersion}") {
+    compile("com.querydsl:querydsl-collections:${querydslVersion}") {
         exclude module: "guava"
         exclude module: 'querydsl-codegen'
     }
 
-    compile("com.mysema.querydsl:querydsl-core:${querydslVersion}") {
+    compile("com.querydsl:querydsl-core:${querydslVersion}") {
         exclude module: "cglib"
     }
 
-    compile("com.mysema.querydsl:querydsl-codegen:${querydslVersion}") {
+    compile("com.querydsl:querydsl-codegen:${querydslVersion}") {
         exclude module: 'querydsl-core'
     }
 
@@ -140,6 +145,9 @@ dependencies {
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile("cglib:cglib:3.2.4")
     compile("com.github.wnameless:json-flattener:0.2.2")
+    compile("br.com.uol.rest:rest-mediatype-support:1.3-SNAPSHOT")
+
+    compile("org.reflections:reflections:0.9.10")
 
 }
 
@@ -158,7 +166,7 @@ task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates
     classpath = configurations.compile + configurations.querydslapt
     options.compilerArgs = [
             "-proc:only",
-            "-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor"
+            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
     ]
 }
 

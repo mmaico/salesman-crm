@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QScheduleTriggerNotification is a Querydsl query type for ScheduleTriggerNotification
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QScheduleTriggerNotification extends EntityPathBase<ScheduleTriggerNotification> {
 
     private static final long serialVersionUID = -103505998L;
@@ -37,18 +37,18 @@ public class QScheduleTriggerNotification extends EntityPathBase<ScheduleTrigger
     }
 
     public QScheduleTriggerNotification(Path<? extends ScheduleTriggerNotification> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QScheduleTriggerNotification(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QScheduleTriggerNotification(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QScheduleTriggerNotification(PathMetadata<?> metadata, PathInits inits) {
+    public QScheduleTriggerNotification(PathMetadata metadata, PathInits inits) {
         this(ScheduleTriggerNotification.class, metadata, inits);
     }
 
-    public QScheduleTriggerNotification(Class<? extends ScheduleTriggerNotification> type, PathMetadata<?> metadata, PathInits inits) {
+    public QScheduleTriggerNotification(Class<? extends ScheduleTriggerNotification> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.task = inits.isInitialized("task") ? new QTaskEntity(forProperty("task"), inits.get("task")) : null;
     }

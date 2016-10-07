@@ -15,7 +15,7 @@ public class PersonPredicate {
 	public static Predicate findByFilters(FilterAggregator filter) {
 		QPerson qPerson = QPerson.person;
 		
-		BooleanExpression expression = qPerson.id.isNotNull();
+		BooleanExpression expression = null;
 		
 		Filter<PersonProfile> profileFilter = filter.findFilter("profile");
 		Filter<Collection<PersonProfile>> profilesFilter = filter.findFilter("profiles");
@@ -36,8 +36,8 @@ public class PersonPredicate {
 		return expression;
 	}
 	
-	public static OrderSpecifier<String> orderByName() {
-		return QPerson.person.name.asc();
-	}
+//	public static OrderSpecifier<String> orderByName() {
+//		return QPerson.person.name.asc();
+//	}
 }
 

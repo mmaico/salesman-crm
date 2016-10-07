@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QIdentifiable is a Querydsl query type for Identifiable
  */
-@Generated("com.mysema.query.codegen.SupertypeSerializer")
+@Generated("com.querydsl.codegen.SupertypeSerializer")
 public class QIdentifiable extends EntityPathBase<Identifiable> {
 
     private static final long serialVersionUID = -604829179L;
@@ -27,7 +27,7 @@ public class QIdentifiable extends EntityPathBase<Identifiable> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QIdentifiable(PathMetadata<?> metadata) {
+    public QIdentifiable(PathMetadata metadata) {
         super(Identifiable.class, metadata);
     }
 

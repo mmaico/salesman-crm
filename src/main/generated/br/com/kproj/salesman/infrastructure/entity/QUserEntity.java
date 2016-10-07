@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QUserEntity is a Querydsl query type for UserEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QUserEntity extends EntityPathBase<UserEntity> {
 
     private static final long serialVersionUID = 1485208317L;
@@ -30,7 +30,7 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final QBranchEntity branch;
 
-    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity calendarEntity;
+    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity calendar;
 
     public final StringPath email = createString("email");
 
@@ -51,22 +51,22 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
     }
 
     public QUserEntity(Path<? extends UserEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QUserEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QUserEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QUserEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QUserEntity(PathMetadata metadata, PathInits inits) {
         this(UserEntity.class, metadata, inits);
     }
 
-    public QUserEntity(Class<? extends UserEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QUserEntity(Class<? extends UserEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.approverEntity = inits.isInitialized("approverEntity") ? new br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverEntity(forProperty("approverEntity"), inits.get("approverEntity")) : null;
         this.branch = inits.isInitialized("branch") ? new QBranchEntity(forProperty("branch")) : null;
-        this.calendarEntity = inits.isInitialized("calendarEntity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity(forProperty("calendarEntity"), inits.get("calendarEntity")) : null;
+        this.calendar = inits.isInitialized("calendar") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity(forProperty("calendar"), inits.get("calendar")) : null;
         this.position = inits.isInitialized("position") ? new QUserPositionEntity(forProperty("position")) : null;
     }
 

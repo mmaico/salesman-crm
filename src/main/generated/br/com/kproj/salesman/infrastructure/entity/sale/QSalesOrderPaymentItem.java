@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QSalesOrderPaymentItem is a Querydsl query type for SalesOrderPaymentItem
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QSalesOrderPaymentItem extends EntityPathBase<SalesOrderPaymentItem> {
 
     private static final long serialVersionUID = 299338239L;
@@ -39,18 +39,18 @@ public class QSalesOrderPaymentItem extends EntityPathBase<SalesOrderPaymentItem
     }
 
     public QSalesOrderPaymentItem(Path<? extends SalesOrderPaymentItem> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QSalesOrderPaymentItem(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QSalesOrderPaymentItem(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QSalesOrderPaymentItem(PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderPaymentItem(PathMetadata metadata, PathInits inits) {
         this(SalesOrderPaymentItem.class, metadata, inits);
     }
 
-    public QSalesOrderPaymentItem(Class<? extends SalesOrderPaymentItem> type, PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderPaymentItem(Class<? extends SalesOrderPaymentItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
     }

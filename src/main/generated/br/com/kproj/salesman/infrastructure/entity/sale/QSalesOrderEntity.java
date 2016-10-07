@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QSalesOrderEntity is a Querydsl query type for SalesOrderEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QSalesOrderEntity extends EntityPathBase<SalesOrderEntity> {
 
     private static final long serialVersionUID = -988003235L;
@@ -49,18 +49,18 @@ public class QSalesOrderEntity extends EntityPathBase<SalesOrderEntity> {
     }
 
     public QSalesOrderEntity(Path<? extends SalesOrderEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QSalesOrderEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QSalesOrderEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QSalesOrderEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderEntity(PathMetadata metadata, PathInits inits) {
         this(SalesOrderEntity.class, metadata, inits);
     }
 
-    public QSalesOrderEntity(Class<? extends SalesOrderEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderEntity(Class<? extends SalesOrderEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.client = inits.isInitialized("client") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("client"), inits.get("client")) : null;
         this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;

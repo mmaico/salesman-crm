@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QCalendarEntity is a Querydsl query type for CalendarEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QCalendarEntity extends EntityPathBase<CalendarEntity> {
 
     private static final long serialVersionUID = -650954169L;
@@ -35,18 +35,18 @@ public class QCalendarEntity extends EntityPathBase<CalendarEntity> {
     }
 
     public QCalendarEntity(Path<? extends CalendarEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QCalendarEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QCalendarEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QCalendarEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QCalendarEntity(PathMetadata metadata, PathInits inits) {
         this(CalendarEntity.class, metadata, inits);
     }
 
-    public QCalendarEntity(Class<? extends CalendarEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QCalendarEntity(Class<? extends CalendarEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }

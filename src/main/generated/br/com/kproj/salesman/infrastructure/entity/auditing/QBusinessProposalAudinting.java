@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.auditing;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QBusinessProposalAudinting is a Querydsl query type for BusinessProposalAudinting
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QBusinessProposalAudinting extends EntityPathBase<BusinessProposalAudinting> {
 
     private static final long serialVersionUID = -1406285127L;
@@ -39,18 +39,18 @@ public class QBusinessProposalAudinting extends EntityPathBase<BusinessProposalA
     }
 
     public QBusinessProposalAudinting(Path<? extends BusinessProposalAudinting> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QBusinessProposalAudinting(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QBusinessProposalAudinting(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QBusinessProposalAudinting(PathMetadata<?> metadata, PathInits inits) {
+    public QBusinessProposalAudinting(PathMetadata metadata, PathInits inits) {
         this(BusinessProposalAudinting.class, metadata, inits);
     }
 
-    public QBusinessProposalAudinting(Class<? extends BusinessProposalAudinting> type, PathMetadata<?> metadata, PathInits inits) {
+    public QBusinessProposalAudinting(Class<? extends BusinessProposalAudinting> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }

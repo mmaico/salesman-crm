@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QOperationRegionEntity is a Querydsl query type for OperationRegionEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QOperationRegionEntity extends EntityPathBase<OperationRegionEntity> {
 
     private static final long serialVersionUID = 1504446511L;
@@ -33,7 +33,7 @@ public class QOperationRegionEntity extends EntityPathBase<OperationRegionEntity
         super(path.getType(), path.getMetadata());
     }
 
-    public QOperationRegionEntity(PathMetadata<?> metadata) {
+    public QOperationRegionEntity(PathMetadata metadata) {
         super(OperationRegionEntity.class, metadata);
     }
 

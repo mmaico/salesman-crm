@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QIndividual is a Querydsl query type for Individual
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QIndividual extends EntityPathBase<Individual> {
 
     private static final long serialVersionUID = 537779395L;
@@ -54,18 +54,18 @@ public class QIndividual extends EntityPathBase<Individual> {
     }
 
     public QIndividual(Path<? extends Individual> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QIndividual(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QIndividual(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QIndividual(PathMetadata<?> metadata, PathInits inits) {
+    public QIndividual(PathMetadata metadata, PathInits inits) {
         this(Individual.class, metadata, inits);
     }
 
-    public QIndividual(Class<? extends Individual> type, PathMetadata<?> metadata, PathInits inits) {
+    public QIndividual(Class<? extends Individual> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this._super = new QPerson(type, metadata, inits);
         this.active = _super.active;

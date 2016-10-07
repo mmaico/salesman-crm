@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QEmailActivity is a Querydsl query type for EmailActivity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QEmailActivity extends EntityPathBase<EmailActivity> {
 
     private static final long serialVersionUID = -524793505L;
@@ -50,18 +50,18 @@ public class QEmailActivity extends EntityPathBase<EmailActivity> {
     }
 
     public QEmailActivity(Path<? extends EmailActivity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QEmailActivity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QEmailActivity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QEmailActivity(PathMetadata<?> metadata, PathInits inits) {
+    public QEmailActivity(PathMetadata metadata, PathInits inits) {
         this(EmailActivity.class, metadata, inits);
     }
 
-    public QEmailActivity(Class<? extends EmailActivity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QEmailActivity(Class<? extends EmailActivity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this._super = new QTimelineActivity(type, metadata, inits);
         this.creation = _super.creation;

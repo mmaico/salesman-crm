@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QCountry is a Querydsl query type for Country
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QCountry extends EntityPathBase<Country> {
 
     private static final long serialVersionUID = 1929529932L;
@@ -35,7 +35,7 @@ public class QCountry extends EntityPathBase<Country> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QCountry(PathMetadata<?> metadata) {
+    public QCountry(PathMetadata metadata) {
         super(Country.class, metadata);
     }
 

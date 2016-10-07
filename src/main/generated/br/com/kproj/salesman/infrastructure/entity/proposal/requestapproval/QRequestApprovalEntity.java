@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QRequestApprovalEntity is a Querydsl query type for RequestApprovalEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QRequestApprovalEntity extends EntityPathBase<RequestApprovalEntity> {
 
     private static final long serialVersionUID = 190164748L;
@@ -37,18 +37,18 @@ public class QRequestApprovalEntity extends EntityPathBase<RequestApprovalEntity
     }
 
     public QRequestApprovalEntity(Path<? extends RequestApprovalEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QRequestApprovalEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QRequestApprovalEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QRequestApprovalEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QRequestApprovalEntity(PathMetadata metadata, PathInits inits) {
         this(RequestApprovalEntity.class, metadata, inits);
     }
 
-    public QRequestApprovalEntity(Class<? extends RequestApprovalEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QRequestApprovalEntity(Class<? extends RequestApprovalEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.proposal = inits.isInitialized("proposal") ? new br.com.kproj.salesman.infrastructure.entity.proposal.QBusinessProposalEntity(forProperty("proposal"), inits.get("proposal")) : null;
         this.userRequester = inits.isInitialized("userRequester") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("userRequester"), inits.get("userRequester")) : null;

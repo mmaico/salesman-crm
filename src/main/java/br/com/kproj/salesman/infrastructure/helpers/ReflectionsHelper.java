@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -17,6 +18,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class ReflectionsHelper {
 
@@ -133,5 +135,23 @@ public class ReflectionsHelper {
 
         org.springframework.util.ReflectionUtils.makeAccessible(field);
         org.springframework.util.ReflectionUtils.setField(field, target, value);
+    }
+
+    private static final String BASE_PATH_SEARCH = "br.com.kproj";
+
+    public static Set<Class<?>> findClassByAnn(Class annotation) {
+
+        Reflections reflections = new Reflections(BASE_PATH_SEARCH);
+        Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(annotation);
+
+        return typesAnnotatedWith;
+    }
+
+    public static<T,Y> void copy(T dest, Y origin) {
+        try {
+            BeanUtils.copyProperties(dest, origin);
+        } catch (IllegalAccessException e) {
+        } catch (InvocationTargetException e) {
+        }
     }
 }

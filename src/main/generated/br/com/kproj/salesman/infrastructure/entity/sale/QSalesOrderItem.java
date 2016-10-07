@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.sale;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QSalesOrderItem is a Querydsl query type for SalesOrderItem
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
 
     private static final long serialVersionUID = -1109282291L;
@@ -43,18 +43,18 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
     }
 
     public QSalesOrderItem(Path<? extends SalesOrderItem> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QSalesOrderItem(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QSalesOrderItem(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QSalesOrderItem(PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderItem(PathMetadata metadata, PathInits inits) {
         this(SalesOrderItem.class, metadata, inits);
     }
 
-    public QSalesOrderItem(Class<? extends SalesOrderItem> type, PathMetadata<?> metadata, PathInits inits) {
+    public QSalesOrderItem(Class<? extends SalesOrderItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
         this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;

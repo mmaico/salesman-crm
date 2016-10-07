@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.proposal;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QBusinessProposalEntity is a Querydsl query type for BusinessProposalEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEntity> {
 
     private static final long serialVersionUID = 1953571842L;
@@ -51,18 +51,18 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
     }
 
     public QBusinessProposalEntity(Path<? extends BusinessProposalEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QBusinessProposalEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QBusinessProposalEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QBusinessProposalEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QBusinessProposalEntity(PathMetadata metadata, PathInits inits) {
         this(BusinessProposalEntity.class, metadata, inits);
     }
 
-    public QBusinessProposalEntity(Class<? extends BusinessProposalEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QBusinessProposalEntity(Class<? extends BusinessProposalEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.account = inits.isInitialized("account") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QAccountEntity(forProperty("account")) : null;
         this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;

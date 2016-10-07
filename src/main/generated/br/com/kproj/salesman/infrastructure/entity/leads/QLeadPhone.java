@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.leads;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QLeadPhone is a Querydsl query type for LeadPhone
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QLeadPhone extends EntityPathBase<LeadPhone> {
 
     private static final long serialVersionUID = 1429481676L;
@@ -37,18 +37,18 @@ public class QLeadPhone extends EntityPathBase<LeadPhone> {
     }
 
     public QLeadPhone(Path<? extends LeadPhone> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QLeadPhone(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QLeadPhone(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QLeadPhone(PathMetadata<?> metadata, PathInits inits) {
+    public QLeadPhone(PathMetadata metadata, PathInits inits) {
         this(LeadPhone.class, metadata, inits);
     }
 
-    public QLeadPhone(Class<? extends LeadPhone> type, PathMetadata<?> metadata, PathInits inits) {
+    public QLeadPhone(Class<? extends LeadPhone> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.lead = inits.isInitialized("lead") ? new QLeadEntity(forProperty("lead"), inits.get("lead")) : null;
     }

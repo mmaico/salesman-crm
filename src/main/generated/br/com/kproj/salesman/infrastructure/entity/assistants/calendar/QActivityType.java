@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QActivityType is a Querydsl query type for ActivityType
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QActivityType extends EntityPathBase<ActivityType> {
 
     private static final long serialVersionUID = -1638869521L;
@@ -33,7 +33,7 @@ public class QActivityType extends EntityPathBase<ActivityType> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QActivityType(PathMetadata<?> metadata) {
+    public QActivityType(PathMetadata metadata) {
         super(ActivityType.class, metadata);
     }
 

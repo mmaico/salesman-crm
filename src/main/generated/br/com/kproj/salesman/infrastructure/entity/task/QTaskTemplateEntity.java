@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QTaskTemplateEntity is a Querydsl query type for TaskTemplateEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QTaskTemplateEntity extends EntityPathBase<TaskTemplateEntity> {
 
     private static final long serialVersionUID = -1083501028L;
@@ -51,18 +51,18 @@ public class QTaskTemplateEntity extends EntityPathBase<TaskTemplateEntity> {
     }
 
     public QTaskTemplateEntity(Path<? extends TaskTemplateEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTaskTemplateEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QTaskTemplateEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTaskTemplateEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QTaskTemplateEntity(PathMetadata metadata, PathInits inits) {
         this(TaskTemplateEntity.class, metadata, inits);
     }
 
-    public QTaskTemplateEntity(Class<? extends TaskTemplateEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTaskTemplateEntity(Class<? extends TaskTemplateEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;

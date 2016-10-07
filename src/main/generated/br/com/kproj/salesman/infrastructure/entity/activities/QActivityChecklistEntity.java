@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.activities;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QActivityChecklistEntity is a Querydsl query type for ActivityChecklistEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QActivityChecklistEntity extends EntityPathBase<ActivityChecklistEntity> {
 
     private static final long serialVersionUID = -1328110264L;
@@ -37,18 +37,18 @@ public class QActivityChecklistEntity extends EntityPathBase<ActivityChecklistEn
     }
 
     public QActivityChecklistEntity(Path<? extends ActivityChecklistEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QActivityChecklistEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QActivityChecklistEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QActivityChecklistEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QActivityChecklistEntity(PathMetadata metadata, PathInits inits) {
         this(ActivityChecklistEntity.class, metadata, inits);
     }
 
-    public QActivityChecklistEntity(Class<? extends ActivityChecklistEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QActivityChecklistEntity(Class<? extends ActivityChecklistEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.activity = inits.isInitialized("activity") ? new QPersonalActivityEntity(forProperty("activity"), inits.get("activity")) : null;
     }

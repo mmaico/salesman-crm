@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QFileInfoEntity is a Querydsl query type for FileInfoEntity
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QFileInfoEntity extends EntityPathBase<FileInfoEntity> {
 
     private static final long serialVersionUID = -257636317L;
@@ -34,7 +34,7 @@ public class QFileInfoEntity extends EntityPathBase<FileInfoEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity owner;
 
-    public final ListPath<SharedWithEntity, QSharedWithEntity> sharedWithEntity = this.<SharedWithEntity, QSharedWithEntity>createList("sharedWithEntity", SharedWithEntity.class, QSharedWithEntity.class, PathInits.DIRECT2);
+    public final ListPath<SharedWithEntity, QSharedWithEntity> sharedWith = this.<SharedWithEntity, QSharedWithEntity>createList("sharedWith", SharedWithEntity.class, QSharedWithEntity.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
@@ -43,18 +43,18 @@ public class QFileInfoEntity extends EntityPathBase<FileInfoEntity> {
     }
 
     public QFileInfoEntity(Path<? extends FileInfoEntity> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QFileInfoEntity(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QFileInfoEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QFileInfoEntity(PathMetadata<?> metadata, PathInits inits) {
+    public QFileInfoEntity(PathMetadata metadata, PathInits inits) {
         this(FileInfoEntity.class, metadata, inits);
     }
 
-    public QFileInfoEntity(Class<? extends FileInfoEntity> type, PathMetadata<?> metadata, PathInits inits) {
+    public QFileInfoEntity(Class<? extends FileInfoEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFile(forProperty("file")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;

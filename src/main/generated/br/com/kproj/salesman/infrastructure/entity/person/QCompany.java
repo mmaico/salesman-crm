@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QCompany is a Querydsl query type for Company
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QCompany extends EntityPathBase<Company> {
 
     private static final long serialVersionUID = -199540077L;
@@ -58,18 +58,18 @@ public class QCompany extends EntityPathBase<Company> {
     }
 
     public QCompany(Path<? extends Company> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QCompany(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QCompany(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QCompany(PathMetadata<?> metadata, PathInits inits) {
+    public QCompany(PathMetadata metadata, PathInits inits) {
         this(Company.class, metadata, inits);
     }
 
-    public QCompany(Class<? extends Company> type, PathMetadata<?> metadata, PathInits inits) {
+    public QCompany(Class<? extends Company> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this._super = new QPerson(type, metadata, inits);
         this.active = _super.active;

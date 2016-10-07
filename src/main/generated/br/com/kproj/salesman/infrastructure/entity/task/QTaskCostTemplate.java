@@ -1,19 +1,19 @@
 package br.com.kproj.salesman.infrastructure.entity.task;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
-import com.mysema.query.types.path.PathInits;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
  * QTaskCostTemplate is a Querydsl query type for TaskCostTemplate
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QTaskCostTemplate extends EntityPathBase<TaskCostTemplate> {
 
     private static final long serialVersionUID = -989152186L;
@@ -37,18 +37,18 @@ public class QTaskCostTemplate extends EntityPathBase<TaskCostTemplate> {
     }
 
     public QTaskCostTemplate(Path<? extends TaskCostTemplate> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTaskCostTemplate(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    public QTaskCostTemplate(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTaskCostTemplate(PathMetadata<?> metadata, PathInits inits) {
+    public QTaskCostTemplate(PathMetadata metadata, PathInits inits) {
         this(TaskCostTemplate.class, metadata, inits);
     }
 
-    public QTaskCostTemplate(Class<? extends TaskCostTemplate> type, PathMetadata<?> metadata, PathInits inits) {
+    public QTaskCostTemplate(Class<? extends TaskCostTemplate> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.taskTemplate = inits.isInitialized("taskTemplate") ? new QTaskTemplateEntity(forProperty("taskTemplate"), inits.get("taskTemplate")) : null;
     }

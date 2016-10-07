@@ -1,18 +1,18 @@
 package br.com.kproj.salesman.infrastructure.entity.location;
 
-import static com.mysema.query.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.mysema.query.types.path.*;
+import com.querydsl.core.types.dsl.*;
 
-import com.mysema.query.types.PathMetadata;
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
-import com.mysema.query.types.Path;
+import com.querydsl.core.types.Path;
 
 
 /**
  * QCity is a Querydsl query type for City
  */
-@Generated("com.mysema.query.codegen.EntitySerializer")
+@Generated("com.querydsl.codegen.EntitySerializer")
 public class QCity extends EntityPathBase<City> {
 
     private static final long serialVersionUID = -482766219L;
@@ -37,7 +37,7 @@ public class QCity extends EntityPathBase<City> {
         super(path.getType(), path.getMetadata());
     }
 
-    public QCity(PathMetadata<?> metadata) {
+    public QCity(PathMetadata metadata) {
         super(City.class, metadata);
     }
 
