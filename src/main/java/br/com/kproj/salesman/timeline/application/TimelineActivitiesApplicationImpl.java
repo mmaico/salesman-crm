@@ -20,8 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.com.kproj.salesman.infrastructure.events.messages.TimelineSaveMessage.createTimelineEvent;
+//REFACTORY
 
+@Deprecated
 @Service
 public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImpl<TimelineActivity> implements TimelineActivitiesApplication {
 
@@ -53,7 +54,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
         Timeline timeline = service.register(proposal);
         saveActivity(activity, timeline);
 
-        eventBus.post(createTimelineEvent(activity.getUser(), proposal, activity));
+        //eventBus.post(createTimelineEvent(activity.getUser(), proposal, activity));
 
         return timeline;
     }

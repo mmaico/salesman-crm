@@ -12,6 +12,7 @@ import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.service.ModelLegacyService;
 
+@Deprecated
 public interface TimelineActivitiesApplication extends ModelLegacyService<TimelineActivity> {
 
     Timeline register(Person person, TimelineActivity item);

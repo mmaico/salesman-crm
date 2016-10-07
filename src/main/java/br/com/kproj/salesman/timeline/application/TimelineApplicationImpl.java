@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.TimelineBuilder.createTimeline;
-
+@Deprecated
 @Service
 public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline> implements TimelineApplication {
 
