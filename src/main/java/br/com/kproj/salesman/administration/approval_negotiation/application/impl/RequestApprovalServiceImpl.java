@@ -26,7 +26,6 @@ public class RequestApprovalServiceImpl extends BaseModelServiceImpl<RequestAppr
     private RequestApprovalEventHandler eventHandler;
 
     @Autowired
-    @Qualifier("requestApprovalBusiness")
     private RequestApprovalValidator checkRules;
 
     @Autowired

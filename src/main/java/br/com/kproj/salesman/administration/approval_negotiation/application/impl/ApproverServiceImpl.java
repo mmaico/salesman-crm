@@ -20,7 +20,7 @@ public class ApproverServiceImpl extends BaseModelServiceImpl<Approver> implemen
         this.repository = repository;
     }
 
-    //TODO: refatorar codigo tirando a complexidade e dado mais expressao.
+    //TODO: refatorar codigo tirando a complexidade e dando mais expressao.
     @Override
     public Optional<Approver> register(Approver approver) {
 
