@@ -40,7 +40,6 @@ public class JsonResponseResolverAdvice implements ResponseBodyAdvice<Object> {
     private MapperResourceModelFactory factory;
 
     @Override
-    @SuppressWarnings("unchecked")
     public Object beforeBodyWrite(final Object body, final MethodParameter methodParamter, final MediaType mediaType,
                                   final Class<? extends HttpMessageConverter<?>> converter,
                                   final ServerHttpRequest request, final ServerHttpResponse response) {

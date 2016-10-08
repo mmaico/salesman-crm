@@ -2,10 +2,10 @@ package br.com.kproj.salesman.infrastructure.repository.custom;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.repository.GenericCustomRepository;
-import com.mysema.query.jpa.hibernate.HibernateQuery;
-import com.mysema.query.types.EntityPath;
-import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.Predicate;
+import com.querydsl.core.types.EntityPath;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.hibernate.HibernateQueryFactory;
 import org.hibernate.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,19 +25,18 @@ public class GenericCustomRepositoryImpl<T extends Identifiable> implements Gene
 	
 	@Override
 	public Page<T> findAll(EntityPath<T> entity, Predicate predicate, Pageable page, OrderSpecifier<?>... orders) {
-		
-		HibernateQuery query = new HibernateQuery(this.em.unwrap(Session.class));
-		HibernateQuery queryCount = new HibernateQuery(this.em.unwrap(Session.class));
-		
-		HibernateQuery queryDone = query.from(entity)
-			.where(predicate)
+
+		HibernateQueryFactory queryFactory = new HibernateQueryFactory(this.em.unwrap(Session.class));
+
+		List<T> allresult = queryFactory.selectFrom(entity)
+				.where(predicate)
 				.orderBy(orders)
-				.offset(page.getOffset()).limit(page.getPageSize());
-				
-		long count = queryCount.from(entity).where(predicate).count();
-		List<T> list = queryDone.list(entity);
+				.offset(page.getOffset()).limit(page.getPageSize())
+				.fetch();
+
+		long count = queryFactory.from(entity).where(predicate).fetchCount();
 		
-		return new PageImpl<T>(list, page, count);
+		return new PageImpl<>(allresult, page, count);
 	}
 	
 }

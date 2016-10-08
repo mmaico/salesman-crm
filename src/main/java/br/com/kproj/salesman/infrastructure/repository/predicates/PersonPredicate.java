@@ -4,9 +4,10 @@ import br.com.kproj.salesman.infrastructure.entity.person.PersonProfile;
 import br.com.kproj.salesman.infrastructure.entity.person.QPerson;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
-import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.Predicate;
-import com.mysema.query.types.expr.BooleanExpression;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+
 
 import java.util.Collection;
 
@@ -36,8 +37,8 @@ public class PersonPredicate {
 		return expression;
 	}
 	
-//	public static OrderSpecifier<String> orderByName() {
-//		return QPerson.person.name.asc();
-//	}
+	public static OrderSpecifier<String> orderByName() {
+		return QPerson.person.name.asc();
+	}
 }
 

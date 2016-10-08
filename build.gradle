@@ -79,7 +79,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-ws")
-    compile('org.springframework.data:spring-data-jpa:1.9.2.RELEASE')
+    compile('org.springframework.data:spring-data-jpa:1.10.4.RELEASE')
 
     compile("com.google.guava:guava:18.0")
     compile("org.azeckoski:reflectutils:0.9.20")
@@ -125,20 +125,17 @@ dependencies {
         exclude module: 'querydsl-codegen'
     }
 
-    compile("com.querydsl:querydsl-core:${querydslVersion}") {
-        exclude module: "cglib"
-    }
-
     compile("com.querydsl:querydsl-codegen:${querydslVersion}") {
         exclude module: 'querydsl-core'
     }
 
+    compile("com.querydsl:querydsl-core:${querydslVersion}") {
+        exclude module: "cglib"
+    }
+
     compile("org.apache.commons:commons-lang3:3.4")
-
     compile("org.zalando.stups:spring-boot-starter-guava-eventbus:0.5.4")
-
     compile("com.google.code.gson:gson:2.5")
-
     compile("com.jayway.jsonpath:json-path:2.1.0")
     
     compile("com.trex:ddd-reflection:1.8.5")

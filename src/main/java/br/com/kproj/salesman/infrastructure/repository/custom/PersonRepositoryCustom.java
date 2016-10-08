@@ -2,8 +2,9 @@ package br.com.kproj.salesman.infrastructure.repository.custom;
 
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.Predicate;
+
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.NoRepositoryBean;
