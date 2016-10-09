@@ -11,9 +11,6 @@ import java.util.Set;
 
 public abstract class ModelIdentifiable implements Serializable {
 
-	private static final long serialVersionUID = 8213025865912695435L;
-
-
     @ExcludeField
     @UpdateAttributes
     private Set<String> fields = new HashSet<>();

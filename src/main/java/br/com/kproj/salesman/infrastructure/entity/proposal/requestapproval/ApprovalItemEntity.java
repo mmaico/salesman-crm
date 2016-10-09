@@ -17,7 +17,7 @@ public class ApprovalItemEntity extends Identifiable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="approver_id")
+    @JoinColumn(name="user_approver_id")
     private ApproverEntity approver;
 
     @Enumerated(EnumType.STRING)

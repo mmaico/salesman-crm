@@ -1,11 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
 
+    <!-- USERS -->
     <users id="1" login="mmaico" password="1234" name="Maico"/>
     <users id="2" login="mmaico1" password="1234" name="Maico1"/>
     <users id="3" login="mmaico2" password="1234" name="Maico2"/>
 
+    <!-- PRODUCTS - SERVICES - PACKAGES AND UNIT -->
     <measurement_unit id="1" name="Kilo"/>
+    <measurement_unit id="2" name="Unidade"/>
 
     <saleable id="1" name="Produto 01" description="Descricao do produto 01" active="true" price="20.00" price_cost="5.00" type="PRODUCT"/>
     <saleable id="2" name="Servico 01" description="Descricao do servico 01" active="true" price="10.00" price_cost="3.00" type="SERVICE"/>
@@ -14,8 +17,9 @@
     <saleable id="5" name="Produto 02" description="Descricao do product 02" active="true" price="6.00" price_cost="1.00" type="PRODUCT"/>
 
     <products id="1" measurement_unit_id="1"/>
-    <products id="2"/>
+    <products id="5" measurement_unit_id="2"/>
 
+    <services id="2"/>
     <services id="3"/>
 
     <packages id="4"/>
@@ -23,20 +27,23 @@
     <package_saleable package_id="4" saleable_id="5"/>
 
 
-
+    <!-- ACCOUNTS -->
     <accounts id="1" name="Joao Fereira" phone="88398398" employers="10"/>
     <accounts id="2" name="Pedro Terra Nova" phone="113993898" employers="100"/>
 
 
+    <!-- CONTACTS -->
     <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
     <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387" person_id="1"/>
     <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
 
+    <!-- REGIONS -->
     <operation_region id="1" name="SP"/>
     <operation_region id="2" name="RJ"/>
     <operation_region id="3" name="MG"/>
     <operation_region id="4" name="RS"/>
 
+    <!-- BUSINESS PROPOSAL (NEGOTIATION) -->
     <business_proposal id="1"  account_id="1" seller_id="1" operation_region_id="1"/>
     <business_proposal id="2"  account_id="2" seller_id="2" operation_region_id="1"/>
 
@@ -50,18 +57,13 @@
 
     <proposal_payment_item id="3" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="2"/>
 
-
+    <!-- SALES ORDER -->
     <sales_order id="1" person_id="1" seller_id="1" proposal_id="1" operation_region_id="2" delivery_forecast="2016-03-15 00:00:00"/>
 
     <sales_order_item id="1" saleable_id="1" price="10.00" quantity="2" sales_order_id="1"/>
     <sales_order_item id="2" saleable_id="2" price="5.00" quantity="1" sales_order_id="1"/>
 
     <sales_order_payment_item id="1" due_date="2016-03-15 00:00:00" value="25.00"/>
-
-
-    <timelines id="1" person_id="1"/>
-    <timelines id="3" business_proposal_id="1"/>
-    <timelines id="4" contact_id="2"/>
 
     <sales_order id="2" person_id="2" seller_id="1" proposal_id="1" operation_region_id="3"/>
     <sales_order id="3" person_id="2" seller_id="1" proposal_id="1" operation_region_id="3"/>
@@ -75,10 +77,16 @@
 
     <sales_order_item id="7" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="4"/>
 
+    <!-- TIMELINES -->
+    <timelines id="1" person_id="1"/>
+    <timelines id="3" business_proposal_id="1"/>
+    <timelines id="4" contact_id="2"/>
+
+    <!-- TASKS TEMPLATE -->
     <task_templates id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
     <task_templates id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
 
-    <!-- Task templates filhas-->
+    <!-- CHILDREN TASK TEMPLATE -->
     <task_templates id="3" title="title child" description="description child" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
                    task_template_parent_id="1"/>
     <task_templates id="4" title="title child 2" description="description child 2" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
@@ -93,17 +101,18 @@
     <checklist_templates id="3" task_template_id="2" name="Cobrar fornecedores 1"/>
     <checklist_templates id="4" task_template_id="2" name="Cobrar fornecedores 2"/>
 
+    <!-- TASKS DELIVERY -->
+    <task_delivery id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" sales_order_id="1" operation_region_id="1" />
+    <task_delivery id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" operation_region_id="1"/>
+    <task_delivery id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <task_delivery id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
 
-    <tasks id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" sales_order_id="1" operation_region_id="1" />
-    <tasks id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" operation_region_id="1"/>
-    <tasks id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <tasks id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
+    <task_delivery id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <task_delivery id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING" sales_order_id="1" parent_id="1" operation_region_id="1"/>
+    <task_delivery id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
+    <task_delivery id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
 
-    <tasks id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <tasks id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING" sales_order_id="1" parent_id="1" operation_region_id="1"/>
-    <tasks id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <tasks id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
-
+    <!-- TASKS USER(ACTIVITY) -->
     <task_user user_id="1" task_id="1" />
     <task_user user_id="1" task_id="2" />
     <task_user user_id="1" task_id="6" />
@@ -116,18 +125,22 @@
     <task_user user_id="2" task_id="8" />
     <task_user user_id="2" task_id="6" />
 
-    <proposal_aprover_profile id="1" user_approver_id="1" available="true"/>
-    <proposal_aprover_profile id="2" user_approver_id="2" available="false"/>
+    <!-- PROPOSAL APPROVERS -->
+    <proposal_approver id="1" user_approver_id="1" available="true"/>
+    <proposal_approver id="2" user_approver_id="2" available="false"/>
 
+    <!-- WORKSPACES (DELIVERY)  -->
     <workspace_units id="1" sales_order_id="1" user_id="1"/>
     <workspace_units id="2" sales_order_id="2" user_id="1"/>
     <workspace_units id="3" sales_order_id="2" user_id="2"/>
 
+    <!-- SCHEDULES NOTIFICATION  -->
     <schedule_trigger_notification id="1" trigger_date="2020-10-20 00:00:00" task_id="1" executed="true"/>
     <schedule_trigger_notification id="2" trigger_date="2020-10-20 00:00:00" task_id="1" executed="false"/>
     <schedule_trigger_notification id="3" trigger_date="2020-10-20 08:10:11" task_id="1" executed="false"/>
     <schedule_trigger_notification id="4" trigger_date="2016-02-22 00:00:00" task_id="1" executed="false"/>
 
+    <!-- NOTIFICATIONS  -->
     <notifications id="1" create_date="2015-02-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="1"/>
     <notifications id="2" create_date="2015-03-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="2"/>
     <notifications id="3" create_date="2015-04-22 00:00:00" user_notified_id="1" descriminator="task_notification" task_id="3"/>

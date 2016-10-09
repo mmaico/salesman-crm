@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.dbunit.DatabaseUnitException;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -19,8 +18,8 @@ import java.sql.SQLException;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TaskControllerIT extends AbstractIntegrationTest {
-
+public class TaskControllerIT  {
+//extends AbstractIntegrationTest
     private MockMvc mockMvc;
 
     @Autowired

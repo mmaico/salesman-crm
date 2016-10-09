@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.repository.Saleable;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import org.hamcrest.MatcherAssert;
@@ -12,8 +11,8 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class SaleSalesPackageRepositoryTest extends AbstractIntegrationTest {
-
+public class SaleSalesPackageRepositoryTest  {
+//extends AbstractIntegrationTest
     @Autowired
     private SalesPackageRepository repository;
 

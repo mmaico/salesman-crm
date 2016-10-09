@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.products_catalog.domain.model.unit;
 
 
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.saleable.MeasurementUnitEntity;
-import com.trex.shared.annotations.EntityReference;
+import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Model;
 
 
-@EntityReference(MeasurementUnitEntity.class)
-public class Unit extends Identifiable {
+@Model
+public class Unit extends ModelIdentifiable {
 
     private Long id;
     private String name;

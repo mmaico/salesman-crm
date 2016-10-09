@@ -15,6 +15,7 @@ public class ApproverEntity extends Identifiable {
 
     @OneToOne
     @NotNull(message = "approver.user.cannot.be.null")
+    @JoinColumn(name="user_approver_id")
     private UserEntity approver;
 
     @Column(name = "available")

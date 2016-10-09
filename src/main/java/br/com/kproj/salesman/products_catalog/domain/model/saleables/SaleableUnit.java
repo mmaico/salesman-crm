@@ -2,18 +2,14 @@ package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.EntityReference;
+import com.trex.shared.annotations.Model;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@EntityReference(SaleableUnit.class)
+@Model
 public class SaleableUnit extends ModelIdentifiable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2422314617985187903L;
 
     private Long id;
 

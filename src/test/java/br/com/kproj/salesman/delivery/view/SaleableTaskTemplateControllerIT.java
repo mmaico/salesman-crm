@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.delivery.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import org.dbunit.DatabaseUnitException;
 import org.hamcrest.Matchers;
@@ -26,8 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @ActiveProfiles("test")
-public class SaleableTaskTemplateControllerIT extends AbstractIntegrationTest {
-
+public class SaleableTaskTemplateControllerIT  {
+//extends AbstractIntegrationTest
 
     private MockMvc mockMvc;
 

@@ -13,7 +13,6 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.infrastructure.service.AppFileApplication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,8 +30,7 @@ public class ArchiveRepositoryHibernate extends BaseRespositoryImpl<Archive, Fil
     private AppFileApplication appFileApplication;
 
     @Autowired
-    public ArchiveRepositoryHibernate(@Qualifier("fileInfoRepositoryArchiveModule") FileInfoRepository repository,
-                                      AppFileApplication appFileApplication) {
+    public ArchiveRepositoryHibernate(FileInfoRepository repository, AppFileApplication appFileApplication) {
         this.repository = repository;
         this.appFileApplication = appFileApplication;
     }

@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
@@ -21,8 +20,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class ContactTimelineControllerIT extends AbstractIntegrationTest {
-
+public class ContactTimelineControllerIT  {
+//extends AbstractIntegrationTest
     private MockMvc mockMvc;
 
     @Autowired

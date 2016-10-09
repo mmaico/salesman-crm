@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ApproverStatus;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -23,8 +22,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class BusinessProposalTimelineControllerIT extends AbstractIntegrationTest {
-
+public class BusinessProposalTimelineControllerIT  {
+//extends AbstractIntegrationTest
     private MockMvc mockMvc;
 
     @Autowired

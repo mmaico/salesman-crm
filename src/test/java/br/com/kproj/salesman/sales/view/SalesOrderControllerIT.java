@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.sales.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class SalesOrderControllerIT extends AbstractIntegrationTest {
-
+public class SalesOrderControllerIT  {
+//extends AbstractIntegrationTest
     private MockMvc mockMvc;
 
     @Autowired

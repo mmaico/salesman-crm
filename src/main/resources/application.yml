@@ -1,23 +1,10 @@
 spring:
   profiles: prod
-  velocity:
-    allow-request-override: false
-    cache: false
-    check-template-location: false
-    charset: UTF-8
-    content-type: text/html
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
-    prefer-file-system-access: true
-    resource-loader-path: file:/opt/templates
-    suffix: .vm
   jpa:
     open-in-view: true
     show-sql: true
     hibernate:
       ddl-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
@@ -53,28 +40,18 @@ security:
   require-ssl: false
   enable-csrf: false
 
+logging.level.root: WARN
+logging.level.org.springframework.web: ERROR
+logging.level.org.hibernate: ERROR
 
 ---
 spring:
   profiles: test
-  velocity:
-    allow-request-override: false
-    cache: false
-    check-template-location: false
-    charset: UTF-8
-    content-type: text/html
-    expose-request-attributes: false
-    expose-session-attributes: false
-    expose-spring-macro-helpers: false
-    prefer-file-system-access: true
-    resource-loader-path: classpath:resources
-    suffix: .vm
   jpa:
     open-in-view: true
     show-sql: true
     hibernate:
       ddl-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
       integration.envers.enabled: false
   data.jpa.repositories.enabled: true
   batch:
@@ -94,4 +71,8 @@ system.repository.storage: /opt
 security:
   require-ssl: false
   enable-csrf: false
+
+logging.level.root: WARN
+logging.level.org.springframework.web: ERROR
+logging.level.org.hibernate: ERROR
 

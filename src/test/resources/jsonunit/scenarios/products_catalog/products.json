@@ -1,0 +1,72 @@
+[
+  {
+    "scenery": "Lista de todos os produtos cadastrados no sistema",
+    "json": {
+        "items":[
+          {
+            "id":1,
+            "name":"Produto 01",
+            "description":"Descricao do produto 01",
+            "active":true,
+            "priceCost":5.00,
+            "type":"product",
+            "hasUnit":{
+              "id":1,
+              "name":"Kilo"
+            }
+          },
+          {
+            "id":2,
+            "name":"Servico 01",
+            "description":"Descricao do servico 01",
+            "active":true,
+            "priceCost":3.00,
+            "type":"service"
+          },
+          {
+            "id":3,
+            "name":"Servico 02",
+            "description":"Descricao do servico 02",
+            "active":true,
+            "priceCost":4.00,
+            "type":"service"
+          },
+          {
+            "id":4,
+            "name":"Pacote 01",
+            "description":"Descricao do pacote 01",
+            "active":true,
+            "priceCost":2.00,
+            "type":"salepackage",
+            "hasSaleables":[
+              {
+                "id":5,
+                "name":"Produto 02",
+                "description":"Descricao do product 02",
+                "active":true,
+                "priceCost":1.00,
+                "hasUnit":{
+                  "id":2,
+                  "name":"Unidade"
+                }
+              }
+            ]
+          },
+          {
+            "id":5,
+            "name":"Produto 02",
+            "description":"Descricao do product 02",
+            "active":true,
+            "priceCost":1.00,
+            "type":"product",
+            "hasUnit":{
+              "id":2,
+              "name":"Unidade"
+            }
+          }
+        ],
+        "uri":"/rs/saleables"
+    }
+
+  }
+]

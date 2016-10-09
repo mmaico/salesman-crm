@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.infra;
+package br.com.kproj.salesman.infratest;
 
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;

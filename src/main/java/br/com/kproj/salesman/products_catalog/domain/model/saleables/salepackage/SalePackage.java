@@ -1,15 +1,15 @@
 package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import com.trex.shared.annotations.EntityReference;
+import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EntityReference(SalePackageEntity.class)
+@Model
 public class SalePackage extends SaleableUnit {
 
     @EntityReference(SaleableUnitEntity.class)

@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.repository;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
@@ -13,8 +12,8 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class TimelineRepositoryIT extends AbstractIntegrationTest {
-
+public class TimelineRepositoryIT  {
+//extends AbstractIntegrationTest
     @Autowired
     private TimelineRepository repository;
 

@@ -1,9 +1,17 @@
 package br.com.kproj.salesman.products_catalog.view;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
+import br.com.kproj.salesman.infrastructure.http.response.handler.annotation.ResourceWrapper;
+import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.SaleableUnitFacade;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 
 
 @RestController
@@ -13,14 +21,12 @@ public class SaleableEndpoint {
     private SaleableUnitFacade service;
 
 
-
-    @RequestMapping(value = "/rs/saleable/{saleableId}", method = RequestMethod.GET)
+    @ResourceWrapper
+    @RequestMapping(value = "/rs/saleables", method = RequestMethod.GET)
     public @ResponseBody
-    SaleableUnitEntity getSaleable(@PathVariable Long saleableId) {
-
-        //Optional<SaleableUnitEntity> saleable = service.getOne(saleableId);
-
-        return null; //saleable.isPresent() ? saleable.get() : null;
+    Collection<SaleableUnit> getSaleables() {
+        Page<SaleableUnit> result = (Page<SaleableUnit>) service.findAll(Pager.build().withPageSize(1000));
+        return result.getContent();
     }
 
 

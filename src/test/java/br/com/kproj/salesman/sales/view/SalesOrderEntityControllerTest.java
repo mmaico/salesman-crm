@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.sales.view;
 
-import br.com.kproj.salesman.infra.AbstractIntegrationTest;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.security.helpers.SecurityHelper;
@@ -20,8 +19,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class SalesOrderEntityControllerTest extends AbstractIntegrationTest {
-
+public class SalesOrderEntityControllerTest  {
+//extends AbstractIntegrationTest
     private MockMvc mockMvc;
 
     @Autowired

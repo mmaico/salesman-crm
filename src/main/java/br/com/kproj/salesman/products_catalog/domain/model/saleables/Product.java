@@ -1,12 +1,12 @@
 package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.MeasurementUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import com.trex.shared.annotations.EntityReference;
+import com.trex.shared.annotations.Model;
 
 
-@EntityReference(ProductEntity.class)
+@Model
 public class Product extends SaleableUnit {
 
     @EntityReference(value = MeasurementUnitEntity.class, fieldName = "measurementUnit")
