@@ -49,6 +49,9 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
         where:
             uri                     | scenary                                             || statusExpected
             "/rs/saleables"         | "Lista de todos os produtos cadastrados no sistema" || HttpStatus.OK
+            "/rs/saleables/1"       | "Busca de produto por ID"                           || HttpStatus.OK
+            "/rs/saleables/2"       | "Busca de servico por ID"                           || HttpStatus.OK
+            "/rs/saleables/4"       | "Busca de pacote por ID"                            || HttpStatus.OK
     }
 
 
