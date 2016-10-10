@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.view.resources;
+package br.com.kproj.salesman.products_catalog.view.support.resources;
 
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import br.com.uol.rest.apiconverter.resources.Item;

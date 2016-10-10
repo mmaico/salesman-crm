@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.exceptions;
 
+import com.google.common.collect.Sets;
 import org.springframework.validation.ObjectError;
 
 import java.util.List;
@@ -24,7 +25,15 @@ public class ValidationException extends RuntimeException {
         this.errors = errors;
     }
 
+    public ValidationException(String error) {
+        this.errors = Sets.newHashSet(error);
+    }
+
     public Set<String> getErrors() {
         return errors;
+    }
+
+    public static ValidationException createThrow(String message) {
+        return new ValidationException(message);
     }
 }

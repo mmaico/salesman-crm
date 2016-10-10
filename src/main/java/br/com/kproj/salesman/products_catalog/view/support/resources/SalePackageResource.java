@@ -1,6 +1,7 @@
-package br.com.kproj.salesman.products_catalog.view.resources;
+package br.com.kproj.salesman.products_catalog.view.support.resources;
 
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.view.support.SaleableType;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 @JsonPropertyOrder({
         "id",
@@ -19,17 +21,18 @@ import java.math.BigDecimal;
         "unit",
         "links"
 })
-@ResourceItem(name="saleables", modelReference = SaleableUnit.class)
-public class SaleableResource extends Item {
+@ResourceItem(name="saleables", modelReference = SalePackage.class)
+public class SalePackageResource extends Item {
 
     private Long id;
     private String name;
     private String description;
     private Boolean active;
     private BigDecimal priceCost;
+    private String type = SaleableType.SALE_PACKAGE.getType();
 
-    @JsonProperty("hasUnit")
-    private UnitResource unit;
+    @JsonProperty("hasSaleables")
+    private Collection<SaleableResource> saleables;
 
 
     public Long getId() {
@@ -72,13 +75,20 @@ public class SaleableResource extends Item {
         this.priceCost = priceCost;
     }
 
-    @Selectable(expression = "has-unit", expandByDefault = true)
-    public UnitResource getUnit() {
-        return unit;
+    public String getType() {
+        return type;
     }
 
-    public void setUnit(UnitResource unit) {
-        this.unit = unit;
+    public void setType(String type) {
+        this.type = type;
     }
 
+    @Selectable(expression = "has-saleables", expandByDefault = true)
+    public Collection<SaleableResource> getSaleables() {
+        return saleables;
+    }
+
+    public void setSaleables(Collection<SaleableResource> saleables) {
+        this.saleables = saleables;
+    }
 }

@@ -11,6 +11,12 @@ public class Unit extends ModelIdentifiable {
     private Long id;
     private String name;
 
+    public Unit(Long id) {
+        this.id = id;
+    }
+    public Unit() {
+    }
+
     public Long getId() {
         return this.id;
     }

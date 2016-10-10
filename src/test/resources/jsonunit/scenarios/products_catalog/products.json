@@ -8,6 +8,7 @@
             "name":"Produto 01",
             "description":"Descricao do produto 01",
             "active":true,
+            "price":20.00,
             "priceCost":5.00,
             "type":"product",
             "hasUnit":{
@@ -20,6 +21,7 @@
             "name":"Servico 01",
             "description":"Descricao do servico 01",
             "active":true,
+            "price":10.00,
             "priceCost":3.00,
             "type":"service"
           },
@@ -28,6 +30,7 @@
             "name":"Servico 02",
             "description":"Descricao do servico 02",
             "active":true,
+            "price":11.00,
             "priceCost":4.00,
             "type":"service"
           },
@@ -43,6 +46,7 @@
                 "id":5,
                 "name":"Produto 02",
                 "description":"Descricao do product 02",
+                "price":6.00,
                 "active":true,
                 "priceCost":1.00,
                 "hasUnit":{
@@ -57,6 +61,7 @@
             "name":"Produto 02",
             "description":"Descricao do product 02",
             "active":true,
+            "price":6.00,
             "priceCost":1.00,
             "type":"product",
             "hasUnit":{
@@ -78,6 +83,7 @@
           "name":"Produto 01",
           "description":"Descricao do produto 01",
           "active":true,
+          "price":20.00,
           "priceCost":5.00,
           "type":"product",
           "hasUnit":{
@@ -97,6 +103,7 @@
         "name": "Servico 01",
         "description": "Descricao do servico 01",
         "active": true,
+        "price":10.00,
         "priceCost": 3.00,
         "type": "service"
       },
@@ -119,6 +126,7 @@
             "name":"Produto 02",
             "description":"Descricao do product 02",
             "active":true,
+            "price":6.00,
             "priceCost":1.00,
             "hasUnit":{
               "id":2,
@@ -128,6 +136,20 @@
         ]
       },
       "uri":"/rs/saleables/4"
+    }
+  },
+  {
+    "scenery": "Busca de saleable que nao existe",
+    "json": {
+      "uri":"/rs/saleables/9999",
+      "errors":{
+        "messages":[
+          {
+            "message":"resource not found",
+            "code":404
+          }
+        ]
+      }
     }
   }
 
