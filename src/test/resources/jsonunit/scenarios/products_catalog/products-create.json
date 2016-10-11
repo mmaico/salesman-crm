@@ -1,0 +1,89 @@
+[
+  {
+    "scenery": "Criacao de produto",
+    "json": {
+        "name":"Produto criado 01",
+        "description":"Descricao do produto criado 01",
+        "active":true,
+        "price": 16.00,
+        "priceCost":9.00,
+        "type":"product",
+        "unit": {
+          "id":1
+        }
+    }
+  },
+  {
+    "scenery": "Json de produto criado",
+    "json": {
+      "item":
+        {
+          "id":10,
+          "name":"Produto criado 01",
+          "description":"Descricao do produto criado 01",
+          "active":true,
+          "price":16.00,
+          "priceCost":9.00,
+          "type":"product",
+          "hasUnit":{
+            "id":1,
+            "name":"Kilo"
+          }
+        },
+        "uri":"/rs/saleables"
+    }
+  },
+  {
+    "scenery": "Criacao de servico",
+    "json": {
+        "name": "Servico criado 01",
+        "description": "Descricao do servico criado 01",
+        "active": true,
+        "price": 300.00,
+        "priceCost": 200.00,
+        "type": "service"
+    }
+  },
+  {
+    "scenery": "Json do servico criado",
+    "json": {
+      "item": {
+        "id": 11,
+        "name": "Servico criado 01",
+        "description": "Descricao do servico criado 01",
+        "active": true,
+        "price": 300.00,
+        "priceCost": 200.00,
+        "type": "service"
+      },
+      "uri":"/rs/saleables"
+    }
+  },
+  {
+    "scenery": "Criacao de pacote",
+    "json": {
+      "name": "Pacote 01",
+      "description": "Descricao do pacote 01",
+      "active": true,
+      "price": 700.00,
+      "priceCost": 400.55,
+      "type":"salepackage"
+    }
+  },
+  {
+    "scenery": "Json do pacote criado",
+    "json": {
+      "item":{
+        "id": 20,
+        "name": "Pacote 01",
+        "description": "Descricao do pacote 01",
+        "active": true,
+        "price": 800.80,
+        "priceCost": 350.56,
+        "type": "salepackage"
+      },
+      "uri":"/rs/saleables"
+    }
+  }
+
+]

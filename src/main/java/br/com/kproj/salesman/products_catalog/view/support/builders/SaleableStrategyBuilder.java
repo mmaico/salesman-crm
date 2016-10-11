@@ -43,7 +43,8 @@ public class SaleableStrategyBuilder {
     }
 
     public static <T extends SaleableUnit> T build(SaleableDTO saleableDTO) {
-        return (T) new SaleableStrategyBuilder().getConverters().get(saleableDTO.getType()).convert(saleableDTO);
+        SaleableType type = SaleableType.get(saleableDTO.getType());
+        return (T) new SaleableStrategyBuilder().getConverters().get(type).convert(saleableDTO);
     }
 
     public Map<SaleableType, Convert<? extends SaleableUnit>> getConverters() {

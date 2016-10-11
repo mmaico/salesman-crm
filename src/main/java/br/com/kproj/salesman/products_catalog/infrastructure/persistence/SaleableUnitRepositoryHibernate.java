@@ -1,50 +1,39 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
-import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
-import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
+import br.com.kproj.salesman.products_catalog.infrastructure.configuration.SaleableUnitSpecializedSupport;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ProductEntityToProductConverter;
-import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.SalePackageEntityToSalePackageConverter;
-import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ServiceEntityToServiceConverter;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.support.SaleableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Repository
-public class SaleableUnitRepositoryHibernate extends BaseRespositoryImpl<SaleableUnit, SaleableUnitEntity> implements SaleableUnitRepository {
+import static br.com.kproj.salesman.products_catalog.infrastructure.persistence.support.SaleableUtils.getType;
+import static com.trex.clone.BusinessModelClone.from;
 
-    private final Map<Class<?>, SelectConverter> poolConverters = new HashMap<>();
+@Repository
+public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
+
+    @Resource(name="saleablesConverters")
+    Map<SaleableTypeEntity, SaleableUnitSpecializedSupport.SelectConverter> converters;
+
+    @Resource(name="saleablesRepositories")
+    Map<SaleableTypeEntity, SaleableUnitSpecializedSupport.PersistRepository> repositories;
 
     @Autowired
     private SaleableUnitRepositorySpringData repository;
-
-    @Autowired
-    private SalePackageEntityToSalePackageConverter packageConverter;
-    @Autowired
-    private ProductEntityToProductConverter productConverter;
-    @Autowired
-    private ServiceEntityToServiceConverter serviceConverter;
-
-    {
-        poolConverters.put(ProductEntity.class, entity -> productConverter.convert((ProductEntity) entity));
-        poolConverters.put(ServiceEntity.class, entity -> serviceConverter.convert((ServiceEntity) entity));
-        poolConverters.put(SalePackageEntity.class, entity -> packageConverter.convert((SalePackageEntity) entity));
-    }
 
 
     @Override
@@ -53,8 +42,8 @@ public class SaleableUnitRepositoryHibernate extends BaseRespositoryImpl<Saleabl
 
         List<SaleableUnit> converteds = saleableUnits.getContent().stream()
                 .map(item -> {
-                    if (poolConverters.containsKey(item.getClass())) {
-                        return poolConverters.get(item.getClass()).select(item);
+                    if (converters.containsKey(item.getType())) {
+                        return converters.get(item.getType()).select(item);
                     } else {
                         throw new IllegalArgumentException("Invalid type on saleables:" + item);
                     }
@@ -70,25 +59,31 @@ public class SaleableUnitRepositoryHibernate extends BaseRespositoryImpl<Saleabl
         if (!result.isPresent()) {
             return Optional.empty();
         } else {
-            SaleableUnit saleableFound = poolConverters.get(result.get().getClass()).select(result.get());
+            SaleableUnit saleableFound = converters.get(result.get().getType()).select(result.get());
             return Optional.of(saleableFound);
         }
 
     }
 
-
     @Override
-    public BaseRepositoryLegacy<SaleableUnitEntity, Long> getRepository() {
-        return repository;
+    public Optional<SaleableUnit> save(SaleableUnit saleableUnit) {
+
+        if (saleableUnit.isNew()) {
+            Class<?> clazz = SaleableUtils.getClass(saleableUnit);
+            SaleableTypeEntity type = getType(saleableUnit);
+            SaleableUnitEntity resultEntity = (SaleableUnitEntity) from(saleableUnit).convertTo(clazz);
+            resultEntity.setType(type);
+            SaleableUnitEntity saleableSaved = repositories.get(type).save(resultEntity);
+            return Optional.ofNullable(getConverter().convert(saleableSaved));
+        } else {
+            Optional<SaleableUnitEntity> productEntity = Optional.ofNullable(repository.findOne(saleableUnit.getId()));
+            from(saleableUnit).merge(productEntity.get());
+            return Optional.ofNullable(getConverter().convert(productEntity.get()));
+        }
     }
 
-    @Override
     public Converter<SaleableUnitEntity, SaleableUnit> getConverter() {
-        return null;
+        return ((entity, args) -> (SaleableUnit) from(entity).convertTo(SaleableUtils.getClass(entity)));
     }
 
-    private interface SelectConverter<T extends SaleableUnit> {
-
-        T select(SaleableUnitEntity entity);
-    }
 }

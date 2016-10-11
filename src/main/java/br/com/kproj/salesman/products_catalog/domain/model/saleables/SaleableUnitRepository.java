@@ -1,8 +1,16 @@
 package br.com.kproj.salesman.products_catalog.domain.model.saleables;
 
 
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-public interface SaleableUnitRepository extends BaseRepository<SaleableUnit, Long> {
+import java.util.Optional;
 
+public interface SaleableUnitRepository {
+
+    Page<SaleableUnit> findAll(Pageable page);
+
+    Optional<SaleableUnit> findOne(Long id);
+
+    Optional<SaleableUnit> save(SaleableUnit entity);
 }

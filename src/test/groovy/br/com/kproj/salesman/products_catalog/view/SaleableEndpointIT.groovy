@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class SaleableEndpointIT extends AbstractIntegrationTest {
 
     private static final String PRODUCTS = "/products_catalog/products.json";
+    private static final String PRODUCTS_CREATED = "/products_catalog/products-create.json";
 
     def MockMvc mockMvc
 
@@ -60,10 +61,10 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
     def "Creating saleable in the system (Product/Service/SalePackage)"() {
         given: "the module catalog product"
             this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
-            SceneryLoaderHelper.load(PRODUCTS)
+            SceneryLoaderHelper.load(PRODUCTS_CREATED)
 
         when: "a saleable sent to the endpoint #uri"
-            def mvcResult = mockMvc.perform(post(uri).content(jsonToPost).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def mvcResult = mockMvc.perform(post(uri).content(scenery(jsonToPost).getJson()).contentType(MediaType.APPLICATION_JSON)).andReturn()
             def jsonResult = mvcResult.getResponse().getContentAsString()
             def statusResult = mvcResult.getResponse().getStatus()
 
@@ -72,10 +73,10 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
             statusResult == statusExpected.value()
 
         where:
-            uri                     | jsonToPost           | jsonExpected                 || statusExpected
-            "/rs/saleables"         | "Criacao de produto" | "Json da criacao de produto" || HttpStatus.CREATED
-            "/rs/saleables"         | "Criacao de servico" | "Json da criacao de service" || HttpStatus.CREATED
-            "/rs/saleables"         | "Criacao de pacote"  | "Json da criacao de pacote"  || HttpStatus.CREATED
+            uri                     | jsonToPost           | jsonExpected             || statusExpected
+            "/rs/saleables"         | "Criacao de produto" | "Json de produto criado" || HttpStatus.CREATED
+            "/rs/saleables"         | "Criacao de servico" | "Json do servico criado" || HttpStatus.CREATED
+            "/rs/saleables"         | "Criacao de pacote"  | "Json do pacote criado"  || HttpStatus.CREATED
 
     }
 

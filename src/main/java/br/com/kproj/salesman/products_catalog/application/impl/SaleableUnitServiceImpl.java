@@ -1,22 +1,43 @@
 package br.com.kproj.salesman.products_catalog.application.impl;
 
 
-import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.products_catalog.application.SaleableUnitFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-@Service
-public class SaleableUnitServiceImpl extends BaseModelServiceImpl<SaleableUnit> implements SaleableUnitFacade {
+import java.util.Optional;
 
-    @Autowired
+@Service
+public class SaleableUnitServiceImpl implements SaleableUnitFacade {
+
     private SaleableUnitRepository repository;
 
+    @Autowired
+    public SaleableUnitServiceImpl(SaleableUnitRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
-    public BaseRepository<SaleableUnit, Long> getRepository() {
-        return repository;
+    public Optional<SaleableUnit> register(SaleableUnit entity) {
+        if (entity == null) {
+            return Optional.empty();
+        }
+        return repository.save(entity);
+    }
+
+    @Override
+    public Iterable<SaleableUnit> findAll(Pageable pager) {
+        return repository.findAll(pager);
+    }
+
+    @Override
+    public Optional<SaleableUnit> getOne(Long id) {
+        if (id == null) {
+            return Optional.empty();
+        }
+        return repository.findOne(id);
     }
 }

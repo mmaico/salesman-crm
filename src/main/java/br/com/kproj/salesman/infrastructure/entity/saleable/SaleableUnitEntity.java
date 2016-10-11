@@ -16,7 +16,7 @@ import java.util.Objects;
 @Table(name="saleable")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorOptions(force = true)
-@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
+//@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
 public class SaleableUnitEntity extends Identifiable {
 
 	/**
