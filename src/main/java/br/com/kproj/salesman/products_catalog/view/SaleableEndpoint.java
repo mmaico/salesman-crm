@@ -8,6 +8,7 @@ import br.com.kproj.salesman.products_catalog.view.support.builders.SaleableStra
 import br.com.kproj.salesman.products_catalog.view.support.dtos.SaleableDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,6 +44,7 @@ public class SaleableEndpoint {
 
     @ResourceWrapper
     @RequestMapping(value = "/rs/saleables", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
     Optional<SaleableUnit> create(@Valid @RequestBody SaleableDTO saleableDTO) {
         SaleableUnit saleableUnit = SaleableStrategyBuilder.build(saleableDTO);

@@ -2,6 +2,7 @@ package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackag
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import com.trex.shared.annotations.Attribute;
 import com.trex.shared.annotations.EntityReference;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 @Model
 public class SalePackage extends SaleableUnit {
 
-    @EntityReference(SaleableUnitEntity.class)
+    @Attribute(destinationName = "saleableUnits")
     private List<SaleableUnit> saleables = new ArrayList<>();
 
     @Autowired

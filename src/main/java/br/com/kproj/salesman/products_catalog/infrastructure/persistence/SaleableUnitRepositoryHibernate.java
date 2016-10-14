@@ -2,7 +2,6 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.configuration.SaleableUnitSpecializedSupport;
@@ -34,6 +33,7 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
 
     @Autowired
     private SaleableUnitRepositorySpringData repository;
+
 
 
     @Override
@@ -74,16 +74,19 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
             SaleableUnitEntity resultEntity = (SaleableUnitEntity) from(saleableUnit).convertTo(clazz);
             resultEntity.setType(type);
             SaleableUnitEntity saleableSaved = repositories.get(type).save(resultEntity);
-            return Optional.ofNullable(getConverter().convert(saleableSaved));
+
+            return Optional.ofNullable(converters.get(type).select(saleableSaved));
         } else {
             Optional<SaleableUnitEntity> productEntity = Optional.ofNullable(repository.findOne(saleableUnit.getId()));
             from(saleableUnit).merge(productEntity.get());
-            return Optional.ofNullable(getConverter().convert(productEntity.get()));
+            SaleableUnit valueConverted = converters.get(productEntity.get().getType()).select(productEntity.get());
+
+            return Optional.ofNullable(valueConverted);
         }
     }
 
-    public Converter<SaleableUnitEntity, SaleableUnit> getConverter() {
-        return ((entity, args) -> (SaleableUnit) from(entity).convertTo(SaleableUtils.getClass(entity)));
-    }
+//    public Converter<SaleableUnitEntity, SaleableUnit> getConverter() {
+//        return ((entity, args) -> (SaleableUnit) from(entity).convertTo(SaleableUtils.getClass(entity)));
+//    }
 
 }

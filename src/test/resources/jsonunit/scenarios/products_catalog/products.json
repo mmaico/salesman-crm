@@ -39,6 +39,7 @@
             "name":"Pacote 01",
             "description":"Descricao do pacote 01",
             "active":true,
+            "price":8.00,
             "priceCost":2.00,
             "type":"salepackage",
             "hasSaleables":[
@@ -118,6 +119,7 @@
         "name":"Pacote 01",
         "description":"Descricao do pacote 01",
         "active":true,
+        "price":8.00,
         "priceCost":2.00,
         "type":"salepackage",
         "hasSaleables":[

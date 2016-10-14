@@ -16,6 +16,7 @@ import java.util.Collection;
         "name",
         "description",
         "active",
+        "price",
         "priceCost",
         "type",
         "unit",
@@ -28,6 +29,7 @@ public class SalePackageResource extends Item {
     private String name;
     private String description;
     private Boolean active;
+    private BigDecimal price;
     private BigDecimal priceCost;
     private String type = SaleableType.SALE_PACKAGE.getType();
 
@@ -90,5 +92,13 @@ public class SalePackageResource extends Item {
 
     public void setSaleables(Collection<SaleableResource> saleables) {
         this.saleables = saleables;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
