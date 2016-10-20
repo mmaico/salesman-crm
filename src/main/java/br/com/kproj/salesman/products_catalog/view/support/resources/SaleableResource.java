@@ -3,8 +3,6 @@ package br.com.kproj.salesman.products_catalog.view.support.resources;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
-import br.com.uol.rest.infrastructure.annotations.Selectable;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.math.BigDecimal;
@@ -16,8 +14,6 @@ import java.math.BigDecimal;
         "active",
         "price",
         "priceCost",
-        "type",
-        "unit",
         "links"
 })
 @ResourceItem(name="saleables", modelReference = SaleableUnit.class)
@@ -29,10 +25,6 @@ public class SaleableResource extends Item {
     private Boolean active;
     private BigDecimal price;
     private BigDecimal priceCost;
-
-    @JsonProperty("hasUnit")
-    private UnitResource unit;
-
 
     public Long getId() {
         return id;
@@ -72,15 +64,6 @@ public class SaleableResource extends Item {
 
     public void setPriceCost(BigDecimal priceCost) {
         this.priceCost = priceCost;
-    }
-
-    @Selectable(expression = "has-unit", expandByDefault = true)
-    public UnitResource getUnit() {
-        return unit;
-    }
-
-    public void setUnit(UnitResource unit) {
-        this.unit = unit;
     }
 
     public BigDecimal getPrice() {
