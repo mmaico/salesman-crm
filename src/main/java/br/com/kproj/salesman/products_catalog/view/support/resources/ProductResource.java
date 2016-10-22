@@ -4,17 +4,19 @@ import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import br.com.uol.rest.infrastructure.annotations.SuperClass;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-@ResourceItem(name="saleables", modelReference = Product.class)
+@ResourceItem(name="products", modelReference = Product.class, parent = SaleableResource.class)
 public class ProductResource extends Item {
 
     private Long id;
 
     @JsonProperty("hasUnit")
     private UnitResource unit;
-    //@SuperClass
+
+    @SuperClass
     private SaleableResource saleable;
 
     public Long getId() {
@@ -25,7 +27,7 @@ public class ProductResource extends Item {
         this.id = id;
     }
 
-    @Selectable(expression = "has-unit", expandByDefault = true)
+    @Selectable(expression = "has-unit")
     public UnitResource getUnit() {
         return unit;
     }
@@ -34,7 +36,7 @@ public class ProductResource extends Item {
         this.unit = unit;
     }
 
-    @Selectable(expression = "is-a", expandByDefault = true)
+    @Selectable(expression = "is-a")
     public SaleableResource getSaleable() {
         return saleable;
     }

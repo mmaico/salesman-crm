@@ -39,6 +39,8 @@ public class SaleableEndpoint {
     @RequestMapping(value = "/rs/saleables/{saleableId}", method = RequestMethod.GET)
     public @ResponseBody
     Optional<SaleableUnit> getSaleableById(@PathVariable Long saleableId) {
+        Optional<SaleableUnit> result = service.getOne(saleableId);
+
         return service.getOne(saleableId);
     }
 

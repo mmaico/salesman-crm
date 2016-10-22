@@ -4,6 +4,7 @@ import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import br.com.uol.rest.infrastructure.annotations.SuperClass;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -20,12 +21,13 @@ import java.util.Collection;
         "unit",
         "links"
 })
-@ResourceItem(name="saleables", modelReference = SalePackage.class)
+@ResourceItem(name="packages", modelReference = SalePackage.class, parent = SaleableResource.class)
 public class SalePackageResource extends Item {
 
     private Long id;
 
     @JsonProperty("IsA")
+    @SuperClass
     private SaleableResource saleable;
 
     @JsonProperty("hasSaleables")
@@ -49,7 +51,7 @@ public class SalePackageResource extends Item {
         this.saleables = saleables;
     }
 
-    @Selectable(expression = "is-a", expandByDefault = true)
+    @Selectable(expression = "is-a")
     public SaleableResource getSaleable() {
         return saleable;
     }
