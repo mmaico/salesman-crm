@@ -2,113 +2,119 @@
   {
     "scenery": "Lista de todos os produtos cadastrados no sistema",
     "json": {
-        "items":[
-          {
-            "id":1,
-            "name":"Produto 01",
-            "description":"Descricao do produto 01",
-            "active":true,
-            "price":20.00,
-            "priceCost":5.00,
-            "type":"product",
-            "hasUnit":{
-              "id":1,
-              "name":"Kilo"
-            }
-          },
-          {
-            "id":2,
-            "name":"Servico 01",
-            "description":"Descricao do servico 01",
-            "active":true,
-            "price":10.00,
-            "priceCost":3.00,
-            "type":"service"
-          },
-          {
-            "id":3,
-            "name":"Servico 02",
-            "description":"Descricao do servico 02",
-            "active":true,
-            "price":11.00,
-            "priceCost":4.00,
-            "type":"service"
-          },
-          {
-            "id":4,
-            "name":"Pacote 01",
-            "description":"Descricao do pacote 01",
-            "active":true,
-            "price":8.00,
-            "priceCost":2.00,
-            "type":"salepackage",
-            "hasSaleables":[
+            "items":[
+              {
+                "id":1,
+                "name":"Produto 01",
+                "description":"Descricao do produto 01",
+                "active":true,
+                "price":20.00,
+                "priceCost":5.00,
+                "links":[
+                  {
+                    "href":"/saleables/products/1",
+                    "rel":"products"
+                  }
+                ]
+              },
+              {
+                "id":2,
+                "name":"Servico 01",
+                "description":"Descricao do servico 01",
+                "active":true,
+                "price":10.00,
+                "priceCost":3.00,
+                "links":[
+                  {
+                    "href":"/saleables/services/2",
+                    "rel":"services"
+                  }
+                ]
+              },
+              {
+                "id":3,
+                "name":"Servico 02",
+                "description":"Descricao do servico 02",
+                "active":true,
+                "price":11.00,
+                "priceCost":4.00,
+                "links":[
+                  {
+                    "href":"/saleables/services/3",
+                    "rel":"services"
+                  }
+                ]
+              },
+              {
+                "id":4,
+                "name":"Pacote 01",
+                "description":"Descricao do pacote 01",
+                "active":true,
+                "price":8.00,
+                "priceCost":2.00,
+                "links":[
+                  {
+                    "href":"/saleables/packages/4",
+                    "rel":"packages"
+                  }
+                ]
+              },
               {
                 "id":5,
                 "name":"Produto 02",
                 "description":"Descricao do product 02",
-                "price":6.00,
                 "active":true,
+                "price":6.00,
                 "priceCost":1.00,
-                "hasUnit":{
-                  "id":2,
-                  "name":"Unidade"
-                }
+                "links":[
+                  {
+                    "href":"/saleables/products/5",
+                    "rel":"products"
+                  }
+                ]
               }
-            ]
-          },
-          {
-            "id":5,
-            "name":"Produto 02",
-            "description":"Descricao do product 02",
-            "active":true,
-            "price":6.00,
-            "priceCost":1.00,
-            "type":"product",
-            "hasUnit":{
-              "id":2,
-              "name":"Unidade"
-            }
+            ],
+            "uri":"/rs/saleables"
           }
-        ],
-        "uri":"/rs/saleables"
-    }
-
   },
   {
     "scenery": "Busca de produto por ID",
     "json": {
-      "item":
-        {
-          "id":1,
-          "name":"Produto 01",
-          "description":"Descricao do produto 01",
-          "active":true,
-          "price":20.00,
-          "priceCost":5.00,
-          "type":"product",
-          "hasUnit":{
-            "id":1,
-            "name":"Kilo"
+      "item":{
+        "id":1,
+        "name":"Produto 01",
+        "description":"Descricao do produto 01",
+        "active":true,
+        "price":20.00,
+        "priceCost":5.00,
+        "links":[
+          {
+            "href":"/saleables/products/1",
+            "rel":"products"
           }
-        },
-        "uri":"/rs/saleables/1"
+        ]
+      },
+      "uri":"/rs/saleables/1"
     }
-
   },
   {
     "scenery": "Busca de servico por ID",
     "json": {
-      "item": {
-        "id": 2,
-        "name": "Servico 01",
-        "description": "Descricao do servico 01",
-        "active": true,
+      "item":{
+        "id":2,
+        "name":"Servico 01",
+        "description":"Descricao do servico 01",
+        "active":true,
         "price":10.00,
-        "priceCost": 3.00,
-        "type": "service"
+        "priceCost":3.00,
+        "links":[
+          {
+            "href":"/saleables/services/2",
+            "rel":"services"
+          }
+        ]
       },
-      "uri": "/rs/saleables/2"
+      "uri":"/rs/saleables/2"
     }
   },
   {
@@ -121,19 +127,10 @@
         "active":true,
         "price":8.00,
         "priceCost":2.00,
-        "type":"salepackage",
-        "hasSaleables":[
+        "links":[
           {
-            "id":5,
-            "name":"Produto 02",
-            "description":"Descricao do product 02",
-            "active":true,
-            "price":6.00,
-            "priceCost":1.00,
-            "hasUnit":{
-              "id":2,
-              "name":"Unidade"
-            }
+            "href":"/saleables/packages/4",
+            "rel":"packages"
           }
         ]
       },
@@ -147,7 +144,7 @@
       "errors":{
         "messages":[
           {
-            "message":"resource not found",
+            "message":"Resource not found.",
             "code":404
           }
         ]
