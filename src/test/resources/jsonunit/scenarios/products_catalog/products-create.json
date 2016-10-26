@@ -1,16 +1,20 @@
 [
   {
-    "scenery": "Criacao de produto",
+    "scenery": "Criacao de saleable",
     "json": {
-        "name":"Produto criado 01",
-        "description":"Descricao do produto criado 01",
-        "active":true,
+        "name": "Produto criado 01",
+        "description": "Descricao do produto criado 01",
+        "active": true,
         "price": 16.00,
-        "priceCost":9.00,
-        "type":"product",
-        "unit": {
-          "id":1
-        }
+        "priceCost": 9.00
+    }
+  },
+  {
+    "scenery": "Criacao de especializacao de saleable para produto",
+    "json": {
+      "unit": {
+        "id": 52
+      }
     }
   },
   {
