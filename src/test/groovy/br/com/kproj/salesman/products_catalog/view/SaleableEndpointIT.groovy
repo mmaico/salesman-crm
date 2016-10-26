@@ -73,10 +73,10 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
             statusResult == statusExpected.value()
 
         where:
-            uri                     | jsonToPost           | jsonExpected             || statusExpected
-            "/rs/saleables"         | "Criacao de produto" | "Json de produto criado" || HttpStatus.CREATED
-            "/rs/saleables"         | "Criacao de servico" | "Json do servico criado" || HttpStatus.CREATED
-            "/rs/saleables"         | "Criacao de pacote"  | "Json do pacote criado"  || HttpStatus.CREATED
+            uri-saleable         | uri-pecialization                     | jsonToPost           | jsonExpected             || statusExpected
+            "/rs/saleables"      | "/rs/saleables/{saleableId}/products" | "Criacao de produto" | "Json de produto criado" || HttpStatus.CREATED
+            "/rs/saleables"      | "/rs/saleables/{saleableId}/services" | "Criacao de servico" | "Json do servico criado" || HttpStatus.CREATED
+            "/rs/saleables"      | "/rs/saleables/{saleableId}/packages" | "Criacao de pacote"  | "Json do pacote criado"  || HttpStatus.CREATED
 
     }
 
