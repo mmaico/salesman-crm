@@ -1,5 +1,6 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables;
+package br.com.kproj.salesman.products_catalog.domain.model.saleables.products;
 
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import com.trex.shared.annotations.Attribute;
 import com.trex.shared.annotations.Model;

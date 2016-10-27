@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.products_catalog.view.support.builders;
 
 
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import br.com.kproj.salesman.products_catalog.view.support.SaleableType;

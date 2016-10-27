@@ -3,9 +3,9 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence.suppor
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.*;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
 
 import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.PRODUCT;
@@ -35,6 +35,18 @@ public class SaleableUtils {
         }
 
         throw ValidationException.createThrow("product.entity.without.type");
+    }
+
+    public static SaleableUnit getInstance(SaleableUnitEntity entity) {
+        if (entity instanceof ServiceEntity) {
+            return new Service();
+        } else if (entity instanceof ProductEntity) {
+            return new Product();
+        } else if (entity instanceof SalePackageEntity) {
+            return new SalePackage();
+        }
+
+        return new SaleableUnit();
     }
 
     public static Class<?> getClass(SaleableUnit model) {

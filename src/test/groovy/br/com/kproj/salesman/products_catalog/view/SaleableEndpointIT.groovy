@@ -65,8 +65,7 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Creating a product"() {
 
-        def mvcResult = mockMvc.perform(post("/rs/saleable")
-                .content(scenery("Criacao de saleable").getJson())
+        def mvcResult = mockMvc.perform(post("/rs/saleable").content(scenery("Criacao de saleable").getJson())
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
         def jsonResult = mvcResult.getResponse().getContentAsString()

@@ -10,6 +10,9 @@ import javax.persistence.*;
 @DiscriminatorValue("PRODUCT")
 public class ProductEntity extends SaleableUnitEntity {
 
+    @Id
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name="measurement_unit_id")
     private MeasurementUnitEntity measurementUnit;
@@ -30,5 +33,15 @@ public class ProductEntity extends SaleableUnitEntity {
 
     public void setMeasurementUnit(MeasurementUnitEntity measurementUnit) {
         this.measurementUnit = measurementUnit;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 }

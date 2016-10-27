@@ -12,7 +12,6 @@ import br.com.kproj.salesman.products_catalog.view.support.builders.SaleableReso
 import br.com.kproj.salesman.products_catalog.view.support.builders.SaleableStrategyBuilder;
 import br.com.kproj.salesman.products_catalog.view.support.dtos.SaleableDTO;
 import br.com.kproj.salesman.products_catalog.view.support.resources.SaleableResource;
-import br.com.uol.rest.apiconverter.ConverterToResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -32,7 +29,6 @@ public class SaleableEndpoint {
     private SaleableUnitFacade service;
 
     private SaleableResourceBuilder builder;
-
 
     @Autowired
     public SaleableEndpoint(SaleableUnitFacade service, SaleableResourceBuilder builder) {
@@ -44,9 +40,11 @@ public class SaleableEndpoint {
     public @ResponseBody
     ResourceItems getSaleables(HttpServletRequest request) {
         Page<SaleableUnit> result = (Page<SaleableUnit>) service.findAll(Pager.build().withPageSize(1000));
+
         if (result.getContent().isEmpty()) {
             throw new NotFoundException();
         }
+
         return builder.build(result.getContent(), request.getRequestURI());
     }
 
@@ -54,10 +52,9 @@ public class SaleableEndpoint {
     public @ResponseBody
     ResourceItem getSaleableById(@PathVariable Long saleableId, HttpServletRequest request) {
         Optional<SaleableUnit> result = service.getOne(saleableId);
-        if (!result.isPresent()) {
-            throw new NotFoundException();
-        }
-        return builder.build(result.get(), request.getRequestURI());
+        SaleableUnit saleableUnit = result.orElseThrow(() -> new NotFoundException());
+
+        return builder.build(saleableUnit, request.getRequestURI());
     }
 
     @ResourceWrapper
@@ -65,6 +62,7 @@ public class SaleableEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
     Optional<SaleableUnit> create(@Valid @RequestBody SaleableResource resource) {
+
         SaleableUnit saleable = SaleableBuilder.createSaleable()
                 .withPrice(resource.getPrice())
                 .withPriceCost(resource.getPriceCost())
