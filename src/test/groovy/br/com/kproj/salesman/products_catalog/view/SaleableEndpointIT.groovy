@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
 import br.com.kproj.salesman.infratest.SceneryLoaderHelper
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository
+import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -61,13 +62,18 @@ class SaleableEndpointIT extends AbstractIntegrationTest {
             "/rs/saleables/9999"    | "Busca de saleable que nao existe"                  || HttpStatus.NOT_FOUND
     }
 
+    @Unroll
     def "Creating a product"() {
+
         def mvcResult = mockMvc.perform(post("/rs/saleable")
                 .content(scenery("Criacao de saleable").getJson())
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
         def jsonResult = mvcResult.getResponse().getContentAsString()
+        def saleableJson = new JsonSlurper().parseText(jsonResult)
 
+        expect:
+            saleableJson.id == 1
 
     }
 

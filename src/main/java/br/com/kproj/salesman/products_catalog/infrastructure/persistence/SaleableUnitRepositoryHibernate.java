@@ -7,6 +7,7 @@ import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUni
 import br.com.kproj.salesman.products_catalog.infrastructure.configuration.SaleableUnitSpecializedSupport;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.support.SaleableUtils;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.SaleableUnitEntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -34,6 +35,8 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
     @Autowired
     private SaleableUnitRepositorySpringData repository;
 
+    @Autowired
+    private SaleableUnitEntityConverter converter;
 
 
     @Override
@@ -69,13 +72,12 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
     public Optional<SaleableUnit> save(SaleableUnit saleableUnit) {
 
         if (saleableUnit.isNew()) {
-            Class<?> clazz = SaleableUtils.getClass(saleableUnit);
-            SaleableTypeEntity type = getType(saleableUnit);
-            SaleableUnitEntity resultEntity = (SaleableUnitEntity) from(saleableUnit).convertTo(clazz);
-            resultEntity.setType(type);
-            SaleableUnitEntity saleableSaved = repositories.get(type).save(resultEntity);
+            SaleableUnitEntity resultEntity = from(saleableUnit).convertTo(SaleableUnitEntity.class);
+            SaleableUnitEntity saleableSaved = repository.save(resultEntity);
+            SaleableUnit saleable = new SaleableUnit();
+            converter.convert(saleableSaved, saleable);
 
-            return Optional.ofNullable(converters.get(type).select(saleableSaved));
+            return Optional.ofNullable(saleable);
         } else {
             Optional<SaleableUnitEntity> productEntity = Optional.ofNullable(repository.findOne(saleableUnit.getId()));
             from(saleableUnit).merge(productEntity.get());
@@ -84,9 +86,5 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
             return Optional.ofNullable(valueConverted);
         }
     }
-
-//    public Converter<SaleableUnitEntity, SaleableUnit> getConverter() {
-//        return ((entity, args) -> (SaleableUnit) from(entity).convertTo(SaleableUtils.getClass(entity)));
-//    }
 
 }

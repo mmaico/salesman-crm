@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.SaleableUnitFacade;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableBuilder;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.view.support.builders.SaleableResourceBuilder;
 import br.com.kproj.salesman.products_catalog.view.support.builders.SaleableStrategyBuilder;
@@ -63,9 +64,15 @@ public class SaleableEndpoint {
     @RequestMapping(value = "/rs/saleables", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    Optional<SaleableUnit> create(@Valid @RequestBody SaleableDTO saleableDTO) {
-        SaleableUnit saleableUnit = SaleableStrategyBuilder.build(saleableDTO);
-        Optional<SaleableUnit> saleableSaved = service.register(saleableUnit);
+    Optional<SaleableUnit> create(@Valid @RequestBody SaleableResource resource) {
+        SaleableUnit saleable = SaleableBuilder.createSaleable()
+                .withPrice(resource.getPrice())
+                .withPriceCost(resource.getPriceCost())
+                .withActive(resource.getActive())
+                .withName(resource.getName())
+                .withDescription(resource.getDescription()).build();
+
+        Optional<SaleableUnit> saleableSaved = service.register(saleable);
 
         return saleableSaved;
     }

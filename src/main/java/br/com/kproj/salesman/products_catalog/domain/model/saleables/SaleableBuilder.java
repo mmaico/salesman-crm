@@ -21,6 +21,26 @@ public class SaleableBuilder extends AbstractBuilder<SaleableUnit>  {
 		return this;
 	}
 
+	public SaleableBuilder withPriceCost(BigDecimal price) {
+		this.entity.setPriceCost(price);
+		return this;
+	}
+
+	public SaleableBuilder withName(String name) {
+		this.entity.setName(name);
+		return this;
+	}
+
+	public SaleableBuilder withDescription(String description) {
+		this.entity.setDescription(description);
+		return this;
+	}
+
+	public SaleableBuilder withActive(Boolean active) {
+		this.entity.setActive(active);
+		return this;
+	}
+
 	public static SaleableBuilder createSaleable(Long id) {
 		return new SaleableBuilder(id);
 	}

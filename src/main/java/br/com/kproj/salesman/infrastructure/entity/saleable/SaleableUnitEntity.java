@@ -46,9 +46,8 @@ public class SaleableUnitEntity extends Identifiable {
     @Min(value = 0, message = "saleable.cost.price.must.be.greater.than.zero")
     private BigDecimal priceCost;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "type")
     private SaleableTypeEntity type;
 
     public SaleableUnitEntity(){}
