@@ -1,25 +1,32 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
-import org.hibernate.annotations.DiscriminatorOptions;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="services")
-@DiscriminatorOptions(force = true)
-@DiscriminatorValue("SERVICE")
-public class ServiceEntity extends SaleableUnitEntity {
+public class ServiceEntity extends Identifiable {
 
-    public ServiceEntity() {
-        super();
-        setType(SaleableTypeEntity.SERVICE);
-    }
+    @Id
+    private Long id;
+
+    public ServiceEntity() {}
 
     public ServiceEntity(Long id) {
-        super(id);
-        setType(SaleableTypeEntity.SERVICE);
+        this.id = id;
+
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

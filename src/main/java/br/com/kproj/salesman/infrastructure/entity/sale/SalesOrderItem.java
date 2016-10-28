@@ -103,7 +103,4 @@ public class SalesOrderItem extends Identifiable {
         this.salesOrder = salesOrder;
     }
 
-    public SaleableUnitEntity getSaleableAvailable() {
-        return this.getSaleableUnit() != null ? this.getSaleableUnit() : this.getSalePackage();
-    }
 }

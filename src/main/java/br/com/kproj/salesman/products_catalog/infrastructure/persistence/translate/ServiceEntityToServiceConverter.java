@@ -18,7 +18,7 @@ public class ServiceEntityToServiceConverter implements Converter<ServiceEntity,
     public Service convert(ServiceEntity serviceEntity, Object... args) {
         Service service = new Service();
 
-        saleableUnitConverter.convert(serviceEntity, service);
+        //saleableUnitConverter.convert(serviceEntity, service);
 
         return service;
     }

@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import com.google.common.collect.Lists;
 import org.hibernate.annotations.DiscriminatorOptions;
 
@@ -8,9 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "packages")
-@DiscriminatorOptions(force = true)
-@DiscriminatorValue("PACKAGE")
-public class SalePackageEntity extends SaleableUnitEntity {
+public class SalePackageEntity extends Identifiable {
+
+    @Id
+    private Long id;
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="package_saleable", joinColumns=@JoinColumn(name="package_id"),
@@ -21,14 +23,10 @@ public class SalePackageEntity extends SaleableUnitEntity {
     private Boolean priceByProducts = Boolean.FALSE;
 
     public SalePackageEntity(Long id) {
-        super(id);
-        setType(SaleableTypeEntity.PACKAGE);
+        this.id = id;
     }
 
-    public SalePackageEntity() {
-        super();
-        setType(SaleableTypeEntity.PACKAGE);
-    }
+    public SalePackageEntity() {}
 
     public List<SaleableUnitEntity> getSaleableUnits() {
         return saleableUnits;
@@ -63,5 +61,14 @@ public class SalePackageEntity extends SaleableUnitEntity {
         }
 
         this.saleableUnits.remove(saleableUnit);
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -24,7 +24,7 @@ public class ProductEntityToProductConverter implements Converter<ProductEntity,
     @Override
     public Product convert(ProductEntity productEntity, Object... args) {
         Product product = new Product();
-        saleableUnitConverter.convert(productEntity, product);
+        //saleableUnitConverter.convert(productEntity, product);
 
         product.setUnit(unitConverter.convert(productEntity.getMeasurementUnit()));
 

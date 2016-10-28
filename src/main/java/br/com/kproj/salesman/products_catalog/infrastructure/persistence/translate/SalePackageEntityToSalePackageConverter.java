@@ -31,8 +31,8 @@ public class SalePackageEntityToSalePackageConverter implements Converter<SalePa
     private ServiceEntityToServiceConverter serviceConverter;
 
     {
-        poolConverters.put(ProductEntity.class, entity -> productConverter.convert((ProductEntity) entity));
-        poolConverters.put(ServiceEntity.class, entity -> serviceConverter.convert((ServiceEntity) entity));
+//        poolConverters.put(ProductEntity.class, entity -> productConverter.convert((ProductEntity) entity));
+//        poolConverters.put(ServiceEntity.class, entity -> serviceConverter.convert((ServiceEntity) entity));
     }
 
 
@@ -41,7 +41,7 @@ public class SalePackageEntityToSalePackageConverter implements Converter<SalePa
     public SalePackage convert(SalePackageEntity salePackageEntity, Object... args) {
         SalePackage salePackage = new SalePackage();
 
-        saleableUnitConverter.convert(salePackageEntity, salePackage);
+        //saleableUnitConverter.convert(salePackageEntity, salePackage);
 
         List<SaleableUnit> result = salePackageEntity.getSaleableUnits().stream()
                 .map(item -> {

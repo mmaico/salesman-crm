@@ -4,8 +4,8 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.infrastructure.persistence.support.SaleableUtils;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.SaleableUnitEntityConverter;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -67,9 +67,8 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
     }
 
     private Optional<SaleableUnit> convert(SaleableUnitEntity saleableUnitEntity) {
-        SaleableUnit saleableUnit = SaleableUtils.getInstance(saleableUnitEntity);
+        SaleableUnit saleableUnit = BusinessModelClone.from(saleableUnitEntity).convertTo(SaleableUnit.class);
 
-        converter.convert(saleableUnitEntity, saleableUnit);
         return Optional.ofNullable(saleableUnit);
     }
 }

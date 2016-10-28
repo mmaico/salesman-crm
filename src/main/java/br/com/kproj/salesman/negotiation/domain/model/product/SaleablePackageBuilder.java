@@ -17,11 +17,6 @@ public class SaleablePackageBuilder extends AbstractBuilder<SaleablePackage>  {
 		this.entity.setId(id);
 	}
 
-	public SaleablePackageBuilder withPrice(BigDecimal price) {
-		this.entity.setPrice(price);
-		return this;
-	}
-
 	public SaleablePackageBuilder addSaleable(Saleable saleable) {
 		if (this.entity.getSaleables() == null) {
 			this.entity.setSaleables(Lists.newArrayList());

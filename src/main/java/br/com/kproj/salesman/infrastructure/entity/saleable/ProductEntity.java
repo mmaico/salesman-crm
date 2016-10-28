@@ -1,14 +1,12 @@
 package br.com.kproj.salesman.infrastructure.entity.saleable;
 
-import org.hibernate.annotations.DiscriminatorOptions;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="products")
-@DiscriminatorOptions(force = true)
-@DiscriminatorValue("PRODUCT")
-public class ProductEntity extends SaleableUnitEntity {
+public class ProductEntity extends Identifiable {
 
     @Id
     private Long id;
@@ -16,16 +14,6 @@ public class ProductEntity extends SaleableUnitEntity {
     @ManyToOne
     @JoinColumn(name="measurement_unit_id")
     private MeasurementUnitEntity measurementUnit;
-
-    public ProductEntity() {
-        super();
-        setType(SaleableTypeEntity.PRODUCT);
-    }
-
-    public ProductEntity(Long id) {
-        super(id);
-        setType(SaleableTypeEntity.PRODUCT);
-    }
 
     public MeasurementUnitEntity getMeasurementUnit() {
         return measurementUnit;
@@ -35,12 +23,10 @@ public class ProductEntity extends SaleableUnitEntity {
         this.measurementUnit = measurementUnit;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }

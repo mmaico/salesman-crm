@@ -14,23 +14,24 @@ import static br.com.kproj.salesman.negotiation.domain.model.product.SaleableBui
 @Component
 public class SaleableUnitEntityToSaleableConverter implements Converter<SaleableUnitEntity, Saleable> {
 
+    // Verificar qual o tipo do sableable e buscar os dados da especializacao
     @Override
     public Saleable convert(SaleableUnitEntity entity, Object... args) {
 
-        if (PRODUCT.equals(entity.getType()) || SERVICE.equals(entity.getType())) {
-            return createSaleable(entity.getId()).withPrice(entity.getPrice()).build();
-        } else {
-            SalePackageEntity salePackageEntity = (SalePackageEntity) entity;
-
-            SaleablePackageBuilder packageBuilder = SaleablePackageBuilder.createPackage(salePackageEntity.getId());
-            packageBuilder.withPrice(salePackageEntity.getPrice());
-
-            salePackageEntity.getSaleableUnits().forEach(item ->
-                packageBuilder.addSaleable(createSaleable(entity.getId()).withPrice(item.getPrice()).build())
-            );
-
-            return packageBuilder.build();
-        }
-
+//        if (PRODUCT.equals(entity.getType()) || SERVICE.equals(entity.getType())) {
+//            return createSaleable(entity.getId()).withPrice(entity.getPrice()).build();
+//        } else {
+//            SalePackageEntity salePackageEntity = (SalePackageEntity) entity;
+//
+//            SaleablePackageBuilder packageBuilder = SaleablePackageBuilder.createPackage(salePackageEntity.getId());
+//            packageBuilder.withPrice(salePackageEntity.getPrice());
+//
+//            salePackageEntity.getSaleableUnits().forEach(item ->
+//                packageBuilder.addSaleable(createSaleable(entity.getId()).withPrice(item.getPrice()).build())
+//            );
+//
+//            return packageBuilder.build();
+//        }
+        return null;
     }
 }

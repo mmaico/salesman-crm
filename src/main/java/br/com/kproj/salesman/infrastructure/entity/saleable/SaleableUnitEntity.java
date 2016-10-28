@@ -15,8 +15,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name="saleable")
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorOptions(force = true)
 public class SaleableUnitEntity extends Identifiable {
 
 	/**
