@@ -3,8 +3,8 @@ package br.com.kproj.salesman.products_catalog.infrastructure.validators.salepac
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackageRepository;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackageValidator;
+import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackageRepository;
+import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

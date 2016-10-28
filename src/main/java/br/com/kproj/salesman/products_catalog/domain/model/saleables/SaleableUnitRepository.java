@@ -13,4 +13,5 @@ public interface SaleableUnitRepository {
     Optional<SaleableUnit> findOne(Long id);
 
     Optional<SaleableUnit> save(SaleableUnit entity);
+
 }

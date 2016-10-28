@@ -2,7 +2,7 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence.transl
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.services.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

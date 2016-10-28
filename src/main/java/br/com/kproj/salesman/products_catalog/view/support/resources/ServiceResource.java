@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.products_catalog.view.support.resources;
 
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.services.Service;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;

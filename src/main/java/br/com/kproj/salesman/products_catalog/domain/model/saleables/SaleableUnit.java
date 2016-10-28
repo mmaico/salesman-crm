@@ -24,6 +24,8 @@ public class SaleableUnit extends ModelIdentifiable {
 
     private BigDecimal priceCost;
 
+    private Represent represent = Represent.NO_REPRESENT;
+
     public SaleableUnit(){}
 
     public SaleableUnit(String name) {
@@ -79,5 +81,13 @@ public class SaleableUnit extends ModelIdentifiable {
 
     public void setPriceCost(BigDecimal priceCost) {
         this.priceCost = priceCost;
+    }
+
+    public Represent getRepresent() {
+        return represent;
+    }
+
+    public void setRepresent(Represent represent) {
+        this.represent = represent;
     }
 }

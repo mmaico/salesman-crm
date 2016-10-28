@@ -3,7 +3,7 @@ package br.com.kproj.salesman.products_catalog.view;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeAttrUpdateHelper;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.ProductFacade;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

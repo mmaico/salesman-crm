@@ -3,7 +3,7 @@ package br.com.kproj.salesman.products_catalog.view.support.builders;
 
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.view.support.resources.ProductResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import org.springframework.stereotype.Component;

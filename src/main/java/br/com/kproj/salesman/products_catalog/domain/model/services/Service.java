@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables.services;
+package br.com.kproj.salesman.products_catalog.domain.model.services;
 
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import com.trex.shared.annotations.Model;

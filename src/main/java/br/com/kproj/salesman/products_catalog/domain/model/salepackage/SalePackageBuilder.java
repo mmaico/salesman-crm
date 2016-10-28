@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage;
+package br.com.kproj.salesman.products_catalog.domain.model.salepackage;
 
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;

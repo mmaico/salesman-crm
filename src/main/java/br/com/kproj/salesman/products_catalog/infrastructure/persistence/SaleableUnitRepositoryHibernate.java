@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
@@ -49,7 +51,6 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
         } else {
             return convert(result.get());
         }
-
     }
 
     @Override

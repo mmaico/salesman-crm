@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.products_catalog.view.support.resources;
 
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;

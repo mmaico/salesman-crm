@@ -1,22 +1,16 @@
 package br.com.kproj.salesman.products_catalog.view;
 
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
-import br.com.kproj.salesman.infrastructure.http.response.handler.annotation.ResourceWrapper;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.ProductFacade;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.view.support.builders.ProductResourceBuilder;
-import br.com.kproj.salesman.products_catalog.view.support.resources.ProductResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.Optional;
 
 
 @RestController
@@ -33,9 +27,9 @@ public class ProductEndpoint {
         this.builder = builder;
     }
 
-    @RequestMapping(value = "/rs/saleables/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/saleables/products/{productId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getProducts(HttpServletRequest request) {
+    ResourceItems getProducts(HttpServletRequest request, @PathVariable Long productId) {
         Page<Product> result = (Page<Product>) service.findAll(Pager.build().withPageSize(1000));
 
         if (result.getContent().isEmpty()) {
@@ -54,16 +48,16 @@ public class ProductEndpoint {
 //        return builder.build(saleableUnit, request.getRequestURI());
 //    }
 //
-    @ResourceWrapper
-    @RequestMapping(value = "/rs/saleables/{saleableId}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody
-    Optional<Product> create(@Valid @RequestBody ProductResource resource) {
-
-        //Optional<SaleableUnit> saleableSaved = service.register(saleable);
-
-        return Optional.empty();
-    }
+//    @ResourceWrapper
+//    @RequestMapping(value = "/rs/saleables/{saleableId}", method = RequestMethod.POST)
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public @ResponseBody
+//    Optional<Product> create(@Valid @RequestBody ProductResource resource) {
+//
+//        //Optional<SaleableUnit> saleableSaved = service.register(saleable);
+//
+//        return Optional.empty();
+//    }
 //
 //    @ResourceWrapper
 //    @RequestMapping(value = "/rs/saleables", method = RequestMethod.PUT)

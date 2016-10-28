@@ -3,10 +3,10 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence.suppor
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.*;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.domain.model.services.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 
 import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.PRODUCT;
 import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.SERVICE;

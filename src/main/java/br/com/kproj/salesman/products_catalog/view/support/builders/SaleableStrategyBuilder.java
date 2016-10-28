@@ -1,10 +1,10 @@
 package br.com.kproj.salesman.products_catalog.view.support.builders;
 
 
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.products.Product;
+import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.services.Service;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.domain.model.services.Service;
+import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import br.com.kproj.salesman.products_catalog.view.support.SaleableType;
 import br.com.kproj.salesman.products_catalog.view.support.dtos.SaleableDTO;

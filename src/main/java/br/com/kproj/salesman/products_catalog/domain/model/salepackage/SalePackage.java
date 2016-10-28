@@ -1,9 +1,7 @@
-package br.com.kproj.salesman.products_catalog.domain.model.saleables.salepackage;
+package br.com.kproj.salesman.products_catalog.domain.model.salepackage;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import com.trex.shared.annotations.Attribute;
-import com.trex.shared.annotations.EntityReference;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
