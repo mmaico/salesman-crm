@@ -55,7 +55,7 @@ public class SaleableResourceBuilder {
         return new ResourceItems(resources, uri);
     }
 
-    private SaleableResource buildItem(SaleableUnit saleableUnit) {
+    public SaleableResource buildItem(SaleableUnit saleableUnit) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
 
         Link linkSpecialization = selectLink.get(saleableUnit.getRepresent()).select(saleableUnit);

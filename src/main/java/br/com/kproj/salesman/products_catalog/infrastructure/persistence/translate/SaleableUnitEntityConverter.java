@@ -1,27 +1,27 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.infrastructure.repository.Converter;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 
 @Component
-public class SaleableUnitEntityConverter implements Converter<SaleableUnitEntity, SaleableUnit> {
+public class SaleableUnitEntityConverter {
 
 
+    public SaleableUnit convert(SaleableUnitEntity saleableUnitEntity) {
+        SaleableUnit saleableUnit = BusinessModelClone.from(saleableUnitEntity).convertTo(SaleableUnit.class);
+        Optional<Represent> represent = saleableUnitEntity.getType() == null
+                ? Optional.of(Represent.NO_REPRESENT)
+                : Optional.ofNullable(Represent.valueOf(saleableUnitEntity.getType().name()));
 
+        saleableUnit.setRepresent(represent.orElse(Represent.NO_REPRESENT));
 
-
-    @Override
-    public SaleableUnit convert(SaleableUnitEntity saleableUnitEntity, Object... args) {
-//        SaleableUnit saleableUnit = new SaleableUnit()
-//        saleableUnit.setId(saleableUnitEntity.getId());
-//        saleableUnit.setName(saleableUnitEntity.getName());
-//        saleableUnit.setActive(saleableUnitEntity.getActive());
-//        saleableUnit.setDescription(saleableUnitEntity.getDescription());
-//        saleableUnit.setPrice(saleableUnitEntity.getPrice());
-//        saleableUnit.setPriceCost(saleableUnitEntity.getPriceCost());
-        return null;
+        return saleableUnit;
     }
+
 }

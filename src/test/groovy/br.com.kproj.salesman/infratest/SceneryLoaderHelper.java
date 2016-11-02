@@ -23,7 +23,6 @@ import java.util.List;
 
 public class SceneryLoaderHelper {
 
-    static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     static final ObjectMapper mapper = new ObjectMapper();
     {
 

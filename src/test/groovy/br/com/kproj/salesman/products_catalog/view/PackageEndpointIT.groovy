@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infratest.SceneryLoaderHelper
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -13,7 +14,9 @@ import org.springframework.web.context.WebApplicationContext
 import spock.lang.Stepwise
 import spock.lang.Unroll
 
+import static br.com.kproj.salesman.infratest.JsonCompareUtil.isEquals
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @Stepwise
@@ -21,6 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class PackageEndpointIT extends AbstractIntegrationTest {
 
     private static final String PACKAGES_CREATED = "/products_catalog/packages-create.json";
+    private static final String PACKAGES_OPERATIONS = "/products_catalog/packages-operations.json";
 
     def MockMvc mockMvc
 
@@ -33,6 +37,7 @@ class PackageEndpointIT extends AbstractIntegrationTest {
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
         SceneryLoaderHelper.load(PACKAGES_CREATED)
+        SceneryLoaderHelper.load(PACKAGES_OPERATIONS)
     }
 
     @Unroll
@@ -51,10 +56,12 @@ class PackageEndpointIT extends AbstractIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
         def packageResult = new JsonSlurper().parseText(packageMvc.getResponse().getContentAsString())
+        def status = packageMvc.getResponse().getStatus()
 
         def packageExpected = new JsonSlurper().parseText(scenery("Json de pacote criado esperado").getJson())
 
-        expect:
+        expect: "a salepackage resource with http status 201 "
+            status == HttpStatus.CREATED.value()
             packageResult.item.id == saleable.item.id
             packageResult.item.saleable.id == saleable.item.id
             packageResult.item.saleable.name == packageExpected.item.saleable.name
@@ -64,5 +71,22 @@ class PackageEndpointIT extends AbstractIntegrationTest {
             packageResult.item.saleable.priceCost == packageExpected.item.saleable.priceCost
             packageResult.uri == uri
     }
+
+    @Unroll
+    def "Adding a saleable(service/product) in the package"() {
+        def resultExpected = scenery("Resultado experado ao executar a operacao de adicionar um produto no pacote").getJson()
+
+        def mvcResult = mockMvc.perform(patch("/rs/saleables/packages/4")
+                .content(scenery("Operacao para adicionar um produto no pacote").getJson())
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        def packageResult = mvcResult.getResponse().getContentAsString()
+        def statusResult = mvcResult.getResponse().getStatus()
+
+        expect: "a salepackage with 2 saleables and http status 200"
+            isEquals(packageResult, resultExpected)
+            statusResult == HttpStatus.OK.value()
+    }
+
 
 }

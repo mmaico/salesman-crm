@@ -37,7 +37,7 @@ public class SalePackageResource extends Item {
         this.id = id;
     }
 
-    @Selectable(expression = "has-saleables", expandByDefault = true)
+    @Selectable(expression = "has-saleables")
     public Collection<SaleableResource> getSaleables() {
         return saleables;
     }

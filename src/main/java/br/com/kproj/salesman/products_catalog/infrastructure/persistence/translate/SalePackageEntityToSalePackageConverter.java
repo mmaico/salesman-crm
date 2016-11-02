@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -18,17 +19,17 @@ public class SalePackageEntityToSalePackageConverter implements Converter<SalePa
     @Autowired
     private SaleableUnitEntityConverter saleableConverter;
 
-
     @Override
     public SalePackage convert(SalePackageEntity salePackageEntity, Object... args) {
 
         SalePackage salePackage = BusinessModelClone.from(salePackageEntity).convertTo(SalePackage.class);
         BusinessModelClone.from(salePackageEntity.getSaleable()).merge(salePackage);
 
-        List<SaleableUnit> result = salePackageEntity.getSaleableUnits().stream()
-                .map(item -> saleableConverter.convert(item)).collect(Collectors.toList());
+        List<SaleableUnit> saleablesInPackage = salePackageEntity.getSaleableUnits().stream()
+                .map(entity -> saleableConverter.convert(entity))
+                .collect(Collectors.toList());
 
-        salePackage.setSaleables(result);
+        salePackage.setSaleables(saleablesInPackage);
 
         return salePackage;
     }

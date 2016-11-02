@@ -1,13 +1,10 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnitRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.SaleableUnitEntityConverter;
-import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -37,7 +34,7 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
         Page<SaleableUnitEntity> saleableUnits = repository.findAll(page);
 
         List<SaleableUnit> converteds = saleableUnits.getContent().stream()
-                .map(item -> convert(item).get()).collect(Collectors.toList());
+                .map(item -> converter.convert(item)).collect(Collectors.toList());
 
         return new PageImpl<>(converteds, page, saleableUnits.getTotalElements());
     }
@@ -49,7 +46,7 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
         if (!result.isPresent()) {
             return Optional.empty();
         } else {
-            return convert(result.get());
+            return Optional.ofNullable(converter.convert(result.get()));
         }
     }
 
@@ -59,22 +56,12 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
         if (saleableUnit.isNew()) {
             SaleableUnitEntity resultEntity = from(saleableUnit).convertTo(SaleableUnitEntity.class);
             SaleableUnitEntity saleableSaved = repository.save(resultEntity);
-            return convert(saleableSaved);
+            return Optional.ofNullable(converter.convert(saleableSaved));
         } else {
             Optional<SaleableUnitEntity> productEntity = Optional.ofNullable(repository.findOne(saleableUnit.getId()));
             from(saleableUnit).merge(productEntity.get());
-            return convert(productEntity.get());
+            return Optional.ofNullable(converter.convert(productEntity.get()));
         }
     }
 
-    private Optional<SaleableUnit> convert(SaleableUnitEntity saleableUnitEntity) {
-        SaleableUnit saleableUnit = BusinessModelClone.from(saleableUnitEntity).convertTo(SaleableUnit.class);
-        Optional<Represent> represent = saleableUnitEntity.getType() == null
-                ? Optional.of(Represent.NO_REPRESENT)
-                : Optional.ofNullable(Represent.valueOf(saleableUnitEntity.getType().name()));
-
-        saleableUnit.setRepresent(represent.orElse(Represent.NO_REPRESENT));
-
-        return Optional.ofNullable(saleableUnit);
-    }
 }

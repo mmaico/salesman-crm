@@ -1,18 +1,25 @@
 package br.com.kproj.salesman.products_catalog.view;
 
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Operation;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.SalePackageFacade;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.view.support.builders.SalePackageResourceBuilder;
+import br.com.kproj.salesman.products_catalog.view.support.operations.PackageOperation;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.google.common.collect.FluentIterable.from;
@@ -26,11 +33,24 @@ public class PackageEndpoint {
 
     private SalePackageResourceBuilder builder;
 
+    private Map<String, PackageOperation> operations = new HashMap<>();
+
+    {
+        operations.put("add", ((salePackage, operation) -> {
+            SaleableUnit saleableUnit = new SaleableUnit(Long.valueOf(operation.getValue()));
+            service.addSaleable(salePackage, saleableUnit);
+        }));
+    }
+
+
     @Autowired
     public PackageEndpoint(SalePackageFacade service, SalePackageResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
     }
+
+
+
 
     @RequestMapping(value = "/rs/saleables/packages/{packageId}", method = RequestMethod.GET)
     public @ResponseBody
@@ -65,16 +85,25 @@ public class PackageEndpoint {
 
         return builder.build(packageCreated.get(), request.getRequestURI());
     }
-//
-//    @ResourceWrapper
-//    @RequestMapping(value = "/rs/saleables", method = RequestMethod.PUT)
-//    public @ResponseBody
-//    Optional<SaleableUnit> update(@Valid @RequestBody SaleableDTO saleableDTO) {
-//        SaleableUnit saleableUnit = SaleableStrategyBuilder.build(saleableDTO);
-//        Optional<SaleableUnit> saleableSaved = service.register(saleableUnit);
-//
-//        return saleableSaved;
-//    }
+
+    @RequestMapping(value = "/rs/saleables/packages/{packageId}", method = RequestMethod.PATCH)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    ResourceItem addSaleableInPackage(@PathVariable Long packageId, @RequestBody List<Operation> ops, HttpServletRequest request) {
+        SalePackage salePackage = new SalePackage(packageId);
+
+        ops.stream().forEach(operation -> {
+            PackageOperation operationToExecute = Optional.ofNullable(operations.get(operation.getOp()))
+                    .orElseThrow(() -> new ValidationException("invalid.operation.on.package"));
+
+            operationToExecute.execute(salePackage, operation);
+        });
+
+        Optional<SalePackage> packageCreated = service.getOne(packageId);
+
+        return builder.build(packageCreated.get(), request.getRequestURI());
+    }
+
 
 
 }

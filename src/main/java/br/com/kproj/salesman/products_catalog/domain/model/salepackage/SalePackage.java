@@ -21,6 +21,7 @@ public class SalePackage extends SaleableUnit {
 
     public SalePackage(Long id) {
         super(id);
+        AutowireHelper.autowire(this);
     }
 
     public SalePackage() {

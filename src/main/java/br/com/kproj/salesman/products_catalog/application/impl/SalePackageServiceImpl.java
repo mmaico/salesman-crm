@@ -37,13 +37,13 @@ public class SalePackageServiceImpl extends BaseModelServiceImpl<SalePackage> im
 
     @Override
     public void addSaleable(SalePackage salePackage, SaleableUnit saleable) {
-        validator.checkRules(saleable);
+        validator.checkRules(salePackage);
         salePackage.addSaleable(saleable);
     }
 
     @Override
     public void removeSaleable(SalePackage salePackage, SaleableUnit saleable) {
-        validator.checkRules(saleable);
+        validator.checkRules(salePackage);
         salePackage.removeSaleable(saleable);
     }
 

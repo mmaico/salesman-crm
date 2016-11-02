@@ -1,0 +1,61 @@
+[
+  {
+    "scenery": "Operacao para adicionar um produto no pacote",
+    "json": [
+      {
+        "op": "add",
+        "path": "/saleables",
+        "value": "1"
+      }
+    ]
+  },
+  {
+    "scenery": "Resultado experado ao executar a operacao de adicionar um produto no pacote",
+    "json": {
+      "item":{
+        "id":4,
+        "saleable":{
+          "id":4,
+          "name":"Pacote 01",
+          "description":"Descricao do pacote 01",
+          "active":true,
+          "price":8.00,
+          "priceCost":2.00
+        },
+        "saleables":[
+          {
+            "id":5,
+            "name":"Produto 02",
+            "description":"Descricao do product 02",
+            "active":true,
+            "price":6.00,
+            "priceCost":1.00,
+            "links":[
+              {
+                "href":"/rs/saleables/products/5",
+                "rel":"products"
+              }
+            ]
+          },
+          {
+            "id":1,
+            "name":"Produto 01",
+            "description":"Descricao do produto 01",
+            "active":true,
+            "price":20.00,
+            "priceCost":5.00,
+            "links":[
+              {
+                "href":"/rs/saleables/products/1",
+                "rel":"products"
+              }
+            ]
+          }
+        ]
+      },
+      "uri":"/rs/saleables/packages/4"
+    }
+  }
+
+
+]

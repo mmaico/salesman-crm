@@ -78,7 +78,8 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     @Override
     public void addSaleable(SalePackage salePackage, SaleableUnit saleable) {
         Optional<SalePackageEntity> result = repository.getOne(salePackage.getId());
-        result.get().addSaleableUnit(new SaleableUnitEntity(salePackage.getId()));
+        result.get().addSaleableUnit(new SaleableUnitEntity(saleable.getId()));
+        repository.save(result.get());
     }
 
     public Page<SalePackage> findAll(Pageable page) {
@@ -98,7 +99,7 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
         if (!result.isPresent()) {
             return Optional.empty();
         } else {
-            return Optional.of(converter.convert(result.get()));
+            return Optional.of(getConverter().convert(result.get()));
         }
 
     }
