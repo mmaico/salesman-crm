@@ -1,0 +1,21 @@
+[
+  {
+    "scenery": "Criacao de saleable com todos os dados",
+    "json": {
+        "name": "Produto criado 01",
+        "description": "Descricao do produto criado 01",
+        "active": true,
+        "price": 16.00,
+        "priceCost": 9.00
+    }
+  },
+  {
+    "scenery": "Criacao de saleable sem nome",
+    "json": {
+      "description": "Descricao do produto criado 01",
+      "active": true,
+      "price": 16.00,
+      "priceCost": 9.00
+    }
+  }
+]

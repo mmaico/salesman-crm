@@ -6,11 +6,9 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.SalePackageFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableBuilder;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
 import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackageBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
@@ -27,18 +25,12 @@ public class SalesPackageController {
     private SalePackageFacade service;
 
     @Autowired
-    @Qualifier("saleableViewValidator")
-    private SaleableValidator validator;
-
-    @Autowired
     private NormalizeAttrUpdateHelper attributesToUpdate;
 
 
 
     @RequestMapping(value = "/sales-package/add", method = RequestMethod.POST)
     public @ResponseBody SalePackage save(@ModelAttribute SalePackage salePackage) {
-
-        validator.checkRules(salePackage);
 
         Optional<SalePackage> result = service.register(salePackage);
 

@@ -8,11 +8,8 @@ import br.com.kproj.salesman.products_catalog.application.ProductFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.view.support.builders.ProductResourceBuilder;
 import br.com.kproj.salesman.products_catalog.view.support.resources.ProductResource;
-import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

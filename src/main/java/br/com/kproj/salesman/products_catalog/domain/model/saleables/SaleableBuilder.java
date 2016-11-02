@@ -17,12 +17,12 @@ public class SaleableBuilder extends AbstractBuilder<SaleableUnit>  {
 	}
 
 	public SaleableBuilder withPrice(BigDecimal price) {
-		this.entity.setPrice(price);
+		this.entity.setPrice(price == null ? BigDecimal.ZERO : price);
 		return this;
 	}
 
 	public SaleableBuilder withPriceCost(BigDecimal price) {
-		this.entity.setPriceCost(price);
+		this.entity.setPriceCost(price == null ? BigDecimal.ZERO: price);
 		return this;
 	}
 
@@ -37,7 +37,7 @@ public class SaleableBuilder extends AbstractBuilder<SaleableUnit>  {
 	}
 
 	public SaleableBuilder withActive(Boolean active) {
-		this.entity.setActive(active);
+		this.entity.setActive(active == null ? Boolean.FALSE : active);
 		return this;
 	}
 

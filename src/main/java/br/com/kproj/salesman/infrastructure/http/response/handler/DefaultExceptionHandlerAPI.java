@@ -80,8 +80,13 @@ public class DefaultExceptionHandlerAPI {
   @ResponseBody
   @ResponseStatus(value = org.springframework.http.HttpStatus.BAD_REQUEST)
   public ErrorHandlerResult handleValidationException(ValidationException exception) {
+    ErrorHandlerResult handlerResult = new ErrorHandlerResult();
+
     LOGGER.error(logBuilder.buildFrom(exception.getErrors(), "handleValidationException", Boolean.FALSE));
-    return new ErrorHandlerResult().addErrors(exception.getErrors().toString(), HttpStatus.BAD_REQUEST.value());
+
+    exception.getErrors().forEach(message -> handlerResult.addErrors(message, HttpStatus.BAD_REQUEST.value()));
+
+    return handlerResult;
   }
     
   private ErrorHandlerResult buildErrorHandlerResult(final Exception exception, final int code) {

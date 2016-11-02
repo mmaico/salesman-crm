@@ -4,9 +4,7 @@ import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeAttrUpdateHelp
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.application.ProductFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
@@ -23,17 +21,11 @@ public class ProductController {
     private ProductFacade service;
 
     @Autowired
-    @Qualifier("saleableViewValidator")
-    private SaleableValidator validator;
-
-    @Autowired
     private NormalizeAttrUpdateHelper attributesToUpdate;
 
 
     @RequestMapping(value = "/products/add", method = RequestMethod.POST)
     public @ResponseBody Product save(@ModelAttribute Product product) {
-
-        validator.checkRules(product);
 
         Optional<Product> saleable = service.register(product);
 
