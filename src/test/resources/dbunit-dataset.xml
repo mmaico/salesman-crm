@@ -16,6 +16,7 @@
     <saleable id="4" name="Pacote 01" description="Descricao do pacote 01" active="true" price="8.00" price_cost="2.00" type="PACKAGE"/>
     <saleable id="5" name="Produto 02" description="Descricao do product 02" active="true" price="6.00" price_cost="1.00" type="PRODUCT"/>
     <saleable id="6" name="Produto 02" description="Descricao do product 02" active="true" price="6.00" price_cost="1.00"/>
+    <saleable id="7" name="Pacote com apenas 1 saleable" description="Usando para remover um saleable" active="true" price="8.00" price_cost="2.00" type="PACKAGE"/>
 
     <products id="1" measurement_unit_id="1" saleable_id="1"/>
     <products id="5" measurement_unit_id="2" saleable_id="5"/>
@@ -24,8 +25,11 @@
     <services id="3" saleable_id="3"/>
 
     <packages id="4" saleable_id="4"/>
+    <packages id="7" saleable_id="7"/>
 
     <package_saleable package_id="4" saleable_id="5"/>
+    <package_saleable package_id="7" saleable_id="2"/>
+    <package_saleable package_id="7" saleable_id="1"/>
 
 
     <!-- ACCOUNTS -->

@@ -55,7 +55,16 @@
       },
       "uri":"/rs/saleables/packages/4"
     }
+  },
+  {
+    "scenery": "Operacao para remover um saleable de um pacote",
+    "json": [
+      {
+        "op": "remove",
+        "path": "/saleables",
+        "value": "2"
+      }
+    ]
   }
-
 
 ]

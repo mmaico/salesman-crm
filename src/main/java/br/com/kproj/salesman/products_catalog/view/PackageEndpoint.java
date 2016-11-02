@@ -40,6 +40,11 @@ public class PackageEndpoint {
             SaleableUnit saleableUnit = new SaleableUnit(Long.valueOf(operation.getValue()));
             service.addSaleable(salePackage, saleableUnit);
         }));
+
+        operations.put("remove", ((salePackage, operation) -> {
+            SaleableUnit saleableUnit = new SaleableUnit(Long.valueOf(operation.getValue()));
+            service.removeSaleable(salePackage, saleableUnit);
+        }));
     }
 
 

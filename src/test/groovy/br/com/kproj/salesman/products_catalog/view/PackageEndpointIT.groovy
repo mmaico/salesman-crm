@@ -88,5 +88,21 @@ class PackageEndpointIT extends AbstractIntegrationTest {
             statusResult == HttpStatus.OK.value()
     }
 
+    @Unroll
+    def "Remove a saleable(service/product) of the package"() {
+
+        def mvcResult = mockMvc.perform(patch("/rs/saleables/packages/7")
+                .content(scenery("Operacao para remover um saleable de um pacote").getJson())
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        def packageResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+        def statusResult = mvcResult.getResponse().getStatus()
+
+        expect: "a salepackage wihtout saleables and http status 200"
+            packageResult.item.saleables.size() == 1
+            packageResult.item.saleables[0].id == 1
+            statusResult == HttpStatus.OK.value()
+    }
+
 
 }

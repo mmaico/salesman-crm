@@ -72,7 +72,8 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     @Override
     public void removeSaleable(SalePackage salePackage, SaleableUnit saleable) {
         Optional<SalePackageEntity> result = repository.getOne(salePackage.getId());
-        result.get().removeSaleableUnit(new SaleableUnitEntity(salePackage.getId()));
+        result.get().removeSaleableUnit(new SaleableUnitEntity(saleable.getId()));
+        repository.save(result.get());
     }
 
     @Override
