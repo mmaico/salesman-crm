@@ -37,6 +37,7 @@ public class DefaultExceptionHandlerAPI {
   @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
   @ResponseBody
   public ErrorHandlerResult repositoryError(final Exception e) {
+    LOGGER.error("", e);
     return buildErrorHandlerResult(e, HttpStatus.INTERNAL_SERVER_ERROR.value());
   }
   

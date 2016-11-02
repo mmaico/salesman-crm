@@ -5,9 +5,8 @@ import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.products_catalog.application.ProductFacade;
 import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.products.ProductRepository;
-import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableValidator;
+import br.com.kproj.salesman.products_catalog.domain.model.products.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,14 +18,12 @@ public class ProductServiceImpl extends BaseModelServiceImpl<Product> implements
     private ProductRepository repository;
 
     @Autowired
-    @Qualifier("saleableDomainValidator")
-    private SaleableValidator validator;
+    private ProductValidator rules;
 
 
     @Override
     public Optional<Product> register(Product product) {
-
-        validator.checkRules(product);
+        rules.checkRules(product);
 
         return repository.save(product);
     }

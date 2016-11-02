@@ -5,15 +5,22 @@ import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
+@JsonPropertyOrder({
+        "id",
+        "unit",
+        "saleable",
+        "links"
+})
 @ResourceItem(name="products", modelReference = Product.class, parent = SaleableResource.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductResource extends Item {
 
     private Long id;
 
-    @JsonProperty("hasUnit")
     private UnitResource unit;
 
     @SuperClass
@@ -27,7 +34,7 @@ public class ProductResource extends Item {
         this.id = id;
     }
 
-    @Selectable(expression = "has-unit")
+    @Selectable(expression = "has-unit", expandByDefault = true)
     public UnitResource getUnit() {
         return unit;
     }
@@ -36,7 +43,7 @@ public class ProductResource extends Item {
         this.unit = unit;
     }
 
-    @Selectable(expression = "is-a")
+    @Selectable(expression = "is-a", expandByDefault = true)
     public SaleableResource getSaleable() {
         return saleable;
     }

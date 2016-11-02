@@ -57,11 +57,11 @@ public class SaleableEndpoint {
         return builder.build(saleableUnit, request.getRequestURI());
     }
 
-    @ResourceWrapper
+
     @RequestMapping(value = "/rs/saleables", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    Optional<SaleableUnit> create(@Valid @RequestBody SaleableResource resource) {
+    ResourceItem create(@Valid @RequestBody SaleableResource resource, HttpServletRequest request) {
 
         SaleableUnit saleable = SaleableBuilder.createSaleable()
                 .withPrice(resource.getPrice())
@@ -72,7 +72,7 @@ public class SaleableEndpoint {
 
         Optional<SaleableUnit> saleableSaved = service.register(saleable);
 
-        return saleableSaved;
+        return builder.build(saleableSaved.get(), request.getRequestURI());
     }
 
     @ResourceWrapper

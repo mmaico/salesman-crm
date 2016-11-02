@@ -148,7 +148,7 @@ dependencies {
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile("cglib:cglib:3.2.4")
     compile("com.github.wnameless:json-flattener:0.2.2")
-    compile("br.com.uol.rest:rest-mediatype-support:1.5")
+    compile("br.com.uol.rest:rest-mediatype-support:1.5-SNAPSHOT")
 
     compile("org.reflections:reflections:0.9.10")
 

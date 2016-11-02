@@ -2,8 +2,9 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence.spring
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.impl.SaleableUnitCustomRepository;
 
-public interface SaleableUnitRepositorySpringData extends BaseRepositoryLegacy<SaleableUnitEntity, Long> {
+public interface SaleableUnitRepositorySpringData extends BaseRepositoryLegacy<SaleableUnitEntity, Long>, SaleableUnitCustomRepository {
 
 
 

@@ -16,6 +16,6 @@ public interface ProductRepositorySpringData extends BaseRepositoryLegacy<Produc
     @Query("SELECT p FROM ProductEntity AS p WHERE p.id = :id")
     Optional<ProductEntity> getOne(@Param("id") Long id);
 
-    @Query("SELECT p FROM ProductEntity AS p ORDER BY p.name")
+    @Query("SELECT p FROM ProductEntity AS p ORDER BY p.saleable.name")
     Page<ProductEntity> findAll(Pageable pageable);
 }

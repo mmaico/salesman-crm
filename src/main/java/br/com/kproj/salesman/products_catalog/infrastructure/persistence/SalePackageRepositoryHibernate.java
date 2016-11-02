@@ -5,10 +5,12 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.domain.model.salepackage.SalePackageRepository;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SalePackageRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.SalePackageEntityToSalePackageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.AutowireHelper.autowire;
+import static com.trex.clone.BusinessModelClone.from;
 
 @Repository
 public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePackage, SalePackageEntity> implements SalePackageRepository {
@@ -31,6 +34,26 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     @Autowired
     private SalePackageEntityToSalePackageConverter converter;
 
+    @Autowired
+    private SaleableUnitRepositorySpringData saleableRepository;
+
+    public Optional<SalePackage> save(SalePackage salePackage) {
+
+        Optional<SalePackageEntity> salePackageEntity = repository.getOne(salePackage.getId());
+
+        if (salePackageEntity.isPresent()) {
+            from(salePackage).merge(salePackageEntity.get());
+            return Optional.of(getConverter().convert(salePackageEntity.get()));
+        } else {
+            SalePackageEntity newPackage = from(salePackage).convertTo(SalePackageEntity.class);
+            newPackage.setSaleable(new SaleableUnitEntity(salePackage.getId()));
+            SalePackageEntity entity = repository.save(newPackage);
+
+            saleableRepository.represent(entity.getId(), Represent.PACKAGE);
+
+            return Optional.ofNullable(getConverter().convert(entity));
+        }
+    }
 
     @Override
     public Optional<SalePackage> findBySaleable(SalePackage salePackage, SaleableUnit saleable) {

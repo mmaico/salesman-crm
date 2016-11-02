@@ -13,81 +13,29 @@
     "scenery": "Criacao de especializacao de saleable para produto",
     "json": {
       "unit": {
-        "id": 52
+        "id": 2
       }
     }
   },
   {
-    "scenery": "Json de produto criado",
+    "scenery": "Json de produto criado esperado",
     "json": {
-      "item":
-        {
-          "id":6,
+      "item":{
+        "id":7,
+        "unit":{
+          "id":2,
+          "name":"Unidade"
+        },
+        "saleable":{
+          "id":7,
           "name":"Produto criado 01",
           "description":"Descricao do produto criado 01",
           "active":true,
-          "price":16.00,
-          "priceCost":9.00,
-          "type":"product",
-          "hasUnit":{
-            "id":1,
-            "name":"Kilo"
-          }
-        },
-        "uri":"/rs/saleables"
-    }
-  },
-  {
-    "scenery": "Criacao de servico",
-    "json": {
-        "name": "Servico criado 01",
-        "description": "Descricao do servico criado 01",
-        "active": true,
-        "price": 300.00,
-        "priceCost": 200.00,
-        "type": "service"
-    }
-  },
-  {
-    "scenery": "Json do servico criado",
-    "json": {
-      "item": {
-        "id": 7,
-        "name": "Servico criado 01",
-        "description": "Descricao do servico criado 01",
-        "active": true,
-        "price": 300.00,
-        "priceCost": 200.00,
-        "type": "service"
+          "price":16.0,
+          "priceCost":9.0
+        }
       },
-      "uri":"/rs/saleables"
-    }
-  },
-  {
-    "scenery": "Criacao de pacote",
-    "json": {
-      "name": "Pacote 01",
-      "description": "Descricao do pacote 01",
-      "active": true,
-      "price": 800.80,
-      "priceCost": 350.56,
-      "type":"salepackage"
-    }
-  },
-  {
-    "scenery": "Json do pacote criado",
-    "json": {
-      "item":{
-        "id": 8,
-        "name": "Pacote 01",
-        "description": "Descricao do pacote 01",
-        "active": true,
-        "price": 800.80,
-        "priceCost": 350.56,
-        "type": "salepackage"
-      },
-      "uri":"/rs/saleables"
+      "uri":"/rs/saleables/7/products"
     }
   }
-
 ]

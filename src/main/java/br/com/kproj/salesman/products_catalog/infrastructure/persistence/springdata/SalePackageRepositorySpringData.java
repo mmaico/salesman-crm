@@ -20,7 +20,7 @@ public interface SalePackageRepositorySpringData extends BaseRepositoryLegacy<Sa
     @Query("SELECT p FROM SalePackageEntity AS p WHERE p.id = :id")
     Optional<SalePackageEntity> getOne(@Param("id") Long id);
 
-    @Query("SELECT s FROM SalePackageEntity AS s ORDER BY s.name")
+    @Query("SELECT s FROM SalePackageEntity AS s ORDER BY s.saleable.name")
     Page<SalePackageEntity> findAll(Pageable pageable);
 
 }

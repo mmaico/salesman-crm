@@ -69,6 +69,11 @@ public class SaleableUnitRepositoryHibernate implements SaleableUnitRepository {
 
     private Optional<SaleableUnit> convert(SaleableUnitEntity saleableUnitEntity) {
         SaleableUnit saleableUnit = BusinessModelClone.from(saleableUnitEntity).convertTo(SaleableUnit.class);
+        Optional<Represent> represent = saleableUnitEntity.getType() == null
+                ? Optional.of(Represent.NO_REPRESENT)
+                : Optional.ofNullable(Represent.valueOf(saleableUnitEntity.getType().name()));
+
+        saleableUnit.setRepresent(represent.orElse(Represent.NO_REPRESENT));
 
         return Optional.ofNullable(saleableUnit);
     }

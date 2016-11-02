@@ -3,6 +3,7 @@ package br.com.kproj.salesman.products_catalog.view.support.resources;
 import br.com.kproj.salesman.products_catalog.domain.model.unit.Unit;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
@@ -10,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "name",
         "links"
 })
-@ResourceItem(name="units", modelReference = Unit.class, parent = SaleableResource.class)
+@ResourceItem(name="units", modelReference = Unit.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UnitResource extends Item {
 
     private Long id;

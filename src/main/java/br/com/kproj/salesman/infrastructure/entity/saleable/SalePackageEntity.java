@@ -22,6 +22,10 @@ public class SalePackageEntity extends Identifiable {
     @Column(name="price_by_products")
     private Boolean priceByProducts = Boolean.FALSE;
 
+    @OneToOne
+    @JoinColumn(name = "saleable_id")
+    private SaleableUnitEntity saleable;
+
     public SalePackageEntity(Long id) {
         this.id = id;
     }
@@ -70,5 +74,13 @@ public class SalePackageEntity extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public SaleableUnitEntity getSaleable() {
+        return saleable;
+    }
+
+    public void setSaleable(SaleableUnitEntity saleable) {
+        this.saleable = saleable;
     }
 }

@@ -4,6 +4,7 @@ import br.com.kproj.salesman.products_catalog.domain.model.saleables.SaleableUni
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.SubClasses;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.math.BigDecimal;
@@ -18,7 +19,7 @@ import java.math.BigDecimal;
         "links"
 })
 @ResourceItem(name="saleables", modelReference = SaleableUnit.class)
-@SubClasses(subClasses = {ProductResource.class, SalePackageResource.class, ServiceResource.class})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaleableResource extends Item {
 
     private Long id;

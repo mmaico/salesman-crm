@@ -24,7 +24,7 @@ public class SaleableUnit extends ModelIdentifiable {
 
     private BigDecimal priceCost;
 
-    private Represent represent = Represent.NO_REPRESENT;
+    private Represent represent;
 
     public SaleableUnit(){}
 

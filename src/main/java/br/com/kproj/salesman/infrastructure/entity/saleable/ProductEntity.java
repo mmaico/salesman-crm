@@ -15,6 +15,10 @@ public class ProductEntity extends Identifiable {
     @JoinColumn(name="measurement_unit_id")
     private MeasurementUnitEntity measurementUnit;
 
+    @OneToOne
+    @JoinColumn(name = "saleable_id")
+    private SaleableUnitEntity saleable;
+
     public MeasurementUnitEntity getMeasurementUnit() {
         return measurementUnit;
     }
@@ -29,5 +33,13 @@ public class ProductEntity extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public SaleableUnitEntity getSaleable() {
+        return saleable;
+    }
+
+    public void setSaleable(SaleableUnitEntity saleable) {
+        this.saleable = saleable;
     }
 }

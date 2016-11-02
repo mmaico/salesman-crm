@@ -1,25 +1,51 @@
 package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.ServiceEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.domain.model.services.Service;
 import br.com.kproj.salesman.products_catalog.domain.model.services.ServiceRepository;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.ServiceRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ServiceEntityToServiceConverter;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+import static com.trex.clone.BusinessModelClone.from;
 
 @Repository
 public class ServiceRepositoryHibernate extends BaseRespositoryImpl<Service, ServiceEntity> implements ServiceRepository {
 
-    @Autowired
     private ServiceRepositorySpringData repository;
 
-    @Autowired
-    private ServiceEntityToServiceConverter converter;
+    private SaleableUnitRepositorySpringData saleableRepository;
 
+    @Autowired
+    public ServiceRepositoryHibernate(ServiceRepositorySpringData repository, SaleableUnitRepositorySpringData saleableRepository) {
+        this.repository = repository;
+        this.saleableRepository = saleableRepository;
+    }
+
+    public Optional<Service> save(Service service) {
+
+        Optional<ServiceEntity> serviceEntity = repository.getOne(service.getId());
+        if (serviceEntity.isPresent()) {
+            from(service).merge(serviceEntity.get());
+            return Optional.of(getConverter().convert(serviceEntity.get()));
+        } else {
+            ServiceEntity newService = from(service).convertTo(ServiceEntity.class);
+            newService.setSaleable(new SaleableUnitEntity(service.getId()));
+            ServiceEntity entity = repository.save(newService);
+            saleableRepository.represent(entity.getId(), Represent.SERVICE);
+
+            return Optional.ofNullable(getConverter().convert(entity));
+        }
+    }
 
     @Override
     public BaseRepositoryLegacy<ServiceEntity, Long> getRepository() {
@@ -28,7 +54,11 @@ public class ServiceRepositoryHibernate extends BaseRespositoryImpl<Service, Ser
 
     @Override
     public Converter<ServiceEntity, Service> getConverter() {
-        return converter;
+        return ((serviceEntity, args) -> {
+            Service service = new Service();
+            BusinessModelClone.from(serviceEntity.getSaleable()).merge(service);
+            return service;
+        });
     }
 
 }

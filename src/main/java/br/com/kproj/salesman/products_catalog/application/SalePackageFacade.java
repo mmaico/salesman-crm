@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface SalePackageFacade extends ModelFacade<SalePackage> {
 
-    Optional<SalePackage> addSaleable(SalePackage salePackage, SaleableUnit saleable);
+    void addSaleable(SalePackage salePackage, SaleableUnit saleable);
 
-    Optional<SalePackage> removeSaleable(SalePackage salePackage, SaleableUnit saleable);
+    void removeSaleable(SalePackage salePackage, SaleableUnit saleable);
 }

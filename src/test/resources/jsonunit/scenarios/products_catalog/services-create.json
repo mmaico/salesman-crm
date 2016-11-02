@@ -1,0 +1,29 @@
+[
+  {
+    "scenery": "Criacao de saleable para servico",
+    "json": {
+        "name": "Servico criado 01",
+        "description": "Descricao do servico criado 01",
+        "active": true,
+        "price": 300.00,
+        "priceCost": 200.00
+    }
+  },
+  {
+    "scenery": "Json de servico criado esperado",
+    "json": {
+      "item":{
+        "id":7,
+        "saleable":{
+          "id":7,
+          "name":"Servico criado 01",
+          "description":"Descricao do servico criado 01",
+          "active":true,
+          "price":300.00,
+          "priceCost":200.00
+        }
+      },
+      "uri":"/rs/saleables/7/services"
+    }
+  }
+]

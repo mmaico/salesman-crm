@@ -16,6 +16,6 @@ public interface ServiceRepositorySpringData extends BaseRepositoryLegacy<Servic
     @Query("SELECT s FROM ServiceEntity AS s WHERE s.id = :id")
     Optional<ServiceEntity> getOne(@Param("id") Long id);
 
-    @Query("SELECT s FROM ServiceEntity AS s ORDER BY s.name")
+    @Query("SELECT s FROM ServiceEntity AS s ORDER BY s.saleable.name")
     Page<ServiceEntity> findAll(Pageable pageable);
 }

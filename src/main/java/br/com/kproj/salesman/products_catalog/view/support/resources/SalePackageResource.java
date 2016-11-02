@@ -5,6 +5,7 @@ import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -12,27 +13,21 @@ import java.util.Collection;
 
 @JsonPropertyOrder({
         "id",
-        "name",
-        "description",
-        "active",
-        "price",
-        "priceCost",
-        "type",
-        "unit",
-        "links"
+        "saleable",
+        "saleables",
+        "links",
+        "uri"
 })
 @ResourceItem(name="packages", modelReference = SalePackage.class, parent = SaleableResource.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SalePackageResource extends Item {
 
     private Long id;
 
-    @JsonProperty("IsA")
     @SuperClass
     private SaleableResource saleable;
 
-    @JsonProperty("hasSaleables")
     private Collection<SaleableResource> saleables;
-
 
     public Long getId() {
         return id;
@@ -51,7 +46,7 @@ public class SalePackageResource extends Item {
         this.saleables = saleables;
     }
 
-    @Selectable(expression = "is-a")
+    @Selectable(expression = "is-a", expandByDefault = true)
     public SaleableResource getSaleable() {
         return saleable;
     }

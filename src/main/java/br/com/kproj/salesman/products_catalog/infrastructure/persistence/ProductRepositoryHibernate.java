@@ -2,12 +2,15 @@ package br.com.kproj.salesman.products_catalog.infrastructure.persistence;
 
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.domain.model.products.ProductRepository;
+import br.com.kproj.salesman.products_catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.ProductRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.infrastructure.persistence.translate.ProductEntityToProductConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,10 +26,14 @@ public class ProductRepositoryHibernate extends BaseRespositoryImpl<Product, Pro
 
     private ProductEntityToProductConverter converter;
 
+    private SaleableUnitRepositorySpringData saleableRepository;
+
     @Autowired
-    public ProductRepositoryHibernate(ProductRepositorySpringData repository, ProductEntityToProductConverter converter) {
+    public ProductRepositoryHibernate(ProductRepositorySpringData repository, ProductEntityToProductConverter converter,
+                                      SaleableUnitRepositorySpringData saleableRepository) {
         this.repository = repository;
         this.converter = converter;
+        this.saleableRepository = saleableRepository;
     }
 
     public Optional<Product> save(Product product) {
@@ -37,8 +44,10 @@ public class ProductRepositoryHibernate extends BaseRespositoryImpl<Product, Pro
             return Optional.of(getConverter().convert(productEntity.get()));
         } else {
             ProductEntity newProduct = from(product).convertTo(ProductEntity.class);
+            newProduct.setSaleable(new SaleableUnitEntity(product.getId()));
             ProductEntity entity = repository.save(newProduct);
-            //marcar um saleable com um tipo PRODUCT
+            saleableRepository.represent(entity.getId(), Represent.PRODUCT);
+
             return Optional.ofNullable(getConverter().convert(entity));
         }
     }

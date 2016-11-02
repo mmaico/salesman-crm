@@ -1,0 +1,29 @@
+[
+  {
+    "scenery": "Criacao de saleable para pacote",
+    "json": {
+      "name": "Pacote 01",
+      "description": "Descricao do pacote 01",
+      "active": true,
+      "price": 800.80,
+      "priceCost": 350.56
+    }
+  },
+  {
+    "scenery": "Json de pacote criado esperado",
+    "json": {
+      "item":{
+        "id":8,
+        "saleable":{
+          "id":8,
+          "name":"Pacote 01",
+          "description":"Descricao do pacote 01",
+          "active":true,
+          "price":800.80,
+          "priceCost":350.56
+        }
+      },
+      "uri":"/rs/saleables/8/packages"
+    }
+  }
+]
