@@ -80,6 +80,20 @@
           "active":true,
           "price":6.00,
           "priceCost":1.00
+        },
+        {
+          "id":7,
+          "name":"Pacote com apenas 1 saleable",
+          "description":"Usando para remover um saleable",
+          "active":true,
+          "price":8.00,
+          "priceCost":2.00,
+          "links":[
+            {
+              "href":"/rs/saleables/packages/7",
+              "rel":"packages"
+            }
+          ]
         }
       ],
       "uri":"/rs/saleables"
