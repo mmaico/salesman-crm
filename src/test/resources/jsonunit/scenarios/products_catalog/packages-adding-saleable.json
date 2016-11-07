@@ -1,6 +1,6 @@
 [
   {
-    "scenery": "Operacao para adicionar um produto no pacote",
+    "scenery": "Adicionar um produto no pacote",
     "json": [
       {
         "op": "add",

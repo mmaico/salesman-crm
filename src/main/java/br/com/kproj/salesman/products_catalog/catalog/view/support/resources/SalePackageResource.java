@@ -26,7 +26,7 @@ public class SalePackageResource extends Item {
     @SuperClass
     private SaleableResource saleable;
 
-    private Collection<SaleableResource> saleables;
+    private Collection<SaleableRelationResource> relations;
 
     public Long getId() {
         return id;
@@ -36,13 +36,13 @@ public class SalePackageResource extends Item {
         this.id = id;
     }
 
-    @Selectable(expression = "has-saleables")
-    public Collection<SaleableResource> getSaleables() {
-        return saleables;
+    @Selectable(expression = "has-relations")
+    public Collection<SaleableRelationResource> getRelations() {
+        return relations;
     }
 
-    public void setSaleables(Collection<SaleableResource> saleables) {
-        this.saleables = saleables;
+    public void setRelations(Collection<SaleableRelationResource> relations) {
+        this.relations = relations;
     }
 
     @Selectable(expression = "is-a", expandByDefault = true)

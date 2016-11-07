@@ -8,6 +8,7 @@ import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.Sal
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackageRepository;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackageValidator;
+import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SaleableRelation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,8 @@ public class SalePackageServiceImpl extends BaseModelServiceImpl<SalePackage> im
     }
 
     @Override
-    public void removeSaleable(SalePackage salePackage, SaleableUnit saleable) {
-        validator.checkRules(salePackage);
-        salePackage.removeSaleable(saleable);
+    public void removeSaleable(SaleableRelation relation) {
+        new SalePackage().removeSaleable(relation);
     }
 
     @Override

@@ -27,9 +27,13 @@
     <packages id="4" saleable_id="4"/>
     <packages id="7" saleable_id="7"/>
 
-    <package_saleable package_id="4" saleable_id="5"/>
-    <package_saleable package_id="7" saleable_id="2"/>
-    <package_saleable package_id="7" saleable_id="1"/>
+    <!--<package_saleable package_id="4" saleable_id="5"/>-->
+    <!--<package_saleable package_id="7" saleable_id="2"/>-->
+    <!--<package_saleable package_id="7" saleable_id="1"/>-->
+
+    <saleable_relation id="1" salepackage_id="4" saleable_id="5"/>
+    <saleable_relation id="2" salepackage_id="7" saleable_id="2"/>
+    <saleable_relation id="3" salepackage_id="7" saleable_id="1"/>
 
 
     <!-- ACCOUNTS -->

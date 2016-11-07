@@ -5,7 +5,7 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SalePackageResource;
-import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableResource;
+import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableRelationResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.apiconverter.configs.SelectableConfig;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
@@ -49,11 +49,14 @@ public class SalePackageResourceBuilder {
 
         ConverterToResource.convert(salePackage, resource, context);
 
-        List<SaleableResource> saleablesResources = salePackage.getSaleables().stream()
-                .map(item -> saleableBuilder.buildItem(item))
-                .collect(Collectors.toList());
+        List<SaleableRelationResource> relations = salePackage.getRelations().stream().map(relation -> {
+            SaleableRelationResource saleableRelation = new SaleableRelationResource();
+            saleableRelation.setId(relation.getId());
+            saleableRelation.setSaleable(saleableBuilder.buildItem(relation.getSaleable()));
+            return saleableRelation;
+        }).collect(Collectors.toList());
 
-        resource.setSaleables(saleablesResources);
+        resource.setRelations(relations);
         return resource;
     }
 

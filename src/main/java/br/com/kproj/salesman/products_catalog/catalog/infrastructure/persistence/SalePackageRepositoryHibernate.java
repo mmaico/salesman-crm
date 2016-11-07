@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence;
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
+import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableRelationEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
@@ -9,7 +10,9 @@ import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.Rep
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackageRepository;
+import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SaleableRelation;
 import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.springdata.SalePackageRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.springdata.SaleablePackageRelationRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.translate.SalePackageEntityToSalePackageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,9 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     @Autowired
     private SaleableUnitRepositorySpringData saleableRepository;
 
+    @Autowired
+    private SaleablePackageRelationRepositorySpringData relationRepository;
+
     public Optional<SalePackage> save(SalePackage salePackage) {
 
         Optional<SalePackageEntity> salePackageEntity = repository.getOne(salePackage.getId());
@@ -56,24 +62,9 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     }
 
     @Override
-    public Optional<SalePackage> findBySaleable(SalePackage salePackage, SaleableUnit saleable) {
-        SalePackageEntity salePackageEntity = new SalePackageEntity(salePackage.getId());
-        SaleableUnitEntity saleableUnitEntity = new SaleableUnitEntity(saleable.getId());
-
-        Optional<SalePackageEntity> salePackages = repository.findBySaleable(salePackageEntity, saleableUnitEntity);
-
-        if (!salePackages.isPresent()) {
-            return Optional.empty();
-        } else {
-            return Optional.of(converter.convert(salePackages.get()));
-        }
-    }
-
-    @Override
-    public void removeSaleable(SalePackage salePackage, SaleableUnit saleable) {
-        Optional<SalePackageEntity> result = repository.getOne(salePackage.getId());
-        result.get().removeSaleableUnit(new SaleableUnitEntity(saleable.getId()));
-        repository.save(result.get());
+    public void removeRelation(SaleableRelation relation) {
+        SaleableRelationEntity relationEntity = relationRepository.findOne(relation.getId());
+        relationRepository.delete(relationEntity);
     }
 
     @Override

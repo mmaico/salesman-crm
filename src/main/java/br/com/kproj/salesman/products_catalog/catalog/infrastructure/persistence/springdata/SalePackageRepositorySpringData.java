@@ -14,8 +14,8 @@ import java.util.Optional;
 
 public interface SalePackageRepositorySpringData extends BaseRepositoryLegacy<SalePackageEntity, Long> {
 
-    @Query("SELECT p FROM SalePackageEntity AS p JOIN p.saleableUnits AS s WHERE s = :saleable AND p = :packageValue")
-    Optional<SalePackageEntity> findBySaleable(@Param("packageValue") SalePackageEntity salePackageValue, @Param("saleable") SaleableUnitEntity saleable);
+//    @Query("SELECT p FROM SalePackageEntity AS p JOIN p.saleableUnits AS s WHERE s = :saleable AND p = :packageValue")
+//    Optional<SalePackageEntity> findBySaleable(@Param("packageValue") SalePackageEntity salePackageValue, @Param("saleable") SaleableUnitEntity saleable);
 
     @Query("SELECT p FROM SalePackageEntity AS p WHERE p.id = :id")
     Optional<SalePackageEntity> getOne(@Param("id") Long id);

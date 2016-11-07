@@ -8,9 +8,7 @@ import java.util.Optional;
 
 public interface SalePackageRepository extends BaseRepository<SalePackage, Long> {
 
-    Optional<SalePackage> findBySaleable(SalePackage salePackage, SaleableUnit saleable);
-
-    void removeSaleable(SalePackage salePackage, SaleableUnit saleable);
+    void removeRelation(SaleableRelation relation);
 
     void addSaleable(SalePackage salePackage, SaleableUnit saleable);
 

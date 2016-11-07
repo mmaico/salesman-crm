@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class PackageEndpointIT extends AbstractIntegrationTest {
 
     private static final String PACKAGES_CREATED = "/products_catalog/packages-create.json";
-    private static final String PACKAGES_OPERATIONS = "/products_catalog/packages-operations.json";
+    private static final String PACKAGES_ADDING_SALEABLE = "/products_catalog/packages-adding-saleable.json";
 
     def MockMvc mockMvc
 
@@ -37,7 +37,7 @@ class PackageEndpointIT extends AbstractIntegrationTest {
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
         SceneryLoaderHelper.load(PACKAGES_CREATED)
-        SceneryLoaderHelper.load(PACKAGES_OPERATIONS)
+        SceneryLoaderHelper.load(PACKAGES_ADDING_SALEABLE)
     }
 
     @Unroll
@@ -76,7 +76,7 @@ class PackageEndpointIT extends AbstractIntegrationTest {
     def "Adding a saleable(service/product) in the package"() {
         def resultExpected = scenery("Resultado experado ao executar a operacao de adicionar um produto no pacote").getJson()
 
-        def mvcResult = mockMvc.perform(patch("/rs/saleables/packages/4")
+        def mvcResult = mockMvc.perform(post("/rs/saleables/packages/4/relations")
                 .content(scenery("Operacao para adicionar um produto no pacote").getJson())
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 

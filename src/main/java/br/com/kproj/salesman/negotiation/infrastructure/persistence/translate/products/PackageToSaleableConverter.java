@@ -15,8 +15,8 @@ public class PackageToSaleableConverter implements Converter<SalePackageEntity, 
     public SaleablePackage convert(SalePackageEntity entity, Object... args) {
         SaleablePackageBuilder aPackage = SaleablePackageBuilder.createPackage(entity.getId());
 
-        entity.getSaleableUnits().forEach(product ->
-                aPackage.addSaleable(createSaleable(product.getId()).build()));
+//        entity.getSaleableUnits().forEach(product ->
+//                aPackage.addSaleable(createSaleable(product.getId()).build()));
 
         return aPackage.build();
     }
