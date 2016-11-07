@@ -57,7 +57,7 @@ public class QSalesOrderItem extends EntityPathBase<SalesOrderItem> {
     public QSalesOrderItem(Class<? extends SalesOrderItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;
-        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage")) : null;
+        this.salePackage = inits.isInitialized("salePackage") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity(forProperty("salePackage"), inits.get("salePackage")) : null;
         this.salesOrder = inits.isInitialized("salesOrder") ? new QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
     }
 

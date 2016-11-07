@@ -16,8 +16,9 @@ import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.JsonCompareUtil.isEquals
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @Stepwise
 @ClassReference(SaleableEndpoint)
@@ -77,7 +78,7 @@ class PackageEndpointIT extends AbstractIntegrationTest {
         def resultExpected = scenery("Resultado experado ao executar a operacao de adicionar um produto no pacote").getJson()
 
         def mvcResult = mockMvc.perform(post("/rs/saleables/packages/4/relations")
-                .content(scenery("Operacao para adicionar um produto no pacote").getJson())
+                .content(scenery("Adicionar um produto no pacote").getJson())
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
         def packageResult = mvcResult.getResponse().getContentAsString()
@@ -91,16 +92,19 @@ class PackageEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Remove a saleable(service/product) of the package"() {
 
-        def mvcResult = mockMvc.perform(patch("/rs/saleables/packages/7")
-                .content(scenery("Operacao para remover um saleable de um pacote").getJson())
+        def mvcResult = mockMvc.perform(delete("/rs/saleables/packages/relations/2")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def packageResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+        def getPackage = mockMvc.perform(get("/rs/saleables/packages/7")
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        def packageResult = new JsonSlurper().parseText(getPackage.getResponse().getContentAsString())
         def statusResult = mvcResult.getResponse().getStatus()
 
         expect: "a salepackage wihtout saleables and http status 200"
-            packageResult.item.saleables.size() == 1
-            packageResult.item.saleables[0].id == 1
+            packageResult.item.relations.size() == 1
+            packageResult.item.relations[0].id == 3
+            packageResult.item.relations[0].saleable.id == 1
             statusResult == HttpStatus.OK.value()
     }
 

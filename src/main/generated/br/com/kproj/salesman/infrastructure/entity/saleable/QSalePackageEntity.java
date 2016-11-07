@@ -18,6 +18,8 @@ public class QSalePackageEntity extends EntityPathBase<SalePackageEntity> {
 
     private static final long serialVersionUID = 713560420L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QSalePackageEntity salePackageEntity = new QSalePackageEntity("salePackageEntity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
@@ -26,18 +28,29 @@ public class QSalePackageEntity extends EntityPathBase<SalePackageEntity> {
 
     public final BooleanPath priceByProducts = createBoolean("priceByProducts");
 
-    public final ListPath<SaleableUnitEntity, QSaleableUnitEntity> saleableUnits = this.<SaleableUnitEntity, QSaleableUnitEntity>createList("saleableUnits", SaleableUnitEntity.class, QSaleableUnitEntity.class, PathInits.DIRECT2);
+    public final ListPath<SaleableRelationEntity, QSaleableRelationEntity> relations = this.<SaleableRelationEntity, QSaleableRelationEntity>createList("relations", SaleableRelationEntity.class, QSaleableRelationEntity.class, PathInits.DIRECT2);
+
+    public final QSaleableUnitEntity saleable;
 
     public QSalePackageEntity(String variable) {
-        super(SalePackageEntity.class, forVariable(variable));
+        this(SalePackageEntity.class, forVariable(variable), INITS);
     }
 
     public QSalePackageEntity(Path<? extends SalePackageEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QSalePackageEntity(PathMetadata metadata) {
-        super(SalePackageEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QSalePackageEntity(PathMetadata metadata, PathInits inits) {
+        this(SalePackageEntity.class, metadata, inits);
+    }
+
+    public QSalePackageEntity(Class<? extends SalePackageEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.saleable = inits.isInitialized("saleable") ? new QSaleableUnitEntity(forProperty("saleable")) : null;
     }
 
 }

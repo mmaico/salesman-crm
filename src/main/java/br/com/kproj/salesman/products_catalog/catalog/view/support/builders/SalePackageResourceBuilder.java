@@ -7,6 +7,7 @@ import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.S
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SalePackageResource;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableRelationResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
+import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;
 import br.com.uol.rest.apiconverter.configs.SelectableConfig;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,7 @@ public class SalePackageResourceBuilder {
         SalePackageResource resource = new SalePackageResource();
 
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
-        SelectableConfig config = new SelectableConfig("has-saleables");
-        config.setExpandByDefault(Boolean.TRUE);
-
-        context.addSelectableConf(SalePackageResource.class, config);
+        context.addLinkConf(SalePackageResource.class, LinkRemoveConfig.createLinkRemoveConfig("has-relations"));
 
         ConverterToResource.convert(salePackage, resource, context);
 

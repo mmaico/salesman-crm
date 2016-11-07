@@ -13,7 +13,7 @@ import java.util.Collection;
 @JsonPropertyOrder({
         "id",
         "saleable",
-        "saleables",
+        "relations",
         "links",
         "uri"
 })

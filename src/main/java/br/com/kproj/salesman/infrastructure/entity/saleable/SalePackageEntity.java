@@ -13,11 +13,6 @@ public class SalePackageEntity extends Identifiable {
     @Id
     private Long id;
 
-//    @ManyToMany(fetch=FetchType.LAZY)
-//    @JoinTable(name="package_saleable", joinColumns=@JoinColumn(name="package_id"),
-//            inverseJoinColumns=@JoinColumn(name="saleable_id"))
-//    private List<SaleableUnitEntity> saleableUnits;
-
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "salePackage")
     private List<SaleableRelationEntity> relations;
 
@@ -33,14 +28,6 @@ public class SalePackageEntity extends Identifiable {
     }
 
     public SalePackageEntity() {}
-
-//    public List<SaleableUnitEntity> getSaleableUnits() {
-//        return saleableUnits;
-//    }
-//
-//    public void setSaleableUnits(List<SaleableUnitEntity> saleableUnits) {
-//        this.saleableUnits = saleableUnits;
-//    }
 
     public Boolean getPriceByProducts() {
         return priceByProducts;
@@ -60,14 +47,6 @@ public class SalePackageEntity extends Identifiable {
         }
         this.relations.add(new SaleableRelationEntity(saleableUnit, this));
     }
-//
-//    public void removeSaleableUnit(SaleableUnitEntity saleableUnit) {
-//        if (this.saleableUnits == null) {
-//            return;
-//        }
-//
-//        this.saleableUnits.remove(saleableUnit);
-//    }
 
     @Override
     public Long getId() {

@@ -76,14 +76,6 @@ public class SalesPackageController {
         this.service.addSaleable(salePackage, saleableUnit);
     }
 
-    @RequestMapping(value="/sales-package/{packageId}/remove-saleable/{saleableId}", method = RequestMethod.DELETE)
-    public @ResponseBody void removeSaleable(@PathVariable Long packageId, @PathVariable Long saleableId) {
-
-        SalePackage salePackage = SalePackageBuilder.createPackage(packageId).build();
-        SaleableUnit saleableUnit = SaleableBuilder.createSaleable(saleableId).build();
-
-        this.service.removeSaleable(salePackage, saleableUnit);
-    }
 
     @RequestMapping(value="/sales-package/create")
     public ModelAndView newProduct() {

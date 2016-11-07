@@ -28,6 +28,8 @@ public class QProductEntity extends EntityPathBase<ProductEntity> {
 
     public final QMeasurementUnitEntity measurementUnit;
 
+    public final QSaleableUnitEntity saleable;
+
     public QProductEntity(String variable) {
         this(ProductEntity.class, forVariable(variable), INITS);
     }
@@ -47,6 +49,7 @@ public class QProductEntity extends EntityPathBase<ProductEntity> {
     public QProductEntity(Class<? extends ProductEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.measurementUnit = inits.isInitialized("measurementUnit") ? new QMeasurementUnitEntity(forProperty("measurementUnit")) : null;
+        this.saleable = inits.isInitialized("saleable") ? new QSaleableUnitEntity(forProperty("saleable")) : null;
     }
 
 }

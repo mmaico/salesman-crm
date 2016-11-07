@@ -64,6 +64,7 @@ public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePack
     @Override
     public void removeRelation(SaleableRelation relation) {
         SaleableRelationEntity relationEntity = relationRepository.findOne(relation.getId());
+        relationEntity.getSalePackage().getRelations().remove(relationEntity);
         relationRepository.delete(relationEntity);
     }
 

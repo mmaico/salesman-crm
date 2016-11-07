@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.products_catalog.catalog.view;
 
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
-import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Operation;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
@@ -11,7 +9,6 @@ import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.Sal
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SaleableRelation;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.builders.SalePackageResourceBuilder;
-import br.com.kproj.salesman.products_catalog.catalog.view.support.operations.PackageOperation;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableResource;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
 
 import static com.google.common.collect.FluentIterable.from;
@@ -32,20 +28,6 @@ public class PackageEndpoint {
     private SalePackageFacade service;
 
     private SalePackageResourceBuilder builder;
-
-//    private Map<String, PackageOperation> operations = new HashMap<>();
-//
-//    {
-//        operations.put("add", ((salePackage, operation) -> {
-//            SaleableUnit saleableUnit = new SaleableUnit(Long.valueOf(operation.getValue()));
-//            service.addSaleable(salePackage, saleableUnit);
-//        }));
-//
-//        operations.put("remove", ((salePackage, operation) -> {
-//            SaleableUnit saleableUnit = new SaleableUnit(Long.valueOf(operation.getValue()));
-//            service.removeSaleable(salePackage, saleableUnit);
-//        }));
-//    }
 
 
     @Autowired
@@ -89,24 +71,6 @@ public class PackageEndpoint {
         return builder.build(packageCreated.get(), request.getRequestURI());
     }
 
-//    @RequestMapping(value = "/rs/saleables/packages/{packageId}", method = RequestMethod.PATCH)
-//    @ResponseStatus(HttpStatus.OK)
-//    public @ResponseBody
-//    ResourceItem addSaleableInPackage(@PathVariable Long packageId, @RequestBody List<Operation> ops, HttpServletRequest request) {
-//        SalePackage salePackage = new SalePackage(packageId);
-//
-//        ops.stream().forEach(operation -> {
-//            PackageOperation operationToExecute = Optional.ofNullable(operations.get(operation.getOp()))
-//                    .orElseThrow(() -> new ValidationException("invalid.operation.on.package"));
-//
-//            operationToExecute.execute(salePackage, operation);
-//        });
-//
-//        Optional<SalePackage> packageCreated = service.getOne(packageId);
-//
-//        return builder.build(packageCreated.get(), request.getRequestURI());
-//    }
-
     @RequestMapping(value = "/rs/saleables/packages/{packageId}/relations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
@@ -122,8 +86,7 @@ public class PackageEndpoint {
 
     @RequestMapping(value = "/rs/saleables/packages/relations/{relationId}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody
-    void removeSaleable(@PathVariable Long relationId,  HttpServletRequest request) {
+    public @ResponseBody void removeSaleable(@PathVariable Long relationId) {
 
         service.removeSaleable(new SaleableRelation(relationId));
 
