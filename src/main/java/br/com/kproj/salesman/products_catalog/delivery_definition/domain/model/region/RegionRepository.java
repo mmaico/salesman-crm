@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.delivery_definition.model.region;
+package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region;
 
 
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;

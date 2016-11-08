@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence;
 
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.RegionRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.region.Region;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.region.RegionRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.RegionRepository;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;

@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence;
 
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.ChecklistRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist.Checklist;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist.ChecklistRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.Task;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.ChecklistRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplateEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;

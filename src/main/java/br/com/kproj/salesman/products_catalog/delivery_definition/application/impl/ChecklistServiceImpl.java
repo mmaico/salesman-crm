@@ -2,9 +2,9 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.application.i
 
 
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.ChecklistFacade;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist.Checklist;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist.ChecklistRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.Task;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.ChecklistRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

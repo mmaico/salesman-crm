@@ -91,6 +91,14 @@
     <timelines id="3" business_proposal_id="1"/>
     <timelines id="4" contact_id="2"/>
 
+    <!-- TASKS DEFINITIONS -->
+    <task_definitions id="" title="" description="" quantity_days_to_finish_after_signed_contract=""/>
+
+    <roottask_definitions id="" saleable_unit_id=""  operation_region_id=""/>
+
+    <subtask_definitions id="" roottask_id=""/>
+
+
     <!-- TASKS TEMPLATE -->
     <task_templates id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
     <task_templates id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>

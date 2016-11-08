@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist;
+package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;

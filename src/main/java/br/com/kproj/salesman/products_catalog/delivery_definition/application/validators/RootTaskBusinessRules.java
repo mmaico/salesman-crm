@@ -1,13 +1,12 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.application.validators;
 
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.UserRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.product.SaleableRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.region.RegionRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.Task;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.TaskToSaleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.TaskToSaleableValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.SaleableRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.RegionRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskToSaleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,18 +19,19 @@ import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErro
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-public class TaskToSaleableBusinessRules implements TaskToSaleableValidator {
+public class RootTaskBusinessRules implements RootTaskValidator {
 
-    @Autowired
     private SaleableRepository repository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private RegionRepository regionRepository;
 
-    Map<String, CheckRule<TaskToSaleable>> rules = new HashMap<>();
+    @Autowired
+    public RootTaskBusinessRules(SaleableRepository repository, RegionRepository regionRepository) {
+        this.repository = repository;
+        this.regionRepository = regionRepository;
+    }
+
+    Map<String, CheckRule<RootTaskToSaleable>> rules = new HashMap<>();
     {
         rules.put("task.create.invalid.saleable", taskToSaleable ->
                 taskToSaleable.getSaleableId() == null
@@ -40,14 +40,14 @@ public class TaskToSaleableBusinessRules implements TaskToSaleableValidator {
         rules.put("task.create.invalid.title", taskToSaleable -> isBlank(taskToSaleable.getTask().getTitle()));
 
         rules.put("task.create.invalid.region", taskToSaleable -> {
-            Task task = taskToSaleable.getTask();
+            RootTask task = taskToSaleable.getTask();
             return task.getRegion() == null || task.getRegion().isNew()
                     || !regionRepository.findOne(task.getRegion().getId()).isPresent();
         });
     }
 
     @Override
-    public void checkRules(TaskToSaleable status) {
+    public void checkRules(RootTaskToSaleable status) {
 
         Set<String> violations = rules.entrySet()
                 .stream()

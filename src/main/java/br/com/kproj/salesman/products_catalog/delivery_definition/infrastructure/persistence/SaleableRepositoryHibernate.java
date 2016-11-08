@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence;
 
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.SaleableRepositorySpringData;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.product.SaleableRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.SaleableRepository;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;

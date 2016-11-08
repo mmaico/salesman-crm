@@ -1,9 +1,9 @@
-package br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks;
+package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks;
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist.Checklist;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.region.Region;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import com.trex.shared.annotations.Model;
 
 import java.util.List;
@@ -14,11 +14,9 @@ public class Task extends ModelIdentifiable {
     private Long id;
     private String title;
     private String description;
-    private List<Subtask> children;
     private Integer quantityDaysToFinish;
     private List<Checklist> checklists;
-    private Saleable saleable;
-    private Region region;
+
 
     @Override
     public Long getId() {
@@ -45,14 +43,6 @@ public class Task extends ModelIdentifiable {
         this.description = description;
     }
 
-    public List<Subtask> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Subtask> children) {
-        this.children = children;
-    }
-
     public Integer getQuantityDaysToFinish() {
         return quantityDaysToFinish;
     }
@@ -69,19 +59,4 @@ public class Task extends ModelIdentifiable {
         this.checklists = checklists;
     }
 
-    public Saleable getSaleable() {
-        return saleable;
-    }
-
-    public void setSaleable(Saleable saleable) {
-        this.saleable = saleable;
-    }
-
-    public Region getRegion() {
-        return region;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
-    }
 }

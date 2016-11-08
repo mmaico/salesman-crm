@@ -1,7 +1,7 @@
-package br.com.kproj.salesman.products_catalog.delivery_definition.model.checklist;
+package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist;
 
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.model.tasks.Task;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 
 import java.util.Collection;
