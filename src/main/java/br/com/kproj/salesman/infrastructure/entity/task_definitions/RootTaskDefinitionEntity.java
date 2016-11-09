@@ -4,9 +4,11 @@ package br.com.kproj.salesman.infrastructure.entity.task_definitions;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name="roottask_definitions")
@@ -21,18 +23,11 @@ public class RootTaskDefinitionEntity extends TaskDefinitionEntity {
     @NotNull(message = "tasktemplate.region.not.informed")
     private OperationRegionEntity region;
 
-
-    @OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "rootTask")
-    private List<SubtaskDefinitionRelationEntity> relations;
-
-
-    public List<SubtaskDefinitionRelationEntity> getRelations() {
-        return relations;
+    public RootTaskDefinitionEntity(Long id) {
+        super.setId(id);
     }
 
-    public void setRelations(List<SubtaskDefinitionRelationEntity> relations) {
-        this.relations = relations;
-    }
+    public RootTaskDefinitionEntity() {}
 
     public SaleableUnitEntity getSaleable() {
         return saleable;

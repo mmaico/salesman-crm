@@ -8,6 +8,12 @@ public class Region extends ModelIdentifiable {
 
     private Long id;
 
+    public Region(Long id) {
+        this.id = id;
+    }
+
+    public Region() {}
+
     @Override
     public Long getId() {
         return id;

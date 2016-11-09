@@ -97,13 +97,11 @@
     <task_definitions id="3" title="SubTask Three" description="Subtask Three description" quantity_days_to_finish_after_signed_contract="2"/>
     <task_definitions id="4" title="SubTask Four" description="Subtask Four description" quantity_days_to_finish_after_signed_contract="6"/>
 
-    <subtask_definitions id="1" roottask_id="2"/>
-    <subtask_definitions id="3" roottask_id="2"/>
-
     <roottask_definitions id="2" saleable_unit_id="2"  operation_region_id="1"/>
 
-    <subtask_definition_relations id="1" subtask_id="1" roottask_id="" />
-
+    <subtask_definitions id="1" roottask_id="2"/>
+    <subtask_definitions id="3" roottask_id="2"/>
+    <subtask_definitions id="4" roottask_id="2"/>
 
 
     <!-- TASKS TEMPLATE -->
