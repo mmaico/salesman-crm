@@ -92,11 +92,18 @@
     <timelines id="4" contact_id="2"/>
 
     <!-- TASKS DEFINITIONS -->
-    <task_definitions id="" title="" description="" quantity_days_to_finish_after_signed_contract=""/>
+    <task_definitions id="1" title="SubTask One" description="Subtask One description" quantity_days_to_finish_after_signed_contract="3"/>
+    <task_definitions id="2" title="Root One" description="Root One description" quantity_days_to_finish_after_signed_contract="5"/>
+    <task_definitions id="3" title="SubTask Three" description="Subtask Three description" quantity_days_to_finish_after_signed_contract="2"/>
+    <task_definitions id="4" title="SubTask Four" description="Subtask Four description" quantity_days_to_finish_after_signed_contract="6"/>
 
-    <roottask_definitions id="" saleable_unit_id=""  operation_region_id=""/>
+    <subtask_definitions id="1" roottask_id="2"/>
+    <subtask_definitions id="3" roottask_id="2"/>
 
-    <subtask_definitions id="" roottask_id=""/>
+    <roottask_definitions id="2" saleable_unit_id="2"  operation_region_id="1"/>
+
+    <subtask_definition_relations id="1" subtask_id="1" roottask_id="" />
+
 
 
     <!-- TASKS TEMPLATE -->
