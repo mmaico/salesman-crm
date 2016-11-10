@@ -4,6 +4,7 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
+import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class Task extends ModelIdentifiable {
     private String title;
     private String description;
     private Integer quantityDaysToFinish;
-    private List<Checklist> checklists;
+    private List<Checklist> checklists = Lists.newArrayList();
 
 
     @Override

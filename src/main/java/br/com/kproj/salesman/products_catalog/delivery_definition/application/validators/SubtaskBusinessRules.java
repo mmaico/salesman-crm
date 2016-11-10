@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-@Component
+@Component("subtaskDefinitionBusinessRules")
 public class SubtaskBusinessRules implements SubtaskValidator {
 
     @Autowired

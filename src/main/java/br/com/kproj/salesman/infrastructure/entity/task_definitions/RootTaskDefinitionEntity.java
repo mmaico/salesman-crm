@@ -4,10 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.task_definitions;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity

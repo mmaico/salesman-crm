@@ -3,6 +3,7 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructur
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.RootTaskDefinitionEntity;
+import br.com.kproj.salesman.infrastructure.entity.task_definitions.SubtaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
@@ -10,7 +11,9 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.p
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.RootTaskDefinitionRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.SubtaskDefinitionRepositorySpringData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,15 +24,19 @@ import java.util.stream.Collectors;
 
 import static com.trex.clone.BusinessModelClone.from;
 
-@Repository("taskTemplateRepositoryTaskTemplateModule")
+@Repository("rootTaskDefinitionRepositoryModule")
 public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<RootTask, RootTaskDefinitionEntity> implements RootTaskRepository {
 
 
     private RootTaskDefinitionRepositorySpringData repository;
 
+    private SubtaskDefinitionRepositorySpringData subtaskRepository;
+
     @Autowired
-    public RootTaskDefinitionRepositoryHibernate(RootTaskDefinitionRepositorySpringData repository) {
+    public RootTaskDefinitionRepositoryHibernate(RootTaskDefinitionRepositorySpringData repository,
+                                                 SubtaskDefinitionRepositorySpringData subtaskRepository) {
         this.repository = repository;
+        this.subtaskRepository = subtaskRepository;
     }
 
     @Override
@@ -69,15 +76,12 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
     @Override
     public Converter<RootTaskDefinitionEntity, RootTask> getConverter() {
         return (rootTaskDefinitionEntity, args) -> {
-            RootTask task = new RootTask();
-            task.setId(rootTaskDefinitionEntity.getId());
-            task.setTitle(rootTaskDefinitionEntity.getTitle());
-            task.setDescription(rootTaskDefinitionEntity.getDescription());
-            task.setRegion(new Region(rootTaskDefinitionEntity.getId()));
-            //task.setSaleable(new Saleable());
-            //terminar o converter
+            RootTask rootTask = from(rootTaskDefinitionEntity).convertTo(RootTask.class);
 
-            return task;
+            List<SubtaskDefinitionEntity> subtasks = subtaskRepository.findRootTask(rootTaskDefinitionEntity);
+            subtasks.stream().map(subtask -> rootTask.getChildren().add(from(subtask).convertTo(Subtask.class)));
+
+            return rootTask;
         };
     }
 }

@@ -3,6 +3,7 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
+import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Model
 public class RootTask extends Task {
 
-    private List<Subtask> children;
+    private List<Subtask> children = Lists.newArrayList();
     private Saleable saleable;
     private Region region;
 

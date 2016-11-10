@@ -27,14 +27,11 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
 
     private RootTaskRepository repository;
 
-    private SaleableRepository saleableRepository;
-
     private RootTaskValidator validator;
 
     @Autowired
-    public RootTaskServiceImpl(RootTaskRepository repository, SaleableRepository saleableRepository, RootTaskValidator validator) {
+    public RootTaskServiceImpl(RootTaskRepository repository, RootTaskValidator validator) {
         this.repository = repository;
-        this.saleableRepository = saleableRepository;
         this.validator = validator;
     }
 

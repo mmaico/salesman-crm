@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name="task_definitions")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class TaskDefinitionEntity extends Identifiable {
 
     @Id
