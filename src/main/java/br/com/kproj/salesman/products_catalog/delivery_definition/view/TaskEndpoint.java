@@ -6,7 +6,6 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.annotation.Res
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,7 @@ import java.util.Collection;
 
 
 @RestController("rootTaskEndpoinDefinitionModule")
-public class RootTaskEndpoint {
+public class TaskEndpoint {
 
     @Autowired
     private RootTaskFacade service;

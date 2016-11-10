@@ -77,9 +77,10 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
     public Converter<RootTaskDefinitionEntity, RootTask> getConverter() {
         return (rootTaskDefinitionEntity, args) -> {
             RootTask rootTask = from(rootTaskDefinitionEntity).convertTo(RootTask.class);
+            rootTask.setSaleable(new Saleable(rootTaskDefinitionEntity.getId()));
 
             List<SubtaskDefinitionEntity> subtasks = subtaskRepository.findRootTask(rootTaskDefinitionEntity);
-            subtasks.stream().map(subtask -> rootTask.getChildren().add(from(subtask).convertTo(Subtask.class)));
+            subtasks.stream().forEach(subtask -> rootTask.getChildren().add(from(subtask).convertTo(Subtask.class)));
 
             return rootTask;
         };

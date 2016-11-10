@@ -17,7 +17,7 @@ public class Task extends ModelIdentifiable {
     private String description;
     private Integer quantityDaysToFinish;
     private List<Checklist> checklists = Lists.newArrayList();
-
+    private Represent represent;
 
     @Override
     public Long getId() {
@@ -60,4 +60,11 @@ public class Task extends ModelIdentifiable {
         this.checklists = checklists;
     }
 
+    public Represent getRepresent() {
+        return represent;
+    }
+
+    public void setRepresent(Represent represent) {
+        this.represent = represent;
+    }
 }

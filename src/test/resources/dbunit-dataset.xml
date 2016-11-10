@@ -92,16 +92,16 @@
     <timelines id="4" contact_id="2"/>
 
     <!-- TASKS DEFINITIONS -->
-    <task_definitions id="1" title="SubTask One" description="Subtask One description" quantity_days_to_finish_after_signed_contract="3"/>
-    <task_definitions id="2" title="Root One" description="Root One description" quantity_days_to_finish_after_signed_contract="5"/>
-    <task_definitions id="3" title="SubTask Three" description="Subtask Three description" quantity_days_to_finish_after_signed_contract="2"/>
-    <task_definitions id="4" title="SubTask Four" description="Subtask Four description" quantity_days_to_finish_after_signed_contract="6"/>
+    <task_definitions id="1" title="SubTask One" description="Subtask One description" quantity_days_to_finish_after_signed_contract="3" type="SUBTASK"/>
+    <task_definitions id="2" title="Root One" description="Root One description" quantity_days_to_finish_after_signed_contract="5" type="ROOTTASK"/>
+    <task_definitions id="3" title="SubTask Three" description="Subtask Three description" quantity_days_to_finish_after_signed_contract="2" type="SUBTASK"/>
+    <task_definitions id="4" title="SubTask Four" description="Subtask Four description" quantity_days_to_finish_after_signed_contract="6" type="SUBTASK"/>
 
-    <roottask_definitions id="2" saleable_unit_id="2"  operation_region_id="1"/>
+    <roottask_definitions id="2" saleable_unit_id="2"  operation_region_id="1" task_definition_id="2" />
 
-    <subtask_definitions id="1" roottask_id="2"/>
-    <subtask_definitions id="3" roottask_id="2"/>
-    <subtask_definitions id="4" roottask_id="2"/>
+    <subtask_definitions id="1" roottask_id="2" task_definition_id="1"/>
+    <subtask_definitions id="3" roottask_id="2" task_definition_id="3"/>
+    <subtask_definitions id="4" roottask_id="2" task_definition_id="4"/>
 
 
     <!-- TASKS TEMPLATE -->

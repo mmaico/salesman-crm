@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Table(name="task_definitions")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class TaskDefinitionEntity extends Identifiable {
 
     @Id
@@ -24,11 +23,15 @@ public class TaskDefinitionEntity extends Identifiable {
     private String description;
 
     @Column(name="quantity_days_to_finish_after_signed_contract")
-    private Integer quantityDaysTofinishAfertSignedContract;
+    private Integer quantityDaysToFinish;
 
     @OneToMany(mappedBy = "taskDefinition")
     @Cascade(CascadeType.DELETE)
     private List<ChecklistDefinitionEntity> checklist;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private TaskDefinitionTypeEntity type;
 
     public TaskDefinitionEntity() {}
     public TaskDefinitionEntity(Long id) {
@@ -51,12 +54,12 @@ public class TaskDefinitionEntity extends Identifiable {
         this.description = description;
     }
 
-    public Integer getQuantityDaysTofinishAfertSignedContract() {
-        return quantityDaysTofinishAfertSignedContract;
+    public Integer getQuantityDaysToFinish() {
+        return quantityDaysToFinish;
     }
 
-    public void setQuantityDaysTofinishAfertSignedContract(Integer quantityDaysTofinishAfertSignedContract) {
-        this.quantityDaysTofinishAfertSignedContract = quantityDaysTofinishAfertSignedContract;
+    public void setQuantityDaysToFinish(Integer quantityDaysToFinish) {
+        this.quantityDaysToFinish = quantityDaysToFinish;
     }
 
     public List<ChecklistDefinitionEntity> getChecklist() {
@@ -76,4 +79,11 @@ public class TaskDefinitionEntity extends Identifiable {
         this.id = id;
     }
 
+    public TaskDefinitionTypeEntity getType() {
+        return type;
+    }
+
+    public void setType(TaskDefinitionTypeEntity type) {
+        this.type = type;
+    }
 }

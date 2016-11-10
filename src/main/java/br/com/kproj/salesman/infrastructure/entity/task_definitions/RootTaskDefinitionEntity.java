@@ -11,6 +11,13 @@ import javax.validation.constraints.NotNull;
 @Table(name="roottask_definitions")
 public class RootTaskDefinitionEntity extends TaskDefinitionEntity {
 
+    @Id
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "task_definition_id")
+    private TaskDefinitionEntity taskDefinition;
+
     @ManyToOne
     @JoinColumn(name="saleable_unit_id")
     private SaleableUnitEntity saleable;
@@ -40,5 +47,23 @@ public class RootTaskDefinitionEntity extends TaskDefinitionEntity {
 
     public void setRegion(OperationRegionEntity region) {
         this.region = region;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public TaskDefinitionEntity getTaskDefinition() {
+        return taskDefinition;
+    }
+
+    public void setTaskDefinition(TaskDefinitionEntity taskDefinition) {
+        this.taskDefinition = taskDefinition;
     }
 }
