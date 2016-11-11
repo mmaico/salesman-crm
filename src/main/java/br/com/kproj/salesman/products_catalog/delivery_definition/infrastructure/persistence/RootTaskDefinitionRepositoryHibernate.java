@@ -6,14 +6,16 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.*;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.RootTaskDefinitionRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.SubtaskDefinitionRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.translate.TaskDefinitionEntityToTaskConverter;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +27,17 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
 
     private RootTaskDefinitionRepositorySpringData repository;
 
-    private SubtaskDefinitionRepositorySpringData subtaskRepository;
+    private SubtaskRepository subtaskRepository;
+
+    private TaskDefinitionEntityToTaskConverter converter;
 
     @Autowired
     public RootTaskDefinitionRepositoryHibernate(RootTaskDefinitionRepositorySpringData repository,
-                                                 SubtaskDefinitionRepositorySpringData subtaskRepository) {
+                                                 SubtaskRepository subtaskRepository,
+                                                 TaskDefinitionEntityToTaskConverter converter) {
         this.repository = repository;
         this.subtaskRepository = subtaskRepository;
+        this.converter = converter;
     }
 
 
@@ -57,10 +63,11 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
     public Converter<RootTaskDefinitionEntity, RootTask> getConverter() {
         return (rootTaskDefinitionEntity, args) -> {
             RootTask rootTask = from(rootTaskDefinitionEntity).convertTo(RootTask.class);
-            rootTask.setSaleable(new Saleable(rootTaskDefinitionEntity.getId()));
+            Task taskConverted = converter.convert(rootTaskDefinitionEntity.getTaskDefinition());
+            from(taskConverted).merge(rootTask);
 
-            List<SubtaskDefinitionEntity> subtasks = subtaskRepository.findRootTask(rootTaskDefinitionEntity);
-            subtasks.stream().forEach(subtask -> rootTask.getChildren().add(from(subtask).convertTo(Subtask.class)));
+            Collection<Subtask> result = subtaskRepository.findAll(rootTask);
+            rootTask.setChildren(Lists.newArrayList(result));
 
             return rootTask;
         };

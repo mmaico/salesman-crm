@@ -13,6 +13,6 @@ import java.util.List;
 public interface SubtaskDefinitionRepositorySpringData extends BaseRepositoryLegacy<SubtaskDefinitionEntity, Long> {
 
     @Query("SELECT tt FROM SubtaskDefinitionEntity AS tt WHERE tt.parent = :rootTask")
-    List<SubtaskDefinitionEntity> findRootTask(@Param("rootTask") RootTaskDefinitionEntity rootTask);
+    List<SubtaskDefinitionEntity> findAll(@Param("rootTask") RootTaskDefinitionEntity rootTask);
 
 }

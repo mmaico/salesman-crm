@@ -11,6 +11,8 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskToSaleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -42,11 +44,17 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
         repository.delete(task);
     }
 
+    @Override
     public Optional<RootTask> register(RootTaskToSaleable taskToSaleable) {
         validator.checkRules(taskToSaleable);
         Saleable saleable = taskToSaleable.getAsASaleable();
 
         return saleable.addRootTask(taskToSaleable.getTask());
+    }
+
+    @Override
+    public Page<RootTask> findAll(Pageable page) {
+        return repository.findAll(page);
     }
 
     @Override

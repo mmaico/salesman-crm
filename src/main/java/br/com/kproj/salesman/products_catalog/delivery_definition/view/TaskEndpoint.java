@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.view;
 
 
+import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
+import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.TaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 @RestController("taskEndpoinDefinitionModule")
@@ -31,12 +34,23 @@ public class TaskEndpoint {
 
     @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getRootTasksBy(@PathVariable Long saleableId) {
+    ResourceItems getTaskDefinitions(@PathVariable Long saleableId) {
         Saleable saleable = new Saleable(saleableId);
 
         Collection<Task> rootTasks = service.findAll(saleable);
 
         return builder.build(rootTasks, request.getRequestURI());
+    }
+
+    @RequestMapping(value = "/rs/saleables/task-definitions/{taskId}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResourceItem getOne(@PathVariable Long taskId) {
+
+        Optional<Task> taskFound = service.getOne(taskId);
+
+        Task task = taskFound.orElseThrow(() -> new NotFoundException());
+
+        return builder.build(task, request.getRequestURI());
     }
 
 

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "saleable",
         "links"
 })
-@ResourceItem(name="root-task-definitions", modelReference = RootTask.class, parent = SaleableResource.class)
+@ResourceItem(name="root-tasks-definitions", modelReference = RootTask.class, parent = SaleableResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RootTaskResource extends Item {
 

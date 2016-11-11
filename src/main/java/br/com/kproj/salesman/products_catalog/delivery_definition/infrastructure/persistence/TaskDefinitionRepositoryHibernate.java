@@ -11,6 +11,7 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.TaskDefinitionRepositorySpringData;
+import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.translate.TaskDefinitionEntityToTaskConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,9 +28,13 @@ public class TaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<Task,
 
     private TaskDefinitionRepositorySpringData repository;
 
+    private TaskDefinitionEntityToTaskConverter converter;
+
     @Autowired
-    public TaskDefinitionRepositoryHibernate(TaskDefinitionRepositorySpringData repository) {
+    public TaskDefinitionRepositoryHibernate(TaskDefinitionRepositorySpringData repository,
+                                             TaskDefinitionEntityToTaskConverter converter) {
         this.repository = repository;
+        this.converter = converter;
     }
 
     @Override
@@ -39,19 +44,7 @@ public class TaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<Task,
 
     @Override
     public Converter<TaskDefinitionEntity, Task> getConverter() {
-        return (taskDefinitionEntity, args) -> {
-            Task task = from(taskDefinitionEntity).convertTo(Task.class);
-            task.setRegion(new Region(taskDefinitionEntity.getRegion().getId()));
-            task.setSaleable(new Saleable(taskDefinitionEntity.getSaleable().getId()));
-
-            Optional<Represent> represent = taskDefinitionEntity.getType() == null
-                    ? Optional.of(Represent.NO_REPRESENT)
-                    : Optional.ofNullable(Represent.valueOf(taskDefinitionEntity.getType().name()));
-
-            task.setRepresent(represent.orElse(Represent.NO_REPRESENT));
-
-            return task;
-        };
+        return converter;
     }
 
     @Override

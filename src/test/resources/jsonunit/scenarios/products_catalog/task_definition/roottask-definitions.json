@@ -1,0 +1,156 @@
+[
+  {
+    "scenery": "Lista de todos os root tasks definitions do sistema",
+    "json": {
+      "items":[
+        {
+          "id":2,
+          "task":{
+            "id":2,
+            "title":"Root One",
+            "description":"Root One description",
+            "quantityDaysToFinish":5,
+            "links":[
+              {
+                "href":"/saleables/2",
+                "rel":"of-saleable"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"of-region"
+              }
+            ]
+          },
+          "links":[
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions",
+              "rel":"children"
+            }
+          ]
+        },
+        {
+          "id":5,
+          "task":{
+            "id":5,
+            "title":"Root Two",
+            "description":"Root Two description",
+            "quantityDaysToFinish":5,
+            "links":[
+              {
+                "href":"/saleables/2",
+                "rel":"of-saleable"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"of-region"
+              }
+            ]
+          },
+          "links":[
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions",
+              "rel":"children"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/saleables/task-definitions/root-task-definitions"
+    }
+  },
+  {
+    "scenery": "Busca por root task definition por ID em rootendpoint",
+    "json": {
+      "item": {
+        "id": 2,
+        "task": {
+          "id": 2,
+          "title": "Root One",
+          "description": "Root One description",
+          "quantityDaysToFinish": 5,
+          "links": [
+            {
+              "href": "/saleables/2",
+              "rel": "of-saleable"
+            },
+            {
+              "href": "/regions/1",
+              "rel": "of-region"
+            }
+          ]
+        },
+        "links": [
+          {
+            "href": "/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions",
+            "rel": "children"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/task-definitions/root-task-definitions/2"
+    }
+  },
+  {
+    "scenery": "Busca de root task definition pelo ID",
+    "json": {
+      "item":{
+        "id":2,
+        "title":"Root One",
+        "description":"Root One description",
+        "quantityDaysToFinish":5,
+        "links":[
+          {
+            "href":"/saleables/2",
+            "rel":"of-saleable"
+          },
+          {
+            "href":"/regions/1",
+            "rel":"of-region"
+          },
+          {
+            "href":"/rs/saleables/task-definitions/root-task-definitions/2",
+            "rel":"is-a-roottask"
+          },
+          {
+            "href":"/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions",
+            "rel":"children"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/task-definitions/2"
+    }
+  },
+  {
+    "scenery": "Busca de pacote por ID",
+    "json": {
+      "item":{
+        "id":4,
+        "name":"Pacote 01",
+        "description":"Descricao do pacote 01",
+        "active":true,
+        "price":8.00,
+        "priceCost":2.00,
+        "links":[
+          {
+            "href":"/rs/saleables/packages/4",
+            "rel":"packages"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/4"
+    }
+  },
+  {
+    "scenery": "Busca de saleable que nao existe",
+    "json": {
+      "uri":"/rs/saleables/9999",
+      "errors":{
+        "messages":[
+          {
+            "message":"Resource not found.",
+            "code":404
+          }
+        ]
+      }
+    }
+  }
+
+]

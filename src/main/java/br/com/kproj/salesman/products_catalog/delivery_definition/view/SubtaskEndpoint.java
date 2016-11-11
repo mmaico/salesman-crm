@@ -6,53 +6,58 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
+import br.com.kproj.salesman.products_catalog.delivery_definition.application.SubTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.RootTaskResourceBuilder;
+import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.SubtaskResourceBuilder;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.Optional;
 
 
-@RestController("rootTaskEndpoinDefinitionModule")
-public class RootTaskEndpoint {
+@RestController("subTaskEndpoinDefinitionModule")
+public class SubtaskEndpoint {
 
-    private RootTaskFacade service;
+    private SubTaskFacade service;
 
-    private RootTaskResourceBuilder builder;
+    private SubtaskResourceBuilder builder;
 
     private HttpServletRequest request;
 
     @Autowired
-    public RootTaskEndpoint (RootTaskResourceBuilder builder, RootTaskFacade service, HttpServletRequest request) {
+    public SubtaskEndpoint(SubtaskResourceBuilder builder, SubTaskFacade service, HttpServletRequest request) {
         this.builder = builder;
         this.service = service;
         this.request = request;
     }
 
-    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions/{roottaskId}/subtask-definitions", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getRootTasksBy() {
+    ResourceItems getSubtasks(@PathVariable Long roottaskId) {
+        RootTask rootTask = new RootTask(roottaskId);
 
-        Page<RootTask> result = service.findAll(Pager.build().withPageSize(10000));
+        Collection<Subtask> result = service.findAll(rootTask);
 
         if(Iterables.isEmpty(result)) {
             throw new NotFoundException();
         }
 
-        return builder.build(result.getContent(), request.getRequestURI());
+        return builder.build(result, request.getRequestURI());
     }
 
-    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions/{rootTaskId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/{subtaskId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItem findOne(@PathVariable Long rootTaskId) {
+    ResourceItem findOne(@PathVariable Long subtaskId) {
 
-        Optional<RootTask> rootTask = service.getOne(rootTaskId);
+        Optional<Subtask> subtask = service.getOne(subtaskId);
 
-        RootTask task = rootTask.orElseThrow(() -> new NotFoundException());
+        Subtask task = subtask.orElseThrow(() -> new NotFoundException());
 
         return builder.build(task, request.getRequestURI());
     }

@@ -4,7 +4,9 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.view.support.
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Represent;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
+import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.RootTaskResource;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.TaskResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.apiconverter.resources.Link;
@@ -21,51 +23,31 @@ import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.creat
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Component
-public class TaskResourceBuilder {
-
-    private static Map<Represent, SelectLink> selectLink = new HashMap<>();
-
-    static {
-        selectLink.put(Represent.ROOTTASK, ((task, context) -> {
-            Link link = Link.createLink("is-a-roottask", "/rs/saleables/task-definitions/root-task-definitions/" + task.getId());
-            context.addLinkConf(TaskResource.class, link);
-        }));
-
-        selectLink.put(Represent.SUBTASK, ((task, context) -> {
-            Link link = Link.createLink("is-a-subtask", "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/" + task.getId());
-            context.addLinkConf(TaskResource.class, link);
-        }));
-
-        selectLink.put(Represent.NO_REPRESENT, ((task, context) -> {}));
-    }
+public class RootTaskResourceBuilder {
 
 
-    public ResourceItem build(Task saleableUnit, String uri) {
-        TaskResource resource = buildItem(saleableUnit);
+    public ResourceItem build(RootTask rootTask, String uri) {
+        RootTaskResource resource = buildItem(rootTask);
 
         return new ResourceItem(resource, uri);
     }
 
-    public ResourceItems build(Collection<Task> saleables, String uri) {
-        List<TaskResource> resources = saleables.stream()
+    public ResourceItems build(Collection<RootTask> saleables, String uri) {
+        List<RootTaskResource> resources = saleables.stream()
                 .map(item -> buildItem(item)).collect(Collectors.toList());
 
         return new ResourceItems(resources, uri);
     }
 
-    public TaskResource buildItem(Task task) {
+    public RootTaskResource buildItem(RootTask task) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
+        Link linkSubtasks = Link.createLink("children", "/rs/saleables/task-definitions/root-task-definitions/" + task.getId() +"/subtask-definitions");
 
-        selectLink.get(task.getRepresent()).select(task, context);
-
-        TaskResource resource = new TaskResource();
+        context.addLinkConf(RootTaskResource.class, linkSubtasks);
+        RootTaskResource resource = new RootTaskResource();
 
         ConverterToResource.convert(task, resource, context);
         return resource;
     }
 
-    private interface SelectLink {
-
-        void select(Task task, ContextArguments context);
-    }
 }

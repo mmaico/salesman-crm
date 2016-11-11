@@ -22,14 +22,11 @@ public class SubTaskServiceImpl extends BaseModelServiceImpl<Subtask> implements
 
     private SubtaskRepository repository;
 
-    private RootTaskRepository rootTaskRepository;
-
     private SubtaskValidator validator;
 
     @Autowired
-    public SubTaskServiceImpl(SubtaskRepository repository, RootTaskRepository rootTaskRepository, SubtaskValidator validator) {
+    public SubTaskServiceImpl(SubtaskRepository repository, SubtaskValidator validator) {
         this.repository = repository;
-        this.rootTaskRepository = rootTaskRepository;
         this.validator = validator;
     }
 
