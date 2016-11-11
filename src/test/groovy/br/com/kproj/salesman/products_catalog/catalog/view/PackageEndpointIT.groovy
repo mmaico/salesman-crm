@@ -24,8 +24,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ClassReference(SaleableEndpoint)
 class PackageEndpointIT extends AbstractIntegrationTest {
 
-    private static final String PACKAGES_CREATED = "/products_catalog/packages-create.json";
-    private static final String PACKAGES_ADDING_SALEABLE = "/products_catalog/packages-adding-saleable.json";
+    private static final String PACKAGES_CREATED = "/products_catalog/catalog/packages-create.json";
+    private static final String PACKAGES_ADDING_SALEABLE = "/products_catalog/catalog/packages-adding-saleable.json";
 
     def MockMvc mockMvc
 

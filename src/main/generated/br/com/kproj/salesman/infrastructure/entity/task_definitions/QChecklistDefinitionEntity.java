@@ -48,7 +48,7 @@ public class QChecklistDefinitionEntity extends EntityPathBase<ChecklistDefiniti
 
     public QChecklistDefinitionEntity(Class<? extends ChecklistDefinitionEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.taskDefinition = inits.isInitialized("taskDefinition") ? new QTaskDefinitionEntity(forProperty("taskDefinition")) : null;
+        this.taskDefinition = inits.isInitialized("taskDefinition") ? new QTaskDefinitionEntity(forProperty("taskDefinition"), inits.get("taskDefinition")) : null;
     }
 
 }

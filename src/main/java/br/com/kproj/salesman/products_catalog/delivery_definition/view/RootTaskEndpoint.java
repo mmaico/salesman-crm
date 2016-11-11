@@ -20,15 +20,15 @@ public class RootTaskEndpoint {
     private RootTaskFacade service;
 
 
-    @ResourceWrapper
-    @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.GET)
-    public @ResponseBody Collection<RootTask> getRootTasksBy(@PathVariable Long saleableId) {
-        Saleable saleable = new Saleable(saleableId);
-
-        Collection<RootTask> rootTasks = service.findAll(saleable);
-
-        return rootTasks;
-    }
+//    @ResourceWrapper
+//    @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.GET)
+//    public @ResponseBody Collection<RootTask> getRootTasksBy(@PathVariable Long saleableId) {
+//        Saleable saleable = new Saleable(saleableId);
+//
+//        Collection<RootTask> rootTasks = service.findAll(saleable);
+//
+//        return rootTasks;
+//    }
 
 
 

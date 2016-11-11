@@ -25,8 +25,7 @@ public class RootTaskResource extends Item {
     @SuperClass
     private TaskResource task;
 
-    private RegionResource region;
-    private SaleableResource saleable;
+
 
 
     public Long getId() {
@@ -35,24 +34,6 @@ public class RootTaskResource extends Item {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Selectable(expression = "of-region", noExpandAnyWay = true)
-    public RegionResource getRegion() {
-        return region;
-    }
-
-    public void setRegion(RegionResource region) {
-        this.region = region;
-    }
-
-    @Selectable(expression = "of-saleable", noExpandAnyWay = true)
-    public SaleableResource getSaleable() {
-        return saleable;
-    }
-
-    public void setSaleable(SaleableResource saleable) {
-        this.saleable = saleable;
     }
 
     @Selectable(expression = "is-a", expandByDefault = true)

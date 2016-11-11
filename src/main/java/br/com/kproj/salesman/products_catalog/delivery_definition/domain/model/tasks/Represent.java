@@ -2,5 +2,5 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 
 
 public enum Represent {
-    ROOT_TASK, SUB_TASK, NO_REPRESENT
+    ROOTTASK, SUBTASK, NO_REPRESENT
 }

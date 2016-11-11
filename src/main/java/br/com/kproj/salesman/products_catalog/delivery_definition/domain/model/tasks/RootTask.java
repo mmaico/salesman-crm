@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks;
 
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,7 @@ import java.util.Optional;
 public class RootTask extends Task {
 
     private List<Subtask> children = Lists.newArrayList();
-    private Saleable saleable;
-    private Region region;
+
 
     @Autowired
     private SubtaskRepository repository;
@@ -40,19 +37,4 @@ public class RootTask extends Task {
         return repository.add(subtask, this);
     }
 
-    public Saleable getSaleable() {
-        return saleable;
-    }
-
-    public void setSaleable(Saleable saleable) {
-        this.saleable = saleable;
-    }
-
-    public Region getRegion() {
-        return region;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
-    }
 }

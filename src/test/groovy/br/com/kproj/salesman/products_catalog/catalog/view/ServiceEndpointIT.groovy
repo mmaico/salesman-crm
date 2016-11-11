@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ClassReference(SaleableEndpoint)
 class ServiceEndpointIT extends AbstractIntegrationTest {
 
-    private static final String PRODUCTS_CREATED = "/products_catalog/services-create.json";
+    private static final String PRODUCTS_CREATED = "/products_catalog/catalog/services-create.json";
 
     def MockMvc mockMvc
 

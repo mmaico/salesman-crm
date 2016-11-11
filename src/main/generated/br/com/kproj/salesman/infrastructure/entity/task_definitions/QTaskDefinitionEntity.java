@@ -18,6 +18,8 @@ public class QTaskDefinitionEntity extends EntityPathBase<TaskDefinitionEntity> 
 
     private static final long serialVersionUID = 308373844L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QTaskDefinitionEntity taskDefinitionEntity = new QTaskDefinitionEntity("taskDefinitionEntity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
@@ -28,20 +30,36 @@ public class QTaskDefinitionEntity extends EntityPathBase<TaskDefinitionEntity> 
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = createNumber("quantityDaysTofinishAfertSignedContract", Integer.class);
+    public final NumberPath<Integer> quantityDaysToFinish = createNumber("quantityDaysToFinish", Integer.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
+
+    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleable;
 
     public final StringPath title = createString("title");
 
+    public final EnumPath<TaskDefinitionTypeEntity> type = createEnum("type", TaskDefinitionTypeEntity.class);
+
     public QTaskDefinitionEntity(String variable) {
-        super(TaskDefinitionEntity.class, forVariable(variable));
+        this(TaskDefinitionEntity.class, forVariable(variable), INITS);
     }
 
     public QTaskDefinitionEntity(Path<? extends TaskDefinitionEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QTaskDefinitionEntity(PathMetadata metadata) {
-        super(TaskDefinitionEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QTaskDefinitionEntity(PathMetadata metadata, PathInits inits) {
+        this(TaskDefinitionEntity.class, metadata, inits);
+    }
+
+    public QTaskDefinitionEntity(Class<? extends TaskDefinitionEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
+        this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;
     }
 
 }

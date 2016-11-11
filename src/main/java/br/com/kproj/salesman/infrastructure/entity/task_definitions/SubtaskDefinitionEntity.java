@@ -1,11 +1,13 @@
 package br.com.kproj.salesman.infrastructure.entity.task_definitions;
 
 
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="subtask_definitions")
-public class SubtaskDefinitionEntity {
+public class SubtaskDefinitionEntity extends Identifiable {
 
     @Id
     private Long id;

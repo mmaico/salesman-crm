@@ -6,8 +6,6 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.SaleableRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskToSaleable;
@@ -15,7 +13,6 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
@@ -35,16 +32,6 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
         this.validator = validator;
     }
 
-
-    @Override
-    public Collection<RootTask> findAll(Saleable saleable) {
-        return repository.findAll(saleable);
-    }
-
-    @Override
-    public Collection<RootTask> findAll(Saleable saleable, Region region) {
-        return repository.findAll(saleable, region);
-    }
 
     @Override
     public void delete(RootTask task) {

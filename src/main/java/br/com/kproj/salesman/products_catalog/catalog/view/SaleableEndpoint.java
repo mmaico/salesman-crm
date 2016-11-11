@@ -9,8 +9,6 @@ import br.com.kproj.salesman.products_catalog.catalog.application.SaleableUnitFa
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableBuilder;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.builders.SaleableResourceBuilder;
-import br.com.kproj.salesman.products_catalog.catalog.view.support.builders.SaleableStrategyBuilder;
-import br.com.kproj.salesman.products_catalog.catalog.view.support.dtos.SaleableDTO;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -78,9 +76,16 @@ public class SaleableEndpoint {
     @ResourceWrapper
     @RequestMapping(value = "/rs/saleables", method = RequestMethod.PUT)
     public @ResponseBody
-    Optional<SaleableUnit> update(@Valid @RequestBody SaleableDTO saleableDTO) {
-        SaleableUnit saleableUnit = SaleableStrategyBuilder.build(saleableDTO);
-        Optional<SaleableUnit> saleableSaved = service.register(saleableUnit);
+    Optional<SaleableUnit> update(@Valid @RequestBody SaleableResource resource) {
+
+        SaleableUnit saleable = SaleableBuilder.createSaleable()
+                .withPrice(resource.getPrice())
+                .withPriceCost(resource.getPriceCost())
+                .withActive(resource.getActive())
+                .withName(resource.getName())
+                .withDescription(resource.getDescription()).build();
+
+        Optional<SaleableUnit> saleableSaved = service.register(saleable);
 
         return saleableSaved;
     }

@@ -17,6 +17,9 @@ public class Task extends ModelIdentifiable {
     private String description;
     private Integer quantityDaysToFinish;
     private List<Checklist> checklists = Lists.newArrayList();
+    private Saleable saleable;
+    private Region region;
+
     private Represent represent;
 
     @Override
@@ -66,5 +69,21 @@ public class Task extends ModelIdentifiable {
 
     public void setRepresent(Represent represent) {
         this.represent = represent;
+    }
+
+    public Saleable getSaleable() {
+        return saleable;
+    }
+
+    public void setSaleable(Saleable saleable) {
+        this.saleable = saleable;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }

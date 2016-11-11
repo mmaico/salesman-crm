@@ -22,26 +22,11 @@ public class QRootTaskDefinitionEntity extends EntityPathBase<RootTaskDefinition
 
     public static final QRootTaskDefinitionEntity rootTaskDefinitionEntity = new QRootTaskDefinitionEntity("rootTaskDefinitionEntity");
 
-    public final QTaskDefinitionEntity _super = new QTaskDefinitionEntity(this);
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    //inherited
-    public final ListPath<ChecklistDefinitionEntity, QChecklistDefinitionEntity> checklist = _super.checklist;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    //inherited
-    public final StringPath description = _super.description;
-
-    //inherited
-    public final NumberPath<Long> id = _super.id;
-
-    //inherited
-    public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = _super.quantityDaysTofinishAfertSignedContract;
-
-    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
-
-    public final br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity saleable;
-
-    //inherited
-    public final StringPath title = _super.title;
+    public final QTaskDefinitionEntity taskDefinition;
 
     public QRootTaskDefinitionEntity(String variable) {
         this(RootTaskDefinitionEntity.class, forVariable(variable), INITS);
@@ -61,8 +46,7 @@ public class QRootTaskDefinitionEntity extends EntityPathBase<RootTaskDefinition
 
     public QRootTaskDefinitionEntity(Class<? extends RootTaskDefinitionEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
-        this.saleable = inits.isInitialized("saleable") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleable")) : null;
+        this.taskDefinition = inits.isInitialized("taskDefinition") ? new QTaskDefinitionEntity(forProperty("taskDefinition"), inits.get("taskDefinition")) : null;
     }
 
 }

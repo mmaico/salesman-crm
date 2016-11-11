@@ -22,24 +22,13 @@ public class QSubtaskDefinitionEntity extends EntityPathBase<SubtaskDefinitionEn
 
     public static final QSubtaskDefinitionEntity subtaskDefinitionEntity = new QSubtaskDefinitionEntity("subtaskDefinitionEntity");
 
-    public final QTaskDefinitionEntity _super = new QTaskDefinitionEntity(this);
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    //inherited
-    public final ListPath<ChecklistDefinitionEntity, QChecklistDefinitionEntity> checklist = _super.checklist;
-
-    //inherited
-    public final StringPath description = _super.description;
-
-    //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QRootTaskDefinitionEntity parent;
 
-    //inherited
-    public final NumberPath<Integer> quantityDaysTofinishAfertSignedContract = _super.quantityDaysTofinishAfertSignedContract;
-
-    //inherited
-    public final StringPath title = _super.title;
+    public final QTaskDefinitionEntity taskDefinition;
 
     public QSubtaskDefinitionEntity(String variable) {
         this(SubtaskDefinitionEntity.class, forVariable(variable), INITS);
@@ -60,6 +49,7 @@ public class QSubtaskDefinitionEntity extends EntityPathBase<SubtaskDefinitionEn
     public QSubtaskDefinitionEntity(Class<? extends SubtaskDefinitionEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.parent = inits.isInitialized("parent") ? new QRootTaskDefinitionEntity(forProperty("parent"), inits.get("parent")) : null;
+        this.taskDefinition = inits.isInitialized("taskDefinition") ? new QTaskDefinitionEntity(forProperty("taskDefinition"), inits.get("taskDefinition")) : null;
     }
 
 }

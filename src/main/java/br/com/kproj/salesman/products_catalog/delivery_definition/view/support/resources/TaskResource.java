@@ -4,6 +4,7 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.view.support.
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
+import br.com.uol.rest.infrastructure.annotations.Selectable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -22,7 +23,8 @@ public class TaskResource extends Item {
     private String title;
     private String description;
     private Integer quantityDaysToFinish;
-
+    private RegionResource region;
+    private SaleableResource saleable;
 
     public Long getId() {
         return id;
@@ -55,5 +57,24 @@ public class TaskResource extends Item {
     public void setQuantityDaysToFinish(Integer quantityDaysToFinish) {
         this.quantityDaysToFinish = quantityDaysToFinish;
     }
+
+    @Selectable(expression = "of-region", externalLink = true)
+    public RegionResource getRegion() {
+        return region;
+    }
+
+    public void setRegion(RegionResource region) {
+        this.region = region;
+    }
+
+    @Selectable(expression = "of-saleable", externalLink = true)
+    public SaleableResource getSaleable() {
+        return saleable;
+    }
+
+    public void setSaleable(SaleableResource saleable) {
+        this.saleable = saleable;
+    }
+
 
 }

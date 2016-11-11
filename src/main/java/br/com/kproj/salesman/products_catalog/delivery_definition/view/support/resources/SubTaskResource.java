@@ -47,7 +47,7 @@ public class SubTaskResource extends Item {
         this.task = task;
     }
 
-    @Selectable(expression = "parentOf")
+    @Selectable(expression = "parent-of")
     public RootTaskResource getParent() {
         return parent;
     }

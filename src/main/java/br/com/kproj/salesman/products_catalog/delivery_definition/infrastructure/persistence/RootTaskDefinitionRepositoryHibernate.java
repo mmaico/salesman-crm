@@ -1,14 +1,11 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence;
 
-import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.RootTaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.SubtaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
@@ -17,10 +14,8 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.trex.clone.BusinessModelClone.from;
 
@@ -39,21 +34,6 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
         this.subtaskRepository = subtaskRepository;
     }
 
-    @Override
-    public Collection<RootTask> findAll(Saleable saleable) {
-        List<RootTaskDefinitionEntity> result = repository.findRootTask(new SaleableUnitEntity(saleable.getId()));
-
-        return result.stream().map(item -> getConverter().convert(item))
-                    .collect(Collectors.toList());
-    }
-
-    @Override
-    public Collection<RootTask> findAll(Saleable saleable, Region region) {
-        List<RootTaskDefinitionEntity> result = repository.findRootTask(new SaleableUnitEntity(saleable.getId()), new OperationRegionEntity(region.getId()));
-
-        return result.stream().map(item -> getConverter().convert(item))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public void delete(RootTask task) {

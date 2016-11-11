@@ -1,0 +1,169 @@
+[
+  {
+    "scenery": "Lista de todos os task definitions do sistema",
+    "json": {
+      "items":[
+        {
+          "id":1,
+          "title":"SubTask One",
+          "description":"Subtask One description",
+          "quantityDaysToFinish":3,
+          "links":[
+            {
+              "href":"/saleables/2",
+              "rel":"of-saleable"
+            },
+            {
+              "href":"/regions/1",
+              "rel":"of-region"
+            },
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/1",
+              "rel":"is-a-subtask"
+            }
+          ]
+        },
+        {
+          "id":2,
+          "title":"Root One",
+          "description":"Root One description",
+          "quantityDaysToFinish":5,
+          "links":[
+            {
+              "href":"/saleables/2",
+              "rel":"of-saleable"
+            },
+            {
+              "href":"/regions/1",
+              "rel":"of-region"
+            },
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/2",
+              "rel":"is-a-roottask"
+            },
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions",
+              "rel":"children"
+            }
+          ]
+        },
+        {
+          "id":3,
+          "title":"SubTask Three",
+          "description":"Subtask Three description",
+          "quantityDaysToFinish":2,
+          "links":[
+            {
+              "href":"/saleables/2",
+              "rel":"of-saleable"
+            },
+            {
+              "href":"/regions/1",
+              "rel":"of-region"
+            },
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/3",
+              "rel":"is-a-subtask"
+            }
+          ]
+        },
+        {
+          "id":4,
+          "title":"SubTask Four",
+          "description":"Subtask Four description",
+          "quantityDaysToFinish":6,
+          "links":[
+            {
+              "href":"/saleables/2",
+              "rel":"of-saleable"
+            },
+            {
+              "href":"/regions/1",
+              "rel":"of-region"
+            },
+            {
+              "href":"/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/4",
+              "rel":"is-a-subtask"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/saleables/2/task-definitions"
+    }
+  },
+  {
+    "scenery": "Busca de produto por ID",
+    "json": {
+      "item":{
+        "id":1,
+        "name":"Produto 01",
+        "description":"Descricao do produto 01",
+        "active":true,
+        "price":20.00,
+        "priceCost":5.00,
+        "links":[
+          {
+            "href":"/rs/saleables/products/1",
+            "rel":"products"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/1"
+    }
+  },
+  {
+    "scenery": "Busca de servico por ID",
+    "json": {
+      "item":{
+        "id":2,
+        "name":"Servico 01",
+        "description":"Descricao do servico 01",
+        "active":true,
+        "price":10.00,
+        "priceCost":3.00,
+        "links":[
+          {
+            "href":"/rs/saleables/services/2",
+            "rel":"services"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/2"
+    }
+  },
+  {
+    "scenery": "Busca de pacote por ID",
+    "json": {
+      "item":{
+        "id":4,
+        "name":"Pacote 01",
+        "description":"Descricao do pacote 01",
+        "active":true,
+        "price":8.00,
+        "priceCost":2.00,
+        "links":[
+          {
+            "href":"/rs/saleables/packages/4",
+            "rel":"packages"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/4"
+    }
+  },
+  {
+    "scenery": "Busca de saleable que nao existe",
+    "json": {
+      "uri":"/rs/saleables/9999",
+      "errors":{
+        "messages":[
+          {
+            "message":"Resource not found.",
+            "code":404
+          }
+        ]
+      }
+    }
+  }
+
+]

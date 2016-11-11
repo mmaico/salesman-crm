@@ -13,13 +13,14 @@ import org.springframework.web.context.WebApplicationContext
 import spock.lang.Stepwise
 import spock.lang.Unroll
 
+import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @Stepwise
 @ClassReference(RootTaskEndpoint)
-class RootTaskEndpointIT extends AbstractIntegrationTest {
+class TaskEndpointIT extends AbstractIntegrationTest {
 
-    private static final String PRODUCTS_CREATED = "/products_catalog/services-create.json";
+    private static final String TASK_LIST = "/products_catalog/task_definition/task-definition-list.json";
 
     def MockMvc mockMvc
 
@@ -31,7 +32,7 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
 
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
-        SceneryLoaderHelper.load(PRODUCTS_CREATED)
+        SceneryLoaderHelper.load(TASK_LIST)
     }
 
     @Unroll
@@ -39,12 +40,12 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
 
         def mvcResult = mockMvc.perform(get("/rs/saleables/2/task-definitions")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
+        def jsonExpected = scenery("Lista de todos os task definitions do sistema").json
 
         def jsonResult = mvcResult.getResponse().getContentAsString()
-        def taskDefinitions = new JsonSlurper().parseText(jsonResult)
 
         expect:
-            taskDefinitions.size() == 1
+            jsonResult == jsonExpected
     }
 
 }
