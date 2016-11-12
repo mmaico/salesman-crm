@@ -54,7 +54,7 @@ public class SubtaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<Su
 
     @Override
     public BaseRepositoryLegacy<SubtaskDefinitionEntity, Long> getRepository() {
-        return null;
+        return repository;
     }
 
     @Override

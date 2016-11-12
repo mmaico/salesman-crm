@@ -38,9 +38,9 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should find all subtasks definitions by roottask in Endpoint"() {
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/2")
+        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Lista de todos as subtasks definitions de um roottask").json
+        def jsonExpected = scenery("Lista de todos as subtasks definitions de um roottask no subtaskEndpoint").json
 
         def jsonResult = mvcResult.response.getContentAsString()
         def status = mvcResult.response.status
@@ -51,13 +51,13 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find one root task definitions by ID"() {
+    def "Should find one sub task definitions by ID using SubtaskEnpoint"() {
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/2")
+        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/4")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Busca por root task definition por ID em rootendpoint").json
+        def jsonExpected = scenery("Busca por sub task definition pelo id no endpoint subtask").json
 
-        def jsonResult = mvcResult.getResponse().getContentAsString()
+        def jsonResult = mvcResult.response.getContentAsString()
         def status = mvcResult.response.status
 
         expect:

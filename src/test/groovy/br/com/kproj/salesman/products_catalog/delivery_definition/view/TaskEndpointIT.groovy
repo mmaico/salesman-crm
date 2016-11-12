@@ -63,12 +63,12 @@ class TaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find one root task by ID"() {
+    def "Should find one root task by ID in TaskEndpoint"() {
 
         def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/2")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def jsonExpected = scenery("Busca de root task definition pelo ID").json
+        def jsonExpected = scenery("Busca de root task definition pelo ID usando o TaskEndpoint").json
 
         def jsonResult = mvcResult.getResponse().getContentAsString()
 

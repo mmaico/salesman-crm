@@ -11,11 +11,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
         "id",
-        "title",
-        "description",
-        "quantityDaysToFinish",
-        "region",
-        "saleable",
+        "task",
+        "parent",
         "links"
 })
 @ResourceItem(name="subtask-definitions", modelReference = Subtask.class, parent = RootTaskResource.class)
@@ -47,7 +44,7 @@ public class SubTaskResource extends Item {
         this.task = task;
     }
 
-    @Selectable(expression = "parent-of")
+    @Selectable(expression = "child-of")
     public RootTaskResource getParent() {
         return parent;
     }

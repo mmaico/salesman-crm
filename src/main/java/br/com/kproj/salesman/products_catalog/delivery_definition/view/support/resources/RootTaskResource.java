@@ -12,8 +12,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
         "id",
         "task",
-        "region",
-        "saleable",
         "links"
 })
 @ResourceItem(name="root-tasks-definitions", modelReference = RootTask.class, parent = SaleableResource.class)
@@ -24,9 +22,6 @@ public class RootTaskResource extends Item {
 
     @SuperClass
     private TaskResource task;
-
-
-
 
     public Long getId() {
         return id;

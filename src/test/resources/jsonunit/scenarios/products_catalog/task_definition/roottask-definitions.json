@@ -1,6 +1,6 @@
 [
   {
-    "scenery": "Lista de todos os root tasks definitions do sistema",
+    "scenery": "Lista de todos os root tasks definitions do sistema no RootTaskEndpoint",
     "json": {
       "items":[
         {
@@ -12,12 +12,12 @@
             "quantityDaysToFinish":5,
             "links":[
               {
-                "href":"/saleables/2",
-                "rel":"of-saleable"
-              },
-              {
                 "href":"/regions/1",
                 "rel":"of-region"
+              },
+              {
+                "href":"/saleables/2",
+                "rel":"of-saleable"
               }
             ]
           },
@@ -37,12 +37,12 @@
             "quantityDaysToFinish":5,
             "links":[
               {
-                "href":"/saleables/2",
-                "rel":"of-saleable"
-              },
-              {
                 "href":"/regions/1",
                 "rel":"of-region"
+              },
+              {
+                "href":"/saleables/2",
+                "rel":"of-saleable"
               }
             ]
           },
@@ -69,12 +69,12 @@
           "quantityDaysToFinish": 5,
           "links": [
             {
-              "href": "/saleables/2",
-              "rel": "of-saleable"
-            },
-            {
               "href": "/regions/1",
               "rel": "of-region"
+            },
+            {
+              "href": "/saleables/2",
+              "rel": "of-saleable"
             }
           ]
         },

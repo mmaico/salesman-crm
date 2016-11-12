@@ -32,8 +32,8 @@ public abstract class BaseModelServiceImpl<T extends ModelIdentifiable> implemen
     	if (id == null) {
     		return Optional.empty();
     	}
-    	
-    	return getRepository().findOne(id);
+
+        return getRepository().findOne(id);
     }
 
     public abstract BaseRepository<T, Long> getRepository();

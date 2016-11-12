@@ -8,6 +8,7 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.RootTaskResource;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.SubTaskResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
+import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;
 import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import org.springframework.stereotype.Component;
@@ -38,9 +39,11 @@ public class SubtaskResourceBuilder {
 
     public SubTaskResource buildItem(Subtask task) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
-        //Link linkSubtasks = Link.createLink("paren", "/rs/saleables/task-definitions/root-task-definitions/" + task.getId() +"/subtask-definitions");
+        Link link = Link.createLink("child-of", "/rs/saleables/task-definitions/root-task-definitions/" + task.getParent().getId());
 
-        //context.addLinkConf(RootTaskResource.class, linkSubtasks);
+        context.addLinkConf(SubTaskResource.class, link);
+        context.addLinkConf(SubTaskResource.class, LinkRemoveConfig.createLinkRemoveConfig("child-of"));
+
         SubTaskResource resource = new SubTaskResource();
 
         ConverterToResource.convert(task, resource, context);

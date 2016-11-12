@@ -40,7 +40,7 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
 
         def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Lista de todos os root tasks definitions do sistema").json
+        def jsonExpected = scenery("Lista de todos os root tasks definitions do sistema no RootTaskEndpoint").json
 
         def jsonResult = mvcResult.response.getContentAsString()
         def status = mvcResult.response.status
