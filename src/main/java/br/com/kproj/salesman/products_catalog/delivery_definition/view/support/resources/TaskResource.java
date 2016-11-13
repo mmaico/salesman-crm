@@ -76,5 +76,8 @@ public class TaskResource extends Item {
         this.saleable = saleable;
     }
 
+    public Long getRegionId() {
+        return region == null ? null : region.getId();
+    }
 
 }

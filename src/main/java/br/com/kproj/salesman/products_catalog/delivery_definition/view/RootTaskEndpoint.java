@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.RootTaskResourceBuilder;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;

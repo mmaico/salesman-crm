@@ -1,0 +1,44 @@
+[
+  {
+    "scenery": "Criando uma nova task definition com todos os dados validos",
+    "json": {
+        "title":"SubTask 30",
+        "description":"Subtask One description 30",
+        "quantityDaysToFinish":3,
+        "region": {
+          "id": 4
+        }
+      }
+  },
+  {
+    "scenery": "Criando uma nova task definition com region nao existente",
+    "json": {
+      "title":"SubTask 30",
+      "description":"Subtask One description 30",
+      "quantityDaysToFinish":3,
+      "region": {
+        "id": 6666
+      }
+    }
+  },
+  {
+    "scenery": "Criando uma nova task definition sem o titulo",
+    "json": {
+      "id": 4,
+      "description":"Subtask One description 30",
+      "quantityDaysToFinish":3,
+      "region": {
+        "id": 4
+      }
+    }
+  },
+  {
+    "scenery": "Criando uma nova task definition somente com os campos obrigatorios",
+    "json": {
+      "title":"SubTask 30",
+      "region": {
+        "id": 4
+      }
+    }
+  }
+]

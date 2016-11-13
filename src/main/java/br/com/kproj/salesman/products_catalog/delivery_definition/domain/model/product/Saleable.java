@@ -1,8 +1,7 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product;
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskRepository;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,12 +2,13 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructur
 
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.RootTaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.SubtaskDefinitionEntity;
+import br.com.kproj.salesman.infrastructure.entity.task_definitions.TaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.SubtaskRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.SubtaskDefinitionRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.translate.SubtaskDefinitionEntityToSubTaskConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,15 @@ public class SubtaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<Su
 
     @Override
     public Optional<Subtask> add(Subtask subtask, RootTask task) {
-        return null;
+
+        SubtaskDefinitionEntity entity = new SubtaskDefinitionEntity();
+        entity.setId(subtask.getId());
+        entity.setParent(new RootTaskDefinitionEntity(task.getId()));
+        entity.setTaskDefinition(new TaskDefinitionEntity(subtask.getId()));
+
+        SubtaskDefinitionEntity result = repository.save(entity);
+
+        return Optional.of(getConverter().convert(result));
     }
 
     @Override

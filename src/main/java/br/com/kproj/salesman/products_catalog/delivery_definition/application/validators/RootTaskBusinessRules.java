@@ -4,9 +4,9 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.SaleableRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.RegionRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskToSaleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskValidator;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskToSaleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

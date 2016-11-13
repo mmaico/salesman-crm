@@ -3,9 +3,7 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.view.support.
 
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Subtask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.RootTaskResource;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.SubTaskResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources;
 
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;

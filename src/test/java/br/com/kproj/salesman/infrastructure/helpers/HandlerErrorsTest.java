@@ -22,7 +22,7 @@ public class HandlerErrorsTest {
 
     @Test
     public void shouldThrowExceptionWithErrorsInContent() {
-        Set<String> errors = new HashSet<String>();
+        Set<String> errors = new HashSet<>();
         errors.add("errors.error.one");
         errors.add("errors.error.two");
         Boolean result = Boolean.FALSE;

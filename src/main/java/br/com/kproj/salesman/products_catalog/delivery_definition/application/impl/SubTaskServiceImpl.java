@@ -5,8 +5,11 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.SubTaskFacade;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.SaleableRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.*;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskToRootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +50,7 @@ public class SubTaskServiceImpl extends BaseModelServiceImpl<Subtask> implements
     @Override
     public Optional<Subtask> register(SubtaskToRootTask subtaskToRootTask) {
         validator.checkRules(subtaskToRootTask);
+
         RootTask rootTask = subtaskToRootTask.getAsRootTask();
         return rootTask.addSubTask(subtaskToRootTask.getSubtask());
     }

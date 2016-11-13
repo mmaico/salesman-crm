@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface TaskRepository extends BaseRepository<Task, Long> {
 
@@ -14,5 +15,8 @@ public interface TaskRepository extends BaseRepository<Task, Long> {
 
     Collection<Task> findAll(Saleable saleable);
 
+    Optional<Task> create(TaskToSaleable taskToSaleable);
+
+    Boolean hasSpecialization(Long id);
 
 }

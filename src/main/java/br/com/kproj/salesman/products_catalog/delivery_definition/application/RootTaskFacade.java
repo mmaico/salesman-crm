@@ -2,8 +2,8 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.application;
 
 
 import br.com.kproj.salesman.infrastructure.service.ModelFacade;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.RootTaskToSaleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskToSaleable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

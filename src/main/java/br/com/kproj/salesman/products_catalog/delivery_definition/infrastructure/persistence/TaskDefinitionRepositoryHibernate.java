@@ -6,10 +6,9 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Represent;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskRepository;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskToSaleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.springdata.TaskDefinitionRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence.translate.TaskDefinitionEntityToTaskConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +52,20 @@ public class TaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<Task,
         List<Task> tasks = entities.stream().map(entity -> getConverter().convert(entity))
                 .collect(Collectors.toList());
         return tasks;
+    }
+
+    @Override
+    public Optional<Task> create(TaskToSaleable taskToSaleable) {
+        TaskDefinitionEntity taskDefinitionEntity = from(taskToSaleable.getTask()).convertTo(TaskDefinitionEntity.class);
+        taskDefinitionEntity.setSaleable(new SaleableUnitEntity(taskToSaleable.getSaleableId()));
+
+        TaskDefinitionEntity entitySaved = repository.save(taskDefinitionEntity);
+
+        return Optional.of(getConverter().convert(entitySaved));
+    }
+
+    @Override
+    public Boolean hasSpecialization(Long id) {
+        return repository.findOne(id).getType() != null;
     }
 }

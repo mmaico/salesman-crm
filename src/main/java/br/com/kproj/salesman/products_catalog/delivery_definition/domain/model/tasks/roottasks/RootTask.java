@@ -1,6 +1,9 @@
-package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks;
+package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks;
 
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskRepository;
 import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;

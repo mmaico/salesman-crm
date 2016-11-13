@@ -6,14 +6,20 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.TaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.TaskResourceBuilder;
+import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.TaskResource;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Optional;
+
+import static br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskBuilder.createTask;
+import static br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskToSaleable.createTaskToSaleable;
 
 
 @RestController("taskEndpoinDefinitionModule")
@@ -40,6 +46,23 @@ public class TaskEndpoint {
         Collection<Task> rootTasks = service.findAll(saleable);
 
         return builder.build(rootTasks, request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.POST)
+    public @ResponseBody
+    ResourceItem create(@PathVariable Long saleableId, @RequestBody TaskResource resource) {
+
+        Task task = createTask()
+                .withDescription(resource.getDescription())
+                .withQuantity(resource.getQuantityDaysToFinish())
+                .withTitle(resource.getTitle())
+                .withRegion(new Region(resource.getRegionId()))
+                .build();
+
+        Optional<Task> taskCreated = service.register(createTaskToSaleable(saleableId, task));
+
+        return builder.build(taskCreated.get(), request.getRequestURI());
     }
 
     @RequestMapping(value = "/rs/saleables/task-definitions/{taskId}", method = RequestMethod.GET)

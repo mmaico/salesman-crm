@@ -30,7 +30,7 @@ public class TaskDefinitionEntity extends Identifiable {
 
     @OneToMany(mappedBy = "taskDefinition")
     @Cascade(CascadeType.DELETE)
-    private List<ChecklistDefinitionEntity> checklist;
+    private List<ChecklistDefinitionEntity> checklists;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
@@ -74,12 +74,12 @@ public class TaskDefinitionEntity extends Identifiable {
         this.quantityDaysToFinish = quantityDaysToFinish;
     }
 
-    public List<ChecklistDefinitionEntity> getChecklist() {
-        return checklist;
+    public List<ChecklistDefinitionEntity> getChecklists() {
+        return checklists;
     }
 
-    public void setChecklist(List<ChecklistDefinitionEntity> checklist) {
-        this.checklist = checklist;
+    public void setChecklists(List<ChecklistDefinitionEntity> checklists) {
+        this.checklists = checklists;
     }
 
     @Override
