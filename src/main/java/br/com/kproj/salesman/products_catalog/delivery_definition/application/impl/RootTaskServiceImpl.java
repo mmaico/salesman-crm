@@ -5,10 +5,8 @@ import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskToSaleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,11 +43,10 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
     }
 
     @Override
-    public Optional<RootTask> register(RootTaskToSaleable taskToSaleable) {
-        validator.checkRules(taskToSaleable);
-        Saleable saleable = taskToSaleable.getAsASaleable();
+    public Optional<RootTask> register(RootTask task) {
+        validator.checkRules(task);
 
-        return saleable.addRootTask(taskToSaleable.getTask());
+        return task.makeSpecialization();
     }
 
     @Override

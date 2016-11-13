@@ -7,14 +7,22 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskBuilder;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskToRootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.RootTaskResourceBuilder;
+import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.RootTaskResource;
+import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.SubTaskResource;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
+
+import static br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskBuilder.createSubtask;
 
 
 @RestController("rootTaskEndpoinDefinitionModule")
@@ -57,6 +65,16 @@ public class RootTaskEndpoint {
         return builder.build(task, request.getRequestURI());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/rs/saleables/task-definitions/{taskDefinitionId}/root-task-definitions", method = RequestMethod.POST)
+    public @ResponseBody
+    ResourceItem create(@PathVariable Long taskDefinitionId) {
 
+        RootTask rootTask = RootTaskBuilder.createRootTask(taskDefinitionId).build();
+
+        Optional<RootTask> rootTaskCreated = service.register(rootTask);
+
+        return builder.build(rootTaskCreated.get(), request.getRequestURI());
+    }
 
 }

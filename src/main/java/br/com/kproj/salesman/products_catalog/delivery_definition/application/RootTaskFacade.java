@@ -13,7 +13,7 @@ public interface RootTaskFacade extends ModelFacade<RootTask> {
 
     void delete(RootTask task);
 
-    Optional<RootTask> register(RootTaskToSaleable taskToSaleable);
+    Optional<RootTask> register(RootTask task);
 
     Page<RootTask> findAll(Pageable page);
 }

@@ -1,11 +1,11 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructure.persistence;
 
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.RootTaskDefinitionEntity;
+import br.com.kproj.salesman.infrastructure.entity.task_definitions.TaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.*;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskRepository;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
@@ -46,12 +46,12 @@ public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<R
         repository.delete(new RootTaskDefinitionEntity(task.getId()));
     }
 
-    @Override
-    public Optional<RootTask> add(RootTask task, Saleable saleable) {
-        task.setSaleable(saleable);
-        RootTaskDefinitionEntity taskTemplateToSave = from(task).convertTo(RootTaskDefinitionEntity.class);
-        RootTaskDefinitionEntity taskTemplateSaved = repository.save(taskTemplateToSave);
-        return Optional.ofNullable(getConverter().convert(taskTemplateSaved));
+    public Optional<RootTask> save(RootTask entity) {
+        RootTaskDefinitionEntity rootTaskEntity = new RootTaskDefinitionEntity();
+        rootTaskEntity.setTaskDefinition(new TaskDefinitionEntity(entity.getId()));
+        rootTaskEntity.setId(entity.getId());
+
+        return Optional.of(getConverter().convert(repository.save(rootTaskEntity)));
     }
 
     @Override

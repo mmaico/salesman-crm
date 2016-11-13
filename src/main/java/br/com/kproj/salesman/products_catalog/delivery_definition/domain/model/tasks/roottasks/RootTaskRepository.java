@@ -10,6 +10,5 @@ public interface RootTaskRepository extends BaseRepository<RootTask, Long> {
 
     void delete(RootTask task);
 
-    Optional<RootTask> add(RootTask task, Saleable saleable);
 
 }

@@ -5,5 +5,5 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 
 public interface RootTaskValidator {
 
-    void checkRules(RootTaskToSaleable taskToSaleable);
+    void checkRules(RootTask rootTask);
 }

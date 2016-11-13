@@ -18,7 +18,10 @@ public class RootTask extends Task {
 
 
     @Autowired
-    private SubtaskRepository repository;
+    private SubtaskRepository subtaskRepository;
+
+    @Autowired
+    private RootTaskRepository repository;
 
     public RootTask() {
         AutowireHelper.autowire(this);
@@ -26,6 +29,10 @@ public class RootTask extends Task {
     public RootTask(Long id) {
         this();
         this.setId(id);
+    }
+
+    public Optional<RootTask> makeSpecialization() {
+        return repository.save(this);
     }
 
     public List<Subtask> getChildren() {
@@ -37,7 +44,7 @@ public class RootTask extends Task {
     }
 
     public Optional<Subtask> addSubTask(Subtask subtask) {
-        return repository.add(subtask, this);
+        return subtaskRepository.add(subtask, this);
     }
 
 }
