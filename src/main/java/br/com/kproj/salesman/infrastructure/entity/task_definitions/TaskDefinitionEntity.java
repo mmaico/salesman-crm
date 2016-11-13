@@ -29,7 +29,6 @@ public class TaskDefinitionEntity extends Identifiable {
     private Integer quantityDaysToFinish;
 
     @OneToMany(mappedBy = "taskDefinition")
-    @Cascade(CascadeType.DELETE)
     private List<ChecklistDefinitionEntity> checklists;
 
     @Enumerated(EnumType.STRING)

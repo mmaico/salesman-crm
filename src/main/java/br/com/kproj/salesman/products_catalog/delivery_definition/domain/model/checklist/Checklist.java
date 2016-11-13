@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import com.trex.shared.annotations.Model;
 
 @Model
@@ -8,6 +9,7 @@ public class Checklist extends ModelIdentifiable {
 
     private Long id;
     private String name;
+    private Task task;
 
     @Override
     public Long getId() {
@@ -24,5 +26,13 @@ public class Checklist extends ModelIdentifiable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

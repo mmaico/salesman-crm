@@ -1,0 +1,79 @@
+[
+  {
+    "scenery": "Lista de todos as checklist definitions de uma task definition",
+    "json": {
+      "items":[
+        {
+          "id":1,
+          "name":"Checklist one Task 2",
+          "links":[
+            {
+              "href":"/saleables/task-definitions/2",
+              "rel":"of-task"
+            }
+          ]
+        },
+        {
+          "id":2,
+          "name":"Checklist Two Task 2",
+          "links":[
+            {
+              "href":"/saleables/task-definitions/2",
+              "rel":"of-task"
+            }
+          ]
+        },
+        {
+          "id":3,
+          "name":"Checklist Three Task 2",
+          "links":[
+            {
+              "href":"/saleables/task-definitions/2",
+              "rel":"of-task"
+            }
+          ]
+        },
+        {
+          "id":4,
+          "name":"Checklist Four Task 2",
+          "links":[
+            {
+              "href":"/saleables/task-definitions/2",
+              "rel":"of-task"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/saleables/task-definitions/2/checklist-definitions"
+    }
+  },
+  {
+    "scenery": "Busca por uma checklist definition pelo id",
+    "json": {
+      "item":{
+        "id":4,
+        "name":"Checklist Four Task 2",
+        "links":[
+          {
+            "href":"/saleables/task-definitions/2",
+            "rel":"of-task"
+          }
+        ]
+      },
+      "uri":"/rs/saleables/task-definitions/checklist-definitions/4"
+    }
+  },
+  {
+    "scenery": "Criar uma checklist com todos os dados",
+    "json": {
+        "name":"Checklist Four Task 2"
+    }
+  },
+  {
+    "scenery": "Criar uma checklist sem o nome",
+    "json": {
+
+    }
+  }
+
+]

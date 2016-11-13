@@ -22,6 +22,11 @@ public class Task extends ModelIdentifiable {
 
     private Represent represent;
 
+    public Task(){}
+    public Task(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -107,6 +107,15 @@
     <subtask_definitions id="4" roottask_id="2" task_definition_id="4"/>
     <subtask_definitions id="6" roottask_id="5" task_definition_id="6"/>
 
+    <checklist_definitions id="1" name="Checklist one Task 2" task_definition_id="2"/>
+    <checklist_definitions id="2" name="Checklist Two Task 2" task_definition_id="2"/>
+    <checklist_definitions id="3" name="Checklist Three Task 2" task_definition_id="2"/>
+    <checklist_definitions id="4" name="Checklist Four Task 2" task_definition_id="2"/>
+
+    <checklist_definitions id="5" name="Checklist five Task 3" task_definition_id="3"/>
+    <checklist_definitions id="6" name="Checklist six Task 3" task_definition_id="3"/>
+
+    <!-- END TASKS DEFINITIONS -->
 
     <!-- TASKS TEMPLATE -->
     <task_templates id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
