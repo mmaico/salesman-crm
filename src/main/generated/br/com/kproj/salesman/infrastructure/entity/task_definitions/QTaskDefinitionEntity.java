@@ -24,7 +24,7 @@ public class QTaskDefinitionEntity extends EntityPathBase<TaskDefinitionEntity> 
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<ChecklistDefinitionEntity, QChecklistDefinitionEntity> checklist = this.<ChecklistDefinitionEntity, QChecklistDefinitionEntity>createList("checklist", ChecklistDefinitionEntity.class, QChecklistDefinitionEntity.class, PathInits.DIRECT2);
+    public final ListPath<ChecklistDefinitionEntity, QChecklistDefinitionEntity> checklists = this.<ChecklistDefinitionEntity, QChecklistDefinitionEntity>createList("checklists", ChecklistDefinitionEntity.class, QChecklistDefinitionEntity.class, PathInits.DIRECT2);
 
     public final StringPath description = createString("description");
 

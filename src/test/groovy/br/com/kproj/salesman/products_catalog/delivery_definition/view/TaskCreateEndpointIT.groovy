@@ -55,10 +55,9 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
             taskDefinitionCreated.item.quantityDaysToFinish == taskDefinitionData.quantityDaysToFinish
 
             taskDefinitionCreated.item.links.size == 2
-            taskDefinitionCreated.item.links[0].href == "/regions/4"
-            taskDefinitionCreated.item.links[0].rel == "of-region"
-            taskDefinitionCreated.item.links[1].href == "/saleables/2"
-            taskDefinitionCreated.item.links[1].rel == "of-saleable"
+            taskDefinitionCreated.item.links.find{it.rel == "of-region"}.href == "/regions/4"
+
+            taskDefinitionCreated.item.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
             taskDefinitionCreated.uri == "/rs/saleables/2/task-definitions"
     }
 
@@ -130,10 +129,9 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
             taskDefinitionCreated.item.quantityDaysToFinish == 0
 
             taskDefinitionCreated.item.links.size == 2
-            taskDefinitionCreated.item.links[0].href == "/regions/4"
-            taskDefinitionCreated.item.links[0].rel == "of-region"
-            taskDefinitionCreated.item.links[1].href == "/saleables/2"
-            taskDefinitionCreated.item.links[1].rel == "of-saleable"
+            taskDefinitionCreated.item.links.find{it.rel == "of-region"}.href == "/regions/4"
+
+            taskDefinitionCreated.item.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
             taskDefinitionCreated.uri == "/rs/saleables/2/task-definitions"
     }
 

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="checklists")
+@Table(name="checklist_delivery")
 public class ChecklistEntity extends Identifiable {
 
     @Id

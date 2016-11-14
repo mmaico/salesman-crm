@@ -2,12 +2,12 @@ package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generate
 
 import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.ChecklistTemplateEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
+import br.com.kproj.salesman.infrastructure.entity.task_definitions.ChecklistDefinitionEntity;
 import org.springframework.core.convert.converter.Converter;
 
 
-public class ChecklistTemplateToChecklist implements Converter<ChecklistTemplateEntity, ChecklistEntity> {
+public class ChecklistTemplateToChecklist implements Converter<ChecklistDefinitionEntity, ChecklistEntity> {
 
     private TaskEntity taskEntity;
 
@@ -16,11 +16,12 @@ public class ChecklistTemplateToChecklist implements Converter<ChecklistTemplate
     }
 
     @Override
-    public ChecklistEntity convert(ChecklistTemplateEntity source) {
-        return ChecklistBuilder.createChecklist()
-                    .withDone(Boolean.FALSE)
-                    .withName(source.getName())
-                    .withTask(taskEntity).build();
+    public ChecklistEntity convert(ChecklistDefinitionEntity source) {
+//        return ChecklistBuilder.createChecklist()
+//                    .withDone(Boolean.FALSE)
+//                    .withName(source.getName())
+//                    .withTask(taskEntity).build();
+        return null;
 
     }
 

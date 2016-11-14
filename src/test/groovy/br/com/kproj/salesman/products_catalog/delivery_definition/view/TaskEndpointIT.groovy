@@ -40,9 +40,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
 
         def mvcResult = mockMvc.perform(get("/rs/saleables/2/task-definitions")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Lista de todos os task definitions do sistema").json
+        def jsonExpected = new JsonSlurper().parseText(scenery("Lista de todos os task definitions do sistema").json)
 
-        def jsonResult = mvcResult.getResponse().getContentAsString()
+        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
 
         expect:
             jsonResult == jsonExpected

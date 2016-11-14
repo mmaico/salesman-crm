@@ -117,57 +117,52 @@
 
     <!-- END TASKS DEFINITIONS -->
 
-    <!-- TASKS TEMPLATE -->
-    <task_templates id="1" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
-    <task_templates id="2" title="title" description="description" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"/>
-
-    <!-- CHILDREN TASK TEMPLATE -->
-    <task_templates id="3" title="title child" description="description child" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
-                   task_template_parent_id="1"/>
-    <task_templates id="4" title="title child 2" description="description child 2" quantity_days_to_finish_after_signed_contract="4" saleable_unit_id="1" operation_region_id="1"
-                   task_template_parent_id="1"/>
-
-    <task_cost_templates id = "1" cost="12.00" is_internal="TRUE" task_template_id="1"/>
-    <task_cost_templates id = "2" cost="13.00" is_internal="FALSE" task_template_id="1"/>
-
-    <checklist_templates id="1" task_template_id="1" name="Cobrar fornecedores"/>
-    <checklist_templates id="2" task_template_id="1" name="Cobrar fornecedores 2"/>
-
-    <checklist_templates id="3" task_template_id="2" name="Cobrar fornecedores 1"/>
-    <checklist_templates id="4" task_template_id="2" name="Cobrar fornecedores 2"/>
-
-    <!-- TASKS DELIVERY -->
-    <task_delivery id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" sales_order_id="1" operation_region_id="1" />
-    <task_delivery id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED" sales_order_id="1" operation_region_id="1"/>
-    <task_delivery id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <task_delivery id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
-
-    <task_delivery id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <task_delivery id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING" sales_order_id="1" parent_id="1" operation_region_id="1"/>
-    <task_delivery id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM" sales_order_id="1" operation_region_id="1"/>
-    <task_delivery id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE" sales_order_id="1" parent_id="1" operation_region_id="1"/>
-
-    <!-- TASKS USER(ACTIVITY) -->
-    <task_user user_id="1" task_id="1" />
-    <task_user user_id="1" task_id="2" />
-    <task_user user_id="1" task_id="6" />
-    <task_user user_id="1" task_id="3" />
-    <task_user user_id="1" task_id="7" />
-
-    <task_user user_id="2" task_id="3" />
-    <task_user user_id="2" task_id="5" />
-    <task_user user_id="2" task_id="7" />
-    <task_user user_id="2" task_id="8" />
-    <task_user user_id="2" task_id="6" />
 
     <!-- PROPOSAL APPROVERS -->
     <proposal_approver id="1" user_approver_id="1" available="true"/>
     <proposal_approver id="2" user_approver_id="2" available="false"/>
 
-    <!-- WORKSPACES (DELIVERY)  -->
-    <workspace_units id="1" sales_order_id="1" user_id="1"/>
-    <workspace_units id="2" sales_order_id="2" user_id="1"/>
-    <workspace_units id="3" sales_order_id="2" user_id="2"/>
+    <!-- DELIVERY  -->
+
+    <deliveries id="1" sales_order_id="1" delivery_forecast="2020-10-20 00:00:00"/>
+    <deliveries id="2" sales_order_id="2" delivery_forecast="2020-10-20 00:00:00"/>
+    <deliveries id="3" sales_order_id="2" delivery_forecast="2020-10-20 00:00:00"/>
+
+    <!-- WORKERS -->
+    <delivery_workers id="1" user_id="1" delivery_id="2"/>
+    <delivery_workers id="2" user_id="2" delivery_id="2"/>
+    <delivery_workers id="3" user_id="1" delivery_id="1"/>
+
+    <!-- TASKS DELIVERY -->
+    <task_delivery id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" operation_region_id="1" />
+    <task_delivery id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED"  operation_region_id="1"/>
+    <task_delivery id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM"  operation_region_id="1"/>
+    <task_delivery id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE"  operation_region_id="1"/>
+
+    <task_delivery id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM"  operation_region_id="1"/>
+    <task_delivery id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING"  operation_region_id="1"/>
+    <task_delivery id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM"  operation_region_id="1"/>
+    <task_delivery id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE"  operation_region_id="1"/>
+
+
+    <roottask_delivery id="1"  task_id="1" />
+    <roottask_delivery id="2"  task_id="2" />
+
+    <subtask_delivery id="3" roottask_id="2" task_id="3"/>
+    <subtask_delivery id="4" roottask_id="2" task_id="4"/>
+    <subtask_delivery id="5" roottask_id="2" task_id="5"/>
+    <subtask_delivery id="6" roottask_id="1" task_id="6"/>
+    <subtask_delivery id="7" roottask_id="1" task_id="7"/>
+    <subtask_delivery id="8" roottask_id="1" task_id="8"/>
+
+    <!-- TASK RESPONSIBLE(user who is acting ) -->
+    <task_delivery_responsible id="1" user_id="1" task_id="1"/>
+    <task_delivery_responsible id="2" user_id="1" task_id="2"/>
+    <task_delivery_responsible id="3" user_id="1" task_id="6"/>
+    <task_delivery_responsible id="4" user_id="2" task_id="6"/>
+    <task_delivery_responsible id="5" user_id="1" task_id="3"/>
+    <task_delivery_responsible id="6" user_id="1" task_id="7"/>
+
 
     <!-- SCHEDULES NOTIFICATION  -->
     <schedule_trigger_notification id="1" trigger_date="2020-10-20 00:00:00" task_id="1" executed="true"/>

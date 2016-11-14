@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.task_definitions;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;

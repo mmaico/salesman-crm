@@ -1,21 +1,12 @@
 package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.convert;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
-import br.com.kproj.salesman.infrastructure.entity.builders.TaskBuilder;
-import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
-import br.com.kproj.salesman.infrastructure.entity.task.TaskTemplateEntity;
+import br.com.kproj.salesman.infrastructure.entity.task_definitions.TaskDefinitionEntity;
 import org.springframework.core.convert.converter.Converter;
 
-import java.util.Date;
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.safeIterable;
-import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.addDayToDate;
-
-
-public class TaskTemplateToTask implements Converter<TaskTemplateEntity, TaskEntity> {
+public class TaskTemplateToTask implements Converter<TaskDefinitionEntity, TaskEntity> {
 
     private SalesOrder salesOrder;
 
@@ -25,28 +16,29 @@ public class TaskTemplateToTask implements Converter<TaskTemplateEntity, TaskEnt
 
 
     @Override
-    public TaskEntity convert(TaskTemplateEntity source) {
-        Integer quantityDays = source.getQuantityDaysTofinishAfertSignedContract();
+    public TaskEntity convert(TaskDefinitionEntity source) {
+//        Integer quantityDays = source.getQuantityDaysTofinishAfertSignedContract();
+//
+//        TaskBuilder builder = TaskBuilder.createTaskBuilder()
+//                .withDeadline(addDayToDate(quantityDays, new Date()))
+//                .withDescription(source.getDescription())
+//                .withStatus(TaskStatusEntity.WAITING)
+//                .withTitle(source.getTitle())
+//                .withRegion(source.getRegion())
+//                .withSalesOrder(new SalesOrderEntity(salesOrder.getId()));
+//
+//        safeIterable(source.getChecklistTemplateEntities()).forEach(checklist -> builder.addCheckList(
+//                ChecklistTemplateToChecklist.create(builder.build()).convert(checklist)
+//        ));
+//
+//        if (source.getTemplatesChilds() != null) {
+//            source.getTemplatesChilds().stream()
+//                    .filter(item -> item.getRegion().equals(new OperationRegionEntity(salesOrder.getRegion().getId())))
+//                        .forEach(child -> builder.addChild(TaskTemplateToTask.create(salesOrder).convert(child)));
+//        }
 
-        TaskBuilder builder = TaskBuilder.createTaskBuilder()
-                .withDeadline(addDayToDate(quantityDays, new Date()))
-                .withDescription(source.getDescription())
-                .withStatus(TaskStatusEntity.WAITING)
-                .withTitle(source.getTitle())
-                .withRegion(source.getRegion())
-                .withSalesOrder(new SalesOrderEntity(salesOrder.getId()));
-
-        safeIterable(source.getChecklistTemplateEntities()).forEach(checklist -> builder.addCheckList(
-                ChecklistTemplateToChecklist.create(builder.build()).convert(checklist)
-        ));
-
-        if (source.getTemplatesChilds() != null) {
-            source.getTemplatesChilds().stream()
-                    .filter(item -> item.getRegion().equals(new OperationRegionEntity(salesOrder.getRegion().getId())))
-                        .forEach(child -> builder.addChild(TaskTemplateToTask.create(salesOrder).convert(child)));
-        }
-
-        return builder.build();
+//        return builder.build();
+        return null;
     }
 
     public static TaskTemplateToTask create(SalesOrder salesOrder) {
