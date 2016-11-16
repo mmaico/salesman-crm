@@ -2,9 +2,11 @@ package br.com.kproj.salesman.delivery.delivery.domain.model.delivery;
 
 import br.com.kproj.salesman.delivery.delivery.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
+import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerRepository;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,23 +19,27 @@ public class Delivery extends ModelIdentifiable {
 
     private List<Worker> workers;
 
-    private DeliveryRepository repository;
+    @Autowired
+    private WorkerRepository repository;
 
     public Delivery() {
         AutowireHelper.autowire(this);
     }
-
+    public Delivery(Long id) {
+        this();
+        this.id = id;
+    }
     public Delivery(SalesOrder salesOrder) {
         this();
         this.salesOrder = salesOrder;
     }
 
-    public void addNewWorker(Worker worker) {
-        repository.addWorkerIn(this, worker);
+    public Worker addNewWorker(Worker worker) {
+        return repository.createWorkerFor(this, worker);
     }
 
     public void removeWorker(Worker worker) {
-        repository.removeWorkerFrom(this, worker);
+        repository.remove(worker);
     }
 
     @Override

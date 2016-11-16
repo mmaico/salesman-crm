@@ -26,6 +26,12 @@ public class DeliveryEntity extends Identifiable {
     @OneToMany(mappedBy = "delivery")
     private List<WorkerEntity> workers;
 
+    public DeliveryEntity() {}
+
+    public DeliveryEntity(Long id) {
+        this.id = id;
+    }
+
 
     @Override
     public Long getId() {

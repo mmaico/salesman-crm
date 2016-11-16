@@ -3,8 +3,8 @@
 
 <regions>
 
-	<region  name="RJ"/>
-	<region  name="SP" />
-	<region  name="MG" />
+	<salesOrder  name="RJ"/>
+	<salesOrder  name="SP" />
+	<salesOrder  name="MG" />
 
 </regions>

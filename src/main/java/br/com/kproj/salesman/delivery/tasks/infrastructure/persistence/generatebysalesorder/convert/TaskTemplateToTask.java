@@ -33,7 +33,7 @@ public class TaskTemplateToTask implements Converter<TaskDefinitionEntity, TaskE
 //
 //        if (source.getTemplatesChilds() != null) {
 //            source.getTemplatesChilds().stream()
-//                    .filter(item -> item.getRegion().equals(new OperationRegionEntity(salesOrder.getRegion().getId())))
+//                    .filter(item -> item.getSalesOrder().equals(new OperationRegionEntity(salesOrder.getSalesOrder().getId())))
 //                        .forEach(child -> builder.addChild(TaskTemplateToTask.create(salesOrder).convert(child)));
 //        }
 

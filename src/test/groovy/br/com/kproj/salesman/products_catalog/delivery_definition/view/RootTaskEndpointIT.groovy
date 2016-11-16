@@ -96,7 +96,7 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             roottaskCreated.item.task.description == taskJson.description
             roottaskCreated.item.task.quantityDaysToFinish == taskJson.quantityDaysToFinish
 
-            roottaskCreated.item.task.links.find{it.rel == "of-region"}.href == "/regions/4"
+            roottaskCreated.item.task.links.find{it.rel == "of-salesOrder"}.href == "/regions/4"
 
             roottaskCreated.item.task.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
 

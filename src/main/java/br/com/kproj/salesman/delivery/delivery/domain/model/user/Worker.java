@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery.delivery.domain.model.user;
 
 
+import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
@@ -8,6 +9,8 @@ import com.trex.shared.annotations.Model;
 public class Worker extends ModelIdentifiable {
 
     private Long id;
+    private User user;
+    private Delivery delivery;
 
     public Worker(){}
     public Worker(Long id) {
@@ -21,5 +24,21 @@ public class Worker extends ModelIdentifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 }
