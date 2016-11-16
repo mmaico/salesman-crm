@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public interface WorkerRepositorySpringdata extends BaseRepositoryLegacy<WorkerEntity, Long> {
 
-    @Query("SELECT w FROM WorkerEntity AS w WHERE w.delivery.id :=id")
+    @Query("SELECT w FROM WorkerEntity AS w WHERE w.delivery.id = :id")
     Collection<WorkerEntity> findAll(@Param("id") Long deliveryId);
 
 
