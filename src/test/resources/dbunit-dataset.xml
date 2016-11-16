@@ -111,7 +111,6 @@
     <checklist_definitions id="2" name="Checklist Two Task 2" task_definition_id="2"/>
     <checklist_definitions id="3" name="Checklist Three Task 2" task_definition_id="2"/>
     <checklist_definitions id="4" name="Checklist Four Task 2" task_definition_id="2"/>
-
     <checklist_definitions id="5" name="Checklist five Task 3" task_definition_id="3"/>
     <checklist_definitions id="6" name="Checklist six Task 3" task_definition_id="3"/>
 
@@ -123,10 +122,9 @@
     <proposal_approver id="2" user_approver_id="2" available="false"/>
 
     <!-- DELIVERY  -->
-
-    <deliveries id="1" sales_order_id="1" delivery_forecast="2020-10-20 00:00:00"/>
-    <deliveries id="2" sales_order_id="2" delivery_forecast="2020-10-20 00:00:00"/>
-    <deliveries id="3" sales_order_id="2" delivery_forecast="2020-10-20 00:00:00"/>
+    <deliveries id="1" sales_order_id="1" delivery_forecast="2018-04-10 00:00:00"/>
+    <deliveries id="2" sales_order_id="2" delivery_forecast="2017-06-21 00:00:00"/>
+    <deliveries id="3" sales_order_id="2" delivery_forecast="2017-09-12 00:00:00"/>
 
     <!-- WORKERS -->
     <delivery_workers id="1" user_id="1" delivery_id="2"/>

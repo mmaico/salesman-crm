@@ -16,13 +16,14 @@ public class DeliveryEntity extends Identifiable {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "salesorder_id")
+    @JoinColumn(name = "sales_order_id")
     private SalesOrderEntity salesOrder;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="delivery_forecast")
     private Date deliveryForecast;
 
+    @OneToMany(mappedBy = "delivery")
     private List<WorkerEntity> workers;
 
 
@@ -49,5 +50,13 @@ public class DeliveryEntity extends Identifiable {
 
     public void setDeliveryForecast(Date deliveryForecast) {
         this.deliveryForecast = deliveryForecast;
+    }
+
+    public List<WorkerEntity> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(List<WorkerEntity> workers) {
+        this.workers = workers;
     }
 }

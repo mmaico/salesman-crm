@@ -32,7 +32,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
-								   ContactRepository contactRepository, TaskRepository taskRepository,
+								    TaskRepository taskRepository,
 								    IncidentRepository incidentRepository
 								   ) {
 		this.timelineRepository = timelineRepository;
@@ -40,7 +40,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 		repositories.put(Individual.class, personRepository);
 		repositories.put(Person.class, personRepository);
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
-		repositories.put(ContactEntity.class, contactRepository);
+		//repositories.put(ContactEntity.class, contactRepository);
 		repositories.put(TaskEntity.class, taskRepository);
 		repositories.put(IncidentEntity.class, incidentRepository);
 	}

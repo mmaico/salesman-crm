@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface TaskRepositorySpringData extends BaseRepositoryLegacy<TaskEntity, Long> {
 
-    @Query("SELECT t FROM TaskEntity AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
-    List<TaskEntity> findBySalesOrder(@Param("salesOrder") SalesOrderEntity salesOrderEntity);
+//    @Query("SELECT t FROM TaskEntity AS t WHERE t.salesOrder = :salesOrder AND t.parentId is null ORDER BY t.deadline ASC")
+//    List<TaskEntity> findBySalesOrder(@Param("salesOrder") SalesOrderEntity salesOrderEntity);
 
 }

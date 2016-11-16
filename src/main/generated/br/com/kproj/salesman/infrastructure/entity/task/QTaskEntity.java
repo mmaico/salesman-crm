@@ -24,7 +24,7 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<ChecklistEntity, QChecklistEntity> checklistEntity = this.<ChecklistEntity, QChecklistEntity>createList("checklistEntity", ChecklistEntity.class, QChecklistEntity.class, PathInits.DIRECT2);
+    public final ListPath<ChecklistEntity, QChecklistEntity> checklist = this.<ChecklistEntity, QChecklistEntity>createList("checklist", ChecklistEntity.class, QChecklistEntity.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.util.Date> deadline = createDateTime("deadline", java.util.Date.class);
 
@@ -32,25 +32,15 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
-
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
-    public final br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity salesOrder;
-
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity> signedBy = this.<br.com.kproj.salesman.infrastructure.entity.UserEntity, br.com.kproj.salesman.infrastructure.entity.QUserEntity>createList("signedBy", br.com.kproj.salesman.infrastructure.entity.UserEntity.class, br.com.kproj.salesman.infrastructure.entity.QUserEntity.class, PathInits.DIRECT2);
+    public final ListPath<TaskResponsibleEntity, QTaskResponsibleEntity> responsibles = this.<TaskResponsibleEntity, QTaskResponsibleEntity>createList("responsibles", TaskResponsibleEntity.class, QTaskResponsibleEntity.class, PathInits.DIRECT2);
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity.class);
-
-    public final ListPath<TaskCost, QTaskCost> taskCosts = this.<TaskCost, QTaskCost>createList("taskCosts", TaskCost.class, QTaskCost.class, PathInits.DIRECT2);
-
-    public final ListPath<TaskEntity, QTaskEntity> tasksChildren = this.<TaskEntity, QTaskEntity>createList("tasksChildren", TaskEntity.class, QTaskEntity.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public final StringPath title = createString("title");
-
-    public final ListPath<ScheduleTriggerNotification, QScheduleTriggerNotification> triggerNotifications = this.<ScheduleTriggerNotification, QScheduleTriggerNotification>createList("triggerNotifications", ScheduleTriggerNotification.class, QScheduleTriggerNotification.class, PathInits.DIRECT2);
 
     public QTaskEntity(String variable) {
         this(TaskEntity.class, forVariable(variable), INITS);
@@ -71,7 +61,6 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
     public QTaskEntity(Class<? extends TaskEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
-        this.salesOrder = inits.isInitialized("salesOrder") ? new br.com.kproj.salesman.infrastructure.entity.sale.QSalesOrderEntity(forProperty("salesOrder"), inits.get("salesOrder")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

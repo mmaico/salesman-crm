@@ -16,6 +16,7 @@ import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -60,10 +61,10 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         TaskEntity taskEntityParent = repository.findOne(parent.getId());
 
         TaskEntity taskToSave = from(subtask).convertTo(TaskEntity.class);
-        taskToSave.setSalesOrder(taskEntityParent.getSalesOrder());
+        //taskToSave.setSalesOrder(taskEntityParent.getSalesOrder());
 
         TaskEntity tasksaved = repository.save(taskToSave);
-        taskEntityParent.addChild(tasksaved);
+        //taskEntityParent.addChild(tasksaved);
 
         Task taskConverted = getConverter().convert(tasksaved);
         Subtask subtaskSaved = new Subtask();
@@ -78,7 +79,7 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
     public Collection<Task> findAll(SalesOrder salesOrder) {
         SalesOrderEntity orderEntity = new SalesOrderEntity(salesOrder.getId());
 
-        List<TaskEntity> entities = repository.findBySalesOrder(orderEntity);
+        List<TaskEntity> entities = Lists.newArrayList();//repository.findBySalesOrder(orderEntity);
 
         List<Task> tasks = entities.stream().map(entity -> getConverter().convert(entity))
                 .collect(Collectors.toList());
@@ -101,18 +102,18 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
         UserEntity userEntity = new UserEntity(subscribe.getUser().getId());
 
-        if (!taskEntity.hasSigned(userEntity)) {
-            taskEntity.addSignedBy(userEntity);
-        }
+//        if (!taskEntity.hasSigned(userEntity)) {
+//            taskEntity.addSignedBy(userEntity);
+//        }
     }
 
     @Override
     public void unregister(SubscribeTask subscribe) {
         TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
 
-        if (!isEmptySafe(taskEntity.getSignedBy())) {
-            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUser().getId()));
-        }
+//        if (!isEmptySafe(taskEntity.getSignedBy())) {
+//            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUser().getId()));
+//        }
     }
 
     @Override

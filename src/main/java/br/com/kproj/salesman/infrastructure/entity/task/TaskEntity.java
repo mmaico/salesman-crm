@@ -6,7 +6,6 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import com.google.common.collect.Lists;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -34,7 +33,7 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     @Enumerated(EnumType.STRING)
     private TaskStatusEntity status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
+    @OneToMany(mappedBy = "task")
     private List<ChecklistEntity> checklist;
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "task")
@@ -53,14 +52,6 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     public TaskEntity(Long id) {
         this.id = id;
     }
-
-    public void addCheckList(ChecklistEntity checklistEntity) {
-        if (this.checklist == null) {
-            this.checklist = Lists.newArrayList();
-        }
-        this.checklist.add(checklistEntity);
-    }
-
 
     @Override
     public Long getId() {
