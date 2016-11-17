@@ -36,13 +36,15 @@ class DeliveryEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should find deliveries using filters"() {
         given:
-            def uri = "/rs/deliveries?filter=has-workers.size.gg(0)"
+            def uri = "/rs/deliveries?filter=has-workers.size.lt(5)"
         when:
             def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
             def status = mvcResult.response.status
+            def resultJson = mvcResult.response.contentAsString;
 
         then: "Should return 2 workers association with delivery"
             status == HttpStatus.OK.value
+            resultJson == ""
     }
 
 }

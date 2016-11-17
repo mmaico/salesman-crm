@@ -15,11 +15,11 @@ import java.util.Map;
 @Component
 public class DeliveryFiltersDefinition {
 
-    private Map<String, Map<Filter.Operator, PredicateOperation>> expressions = new HashMap<>();
+    private static Map<String, Map<Filter.Operator, PredicateOperation>> expressions = new HashMap<>();
 
-    private Map<Filter.Operator, PredicateOperation> workersPredicate = new HashMap<>();
+    private static Map<Filter.Operator, PredicateOperation> workersPredicate = new HashMap<>();
 
-    {
+    static {
         workersPredicate.put(Filter.Operator.GT, (filter, deliveryEntity) ->
                 deliveryEntity.workers.size().gt(NumberUtils.toInt(filter.getObject().toString()))
         );
@@ -56,11 +56,6 @@ public class DeliveryFiltersDefinition {
         });
 
         return booleanBuilder;
-    }
-
-    private interface PredicateExpression {
-
-        void get(Filter filter, QDeliveryEntity deliveryEntity);
     }
 
     private interface PredicateOperation {
