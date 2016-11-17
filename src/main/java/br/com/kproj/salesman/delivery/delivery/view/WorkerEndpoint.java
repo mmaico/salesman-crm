@@ -5,6 +5,7 @@ import br.com.kproj.salesman.delivery.delivery.application.WorkerFacade;
 import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerIn;
+import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerOut;
 import br.com.kproj.salesman.delivery.delivery.view.support.builders.WorkerResourceBuilder;
 import br.com.kproj.salesman.delivery.delivery.view.support.resources.WorkerResource;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
@@ -56,6 +57,15 @@ public class WorkerEndpoint {
         Worker worker = service.register(workerIn);
 
         return builder.build(worker, request.getRequestURI());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rs/deliveries/workers/{workerId}", method = RequestMethod.DELETE)
+    public @ResponseBody void
+     create(@PathVariable Long workerId) {
+
+        WorkerOut workerOut = WorkerOut.createWorkerOut(workerId);
+        service.delete(workerOut);
     }
 
 

@@ -39,8 +39,8 @@ public class WorkerServiceImpl extends BaseModelServiceImpl<Worker> implements W
 
     @Override
     public void delete(WorkerOut workerOut) {
-        Delivery delivery = workerOut.getDelivery();
-        Worker worker = workerOut.getWorker();
+        Delivery delivery = new Delivery();
+        Worker worker = new Worker(workerOut.getWorkerId());
 
         delivery.removeWorker(worker);
     }

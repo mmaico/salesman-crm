@@ -5,6 +5,7 @@ import br.com.kproj.salesman.delivery.delivery.domain.model.user.User;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerRepository;
 import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.springdata.WorkerRepositorySpringdata;
+import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.translate.WorkerEntityToWorkerConverter;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.delivery.DeliveryEntity;
 import br.com.kproj.salesman.infrastructure.entity.delivery.WorkerEntity;
@@ -23,15 +24,19 @@ public class WorkerRepositoryHibernate extends BaseRespositoryImpl<Worker, Worke
 
     private WorkerRepositorySpringdata workerRepository;
 
+    private WorkerEntityToWorkerConverter converter;
+
 
     @Autowired
-    public WorkerRepositoryHibernate(WorkerRepositorySpringdata workerRepository) {
+    public WorkerRepositoryHibernate(WorkerRepositorySpringdata workerRepository, WorkerEntityToWorkerConverter converter) {
         this.workerRepository = workerRepository;
+        this.converter = converter;
     }
 
     @Override
     public Worker createWorkerFor(Delivery delivery, Worker worker) {
         WorkerEntity workerEntity = new WorkerEntity();
+
         workerEntity.setDelivery(new DeliveryEntity(delivery.getId()));
         workerEntity.setUser(new UserEntity(worker.getUser().getId()));
         WorkerEntity worderCreated = workerRepository.save(workerEntity);
@@ -59,16 +64,7 @@ public class WorkerRepositoryHibernate extends BaseRespositoryImpl<Worker, Worke
 
     @Override
     public Converter<WorkerEntity, Worker> getConverter() {
-        return (workerEntity, args) -> {
-            Worker worker = new Worker();
-            worker.setId(workerEntity.getId());
-            worker.setDelivery(new Delivery(workerEntity.getDelivery().getId()));
-            worker.setUser(new User(workerEntity.getUser().getId()));
-
-            return worker;
-        };
+        return converter;
     }
-
-
 
 }

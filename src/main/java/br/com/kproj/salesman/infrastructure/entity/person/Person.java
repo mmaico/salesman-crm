@@ -42,7 +42,6 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="profile_id")
-    @NotNull(message = "person.profile.is.invalid")
     private PersonProfile profile;
 
     @OneToOne(mappedBy = "person")

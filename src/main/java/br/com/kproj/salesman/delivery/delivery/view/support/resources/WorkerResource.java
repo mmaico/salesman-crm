@@ -10,12 +10,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
         "id",
-        "title",
-        "description",
-        "quantityDaysToFinish",
         "links"
 })
-@ResourceItem(name="users", modelReference = Worker.class, parent = DeliveryResource.class)
+@ResourceItem(name="workers", modelReference = Worker.class, parent = DeliveryResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkerResource extends Item {
 
@@ -31,7 +28,7 @@ public class WorkerResource extends Item {
         this.id = id;
     }
 
-    @Selectable(expression = "of-delivery")
+    @Selectable(expression = "of-delivery", externalLink = true )
     public DeliveryResource getDelivery() {
         return delivery;
     }
@@ -40,7 +37,7 @@ public class WorkerResource extends Item {
         this.delivery = delivery;
     }
 
-    @Selectable(expression = "user")
+    @Selectable(expression = "user", externalLink = true)
     public UserResource getUser() {
         return user;
     }

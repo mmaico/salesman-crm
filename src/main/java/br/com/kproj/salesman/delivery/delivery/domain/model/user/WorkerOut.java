@@ -5,33 +5,19 @@ import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
 
 public class WorkerOut {
 
-    private Long deliveryId;
-    private Worker worker;
+    private Long workerId;
 
-    public Long getDeliveryId() {
-        return deliveryId;
+    public Long getWorkerId() {
+        return workerId;
     }
 
-    public void setDeliveryId(Long deliveryId) {
-        this.deliveryId = deliveryId;
+    public void setWorkerId(Long workerId) {
+        this.workerId = workerId;
     }
 
-    public Worker getWorker() {
-        return worker;
-    }
-
-    public void setWorker(Worker worker) {
-        this.worker = worker;
-    }
-
-    public Delivery getDelivery() {
-        return new Delivery(this.deliveryId);
-    }
-
-    public static WorkerOut createWorkerOut(Long deliveryId, Worker worker) {
+    public static WorkerOut createWorkerOut(Long workerId) {
         WorkerOut workerOut = new WorkerOut();
-        workerOut.setWorker(worker);
-        workerOut.setDeliveryId(deliveryId);
+        workerOut.setWorkerId(workerId);
 
         return workerOut;
     }

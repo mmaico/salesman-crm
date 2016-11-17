@@ -66,6 +66,10 @@
 
     <proposal_payment_item id="3" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="2"/>
 
+    <!-- PERSONS -->
+    <persons id="1" name="jose roberto" type="company" active="true"/>
+    <persons id="2" name="Joao Maria" type="company" active="true"/>
+
     <!-- SALES ORDER -->
     <sales_order id="1" person_id="1" seller_id="1" proposal_id="1" operation_region_id="2" delivery_forecast="2016-03-15 00:00:00"/>
 
@@ -127,8 +131,8 @@
     <deliveries id="3" sales_order_id="2" delivery_forecast="2017-09-12 00:00:00"/>
 
     <!-- WORKERS -->
-    <delivery_workers id="1" user_id="1" delivery_id="2"/>
-    <delivery_workers id="2" user_id="2" delivery_id="2"/>
+    <delivery_workers id="1" user_id="2" delivery_id="2"/>
+    <delivery_workers id="2" user_id="3" delivery_id="2"/>
     <delivery_workers id="3" user_id="1" delivery_id="1"/>
 
     <!-- TASKS DELIVERY -->

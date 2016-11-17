@@ -8,6 +8,11 @@ public class SalesOrder extends ModelIdentifiable {
 
     private Long id;
 
+    public SalesOrder(Long id) {
+        this.id = id;
+    }
+    public SalesOrder() {}
+
     @Override
     public Long getId() {
         return id;
