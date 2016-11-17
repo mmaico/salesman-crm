@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Objects;
 
 public class ResourceItems {
+  private Long totalItems;
+  private Integer pageSize;
 
   private final Collection<?> items;
   private final String uri;
@@ -13,6 +15,13 @@ public class ResourceItems {
     this.uri = uri;
   }
 
+  public ResourceItems(Collection<?> resources, String uri, Long totalItems, Integer pageSize) {
+    this.items = resources;
+    this.uri = uri;
+    this.totalItems = totalItems;
+    this.pageSize = pageSize;
+  }
+
   public Collection<?> getItems() {
     return items;
   }
@@ -20,7 +29,23 @@ public class ResourceItems {
   public String getUri() {
     return uri;
   }
-  
+
+  public Long getTotalItems() {
+    return totalItems;
+  }
+
+  public void setTotalItems(Long totalItems) {
+    this.totalItems = totalItems;
+  }
+
+  public Integer getPageSize() {
+    return pageSize;
+  }
+
+  public void setPageSize(Integer pageSize) {
+    this.pageSize = pageSize;
+  }
+
   @Override
   public boolean equals(final Object o) {
     if (this == o)

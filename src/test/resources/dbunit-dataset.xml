@@ -133,6 +133,7 @@
     <!-- WORKERS -->
     <delivery_workers id="1" user_id="2" delivery_id="2"/>
     <delivery_workers id="2" user_id="3" delivery_id="2"/>
+    <delivery_workers id="4" user_id="1" delivery_id="2"/>
     <delivery_workers id="3" user_id="1" delivery_id="1"/>
 
     <!-- TASKS DELIVERY -->

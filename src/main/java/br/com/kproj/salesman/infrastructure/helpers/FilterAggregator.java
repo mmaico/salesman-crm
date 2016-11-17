@@ -1,7 +1,10 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -49,6 +52,17 @@ public class FilterAggregator {
 				this.add(filter);
 			}
 		}
+	}
+
+	public FilterAggregator generateFilters(String filterQuery) {
+		Stream.of(StringUtils.defaultString(filterQuery).split(","))
+				.forEach(item -> {
+					Filter filter = FilterQuery.generateFilters(item);
+					if (!filter.isNullObject()) {
+						filters.add(filter);
+					}
+				});
+		return this;
 	}
 	
 	public boolean hasFilters() {

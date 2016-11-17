@@ -55,7 +55,7 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
             taskDefinitionCreated.item.quantityDaysToFinish == taskDefinitionData.quantityDaysToFinish
 
             taskDefinitionCreated.item.links.size == 2
-            taskDefinitionCreated.item.links.find{it.rel == "of-salesOrder"}.href == "/regions/4"
+            taskDefinitionCreated.item.links.find{it.rel == "of-region"}.href == "/regions/4"
 
             taskDefinitionCreated.item.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
             taskDefinitionCreated.uri == "/rs/saleables/2/task-definitions"
@@ -63,7 +63,7 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
 
     @Unroll
     def "Should not create a task definition when not have a region"() {
-        def taskDefinitionData = new JsonSlurper().parseText(scenery("Criando uma nova task definition com salesOrder nao existente").json)
+        def taskDefinitionData = new JsonSlurper().parseText(scenery("Criando uma nova task definition com region nao existente").json)
 
         def mvcResult = mockMvc.perform(post("/rs/saleables/2/task-definitions")
                 .content(toJson(taskDefinitionData))
@@ -74,7 +74,7 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
         expect:
             mvcResult.response.status == HttpStatus.BAD_REQUEST.value()
             taskDefinitionCreated.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
-            taskDefinitionCreated.errors.messages[0].message == "task.definition.invalid.salesOrder"
+            taskDefinitionCreated.errors.messages[0].message == "task.definition.invalid.region"
             taskDefinitionCreated.uri == "/rs/saleables/2/task-definitions"
     }
 
@@ -129,7 +129,7 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
             taskDefinitionCreated.item.quantityDaysToFinish == 0
 
             taskDefinitionCreated.item.links.size == 2
-            taskDefinitionCreated.item.links.find{it.rel == "of-salesOrder"}.href == "/regions/4"
+            taskDefinitionCreated.item.links.find{it.rel == "of-region"}.href == "/regions/4"
 
             taskDefinitionCreated.item.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
             taskDefinitionCreated.uri == "/rs/saleables/2/task-definitions"

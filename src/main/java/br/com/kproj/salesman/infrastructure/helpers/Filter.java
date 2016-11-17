@@ -4,12 +4,21 @@ import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 public class Filter<T> {
+	public enum Operator{EQ, GT, LT, LE, GE, NE}
+
 	private T object;
 	private String name;
+	private Operator operator;
 	
 	public Filter(T object, String name) {
 		this.object = object;
 		this.name = name;
+	}
+
+	public Filter(T object, String name, Operator operator) {
+		this.object = object;
+		this.name = name;
+		this.operator = operator;
 	}
 	
 	public static <T> Filter<T> build(T object) {
@@ -29,6 +38,11 @@ public class Filter<T> {
 		
 		return new Filter<T>(object, alias);
 	}
+
+	public static <T> Filter<T> build(String alias, Operator operator, T value) {
+
+		return new Filter<T>(value, alias, operator);
+	}
 	
 	public T getObject() {
 		return object;
@@ -36,6 +50,10 @@ public class Filter<T> {
 
 	public String getName() {
 		return name;
+	}
+
+	public Operator getOperator() {
+		return operator;
 	}
 
 	@Override
