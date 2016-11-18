@@ -20,7 +20,6 @@ public class Task extends ModelIdentifiable {
 
     private String title;
     private String description;
-    private List<Subtask> children;
 
     @NotNull(message = "task.deadline.not.informed")
     private Date deadline;
@@ -66,14 +65,6 @@ public class Task extends ModelIdentifiable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Subtask> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Subtask> children) {
-        this.children = children;
     }
 
     public Date getDeadline() {

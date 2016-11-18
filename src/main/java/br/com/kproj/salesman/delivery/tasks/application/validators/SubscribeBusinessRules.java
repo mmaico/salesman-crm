@@ -20,13 +20,17 @@ import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.
 @Component
 public class SubscribeBusinessRules implements SubscribeValidator {
 
-    @Autowired
     private TaskRepository repository;
 
-    @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<SubscribeTask>> rules = new HashMap<>();
+    @Autowired
+    public SubscribeBusinessRules(TaskRepository repository, UserRepository userRepository) {
+        this.repository = repository;
+        this.userRepository = userRepository;
+    }
+
+    private Map<String, CheckRule<SubscribeTask>> rules = new HashMap<>();
     {
         rules.put(description("subscriber.task.invalid.user"), subscribe ->
                 subscribe.getUser() == null
@@ -45,8 +49,13 @@ public class SubscribeBusinessRules implements SubscribeValidator {
 
         Set<String> violations = rules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(subscribe))
-                .map(Map.Entry::getKey).collect(Collectors.toSet());
+                .filter(rule -> {
+                    try {
+                        return rule.getValue().check(subscribe);
+                    } catch(Exception e) {
+                        return Boolean.TRUE;
+                    }
+                }).map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
     }

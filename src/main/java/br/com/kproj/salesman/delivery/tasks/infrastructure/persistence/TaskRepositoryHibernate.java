@@ -2,7 +2,7 @@ package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.CouldNotGenerateTasksException;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Subtask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatus;
@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper.copyProperties;
 import static com.trex.clone.BusinessModelClone.from;
 

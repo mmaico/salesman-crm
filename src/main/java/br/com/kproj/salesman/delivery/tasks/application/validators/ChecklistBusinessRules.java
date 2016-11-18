@@ -20,11 +20,14 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 @Component("ChecklistBusinessRulesDeliveryModule")
 public class ChecklistBusinessRules implements ChecklistValidator {
 
-    @Autowired
     private TaskRepository repository;
 
+    @Autowired
+    public ChecklistBusinessRules(TaskRepository repository) {
+        this.repository = repository;
+    }
 
-    Map<String, CheckRule<ChecklistForTask>> rules = new HashMap<>();
+    private Map<String, CheckRule<ChecklistForTask>> rules = new HashMap<>();
     {
         rules.put(description("checklist.with.invalid.task"), checklist ->
                 checklist.getTaskId() == null || !repository.findOne(checklist.getTaskId()).isPresent());
@@ -39,8 +42,13 @@ public class ChecklistBusinessRules implements ChecklistValidator {
 
         Set<String> violations = rules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(checklistForTask))
-                .map(Map.Entry::getKey).collect(Collectors.toSet());
+                .filter(rule -> {
+                    try {
+                        return rule.getValue().check(checklistForTask);
+                    } catch(Exception e) {
+                        return Boolean.TRUE;
+                    }
+                }).map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
     }

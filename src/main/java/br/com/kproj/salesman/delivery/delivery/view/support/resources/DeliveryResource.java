@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Collection;
+import java.util.Date;
 
 @JsonPropertyOrder({
         "id",
@@ -19,6 +20,7 @@ import java.util.Collection;
 public class DeliveryResource extends Item {
 
     private Long id;
+    private Date deliveryForecast;
     private SalesOrderResource salesOrder;
     private Collection<WorkerResource> workers;
 
@@ -47,5 +49,13 @@ public class DeliveryResource extends Item {
 
     public void setWorkers(Collection<WorkerResource> workers) {
         this.workers = workers;
+    }
+
+    public Date getDeliveryForecast() {
+        return deliveryForecast;
+    }
+
+    public void setDeliveryForecast(Date deliveryForecast) {
+        this.deliveryForecast = deliveryForecast;
     }
 }

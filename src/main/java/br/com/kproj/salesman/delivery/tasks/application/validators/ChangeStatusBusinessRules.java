@@ -26,7 +26,7 @@ public class ChangeStatusBusinessRules implements ChangeStatusValidator {
     @Autowired
     private UserRepository userRepository;
 
-    Map<String, CheckRule<ChangeStatus>> rules = new HashMap<>();
+    private Map<String, CheckRule<ChangeStatus>> rules = new HashMap<>();
     {
         rules.put(description("change.status.task.invalid.user"), status ->
                 status.getUserId() == null

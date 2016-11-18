@@ -1,9 +1,8 @@
 package br.com.kproj.salesman.delivery.delivery.infrastructure.persistence;
 
-import br.com.kproj.salesman.delivery.delivery.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
 import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.DeliveryRepository;
+import br.com.kproj.salesman.delivery.delivery.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.springdata.DeliveryRepositorySpringdata;
 import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.springdata.predicates.DeliveryFiltersDefinition;
 import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.translate.WorkerEntityToWorkerConverter;
@@ -46,18 +45,6 @@ public class DeliveryRepositoryHibernate extends BaseRespositoryImpl<Delivery, D
         this.filtersDefinition = filtersDefinition;
     }
 
-    @Override
-    public void addWorkerIn(Delivery delivery, Worker worker) {
-        DeliveryEntity deliveryEntity = repository.findOne(delivery.getId());
-
-        //WorkspaceUnit workspaceUnit = repository.findOne(delivery.getId());
-
-    }
-
-    @Override
-    public void removeWorkerFrom(Delivery delivery, Worker worker) {
-
-    }
 
     @Override
     public Iterable<Delivery> findAll(FilterAggregator filters, Pageable pager) {
@@ -89,6 +76,7 @@ public class DeliveryRepositoryHibernate extends BaseRespositoryImpl<Delivery, D
         return (deliveryEntity, args) -> {
             Delivery delivery = new Delivery();
             delivery.setId(deliveryEntity.getId());
+            delivery.setDeliveryForecast(deliveryEntity.getDeliveryForecast());
             delivery.setSalesOrder(new SalesOrder(deliveryEntity.getSalesOrder().getId()));
 
             deliveryEntity.getWorkers().stream()

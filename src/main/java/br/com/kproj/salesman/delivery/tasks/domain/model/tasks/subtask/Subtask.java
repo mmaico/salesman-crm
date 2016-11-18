@@ -1,5 +1,6 @@
-package br.com.kproj.salesman.delivery.tasks.domain.model.tasks;
+package br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import com.trex.shared.annotations.Model;
 
 @Model

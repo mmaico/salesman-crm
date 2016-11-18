@@ -20,7 +20,7 @@ public class SalesOrderBusinessRules implements SalesValidator {
 
 
 
-    Map<String, CheckRule<SalesOrder>> rules = new HashMap<>();
+    private Map<String, CheckRule<SalesOrder>> rules = new HashMap<>();
     {
         rules.put(description("generate.delivery.salesorder.without.id"), sales -> sales.isNew());
         rules.put(description("generate.delivery.salesorder.with.invalid.region"), sales ->

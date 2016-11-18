@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 @Model
@@ -17,6 +18,8 @@ public class Delivery extends ModelIdentifiable {
     private Long id;
 
     private SalesOrder salesOrder;
+
+    private Date deliveryForecast;
 
     private List<Worker> workers;
 
@@ -74,5 +77,11 @@ public class Delivery extends ModelIdentifiable {
         workers.add(worker);
     }
 
+    public Date getDeliveryForecast() {
+        return deliveryForecast;
+    }
 
+    public void setDeliveryForecast(Date deliveryForecast) {
+        this.deliveryForecast = deliveryForecast;
+    }
 }

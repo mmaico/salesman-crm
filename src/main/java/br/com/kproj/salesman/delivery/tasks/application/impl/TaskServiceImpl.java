@@ -6,6 +6,8 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.ChecklistVali
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesValidator;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.*;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskValidator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
