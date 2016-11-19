@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 
-public interface TaskTemplateRepositorySpringData extends BaseRepositoryLegacy<TaskDefinitionEntity, Long> {
+public interface TaskDefinitionsRepositorySpringData extends BaseRepositoryLegacy<TaskDefinitionEntity, Long> {
 
 //    @Query("SELECT tt FROM TaskTemplateEntity AS tt WHERE tt.saleable = :saleable AND tt.parentId is null AND tt.region = :region")
 //    List<TaskDefinitionEntity> findTaskTemplateBy(@Param("saleable")SaleableUnitEntity saleable, @Param("region")OperationRegionEntity region);

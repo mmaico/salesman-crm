@@ -2,11 +2,9 @@ package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generate
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.convert.TaskTemplateToTask;
-import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.TaskTemplateRepositorySpringData;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import com.google.common.collect.Lists;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,8 +12,8 @@ import java.util.List;
 @Component
 public class SalesOrderTaskItemProcessor implements ItemProcessor<SalesOrder, List<TaskEntity>> {
 
-    @Autowired
-    private TaskTemplateRepositorySpringData repository;
+//    @Autowired
+//    private TaskTemplateRepositorySpringData repository;
 
     @Override
     public List<TaskEntity> process(SalesOrder salesOrder) throws Exception {

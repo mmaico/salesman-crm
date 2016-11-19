@@ -2,10 +2,11 @@ package br.com.kproj.salesman.delivery.tasks.domain.model.tasks;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.ChecklistRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
+import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,8 +27,9 @@ public class Task extends ModelIdentifiable {
 
     private TaskStatus status;
     private List<Checklist> checklists;
-    private SalesOrder salesOrder;
-    private List<User> signedBy;
+    private Delivery delivery;
+    private List<Subscriber> subscribers;
+    private Represent represent;
 
     @Autowired
     private ChecklistRepository checklistRepository;
@@ -36,6 +38,10 @@ public class Task extends ModelIdentifiable {
         AutowireHelper.autowire(this);
     }
 
+    public Task(Long id) {
+        this();
+        this.id = id;
+    }
 
     public void addCheckList(Checklist checklist) {
         checklistRepository.register(checklist, this);
@@ -91,20 +97,45 @@ public class Task extends ModelIdentifiable {
         this.checklists = checklists;
     }
 
-    public SalesOrder getSalesOrder() {
-        return salesOrder;
+    public Delivery getDelivery() {
+        return delivery;
     }
 
-    public void setSalesOrder(SalesOrder salesOrder) {
-        this.salesOrder = salesOrder;
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
-    public List<User> getSignedBy() {
-        return signedBy;
+    public List<Subscriber> getSubscribers() {
+        return subscribers;
     }
 
-    public void setSignedBy(List<User> signedBy) {
-        this.signedBy = signedBy;
+    public void setSubscribers(List<Subscriber> subscribers) {
+        this.subscribers = subscribers;
     }
 
+    public void addChecklist(Checklist checklist) {
+         if (this.checklists == null) {
+            this.checklists = Lists.newArrayList();
+         }
+         this.checklists.add(checklist);
+    }
+
+    public void addSubscriber(Subscriber subscriber) {
+        if (this.subscribers == null) {
+            this.subscribers = Lists.newArrayList();
+        }
+        this.subscribers.add(subscriber);
+    }
+
+    public Represent getRepresent() {
+        return represent;
+    }
+
+    public void setRepresent(Represent represent) {
+        this.represent = represent;
+    }
+
+    public static Task task() {
+        return new Task();
+    }
 }

@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
+import br.com.kproj.salesman.infrastructure.entity.delivery.DeliveryEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -39,6 +40,11 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "task")
     private List<TaskResponsibleEntity> responsibles;
 
+    @ManyToOne
+    @JoinColumn(name = "delivery_id")
+    @NotNull
+    private DeliveryEntity delivery;
+
     @OneToOne
     @JoinColumn(name = "timeline_id")
     @ExcludeField
@@ -47,6 +53,10 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     @ManyToOne
     @JoinColumn(name="operation_region_id")
     private OperationRegionEntity region;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private TaskTypeEntity type;
 
     public TaskEntity() {}
     public TaskEntity(Long id) {
@@ -124,5 +134,18 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
 
     public void setResponsibles(List<TaskResponsibleEntity> responsibles) {
         this.responsibles = responsibles;
+    }
+
+    public DeliveryEntity getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(DeliveryEntity delivery) {
+        this.delivery = delivery;
+    }
+
+
+    public TaskTypeEntity getType() {
+        return type;
     }
 }

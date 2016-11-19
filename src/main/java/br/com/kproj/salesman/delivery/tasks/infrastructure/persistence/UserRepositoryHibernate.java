@@ -11,7 +11,7 @@ import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("userRepositoryHibernateTaskModule")
+@Repository("userRepositoryHibernateDeliveryTaskModule")
 public class UserRepositoryHibernate extends BaseRespositoryImpl<User, UserEntity> implements UserRepository {
 
 

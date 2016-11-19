@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
-@Component
+@Component("rootTaskBusinessRulesDefinition")
 public class RootTaskBusinessRules implements RootTaskValidator {
 
     private TaskRepository repository;

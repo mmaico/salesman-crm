@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.delivery.tasks.domain.model.user;
+package br.com.kproj.salesman.delivery.tasks.domain.model.subscribe;
 
 
 public interface ChangeStatusValidator {

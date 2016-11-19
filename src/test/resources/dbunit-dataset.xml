@@ -137,15 +137,15 @@
     <delivery_workers id="3" user_id="1" delivery_id="1"/>
 
     <!-- TASKS DELIVERY -->
-    <task_delivery id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" operation_region_id="1" />
-    <task_delivery id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED"  operation_region_id="1"/>
-    <task_delivery id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM"  operation_region_id="1"/>
-    <task_delivery id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE"  operation_region_id="1"/>
+    <task_delivery id="1" title="title" description="description" deadline="2016-02-19 00:00:00" status="WAITING" operation_region_id="1" delivery_id="3"/>
+    <task_delivery id="2" title="title" description="description" deadline="2016-02-18 00:00:00" status="STATED"  operation_region_id="1" delivery_id="3"/>
+    <task_delivery id="3" title="title" description="description" deadline="2016-02-17 00:00:00" status="PROBLEM"  operation_region_id="1" delivery_id="3"/>
+    <task_delivery id="4" title="title" description="description" deadline="2016-02-16 00:00:00" status="DONE"  operation_region_id="1" delivery_id="2"/>
 
-    <task_delivery id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM"  operation_region_id="1"/>
-    <task_delivery id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING"  operation_region_id="1"/>
-    <task_delivery id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM"  operation_region_id="1"/>
-    <task_delivery id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE"  operation_region_id="1"/>
+    <task_delivery id="5" title="title" description="description" deadline="2017-02-20 00:00:00" status="PROBLEM"  operation_region_id="1" delivery_id="2"/>
+    <task_delivery id="6" title="title" description="description" deadline="2017-03-16 00:00:00" status="WAITING"  operation_region_id="1" delivery_id="1"/>
+    <task_delivery id="7" title="title" description="description" deadline="2017-05-17 00:00:00" status="PROBLEM"  operation_region_id="1" delivery_id="1"/>
+    <task_delivery id="8" title="title" description="description" deadline="2017-06-16 00:00:00" status="DONE"  operation_region_id="1" delivery_id="1"/>
 
 
     <roottask_delivery id="1"  task_id="1" />

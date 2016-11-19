@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.delivery.tasks.application.validators;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatusValidator;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.UserRepository;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.ChangeStatus;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.ChangeStatusValidator;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscriberRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ChangeStatusBusinessRules implements ChangeStatusValidator {
     private TaskRepository repository;
 
     @Autowired
-    private UserRepository userRepository;
+    private SubscriberRepository userRepository;
 
     private Map<String, CheckRule<ChangeStatus>> rules = new HashMap<>();
     {

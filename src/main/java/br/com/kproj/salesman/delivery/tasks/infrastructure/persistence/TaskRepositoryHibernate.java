@@ -1,31 +1,30 @@
 package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.CouldNotGenerateTasksException;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.ChangeStatus;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Represent;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.user.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.SalesOrderTaskItemProcessor;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.TaskRepositorySpringData;
-import br.com.kproj.salesman.infrastructure.entity.UserEntity;
+import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.translate.TaskEntityToTaskConverter;
 import br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity;
-import br.com.kproj.salesman.infrastructure.entity.sale.SalesOrderEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper.copyProperties;
 import static com.trex.clone.BusinessModelClone.from;
 
 
@@ -37,6 +36,9 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
 
     @Autowired
     private SalesOrderTaskItemProcessor processor;
+
+    @Autowired
+    private TaskEntityToTaskConverter converter;
 
 
     @Override
@@ -54,36 +56,15 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         }
     }
 
-    public Optional<Subtask> save(Subtask subtask) {
-
-        Task parent = subtask.getParent();
-        TaskEntity taskEntityParent = repository.findOne(parent.getId());
-
-        TaskEntity taskToSave = from(subtask).convertTo(TaskEntity.class);
-        //taskToSave.setSalesOrder(taskEntityParent.getSalesOrder());
-
-        TaskEntity tasksaved = repository.save(taskToSave);
-        //taskEntityParent.addChild(tasksaved);
-
-        Task taskConverted = getConverter().convert(tasksaved);
-        Subtask subtaskSaved = new Subtask();
-
-        copyProperties(subtaskSaved, taskConverted);
-        subtaskSaved.setParent(parent);
-
-        return Optional.of(subtaskSaved);
-    }
-
     @Override
-    public Collection<Task> findAll(SalesOrder salesOrder) {
-        SalesOrderEntity orderEntity = new SalesOrderEntity(salesOrder.getId());
+    public Iterable<Task> findAll(Delivery delivery, Pageable pageable) {
 
-        List<TaskEntity> entities = Lists.newArrayList();//repository.findBySalesOrder(orderEntity);
+        Page<TaskEntity> entities = repository.findAllByDelivery(delivery.getId(), pageable);
 
-        List<Task> tasks = entities.stream().map(entity -> getConverter().convert(entity))
+        List<Task> tasks = entities.getContent().stream().map(entity -> getConverter().convert(entity))
                 .collect(Collectors.toList());
 
-        return tasks;
+        return new PageImpl<>(tasks, pageable, entities.getTotalElements());
     }
 
     @Override
@@ -94,25 +75,6 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
         } catch (Exception e) {
             throw new CouldNotGenerateTasksException(e);
         }
-    }
-
-    @Override
-    public void register(SubscribeTask subscribe) {
-        TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
-        UserEntity userEntity = new UserEntity(subscribe.getUser().getId());
-
-//        if (!taskEntity.hasSigned(userEntity)) {
-//            taskEntity.addSignedBy(userEntity);
-//        }
-    }
-
-    @Override
-    public void unregister(SubscribeTask subscribe) {
-        TaskEntity taskEntity = this.repository.findOne(subscribe.getTask().getId());
-
-//        if (!isEmptySafe(taskEntity.getSignedBy())) {
-//            taskEntity.getSignedBy().remove(new UserEntity(subscribe.getUser().getId()));
-//        }
     }
 
     @Override
@@ -132,6 +94,6 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
 
     @Override
     public Converter<TaskEntity, Task> getConverter() {
-        return null;
+        return converter;
     }
 }

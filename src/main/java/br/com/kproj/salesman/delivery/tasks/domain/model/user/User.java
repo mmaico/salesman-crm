@@ -1,12 +1,15 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.user;
 
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.services.UserSusbribesTask;
-import br.com.kproj.salesman.delivery.tasks.domain.services.UserUnSusbribesTask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscriberRepository;
+import br.com.kproj.salesman.delivery.tasks.domain.services.SubscriberSubscribeTask;
+import br.com.kproj.salesman.delivery.tasks.domain.services.SubscriberUnsubscribeTask;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscribeTask.createSubscriber;
 
 @Model
 public class User extends ModelIdentifiable {
@@ -14,9 +17,10 @@ public class User extends ModelIdentifiable {
     private Long id;
 
     @Autowired
-    private TaskRepository repository;
+    private SubscriberRepository repository;
 
     public User(Long id) {
+        this();
         this.id = id;
     }
 
@@ -33,12 +37,18 @@ public class User extends ModelIdentifiable {
         this.id = id;
     }
 
-    public UserSusbribesTask subscribes() {
-        return task -> repository.register(SubscribeTask.createSubscribe(this, task));
+    public SubscriberSubscribeTask subscribe() {
+        return task -> repository.subscribe(createSubscriber(this.id, task.getId()));
     }
 
-    public UserUnSusbribesTask unsubscribes() {
-        return task -> repository.unregister(SubscribeTask.createSubscribe(this, task));
+    public SubscriberUnsubscribeTask unsubscribe(Subscriber subscriber) {
+        return task -> repository.unsubscribe(subscriber);
     }
+
+    public static User user() {
+        return new User();
+    }
+
+
 
 }

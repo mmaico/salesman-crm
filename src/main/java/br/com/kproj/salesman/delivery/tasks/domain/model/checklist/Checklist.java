@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.checklist;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
@@ -17,12 +18,18 @@ public class Checklist extends ModelIdentifiable {
     private Long id;
     private String name;
     private Boolean done;
+    private Task task;
 
     @Autowired
     private ChecklistRepository repository;
 
     public Checklist() {
         AutowireHelper.autowire(this);
+    }
+
+    public Checklist(Long id) {
+        this();
+        this.id = id;
     }
 
     public void marksAsCompleted() {
@@ -68,5 +75,11 @@ public class Checklist extends ModelIdentifiable {
         this.done = done;
     }
 
+    public Task getTask() {
+        return task;
+    }
 
+    public void setTask(Task task) {
+        this.task = task;
+    }
 }

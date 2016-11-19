@@ -44,8 +44,8 @@ class WorkerEndpointIT extends AbstractIntegrationTest {
             def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
             def status = mvcResult.response.status
 
-        then: "Should return 2 workers association with delivery"
-            jsonResult.items.size == 2
+        then: "Should return 3 workers association with delivery"
+            jsonResult.items.size == 3
             jsonResult.items[0].id == 1
             jsonResult.items[0].links.size == 2
             jsonResult.items[0].links.find{it.rel == "user"}.href == "/users/2"
@@ -95,8 +95,8 @@ class WorkerEndpointIT extends AbstractIntegrationTest {
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
                     .getResponse().getContentAsString())
 
-        then: "Should return 1 worker association with delivery 2"
-            result.items.size == 1
+        then: "Should return 2 worker association with delivery 2"
+            result.items.size == 2
             status == HttpStatus.OK.value
     }
 
