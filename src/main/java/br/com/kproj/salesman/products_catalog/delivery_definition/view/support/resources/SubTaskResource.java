@@ -52,4 +52,8 @@ public class SubTaskResource extends Item {
     public void setParent(RootTaskResource parent) {
         this.parent = parent;
     }
+
+    public Long getParentId() {
+        return parent == null ? null : parent.getId();
+    }
 }

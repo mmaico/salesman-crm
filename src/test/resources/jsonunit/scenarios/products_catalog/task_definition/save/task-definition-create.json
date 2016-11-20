@@ -7,6 +7,9 @@
         "quantityDaysToFinish":3,
         "region": {
           "id": 4
+        },
+        "saleable": {
+          "id": 2
         }
       }
   },
@@ -18,6 +21,9 @@
       "quantityDaysToFinish":3,
       "region": {
         "id": 6666
+      },
+      "saleable": {
+        "id": 2
       }
     }
   },
@@ -29,6 +35,9 @@
       "quantityDaysToFinish":3,
       "region": {
         "id": 4
+      },
+      "saleable": {
+        "id": 2
       }
     }
   },
@@ -38,7 +47,24 @@
       "title":"SubTask 30",
       "region": {
         "id": 4
+      },
+      "saleable": {
+        "id": 2
       }
     }
-  }
+  },
+  {
+    "scenery": "Criando uma nova task definition com saleable invalido",
+    "json": {
+      "title":"SubTask 30",
+      "description":"Subtask One description 30",
+      "quantityDaysToFinish":3,
+      "region": {
+        "id": 4
+      },
+      "saleable": {
+        "id": 6666
+      }
+    }
+  },
 ]

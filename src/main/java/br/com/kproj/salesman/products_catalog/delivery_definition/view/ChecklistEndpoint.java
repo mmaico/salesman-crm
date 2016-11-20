@@ -49,13 +49,13 @@ public class ChecklistEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/saleables/task-definitions/{taskDefinitionId}/checklist-definitions", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/saleables/task-definitions/checklist-definitions", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@PathVariable Long taskDefinitionId, @RequestBody ChecklistResource resource) {
+    ResourceItem create(@RequestBody ChecklistResource resource) {
 
         Checklist checklist = ChecklistBuilder.createChecklist().withName(resource.getName()).build();
 
-        Optional<Checklist> checklistCreated = service.register(createChecklistToTask(taskDefinitionId, checklist));
+        Optional<Checklist> checklistCreated = service.register(createChecklistToTask(resource.getTaskId(), checklist));
 
         return builder.build(checklistCreated.get(), request.getRequestURI());
     }

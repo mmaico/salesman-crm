@@ -54,4 +54,11 @@ public class SubscribeResource extends Item {
         }
         return user.getId();
     }
+
+    public Long getTaskId() {
+        if (task == null) {
+            return null;
+        }
+        return task.getId();
+    }
 }

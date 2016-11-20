@@ -39,11 +39,16 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     }
 
     public Optional<Task> register(Task task) {
-        if (task.isNew()) {
-            validator.checkRules(task);
-        } else {
-            validator.checkRules(task, TaskIgnoreRules.add(ruleInvalidDelivery()));
-        }
+
+        validator.checkRules(task);
+
+        return subscriber().save(task);
+    }
+
+    @Override
+    public Optional<Task> update(Task task) {
+
+        validator.checkRules(task, TaskIgnoreRules.add(ruleInvalidDelivery()));
 
         return subscriber().save(task);
     }
@@ -57,12 +62,6 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     public void generateByNewSalesOrder(SalesOrder salesOrder) {
         salesValidator.checkRules(salesOrder);
         repository.generateTaskFor(salesOrder);
-    }
-
-    @Override
-    public void changeStatus(ChangeStatus changeStatus) {
-        //refactory: subscriber.changeTo(newStatus).of(task)
-        repository.changeStatus(changeStatus);
     }
 
     @Override

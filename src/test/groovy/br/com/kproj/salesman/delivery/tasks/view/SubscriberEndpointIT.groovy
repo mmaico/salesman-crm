@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @Stepwise
 @ClassReference(SubscriberEndpoint)
-class SubscribeEndpointIT extends AbstractIntegrationTest {
+class SubscriberEndpointIT extends AbstractIntegrationTest {
 
 
     def MockMvc mockMvc
@@ -59,10 +59,10 @@ class SubscribeEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create an subscriber to task"() {
         given:
-            def uri = "/rs/deliveries/tasks/1/task-subscribers"
+            def uri = "/rs/deliveries/tasks/task-subscribers"
         when:
             def mvcResult = mockMvc.perform(post(uri)
-                    .contentType(MediaType.APPLICATION_JSON).content('''{"user":{"id":2}}''')).andReturn()
+                    .contentType(MediaType.APPLICATION_JSON).content('''{"user":{"id":2}, "task": {"id":1}}''')).andReturn()
             def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
             def status = mvcResult.response.status
 

@@ -47,4 +47,8 @@ public class ChecklistResource extends Item {
         this.task = task;
     }
 
+    public Long getTaskId() {
+        return task == null ? null : task.getId();
+    }
+
 }

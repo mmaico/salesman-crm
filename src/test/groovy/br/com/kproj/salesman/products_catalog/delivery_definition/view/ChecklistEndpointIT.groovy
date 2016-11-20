@@ -74,7 +74,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     def "Should create a checklist definitions of a task"() {
         def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com todos os dados").json)
 
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/5/checklist-definitions")
+        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
                 .content(toJson(checklist))
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
@@ -88,14 +88,14 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.links.size == 1
             jsonResult.item.links[0].href == "/saleables/task-definitions/5"
             jsonResult.item.links[0].rel == "of-task"
-            jsonResult.uri == "/rs/saleables/task-definitions/5/checklist-definitions"
+            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
     }
 
     @Unroll
     def "Should not create a checklist definitions of a task without name"() {
         def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist sem o nome").json)
 
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/5/checklist-definitions")
+        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
                 .content(toJson(checklist))
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
@@ -107,14 +107,14 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
             jsonResult.errors.messages[0].message == "checklist.definition.invalid.name"
             jsonResult.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            jsonResult.uri == "/rs/saleables/task-definitions/5/checklist-definitions"
+            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
     }
 
     @Unroll
     def "Should not create a checklist definitions of a task when invalid task definition"() {
-        def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com todos os dados").json)
+        def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com task invalida").json)
 
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/9999/checklist-definitions")
+        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
                 .content(toJson(checklist))
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
@@ -126,7 +126,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
             jsonResult.errors.messages[0].message == "checklist.definition.invalid.task"
             jsonResult.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            jsonResult.uri == "/rs/saleables/task-definitions/9999/checklist-definitions"
+            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
     }
 
     @Unroll

@@ -3,8 +3,6 @@ package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence;
 import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.CouldNotGenerateTasksException;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
-import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Represent;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.SalesOrderTaskItemProcessor;
@@ -78,16 +76,6 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
             throw new CouldNotGenerateTasksException(e);
         }
     }
-
-    @Override
-    public void changeStatus(ChangeStatus changeStatus) {
-
-        TaskEntity taskEntity = this.repository.findOne(changeStatus.getTaskId());
-
-        TaskStatusEntity newStatus = TaskStatusEntity.get(changeStatus.getNewStatus().name());
-        taskEntity.setStatus(newStatus);
-    }
-
 
     @Override
     public BaseRepositoryLegacy<TaskEntity, Long> getRepository() {

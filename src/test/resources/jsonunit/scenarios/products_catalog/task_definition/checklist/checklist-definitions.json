@@ -66,14 +66,28 @@
   {
     "scenery": "Criar uma checklist com todos os dados",
     "json": {
-        "name":"Checklist Four Task 2"
+        "name":"Checklist Four Task 2",
+        "task": {
+          "id": 5
+        }
     }
   },
   {
     "scenery": "Criar uma checklist sem o nome",
     "json": {
-
+      "task": {
+        "id": 5
+      }
     }
-  }
+  },
+  {
+    "scenery": "Criar uma checklist com task invalida",
+    "json": {
+      "name":"Checklist Four Task 2",
+      "task": {
+        "id": 6666
+      }
+    }
+  },
 
 ]

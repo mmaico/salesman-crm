@@ -39,13 +39,11 @@ public class TaskBusinessRules implements TaskValidator {
             task.getDelivery() == null || task.getDelivery().isNew()
             || !repository.findOne(task.getDelivery().getId()).isPresent());
 
-        rules.put(ruleInvalidDeadline(), task -> {
-                if (task.isNew()) {
-                    return task.getDeadline() == null || task.getDeadline().before(new Date());
-                } else {
-                    return task.getFields().contains("deadline") && (task.getDeadline() == null || task.getDeadline().before(new Date()));
-                }
-        });
+        rules.put(ruleInvalidDeadline(), task ->
+                task.isNew()
+                        ? task.getDeadline() == null || task.getDeadline().before(new Date())
+                        : task.getFields().contains("deadline") && (task.getDeadline() == null || task.getDeadline().before(new Date()))
+        );
 
         rules.put(ruleTaskWithoutTitle(), task ->
             task.isNew() ? isBlank(task.getTitle()) : isBlank(task.getTitle()) && task.getFields().contains("title")

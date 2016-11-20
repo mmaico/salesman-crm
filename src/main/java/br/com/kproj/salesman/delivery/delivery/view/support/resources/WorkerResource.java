@@ -45,4 +45,11 @@ public class WorkerResource extends Item {
     public void setUser(UserResource user) {
         this.user = user;
     }
+
+    public Long getDeliveryId() {
+        if (delivery == null) {
+            return null;
+        }
+        return delivery.getId();
+    }
 }

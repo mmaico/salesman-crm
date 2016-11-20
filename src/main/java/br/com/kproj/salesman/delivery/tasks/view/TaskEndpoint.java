@@ -85,7 +85,7 @@ public class TaskEndpoint {
                 .build();
 
         updateFields.addFieldsToUpdate(task);
-        Optional<Task> taskCreated = service.register(task);
+        Optional<Task> taskCreated = service.update(task);
 
         return builder.build(taskCreated.get());
     }

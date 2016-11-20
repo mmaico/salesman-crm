@@ -80,4 +80,8 @@ public class TaskResource extends Item {
         return region == null ? null : region.getId();
     }
 
+    public Long getSaleableId() {
+        return saleable == null ? null : saleable.getId();
+    }
+
 }
