@@ -3,7 +3,9 @@ package br.com.kproj.salesman.delivery.tasks.application.validators;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Represent;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
@@ -24,15 +26,23 @@ public class SubtaskBusinessRules implements SubtaskValidator {
 
     private TaskRepository repository;
 
+    private RootTaskRepository rootTaskRepository;
+
+    private SubtaskRepository subtaskRepository;
+
     @Autowired
-    public SubtaskBusinessRules(TaskRepository repository) {
+    public SubtaskBusinessRules(TaskRepository repository,
+                                RootTaskRepository rootTaskRepository,
+                                SubtaskRepository subtaskRepository) {
         this.repository = repository;
+        this.rootTaskRepository = rootTaskRepository;
+        this.subtaskRepository = subtaskRepository;
     }
 
     private Map<String, CheckRule<Subtask>> rules = new HashMap<>();
     {
-        rules.put(description("subtask.with.invalid.parent"), subtask -> subtask.getParent() == null
-                && subtask.getParent().isNew() && !repository.findOne(subtask.getParent().getId()).isPresent());
+        rules.put(description("subtask.with.invalid.parent"), subtask -> subtask.getParent().isNew()
+                && !rootTaskRepository.findOne(subtask.getParent().getId()).isPresent());
 
         rules.put("subtask.with.already.exists.specialization", subtask -> {
             Optional<Task> result = repository.findOne(subtask.getId());

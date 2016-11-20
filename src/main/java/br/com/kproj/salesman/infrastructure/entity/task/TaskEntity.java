@@ -148,4 +148,8 @@ public class TaskEntity extends Identifiable implements TimelinePresent {
     public TaskTypeEntity getType() {
         return type;
     }
+
+    public void setType(TaskTypeEntity type) {
+        this.type = type;
+    }
 }

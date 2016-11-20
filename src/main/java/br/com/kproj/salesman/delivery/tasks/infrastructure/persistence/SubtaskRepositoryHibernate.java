@@ -5,10 +5,12 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.SubtaskRepositorySpringData;
+import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.TaskRepositorySpringData;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.translate.TaskEntityToTaskConverter;
 import br.com.kproj.salesman.infrastructure.entity.task.RootTaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.SubtaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
+import br.com.kproj.salesman.infrastructure.entity.task.TaskTypeEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
@@ -32,13 +34,16 @@ public class SubtaskRepositoryHibernate extends BaseRespositoryImpl<Subtask, Sub
 
 
     private SubtaskRepositorySpringData repository;
+    private TaskRepositorySpringData taskRepository;
 
     private TaskEntityToTaskConverter converter;
 
     @Autowired
-    public SubtaskRepositoryHibernate(SubtaskRepositorySpringData repository, TaskEntityToTaskConverter converter) {
+    public SubtaskRepositoryHibernate(SubtaskRepositorySpringData repository, TaskEntityToTaskConverter converter,
+                                      TaskRepositorySpringData taskRepository) {
         this.repository = repository;
         this.converter = converter;
+        this.taskRepository = taskRepository;
     }
 
 
@@ -60,9 +65,12 @@ public class SubtaskRepositoryHibernate extends BaseRespositoryImpl<Subtask, Sub
 
     @Override
     public Optional<Subtask> add(Subtask subtask, RootTask task) {
+        TaskEntity taskEntity = taskRepository.findOne(subtask.getId());
+
         SubtaskEntity subtaskEntity = new SubtaskEntity(subtask.getId());
-        subtaskEntity.setTask(new TaskEntity(subtask.getId()));
+        subtaskEntity.setTask(taskEntity);
         subtaskEntity.setParent(new RootTaskEntity(task.getId()));
+        taskEntity.setType(TaskTypeEntity.SUBTASK);
 
         return Optional.of(getConverter().convert(repository.save(subtaskEntity)));
     }

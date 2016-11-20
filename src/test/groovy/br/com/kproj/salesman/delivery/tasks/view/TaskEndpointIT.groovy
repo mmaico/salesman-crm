@@ -116,8 +116,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.id == 8
             jsonResult.item.title == taskWithNewTitle.title
 
-            jsonResult.item.links.size == 1
+            jsonResult.item.links.size == 2
             jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+            jsonResult.item.links.find{it.rel == "is-a-subtask"}.href == "/rs/deliveries/tasks/root-tasks/subtasks/8"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
@@ -139,8 +140,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.id == 8
             jsonResult.item.status == taskWithNewStatus.status
 
-            jsonResult.item.links.size == 1
+            jsonResult.item.links.size == 2
             jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+            jsonResult.item.links.find{it.rel == "is-a-subtask"}.href == "/rs/deliveries/tasks/root-tasks/subtasks/8"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
@@ -162,8 +164,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.id == 8
             jsonResult.item.description == taskWithNewDescription.description
 
-            jsonResult.item.links.size == 1
+            jsonResult.item.links.size == 2
             jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+            jsonResult.item.links.find{it.rel == "is-a-subtask"}.href == "/rs/deliveries/tasks/root-tasks/subtasks/8"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
@@ -188,8 +191,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.status == taskWithAllFieldsUpdated.status
             jsonResult.item.deadline == "2040-04-05T00:00:00.000+0000"
 
-            jsonResult.item.links.size == 1
+            jsonResult.item.links.size == 2
             jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+            jsonResult.item.links.find{it.rel == "is-a-subtask"}.href == "/rs/deliveries/tasks/root-tasks/subtasks/8"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
@@ -210,8 +214,9 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.deadline != null
             jsonResult.item.status == "WAITING"
 
-            jsonResult.item.links.size == 1
+            jsonResult.item.links.size == 2
             jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            jsonResult.item.links.find{it.rel == "is-a-roottask"}.href == "/rs/deliveries/tasks/root-tasks/1"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
