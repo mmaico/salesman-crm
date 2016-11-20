@@ -28,4 +28,5 @@ public class IgnoreRules {
     public List<String> getIgnoreRules() {
         return ignoreRules;
     }
+
 }

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.delivery.tasks.application.impl;
 
 import br.com.kproj.salesman.delivery.tasks.application.TaskFacade;
+import br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules;
 import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesValidator;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules.ruleInvalidDelivery;
 import static br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber.subscriber;
 
 @Service
@@ -37,7 +39,11 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     }
 
     public Optional<Task> register(Task task) {
-        validator.checkRules(task);
+        if (task.isNew()) {
+            validator.checkRules(task);
+        } else {
+            validator.checkRules(task, TaskIgnoreRules.add(ruleInvalidDelivery()));
+        }
 
         return subscriber().save(task);
     }

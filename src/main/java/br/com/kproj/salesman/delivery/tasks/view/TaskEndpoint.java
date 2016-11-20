@@ -7,9 +7,10 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskBuilder;
 import br.com.kproj.salesman.delivery.tasks.view.support.builders.TaskResourceBuilder;
 import br.com.kproj.salesman.delivery.tasks.view.support.resources.TaskResource;
+import br.com.kproj.salesman.delivery.tasks.view.support.updates.TaskUpdateFields;
+import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -26,23 +27,33 @@ public class TaskEndpoint {
 
     private TaskResourceBuilder builder;
 
-    private HttpServletRequest request;
+    private TaskUpdateFields updateFields;
 
     @Autowired
-    public TaskEndpoint(TaskFacade service, TaskResourceBuilder builder, HttpServletRequest request) {
+    public TaskEndpoint(TaskFacade service, TaskResourceBuilder builder, TaskUpdateFields updateFields) {
         this.service = service;
         this.builder = builder;
-        this.request = request;
+        this.updateFields = updateFields;
     }
 
     @RequestMapping(value = "/rs/deliveries/{deliveryId}/tasks", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getTaskDefinitions(@PathVariable Long deliveryId, @PageableDefault(size = 100) Pageable pageable) {
+    ResourceItems getTasks(@PathVariable Long deliveryId, @PageableDefault(size = 100) Pageable pageable) {
         Delivery delviery = new Delivery(deliveryId);
 
         Iterable<Task> rootTasks = service.findAll(delviery, pageable);
 
-        return builder.build(rootTasks, request.getRequestURI());
+        return builder.build(rootTasks);
+    }
+
+    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResourceItem getTask(@PathVariable Long taskId) {
+
+        Optional<Task> taskOptional = service.getOne(taskId);
+        Task task = taskOptional.orElseThrow(NotFoundException::new);
+
+        return builder.build(task);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,20 +69,26 @@ public class TaskEndpoint {
 
         Optional<Task> taskCreated = service.register(task);
 
-        return builder.build(taskCreated.get(), request.getRequestURI());
+        return builder.build(taskCreated.get());
     }
-//
-//    @RequestMapping(value = "/rs/saleables/task-definitions/{taskId}", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ResourceItem getOne(@PathVariable Long taskId) {
-//
-//        Optional<Task> taskFound = service.getOne(taskId);
-//
-//        Task task = taskFound.orElseThrow(() -> new NotFoundException());
-//
-//        return builder.build(task, request.getRequestURI());
-//    }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.PUT)
+    public @ResponseBody
+    ResourceItem update(@PathVariable Long taskId, @RequestBody TaskResource resource) {
+
+        Task task = TaskBuilder.createTask(taskId)
+                .withTitle(resource.getTitle())
+                .withDescription(resource.getDescription())
+                .withDeadline(resource.getDeadline())
+                .withStatus(resource.getStatus())
+                .build();
+
+        updateFields.addFieldsToUpdate(task);
+        Optional<Task> taskCreated = service.register(task);
+
+        return builder.build(taskCreated.get());
+    }
 
 
 }

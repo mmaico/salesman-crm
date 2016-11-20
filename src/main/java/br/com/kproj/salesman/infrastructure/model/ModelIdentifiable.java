@@ -35,4 +35,22 @@ public abstract class ModelIdentifiable implements Serializable {
     public Set<String> getFields() {
         return this.fields;
     }
+
+    public void addField(String name, When when) {
+        if (when.present) {
+            this.fields.add(name);
+        }
+    }
+
+    public static class When {
+        final Boolean present;
+
+        public When(Boolean value) {
+            this.present = value;
+        }
+
+        public static When when(Boolean value) {
+            return new When(value);
+        }
+    }
 }

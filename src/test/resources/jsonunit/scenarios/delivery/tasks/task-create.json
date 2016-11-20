@@ -42,5 +42,32 @@
         "id": 666
       }
     }
+  },
+  {
+    "scenery": "Task com um novo titulo para atualizacao",
+    "json": {
+      "title":"Novo titulo para a task"
+    }
+  },
+  {
+    "scenery": "Task com novo status para atualizacao",
+    "json": {
+      "status": "PROBLEM"
+    }
+  },
+  {
+    "scenery": "Task com nova descricao para atualizacao",
+    "json": {
+      "description": "new Description to update"
+    }
+  },
+  {
+    "scenery": "Task com todos os dados alterados para atualizacao",
+    "json": {
+      "title":"Novo titulo para a task 0000",
+      "description": "new Description to update 0000",
+      "status": "PROBLEM",
+      "deadline":"2040-04-05T00:00:00Z"
+    }
   }
 ]

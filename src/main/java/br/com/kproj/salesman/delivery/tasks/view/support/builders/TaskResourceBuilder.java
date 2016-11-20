@@ -10,6 +10,8 @@ import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -22,6 +24,9 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Component("taskResourceBuilderDeliveryModule")
 public class TaskResourceBuilder {
+
+    @Autowired
+    private HttpServletRequest request;
 
     private static Map<Represent, SelectLink> selectLink = new HashMap<>();
 
@@ -40,18 +45,18 @@ public class TaskResourceBuilder {
     }
 
 
-    public ResourceItem build(Task saleableUnit, String uri) {
+    public ResourceItem build(Task saleableUnit) {
         TaskResource resource = buildItem(saleableUnit);
 
-        return new ResourceItem(resource, uri);
+        return new ResourceItem(resource, request.getRequestURI());
     }
 
-    public ResourceItems build(Iterable<Task> saleables, String uri) {
+    public ResourceItems build(Iterable<Task> saleables) {
 
         List<TaskResource> resources = Lists.newArrayList(saleables).stream()
                 .map(item -> buildItem(item)).collect(Collectors.toList());
 
-        return new ResourceItems(resources, uri);
+        return new ResourceItems(resources, request.getRequestURI());
     }
 
     public TaskResource buildItem(Task task) {

@@ -6,6 +6,7 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules.*;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
@@ -34,27 +35,40 @@ public class TaskBusinessRules implements TaskValidator {
 
     private Map<String, CheckRule<Task>> rules = new HashMap<>();
     {
-        rules.put(description("task.invalid.delivery"), task ->
-            task.getDelivery() == null
-            || task.getDelivery().isNew()
+        rules.put(ruleInvalidDelivery(), task ->
+            task.getDelivery() == null || task.getDelivery().isNew()
             || !repository.findOne(task.getDelivery().getId()).isPresent());
 
-        rules.put(description("task.deadline.great.than.or.equals.today"), task ->
-                task.getDeadline() == null || task.getDeadline().before(new Date()));
+        rules.put(ruleInvalidDeadline(), task -> {
+                if (task.isNew()) {
+                    return task.getDeadline() == null || task.getDeadline().before(new Date());
+                } else {
+                    return task.getFields().contains("deadline") && (task.getDeadline() == null || task.getDeadline().before(new Date()));
+                }
+        });
 
-        rules.put(description("task.without.title"), task -> isBlank(task.getTitle()));
-        rules.put(description("task.without.status"), task -> !task.isNew() && task.getStatus() == null);
-        rules.put(description("task.not.found.on.update"), task -> !task.isNew() && !taskRepository.findOne(task.getId()).isPresent());
+        rules.put(ruleTaskWithoutTitle(), task ->
+            task.isNew() ? isBlank(task.getTitle()) : isBlank(task.getTitle()) && task.getFields().contains("title")
+        );
+        rules.put(ruleTaskWithoutStatus(), task -> !task.isNew() ? task.getStatus() == null && task.getFields().contains("status") : Boolean.FALSE);
+
+        rules.put(ruleTaskNotFoundOnUpdate(), task -> !task.isNew() && !taskRepository.findOne(task.getId()).isPresent());
 
     }
 
     @Override
     public void checkRules(Task task) {
+        checkRules(task, new TaskIgnoreRules(StringUtils.EMPTY));
+    }
+
+    public void checkRules(Task task, TaskIgnoreRules ignoreRules) {
 
         Set<String> violations = rules.entrySet()
                 .stream()
-                .filter( rule -> {
+                .filter(rule -> {
                     try {
+                        if (ignoreRules.contains(rule.getKey())) return Boolean.FALSE;
+
                         return rule.getValue().check(task);
                     } catch (Exception e) {
                         return Boolean.TRUE;

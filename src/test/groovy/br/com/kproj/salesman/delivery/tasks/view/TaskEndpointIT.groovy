@@ -100,5 +100,121 @@ class TaskEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.BAD_REQUEST.value
     }
 
+    @Unroll
+    def "Should update title of task"() {
+        given:
+            def uri = "/rs/deliveries/tasks/8"
+            def taskWithNewTitle = new JsonSlurper().parseText(scenery("Task com um novo titulo para atualizacao").getJson())
+        when:
+
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(taskWithNewTitle))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a task with title changed"
+            jsonResult.item.id == 8
+            jsonResult.item.title == taskWithNewTitle.title
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update status of task"() {
+        given:
+            def uri = "/rs/deliveries/tasks/8"
+            def taskWithNewStatus = new JsonSlurper().parseText(scenery("Task com novo status para atualizacao").getJson())
+        when:
+
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(taskWithNewStatus))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a task with status changed"
+            jsonResult.item.id == 8
+            jsonResult.item.status == taskWithNewStatus.status
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update description of task"() {
+        given:
+            def uri = "/rs/deliveries/tasks/8"
+            def taskWithNewDescription = new JsonSlurper().parseText(scenery("Task com nova descricao para atualizacao").getJson())
+        when:
+
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(taskWithNewDescription))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a task with description changed"
+            jsonResult.item.id == 8
+            jsonResult.item.description == taskWithNewDescription.description
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update all fields of task"() {
+        given:
+            def uri = "/rs/deliveries/tasks/8"
+            def taskWithAllFieldsUpdated = new JsonSlurper().parseText(scenery("Task com todos os dados alterados para atualizacao").getJson())
+        when:
+
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(taskWithAllFieldsUpdated))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a task with all data changed"
+            jsonResult.item.id == 8
+            jsonResult.item.description == taskWithAllFieldsUpdated.description
+            jsonResult.item.title == taskWithAllFieldsUpdated.title
+            jsonResult.item.status == taskWithAllFieldsUpdated.status
+            jsonResult.item.deadline == "2040-04-05T00:00:00.000+0000"
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/1"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should get a task by ID"() {
+        given:
+            def uri = "/rs/deliveries/tasks/1"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a task by ID"
+            jsonResult.item.id == 1
+            jsonResult.item.title == "title"
+            jsonResult.item.description == "description"
+            jsonResult.item.deadline != null
+            jsonResult.item.status == "WAITING"
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
 
 }

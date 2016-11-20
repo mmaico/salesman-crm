@@ -7,7 +7,7 @@ public enum TaskStatusEntity {
 
     private String message;
 
-    private TaskStatusEntity(String value) {
+    TaskStatusEntity(String value) {
         this.message = value;
     }
 

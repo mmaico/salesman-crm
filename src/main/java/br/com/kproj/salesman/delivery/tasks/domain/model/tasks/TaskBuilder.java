@@ -39,6 +39,11 @@ public class TaskBuilder extends AbstractBuilder<Task>  {
 		return this;
 	}
 
+	public TaskBuilder withStatus(TaskStatus status) {
+		this.entity.setStatus(status);
+		return this;
+	}
+
 
 	public static TaskBuilder createTask(Long id) {
 		return new TaskBuilder(id);

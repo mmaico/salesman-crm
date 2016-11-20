@@ -44,15 +44,17 @@ public class TaskRepositoryHibernate extends BaseRespositoryImpl<Task, TaskEntit
     @Override
     public Optional<Task> save(Task task) {
 
-        TaskEntity taskToSave = from(task).convertTo(TaskEntity.class);
-
         if (task.isNew()) {
+            TaskEntity taskToSave = from(task).convertTo(TaskEntity.class);
             taskToSave.setStatus(TaskStatusEntity.WAITING);
             TaskEntity tasksaved = repository.save(taskToSave);
+
             return Optional.of(getConverter().convert(tasksaved));
         } else {
-            TaskEntity tasksaved = repository.save(taskToSave);
-            return Optional.of(getConverter().convert(tasksaved));
+            TaskEntity taskEntity = repository.findOne(task.getId());
+            from(task).merge(taskEntity);
+            repository.save(taskEntity);
+            return Optional.of(getConverter().convert(taskEntity));
         }
     }
 
