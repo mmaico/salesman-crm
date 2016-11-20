@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.kproj.salesman.infrastructure.model.ValueObject;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+
 
 
 public class SubtaskToRootTask implements ValueObject {

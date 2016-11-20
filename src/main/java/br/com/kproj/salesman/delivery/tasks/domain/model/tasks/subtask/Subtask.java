@@ -8,6 +8,12 @@ public class Subtask extends Task {
 
     private Task parent;
 
+    public Subtask() {}
+
+    public Subtask(Long id) {
+        this.setId(id);
+    }
+
     public Task getParent() {
         return parent;
     }

@@ -69,7 +69,7 @@ public class SubtaskEndpoint {
     public @ResponseBody
     ResourceItem create(@RequestBody SubTaskResource resource) {
 
-        Subtask subtask = createSubtask(resource.getId()).build();
+        Subtask subtask = createSubtask(resource.getTaskId()).build();
 
         SubtaskToRootTask toRootTask = SubtaskToRootTask.createSubtask(resource.getParentId(), subtask);
 

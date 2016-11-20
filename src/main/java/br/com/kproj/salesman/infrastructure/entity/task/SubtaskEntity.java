@@ -20,6 +20,11 @@ public class SubtaskEntity extends Identifiable {
     @JoinColumn(name="roottask_id")
     private RootTaskEntity parent;
 
+    public SubtaskEntity(Long id) {
+        this.id = id;
+    }
+    public SubtaskEntity() {}
+
 
     public Long getId() {
         return id;

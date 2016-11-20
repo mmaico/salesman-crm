@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.delivery.tasks.view.support.resources;
 
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
+
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "task",
         "links"
 })
-@ResourceItem(name="root-tasks-definitions", modelReference = RootTask.class, parent = SaleableResource.class)
+@ResourceItem(name="root-tasks", modelReference = RootTask.class, parent = TaskResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RootTaskResource extends Item {
 

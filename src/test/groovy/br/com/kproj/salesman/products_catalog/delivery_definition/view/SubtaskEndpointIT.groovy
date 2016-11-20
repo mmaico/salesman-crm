@@ -81,7 +81,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             def taskDefinitionCreatedId = new JsonSlurper().parseText(taskDefinitionCreated).item.id
 
             def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                .content("{\"id\": $taskDefinitionCreatedId, \"parent\":{\"id\":5}}")
+                .content("{\"task\": {\"id\": $taskDefinitionCreatedId}, \"parent\":{\"id\":5}}")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
@@ -118,7 +118,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
         when: "Create a subtask definition using a task ID"
 
             def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                    .content("{\"id\": $subTaskDefinitionAlreadySpecializationID, \"parent\":{\"id\":5}}")
+                    .content("{\"task\": {\"id\": $subTaskDefinitionAlreadySpecializationID}, \"parent\":{\"id\":5}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
@@ -144,7 +144,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             def taskDefinitionCreatedId = new JsonSlurper().parseText(taskDefinitionCreated).item.id
 
             def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                    .content("{\"id\": $taskDefinitionCreatedId, \"parent\":{\"id\":6666}}")
+                    .content("{\"task\": {\"id\": $taskDefinitionCreatedId}, \"parent\":{\"id\":6666}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())

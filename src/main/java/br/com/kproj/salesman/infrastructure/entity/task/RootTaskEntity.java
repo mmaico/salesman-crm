@@ -17,6 +17,12 @@ public class RootTaskEntity extends Identifiable {
     @JoinColumn(name = "task_id")
     private TaskEntity task;
 
+    public RootTaskEntity(Long id) {
+        this.id = id;
+    }
+
+    public RootTaskEntity() {}
+
     @Override
     public Long getId() {
         return id;

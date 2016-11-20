@@ -2,6 +2,9 @@ package br.com.kproj.salesman.delivery.tasks.domain.model.subscribe;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
@@ -20,6 +23,9 @@ public class Subscriber extends ModelIdentifiable {
     @Autowired
     private TaskRepository taskRepository;
 
+    @Autowired
+    private SubtaskRepository subtaskRepository;
+
     public Subscriber(Long id) {
         this();
         this.id = id;
@@ -31,6 +37,10 @@ public class Subscriber extends ModelIdentifiable {
 
     public Optional<Task> save(Task task) {
         return taskRepository.save(task);
+    }
+
+    public Optional<Subtask> save(Subtask subtask) {
+        return subtaskRepository.add(subtask, new RootTask(subtask.getParent().getId()));
     }
 
     public static Subscriber subscriber() {

@@ -1,11 +1,13 @@
 package br.com.kproj.salesman.delivery.tasks.view.support.resources;
 
 
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
+
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -15,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "parent",
         "links"
 })
-@ResourceItem(name="subtask-definitions", modelReference = Subtask.class, parent = RootTaskResource.class)
+@ResourceItem(name="subtasks", modelReference = Subtask.class, parent = TaskResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SubTaskResource extends Item {
+public class SubtaskResource extends Item {
 
     private Long id;
 
@@ -44,7 +46,7 @@ public class SubTaskResource extends Item {
         this.task = task;
     }
 
-    @Selectable(expression = "child-of")
+    @Selectable(expression = "child-of", externalLink = true)
     public RootTaskResource getParent() {
         return parent;
     }
@@ -52,4 +54,16 @@ public class SubTaskResource extends Item {
     public void setParent(RootTaskResource parent) {
         this.parent = parent;
     }
+
+    @JsonIgnore
+    public Long getParentId() {
+        return this.parent == null ? null : parent.getId();
+    }
+
+    @JsonIgnore
+    public Long getTaskId() {
+        return this.task == null ? null : task.getId();
+    }
+
+
 }
