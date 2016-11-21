@@ -15,6 +15,7 @@ import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
 import static groovy.json.JsonOutput.toJson
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @Stepwise
@@ -107,5 +108,61 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
         then: "Should return a error"
             subtaskCreated.uri == "/rs/deliveries/tasks/root-tasks"
             result.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should list all root task registered of a delivery"() {
+        given:
+            def uri = "/rs/deliveries/3/tasks/root-tasks"
+        when: "list a root tasks by delivery 3"
+
+            def result = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+            def rootTaskList = new JsonSlurper().parseText(result.response.contentAsString)
+
+        then: "Should all root tasks of a delivery and status 200"
+            rootTaskList.items.size == 2
+            rootTaskList.items[0].id == 1
+            rootTaskList.items[0].task.id == 1
+            rootTaskList.items[0].task.title == "title"
+            rootTaskList.items[0].task.description == "description"
+            rootTaskList.items[0].task.deadline == "2016-02-19T02:00:00.000+0000"
+            rootTaskList.items[0].task.links.size == 1
+            rootTaskList.items[0].task.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            rootTaskList.items[0].links.find{it.rel == "children"}.href == "/deliveries/tasks/root-tasks/1/subtasks"
+
+            rootTaskList.items[1].id == 2
+            rootTaskList.items[1].task.id == 2
+            rootTaskList.items[1].task.title == "title"
+            rootTaskList.items[1].task.description == "description"
+            rootTaskList.items[1].task.deadline == "2016-02-18T02:00:00.000+0000"
+            rootTaskList.items[1].task.links.size == 1
+            rootTaskList.items[1].task.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            rootTaskList.items[1].links.find{it.rel == "children"}.href == "/deliveries/tasks/root-tasks/2/subtasks"
+
+            rootTaskList.uri == uri
+            result.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should find a root task by ID"() {
+        given:
+            def uri = "/rs/deliveries/tasks/root-tasks/2"
+        when: "find a root tasks by ID"
+            def result = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def rootTask = new JsonSlurper().parseText(result.response.contentAsString)
+
+        then: "Should return a root task and status 200"
+            rootTask.item.id == 2
+            rootTask.item.task.id == 2
+            rootTask.item.task.title == "title"
+            rootTask.item.task.description == "description"
+            rootTask.item.task.deadline == "2016-02-18T02:00:00.000+0000"
+            rootTask.item.task.links.size == 1
+            rootTask.item.task.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            rootTask.item.links.find{it.rel == "children"}.href == "/deliveries/tasks/root-tasks/2/subtasks"
+
+            rootTask.uri == uri
+            result.response.status == HttpStatus.OK.value
     }
 }

@@ -30,14 +30,19 @@ import static com.trex.clone.BusinessModelClone.from;
 @Repository
 public class RootTaskRepositoryHibernate extends BaseRespositoryImpl<RootTask, RootTaskEntity> implements RootTaskRepository {
 
-    @Autowired
     private RootTaskRepositorySpringData repository;
 
-    @Autowired
     private TaskRepositorySpringData taskRepository;
 
-    @Autowired
     private TaskEntityToTaskConverter converter;
+
+    @Autowired
+    public RootTaskRepositoryHibernate(RootTaskRepositorySpringData repository, TaskRepositorySpringData taskRepository, TaskEntityToTaskConverter converter) {
+        this.repository = repository;
+        this.taskRepository = taskRepository;
+        this.converter = converter;
+    }
+
 
     @Override
     public void delete(RootTask task) {

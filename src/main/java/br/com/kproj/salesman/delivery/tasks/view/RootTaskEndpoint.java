@@ -52,7 +52,7 @@ public class RootTaskEndpoint {
 
         Optional<RootTask> rootTask = service.getOne(rootTaskId);
 
-        RootTask task = rootTask.orElseThrow(() -> new NotFoundException());
+        RootTask task = rootTask.orElseThrow(NotFoundException::new);
 
         return builder.build(task);
     }

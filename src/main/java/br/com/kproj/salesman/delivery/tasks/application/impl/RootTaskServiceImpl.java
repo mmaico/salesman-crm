@@ -45,7 +45,7 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
 
     @Override
     public Iterable<RootTask> findAll(Long deliveryId, Pageable pageable) {
-        return null;
+        return repository.findAll(deliveryId, pageable);
     }
 
     @Override
