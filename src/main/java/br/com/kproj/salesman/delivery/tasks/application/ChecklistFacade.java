@@ -2,14 +2,21 @@ package br.com.kproj.salesman.delivery.tasks.application;
 
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.ChecklistForTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
+import br.com.kproj.salesman.infrastructure.service.ModelFacade;
+import org.springframework.data.domain.Pageable;
 
-import java.util.Collection;
+import java.util.Optional;
 
-public interface ChecklistFacade {
+public interface ChecklistFacade extends ModelFacade<Checklist> {
 
-    Collection<Checklist> findAll(Task task);
+    Iterable<Checklist> findAll(Task task, Pageable pageable);
 
-    void completed(Checklist checklist);
+    Optional<Checklist> save(ChecklistForTask checklistForTask);
+
+    Checklist update(Checklist checklist);
+
+
 
 }

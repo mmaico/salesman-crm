@@ -1,11 +1,14 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.subscribe;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.Checklist;
+import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.ChecklistRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
+import br.com.kproj.salesman.delivery.tasks.domain.services.AddChecklistInTask;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
@@ -26,6 +29,9 @@ public class Subscriber extends ModelIdentifiable {
     @Autowired
     private SubtaskRepository subtaskRepository;
 
+    @Autowired
+    private ChecklistRepository checklistRepository;
+
     public Subscriber(Long id) {
         this();
         this.id = id;
@@ -41,6 +47,14 @@ public class Subscriber extends ModelIdentifiable {
 
     public Optional<Subtask> save(Subtask subtask) {
         return subtaskRepository.add(subtask, new RootTask(subtask.getParent().getId()));
+    }
+
+    public AddChecklistInTask save(Checklist checklist) {
+        return task -> checklistRepository.register(checklist, task);
+    }
+
+    public Checklist update(Checklist checklist) {
+        return checklistRepository.update(checklist);
     }
 
     public static Subscriber subscriber() {

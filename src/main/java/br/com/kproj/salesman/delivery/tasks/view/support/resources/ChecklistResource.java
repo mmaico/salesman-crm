@@ -6,12 +6,14 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.checklist.Checklist;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
         "id",
         "name",
+        "done",
         "links"
 })
 @ResourceItem(name="checklists", modelReference = Checklist.class, parent = TaskResource.class)
@@ -20,7 +22,7 @@ public class ChecklistResource extends Item {
 
     private Long id;
     private String name;
-    private Boolean status;
+    private Boolean done;
 
     private TaskResource task;
 
@@ -49,11 +51,16 @@ public class ChecklistResource extends Item {
         this.task = task;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getDone() {
+        return done;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    @JsonIgnore
+    public Long getTaskId() {
+        return this.task == null ? null : this.task.getId();
     }
 }

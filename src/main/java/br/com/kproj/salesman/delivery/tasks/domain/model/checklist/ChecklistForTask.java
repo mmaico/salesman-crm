@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.checklist;
 
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
+
 public class ChecklistForTask {
 
     private final Checklist checklist;
@@ -18,5 +20,13 @@ public class ChecklistForTask {
 
     public Long getTaskId() {
         return taskId;
+    }
+
+    public Task getTask() {
+        return new Task(this.taskId);
+    }
+
+    public static ChecklistForTask createChecklistToTask(Long taskId, Checklist checklist) {
+        return new ChecklistForTask(checklist, taskId);
     }
 }

@@ -166,6 +166,11 @@
     <task_delivery_responsible id="5" user_id="1" task_id="3"/>
     <task_delivery_responsible id="6" user_id="1" task_id="7"/>
 
+    <!-- CHECKLISTS -->
+    <checklist_delivery id="1" name="checklist 01" is_done="false" task_id="2"/>
+    <checklist_delivery id="2" name="checklist 02" is_done="false" task_id="2"/>
+    <checklist_delivery id="3" name="checklist 03" is_done="false" task_id="5"/>
+    <checklist_delivery id="4" name="checklist 04" is_done="true" task_id="5"/>
 
     <!-- SCHEDULES NOTIFICATION  -->
     <schedule_trigger_notification id="1" trigger_date="2020-10-20 00:00:00" task_id="1" executed="true"/>

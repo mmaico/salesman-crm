@@ -1,0 +1,27 @@
+[
+  {
+    "scenery": "Criando uma nova checklist pra uma tarefa",
+    "json": {
+        "name":"Checklist 01",
+        "task": {
+          "id": 3
+        }
+      }
+  },
+  {
+    "scenery": "Criando uma nova checklist para uma tarefa sem o nome",
+    "json": {
+      "task": {
+        "id": 3
+      }
+    }
+  },
+  {
+    "scenery": "Criando uma nova checklist para uma tarefa sem a tarefa",
+    "json": {
+      "name":"Checklist 01"
+    }
+  }
+
+
+]
