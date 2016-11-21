@@ -12,6 +12,18 @@
   },
 
   {
+    "scenery": "Criando uma nova task(roottask) com todos os dados validos",
+    "json": {
+      "title":"Root Task 0",
+      "description":"Root Task One description 0",
+      "deadline":"2018-09-05T00:00:00Z",
+      "delivery": {
+        "id": 3
+      }
+    }
+  },
+
+  {
     "scenery": "Task sem o titulo",
     "json": {
       "description":"Subtask One description 0",

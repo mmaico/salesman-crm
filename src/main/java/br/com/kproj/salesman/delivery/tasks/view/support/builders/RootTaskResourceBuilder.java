@@ -6,6 +6,8 @@ import br.com.kproj.salesman.delivery.tasks.view.support.resources.RootTaskResou
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.uol.rest.apiconverter.ConverterToResource;
+import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;
+import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,8 @@ public class RootTaskResourceBuilder {
 
     public RootTaskResource buildItem(RootTask rootTask) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
+        context.addLinkConf(RootTaskResource.class, Link.createLink("children", "/deliveries/tasks/root-tasks/" + rootTask.getId() + "/subtasks"));
+        context.addLinkConf(RootTaskResource.class, LinkRemoveConfig.createLinkRemoveConfig("children"));
 
         RootTaskResource resource = new RootTaskResource();
 

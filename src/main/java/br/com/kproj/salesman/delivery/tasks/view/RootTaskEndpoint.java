@@ -60,7 +60,7 @@ public class RootTaskEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/rs/deliveries/tasks/root-tasks", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody RootTaskResource resource) {
+    ResourceItem createSpecialization(@RequestBody RootTaskResource resource) {
 
         RootTask rootTask = RootTaskBuilder.createRootTask(resource.getTaskId()).build();
 

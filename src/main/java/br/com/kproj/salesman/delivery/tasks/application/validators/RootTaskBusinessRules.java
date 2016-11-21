@@ -43,8 +43,13 @@ public class RootTaskBusinessRules implements RootTaskValidator {
 
         Set<String> violations = rules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(task))
-                .map(Map.Entry::getKey).collect(Collectors.toSet());
+                .filter(rule -> {
+                    try {
+                        return rule.getValue().check(task);
+                    } catch (Exception e) {
+                        return Boolean.TRUE;
+                    }
+                }).map(Map.Entry::getKey).collect(Collectors.toSet());
 
         hasErrors(violations).throwing(ValidationException.class);
     }

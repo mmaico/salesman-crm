@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.Collection;
+
 @JsonPropertyOrder({
         "id",
         "task",
@@ -24,6 +26,8 @@ public class RootTaskResource extends Item {
 
     @SuperClass
     private TaskResource task;
+
+    private Collection<SubtaskResource> children;
 
     public Long getId() {
         return id;
@@ -40,6 +44,15 @@ public class RootTaskResource extends Item {
 
     public void setTask(TaskResource task) {
         this.task = task;
+    }
+
+    @Selectable(expression = "children", externalLink = true, noExpandAnyWay = true)
+    public Collection<SubtaskResource> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Collection<SubtaskResource> children) {
+        this.children = children;
     }
 
     @JsonIgnore
