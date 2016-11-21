@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.delivery.tasks.application.validators;
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Represent;
+import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTaskValidator;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +30,12 @@ public class RootTaskBusinessRules implements RootTaskValidator {
 
     private Map<String, CheckRule<RootTask>> rules = new HashMap<>();
     {
-//        rules.put(description("subtask.with.invalid.parent"), subtask -> subtask.getParent() == null
-//                && subtask.getParent().isNew() && !repository.findOne(subtask.getParent().getId()).isPresent());
+        rules.put("roottask.with.invalid.task", rootTask -> rootTask.isNew() && !repository.findOne(rootTask.getId()).isPresent());
+
+        rules.put("roottask.with.already.exists.specialization", rootTask -> {
+            Optional<Task> result = repository.findOne(rootTask.getId());
+            return !Represent.NO_REPRESENT.equals(result.get().getRepresent());
+        });
     }
 
     @Override

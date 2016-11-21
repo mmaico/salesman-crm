@@ -7,6 +7,7 @@ import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -39,5 +40,10 @@ public class RootTaskResource extends Item {
 
     public void setTask(TaskResource task) {
         this.task = task;
+    }
+
+    @JsonIgnore
+    public Long getTaskId() {
+        return this.task == null ? null : this.task.getId();
     }
 }

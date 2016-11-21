@@ -17,6 +17,7 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskVa
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -40,6 +41,11 @@ public class RootTaskServiceImpl extends BaseModelServiceImpl<RootTask> implemen
         Optional<RootTask> result = repository.save(task);
 
         return result;
+    }
+
+    @Override
+    public Iterable<RootTask> findAll(Long deliveryId, Pageable pageable) {
+        return null;
     }
 
     @Override
