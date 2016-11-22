@@ -20,6 +20,11 @@ public class ChecklistIgnoreRules {
     public static String ruleInvalidTask() {
         return "checklist.with.invalid.task";
     }
+
+    public static String ruleInvalidStatus() {
+        return "checklist.with.invalid.status";
+    }
+
     public static String ruleInvalidName() {
         return "checklist.with.invalid.name";
     }

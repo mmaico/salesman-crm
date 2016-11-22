@@ -108,6 +108,64 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.OK.value()
     }
 
+    @Unroll
+    def "Should return one checklist by ID"() {
+        given:
+            def uri = "/rs/deliveries/tasks/checklists/4"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return an checklist and status 200"
+            jsonResult.item.id == 4
+            jsonResult.item.name == "checklist 04"
+            jsonResult.item.done == Boolean.TRUE
+            jsonResult.item.links.find{it.rel == "of-task"}.href == "/deliveries/tasks/5"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update only name of checklist"() {
+        given:
+            def uri = "/rs/deliveries/tasks/checklists/4"
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+            .content('''{"name": "teste update"}''')).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return an checklist and status 200"
+            jsonResult.item.id == 4
+            jsonResult.item.name == "teste update"
+            jsonResult.item.done == Boolean.TRUE
+            jsonResult.item.links.find{it.rel == "of-task"}.href == "/deliveries/tasks/5"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update only status of checklist"() {
+        given:
+        def uri = "/rs/deliveries/tasks/checklists/4"
+        when:
+        def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content('''{"done": "false"}''')).andReturn()
+
+        def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return an checklist and status 200"
+            jsonResult.item.id == 4
+            jsonResult.item.name == "checklist 04"
+            jsonResult.item.done == Boolean.FALSE
+            jsonResult.item.links.find{it.rel == "of-task"}.href == "/deliveries/tasks/5"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
 
 
 }

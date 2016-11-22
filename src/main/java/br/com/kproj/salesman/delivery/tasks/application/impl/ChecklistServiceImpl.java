@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.delivery.tasks.application.validators.ChecklistIgnoreRules.ruleInvalidId;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.ChecklistIgnoreRules.ruleInvalidStatus;
 import static br.com.kproj.salesman.delivery.tasks.application.validators.ChecklistIgnoreRules.ruleInvalidTask;
 import static br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber.subscriber;
 
@@ -42,7 +43,7 @@ public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implem
         Task task = checklistForTask.getTask();
         checklist.setTask(task);
 
-        validator.checkRules(checklist, ChecklistIgnoreRules.add(ruleInvalidId()));
+        validator.checkRules(checklist, ChecklistIgnoreRules.add(ruleInvalidId(), ruleInvalidStatus()));
 
         return subscriber().save(checklist).to(task);
     }

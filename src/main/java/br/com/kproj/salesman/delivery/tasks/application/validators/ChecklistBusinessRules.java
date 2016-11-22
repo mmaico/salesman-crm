@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.delivery.tasks.application.validators.ChecklistIgnoreRules.*;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -34,17 +35,17 @@ public class ChecklistBusinessRules implements ChecklistValidator {
     private Map<String, CheckRule<Checklist>> rules = new HashMap<>();
     {
 
-        rules.put("checklist.with.invalid.task", checklist ->
+        rules.put(ruleInvalidTask(), checklist ->
                 checklist.getTask().isNew() || !repository.findOne(checklist.getTask().getId()).isPresent());
 
-        rules.put("checklist.with.invalid.name", checklist -> checklist.isNew()
+        rules.put(ruleInvalidName(), checklist -> checklist.isNew()
                                 ? isBlank(checklist.getName())
                                 : checklist.getFields().contains("name") && isBlank(checklist.getName()));
 
-        rules.put("checklist.with.invalid.status", checklist -> !checklist.isNew()
-                && (checklist.getFields().contains("done") && checklist.getDone() != null));
+        rules.put(ruleInvalidStatus(), checklist -> checklist.isNew()
+                || (checklist.getFields().contains("done") && checklist.getDone() == null));
 
-        rules.put("checklist.with.invalid.id", checklist -> checklist.isNew()
+        rules.put(ruleInvalidId(), checklist -> checklist.isNew()
                 || !checklistRepository.findOne(checklist.getId()).isPresent());
     }
 

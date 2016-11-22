@@ -81,9 +81,9 @@ public class ChecklistEndpoint {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/rs/deliveries/tasks/checklists/{checklistId}", method = RequestMethod.PUT)
     public @ResponseBody
-    ResourceItem update(@RequestBody ChecklistResource resource) {
+    ResourceItem update(@PathVariable Long checklistId, @RequestBody ChecklistResource resource) {
 
-        Checklist checklist = ChecklistBuilder.createChecklist()
+        Checklist checklist = ChecklistBuilder.createChecklist(checklistId)
                 .withDone(resource.getDone())
                 .withName(resource.getName()).build();
 
