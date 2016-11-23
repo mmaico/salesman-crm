@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.application.validators;
 
-import br.com.kproj.salesman.accounts.domain.model.account.AccountRepository;
+import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.negotiation.domain.model.negotiation.Negotiation;
@@ -25,7 +25,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.
 public class NegotiationBusinessRules implements NegotiationValidate {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private CustomerRepository accountRepository;
 
     @Autowired
     private SellerRepository sellerRepository;
