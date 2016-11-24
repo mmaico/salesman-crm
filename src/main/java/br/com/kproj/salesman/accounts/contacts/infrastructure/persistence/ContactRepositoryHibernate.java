@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.accounts.contacts.infrastructure.persistence;
 
+import br.com.kproj.salesman.accounts.contacts.infrastructure.persistence.springdata.ContactEntityRepositorySpringData;
+import br.com.kproj.salesman.accounts.contacts.infrastructure.persistence.translate.ContactEntityToContactConverter;
 import br.com.kproj.salesman.accounts.customers.domain.model.contact.Contact;
 import br.com.kproj.salesman.accounts.customers.domain.model.contact.ContactRepository;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.springdata.ContactEntityRepositorySpringData;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.translate.ContactEntityToContactConverter;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;

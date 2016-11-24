@@ -1,7 +1,8 @@
-package br.com.kproj.salesman.accounts.customers.infrastructure.persistence.translate;
+package br.com.kproj.salesman.accounts.addresses.infrastructure.persistence.translate;
 
-import br.com.kproj.salesman.accounts.customers.domain.model.address.Address;
-import br.com.kproj.salesman.accounts.customers.domain.model.address.AddressBuilder;
+
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.AddressBuilder;
 import br.com.kproj.salesman.infrastructure.entity.accounts.AddressEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.stereotype.Component;

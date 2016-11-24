@@ -1,9 +1,8 @@
 package br.com.kproj.salesman.accounts.addresses.view.support.builders;
 
 
-
-import br.com.kproj.salesman.accounts.contacts.domain.model.contact.Contact;
-import br.com.kproj.salesman.accounts.contacts.view.support.resources.ContactResource;
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
+import br.com.kproj.salesman.accounts.addresses.view.support.resources.AddressResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.uol.rest.apiconverter.ConverterToResource;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-@Component("contactResourceBuilderAccountsModule")
+@Component("addressResourceBuilderAccountsModule")
 public class AddressResourceBuilder {
 
 
@@ -30,26 +29,26 @@ public class AddressResourceBuilder {
         this.request = request;
     }
 
-    public ResourceItem build(Contact contact) {
-        ContactResource resource = buildItem(contact);
+    public ResourceItem build(Address address) {
+        AddressResource resource = buildItem(address);
 
         return new ResourceItem(resource, request.getRequestURI());
     }
 
-    public ResourceItems build(Iterable<Contact> contacts) {
+    public ResourceItems build(Iterable<Address> addresses) {
 
-        List<ContactResource> resources = Lists.newArrayList(contacts).stream()
+        List<AddressResource> resources = Lists.newArrayList(addresses).stream()
                 .map(item -> buildItem(item)).collect(Collectors.toList());
 
         return new ResourceItems(resources, request.getRequestURI());
     }
 
-    public ContactResource buildItem(Contact contact) {
+    public AddressResource buildItem(Address address) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
 
-        ContactResource resource = new ContactResource();
+        AddressResource resource = new AddressResource();
 
-        ConverterToResource.convert(contact, resource, context);
+        ConverterToResource.convert(address, resource, context);
         return resource;
     }
 

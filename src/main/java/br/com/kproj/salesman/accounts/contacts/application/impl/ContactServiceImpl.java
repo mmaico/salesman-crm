@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.accounts.contacts.application.impl;
 
-import br.com.kproj.salesman.accounts.customers.application.ContactFacade;
+
+import br.com.kproj.salesman.accounts.contacts.application.ContactFacade;
 import br.com.kproj.salesman.accounts.customers.domain.model.contact.Contact;
 import br.com.kproj.salesman.accounts.customers.domain.model.contact.ContactRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;

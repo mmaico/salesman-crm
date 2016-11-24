@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.accounts.customers.view;
 
-import br.com.kproj.salesman.accounts.customers.application.AccountFacade;
+import br.com.kproj.salesman.accounts.customers.application.CustomerFacade;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerValidator;
 import br.com.kproj.salesman.infrastructure.helpers.view.NormalizeAttrUpdateHelper;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class AccountsController {
 
     @Autowired
-    private AccountFacade service;
+    private CustomerFacade service;
 
     @Autowired
     @Qualifier("accountViewValidator")

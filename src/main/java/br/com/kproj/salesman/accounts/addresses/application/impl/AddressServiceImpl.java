@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.accounts.addresses.application.impl;
 
-import br.com.kproj.salesman.accounts.customers.application.AddressFacade;
+
+import br.com.kproj.salesman.accounts.addresses.application.AddressFacade;
 import br.com.kproj.salesman.accounts.customers.domain.model.address.Address;
 import br.com.kproj.salesman.accounts.customers.domain.model.address.AddressRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;

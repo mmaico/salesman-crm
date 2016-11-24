@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 
 
-public interface AccountEntityRepositorySpringData extends BaseRepositoryLegacy<AccountEntity, Long> {
+public interface CustomerEntityRepositorySpringData extends BaseRepositoryLegacy<AccountEntity, Long> {
 
 
 

@@ -1,9 +1,10 @@
-package br.com.kproj.salesman.accounts.customers.infrastructure.persistence;
+package br.com.kproj.salesman.accounts.addresses.infrastructure.persistence;
 
-import br.com.kproj.salesman.accounts.customers.domain.model.address.Address;
-import br.com.kproj.salesman.accounts.customers.domain.model.address.AddressRepository;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.springdata.AddressEntityRepositorySpringData;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.translate.AddressEntityToAddressConverter;
+
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.AddressRepository;
+import br.com.kproj.salesman.accounts.addresses.infrastructure.persistence.springdata.AddressEntityRepositorySpringData;
+import br.com.kproj.salesman.accounts.addresses.infrastructure.persistence.translate.AddressEntityToAddressConverter;
 import br.com.kproj.salesman.infrastructure.entity.accounts.AddressEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;

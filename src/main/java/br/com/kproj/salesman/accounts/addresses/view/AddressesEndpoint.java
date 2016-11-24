@@ -3,11 +3,8 @@ package br.com.kproj.salesman.accounts.addresses.view;
 
 import br.com.kproj.salesman.accounts.addresses.application.AddressFacade;
 import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
+import br.com.kproj.salesman.accounts.addresses.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.addresses.view.support.builders.AddressResourceBuilder;
-import br.com.kproj.salesman.accounts.contacts.application.ContactFacade;
-import br.com.kproj.salesman.accounts.contacts.domain.model.contact.Contact;
-import br.com.kproj.salesman.accounts.contacts.domain.model.customer.Customer;
-import br.com.kproj.salesman.accounts.contacts.view.support.builders.ContactResourceBuilder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +21,7 @@ public class AddressesEndpoint {
 
 
     @Autowired
-    public AddressesEndpoint(AddressFacade service, ContactResourceBuilder builder) {
+    public AddressesEndpoint(AddressFacade service, AddressResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
     }

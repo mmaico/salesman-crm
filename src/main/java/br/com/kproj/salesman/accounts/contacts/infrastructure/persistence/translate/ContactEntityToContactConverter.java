@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.accounts.contacts.infrastructure.persistence.translate;
 
-import br.com.kproj.salesman.accounts.customers.domain.model.contact.Contact;
-import br.com.kproj.salesman.accounts.customers.domain.model.contact.ContactBuilder;
+
+import br.com.kproj.salesman.accounts.contacts.domain.model.contact.Contact;
+import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactBuilder;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.stereotype.Component;

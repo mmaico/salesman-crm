@@ -28,16 +28,7 @@ public class CustomerBuilder extends AbstractBuilder<Customer>  {
 		this.entity.setDescription(description);
 		return this;
 	}
-	
-	public CustomerBuilder withPhone(String phone) {
-		this.entity.setPhone(phone);
-		return this;
-	}
 
-	public CustomerBuilder withEmployers(Integer quantity) {
-		this.entity.setEmployers(quantity);
-		return this;
-	}
 	
 	public static CustomerBuilder createAccount(Long id) {
 		return new CustomerBuilder(id);

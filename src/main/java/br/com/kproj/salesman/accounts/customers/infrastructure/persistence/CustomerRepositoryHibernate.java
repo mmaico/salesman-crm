@@ -2,8 +2,8 @@ package br.com.kproj.salesman.accounts.customers.infrastructure.persistence;
 
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerRepository;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.springdata.AccountEntityRepositorySpringData;
-import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.translate.AccountEntityToAccountConverter;
+import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.springdata.CustomerEntityRepositorySpringData;
+import br.com.kproj.salesman.accounts.customers.infrastructure.persistence.translate.CustomerEntityToAccountConverter;
 import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
@@ -12,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AccountRepositoryHibernate extends BaseRespositoryImpl<Customer, AccountEntity> implements CustomerRepository {
+public class CustomerRepositoryHibernate extends BaseRespositoryImpl<Customer, AccountEntity> implements CustomerRepository {
 
-    private AccountEntityRepositorySpringData repository;
+    private CustomerEntityRepositorySpringData repository;
 
-    private AccountEntityToAccountConverter converter;
+    private CustomerEntityToAccountConverter converter;
 
     @Autowired
-    public AccountRepositoryHibernate(AccountEntityRepositorySpringData repository, AccountEntityToAccountConverter converter) {
+    public CustomerRepositoryHibernate(CustomerEntityRepositorySpringData repository, CustomerEntityToAccountConverter converter) {
         this.repository = repository;
         this.converter = converter;
     }
