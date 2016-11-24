@@ -37,7 +37,7 @@ public class TaskEntityToTaskConverter implements Converter<TaskEntity, Task> {
 
         if (taskEntity.getChecklist() != null) {
             taskEntity.getChecklist()
-                    .forEach(checklistEntity -> task.addCheckList(new Checklist(checklistEntity.getId())));
+                    .forEach(checklistEntity -> task.addChecklist(new Checklist(checklistEntity.getId())));
         }
 
         if (taskEntity.getResponsibles() != null) {

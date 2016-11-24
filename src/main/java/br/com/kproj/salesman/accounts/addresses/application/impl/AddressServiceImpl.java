@@ -1,9 +1,10 @@
 package br.com.kproj.salesman.accounts.addresses.application.impl;
 
 
+
 import br.com.kproj.salesman.accounts.addresses.application.AddressFacade;
-import br.com.kproj.salesman.accounts.customers.domain.model.address.Address;
-import br.com.kproj.salesman.accounts.customers.domain.model.address.AddressRepository;
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
+import br.com.kproj.salesman.accounts.addresses.domain.model.address.AddressRepository;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

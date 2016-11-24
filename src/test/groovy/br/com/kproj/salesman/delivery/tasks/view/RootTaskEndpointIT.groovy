@@ -10,7 +10,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
-import spock.lang.Stepwise
 import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
@@ -18,7 +17,6 @@ import static groovy.json.JsonOutput.toJson
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
-@Stepwise
 @ClassReference(RootTaskEndpoint)
 class RootTaskEndpointIT extends AbstractIntegrationTest {
 

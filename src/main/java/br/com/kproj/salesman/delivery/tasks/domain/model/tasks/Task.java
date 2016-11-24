@@ -43,9 +43,9 @@ public class Task extends ModelIdentifiable {
         this.id = id;
     }
 
-    public void addCheckList(Checklist checklist) {
-        checklistRepository.register(checklist, this);
-    }
+//    public void addCheckList(Checklist checklist) {
+//        checklistRepository.register(checklist, this);
+//    }
 
 
     @Override
