@@ -40,32 +40,45 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
 
     @Unroll
     def "Should find all subtasks definitions by roottask in Endpoint"() {
+        given:
+            def uri = "/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Lista de todos as subtasks definitions de um roottask no subtaskEndpoint").json)
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Lista de todos as subtasks definitions de um roottask no subtaskEndpoint").json
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then:
+            mvcResult.response.status == HttpStatus.OK.value
+            jsonResult.uri == uri
 
-        def jsonResult = mvcResult.response.getContentAsString()
-        def status = mvcResult.response.status
+            jsonResult.items.sort{it.id}
+            jsonResult.items[0].links.sort{it.rel}
+            jsonResult.items[0] == jsonExpected.items[0]
 
-        expect:
-            jsonResult == jsonExpected
-            status == HttpStatus.OK.value
+            jsonResult.items[1].links.sort{it.rel}
+            jsonResult.items[1] == jsonExpected.items[1]
+
+            jsonResult.items[2].links.sort{it.rel}
+            jsonResult.items[2] == jsonExpected.items[2]
+
+
     }
 
     @Unroll
     def "Should find one sub task definitions by ID using SubtaskEnpoint"() {
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/4")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Busca por sub task definition pelo id no endpoint subtask").json
+        given:
+            def uri = "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/4"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Busca por sub task definition pelo id no endpoint subtask").json)
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then:
+            mvcResult.response.status == HttpStatus.OK.value
+            jsonResult.item.task.links.sort{it.rel}
 
-        def jsonResult = mvcResult.response.getContentAsString()
-        def status = mvcResult.response.status
-
-        expect:
-            jsonResult == jsonExpected
-            status == HttpStatus.OK.value
+            jsonResult.item == jsonExpected.item
+            jsonResult.uri == uri
     }
 
     @Unroll
@@ -97,6 +110,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             subtaskCreated.item.links[0].href == "/rs/saleables/task-definitions/root-task-definitions/5"
             subtaskCreated.item.links[0].rel == "child-of"
 
+            subtaskCreated.item.task.links.sort{it.rel}
             subtaskCreated.item.task.links[0].href == "/regions/4"
             subtaskCreated.item.task.links[0].rel == "of-region"
 

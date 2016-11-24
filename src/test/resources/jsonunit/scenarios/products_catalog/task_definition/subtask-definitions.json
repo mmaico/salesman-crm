@@ -12,12 +12,12 @@
             "quantityDaysToFinish":3,
             "links":[
               {
-                "href":"/regions/1",
-                "rel":"of-region"
-              },
-              {
                 "href":"/saleables/2",
                 "rel":"of-saleable"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"of-region"
               }
             ]
           },
@@ -37,12 +37,12 @@
             "quantityDaysToFinish":2,
             "links":[
               {
-                "href":"/regions/1",
-                "rel":"of-region"
-              },
-              {
                 "href":"/saleables/2",
                 "rel":"of-saleable"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"of-region"
               }
             ]
           },
@@ -62,12 +62,12 @@
             "quantityDaysToFinish":6,
             "links":[
               {
-                "href":"/regions/1",
-                "rel":"of-region"
-              },
-              {
                 "href":"/saleables/2",
                 "rel":"of-saleable"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"of-region"
               }
             ]
           },

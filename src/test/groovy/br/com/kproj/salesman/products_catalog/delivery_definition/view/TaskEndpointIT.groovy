@@ -35,42 +35,65 @@ class TaskEndpointIT extends AbstractIntegrationTest {
 
     @Unroll
     def "Should find all task definitions by saleable"() {
+        given:
+            def uri = "/rs/saleables/2/task-definitions"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Lista de todos os task definitions do sistema").json)
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/2/task-definitions")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = new JsonSlurper().parseText(scenery("Lista de todos os task definitions do sistema").json)
+        then:
+            jsonResult.items.size == 6
+            jsonResult.uri == uri
 
-        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+            jsonResult.items[0].links.sort{it.rel}
+            jsonResult.items[0] == jsonExpected.items[0]
 
-        expect:
-            jsonResult == jsonExpected
+            jsonResult.items[1].links.sort{it.rel}
+            jsonResult.items[1] == jsonExpected.items[1]
+
+            jsonResult.items[2].links.sort{it.rel}
+            jsonResult.items[2] == jsonExpected.items[2]
+
+            jsonResult.items[3].links.sort{it.rel}
+            jsonResult.items[3] == jsonExpected.items[3]
+
+            jsonResult.items[4].links.sort{it.rel}
+            jsonResult.items[4] == jsonExpected.items[4]
+
+            jsonResult.items[5].links.sort{it.rel}
+            jsonResult.items[5] == jsonExpected.items[5]
+
     }
 
     @Unroll
     def "Should find one subtask by ID"() {
+        given:
+            def uri = "/rs/saleables/task-definitions/1"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Busca por subtask definition por ID").json)
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/1")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+        then:
+            jsonResult.item.links.sort{it.rel}
+            jsonResult.item == jsonExpected.item
 
-        def jsonExpected = scenery("Busca por subtask definition por ID").json
-
-        def jsonResult = mvcResult.getResponse().getContentAsString()
-
-        expect:
-            jsonResult == jsonExpected
+            jsonResult.uri == uri
     }
 
     @Unroll
     def "Should find one root task by ID in TaskEndpoint"() {
+        given:
+            def uri = "/rs/saleables/task-definitions/2"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Busca de root task definition pelo ID usando o TaskEndpoint").json)
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+        then:
+            jsonResult.item.links.sort{it.rel}
+            jsonResult.item == jsonExpected.item
+            jsonResult.uri == uri
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/2")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-
-        def jsonExpected = scenery("Busca de root task definition pelo ID usando o TaskEndpoint").json
-
-        def jsonResult = mvcResult.getResponse().getContentAsString()
-
-        expect:
-            jsonResult == jsonExpected
     }
 }

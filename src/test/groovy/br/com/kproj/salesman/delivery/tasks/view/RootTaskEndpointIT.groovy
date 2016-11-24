@@ -134,8 +134,10 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             rootTaskList.items[1].task.title == "title"
             rootTaskList.items[1].task.description == "description"
             rootTaskList.items[1].task.deadline == "2016-02-18T02:00:00.000+0000"
-            rootTaskList.items[1].task.links.size == 1
+            rootTaskList.items[1].task.links.size == 2
             rootTaskList.items[1].task.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            rootTaskList.items[1].task.links.find{it.rel == "has-checklists"}.href == "/deliveries/tasks/checklists;id=1;id=2"
+
             rootTaskList.items[1].links.find{it.rel == "children"}.href == "/deliveries/tasks/root-tasks/2/subtasks"
 
             rootTaskList.uri == uri
@@ -156,8 +158,10 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             rootTask.item.task.title == "title"
             rootTask.item.task.description == "description"
             rootTask.item.task.deadline == "2016-02-18T02:00:00.000+0000"
-            rootTask.item.task.links.size == 1
+            rootTask.item.task.links.size == 2
             rootTask.item.task.links.find{it.rel == "of-delivery"}.href == "/deliveries/3"
+            rootTask.item.task.links.find{it.rel == "has-checklists"}.href == "/deliveries/tasks/checklists;id=1;id=2"
+
             rootTask.item.links.find{it.rel == "children"}.href == "/deliveries/tasks/root-tasks/2/subtasks"
 
             rootTask.uri == uri

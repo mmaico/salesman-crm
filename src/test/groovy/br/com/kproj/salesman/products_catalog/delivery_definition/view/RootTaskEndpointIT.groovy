@@ -40,17 +40,45 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
 
     @Unroll
     def "Should find all root task definitions"() {
+        given:
+            def uri = "/rs/saleables/task-definitions/root-task-definitions"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions")
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Lista de todos os root tasks definitions do sistema no RootTaskEndpoint").json
 
-        def jsonResult = mvcResult.response.getContentAsString()
-        def status = mvcResult.response.status
 
-        expect:
-            jsonResult == jsonExpected
-            status == HttpStatus.OK.value
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+
+        then:
+            mvcResult.response.status == HttpStatus.OK.value
+            jsonResult.uri == "/rs/saleables/task-definitions/root-task-definitions"
+            jsonResult.items.size == 2
+
+            jsonResult.items[0].id == 2
+            jsonResult.items[0].task.id == 2
+            jsonResult.items[0].task.title == "Root One"
+            jsonResult.items[0].task.description == "Root One description"
+            jsonResult.items[0].task.quantityDaysToFinish == 5
+            jsonResult.items[0].links.size == 1
+            jsonResult.items[0].links.find{it.rel == "children"}.href == "/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions"
+
+            jsonResult.items[0].task.links.size == 2
+            jsonResult.items[0].task.links.find{it.rel == "of-region"}.href == "/regions/1"
+            jsonResult.items[0].task.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
+
+            jsonResult.items[1].id == 5
+            jsonResult.items[1].task.id == 5
+            jsonResult.items[1].task.title == "Root Two"
+            jsonResult.items[1].task.description == "Root Two description"
+            jsonResult.items[1].task.quantityDaysToFinish == 5
+            jsonResult.items[1].links.size == 1
+            jsonResult.items[1].links.find{it.rel == "children"}.href == "/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions"
+
+            jsonResult.items[1].task.links.size == 2
+            jsonResult.items[1].task.links.find{it.rel == "of-region"}.href == "/regions/1"
+            jsonResult.items[1].task.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
+
     }
 
     @Unroll
@@ -58,14 +86,25 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
 
         def mvcResult = mockMvc.perform(get("/rs/saleables/task-definitions/root-task-definitions/2")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        def jsonExpected = scenery("Busca por root task definition por ID em rootendpoint").json
 
-        def jsonResult = mvcResult.getResponse().getContentAsString()
+        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
         def status = mvcResult.response.status
 
         expect:
-            jsonResult == jsonExpected
             status == HttpStatus.OK.value
+            jsonResult.item.id == 2
+            jsonResult.item.task.id == 2
+            jsonResult.item.task.title == "Root One"
+            jsonResult.item.task.description == "Root One description"
+            jsonResult.item.task.quantityDaysToFinish == 5
+            jsonResult.item.task.links.find{it.rel == "of-region"}.href == "/regions/1"
+            jsonResult.item.task.links.find{it.rel == "of-saleable"}.href == "/saleables/2"
+
+            jsonResult.item.links.size == 1
+            jsonResult.item.links.find{it.rel == "children"}.href == "/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions"
+
+            jsonResult.uri == "/rs/saleables/task-definitions/root-task-definitions/2"
+
     }
 
     @Unroll
