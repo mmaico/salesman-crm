@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.infrastructure.persistence;
 
-import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
+import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
@@ -27,10 +27,10 @@ public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiat
 
     @Override
     public Collection<Negotiation> findOne(Account account) {
-        AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setId(account.getId());
+        CustomerEntity customerEntity = new CustomerEntity();
+        customerEntity.setId(account.getId());
 
-        return repository.findAll(accountEntity).stream()
+        return repository.findAll(customerEntity).stream()
                 .map(proposal -> converter.convert(proposal)).collect(Collectors.toList());
     }
 

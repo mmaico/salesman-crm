@@ -24,7 +24,7 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.accounts.QAccountEntity account;
+    public final br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity account;
 
     public final StringPath careOf = createString("careOf");
 
@@ -64,7 +64,7 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public QBusinessProposalEntity(Class<? extends BusinessProposalEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.account = inits.isInitialized("account") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QAccountEntity(forProperty("account")) : null;
+        this.account = inits.isInitialized("account") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("account")) : null;
         this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

@@ -26,8 +26,6 @@ public class QWorkerEntity extends EntityPathBase<WorkerEntity> {
 
     public final QDeliveryEntity delivery;
 
-    public final DateTimePath<java.util.Date> deliveryForecast = createDateTime("deliveryForecast", java.util.Date.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;

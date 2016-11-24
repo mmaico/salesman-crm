@@ -3,7 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.proposal;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
+import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
@@ -35,7 +35,7 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
 	@ManyToOne
     @JoinColumn(name="account_id")
     @NotNull(message = "business.proposal.account.required")
-    private AccountEntity account;
+    private CustomerEntity account;
 
     @ManyToOne
     @JoinColumn(name="seller_id")
@@ -100,11 +100,11 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
     }
 
 
-    public AccountEntity getAccount() {
+    public CustomerEntity getAccount() {
         return account;
     }
 
-    public void setAccount(AccountEntity account) {
+    public void setAccount(CustomerEntity account) {
         this.account = account;
     }
 

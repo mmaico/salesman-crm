@@ -1,8 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import br.com.kproj.salesman.infrastructure.entity.person.client.ClientIndividual;
-import br.com.kproj.salesman.infrastructure.entity.person.privider.ProviderIndividual;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
@@ -10,7 +7,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("individual")
-public class Individual extends Person implements ClientIndividual, ProviderIndividual {
+public class Individual extends Person {
 
 	private static final long serialVersionUID = -1209371318871861717L;
 	
@@ -35,8 +32,4 @@ public class Individual extends Person implements ClientIndividual, ProviderIndi
         this.lastname = lastname;
     }
 
-    @Override
-    public Individual to() {
-        return this;
-    }
 }

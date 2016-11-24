@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "persons")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING)
-public class Person extends Identifiable implements Client, Provider, TimelinePresent {
+public class Person extends Identifiable {
 
 	private static final long serialVersionUID = -6416371282639932944L;
 
@@ -31,11 +31,11 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
     @Size(min = 2, max = 150, message = "person.name.is.invalid")
     private String name;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
-    protected List<ContactEntity> contacts;
-
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
-    protected List<Address> addresses;
+//    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
+//    protected List<ContactEntity> contacts;
+//
+//    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
+//    protected List<Address> addresses;
 
     @NotNull
     private Boolean active = Boolean.TRUE;
@@ -78,13 +78,13 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
         this.name = name;
     }
 
-    public List<ContactEntity> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<ContactEntity> contacts) {
-        this.contacts = contacts;
-    }
+//    public List<ContactEntity> getContacts() {
+//        return contacts;
+//    }
+//
+//    public void setContacts(List<ContactEntity> contacts) {
+//        this.contacts = contacts;
+//    }
 
     public Boolean getActive() {
         return active;
@@ -102,31 +102,31 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
         this.profile = profile;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public void addContact(ContactEntity contact) {
-
-        if (this.contacts == null) {
-            this.contacts = Lists.newArrayList();
-        }
-
-        this.contacts.add(contact);
-    }
-    
-    public void addAddress(Address address) {
-
-        if (this.addresses == null) {
-            this.addresses = Lists.newArrayList();
-        }
-
-        this.addresses.add(address);
-    }
+//    public List<Address> getAddresses() {
+//        return addresses;
+//    }
+//
+//    public void setAddresses(List<Address> addresses) {
+//        this.addresses = addresses;
+//    }
+//
+//    public void addContact(ContactEntity contact) {
+//
+//        if (this.contacts == null) {
+//            this.contacts = Lists.newArrayList();
+//        }
+//
+//        this.contacts.add(contact);
+//    }
+//
+//    public void addAddress(Address address) {
+//
+//        if (this.addresses == null) {
+//            this.addresses = Lists.newArrayList();
+//        }
+//
+//        this.addresses.add(address);
+//    }
 
     public Timeline getTimeline() {
         return timeline;
@@ -144,11 +144,6 @@ public class Person extends Identifiable implements Client, Provider, TimelinePr
         sb.append(", profile='").append(profile).append('\'');
         sb.append('}');
         return sb.toString();
-    }
-
-    @Override
-    public Person to() {
-        return this;
     }
 
 }

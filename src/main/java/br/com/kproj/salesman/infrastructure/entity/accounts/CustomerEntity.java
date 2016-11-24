@@ -1,14 +1,15 @@
 package br.com.kproj.salesman.infrastructure.entity.accounts;
 
 
+import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="accounts")
-public class AccountEntity extends Identifiable {
+@Table(name="customers")
+public class CustomerEntity extends Identifiable {
 
 
     @Id
@@ -17,11 +18,12 @@ public class AccountEntity extends Identifiable {
     private String name;
     private String site;
     private String description;
-    private String phone;
-    private Integer employers;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "account")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "customer")
     private List<AddressEntity> addresses;
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "customer")
+    private List<ContactEntity> contacts;
 
     @Override
     public Long getId() {
@@ -56,27 +58,19 @@ public class AccountEntity extends Identifiable {
         this.description = description;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getEmployers() {
-        return employers;
-    }
-
-    public void setEmployers(Integer employers) {
-        this.employers = employers;
-    }
-
     public List<AddressEntity> getAddresses() {
         return addresses;
     }
 
     public void setAddresses(List<AddressEntity> addresses) {
         this.addresses = addresses;
+    }
+
+    public List<ContactEntity> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<ContactEntity> contacts) {
+        this.contacts = contacts;
     }
 }

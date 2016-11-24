@@ -1,0 +1,44 @@
+[
+  {
+    "scenery": "Lista de customers cadastrado no sistema paginado",
+    "json": {
+      "totalItems":3,
+      "pageSize":2,
+      "items":[
+        {
+          "id":1,
+          "name":"Joao Fereira",
+          "site":"www.ferreira.com.br",
+          "description":"customer description 01",
+          "links":[
+            {
+              "href":"/customers/1/addresses",
+              "rel":"has-addresses"
+            },
+            {
+              "href":"/customers/1/contacts",
+              "rel":"has-contacts"
+            }
+          ]
+        },
+        {
+          "id":2,
+          "name":"Pedro Terra Nova",
+          "site":"www.petroterra.com.br",
+          "description":"customer description 02",
+          "links":[
+            {
+              "href":"/customers/2/addresses",
+              "rel":"has-addresses"
+            },
+            {
+              "href":"/customers/2/contacts",
+              "rel":"has-contacts"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/customers?page=0&size=2"
+    }
+  }
+]

@@ -42,7 +42,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
     @Override
     public Timeline register(Person person, TimelineActivity activity) {
 
-        Timeline timeline = service.register(person);
+        Timeline timeline = null; //service.register(person);
         saveActivity(activity, timeline);
 
         return timeline;

@@ -4,14 +4,15 @@ package br.com.kproj.salesman.accounts.customers.view;
 import br.com.kproj.salesman.accounts.customers.application.CustomerFacade;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.customers.view.support.builders.CustomerResourceBuilder;
+import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
+import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @RestController("customerEndpointDeliveryModule")
@@ -37,16 +38,16 @@ public class CustomerEndpoint {
         return builder.build(customers);
     }
 
-//    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ResourceItem getTask(@PathVariable Long taskId) {
-//
-//        Optional<Task> taskOptional = service.getOne(taskId);
-//        Task task = taskOptional.orElseThrow(NotFoundException::new);
-//
-//        return builder.build(task);
-//    }
-//
+    @RequestMapping(value = "/rs/customers/{customerId}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResourceItem getTask(@PathVariable Long customerId) {
+
+        Optional<Customer> customerOptional = service.getOne(customerId);
+        Customer customer = customerOptional.orElseThrow(NotFoundException::new);
+
+        return builder.build(customer);
+    }
+
 //    @ResponseStatus(HttpStatus.CREATED)
 //    @RequestMapping(value = "/rs/deliveries/tasks", method = RequestMethod.POST)
 //    public @ResponseBody

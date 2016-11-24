@@ -24,11 +24,11 @@ public class QAddressEntity extends EntityPathBase<AddressEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final QAccountEntity account;
-
     public final StringPath city = createString("city");
 
     public final StringPath country = createString("country");
+
+    public final QCustomerEntity customer;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -58,7 +58,7 @@ public class QAddressEntity extends EntityPathBase<AddressEntity> {
 
     public QAddressEntity(Class<? extends AddressEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.account = inits.isInitialized("account") ? new QAccountEntity(forProperty("account")) : null;
+        this.customer = inits.isInitialized("customer") ? new QCustomerEntity(forProperty("customer")) : null;
     }
 
 }

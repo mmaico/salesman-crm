@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
+import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import org.hibernate.validator.constraints.Email;
@@ -33,6 +33,11 @@ public class ContactEntity extends Identifiable implements TimelinePresent {
     @OneToOne(mappedBy = "contact")
     private Timeline timeline;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    @ExcludeField
+    private CustomerEntity customer;
+
     public ContactEntity() {}
 
     public ContactEntity(Long id) {
@@ -44,11 +49,6 @@ public class ContactEntity extends Identifiable implements TimelinePresent {
         this.email = email;
         this.phone = phone;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    @ExcludeField
-    private Person person;
 
     @Override
     public Long getId() {
@@ -76,12 +76,12 @@ public class ContactEntity extends Identifiable implements TimelinePresent {
         this.phone = phone;
     }
 
-    public Person getPerson() {
-        return person;
+    public CustomerEntity getCustomer() {
+        return customer;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 
     public void setName(String name) {

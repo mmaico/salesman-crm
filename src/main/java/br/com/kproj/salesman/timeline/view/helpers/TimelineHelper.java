@@ -25,6 +25,6 @@ public class TimelineHelper {
     }
 
     public Timeline findByPerson(Person person) {
-        return application.register(PersonBuilder.createPerson(person.getId()).build());
+        return null; //application.register(PersonBuilder.createPerson(person.getId()).build());
     }
 }

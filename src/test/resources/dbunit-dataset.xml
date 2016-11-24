@@ -36,15 +36,20 @@
     <saleable_relation id="3" salepackage_id="7" saleable_id="1"/>
 
 
-    <!-- ACCOUNTS -->
-    <accounts id="1" name="Joao Fereira" phone="88398398" employers="10"/>
-    <accounts id="2" name="Pedro Terra Nova" phone="113993898" employers="100"/>
-
+    <!-- CUSTOMERS -->
+    <customers id="1" name="Joao Fereira" site="www.ferreira.com.br" description="customer description 01"/>
+    <customers id="2" name="Pedro Terra Nova" site="www.petroterra.com.br" description="customer description 02"/>
+    <customers id="3" name="Pedro Terra Velha" site="www.petrovelha.com.br" description="customer description 03"/>
 
     <!-- CONTACTS -->
-    <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
-    <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387" person_id="1"/>
-    <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" person_id="1"/>
+    <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" customer_id="1"/>
+    <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387" customer_id="2"/>
+    <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" customer_id="1"/>
+
+    <!-- ADDRESSES -->
+    <addresses id="1" street="Rua Jose luiz" city="Sao Paulo" state="SP" zip_code="9938398" country="Brasil" customer_id="1" type="BUSINESS"/>
+    <addresses id="2" street="Rua Manuel Terra" city="Santa Catarina" state="SC" zip_code="8837738" country="Brasil" customer_id="1" type="BUSINESS"/>
+    <addresses id="3" street="Rua luiz Roberto" city="Osaco" state="OS" zip_code="66736" country="Brasil" customer_id="2" type="BILLING"/>
 
     <!-- REGIONS -->
     <operation_region id="1" name="SP"/>

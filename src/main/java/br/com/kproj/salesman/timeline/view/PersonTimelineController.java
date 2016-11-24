@@ -53,7 +53,7 @@ public class PersonTimelineController {
     @RequestMapping(value = "/persons/{personId}/activities", method = RequestMethod.GET)
     public ModelAndView getTimelineContact(@PathVariable Long personId, Model model) {
 
-        Timeline timeline = timelineApplication.register(createPerson(personId).build());
+        Timeline timeline = null; //timelineApplication.register(createPerson(personId).build());
 
         model.addAttribute(createPerson(personId).build());
         model.addAttribute(timeline);

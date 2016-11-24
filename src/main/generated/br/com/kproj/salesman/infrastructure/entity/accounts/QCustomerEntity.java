@@ -11,14 +11,14 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QAccountEntity is a Querydsl query type for AccountEntity
+ * QCustomerEntity is a Querydsl query type for CustomerEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QAccountEntity extends EntityPathBase<AccountEntity> {
+public class QCustomerEntity extends EntityPathBase<CustomerEntity> {
 
-    private static final long serialVersionUID = -142128873L;
+    private static final long serialVersionUID = -2014772838L;
 
-    public static final QAccountEntity accountEntity = new QAccountEntity("accountEntity");
+    public static final QCustomerEntity customerEntity = new QCustomerEntity("customerEntity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
@@ -26,26 +26,22 @@ public class QAccountEntity extends EntityPathBase<AccountEntity> {
 
     public final StringPath description = createString("description");
 
-    public final NumberPath<Integer> employers = createNumber("employers", Integer.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 
-    public final StringPath phone = createString("phone");
-
     public final StringPath site = createString("site");
 
-    public QAccountEntity(String variable) {
-        super(AccountEntity.class, forVariable(variable));
+    public QCustomerEntity(String variable) {
+        super(CustomerEntity.class, forVariable(variable));
     }
 
-    public QAccountEntity(Path<? extends AccountEntity> path) {
+    public QCustomerEntity(Path<? extends CustomerEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QAccountEntity(PathMetadata metadata) {
-        super(AccountEntity.class, metadata);
+    public QCustomerEntity(PathMetadata metadata) {
+        super(CustomerEntity.class, metadata);
     }
 
 }

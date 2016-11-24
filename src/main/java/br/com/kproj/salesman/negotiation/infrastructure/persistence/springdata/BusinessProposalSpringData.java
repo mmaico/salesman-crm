@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.negotiation.infrastructure.persistence.springdata;
 
-import br.com.kproj.salesman.infrastructure.entity.accounts.AccountEntity;
+import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +13,5 @@ import java.util.List;
 public interface BusinessProposalSpringData extends BaseRepositoryLegacy<BusinessProposalEntity, Long> {
 
     @Query("SELECT b FROM BusinessProposalEntity AS b WHERE b.account = :account")
-    List<BusinessProposalEntity> findAll(@Param("account") AccountEntity account);
+    List<BusinessProposalEntity> findAll(@Param("account") CustomerEntity account);
 }

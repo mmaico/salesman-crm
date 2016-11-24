@@ -38,7 +38,7 @@ public class AddressEntity extends Identifiable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ExcludeField
-    private AccountEntity account;
+    private CustomerEntity customer;
 
     @Override
     public Long getId() {
@@ -97,11 +97,11 @@ public class AddressEntity extends Identifiable {
         this.type = type;
     }
 
-    public AccountEntity getAccount() {
-        return account;
+    public CustomerEntity getCustomer() {
+        return customer;
     }
 
-    public void setAccount(AccountEntity account) {
-        this.account = account;
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 }

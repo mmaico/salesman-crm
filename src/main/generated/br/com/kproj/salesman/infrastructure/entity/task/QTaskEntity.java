@@ -28,6 +28,8 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public final DateTimePath<java.util.Date> deadline = createDateTime("deadline", java.util.Date.class);
 
+    public final br.com.kproj.salesman.infrastructure.entity.delivery.QDeliveryEntity delivery;
+
     public final StringPath description = createString("description");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -41,6 +43,8 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public final StringPath title = createString("title");
+
+    public final EnumPath<TaskTypeEntity> type = createEnum("type", TaskTypeEntity.class);
 
     public QTaskEntity(String variable) {
         this(TaskEntity.class, forVariable(variable), INITS);
@@ -60,6 +64,7 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public QTaskEntity(Class<? extends TaskEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.delivery = inits.isInitialized("delivery") ? new br.com.kproj.salesman.infrastructure.entity.delivery.QDeliveryEntity(forProperty("delivery"), inits.get("delivery")) : null;
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }

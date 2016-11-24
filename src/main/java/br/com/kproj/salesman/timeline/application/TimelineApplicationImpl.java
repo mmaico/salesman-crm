@@ -37,8 +37,8 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 								   ) {
 		this.timelineRepository = timelineRepository;
 
-		repositories.put(Individual.class, personRepository);
-		repositories.put(Person.class, personRepository);
+		//repositories.put(Individual.class, personRepository);
+		//repositories.put(Person.class, personRepository);
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
 		//repositories.put(ContactEntity.class, contactRepository);
 		repositories.put(TaskEntity.class, taskRepository);

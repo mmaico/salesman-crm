@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 public class ClientBuilder extends AbstractBuilder<Client>  {
 
 	public ClientBuilder() {
-		this.entity = new Person();
+
 	}
 
 	public ClientBuilder(Long id) {

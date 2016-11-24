@@ -24,9 +24,9 @@ public class QChecklistEntity extends EntityPathBase<ChecklistEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final BooleanPath done = createBoolean("done");
 
-    public final BooleanPath isDone = createBoolean("isDone");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 

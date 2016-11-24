@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("company")
-public class Company extends Person implements ClientCompany, ProviderCompany {
+public class Company extends Person {
 
 	private static final long serialVersionUID = 4479758448493548647L;
 
@@ -58,8 +58,4 @@ public class Company extends Person implements ClientCompany, ProviderCompany {
         this.ccm = ccm;
     }
 
-    @Override
-    public Company to() {
-        return this;
-    }
 }

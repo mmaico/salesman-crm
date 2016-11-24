@@ -7,7 +7,7 @@ import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
 public class ProviderBuilder extends AbstractBuilder<Provider>  {
 
 	public ProviderBuilder() {
-		this.entity = new Person();
+
 	}
 
 	public ProviderBuilder(Long id) {
