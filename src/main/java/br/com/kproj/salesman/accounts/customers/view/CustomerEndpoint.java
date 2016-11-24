@@ -1,39 +1,40 @@
-package br.com.kproj.salesman.accounts.contacts.view;
+package br.com.kproj.salesman.accounts.customers.view;
 
 
-import br.com.kproj.salesman.accounts.contacts.application.ContactFacade;
-import br.com.kproj.salesman.accounts.contacts.domain.model.contact.Contact;
-import br.com.kproj.salesman.accounts.contacts.domain.model.customer.Customer;
-import br.com.kproj.salesman.accounts.contacts.view.support.builders.ContactResourceBuilder;
+import br.com.kproj.salesman.accounts.customers.application.CustomerFacade;
+import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
+import br.com.kproj.salesman.accounts.customers.view.support.builders.CustomerResourceBuilder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController("contactEndpointAccountsModule")
-public class ContactsEndpoint {
+@RestController("customerEndpointDeliveryModule")
+public class CustomerEndpoint {
 
-    private ContactFacade service;
+    private CustomerFacade service;
 
-    private ContactResourceBuilder builder;
+    private CustomerResourceBuilder builder;
 
 
     @Autowired
-    public ContactsEndpoint(ContactFacade service, ContactResourceBuilder builder) {
+    public CustomerEndpoint(CustomerFacade service, CustomerResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
     }
 
-    @RequestMapping(value = "/rs/customers/{customerId}/contacts", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/customers", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getContacts(@PathVariable Long customerId, @PageableDefault(size = 100) Pageable pageable) {
-        Customer customer = new Customer(customerId);
+    ResourceItems getCustomers(@PageableDefault(size = 100) Pageable pageable) {
 
-        Iterable<Contact> contacts = service.findAll(customer, pageable);
+        Iterable<Customer> customers = service.findAll(pageable);
 
-        return builder.build(contacts);
+        return builder.build(customers);
     }
 
 //    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.GET)

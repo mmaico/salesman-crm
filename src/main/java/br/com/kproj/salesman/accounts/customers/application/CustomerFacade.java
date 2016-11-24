@@ -6,4 +6,5 @@ import br.com.kproj.salesman.infrastructure.service.ModelFacade;
 
 public interface CustomerFacade extends ModelFacade<Customer> {
 
+
 }
