@@ -4,10 +4,7 @@
     "json": {
         "title":"SubTask 0",
         "description":"Subtask One description 0",
-        "deadline":"2018-09-05T00:00:00Z",
-        "delivery": {
-          "id": 3
-        }
+        "deadline":"2018-09-05T00:00:00Z"
       }
   },
 
@@ -16,10 +13,7 @@
     "json": {
       "title":"Root Task 0",
       "description":"Root Task One description 0",
-      "deadline":"2018-09-05T00:00:00Z",
-      "delivery": {
-        "id": 3
-      }
+      "deadline":"2018-09-05T00:00:00Z"
     }
   },
 
@@ -27,10 +21,7 @@
     "scenery": "Task sem o titulo",
     "json": {
       "description":"Subtask One description 0",
-      "deadline":"2018-09-05T00:00:00Z",
-      "delivery": {
-        "id": 3
-      }
+      "deadline":"2018-09-05T00:00:00Z"
     }
   },
   {
@@ -38,10 +29,7 @@
     "json": {
       "title":"SubTask 0",
       "description":"Subtask One description 0",
-      "deadline":"2016-04-05T00:00:00Z",
-      "delivery": {
-        "id": 3
-      }
+      "deadline":"2016-04-05T00:00:00Z"
     }
   },
   {
@@ -49,10 +37,7 @@
     "json": {
       "title":"SubTask 0",
       "description":"Subtask One description 0",
-      "deadline":"2020-04-05T00:00:00Z",
-      "delivery": {
-        "id": 666
-      }
+      "deadline":"2020-04-05T00:00:00Z"
     }
   },
   {

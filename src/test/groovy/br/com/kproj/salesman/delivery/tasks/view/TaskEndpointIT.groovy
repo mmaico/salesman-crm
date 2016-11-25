@@ -35,7 +35,7 @@ class TaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create a task with all data"() {
         given:
-            def uri = "/rs/deliveries/tasks"
+            def uri = "/rs/deliveries/3/tasks"
             def newTask = new JsonSlurper().parseText(scenery("Criando uma nova task com todos os dados validos").getJson())
         when:
 
@@ -61,7 +61,7 @@ class TaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a task without title"() {
         given:
-            def uri = "/rs/deliveries/tasks"
+            def uri = "/rs/deliveries/3/tasks"
             def newTask = new JsonSlurper().parseText(scenery("Task sem o titulo").getJson())
         when:
             def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -74,7 +74,7 @@ class TaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a task with deadline less than current date"() {
         given:
-            def uri = "/rs/deliveries/tasks"
+            def uri = "/rs/deliveries/3/tasks"
             def newTask = new JsonSlurper().parseText(scenery("Task com a deadline menor que a data atual").getJson())
         when:
             def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -87,7 +87,7 @@ class TaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a task with invalid delivery"() {
         given:
-            def uri = "/rs/deliveries/tasks"
+            def uri = "/rs/deliveries/666/tasks"
             def newTask = new JsonSlurper().parseText(scenery("Task com delivery invalido").getJson())
         when:
             def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)

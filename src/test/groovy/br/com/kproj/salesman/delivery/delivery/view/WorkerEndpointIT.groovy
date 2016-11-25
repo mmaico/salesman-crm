@@ -60,8 +60,8 @@ class WorkerEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create a worker for delivery"() {
         given:
-            def jsonWorker = '''{"user": {"id":2}, "delivery": {"id":2}}'''
-            def mvcResult = mockMvc.perform(post("/rs/deliveries/workers")
+            def jsonWorker = '''{"user": {"id":2}}'''
+            def mvcResult = mockMvc.perform(post("/rs/deliveries/2/workers")
                 .content(jsonWorker)
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
         when:

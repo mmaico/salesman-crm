@@ -35,7 +35,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create a checklist of task"() {
         given:
-            def uri = "/rs/deliveries/tasks/checklists"
+            def uri = "/rs/deliveries/tasks/3/checklists"
             def newChecklist = new JsonSlurper().parseText(scenery("Criando uma nova checklist pra uma tarefa").getJson())
         when:
             def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -58,7 +58,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a checklist of task when not have name"() {
         given:
-        def uri = "/rs/deliveries/tasks/checklists"
+        def uri = "/rs/deliveries/tasks/3/checklists"
         def newChecklist = new JsonSlurper().parseText(scenery("Criando uma nova checklist para uma tarefa sem o nome").getJson())
         when:
         def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -69,9 +69,9 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a checklist of task when not have task"() {
+    def "Should not create a checklist of task when invalid task"() {
         given:
-            def uri = "/rs/deliveries/tasks/checklists"
+            def uri = "/rs/deliveries/tasks/6666/checklists"
             def newChecklist = new JsonSlurper().parseText(scenery("Criando uma nova checklist para uma tarefa sem a tarefa").getJson())
         when:
             def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)

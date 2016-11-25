@@ -14,7 +14,7 @@ public class CustomerEntityToAccountConverter implements Converter<CustomerEntit
     public Customer convert(CustomerEntity customerEntity, Object... args) {
         if (customerEntity == null) return null;
 
-        Customer account = CustomerBuilder.createAccount(customerEntity.getId())
+        Customer account = CustomerBuilder.createCustomer(customerEntity.getId())
                 .withName(customerEntity.getName())
                 .withDescription(customerEntity.getDescription())
                 .withSite(customerEntity.getSite()).build();

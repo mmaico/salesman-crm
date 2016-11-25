@@ -49,9 +49,9 @@ public class TaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/saleables/task-definitions", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody TaskResource resource) {
+    ResourceItem create(@PathVariable Long saleableId, @RequestBody TaskResource resource) {
 
         Task task = createTask()
                 .withDescription(resource.getDescription())
@@ -60,7 +60,7 @@ public class TaskEndpoint {
                 .withRegion(new Region(resource.getRegionId()))
                 .build();
 
-        Optional<Task> taskCreated = service.register(createTaskToSaleable(resource.getSaleableId(), task));
+        Optional<Task> taskCreated = service.register(createTaskToSaleable(saleableId, task));
 
         return builder.build(taskCreated.get(), request.getRequestURI());
     }

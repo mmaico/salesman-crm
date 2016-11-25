@@ -85,15 +85,15 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     def "Should create a specialization sub task definition"() {
         given: "A task definition created"
             def taskJson = new JsonSlurper().parseText(scenery("Criando uma nova task definition com todos os dados validos").json)
-            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/task-definitions")
+            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/2/task-definitions")
                     .content(toJson(taskJson))
                     .contentType(MediaType.APPLICATION_JSON)).andReturn().response.getContentAsString()
 
         when: "Create a subtask definition using a task ID"
             def taskDefinitionCreatedId = new JsonSlurper().parseText(taskDefinitionCreated).item.id
 
-            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                .content("{\"task\": {\"id\": $taskDefinitionCreatedId}, \"parent\":{\"id\":5}}")
+            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions")
+                .content("{\"task\": {\"id\": $taskDefinitionCreatedId}}")
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
@@ -117,7 +117,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             subtaskCreated.item.task.links[1].href == "/saleables/2"
             subtaskCreated.item.task.links[1].rel == "of-saleable"
 
-            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions"
+            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions"
 
             status == HttpStatus.CREATED.value
 
@@ -130,8 +130,8 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
 
         when: "Create a subtask definition using a task ID"
 
-            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                    .content("{\"task\": {\"id\": $subTaskDefinitionAlreadySpecializationID}, \"parent\":{\"id\":5}}")
+            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions")
+                    .content("{\"task\": {\"id\": $subTaskDefinitionAlreadySpecializationID}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
@@ -142,22 +142,22 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             subtaskCreated.errors.messages[0].message == "subtask.with.taskid.already.specialization"
             subtaskCreated.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions"
+            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/5/subtask-definitions"
     }
 
     @Unroll
     def "Should not create a specialization of sub task definition when invalid root task definition"() {
         given: "A task definition created"
             def taskJson = new JsonSlurper().parseText(scenery("Criando uma nova task definition com todos os dados validos").json)
-            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/task-definitions")
+            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/2/task-definitions")
                     .content(toJson(taskJson))
                     .contentType(MediaType.APPLICATION_JSON)).andReturn().response.getContentAsString()
 
         when: "Try to Create a subtask definition using a task and invalid root id"
             def taskDefinitionCreatedId = new JsonSlurper().parseText(taskDefinitionCreated).item.id
 
-            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/subtask-definitions")
-                    .content("{\"task\": {\"id\": $taskDefinitionCreatedId}, \"parent\":{\"id\":6666}}")
+            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions/6666/subtask-definitions")
+                    .content("{\"task\": {\"id\": $taskDefinitionCreatedId}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
@@ -168,7 +168,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
             subtaskCreated.errors.messages[0].message == "subtask.create.invalid.roottask"
             subtaskCreated.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions"
+            subtaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions/6666/subtask-definitions"
     }
 
 }

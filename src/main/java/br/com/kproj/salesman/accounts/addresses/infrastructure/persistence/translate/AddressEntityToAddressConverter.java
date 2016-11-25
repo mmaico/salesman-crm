@@ -3,6 +3,7 @@ package br.com.kproj.salesman.accounts.addresses.infrastructure.persistence.tran
 
 import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
 import br.com.kproj.salesman.accounts.addresses.domain.model.address.AddressBuilder;
+import br.com.kproj.salesman.accounts.addresses.domain.model.customer.Customer;
 import br.com.kproj.salesman.infrastructure.entity.accounts.AddressEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class AddressEntityToAddressConverter implements Converter<AddressEntity,
                     .withState(addressEntity.getState())
                     .withStreet(addressEntity.getStreet())
                     .withZipCode(addressEntity.getZipCode())
+                    .withCustomer(new Customer(addressEntity.getCustomer().getId()))
                     .withType(Address.Type.getByName(addressEntity.getType().getName()))
                 .build();
 

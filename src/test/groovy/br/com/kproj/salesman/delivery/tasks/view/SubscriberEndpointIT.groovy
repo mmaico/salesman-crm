@@ -55,10 +55,10 @@ class SubscriberEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create an subscriber to task"() {
         given:
-            def uri = "/rs/deliveries/tasks/task-subscribers"
+            def uri = "/rs/deliveries/tasks/1/task-subscribers"
         when:
             def mvcResult = mockMvc.perform(post(uri)
-                    .contentType(MediaType.APPLICATION_JSON).content('''{"user":{"id":2}, "task": {"id":1}}''')).andReturn()
+                    .contentType(MediaType.APPLICATION_JSON).content('''{"user":{"id":2}}''')).andReturn()
             def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
             def status = mvcResult.response.status
 

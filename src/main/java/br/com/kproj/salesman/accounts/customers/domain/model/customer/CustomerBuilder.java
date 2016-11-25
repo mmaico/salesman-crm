@@ -30,11 +30,11 @@ public class CustomerBuilder extends AbstractBuilder<Customer>  {
 	}
 
 	
-	public static CustomerBuilder createAccount(Long id) {
+	public static CustomerBuilder createCustomer(Long id) {
 		return new CustomerBuilder(id);
 	}
 
-	public static CustomerBuilder createAccount() {
+	public static CustomerBuilder createCustomer() {
 		return new CustomerBuilder();
 	}
 }

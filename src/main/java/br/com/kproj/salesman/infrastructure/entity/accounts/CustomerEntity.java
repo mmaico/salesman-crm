@@ -25,6 +25,12 @@ public class CustomerEntity extends Identifiable {
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "customer")
     private List<ContactEntity> contacts;
 
+    public CustomerEntity(){}
+
+    public CustomerEntity(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

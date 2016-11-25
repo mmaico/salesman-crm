@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.accounts.addresses.domain.model.address;
 
+import br.com.kproj.salesman.accounts.addresses.domain.model.customer.Customer;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 
 
@@ -35,6 +36,7 @@ public class Address extends ModelIdentifiable {
     private String state;
     private String zipCode;
     private String country;
+    private Customer customer;
 
     private Type type = Type.UNINFORMED;
 
@@ -93,5 +95,13 @@ public class Address extends ModelIdentifiable {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

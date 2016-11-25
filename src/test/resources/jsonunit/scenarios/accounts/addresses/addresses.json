@@ -1,0 +1,79 @@
+[
+  {
+    "scenery": "Lista de enderecos de um cliente paginado",
+    "json": {
+        "totalItems":2,
+        "pageSize":1,
+        "items":[
+          {
+            "id":1,
+            "street":"Rua Jose luiz",
+            "city":"Sao Paulo",
+            "state":"SP",
+            "zipCode":"9938398",
+            "country":"Brasil",
+            "type":"BUSINESS",
+            "links":[
+              {
+                "href":"/customers/1",
+                "rel":"of-customer"
+              }
+            ]
+          }
+        ],
+        "uri":"/rs/customers/1/addresses?page=0&size=1"
+    }
+  },
+  {
+    "scenery": "Endereco buscando pelo ID",
+    "json": {
+      "item": {
+          "id":3,
+          "street":"Rua luiz Roberto",
+          "city":"Osaco",
+          "state":"OS",
+          "zipCode":"66736",
+          "country":"Brasil",
+          "type":"BILLING",
+          "links":[
+            {
+              "href":"/customers/2",
+              "rel":"of-customer"
+            }
+          ]
+        },
+        "uri":"/rs/customers/addresses/3"
+    }
+  },
+  {
+    "scenery": "should create a address with all data",
+    "json": {
+        "street":"Rua Antonio de Bonis",
+        "city":"Sao Paulo",
+        "state":"SP",
+        "zipCode":"999898",
+        "country":"Brasil",
+        "type":"BILLING"
+      }
+  },
+  {
+    "scenery": "should update a address",
+    "json": {
+      "street":"Rua Antonio UPDATE",
+      "city":"Sao UPDATE",
+      "state":"SP-UPDATE",
+      "zipCode":"999UPDATE",
+      "country":"BrasilUPDATE",
+      "type":"BUSINESS"
+    }
+  },
+  {
+    "scenery": "should update only fields address not required",
+    "json": {
+      "city":"Sao UPDATE2",
+      "state":"SP-UPDATE2",
+      "zipCode":"999UPDATE2",
+      "country":"BrasilUPDATE2"
+    }
+  }
+]

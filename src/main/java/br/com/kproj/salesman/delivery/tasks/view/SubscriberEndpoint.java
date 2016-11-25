@@ -51,11 +51,11 @@ public class SubscriberEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/tasks/task-subscribers", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}/task-subscribers", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody SubscribeResource resource) {
+    ResourceItem create(@PathVariable Long taskId, @RequestBody SubscribeResource resource) {
 
-        Subscriber subscriber = service.subscribe(createSubscriber(resource.getUserId(), resource.getTaskId()));
+        Subscriber subscriber = service.subscribe(createSubscriber(resource.getUserId(), taskId));
 
         return builder.build(subscriber, request.getRequestURI());
     }

@@ -58,11 +58,11 @@ public class RootTaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/tasks/root-tasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}/root-tasks", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem createSpecialization(@RequestBody RootTaskResource resource) {
+    ResourceItem createSpecialization(@PathVariable Long taskId) {
 
-        RootTask rootTask = RootTaskBuilder.createRootTask(resource.getTaskId()).build();
+        RootTask rootTask = RootTaskBuilder.createRootTask(taskId).build();
 
         Optional<RootTask> rootTaskCreated = service.register(rootTask);
 

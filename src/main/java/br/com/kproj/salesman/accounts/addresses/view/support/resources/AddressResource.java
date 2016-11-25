@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.accounts.addresses.view.support.resources;
 
 
-
 import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
@@ -20,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "customer",
         "links"
 })
-@ResourceItem(name="contacts", modelReference = Address.class, parent = CustomerResource.class)
+@ResourceItem(name="addresses", modelReference = Address.class, parent = CustomerResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddressResource extends Item {
 

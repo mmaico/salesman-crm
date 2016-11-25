@@ -57,15 +57,15 @@ public class TaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/tasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/{deliveryId}/tasks", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody TaskResource resource) {
+    ResourceItem create(@PathVariable Long deliveryId, @RequestBody TaskResource resource) {
 
         Task task = TaskBuilder.createTask()
                 .withTitle(resource.getTitle())
                 .withDescription(resource.getDescription())
                 .withDeadline(resource.getDeadline())
-                .withDelivery(resource.getDeliveryId()).build();
+                .withDelivery(deliveryId).build();
 
         Optional<Task> taskCreated = service.register(task);
 

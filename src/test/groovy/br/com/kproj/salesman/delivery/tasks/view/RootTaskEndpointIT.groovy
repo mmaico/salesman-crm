@@ -37,8 +37,8 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should create a specialization root of task"() {
         given:
-            def createRootTaskSpecialization = "/rs/deliveries/tasks/root-tasks"
-            def createTask = "/rs/deliveries/tasks"
+            def createRootTaskSpecialization = "/rs/deliveries/tasks/{taskid}/root-tasks"
+            def createTask = "/rs/deliveries/3/tasks"
         when: "A new task is created "
             def newTask = new JsonSlurper().parseText(scenery("Criando uma nova task(roottask) com todos os dados validos").getJson())
 
@@ -48,8 +48,8 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             def taskCreated = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
         and: "A RootTask specialization is created"
 
-            def result = mockMvc.perform(post(createRootTaskSpecialization).contentType(MediaType.APPLICATION_JSON)
-                .content("{\"task\":{\"id\":$taskCreated.item.id}}")).andReturn()
+            def result = mockMvc.perform(post(createRootTaskSpecialization.replace("{taskid}", taskCreated.item.id.toString()))
+                    .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def rootTaskCreated = new JsonSlurper().parseText(result.response.contentAsString)
 
@@ -67,7 +67,7 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             rootTaskCreated.item.links[0].href == "/deliveries/tasks/root-tasks/$rootTaskCreated.item.id/subtasks"
             rootTaskCreated.item.links[0].rel == "children"
 
-            rootTaskCreated.uri == "/rs/deliveries/tasks/root-tasks"
+            rootTaskCreated.uri == "/rs/deliveries/tasks/$taskCreated.item.id/root-tasks"
 
             result.response.status == HttpStatus.CREATED.value
     }
@@ -75,18 +75,17 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a specialization root task when invalid task informed"() {
         given:
-            def createRootTaskSpecialization = "/rs/deliveries/tasks/root-tasks"
+            def createRootTaskSpecialization = "/rs/deliveries/tasks/6666/root-tasks"
         when: "A new root task is created "
 
             def result = mockMvc.perform(post(createRootTaskSpecialization)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"task\":{\"id\": 6666}}"))
+                    .contentType(MediaType.APPLICATION_JSON))
                     .andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(result.response.contentAsString)
 
         then: "Should return a error"
-            subtaskCreated.uri == "/rs/deliveries/tasks/root-tasks"
+            subtaskCreated.uri == "/rs/deliveries/tasks/6666/root-tasks"
 
             result.response.status == HttpStatus.BAD_REQUEST.value
     }
@@ -95,16 +94,16 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
     @Unroll
     def "Should not create a specialization root task when task already with specialization roottask"() {
         given:
-            def createSubtaskSpecialization = "/rs/deliveries/tasks/root-tasks"
+            def createSubtaskSpecialization = "/rs/deliveries/tasks/1/root-tasks"
         when: "try to create a root task"
 
-            def result = mockMvc.perform(post(createSubtaskSpecialization).contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"task\":{\"id\":1}}")).andReturn()
+            def result = mockMvc.perform(post(createSubtaskSpecialization)
+                    .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
             def subtaskCreated = new JsonSlurper().parseText(result.response.contentAsString)
 
         then: "Should return a error"
-            subtaskCreated.uri == "/rs/deliveries/tasks/root-tasks"
+            subtaskCreated.uri == "/rs/deliveries/tasks/1/root-tasks"
             result.response.status == HttpStatus.BAD_REQUEST.value
     }
 

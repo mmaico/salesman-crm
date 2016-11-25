@@ -5,6 +5,7 @@ import br.com.kproj.salesman.infratest.ClassReference
 import br.com.kproj.salesman.infratest.SceneryLoaderHelper
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -12,11 +13,10 @@ import org.springframework.web.context.WebApplicationContext
 import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
-import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
-import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
+import static groovy.json.JsonOutput.toJson
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @ClassReference(CustomerEndpoint)
 class CustomerEndpointIT extends AbstractIntegrationTest {
@@ -57,20 +57,60 @@ class CustomerEndpointIT extends AbstractIntegrationTest {
             jsonResult.items[1] == jsonExpected.items[1]
     }
 
-//    @Unroll
-//    def "Should find one subtask by ID"() {
-//        given:
-//        def uri = "/rs/saleables/task-definitions/1"
-//        when:
-//        def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
-//        def jsonExpected = new JsonSlurper().parseText(scenery("Busca por subtask definition por ID").json)
-//        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
-//
-//        then:
-//        jsonResult.item.links.sort{it.rel}
-//        jsonResult.item == jsonExpected.item
-//
-//        jsonResult.uri == uri
-//    }
+    @Unroll
+    def "Should find one customer by ID"() {
+        given:
+            def uri = "/rs/customers/2"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonExpected = new JsonSlurper().parseText(scenery("Customer buscando pelo ID").json)
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+        then:
+            jsonResult.item.links.sort{it.rel}
+            jsonResult.item == jsonExpected.item
+            jsonResult.uri == uri
+    }
+
+    @Unroll
+    def "Should create a customer with all data"() {
+        given:
+            def uri = "/rs/customers"
+            def newCustomer = new JsonSlurper().parseText(scenery("should create a customer with all data").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(newCustomer))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a new customer"
+            jsonResult.item.id != null
+            jsonResult.item.name == newCustomer.name
+            jsonResult.item.description == newCustomer.description
+            jsonResult.item.site == newCustomer.site
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.CREATED.value
+    }
+
+    @Unroll
+    def "Should update customer"() {
+        given:
+            def uri = "/rs/customers/3"
+            def customerWithDataToUpdate = new JsonSlurper().parseText(scenery("should update customer").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(customerWithDataToUpdate))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a customer with update data"
+            jsonResult.item.id == 3
+            jsonResult.item.name == customerWithDataToUpdate.name
+            jsonResult.item.description == customerWithDataToUpdate.description
+            jsonResult.item.site == customerWithDataToUpdate.site
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
 
 }

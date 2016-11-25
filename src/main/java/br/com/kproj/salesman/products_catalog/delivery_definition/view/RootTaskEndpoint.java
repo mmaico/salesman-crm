@@ -66,11 +66,11 @@ public class RootTaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/saleables/task-definitions/{taskDefinitionId}/root-task-definitions", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody RootTaskResource resource) {
+    ResourceItem create(@PathVariable Long taskDefinitionId) {
 
-        RootTask rootTask = RootTaskBuilder.createRootTask(resource.getTaskId()).build();
+        RootTask rootTask = RootTaskBuilder.createRootTask(taskDefinitionId).build();
 
         Optional<RootTask> rootTaskCreated = service.register(rootTask);
 

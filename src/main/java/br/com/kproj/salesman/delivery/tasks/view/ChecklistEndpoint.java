@@ -53,15 +53,15 @@ public class ChecklistEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/tasks/checklists", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}/checklists", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody ChecklistResource resource) {
+    ResourceItem create(@PathVariable Long taskId, @RequestBody ChecklistResource resource) {
 
         Checklist checklist = ChecklistBuilder.createChecklist()
                 .withDone(resource.getDone())
                 .withName(resource.getName()).build();
 
-        ChecklistForTask checklistToTask = ChecklistForTask.createChecklistToTask(resource.getTaskId(), checklist);
+        ChecklistForTask checklistToTask = ChecklistForTask.createChecklistToTask(taskId, checklist);
         Optional<Checklist> checklistCreated = service.save(checklistToTask);
 
         return builder.build(checklistCreated.get());

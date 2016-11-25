@@ -111,14 +111,15 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
     def "Should create a specialization root task definition"() {
         given: "A task definition created"
             def taskJson = new JsonSlurper().parseText(scenery("Criando uma nova task definition com todos os dados validos").json)
-            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/task-definitions")
+
+            def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/2/task-definitions")
                     .content(toJson(taskJson))
                     .contentType(MediaType.APPLICATION_JSON)).andReturn().response.getContentAsString()
 
         when: "Create a root task definition using a task ID"
             def taskDefinitionCreatedId = new JsonSlurper().parseText(taskDefinitionCreated).item.id
 
-            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions")
+            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/$taskDefinitionCreatedId/root-task-definitions")
                     .content("{\"task\":{\"id\":$taskDefinitionCreatedId}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
@@ -141,16 +142,18 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             roottaskCreated.item.links[0].href == "/rs/saleables/task-definitions/root-task-definitions/$roottaskCreated.item.id/subtask-definitions"
             roottaskCreated.item.links[0].rel == "children"
 
-            roottaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions"
+            roottaskCreated.uri == "/rs/saleables/task-definitions/$roottaskCreated.item.id/root-task-definitions"
     }
 
     @Unroll
     def "Should not create a specialization of root task definition when invalid task definition ID"() {
         given: "A task definition ID invalid"
             def taskDefinitionId = 66666
+            def uri = "/rs/saleables/task-definitions/$taskDefinitionId/root-task-definitions"
 
         when: "Try to Create a root task definition using a task dfinition with invalid id"
-            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/root-task-definitions")
+
+            def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/$taskDefinitionId/root-task-definitions")
                     .content("{\"task\":{\"id\":$taskDefinitionId}}")
                     .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
@@ -162,7 +165,7 @@ class RootTaskEndpointIT extends AbstractIntegrationTest {
             rootTaskCreated.errors.messages[0].message == "task.root.create.invalid.task"
             rootTaskCreated.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            rootTaskCreated.uri == "/rs/saleables/task-definitions/root-task-definitions"
+            rootTaskCreated.uri == uri
     }
 
 

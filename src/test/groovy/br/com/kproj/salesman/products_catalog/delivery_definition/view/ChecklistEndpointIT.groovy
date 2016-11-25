@@ -68,61 +68,64 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
 
     @Unroll
     def "Should create a checklist definitions of a task"() {
-        def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com todos os dados").json)
+        given:
+            def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com todos os dados").json)
+            def uri = "/rs/saleables/task-definitions/5/checklist-definitions"
+        when:
+            def mvcResult = mockMvc.perform(post(uri).content(toJson(checklist))
+                    .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
-                .content(toJson(checklist))
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+            def status = mvcResult.response.status
 
-        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
-        def status = mvcResult.response.status
-
-        expect:
+        then:
             status == HttpStatus.CREATED.value()
             jsonResult.item.name == checklist.name
             jsonResult.item.id != null
             jsonResult.item.links.size == 1
             jsonResult.item.links[0].href == "/saleables/task-definitions/5"
             jsonResult.item.links[0].rel == "of-task"
-            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
+            jsonResult.uri == uri
     }
 
     @Unroll
     def "Should not create a checklist definitions of a task without name"() {
-        def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist sem o nome").json)
-
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
-                .content(toJson(checklist))
+        given:
+            def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist sem o nome").json)
+            def uri = "/rs/saleables/task-definitions/5/checklist-definitions"
+        when:
+            def mvcResult = mockMvc.perform(post(uri).content(toJson(checklist))
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
-        def status = mvcResult.response.status
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+            def status = mvcResult.response.status
 
-        expect:
+        then:
             status == HttpStatus.BAD_REQUEST.value()
             jsonResult.errors.messages[0].message == "checklist.definition.invalid.name"
             jsonResult.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
+            jsonResult.uri == "/rs/saleables/task-definitions/5/checklist-definitions"
     }
 
     @Unroll
     def "Should not create a checklist definitions of a task when invalid task definition"() {
-        def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com task invalida").json)
-
-        def mvcResult = mockMvc.perform(post("/rs/saleables/task-definitions/checklist-definitions")
-                .content(toJson(checklist))
+        given:
+            def checklist = new JsonSlurper().parseText(scenery("Criar uma checklist com task invalida").json)
+            def uri = "/rs/saleables/task-definitions/6666/checklist-definitions"
+        when:
+            def mvcResult = mockMvc.perform(post(uri).content(toJson(checklist))
                 .contentType(MediaType.APPLICATION_JSON)).andReturn()
 
-        def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
-        def status = mvcResult.response.status
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+            def status = mvcResult.response.status
 
-        expect:
+        then:
             status == HttpStatus.BAD_REQUEST.value()
             jsonResult.errors.messages[0].message == "checklist.definition.invalid.task"
             jsonResult.errors.messages[0].code == HttpStatus.BAD_REQUEST.value()
 
-            jsonResult.uri == "/rs/saleables/task-definitions/checklist-definitions"
+            jsonResult.uri == "/rs/saleables/task-definitions/6666/checklist-definitions"
     }
 
     @Unroll

@@ -42,7 +42,7 @@ public class SubtaskBusinessRules implements SubtaskValidator {
     private Map<String, CheckRule<Subtask>> rules = new HashMap<>();
     {
         rules.put(description("subtask.with.invalid.parent"), subtask -> subtask.getParent().isNew()
-                && !rootTaskRepository.findOne(subtask.getParent().getId()).isPresent());
+                || !rootTaskRepository.findOne(subtask.getParent().getId()).isPresent());
 
         rules.put("subtask.with.already.exists.specialization", subtask -> {
             Optional<Task> result = repository.findOne(subtask.getId());

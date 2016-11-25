@@ -65,13 +65,13 @@ public class SubtaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions/{rootTaskDefinitionId}/subtask-definitions", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody SubTaskResource resource) {
+    ResourceItem create(@PathVariable Long rootTaskDefinitionId, @RequestBody SubTaskResource resource) {
 
         Subtask subtask = createSubtask(resource.getTaskId()).build();
 
-        SubtaskToRootTask toRootTask = SubtaskToRootTask.createSubtask(resource.getParentId(), subtask);
+        SubtaskToRootTask toRootTask = SubtaskToRootTask.createSubtask(rootTaskDefinitionId, subtask);
 
         Optional<Subtask> subtaskCreated = service.register(toRootTask);
 

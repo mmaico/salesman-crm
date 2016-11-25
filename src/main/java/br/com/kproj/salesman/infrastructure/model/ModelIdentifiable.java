@@ -42,6 +42,10 @@ public abstract class ModelIdentifiable implements Serializable {
         }
     }
 
+    public Boolean hasField(String fieldName) {
+        return this.fields.contains(fieldName);
+    }
+
     public static class When {
         final Boolean present;
 

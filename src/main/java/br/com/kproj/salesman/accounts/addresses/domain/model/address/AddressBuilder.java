@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.accounts.addresses.domain.model.address;
 
 
+import br.com.kproj.salesman.accounts.addresses.domain.model.customer.Customer;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 
 public class AddressBuilder extends AbstractBuilder<Address>  {
@@ -41,6 +42,11 @@ public class AddressBuilder extends AbstractBuilder<Address>  {
 
 	public AddressBuilder withType(Address.Type type) {
 		this.entity.setType(type);
+		return this;
+	}
+
+	public AddressBuilder withCustomer(Customer customer) {
+		this.entity.setCustomer(customer);
 		return this;
 	}
 	

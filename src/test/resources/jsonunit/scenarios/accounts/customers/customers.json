@@ -40,5 +40,43 @@
       ],
       "uri":"/rs/customers?page=0&size=2"
     }
+  },
+  {
+    "scenery": "Customer buscando pelo ID",
+    "json": {
+      "item": {
+          "id":2,
+          "name":"Pedro Terra Nova",
+          "site":"www.petroterra.com.br",
+          "description":"customer description 02",
+          "links":[
+            {
+              "href":"/customers/2/addresses",
+              "rel":"has-addresses"
+            },
+            {
+              "href":"/customers/2/contacts",
+              "rel":"has-contacts"
+            }
+          ]
+        },
+        "uri":"/rs/customers?page=0&size=2"
+    }
+  },
+  {
+    "scenery": "should create a customer with all data",
+    "json": {
+        "name":"Pedro Terra Nova",
+        "site":"www.petroterra.com.br",
+        "description":"customer description 02"
+      }
+  },
+  {
+    "scenery": "should update customer",
+    "json": {
+      "name":"update name",
+      "site":"www.updatesite.com.br",
+      "description":"customer update description"
+    }
   }
 ]

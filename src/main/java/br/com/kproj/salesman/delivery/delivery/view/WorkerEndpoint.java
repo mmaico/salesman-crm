@@ -49,11 +49,11 @@ public class WorkerEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/workers", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/{deliveryId}/workers", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@RequestBody WorkerResource resource) {
+    ResourceItem create(@PathVariable Long deliveryId, @RequestBody WorkerResource resource) {
 
-        WorkerIn workerIn = WorkerIn.createWorkerIn(resource.getDeliveryId(), resource.getUser().getId());
+        WorkerIn workerIn = WorkerIn.createWorkerIn(deliveryId, resource.getUser().getId());
         Worker worker = service.register(workerIn);
 
         return builder.build(worker, request.getRequestURI());

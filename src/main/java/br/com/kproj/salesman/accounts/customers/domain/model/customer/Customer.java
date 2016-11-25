@@ -15,7 +15,6 @@ public class Customer extends ModelIdentifiable {
     private Long id;
 
     @NotNull(message = "account.name.is.invalid")
-    @Size(min = 2, max = 150, message = "account.name.is.invalid")
     private String name;
     private String site;
     private String description;

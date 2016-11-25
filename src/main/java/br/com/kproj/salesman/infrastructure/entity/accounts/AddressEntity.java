@@ -21,6 +21,17 @@ public class AddressEntity extends Identifiable {
         public String getName()  {
             return this.name;
         }
+
+        public static Type getByName(String name) {
+
+            for (Type type : values()) {
+                if (type.name().equalsIgnoreCase(name)) {
+                    return type;
+                }
+            }
+
+            return null;
+        }
     }
 
     @Id

@@ -7,9 +7,6 @@
         "quantityDaysToFinish":3,
         "region": {
           "id": 4
-        },
-        "saleable": {
-          "id": 2
         }
       }
   },
@@ -21,9 +18,6 @@
       "quantityDaysToFinish":3,
       "region": {
         "id": 6666
-      },
-      "saleable": {
-        "id": 2
       }
     }
   },
@@ -35,9 +29,6 @@
       "quantityDaysToFinish":3,
       "region": {
         "id": 4
-      },
-      "saleable": {
-        "id": 2
       }
     }
   },
@@ -47,9 +38,6 @@
       "title":"SubTask 30",
       "region": {
         "id": 4
-      },
-      "saleable": {
-        "id": 2
       }
     }
   },
@@ -61,10 +49,7 @@
       "quantityDaysToFinish":3,
       "region": {
         "id": 4
-      },
-      "saleable": {
-        "id": 6666
       }
     }
-  },
+  }
 ]

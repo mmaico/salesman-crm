@@ -11,6 +11,10 @@ import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
+import static com.trex.clone.BusinessModelClone.from;
+
 @Repository("customerRepositoryHibernateAccountModule")
 public class CustomerRepositoryHibernate extends BaseRespositoryImpl<Customer, CustomerEntity> implements CustomerRepository {
 
@@ -24,6 +28,20 @@ public class CustomerRepositoryHibernate extends BaseRespositoryImpl<Customer, C
         this.converter = converter;
     }
 
+    @Override
+    public Optional<Customer> save(Customer entity) {
+        CustomerEntity customerEntity = from(entity).convertTo(CustomerEntity.class);
+
+        return Optional.of(getConverter().convert(repository.save(customerEntity)));
+    }
+
+    public Optional<Customer> update(Customer entity) {
+        CustomerEntity customerFound = repository.findOne(entity.getId());
+        from(entity).merge(customerFound);
+        repository.save(customerFound);
+
+        return Optional.of(getConverter().convert(customerFound));
+    }
 
     @Override
     public BaseRepositoryLegacy<CustomerEntity, Long> getRepository() {

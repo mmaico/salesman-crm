@@ -61,13 +61,13 @@ public class SubtaskEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/tasks/root-tasks/subtasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/deliveries/tasks/root-tasks/{roottaskId}/subtasks", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem createSpecialization(@RequestBody SubtaskResource resource) {
+    ResourceItem createSpecialization(@PathVariable Long roottaskId, @RequestBody SubtaskResource resource) {
 
         Subtask subtask = createSubtask(resource.getTaskId()).build();
 
-        SubtaskToRootTask toRootTask = SubtaskToRootTask.createSubtask(resource.getParentId(), subtask);
+        SubtaskToRootTask toRootTask = SubtaskToRootTask.createSubtask(roottaskId, subtask);
 
         Optional<Subtask> subtaskCreated = service.register(toRootTask);
 

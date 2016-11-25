@@ -3,6 +3,7 @@ package br.com.kproj.salesman.accounts.addresses.view.support.builders;
 
 import br.com.kproj.salesman.accounts.addresses.domain.model.address.Address;
 import br.com.kproj.salesman.accounts.addresses.view.support.resources.AddressResource;
+import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.uol.rest.apiconverter.ConverterToResource;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder.getUri;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
@@ -32,7 +34,7 @@ public class AddressResourceBuilder {
     public ResourceItem build(Address address) {
         AddressResource resource = buildItem(address);
 
-        return new ResourceItem(resource, request.getRequestURI());
+        return new ResourceItem(resource, getUri(request));
     }
 
     public ResourceItems build(Iterable<Address> addresses) {
@@ -40,7 +42,10 @@ public class AddressResourceBuilder {
         List<AddressResource> resources = Lists.newArrayList(addresses).stream()
                 .map(item -> buildItem(item)).collect(Collectors.toList());
 
-        return new ResourceItems(resources, request.getRequestURI());
+        ResourceItems resourceItems = new ResourceItems(resources, ResourceHolder.getUri(request));
+        ResourceHolder.setInfoPageable(addresses, resourceItems);
+
+        return resourceItems;
     }
 
     public AddressResource buildItem(Address address) {
