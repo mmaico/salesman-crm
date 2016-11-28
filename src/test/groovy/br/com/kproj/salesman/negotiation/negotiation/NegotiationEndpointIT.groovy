@@ -46,7 +46,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
         then:
             jsonResult.uri == uri
             jsonResult.items.size == 2
-            jsonResult.totalItems == 4
+            jsonResult.totalItems == 11
             jsonResult.pageSize == 2
 
             jsonResult.items[0].links.sort{it.rel}
@@ -137,26 +137,203 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.CREATED.value
     }
-//
-//    @Unroll
-//    def "Should update customer"() {
-//        given:
-//            def uri = "/rs/customers/3"
-//            def customerWithDataToUpdate = new JsonSlurper().parseText(scenery("should update customer").getJson())
-//        when:
-//            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
-//                .content(toJson(customerWithDataToUpdate))).andReturn()
-//
-//            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
-//
-//        then: "Should return a customer with update data"
-//            jsonResult.item.id == 3
-//            jsonResult.item.name == customerWithDataToUpdate.name
-//            jsonResult.item.description == customerWithDataToUpdate.description
-//            jsonResult.item.site == customerWithDataToUpdate.site
-//
-//            jsonResult.uri == uri
-//            mvcResult.response.status == HttpStatus.OK.value
-//    }
+
+    @Unroll
+    def "Should update a negotiation with all data"() {
+        given:
+            def uri = "/rs/customers/negotiations/5"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation with all data").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 5
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == dataToUpdateNegotiation.ammountPayable
+            jsonResult.item.temperature == dataToUpdateNegotiation.temperature
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/2"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/4"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/1"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller"() {
+        given:
+            def uri = "/rs/customers/negotiations/6"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 6
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == dataToUpdateNegotiation.ammountPayable
+            jsonResult.item.temperature == dataToUpdateNegotiation.temperature
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/2"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/4"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller, customer"() {
+        given:
+            def uri = "/rs/customers/negotiations/7"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 7
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == dataToUpdateNegotiation.ammountPayable
+            jsonResult.item.temperature == dataToUpdateNegotiation.temperature
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/1"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/4"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller, customer, region"() {
+        given:
+            def uri = "/rs/customers/negotiations/8"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 8
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == dataToUpdateNegotiation.ammountPayable
+            jsonResult.item.temperature == dataToUpdateNegotiation.temperature
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/1"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/1"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller, customer, region, temperature"() {
+        given:
+            def uri = "/rs/customers/negotiations/9"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region, temperature").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 9
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == dataToUpdateNegotiation.ammountPayable
+            jsonResult.item.temperature == "COLD"
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/1"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/1"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller, customer, region, temperature, ammountPayable"() {
+        given:
+            def uri = "/rs/customers/negotiations/10"
+            def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region, temperature, ammountPayable").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 10
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == dataToUpdateNegotiation.discount
+            jsonResult.item.ammountPayable == 30.00
+            jsonResult.item.temperature == "COLD"
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/1"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/1"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount"() {
+        given:
+            def uri = "/rs/customers/negotiations/11"
+            def dataToUpdateNegotiation = new JsonSlurper()
+                .parseText(scenery("should update a negotiation without seller, customer, region, temperature, ammountPayable, discount").getJson())
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(toJson(dataToUpdateNegotiation))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a negotiation updated"
+            jsonResult.item.id == 11
+            jsonResult.item.introduction ==  dataToUpdateNegotiation.introduction
+            jsonResult.item.careOf ==  dataToUpdateNegotiation.careOf
+            jsonResult.item.deliveryForeCast == "2019-09-05T00:00:00.000+0000"
+            jsonResult.item.discount == 11.00
+            jsonResult.item.ammountPayable == 30.00
+            jsonResult.item.temperature == "COLD"
+
+            jsonResult.item.links.find{it.rel == "customer"}.href == "/customers/1"
+            jsonResult.item.links.find{it.rel == "region"}.href == "/regions/1"
+            jsonResult.item.links.find{it.rel == "seller"}.href == "/users/2"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
 
 }

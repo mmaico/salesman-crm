@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.model;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import com.trex.shared.annotations.UpdateAttributes;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
@@ -45,6 +46,14 @@ public abstract class ModelIdentifiable implements Serializable {
     public Boolean hasField(String fieldName) {
         return this.fields.contains(fieldName);
     }
+
+    public Boolean needPersist(String fieldName) {
+        if (this.getId() == null || StringUtils.isBlank(fieldName)) {
+            return Boolean.TRUE;
+        }
+        return this.fields.contains(fieldName);
+    }
+
 
     public static class When {
         final Boolean present;

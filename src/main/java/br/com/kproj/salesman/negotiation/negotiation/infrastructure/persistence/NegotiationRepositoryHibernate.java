@@ -53,6 +53,14 @@ public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiat
     }
 
     @Override
+    public Negotiation update(Negotiation negotiation) {
+        BusinessProposalEntity entity = repository.findOne(negotiation.getId());
+        from(negotiation).merge(entity);
+
+        return getConverter().convert(entity);
+    }
+
+    @Override
     public BaseRepositoryLegacy<BusinessProposalEntity, Long> getRepository() {
         return repository;
     }

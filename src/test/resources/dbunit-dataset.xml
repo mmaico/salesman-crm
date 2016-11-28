@@ -65,6 +65,14 @@
     <business_proposal id="2"  customer_id="2" seller_id="2" operation_region_id="1" temperature="CLOSED_LOST" delivery_forecast="2020-02-09 00:00:00" introduction="introduction2" discount="11.00" ammount_payable="200.00" care_of="Jose Luiz"/>
     <business_proposal id="3"  customer_id="2" seller_id="2" operation_region_id="1" temperature="HOT" delivery_forecast="2020-02-09 00:00:00"  care_of="Marcos Antonio"/>
     <business_proposal id="4"  customer_id="2" seller_id="1" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00"  care_of="Marcos Luiz"/>
+    <business_proposal id="5"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction3" discount="13.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+
+    <business_proposal id="6"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 6" discount="13.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+    <business_proposal id="7"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 7" discount="13.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+    <business_proposal id="8"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 8" discount="13.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+    <business_proposal id="9"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 9" discount="13.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+    <business_proposal id="10"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 10" discount="12.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
+    <business_proposal id="11"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 11" discount="11.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
 
     <proposal_saleable_item id="1" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="1" />
     <proposal_saleable_item id="2" saleable_id="1" original_price="5.00" price="100.00" quantity="2" business_proposal_id="1" />
@@ -76,6 +84,8 @@
 
     <proposal_saleable_item id="6" saleable_id="2" original_price="89.00" price="487.00" quantity="1" business_proposal_id="4" />
     <proposal_saleable_item id="7" saleable_id="1" original_price="78.00" price="190.00" quantity="4" business_proposal_id="4" />
+
+    <proposal_saleable_item id="8" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="5" />
 
     <proposal_payment_item id="1" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>

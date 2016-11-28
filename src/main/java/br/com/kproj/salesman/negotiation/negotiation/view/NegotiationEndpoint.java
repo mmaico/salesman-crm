@@ -7,9 +7,9 @@ import br.com.kproj.salesman.negotiation.negotiation.application.NegotiationFaca
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationBuilder;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.Seller;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.SellerSaveNegotiation;
 import br.com.kproj.salesman.negotiation.negotiation.view.support.builders.NegotiationResourceBuilder;
 import br.com.kproj.salesman.negotiation.negotiation.view.support.resources.NegotiationResource;
+import br.com.kproj.salesman.negotiation.negotiation.view.support.update.NegotiationUpdateFields;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -29,10 +29,13 @@ public class NegotiationEndpoint {
 
     private NegotiationResourceBuilder builder;
 
+    private NegotiationUpdateFields updateFields;
+
     @Autowired
-    public NegotiationEndpoint(NegotiationFacade service, NegotiationResourceBuilder builder) {
+    public NegotiationEndpoint(NegotiationFacade service, NegotiationResourceBuilder builder, NegotiationUpdateFields updateFields) {
         this.service = service;
         this.builder = builder;
+        this.updateFields = updateFields;
     }
 
 
@@ -72,6 +75,30 @@ public class NegotiationEndpoint {
         Optional<Negotiation> negotiationSaved = service.register(createNegotiation(seller, negotiation));
 
         return builder.build(negotiationSaved.get());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rs/customers/negotiations/{negotiationId}", method = RequestMethod.PUT)
+    public @ResponseBody
+    ResourceItem update(@PathVariable Long negotiationId, @RequestBody NegotiationResource resource) {
+
+        Negotiation negotiation = NegotiationBuilder.createNegotiation(negotiationId)
+                    .withRegion(resource.getRegionId())
+                    .withCareOf(resource.getCareOf())
+                    .withDeliveryForeCast(resource.getDeliveryForeCast())
+                    .withIntroduction(resource.getIntroduction())
+                    .withAmmountPayable(resource.getAmmountPayable())
+                    .withDiscount(resource.getDiscount())
+                    .withTemperature(resource.getTemperature())
+                    .withCustomer(resource.getCustomerId())
+                    .withSeller(resource.getSellerId())
+                .build();
+
+        updateFields.addFieldsToUpdate(negotiation);
+
+        Negotiation negotiationSaved = service.update(negotiation);
+
+        return builder.build(negotiationSaved);
     }
 
     

@@ -99,11 +99,92 @@
       }
   },
   {
-    "scenery": "should update customer",
+    "scenery": "should update a negotiation with all data",
     "json": {
-      "name":"update name",
-      "site":"www.updatesite.com.br",
-      "description":"customer update description"
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "CLOSED_LOST",
+      "seller": {
+        "id": 1
+      },
+      "region": {
+        "id": 4
+      },
+      "customer": {
+        "id": 2
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "CLOSED_LOST",
+      "region": {
+        "id": 4
+      },
+      "customer": {
+        "id": 2
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "CLOSED_LOST",
+      "region": {
+        "id": 4
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "CLOSED_LOST"
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated"
     }
   }
 ]

@@ -2,6 +2,7 @@ package br.com.kproj.salesman.negotiation.negotiation.application.validators;
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.approval.ApprovalProcessRepository;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.CustomerRepository;
@@ -39,7 +40,7 @@ public class NegotiationBusinessRules implements NegotiationValidate {
         this.approvalRepository = approvalRepository;
     }
 
-    private Map<String, CheckRule<Negotiation>> persistRules = new HashMap<>();
+    private Map<RuleKey, CheckRule<Negotiation>> persistRules = new HashMap<>();
     {
         persistRules.put(ruleCustomer(), (negotiation) -> {
             Customer customer = negotiation.getCustomer();
@@ -71,8 +72,16 @@ public class NegotiationBusinessRules implements NegotiationValidate {
 
         Set<String> errors = persistRules.entrySet()
                 .stream()
-                .filter(e -> e.getValue().check(negotiation))
-                .map(Map.Entry::getKey).collect(Collectors.toSet());
+                .filter(rule -> {
+                    try {
+                        if (negotiation.needPersist(rule.getKey().getField())) {
+                            return rule.getValue().check(negotiation);
+                        }
+                        return Boolean.FALSE;
+                    } catch (Exception e) {
+                        return Boolean.TRUE;
+                    }
+                }).map(item -> item.getKey().getName()).collect(Collectors.toSet());
 
         hasErrors(errors).throwing(ValidationException.class);
     }

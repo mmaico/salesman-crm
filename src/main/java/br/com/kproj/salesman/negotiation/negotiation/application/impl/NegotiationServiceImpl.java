@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.Seller.seller;
+
 @Service
 public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> implements NegotiationFacade {
 
@@ -41,12 +43,10 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
     }
 
     @Override
-    public Optional<Negotiation> update(Negotiation negotiation) {
+    public Negotiation update(Negotiation negotiation) {
         negotiationBusinessRules.checkRules(negotiation);
-//      if (negotiation.temperatureWasClosedWon()) {
-//          eventHandler.negotiationClosedWon(negotiation);
-//       }
-        return null;
+
+        return seller().update(negotiation);
     }
 
     @Override

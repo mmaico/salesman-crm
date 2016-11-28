@@ -12,7 +12,7 @@ public interface NegotiationFacade extends ModelFacade<Negotiation> {
 
     Optional<Negotiation> register(SellerSaveNegotiation saveNegotiation);
 
-    Optional<Negotiation> update(Negotiation negotiation);
+    Negotiation update(Negotiation negotiation);
 
     Collection<Negotiation> findOne(Customer account);
 
