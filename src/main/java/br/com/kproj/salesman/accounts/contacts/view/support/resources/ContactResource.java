@@ -5,6 +5,7 @@ import br.com.kproj.salesman.accounts.contacts.domain.model.contact.Contact;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -76,5 +77,10 @@ public class ContactResource extends Item {
 
     public void setCustomer(CustomerResource customer) {
         this.customer = customer;
+    }
+
+    @JsonIgnore
+    public Long getCustomerId() {
+        return this.customer == null ? null : this.customer.getId();
     }
 }

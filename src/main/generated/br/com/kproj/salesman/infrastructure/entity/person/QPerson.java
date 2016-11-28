@@ -26,10 +26,6 @@ public class QPerson extends EntityPathBase<Person> {
 
     public final BooleanPath active = createBoolean("active");
 
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses = this.<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress>createList("addresses", br.com.kproj.salesman.infrastructure.entity.Address.class, br.com.kproj.salesman.infrastructure.entity.QAddress.class, PathInits.DIRECT2);
-
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity> contacts = this.<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity>createList("contacts", br.com.kproj.salesman.infrastructure.entity.ContactEntity.class, br.com.kproj.salesman.infrastructure.entity.QContactEntity.class, PathInits.DIRECT2);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.accounts.contacts.domain.model.contact;
 
 
+import br.com.kproj.salesman.accounts.contacts.domain.model.customer.Customer;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 
 public class ContactBuilder extends AbstractBuilder<Contact>  {
@@ -31,6 +32,11 @@ public class ContactBuilder extends AbstractBuilder<Contact>  {
 
 	public ContactBuilder withPosition(String position) {
 		this.entity.setPosition(position);
+		return this;
+	}
+
+	public ContactBuilder withCustomer(Long customerId) {
+		this.entity.setCustomer(new Customer(customerId));
 		return this;
 	}
 

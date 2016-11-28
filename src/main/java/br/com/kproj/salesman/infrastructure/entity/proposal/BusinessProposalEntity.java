@@ -14,9 +14,6 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 
 @Entity
 @Table(name = "business_proposal")
@@ -33,37 +30,42 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
     private Long id;
 
 	@ManyToOne
-    @JoinColumn(name="account_id")
+    @JoinColumn(name="customer_id")
     @NotNull(message = "business.proposal.account.required")
-    private CustomerEntity account;
+    private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name="seller_id")
-    @NotNull(message = "business.proposal.seller.required")
     private UserEntity seller;
 
+    @Column(name="care_of")
     private String careOf;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
+    @Column(name="delivery_forecast")
     private Date deliveryForeCast;
 
     private String introduction;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposalEntity")
+    @OneToMany(mappedBy = "businessProposalEntity")
     private List<ProposalSaleableItem> saleableItems;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessProposalEntity")
+    @OneToMany(mappedBy = "businessProposalEntity")
     private List<ProposalPaymentItem> paymentItems;
 
     @ManyToOne
     @JoinColumn(name="operation_region_id")
-    @NotNull(message = "business.proposal.region.required")
-    private OperationRegionEntity operationRegionEntity;
+    private OperationRegionEntity region;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
     private ProposalTemperature temperature;
+
+    private BigDecimal discount;
+
+    @Column(name = "ammount_payable")
+    private BigDecimal ammountPayable;
 
     @OneToOne(mappedBy = "proposal")
     private Timeline timeline;
@@ -83,29 +85,12 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.id = id;
     }
 
-
-
-    public BigDecimal getTotalToPay() {
-
-        if (isEmptySafe(this.getPaymentItems())) {
-            return BigDecimal.ZERO;
-        }
-
-        BigDecimal totaToPay = this.getPaymentItems()
-                .stream()
-                .map(e -> e.getValue())
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        return totaToPay;
+    public CustomerEntity getCustomer() {
+        return customer;
     }
 
-
-    public CustomerEntity getAccount() {
-        return account;
-    }
-
-    public void setAccount(CustomerEntity account) {
-        this.account = account;
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 
     public UserEntity getSeller() {
@@ -148,12 +133,12 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.paymentItems = paymentItems;
     }
 
-    public OperationRegionEntity getOperationRegionEntity() {
-        return operationRegionEntity;
+    public OperationRegionEntity getRegion() {
+        return region;
     }
 
-    public void setOperationRegionEntity(OperationRegionEntity operationRegionEntity) {
-        this.operationRegionEntity = operationRegionEntity;
+    public void setRegion(OperationRegionEntity region) {
+        this.region = region;
     }
 
     public List<ProposalSaleableItem> getSaleableItems() {
@@ -180,26 +165,35 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.timeline = timeline;
     }
 
-    public void updateSaleableItem(ProposalSaleableItem saleableWithNewValues) {
-        Optional<ProposalSaleableItem> result = this.getSaleableItems()
-                .stream().filter(item -> item.getId() != null && item.getId().equals(saleableWithNewValues.getId())).findFirst();
-
-        if(result.isPresent()) {
-            ProposalSaleableItem oldItem = result.get();
-            oldItem.setPrice(saleableWithNewValues.getPrice());
-            oldItem.setQuantity(saleableWithNewValues.getQuantity());
-        }
+    public BigDecimal getDiscount() {
+        return discount;
     }
 
-    public void addNewProposalPaymentItem(ProposalPaymentItem item) {
-        item.setBusinessProposalEntity(this);
-        this.getPaymentItems().add(item);
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
-    public void addNewProposalSaleableItem(ProposalSaleableItem saleableItem) {
-        saleableItem.setBusinessProposalEntity(this);
-        this.getSaleableItems().add(saleableItem);
+    public BigDecimal getAmmountPayable() {
+        return ammountPayable;
     }
 
+    public void setAmmountPayable(BigDecimal ammountPayable) {
+        this.ammountPayable = ammountPayable;
+    }
 
+    public Long getRegionId() {
+        return this.region == null ? null : this.region.getId();
+    }
+
+    public Long getSellerId() {
+        return this.seller == null ? null : this.seller.getId();
+    }
+
+    public Long getCustomerId() {
+        return this.customer == null ? null : this.customer.getId();
+    }
+
+    public Long getTimelineId() {
+        return this.timeline == null ? null : this.timeline.getId();
+    }
 }

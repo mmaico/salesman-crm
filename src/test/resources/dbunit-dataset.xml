@@ -45,6 +45,7 @@
     <contacts id="1" name="Jose luiz" email="jose@jose.com" phone="89838839" customer_id="1"/>
     <contacts id="2" name="Manuel Terra" email="manuel@manuel.com" phone="98838387" customer_id="2"/>
     <contacts id="3" name="Jose luiz" email="jose@jose.com" phone="89838839" customer_id="1"/>
+    <contacts id="4" name="Jose luiz" email="jose@jose.com" phone="89839999" customer_id="3"/>
 
     <!-- ADDRESSES -->
     <addresses id="1" street="Rua Jose luiz" city="Sao Paulo" state="SP" zip_code="9938398" country="Brasil" customer_id="1" type="BUSINESS"/>
@@ -60,18 +61,30 @@
     <operation_region id="4" name="RS"/>
 
     <!-- BUSINESS PROPOSAL (NEGOTIATION) -->
-    <business_proposal id="1"  account_id="1" seller_id="1" operation_region_id="1"/>
-    <business_proposal id="2"  account_id="2" seller_id="2" operation_region_id="1"/>
+    <business_proposal id="1"  customer_id="1" seller_id="1" operation_region_id="1" temperature="CLOSED_WON" delivery_forecast="2020-02-16 00:00:00" introduction="introduction" discount="10.00" ammount_payable="100.00" care_of="Marcelo Maico"/>
+    <business_proposal id="2"  customer_id="2" seller_id="2" operation_region_id="1" temperature="CLOSED_LOST" delivery_forecast="2020-02-09 00:00:00" introduction="introduction2" discount="11.00" ammount_payable="200.00" care_of="Jose Luiz"/>
+    <business_proposal id="3"  customer_id="2" seller_id="2" operation_region_id="1" temperature="HOT" delivery_forecast="2020-02-09 00:00:00"  care_of="Marcos Antonio"/>
+    <business_proposal id="4"  customer_id="2" seller_id="1" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00"  care_of="Marcos Luiz"/>
 
     <proposal_saleable_item id="1" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="1" />
     <proposal_saleable_item id="2" saleable_id="1" original_price="5.00" price="100.00" quantity="2" business_proposal_id="1" />
 
     <proposal_saleable_item id="3" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="2" />
 
+    <proposal_saleable_item id="4" saleable_id="2" original_price="89.00" price="487.00" quantity="3" business_proposal_id="3" />
+    <proposal_saleable_item id="5" saleable_id="1" original_price="78.00" price="190.00" quantity="2" business_proposal_id="3" />
+
+    <proposal_saleable_item id="6" saleable_id="2" original_price="89.00" price="487.00" quantity="1" business_proposal_id="4" />
+    <proposal_saleable_item id="7" saleable_id="1" original_price="78.00" price="190.00" quantity="4" business_proposal_id="4" />
+
     <proposal_payment_item id="1" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
 
     <proposal_payment_item id="3" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="2"/>
+
+    <proposal_payment_item id="4" due_date="2016-02-16 00:00:00" value="450.00" business_proposal_id="3"/>
+    <proposal_payment_item id="5" due_date="2016-02-16 00:00:00" value="677.00" business_proposal_id="4"/>
+
 
     <!-- PERSONS -->
     <persons id="1" name="jose roberto" type="company" active="true"/>

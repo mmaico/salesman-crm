@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.configuration.initial;
 
 import br.com.kproj.salesman.infrastructure.configuration.parsers.RegionsParser;
 import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
-import br.com.kproj.salesman.infrastructure.repository.RegionRepository;
+import br.com.kproj.salesman.infrastructure.repository.RegionRepositorySpringData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class OperationRegionInit implements InitialProcess {
 
 
 	@Autowired
-	private RegionRepository repository;
+	private RegionRepositorySpringData repository;
 
 
 	@Override

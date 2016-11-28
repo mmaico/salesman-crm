@@ -24,6 +24,8 @@ public class QCustomerEntity extends EntityPathBase<CustomerEntity> {
 
     public final ListPath<AddressEntity, QAddressEntity> addresses = this.<AddressEntity, QAddressEntity>createList("addresses", AddressEntity.class, QAddressEntity.class, PathInits.DIRECT2);
 
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity> contacts = this.<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity>createList("contacts", br.com.kproj.salesman.infrastructure.entity.ContactEntity.class, br.com.kproj.salesman.infrastructure.entity.QContactEntity.class, PathInits.DIRECT2);
+
     public final StringPath description = createString("description");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);

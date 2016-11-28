@@ -1,0 +1,109 @@
+[
+  {
+    "scenery": "Lista de negociacoes cadastrado no sistema paginado",
+    "json": {
+        "totalItems":4,
+        "pageSize":2,
+        "items":[
+          {
+            "id":1,
+            "deliveryForeCast":"2020-02-16T03:00:00.000+0000",
+            "introduction":"introduction",
+            "careOf":"Marcelo Maico",
+            "discount":10.00,
+            "ammountPayable":100.00,
+            "temperature":"CLOSED_WON",
+            "links":[
+              {
+                "href":"/customers/1",
+                "rel":"customer"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"region"
+              },
+              {
+                "href":"/users/1",
+                "rel":"seller"
+              }
+            ]
+          },
+          {
+            "id":2,
+            "deliveryForeCast":"2020-02-09T02:00:00.000+0000",
+            "introduction":"introduction2",
+            "careOf":"Jose Luiz",
+            "discount":11.00,
+            "ammountPayable":200.00,
+            "temperature":"CLOSED_LOST",
+            "links":[
+              {
+                "href":"/customers/2",
+                "rel":"customer"
+              },
+              {
+                "href":"/regions/1",
+                "rel":"region"
+              },
+              {
+                "href":"/users/2",
+                "rel":"seller"
+              }
+            ]
+          }
+        ],
+        "uri":"/rs/customers/negotiations?page=0&size=2"
+    }
+  },
+  {
+    "scenery": "Negotiation buscando pelo ID",
+    "json": {
+      "item": {
+        "id":2,
+        "deliveryForeCast":"2020-02-09T02:00:00.000+0000",
+        "introduction":"introduction2",
+        "careOf":"Jose Luiz",
+        "discount":11.00,
+        "ammountPayable":200.00,
+        "temperature":"CLOSED_LOST",
+        "links":[
+          {
+            "href":"/customers/2",
+            "rel":"customer"
+          },
+          {
+            "href":"/regions/1",
+            "rel":"region"
+          },
+          {
+            "href":"/users/2",
+            "rel":"seller"
+          }
+        ]
+      },
+      "uri":"/rs/customers/negotiations/2"
+    }
+  },
+  {
+    "scenery": "should create a negotiation with all data",
+    "json": {
+        "deliveryForeCast":"2018-09-05T00:00:00Z",
+        "introduction":"introduction2 create",
+        "careOf":"Jose Luiz",
+        "seller": {
+            "id": 1
+        },
+        "region": {
+            "id": 4
+        }
+      }
+  },
+  {
+    "scenery": "should update customer",
+    "json": {
+      "name":"update name",
+      "site":"www.updatesite.com.br",
+      "description":"customer update description"
+    }
+  }
+]

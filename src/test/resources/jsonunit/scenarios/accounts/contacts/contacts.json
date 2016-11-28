@@ -1,0 +1,94 @@
+[
+  {
+    "scenery": "Lista de contatos de um cliente paginado",
+    "json": {
+      "totalItems":2,
+      "pageSize":1,
+      "items":[
+        {
+          "id":1,
+          "name":"Jose luiz",
+          "email":"jose@jose.com",
+          "phone":"89838839",
+          "links":[
+            {
+              "href":"/customers/1",
+              "rel":"of-customer"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/customers/1/contacts?page=0&size=1"
+    }
+  },
+  {
+    "scenery": "Contato buscando pelo ID",
+    "json": {
+      "item": {
+        "id":1,
+        "name":"Jose luiz",
+        "email":"jose@jose.com",
+        "phone":"89838839",
+        "links":[
+          {
+            "href":"/customers/1",
+            "rel":"of-customer"
+          }
+        ]
+      },
+      "uri":"/rs/customers/addresses/1"
+    }
+  },
+  {
+    "scenery": "should create a contact with all data",
+    "json": {
+        "name":"Jose luiz",
+        "email":"jose@jose.com",
+        "phone":"89838839",
+        "position":"Analista Financeiro"
+      }
+  },
+  {
+    "scenery": "should update a contact with all data",
+    "json": {
+      "name":"Jose luiz UPDATE",
+      "email":"jose@joseupdate.com",
+      "phone":"898888",
+      "position":"Analista Financeiro UPDATE"
+    }
+  },
+  {
+    "scenery": "should not create a contact without name",
+    "json": {
+      "email":"jose@jose.com",
+      "phone":"89838839",
+      "position":"Analista Financeiro"
+    }
+  },
+  {
+    "scenery": "should not create a contact with invalid email",
+    "json": {
+      "name":"Jose luiz",
+      "email":"jose#jose.com",
+      "phone":"89838839",
+      "position":"Analista Financeiro"
+    }
+  },
+  {
+    "scenery": "should not update a contact with invalid email",
+    "json": {
+      "name":"Jose luiz",
+      "email":"jose#jose.com",
+      "phone":"89838839",
+      "position":"Analista Financeiro"
+    }
+  },
+  {
+    "scenery": "should update contact with not required fields",
+    "json": {
+      "email":"jose@jose1.com",
+      "phone":"898388391",
+      "position":"Analista Financeiro 2"
+    }
+  }
+]

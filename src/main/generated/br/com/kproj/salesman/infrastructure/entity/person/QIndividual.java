@@ -27,12 +27,6 @@ public class QIndividual extends EntityPathBase<Individual> {
     //inherited
     public final BooleanPath active;
 
-    //inherited
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.Address, br.com.kproj.salesman.infrastructure.entity.QAddress> addresses;
-
-    //inherited
-    public final ListPath<br.com.kproj.salesman.infrastructure.entity.ContactEntity, br.com.kproj.salesman.infrastructure.entity.QContactEntity> contacts;
-
     public final StringPath cpf = createString("cpf");
 
     //inherited
@@ -69,8 +63,6 @@ public class QIndividual extends EntityPathBase<Individual> {
         super(type, metadata, inits);
         this._super = new QPerson(type, metadata, inits);
         this.active = _super.active;
-        this.addresses = _super.addresses;
-        this.contacts = _super.contacts;
         this.id = _super.id;
         this.name = _super.name;
         this.profile = _super.profile;

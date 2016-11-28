@@ -124,7 +124,7 @@ class TaskCreateEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.CREATED.value()
             taskDefinitionCreated.item.id != null
             taskDefinitionCreated.item.title == taskDefinitionData.title
-            taskDefinitionCreated.item.quantityDaysToFinish == 0
+            taskDefinitionCreated.item.quantityDaysToFinish == null
 
             taskDefinitionCreated.item.links.size == 2
             taskDefinitionCreated.item.links.find{it.rel == "of-region"}.href == "/regions/4"

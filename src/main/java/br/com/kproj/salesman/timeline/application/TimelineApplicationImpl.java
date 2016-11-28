@@ -1,16 +1,12 @@
 package br.com.kproj.salesman.timeline.application;
 
-import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
-import br.com.kproj.salesman.infrastructure.entity.person.Individual;
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
 import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import br.com.kproj.salesman.infrastructure.repository.*;
-import br.com.kproj.salesman.infrastructure.repository.task.TaskRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceLegacyImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +28,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 
 	@Autowired
 	public TimelineApplicationImpl(TimelineRepository timelineRepository, PersonRepository personRepository, BusinessProposalRepository proposalRepository,
-								    TaskRepository taskRepository,
+
 								    IncidentRepository incidentRepository
 								   ) {
 		this.timelineRepository = timelineRepository;
@@ -41,7 +37,7 @@ public class TimelineApplicationImpl extends BaseModelServiceLegacyImpl<Timeline
 		//repositories.put(Person.class, personRepository);
 		repositories.put(BusinessProposalEntity.class, proposalRepository);
 		//repositories.put(ContactEntity.class, contactRepository);
-		repositories.put(TaskEntity.class, taskRepository);
+		repositories.put(TaskEntity.class, null);
 		repositories.put(IncidentEntity.class, incidentRepository);
 	}
 

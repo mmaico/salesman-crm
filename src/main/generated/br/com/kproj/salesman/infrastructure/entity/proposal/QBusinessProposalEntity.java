@@ -24,11 +24,15 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity account;
+    public final NumberPath<java.math.BigDecimal> ammountPayable = createNumber("ammountPayable", java.math.BigDecimal.class);
 
     public final StringPath careOf = createString("careOf");
 
+    public final br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity customer;
+
     public final DateTimePath<java.util.Date> deliveryForeCast = createDateTime("deliveryForeCast", java.util.Date.class);
+
+    public final NumberPath<java.math.BigDecimal> discount = createNumber("discount", java.math.BigDecimal.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -64,7 +68,7 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public QBusinessProposalEntity(Class<? extends BusinessProposalEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.account = inits.isInitialized("account") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("account")) : null;
+        this.customer = inits.isInitialized("customer") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("customer")) : null;
         this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;

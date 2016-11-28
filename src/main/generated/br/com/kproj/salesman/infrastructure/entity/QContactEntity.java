@@ -24,13 +24,13 @@ public class QContactEntity extends EntityPathBase<ContactEntity> {
 
     public final QIdentifiable _super = new QIdentifiable(this);
 
+    public final br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity customer;
+
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
-
-    public final br.com.kproj.salesman.infrastructure.entity.person.QPerson person;
 
     public final StringPath phone = createString("phone");
 
@@ -56,7 +56,7 @@ public class QContactEntity extends EntityPathBase<ContactEntity> {
 
     public QContactEntity(Class<? extends ContactEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.person = inits.isInitialized("person") ? new br.com.kproj.salesman.infrastructure.entity.person.QPerson(forProperty("person"), inits.get("person")) : null;
+        this.customer = inits.isInitialized("customer") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("customer")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 

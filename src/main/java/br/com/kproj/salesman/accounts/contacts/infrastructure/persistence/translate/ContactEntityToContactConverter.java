@@ -19,6 +19,7 @@ public class ContactEntityToContactConverter implements Converter<ContactEntity,
                 .withName(contactEntity.getName())
                 .withPhone(contactEntity.getPhone())
                 .withEmail(contactEntity.getEmail())
+                .withCustomer(contactEntity.getCustomer().getId())
                 .withPosition(contactEntity.getPosition()).build();
 
         return contact;
