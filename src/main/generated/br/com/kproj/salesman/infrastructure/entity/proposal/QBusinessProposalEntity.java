@@ -38,15 +38,15 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public final StringPath introduction = createString("introduction");
 
-    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity operationRegionEntity;
-
     public final ListPath<ProposalPaymentItem, QProposalPaymentItem> paymentItems = this.<ProposalPaymentItem, QProposalPaymentItem>createList("paymentItems", ProposalPaymentItem.class, QProposalPaymentItem.class, PathInits.DIRECT2);
+
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature> proposalTemperature = createEnum("proposalTemperature", br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature.class);
+
+    public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
     public final ListPath<ProposalSaleableItem, QProposalSaleableItem> saleableItems = this.<ProposalSaleableItem, QProposalSaleableItem>createList("saleableItems", ProposalSaleableItem.class, QProposalSaleableItem.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity seller;
-
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature> temperature = createEnum("temperature", br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
@@ -69,7 +69,7 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
     public QBusinessProposalEntity(Class<? extends BusinessProposalEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.customer = inits.isInitialized("customer") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("customer")) : null;
-        this.operationRegionEntity = inits.isInitialized("operationRegionEntity") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("operationRegionEntity")) : null;
+        this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }

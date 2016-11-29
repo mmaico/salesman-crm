@@ -27,7 +27,7 @@ public class BusinessProposalEntityToNegotiationConverter implements Converter<B
                 .withDiscount(proposalEntity.getDiscount())
                 .withAmmountPayable(proposalEntity.getAmmountPayable());
 
-        negotiationBuilder.withTemperature(Temperature.valueOf(proposalEntity.getTemperature().name()));
+        negotiationBuilder.withTemperature(Temperature.valueOf(proposalEntity.getProposalTemperature().name()));
 
         return negotiationBuilder.build();
     }

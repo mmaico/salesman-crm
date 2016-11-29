@@ -11,6 +11,7 @@ import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Ne
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationRepository;
 import br.com.kproj.salesman.negotiation.negotiation.infrastructure.persistence.springdata.BusinessProposalSpringData;
 import br.com.kproj.salesman.negotiation.negotiation.infrastructure.persistence.translate.BusinessProposalEntityToNegotiationConverter;
+import com.trex.shared.libraries.registers.PrimitiveTypeFields;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,7 +39,7 @@ public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiat
     @Override
     public Optional<Negotiation> save(Negotiation negotiation) {
         BusinessProposalEntity resultEntity = from(negotiation).convertTo(BusinessProposalEntity.class);
-        resultEntity.setTemperature(ProposalTemperature.valueOf(negotiation.getTemperature().name()));
+        resultEntity.setProposalTemperature(ProposalTemperature.valueOf(negotiation.getTemperature().name()));
 
         return Optional.ofNullable(getConverter().convert(getRepository().save(resultEntity)));
     }
@@ -56,6 +57,10 @@ public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiat
     public Negotiation update(Negotiation negotiation) {
         BusinessProposalEntity entity = repository.findOne(negotiation.getId());
         from(negotiation).merge(entity);
+
+        if (negotiation.hasField("temperature")) {
+            entity.setProposalTemperature(ProposalTemperature.valueOf(negotiation.getTemperature().name()));
+        }
 
         return getConverter().convert(entity);
     }

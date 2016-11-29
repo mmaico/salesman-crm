@@ -60,7 +60,7 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
 
     @Enumerated(EnumType.STRING)
     @Column(name = "temperature")
-    private ProposalTemperature temperature;
+    private ProposalTemperature proposalTemperature;
 
     private BigDecimal discount;
 
@@ -149,12 +149,12 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.saleableItems = saleableItems;
     }
 
-    public ProposalTemperature getTemperature() {
-        return temperature;
+    public ProposalTemperature getProposalTemperature() {
+        return proposalTemperature;
     }
 
-    public void setTemperature(ProposalTemperature temperature) {
-        this.temperature = temperature;
+    public void setProposalTemperature(ProposalTemperature proposalTemperature) {
+        this.proposalTemperature = proposalTemperature;
     }
 
     public Timeline getTimeline() {
