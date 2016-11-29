@@ -38,7 +38,7 @@ public class TaskEndpoint {
 
     @RequestMapping(value = "/rs/deliveries/{deliveryId}/tasks", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getTasks(@PathVariable Long deliveryId, @PageableDefault(size = 100) Pageable pageable) {
+    ResourceItems list(@PathVariable Long deliveryId, @PageableDefault(size = 100) Pageable pageable) {
         Delivery delviery = new Delivery(deliveryId);
 
         Iterable<Task> rootTasks = service.findAll(delviery, pageable);
@@ -48,7 +48,7 @@ public class TaskEndpoint {
 
     @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItem getTask(@PathVariable Long taskId) {
+    ResourceItem findOne(@PathVariable Long taskId) {
 
         Optional<Task> taskOptional = service.getOne(taskId);
         Task task = taskOptional.orElseThrow(NotFoundException::new);

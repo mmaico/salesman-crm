@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.negotiation.negotiation.application.validators;
 
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.approval.ApprovalProcessRepository;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.CustomerRepository;
@@ -17,10 +17,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.negotiation.negotiation.application.validators.NegotiationIgnoreRules.*;
 
 
@@ -44,7 +41,7 @@ public class NegotiationBusinessRules implements NegotiationValidate {
     {
         persistRules.put(ruleCustomer(), (negotiation) -> {
             Customer customer = negotiation.getCustomer();
-            return customer.isNew() || !customerRepository.findOne(customer.getId()).isPresent();
+            return !customer.isNew() && !customerRepository.findOne(customer.getId()).isPresent();
         });
 
         persistRules.put(ruleSeller(), (negotiation) -> {
@@ -69,20 +66,6 @@ public class NegotiationBusinessRules implements NegotiationValidate {
 
     @Override
     public void checkRules(Negotiation negotiation) {
-
-        Set<String> errors = persistRules.entrySet()
-                .stream()
-                .filter(rule -> {
-                    try {
-                        if (negotiation.needPersist(rule.getKey().getField())) {
-                            return rule.getValue().check(negotiation);
-                        }
-                        return Boolean.FALSE;
-                    } catch (Exception e) {
-                        return Boolean.TRUE;
-                    }
-                }).map(item -> item.getKey().getName()).collect(Collectors.toSet());
-
-        hasErrors(errors).throwing(ValidationException.class);
+        RulesExecute.runRules(persistRules, negotiation);
     }
 }

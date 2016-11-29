@@ -7,19 +7,17 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskValidator;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.infrastructure.validators.RuleKey.key;
 
 @Component
 public class SubtaskBusinessRules implements SubtaskValidator {
@@ -39,32 +37,23 @@ public class SubtaskBusinessRules implements SubtaskValidator {
         this.subtaskRepository = subtaskRepository;
     }
 
-    private Map<String, CheckRule<Subtask>> rules = new HashMap<>();
+    private Map<RuleKey, CheckRule<Subtask>> rules = new HashMap<>();
     {
-        rules.put(description("subtask.with.invalid.parent"), subtask -> subtask.getParent().isNew()
-                || !rootTaskRepository.findOne(subtask.getParent().getId()).isPresent());
+        rules.put(key("subtask.with.invalid.parent", "parent"), subtask -> {
+            Task parent = subtask.getParent();
+            return !parent.isNew() && !rootTaskRepository.findOne(parent.getId()).isPresent();
+        });
 
-        rules.put("subtask.with.already.exists.specialization", subtask -> {
+        rules.put(key("subtask.with.already.exists.specialization"), subtask -> {
             Optional<Task> result = repository.findOne(subtask.getId());
             return !Represent.NO_REPRESENT.equals(result.get().getRepresent());
         });
 
-        rules.put("subtask.not.have.task", subtask -> !repository.findOne(subtask.getId()).isPresent());
+        rules.put(key("subtask.not.have.task") , subtask -> !repository.findOne(subtask.getId()).isPresent());
     }
 
     @Override
     public void checkRules(Subtask task) {
-
-        Set<String> violations = rules.entrySet()
-                .stream()
-                .filter(rule -> {
-                    try {
-                        return rule.getValue().check(task);
-                    } catch (Exception e) {
-                        return Boolean.TRUE;
-                    }
-                }).map(Map.Entry::getKey).collect(Collectors.toSet());
-
-        hasErrors(violations).throwing(ValidationException.class);
+        RulesExecute.runRules(rules, task);
     }
 }

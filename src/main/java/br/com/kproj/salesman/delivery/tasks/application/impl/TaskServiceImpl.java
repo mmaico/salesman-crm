@@ -1,12 +1,9 @@
 package br.com.kproj.salesman.delivery.tasks.application.impl;
 
 import br.com.kproj.salesman.delivery.tasks.application.TaskFacade;
-import br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules;
 import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesValidator;
-import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.ChangeStatus;
-import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskValidator;
@@ -18,7 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules.ruleInvalidDelivery;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.TaskRulesDescription.ignoreRules;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.TaskRulesDescription.ruleInvalidDelivery;
 import static br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber.subscriber;
 
 @Service
@@ -48,7 +46,7 @@ public class TaskServiceImpl extends BaseModelServiceImpl<Task> implements TaskF
     @Override
     public Optional<Task> update(Task task) {
 
-        validator.checkRules(task, TaskIgnoreRules.add(ruleInvalidDelivery()));
+        validator.checkRules(task, ignoreRules(ruleInvalidDelivery()));
 
         return subscriber().save(task);
     }

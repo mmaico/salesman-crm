@@ -1,23 +1,22 @@
 package br.com.kproj.salesman.delivery.tasks.application.validators;
 
+import br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.TaskRulesDescription;
+import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.DeliveryRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskValidator;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import org.apache.commons.lang3.StringUtils;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.delivery.tasks.application.validators.TaskIgnoreRules.*;
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.TaskRulesDescription.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
@@ -33,46 +32,28 @@ public class TaskBusinessRules implements TaskValidator {
         this.taskRepository = taskRepository;
     }
 
-    private Map<String, CheckRule<Task>> rules = new HashMap<>();
+    private Map<RuleKey, CheckRule<Task>> rules = new HashMap<>();
     {
-        rules.put(ruleInvalidDelivery(), task ->
-            task.getDelivery() == null || task.getDelivery().isNew()
-            || !repository.findOne(task.getDelivery().getId()).isPresent());
+        rules.put(ruleInvalidDelivery(), task -> {
+            Delivery delivery = task.getDelivery();
+            return delivery == null || delivery.isNew() || !repository.findOne(delivery.getId()).isPresent();
+        });
 
-        rules.put(ruleInvalidDeadline(), task ->
-                task.isNew()
-                        ? task.getDeadline() == null || task.getDeadline().before(new Date())
-                        : task.getFields().contains("deadline") && (task.getDeadline() == null || task.getDeadline().before(new Date()))
-        );
+        rules.put(ruleInvalidDeadline(), task -> task.getDeadline() == null || task.getDeadline().before(new Date()));
 
-        rules.put(ruleTaskWithoutTitle(), task ->
-            task.isNew() ? isBlank(task.getTitle()) : isBlank(task.getTitle()) && task.getFields().contains("title")
-        );
-        rules.put(ruleTaskWithoutStatus(), task -> !task.isNew() ? task.getStatus() == null && task.getFields().contains("status") : Boolean.FALSE);
+        rules.put(ruleTaskWithoutTitle(), task -> isBlank(task.getTitle()));
+
+        rules.put(ruleTaskWithoutStatus(), task -> !task.isNew() && task.getStatus() == null);
 
         rules.put(ruleTaskNotFoundOnUpdate(), task -> !task.isNew() && !taskRepository.findOne(task.getId()).isPresent());
-
     }
 
     @Override
     public void checkRules(Task task) {
-        checkRules(task, new TaskIgnoreRules(StringUtils.EMPTY));
+        RulesExecute.runRules(rules, task);
     }
 
-    public void checkRules(Task task, TaskIgnoreRules ignoreRules) {
-
-        Set<String> violations = rules.entrySet()
-                .stream()
-                .filter(rule -> {
-                    try {
-                        if (ignoreRules.contains(rule.getKey())) return Boolean.FALSE;
-
-                        return rule.getValue().check(task);
-                    } catch (Exception e) {
-                        return Boolean.TRUE;
-                    }
-                }).map(Map.Entry::getKey).collect(Collectors.toSet());
-
-        hasErrors(violations).throwing(ValidationException.class);
+    public void checkRules(Task task, TaskRulesDescription ignoreRules) {
+        RulesExecute.runRules(rules, task, ignoreRules);
     }
 }
