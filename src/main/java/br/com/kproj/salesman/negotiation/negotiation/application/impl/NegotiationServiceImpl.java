@@ -4,7 +4,10 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.negotiation.negotiation.application.NegotiationFacade;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.*;
+import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationRepository;
+import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationValidate;
+import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Temperature;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.Seller;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.SellerSaveNegotiation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +21,19 @@ import static br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.
 @Service
 public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> implements NegotiationFacade {
 
-    @Autowired
-    private NegotiationRepository repository;
 
-//    @Autowired
-//    private RulesToChangeTemperature businessRules;
-//
+    private NegotiationRepository repository;
+    private NegotiationValidate negotiationBusinessRules;
+
 //    @Autowired
 //    private NegotiationEventHandler eventHandler;
 
+    
     @Autowired
-    private NegotiationValidate negotiationBusinessRules;
+    public NegotiationServiceImpl(NegotiationRepository repository, NegotiationValidate negotiationBusinessRules) {
+        this.repository = repository;
+        this.negotiationBusinessRules = negotiationBusinessRules;
+    }
 
 
     @Override
