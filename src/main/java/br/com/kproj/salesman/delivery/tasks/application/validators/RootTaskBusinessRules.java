@@ -5,18 +5,18 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskRepository;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTaskValidator;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.RootTaskDescription.ruleSpecialization;
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.RootTaskDescription.ruleTask;
 
 @Component
 public class RootTaskBusinessRules implements RootTaskValidator {
@@ -28,11 +28,11 @@ public class RootTaskBusinessRules implements RootTaskValidator {
         this.repository = repository;
     }
 
-    private Map<String, CheckRule<RootTask>> rules = new HashMap<>();
+    private Map<RuleKey, CheckRule<RootTask>> rules = new HashMap<>();
     {
-        rules.put("roottask.with.invalid.task", rootTask -> rootTask.isNew() && !repository.findOne(rootTask.getId()).isPresent());
+        rules.put(ruleTask(), rootTask -> rootTask.isNew() && !repository.findOne(rootTask.getId()).isPresent());
 
-        rules.put("roottask.with.already.exists.specialization", rootTask -> {
+        rules.put(ruleSpecialization(), rootTask -> {
             Optional<Task> result = repository.findOne(rootTask.getId());
             return !Represent.NO_REPRESENT.equals(result.get().getRepresent());
         });
@@ -40,17 +40,6 @@ public class RootTaskBusinessRules implements RootTaskValidator {
 
     @Override
     public void checkRules(RootTask task) {
-
-        Set<String> violations = rules.entrySet()
-                .stream()
-                .filter(rule -> {
-                    try {
-                        return rule.getValue().check(task);
-                    } catch (Exception e) {
-                        return Boolean.TRUE;
-                    }
-                }).map(Map.Entry::getKey).collect(Collectors.toSet());
-
-        hasErrors(violations).throwing(ValidationException.class);
+        RulesExecute.runRules(rules, task);
     }
 }

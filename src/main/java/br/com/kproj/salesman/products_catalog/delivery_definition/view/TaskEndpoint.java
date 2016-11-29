@@ -40,7 +40,7 @@ public class TaskEndpoint {
 
     @RequestMapping(value = "/rs/saleables/{saleableId}/task-definitions", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems getTaskDefinitions(@PathVariable Long saleableId) {
+    ResourceItems list(@PathVariable Long saleableId) {
         Saleable saleable = new Saleable(saleableId);
 
         Collection<Task> rootTasks = service.findAll(saleable);
@@ -75,7 +75,6 @@ public class TaskEndpoint {
 
         return builder.build(task, request.getRequestURI());
     }
-
 
 
 }

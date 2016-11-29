@@ -2,31 +2,28 @@ package br.com.kproj.salesman.delivery.tasks.application.validators;
 
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.delivery.tasks.domain.model.sales.SalesValidator;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.SalesOrderDescription.*;
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Component
 public class SalesOrderBusinessRules implements SalesValidator {
 
 
 
-    private Map<String, CheckRule<SalesOrder>> rules = new HashMap<>();
+    private Map<RuleKey, CheckRule<SalesOrder>> rules = new HashMap<>();
     {
-        rules.put(description("generate.delivery.salesorder.without.id"), sales -> sales.isNew());
-        rules.put(description("generate.delivery.salesorder.with.invalid.region"), sales ->
-                sales.getRegion() == null || sales.getRegion().isNew());
+        rules.put(ruleSalesOrder(), sales -> sales.isNew());
+        rules.put(ruleRegion(), sales -> sales.getRegion() == null || sales.getRegion().isNew());
 
-        rules.put(description("generate.delivery.invalis.products.salesorder"), sales ->
+        rules.put(ruleProducts(), sales ->
                 isEmptySafe(sales.getItems()) || sales.getItems().stream()
                         .filter(item -> item.getProduct() == null || item.getProduct().isNew())
                         .count() > 0);
@@ -35,12 +32,6 @@ public class SalesOrderBusinessRules implements SalesValidator {
 
     @Override
     public void checkRules(SalesOrder salesOrder) {
-
-        Set<String> violations = rules.entrySet()
-                .stream()
-                .filter(e -> e.getValue().check(salesOrder))
-                .map(Map.Entry::getKey).collect(Collectors.toSet());
-
-        hasErrors(violations).throwing(ValidationException.class);
+        RulesExecute.runRules(rules, salesOrder);
     }
 }
