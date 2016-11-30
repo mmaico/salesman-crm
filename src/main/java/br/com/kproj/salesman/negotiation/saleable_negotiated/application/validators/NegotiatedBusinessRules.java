@@ -2,65 +2,57 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.application.valida
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedItem;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedItemValidate;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedValidate;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableRepository;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNotNegativeNumber;
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 
 @Component
-public class NegotiatedItemBusinessRules implements NegotiatedItemValidate {
+public class NegotiatedBusinessRules implements NegotiatedValidate {
 
     @Autowired
     private SaleableRepository saleableRepository;
 
 
-    private Map<String, CheckRule<NegotiatedItem>> persistRules = new HashMap<>();
+    private Map<String, CheckRule<Negotiated>> persistRules = new HashMap<>();
     {
         persistRules.put(description("negotiationold.item.without.price"), (saleable) -> isNotNegativeNumber(saleable.getPrice()));
         persistRules.put(description("negotiationold.item.without.quantity"), (saleable) -> saleable.getQuantity() > 0);
         persistRules.put(description("negotiationold.item.invalid.original.price"), (saleable) -> saleable.getOriginalPrice() != null);
 
         persistRules.put(description("negotiationold.saleable.item.wihtout.id"), (saleable) -> saleable == null || saleable.isNew());
-        persistRules.put(description("negotiationold.saleable.item.notexist"), (saleable) -> {
-            if (saleable.hasPackage()) {
-                return !saleableRepository.findOne(saleable.getSaleablePackage().getId()).isPresent();
-            } else {
-                return !saleableRepository.findOne(saleable.getSaleable().getId()).isPresent();
-            }
-        });
+//        persistRules.put(description("negotiationold.saleable.item.notexist"), (saleable) -> {
+//            if (saleable.hasPackage()) {
+//                return !saleableRepository.findOne(saleable.getSaleablePackage().getId()).isPresent();
+//            } else {
+//                return !saleableRepository.findOne(saleable.getSaleable().getId()).isPresent();
+//            }
+//        });
     }
 
     @Override
-    public Boolean checkRules(Collection<NegotiatedItem> items) {
+    public void checkRules(Negotiated negotiated) {
         Set<String> violations = Sets.newHashSet();
 
-        if (isEmptySafe(items)) {
-            throw new ValidationException(Sets.newHashSet("negotiationold.must.be.products"));
-        }
 
-        for (NegotiatedItem item: items) {
-            Set<String> result = persistRules.entrySet()
+        Set<String> result = persistRules.entrySet()
                     .stream()
-                    .filter(e -> e.getValue().check(item))
+                    .filter(e -> e.getValue().check(negotiated))
                     .map(Map.Entry::getKey).collect(Collectors.toSet());
-            violations.addAll(result);
-        }
+
 
         hasErrors(violations).throwing(ValidationException.class);
 
-        return Boolean.TRUE;
     }
 }
