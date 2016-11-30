@@ -23,6 +23,10 @@ public class SaleablePackageBuilder extends AbstractBuilder<SaleablePackage>  {
 		return this;
 	}
 
+	public SaleablePackageBuilder addSaleable(Long saleableId) {
+		return addSaleable(new Saleable(saleableId));
+	}
+
 
 	public static SaleablePackageBuilder createPackage(Long id) {
 		return new SaleablePackageBuilder(id);

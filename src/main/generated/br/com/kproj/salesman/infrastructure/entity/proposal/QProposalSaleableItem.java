@@ -14,7 +14,7 @@ import com.querydsl.core.types.dsl.PathInits;
  * QProposalSaleableItem is a Querydsl query type for ProposalSaleableItem
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> {
+public class QProposalSaleableItem extends EntityPathBase<BusinessProposalItemEntity> {
 
     private static final long serialVersionUID = -46078253L;
 
@@ -39,10 +39,10 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
     public final br.com.kproj.salesman.infrastructure.entity.saleable.QSalePackageEntity salePackage;
 
     public QProposalSaleableItem(String variable) {
-        this(ProposalSaleableItem.class, forVariable(variable), INITS);
+        this(BusinessProposalItemEntity.class, forVariable(variable), INITS);
     }
 
-    public QProposalSaleableItem(Path<? extends ProposalSaleableItem> path) {
+    public QProposalSaleableItem(Path<? extends BusinessProposalItemEntity> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
@@ -51,10 +51,10 @@ public class QProposalSaleableItem extends EntityPathBase<ProposalSaleableItem> 
     }
 
     public QProposalSaleableItem(PathMetadata metadata, PathInits inits) {
-        this(ProposalSaleableItem.class, metadata, inits);
+        this(BusinessProposalItemEntity.class, metadata, inits);
     }
 
-    public QProposalSaleableItem(Class<? extends ProposalSaleableItem> type, PathMetadata metadata, PathInits inits) {
+    public QProposalSaleableItem(Class<? extends BusinessProposalItemEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.businessProposalEntity = inits.isInitialized("businessProposalEntity") ? new QBusinessProposalEntity(forProperty("businessProposalEntity"), inits.get("businessProposalEntity")) : null;
         this.saleableUnit = inits.isInitialized("saleableUnit") ? new br.com.kproj.salesman.infrastructure.entity.saleable.QSaleableUnitEntity(forProperty("saleableUnit")) : null;

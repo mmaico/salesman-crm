@@ -2,11 +2,17 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negot
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.GenerateSaleableItems;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItem;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItemRepository;
 import com.trex.shared.annotations.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Model
 public class Negotiated extends ModelIdentifiable {
@@ -24,6 +30,19 @@ public class Negotiated extends ModelIdentifiable {
     private Integer quantity = 0;
 
     private Negotiation negotiation;
+
+    @Autowired
+    private SaleableItemRepository saleableItemRepository;
+
+    public Negotiated(){}
+    public Negotiated(Long id) {
+        this.id = id;
+    }
+
+    public List<SaleableItem> generate(GenerateSaleableItems saleableItems) {
+        Saleable saleable = saleableItems.getSaleable();
+        return saleableItemRepository.generateBy(saleable, this);
+    }
 
     @Override
     public Long getId() {

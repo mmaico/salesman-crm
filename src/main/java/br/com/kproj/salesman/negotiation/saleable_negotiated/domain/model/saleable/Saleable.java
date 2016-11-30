@@ -8,6 +8,11 @@ public class Saleable extends ModelIdentifiable {
 
     private Long id;
 
+    public Saleable(){}
+    public Saleable(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

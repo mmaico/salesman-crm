@@ -28,7 +28,7 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
 //    @Autowired
 //    private NegotiationEventHandler eventHandler;
 
-    
+
     @Autowired
     public NegotiationServiceImpl(NegotiationRepository repository, NegotiationValidate negotiationBusinessRules) {
         this.repository = repository;

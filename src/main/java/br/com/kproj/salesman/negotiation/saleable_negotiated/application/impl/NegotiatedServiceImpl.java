@@ -8,12 +8,14 @@ import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negoti
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedRepository;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedValidate;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.GenerateSaleableItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.GenerateSaleableItems.generateSaleableItems;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.seller.Seller.seller;
 
 @Service
@@ -29,7 +31,6 @@ public class NegotiatedServiceImpl extends BaseModelServiceImpl<Negotiated> impl
         this.validate = validate;
     }
 
-
     @Override
     public Optional<Negotiated> register(NegotiatedInNegotiation negotiatedIn) {
         Negotiated negotiated = negotiatedIn.getNegotiated();
@@ -37,8 +38,9 @@ public class NegotiatedServiceImpl extends BaseModelServiceImpl<Negotiated> impl
         negotiated.setNegotiation(negotiation);
 
         validate.checkRules(negotiated);
+        GenerateSaleableItems saleableItems = generateSaleableItems(negotiatedIn.getSaleable());
 
-        return seller().save(negotiated).to(negotiation);
+        return seller().save(negotiated).andGenerate(saleableItems).to(negotiation);
     }
 
     @Override

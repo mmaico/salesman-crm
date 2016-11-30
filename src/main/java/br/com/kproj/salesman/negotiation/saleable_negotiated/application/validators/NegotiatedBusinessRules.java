@@ -2,8 +2,11 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.application.valida
 
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedValidate;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleablePackage;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableRepository;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNotNegativeNumber;
-import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.*;
 
 @Component
 public class NegotiatedBusinessRules implements NegotiatedValidate {
@@ -25,25 +29,27 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
     private SaleableRepository saleableRepository;
 
 
-    private Map<String, CheckRule<Negotiated>> persistRules = new HashMap<>();
+    private Map<RuleKey, CheckRule<NegotiatedVO>> persistRules = new HashMap<>();
     {
-        persistRules.put(description("negotiationold.item.without.price"), (saleable) -> isNotNegativeNumber(saleable.getPrice()));
-        persistRules.put(description("negotiationold.item.without.quantity"), (saleable) -> saleable.getQuantity() > 0);
-        persistRules.put(description("negotiationold.item.invalid.original.price"), (saleable) -> saleable.getOriginalPrice() != null);
+        persistRules.put(rulePrice(), (negotiatedVO) -> isNotNegativeNumber(negotiatedVO.negotiated.getPrice()));
+        persistRules.put(ruleQuantity(), (negotiatedVO) -> negotiatedVO.negotiated.getQuantity() > 0);
+        persistRules.put(ruleOriginalPrice(), (negotiatedVO) -> negotiatedVO.negotiated.getOriginalPrice() != null);
 
-        persistRules.put(description("negotiationold.saleable.item.wihtout.id"), (saleable) -> saleable == null || saleable.isNew());
-//        persistRules.put(description("negotiationold.saleable.item.notexist"), (saleable) -> {
-//            if (saleable.hasPackage()) {
-//                return !saleableRepository.findOne(saleable.getSaleablePackage().getId()).isPresent();
-//            } else {
-//                return !saleableRepository.findOne(saleable.getSaleable().getId()).isPresent();
-//            }
-//        });
+        persistRules.put(ruleSaleable(), (negotiatedVO) -> !saleableRepository.findOne(negotiatedVO.saleable.getId()).isPresent());
+
+        persistRules.put(rulePackage(), (negotiatedVO) -> {
+            Optional<Saleable> saleableFound = saleableRepository.findOne(negotiatedVO.saleable.getId());
+
+            return saleableFound.get() instanceof SaleablePackage
+                    ? ((SaleablePackage) saleableFound.get()).getSaleables().isEmpty()
+                    : Boolean.FALSE;
+        });
+
     }
 
     @Override
-    public void checkRules(Negotiated negotiated) {
-        Set<String> violations = Sets.newHashSet();
+    public void checkRules(Negotiated negotiated, Saleable saleable) {
+
 
 
         Set<String> result = persistRules.entrySet()
@@ -54,5 +60,15 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
 
         hasErrors(violations).throwing(ValidationException.class);
 
+    }
+
+    private class NegotiatedVO {
+        private Negotiated negotiated;
+        private Saleable saleable;
+
+        public NegotiatedVO(Negotiated negotiated, Saleable saleable) {
+            this.negotiated = negotiated;
+            this.saleable = saleable;
+        }
     }
 }

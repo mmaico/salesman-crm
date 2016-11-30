@@ -9,6 +9,13 @@ public class SaleablePackage extends Saleable {
 
     private List<Saleable> saleables;
 
+    public SaleablePackage(){
+        super();
+    }
+    public SaleablePackage(Long id){
+        super(id);
+    }
+
 
     public List<Saleable> getSaleables() {
         return saleables;

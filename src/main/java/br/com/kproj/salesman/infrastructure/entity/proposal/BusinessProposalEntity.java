@@ -49,7 +49,7 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
     private String introduction;
 
     @OneToMany(mappedBy = "businessProposalEntity")
-    private List<ProposalSaleableItem> saleableItems;
+    private List<BusinessProposalItemEntity> saleableItems;
 
     @OneToMany(mappedBy = "businessProposalEntity")
     private List<ProposalPaymentItem> paymentItems;
@@ -141,11 +141,11 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.region = region;
     }
 
-    public List<ProposalSaleableItem> getSaleableItems() {
+    public List<BusinessProposalItemEntity> getSaleableItems() {
         return saleableItems;
     }
 
-    public void setSaleableItems(List<ProposalSaleableItem> saleableItems) {
+    public void setSaleableItems(List<BusinessProposalItemEntity> saleableItems) {
         this.saleableItems = saleableItems;
     }
 

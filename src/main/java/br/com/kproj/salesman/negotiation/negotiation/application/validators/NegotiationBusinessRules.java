@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static br.com.kproj.salesman.negotiation.negotiation.application.validators.NegotiationIgnoreRules.*;
+import static br.com.kproj.salesman.negotiation.negotiation.application.validators.NegotiationRulesDescription.*;
 
 
 @Component

@@ -36,6 +36,7 @@
     <saleable_relation id="3" salepackage_id="7" saleable_id="1"/>
 
 
+
     <!-- CUSTOMERS -->
     <customers id="1" name="Joao Fereira" site="www.ferreira.com.br" description="customer description 01"/>
     <customers id="2" name="Pedro Terra Nova" site="www.petroterra.com.br" description="customer description 02"/>
@@ -74,19 +75,28 @@
     <business_proposal id="10"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 10" discount="12.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
     <business_proposal id="11"  customer_id="1" seller_id="2" operation_region_id="1" temperature="COLD" delivery_forecast="2020-02-09 00:00:00" introduction="introduction 11" discount="11.00" ammount_payable="30.00" care_of="Jose Luiz ONE"/>
 
-    <proposal_saleable_item id="1" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="1" />
-    <proposal_saleable_item id="2" saleable_id="1" original_price="5.00" price="100.00" quantity="2" business_proposal_id="1" />
-    <proposal_saleable_item id="3" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="2" />
-    <proposal_saleable_item id="4" saleable_id="2" original_price="89.00" price="487.00" quantity="3" business_proposal_id="3" />
-    <proposal_saleable_item id="5" saleable_id="1" original_price="78.00" price="190.00" quantity="2" business_proposal_id="3" />
-    <proposal_saleable_item id="6" saleable_id="2" original_price="89.00" price="487.00" quantity="1" business_proposal_id="4" />
-    <proposal_saleable_item id="7" saleable_id="1" original_price="78.00" price="190.00" quantity="4" business_proposal_id="4" />
-    <proposal_saleable_item id="8" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="6" />
-    <proposal_saleable_item id="9" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="7" />
-    <proposal_saleable_item id="10" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="8" />
-    <proposal_saleable_item id="11" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="9" />
-    <proposal_saleable_item id="12" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="10" />
-    <proposal_saleable_item id="13" saleable_id="2" original_price="5.00" price="400.00" quantity="3" business_proposal_id="11" />
+    <business_proposal_item id="1" original_price="5.00" price="400.00" quantity="3" business_proposal_id="1" />
+    <business_proposal_item id="2" original_price="5.00" price="100.00" quantity="2" business_proposal_id="1" />
+
+    <business_proposal_item id="3" original_price="5.00" price="400.00" quantity="3" business_proposal_id="2" />
+
+    <business_proposal_item id="4" original_price="89.00" price="487.00" quantity="3" business_proposal_id="3" />
+    <business_proposal_item id="5" original_price="78.00" price="190.00" quantity="2" business_proposal_id="3" />
+
+    <business_proposal_item id="6" original_price="89.00" price="487.00" quantity="1" business_proposal_id="4" />
+    <business_proposal_item id="7" original_price="78.00" price="190.00" quantity="4" business_proposal_id="4" />
+
+    <business_proposal_item id="8" original_price="5.00" price="400.00" quantity="3" business_proposal_id="6" />
+
+    <business_proposal_item id="9" original_price="5.00" price="400.00" quantity="3" business_proposal_id="7" />
+
+    <business_proposal_item id="10" original_price="5.00" price="400.00" quantity="3" business_proposal_id="8" />
+
+    <business_proposal_item id="11" original_price="5.00" price="400.00" quantity="3" business_proposal_id="9" />
+
+    <business_proposal_item id="12" original_price="5.00" price="400.00" quantity="3" business_proposal_id="10" />
+
+    <business_proposal_item id="13" original_price="5.00" price="400.00" quantity="3" business_proposal_id="11" />
 
     <proposal_payment_item id="1" due_date="2016-02-16 00:00:00" value="1000.00" business_proposal_id="1"/>
     <proposal_payment_item id="2" due_date="2016-03-15 00:00:00" value="400.00" business_proposal_id="1"/>
@@ -95,6 +105,23 @@
 
     <proposal_payment_item id="4" due_date="2016-02-16 00:00:00" value="450.00" business_proposal_id="3"/>
     <proposal_payment_item id="5" due_date="2016-02-16 00:00:00" value="677.00" business_proposal_id="4"/>
+
+
+    <saleable_item id="1" saleable_id="2" business_proposal_item_id="1"/>
+    <saleable_item id="2" saleable_id="1" business_proposal_item_id="2"/>
+    <saleable_item id="3" saleable_id="2" business_proposal_item_id="3"/>
+    <saleable_item id="4" saleable_id="2" business_proposal_item_id="4"/>
+    <saleable_item id="5" saleable_id="1" business_proposal_item_id="5"/>
+    <saleable_item id="6" saleable_id="2" business_proposal_item_id="6"/>
+    <saleable_item id="7" saleable_id="1" business_proposal_item_id="7"/>
+    <saleable_item id="8" saleable_id="2" business_proposal_item_id="8"/>
+    <saleable_item id="9" saleable_id="2" business_proposal_item_id="9"/>
+    <saleable_item id="10" saleable_id="2" business_proposal_item_id="10"/>
+    <saleable_item id="11" saleable_id="2" business_proposal_item_id="11"/>
+    <saleable_item id="12" saleable_id="2" business_proposal_item_id="12"/>
+
+    <saleable_item id="13" saleable_id="2" package_id="7" business_proposal_item_id="13"/>
+    <saleable_item id="14" saleable_id="1" package_id="7" business_proposal_item_id="13"/>
 
 
     <!-- PERSONS -->

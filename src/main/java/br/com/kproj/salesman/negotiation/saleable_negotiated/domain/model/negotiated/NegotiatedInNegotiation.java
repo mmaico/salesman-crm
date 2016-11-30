@@ -2,16 +2,19 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negot
 
 
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
 
 public class NegotiatedInNegotiation {
 
     private final Long negotiationId;
     private final Negotiated negotiated;
+    private final Saleable saleable;
 
 
-    public NegotiatedInNegotiation(Long negotiationId, Negotiated negotiated) {
+    public NegotiatedInNegotiation(Long negotiationId, Negotiated negotiated, Saleable saleable) {
         this.negotiationId = negotiationId;
         this.negotiated = negotiated;
+        this.saleable = saleable;
     }
 
 
@@ -23,7 +26,11 @@ public class NegotiatedInNegotiation {
         return negotiated;
     }
 
-    public static NegotiatedInNegotiation create(Long negotiationId, Negotiated negotiated) {
-        return new NegotiatedInNegotiation(negotiationId, negotiated);
+    public Saleable getSaleable() {
+        return saleable;
+    }
+
+    public static NegotiatedInNegotiation create(Long negotiationId, Negotiated negotiated, Saleable saleable) {
+        return new NegotiatedInNegotiation(negotiationId, negotiated, saleable);
     }
 }

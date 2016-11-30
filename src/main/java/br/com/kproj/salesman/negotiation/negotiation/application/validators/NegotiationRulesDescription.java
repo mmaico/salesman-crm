@@ -7,16 +7,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class NegotiationIgnoreRules {
+public class NegotiationRulesDescription {
 
     private List<String> ignoreRules = Lists.newArrayList();
 
-    public NegotiationIgnoreRules(String... rules) {
+    public NegotiationRulesDescription(String... rules) {
         ignoreRules.addAll(Lists.newArrayList(rules));
     }
 
-    public static NegotiationIgnoreRules add(String... rule) {
-        return new NegotiationIgnoreRules(rule);
+    public static NegotiationRulesDescription add(String... rule) {
+        return new NegotiationRulesDescription(rule);
     }
 
     public static RuleKey ruleCustomer() {
