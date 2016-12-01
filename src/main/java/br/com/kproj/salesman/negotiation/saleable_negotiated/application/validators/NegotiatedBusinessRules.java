@@ -1,24 +1,21 @@
 package br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators;
 
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
+import br.com.kproj.salesman.infrastructure.validators.IgnoreRules;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
+import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedValidate;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleablePackage;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableRepository;
-import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNotNegativeNumber;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.*;
 
@@ -50,16 +47,16 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
     @Override
     public void checkRules(Negotiated negotiated, Saleable saleable) {
 
+        NegotiatedVO negotiatedVO = new NegotiatedVO(negotiated, saleable);
+        RulesExecute.runRules(persistRules, negotiatedVO);
 
+    }
 
-        Set<String> result = persistRules.entrySet()
-                    .stream()
-                    .filter(e -> e.getValue().check(negotiated))
-                    .map(Map.Entry::getKey).collect(Collectors.toSet());
+    @Override
+    public void checkRules(Negotiated negotiated, IgnoreRules ignoreRules) {
 
-
-        hasErrors(violations).throwing(ValidationException.class);
-
+        NegotiatedVO negotiatedVO = new NegotiatedVO(negotiated, null);
+        RulesExecute.runRules(persistRules, negotiatedVO, ignoreRules);
     }
 
     private class NegotiatedVO {

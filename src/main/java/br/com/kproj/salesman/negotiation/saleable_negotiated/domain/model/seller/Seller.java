@@ -4,11 +4,12 @@ import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedRepository;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItem;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.GenerateSaleableItemsService;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.NegotiatedToNegotiationService;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 @Model
@@ -26,9 +27,11 @@ public class Seller extends ModelIdentifiable {
     public GenerateSaleableItemsService save(Negotiated negotiated) {
         return (saleableItems ->
                 (negotiation -> {
+
                     negotiated.setNegotiation(negotiation);
                     Optional<Negotiated> negotiatedSaved = repository.save(negotiated);
-                    //negotiatedSaved.get().generate(saleableItems)
+                    List<SaleableItem> items = negotiatedSaved.get().generate(saleableItems);
+                    negotiatedSaved.get().setSaleableItems(items);
 
                     return negotiatedSaved;
                 })

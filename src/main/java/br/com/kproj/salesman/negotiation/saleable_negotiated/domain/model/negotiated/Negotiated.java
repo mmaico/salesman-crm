@@ -6,6 +6,7 @@ import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleab
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.GenerateSaleableItems;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItem;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItemRepository;
+import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +31,8 @@ public class Negotiated extends ModelIdentifiable {
     private Integer quantity = 0;
 
     private Negotiation negotiation;
+
+    private List<SaleableItem> saleableItems = Lists.newArrayList();
 
     @Autowired
     private SaleableItemRepository saleableItemRepository;
@@ -83,5 +86,13 @@ public class Negotiated extends ModelIdentifiable {
 
     public void setNegotiation(Negotiation negotiation) {
         this.negotiation = negotiation;
+    }
+
+    public List<SaleableItem> getSaleableItems() {
+        return saleableItems;
+    }
+
+    public void setSaleableItems(List<SaleableItem> saleableItems) {
+        this.saleableItems = saleableItems;
     }
 }
