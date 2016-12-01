@@ -181,92 +181,43 @@
     }
   },
   {
-    "scenery": "should update a negotiation with all data",
+    "scenery": "Should not create a negotiated with price less than zero",
     "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated",
-      "discount": 56.00,
-      "ammountPayable": 90.00,
-      "temperature": "HOT",
-      "seller": {
-        "id": 1
-      },
-      "region": {
-        "id": 4
-      },
-      "customer": {
-        "id": 2
-      }
+      "price": -100.0,
+      "originalPrice": 25.23,
+      "quantity": 4
     }
   },
   {
-    "scenery": "should update a negotiation without seller",
+    "scenery": "Should not create a negotiated with original price less than zero",
     "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated",
-      "discount": 56.00,
-      "ammountPayable": 90.00,
-      "temperature": "HOT",
-      "region": {
-        "id": 4
-      },
-      "customer": {
-        "id": 2
-      }
+      "price": 500.0,
+      "originalPrice": -25.23,
+      "quantity": 4
     }
   },
   {
-    "scenery": "should update a negotiation without seller, customer",
+    "scenery": "Should not create a negotiated without original price",
     "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated",
-      "discount": 56.00,
-      "ammountPayable": 90.00,
-      "temperature": "HOT",
-      "region": {
-        "id": 4
-      }
+      "price": 500.0,
+      "quantity": 4
     }
   },
   {
-    "scenery": "should update a negotiation without seller, customer, region",
+    "scenery": "Should not create a negotiated with quantity less than zero",
     "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated",
-      "discount": 56.00,
-      "ammountPayable": 90.00,
-      "temperature": "HOT"
+      "price": 500.0,
+      "originalPrice": 25.23,
+      "quantity": -4
     }
   },
   {
-    "scenery": "should update a negotiation without seller, customer, region, temperature",
+    "scenery": "Should not create a negotiated with quantity equals to zero",
     "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 9 updated",
-      "careOf":"Jose Luiz updated 9",
-      "discount": 58.00,
-      "ammountPayable": 96.00
-    }
-  },
-  {
-    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable",
-    "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated",
-      "discount": 56.00
-    }
-  },
-  {
-    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount",
-    "json": {
-      "deliveryForeCast":"2019-09-05T00:00:00Z",
-      "introduction":"introduction 5 updated",
-      "careOf":"Jose Luiz updated"
+      "price": 500.0,
+      "originalPrice": 25.23,
+      "quantity": 0
     }
   }
+
 ]

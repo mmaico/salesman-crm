@@ -21,6 +21,9 @@ public class NegotiatedRulesDescription implements IgnoreRules {
         return new NegotiatedRulesDescription(rule);
     }
 
+    public static RuleKey ruleNegotiation() {
+        return RuleKey.key("negotiated.with.invalid.negotiation", "negotiation");
+    }
     public static RuleKey rulePrice() {
         return RuleKey.key("negotiated.invalid.price", "price");
     }

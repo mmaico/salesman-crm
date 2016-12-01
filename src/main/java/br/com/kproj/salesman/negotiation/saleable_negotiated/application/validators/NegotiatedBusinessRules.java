@@ -6,12 +6,15 @@ import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedValidate;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.NegotiationRepository;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleablePackage;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -25,23 +28,34 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
 
     private SaleableRepository saleableRepository;
 
+    private NegotiationRepository repository;
+
     @Autowired
-    public NegotiatedBusinessRules(SaleableRepository saleableRepository) {
+    public NegotiatedBusinessRules(SaleableRepository saleableRepository, NegotiationRepository repository) {
         this.saleableRepository = saleableRepository;
+        this.repository = repository;
     }
 
 
     private Map<RuleKey, CheckRule<NegotiatedVO>> persistRules = new HashMap<>();
     {
-        persistRules.put(rulePrice(), (negotiatedVO) -> !isNotNegativeNumber(negotiatedVO.negotiated.getPrice()));
+        persistRules.put(ruleNegotiation(), (negotiatedVO) -> {
+            Negotiation negotiation = negotiatedVO.negotiated.getNegotiation();
+            return negotiation == null || negotiation.isNew() || !repository.findOne(negotiation.getId()).isPresent();
+        });
+
+        persistRules.put(rulePrice(), (negotiatedVO) -> negotiatedVO.negotiated.getPrice() == null || !isNotNegativeNumber(negotiatedVO.negotiated.getPrice()));
         persistRules.put(ruleQuantity(), (negotiatedVO) -> !(negotiatedVO.negotiated.getQuantity() > 0));
-        persistRules.put(ruleOriginalPrice(), (negotiatedVO) -> negotiatedVO.negotiated.getOriginalPrice() == null);
+
+        persistRules.put(ruleOriginalPrice(), (negotiatedVO) -> {
+            BigDecimal originalPrice = negotiatedVO.negotiated.getOriginalPrice();
+            return originalPrice == null || !isNotNegativeNumber(originalPrice);
+        });
 
         persistRules.put(ruleSaleable(), (negotiatedVO) -> !saleableRepository.findOne(negotiatedVO.saleable.getId()).isPresent());
 
         persistRules.put(rulePackage(), (negotiatedVO) -> {
             Optional<Saleable> saleableFound = saleableRepository.findOne(negotiatedVO.saleable.getId());
-
             return saleableFound.get() instanceof SaleablePackage
                     ? ((SaleablePackage) saleableFound.get()).getSaleables().isEmpty()
                     : Boolean.FALSE;

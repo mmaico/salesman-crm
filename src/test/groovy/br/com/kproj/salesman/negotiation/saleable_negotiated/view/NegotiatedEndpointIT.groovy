@@ -122,4 +122,76 @@ class NegotiatedEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.CREATED.value
     }
 
+    @Unroll
+    def "Should not create a negotiated with invalid saleable"() {
+        given:
+            def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=666"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should create a negotiated with all data for a package saleable").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a negotiated with invalid negotiation"() {
+        given:
+            def uri = "/rs/customers/negotiations/6666/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should create a negotiated with all data for a package saleable").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a negotiated with price less than zero"() {
+        given:
+        def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should not create a negotiated with price less than zero").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a negotiated with original price less than zero"() {
+        given:
+            def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should not create a negotiated with original price less than zero").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a negotiated with quantity less than zero"() {
+        given:
+            def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should not create a negotiated with quantity less than zero").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a negotiated with quantity equals to zero"() {
+        given:
+            def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should not create a negotiated with quantity equals to zero").getJson())
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+        then: "Should return a bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
 }

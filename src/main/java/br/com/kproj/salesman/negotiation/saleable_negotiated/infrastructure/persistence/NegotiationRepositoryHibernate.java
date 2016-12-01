@@ -30,6 +30,6 @@ public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiat
 
     @Override
     public Converter<BusinessProposalEntity, Negotiation> getConverter() {
-        return null;
+        return ((entity, args) -> new Negotiation(entity.getId()));
     }
 }

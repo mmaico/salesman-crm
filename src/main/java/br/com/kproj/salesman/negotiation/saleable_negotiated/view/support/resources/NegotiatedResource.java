@@ -27,7 +27,7 @@ public class NegotiatedResource extends Item {
 
     private BigDecimal price = BigDecimal.ZERO;
 
-    private BigDecimal originalPrice;
+    private BigDecimal originalPrice = BigDecimal.ZERO;
 
     private Integer quantity = 0;
 
