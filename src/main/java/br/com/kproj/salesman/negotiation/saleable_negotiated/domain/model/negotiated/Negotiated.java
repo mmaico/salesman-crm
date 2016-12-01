@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 @Model
@@ -32,7 +33,7 @@ public class Negotiated extends ModelIdentifiable {
 
     private Negotiation negotiation;
 
-    private List<SaleableItem> saleableItems = Lists.newArrayList();
+    private Collection<SaleableItem> saleableItems = Lists.newArrayList();
 
     @Autowired
     private SaleableItemRepository saleableItemRepository;
@@ -88,11 +89,11 @@ public class Negotiated extends ModelIdentifiable {
         this.negotiation = negotiation;
     }
 
-    public List<SaleableItem> getSaleableItems() {
+    public Collection<SaleableItem> getSaleableItems() {
         return saleableItems;
     }
 
-    public void setSaleableItems(List<SaleableItem> saleableItems) {
+    public void setSaleableItems(Collection<SaleableItem> saleableItems) {
         this.saleableItems = saleableItems;
     }
 }

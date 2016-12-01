@@ -16,6 +16,7 @@ import java.util.List;
         "price",
         "originalPrice",
         "quantity",
+        "saleableItems",
         "links"
 })
 @ResourceItem(name="negotiated-items", modelReference = Negotiated.class, parent = NegotiationResource.class)
@@ -76,7 +77,7 @@ public class NegotiatedResource extends Item {
         this.negotiation = negotiation;
     }
 
-    @Selectable(expression = "saleables-items", externalLink = true)
+    @Selectable(expression = "saleables-items", expandByDefault = true)
     public List<SaleableItemResource> getSaleableItems() {
         return saleableItems;
     }

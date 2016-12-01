@@ -22,8 +22,13 @@ import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.
 @Component
 public class NegotiatedBusinessRules implements NegotiatedValidate {
 
-    @Autowired
+
     private SaleableRepository saleableRepository;
+
+    @Autowired
+    public NegotiatedBusinessRules(SaleableRepository saleableRepository) {
+        this.saleableRepository = saleableRepository;
+    }
 
 
     private Map<RuleKey, CheckRule<NegotiatedVO>> persistRules = new HashMap<>();
@@ -49,7 +54,6 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
 
         NegotiatedVO negotiatedVO = new NegotiatedVO(negotiated, saleable);
         RulesExecute.runRules(persistRules, negotiatedVO);
-
     }
 
     @Override

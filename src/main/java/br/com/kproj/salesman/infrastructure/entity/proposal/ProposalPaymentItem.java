@@ -33,7 +33,7 @@ public class ProposalPaymentItem extends Identifiable {
     @ManyToOne
     @JoinColumn(name="business_proposal_id")
     @ExcludeField
-    private BusinessProposalEntity businessProposalEntity;
+    private BusinessProposalEntity businessProposal;
 
     @Override
     public Long getId() {
@@ -68,11 +68,11 @@ public class ProposalPaymentItem extends Identifiable {
         this.observation = observation;
     }
 
-    public BusinessProposalEntity getBusinessProposalEntity() {
-        return businessProposalEntity;
+    public BusinessProposalEntity getBusinessProposal() {
+        return businessProposal;
     }
 
-    public void setBusinessProposalEntity(BusinessProposalEntity businessProposalEntity) {
-        this.businessProposalEntity = businessProposalEntity;
+    public void setBusinessProposal(BusinessProposalEntity businessProposal) {
+        this.businessProposal = businessProposal;
     }
 }

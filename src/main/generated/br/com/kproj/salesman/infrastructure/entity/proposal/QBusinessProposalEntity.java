@@ -44,7 +44,7 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity region;
 
-    public final ListPath<BusinessProposalItemEntity, QProposalSaleableItem> saleableItems = this.<BusinessProposalItemEntity, QProposalSaleableItem>createList("saleableItems", BusinessProposalItemEntity.class, QProposalSaleableItem.class, PathInits.DIRECT2);
+    public final ListPath<BusinessProposalItemEntity, QBusinessProposalItemEntity> saleableItems = this.<BusinessProposalItemEntity, QBusinessProposalItemEntity>createList("saleableItems", BusinessProposalItemEntity.class, QBusinessProposalItemEntity.class, PathInits.DIRECT2);
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity seller;
 

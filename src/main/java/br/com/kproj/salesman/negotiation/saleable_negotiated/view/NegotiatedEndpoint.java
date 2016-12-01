@@ -7,6 +7,7 @@ import br.com.kproj.salesman.negotiation.saleable_negotiated.application.Saleabl
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.view.support.builders.NegotiatedResourceBuilder;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +32,12 @@ public class NegotiatedEndpoint {
     @RequestMapping(value = "/rs/customers/negotiations/{negotiationId}/negotiated-items", method = RequestMethod.GET)
     public @ResponseBody
     ResourceItems list(@PathVariable Long negotiationId) {
-
        Negotiation negotiation = new Negotiation(negotiationId);
        Iterable<Negotiated> negotiateds = service.findAll(negotiation);
+
+       if (Iterables.isEmpty(negotiateds)) {
+           throw new NotFoundException();
+       }
 
        return builder.build(negotiateds);
     }

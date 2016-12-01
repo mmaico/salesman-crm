@@ -22,16 +22,13 @@ import static java.util.Optional.ofNullable;
 @Repository
 public class SaleableRepositoryHibernate extends BaseRespositoryImpl<Saleable, SaleableUnitEntity> implements SaleableRepository {
 
-    @Autowired
     private SaleableUnitRepositorySpringData repository;
-
-    @Autowired
     private PackageRepositorySpringData packageRepository;
 
-
-    @Override
-    public BaseRepositoryLegacy<SaleableUnitEntity, Long> getRepository() {
-        return repository;
+    @Autowired
+    public SaleableRepositoryHibernate(SaleableUnitRepositorySpringData repository, PackageRepositorySpringData packageRepository) {
+        this.repository = repository;
+        this.packageRepository = packageRepository;
     }
 
     @Override
@@ -48,5 +45,10 @@ public class SaleableRepositoryHibernate extends BaseRespositoryImpl<Saleable, S
                 return SaleableBuilder.createSaleable(saleableEntity.getId()).build();
             }
         };
+    }
+
+    @Override
+    public BaseRepositoryLegacy<SaleableUnitEntity, Long> getRepository() {
+        return repository;
     }
 }

@@ -18,6 +18,7 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,6 +54,15 @@ public class SaleableItemRepositoryHibernate extends BaseRespositoryImpl<Saleabl
             ProposalSaleableItemEntity itemEntity = convert(saleable, negotiated, null);
             return Lists.newArrayList(getConverter().convert(repository.save(itemEntity)));
         }
+    }
+
+    @Override
+    public Collection<SaleableItem> findAll(Negotiated negotiated) {
+        Collection<ProposalSaleableItemEntity> entities = repository.findAll(negotiated.getId());
+
+        return entities.stream()
+                .map(item -> getConverter().convert(item))
+                .collect(Collectors.toList());
     }
 
     private ProposalSaleableItemEntity convert(Saleable saleable, Negotiated negotiated, SaleablePackage sPackage) {

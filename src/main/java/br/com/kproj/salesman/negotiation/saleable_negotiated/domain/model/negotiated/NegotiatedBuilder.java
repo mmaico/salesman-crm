@@ -2,8 +2,7 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negot
 
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleablePackage;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
 
 import java.math.BigDecimal;
 
@@ -16,16 +15,6 @@ public class NegotiatedBuilder extends AbstractBuilder<Negotiated>  {
 	public NegotiatedBuilder(Long id) {
 		this();
 		this.entity.setId(id);
-	}
-
-	public NegotiatedBuilder withSaleable(Saleable saleable) {
-		this.entity.setSaleable(saleable);
-		return this;
-	}
-
-	public NegotiatedBuilder withPackage(SaleablePackage saleable) {
-		this.entity.setUsedPackage(saleable);
-		return this;
 	}
 
 	public NegotiatedBuilder withPrice(BigDecimal price) {
@@ -43,6 +32,10 @@ public class NegotiatedBuilder extends AbstractBuilder<Negotiated>  {
 		return this;
 	}
 
+	public NegotiatedBuilder withNegotiation(Long negotiationId) {
+		this.entity.setNegotiation(new Negotiation(negotiationId));
+		return this;
+	}
 
 	public static NegotiatedBuilder createSaleableItem(Long id) {
 		return new NegotiatedBuilder(id);

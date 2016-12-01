@@ -1,0 +1,203 @@
+[
+  {
+    "scenery": "Lista de items negociados pelo ID da negociacao",
+    "json": {
+      "items":[
+        {
+          "id":13,
+          "price":400.00,
+          "originalPrice":5.00,
+          "quantity":3,
+          "saleableItems":[
+            {
+              "id":13,
+              "links":[
+                {
+                  "href":"/customers/negotiations/negotiated-items/13",
+                  "rel":"negotiated"
+                },
+                {
+                  "href":"/saleables/2",
+                  "rel":"saleable"
+                },
+                {
+                  "href":"/saleables/packages/7",
+                  "rel":"used-package"
+                }
+              ]
+            },
+            {
+              "id":14,
+              "links":[
+                {
+                  "href":"/customers/negotiations/negotiated-items/13",
+                  "rel":"negotiated"
+                },
+                {
+                  "href":"/saleables/1",
+                  "rel":"saleable"
+                },
+                {
+                  "href":"/saleables/packages/7",
+                  "rel":"used-package"
+                }
+              ]
+            },
+            {
+              "id":15,
+              "links":[
+                {
+                  "href":"/customers/negotiations/negotiated-items/13",
+                  "rel":"negotiated"
+                },
+                {
+                  "href":"/saleables/3",
+                  "rel":"saleable"
+                }
+              ]
+            }
+          ],
+          "links":[
+            {
+              "href":"/customers/negotiations/11",
+              "rel":"negotiation"
+            }
+          ]
+        }
+      ],
+      "uri":"/rs/customers/negotiations/11/negotiated-items"
+    }
+  },
+  {
+    "scenery": "Negotiation buscando pelo ID",
+    "json": {
+      "item": {
+        "id":2,
+        "deliveryForeCast":"2020-02-09T02:00:00.000+0000",
+        "introduction":"introduction2",
+        "careOf":"Jose Luiz",
+        "discount":11.00,
+        "ammountPayable":200.00,
+        "temperature":"CLOSED_LOST",
+        "links":[
+          {
+            "href":"/customers/2",
+            "rel":"customer"
+          },
+          {
+            "href":"/regions/1",
+            "rel":"region"
+          },
+          {
+            "href":"/users/2",
+            "rel":"seller"
+          }
+        ]
+      },
+      "uri":"/rs/customers/negotiations/2"
+    }
+  },
+  {
+    "scenery": "should create a negotiation with all data",
+    "json": {
+        "deliveryForeCast":"2018-09-05T00:00:00Z",
+        "introduction":"introduction2 create",
+        "careOf":"Jose Luiz",
+        "seller": {
+            "id": 1
+        },
+        "region": {
+            "id": 4
+        }
+      }
+  },
+  {
+    "scenery": "should update a negotiation with all data",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "HOT",
+      "seller": {
+        "id": 1
+      },
+      "region": {
+        "id": 4
+      },
+      "customer": {
+        "id": 2
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "HOT",
+      "region": {
+        "id": 4
+      },
+      "customer": {
+        "id": 2
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "HOT",
+      "region": {
+        "id": 4
+      }
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00,
+      "ammountPayable": 90.00,
+      "temperature": "HOT"
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 9 updated",
+      "careOf":"Jose Luiz updated 9",
+      "discount": 58.00,
+      "ammountPayable": 96.00
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated",
+      "discount": 56.00
+    }
+  },
+  {
+    "scenery": "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount",
+    "json": {
+      "deliveryForeCast":"2019-09-05T00:00:00Z",
+      "introduction":"introduction 5 updated",
+      "careOf":"Jose Luiz updated"
+    }
+  }
+]

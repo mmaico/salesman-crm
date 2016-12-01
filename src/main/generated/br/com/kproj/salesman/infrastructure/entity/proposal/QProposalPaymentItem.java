@@ -24,7 +24,7 @@ public class QProposalPaymentItem extends EntityPathBase<ProposalPaymentItem> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final QBusinessProposalEntity businessProposalEntity;
+    public final QBusinessProposalEntity businessProposal;
 
     public final DateTimePath<java.util.Date> dueDate = createDateTime("dueDate", java.util.Date.class);
 
@@ -52,7 +52,7 @@ public class QProposalPaymentItem extends EntityPathBase<ProposalPaymentItem> {
 
     public QProposalPaymentItem(Class<? extends ProposalPaymentItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.businessProposalEntity = inits.isInitialized("businessProposalEntity") ? new QBusinessProposalEntity(forProperty("businessProposalEntity"), inits.get("businessProposalEntity")) : null;
+        this.businessProposal = inits.isInitialized("businessProposal") ? new QBusinessProposalEntity(forProperty("businessProposal"), inits.get("businessProposal")) : null;
     }
 
 }

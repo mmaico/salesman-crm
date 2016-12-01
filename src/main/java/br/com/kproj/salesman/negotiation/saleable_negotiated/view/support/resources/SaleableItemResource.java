@@ -22,7 +22,7 @@ public class SaleableItemResource extends Item {
 
     private PackageResource usedPackage;
 
-    private NegotiatedResource negotiation;
+    private NegotiatedResource negotiated;
 
     public Long getId() {
         return id;
@@ -51,12 +51,12 @@ public class SaleableItemResource extends Item {
         this.usedPackage = usedPackage;
     }
 
-    @Selectable(expression = "negotiation", externalLink = true)
-    public NegotiatedResource getNegotiation() {
-        return negotiation;
+    @Selectable(expression = "negotiated", externalLink = true)
+    public NegotiatedResource getNegotiated() {
+        return negotiated;
     }
 
-    public void setNegotiation(NegotiatedResource negotiation) {
-        this.negotiation = negotiation;
+    public void setNegotiated(NegotiatedResource negotiated) {
+        this.negotiated = negotiated;
     }
 }

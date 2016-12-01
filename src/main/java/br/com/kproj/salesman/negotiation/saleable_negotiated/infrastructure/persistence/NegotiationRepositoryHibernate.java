@@ -14,8 +14,13 @@ import org.springframework.stereotype.Repository;
 public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiation, BusinessProposalEntity> implements NegotiationRepository {
 
 
-    @Autowired
+
     private BusinessProposalSpringData repository;
+
+    @Autowired
+    public NegotiationRepositoryHibernate(BusinessProposalSpringData repository) {
+        this.repository = repository;
+    }
 
 
     @Override
