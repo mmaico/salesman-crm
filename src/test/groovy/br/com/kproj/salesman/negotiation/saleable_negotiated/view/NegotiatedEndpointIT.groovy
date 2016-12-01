@@ -13,7 +13,9 @@ import org.springframework.web.context.WebApplicationContext
 import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
+import static groovy.json.JsonOutput.toJson
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @ClassReference(NegotiatedEndpoint)
 class NegotiatedEndpointIT extends AbstractIntegrationTest {
@@ -61,4 +63,63 @@ class NegotiatedEndpointIT extends AbstractIntegrationTest {
 
             mvcResult.response.status == HttpStatus.OK.value
     }
+
+    @Unroll
+    def "Should find a negotiated by ID"() {
+        given:
+            def uri = "/rs/customers/negotiations/negotiated-items/12"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def jsonResult = new JsonSlurper().parseText(mvcResult.getResponse().getContentAsString())
+            def jsonExpected = new JsonSlurper().parseText(scenery("Negotiated buscando pelo ID").json)
+        then:
+            jsonResult.uri == uri
+            jsonResult.item.id == jsonExpected.item.id
+            jsonResult.item.price == jsonExpected.item.price
+            jsonResult.item.originalPrice == jsonExpected.item.originalPrice
+            jsonResult.item.quantity == jsonExpected.item.quantity
+            jsonResult.item.links[0] == jsonExpected.item.links[0]
+
+            jsonResult.item.saleableItems[0].id == jsonExpected.item.saleableItems[0].id
+            jsonResult.item.saleableItems[0].links.sort{it.rel}
+            jsonResult.item.saleableItems[0].links == jsonExpected.item.saleableItems[0].links
+
+            jsonResult.item.saleableItems[1].id == jsonExpected.item.saleableItems[1].id
+            jsonResult.item.saleableItems[1].links.sort{it.rel}
+            jsonResult.item.saleableItems[1].links == jsonExpected.item.saleableItems[1].links
+
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should create a negotiated with all data for a package saleable"() {
+        given:
+            def uri = "/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+            def newNegotiated = new JsonSlurper().parseText(scenery("Should create a negotiated with all data for a package saleable").getJson())
+            def jsonExpected = new JsonSlurper().parseText(scenery("data expected on create a negotiated item for a negotiation").getJson())
+
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(newNegotiated))).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then: "Should return a new negotiated item"
+            jsonResult.uri == uri
+            jsonResult.item.id != null
+            jsonResult.item.price == jsonExpected.item.price
+            jsonResult.item.originalPrice == jsonExpected.item.originalPrice
+            jsonResult.item.quantity == jsonExpected.item.quantity
+            jsonResult.item.links[0] == jsonExpected.item.links[0]
+
+            jsonResult.item.saleableItems[0].id == jsonExpected.item.saleableItems[0].id
+            jsonResult.item.saleableItems[0].links.sort{it.rel}
+            jsonResult.item.saleableItems[0].links == jsonExpected.item.saleableItems[0].links
+
+            jsonResult.item.saleableItems[1].id == jsonExpected.item.saleableItems[1].id
+            jsonResult.item.saleableItems[1].links.sort{it.rel}
+            jsonResult.item.saleableItems[1].links == jsonExpected.item.saleableItems[1].links
+
+            mvcResult.response.status == HttpStatus.CREATED.value
+    }
+
 }

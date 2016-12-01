@@ -5,13 +5,23 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.application.SaleableNegotiatedFacade;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedBuilder;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedInNegotiation;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableBuilder;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.view.support.builders.NegotiatedResourceBuilder;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.view.support.resources.NegotiatedResource;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedBuilder.createSaleableItem;
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedInNegotiation.negotiatedInNegotiation;
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleableBuilder.createSaleable;
 
 @RestController
 public class NegotiatedEndpoint {
@@ -32,14 +42,14 @@ public class NegotiatedEndpoint {
     @RequestMapping(value = "/rs/customers/negotiations/{negotiationId}/negotiated-items", method = RequestMethod.GET)
     public @ResponseBody
     ResourceItems list(@PathVariable Long negotiationId) {
-       Negotiation negotiation = new Negotiation(negotiationId);
-       Iterable<Negotiated> negotiateds = service.findAll(negotiation);
+        Negotiation negotiation = new Negotiation(negotiationId);
+        Iterable<Negotiated> negotiateds = service.findAll(negotiation);
 
-       if (Iterables.isEmpty(negotiateds)) {
-           throw new NotFoundException();
-       }
+        if (Iterables.isEmpty(negotiateds)) {
+            throw new NotFoundException();
+        }
 
-       return builder.build(negotiateds);
+        return builder.build(negotiateds);
     }
 
     @RequestMapping(value = "/rs/customers/negotiations/negotiated-items/{negotiatedId}", method = RequestMethod.GET)
@@ -51,26 +61,26 @@ public class NegotiatedEndpoint {
 
         return builder.build(negotiated);
     }
-//
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(value = "/rs/customers/{customerId}/negotiations", method = RequestMethod.POST)
-//    public @ResponseBody
-//    ResourceItem create(@PathVariable Long customerId, @RequestBody NegotiationResource resource) {
-//
-//        Negotiation negotiation = NegotiationBuilder.createNegotiation()
-//                .withCustomer(customerId)
-//                .withRegion(resource.getRegionId())
-//                .withCareOf(resource.getCareOf())
-//                .withDeliveryForeCast(resource.getDeliveryForeCast())
-//                .withIntroduction(resource.getIntroduction()).build();
-//
-//        Seller seller = createSeller(resource.getSellerId()).build();
-//
-//        Optional<Negotiation> negotiationSaved = service.register(createNegotiation(seller, negotiation));
-//
-//        return builder.build(negotiationSaved.get());
-//    }
-//
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/rs/customers/negotiations/{negotiationId}/negotiated-items", method = RequestMethod.POST)
+    public @ResponseBody
+    ResourceItem create(@PathVariable Long negotiationId, @RequestParam("forSaleable") Long forSaleable,
+                        @RequestBody NegotiatedResource resource) {
+
+        Negotiated negotiated = createSaleableItem()
+                .withQuantity(resource.getQuantity())
+                .withPrice(resource.getPrice())
+                .withOriginalPrice(resource.getOriginalPrice()).build();
+        Saleable saleable = createSaleable(forSaleable).build();
+
+        NegotiatedInNegotiation inNegotiation = negotiatedInNegotiation(negotiationId, negotiated, saleable);
+
+        Optional<Negotiated> negotiatedResult = service.register(inNegotiation);
+
+        return builder.build(negotiatedResult.get());
+    }
+
 //    @ResponseStatus(HttpStatus.OK)
 //    @RequestMapping(value = "/rs/customers/negotiations/{negotiationId}", method = RequestMethod.PUT)
 //    public @ResponseBody
@@ -95,5 +105,5 @@ public class NegotiatedEndpoint {
 //        return builder.build(negotiationSaved);
 //    }
 
-    
+
 }

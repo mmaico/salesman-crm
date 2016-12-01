@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated;
 
+import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
@@ -33,13 +34,16 @@ public class Negotiated extends ModelIdentifiable {
 
     private Negotiation negotiation;
 
-    private Collection<SaleableItem> saleableItems = Lists.newArrayList();
+    private Collection<SaleableItem> saleableItems;
 
     @Autowired
     private SaleableItemRepository saleableItemRepository;
 
-    public Negotiated(){}
+    public Negotiated() {
+        AutowireHelper.autowire(this);
+    }
     public Negotiated(Long id) {
+        this();
         this.id = id;
     }
 

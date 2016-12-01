@@ -69,47 +69,116 @@
     }
   },
   {
-    "scenery": "Negotiation buscando pelo ID",
+    "scenery": "Negotiated buscando pelo ID",
     "json": {
-      "item": {
-        "id":2,
-        "deliveryForeCast":"2020-02-09T02:00:00.000+0000",
-        "introduction":"introduction2",
-        "careOf":"Jose Luiz",
-        "discount":11.00,
-        "ammountPayable":200.00,
-        "temperature":"CLOSED_LOST",
+      "item":{
+        "id":12,
+        "price":400.00,
+        "originalPrice":5.00,
+        "quantity":3,
+        "saleableItems":[
+          {
+            "id":12,
+            "links":[
+              {
+                "href":"/customers/negotiations/negotiated-items/12",
+                "rel":"negotiated"
+              },
+              {
+                "href":"/saleables/1",
+                "rel":"saleable"
+              }
+            ]
+          },
+          {
+            "id":16,
+            "links":[
+              {
+                "href":"/customers/negotiations/negotiated-items/12",
+                "rel":"negotiated"
+              },
+              {
+                "href":"/saleables/2",
+                "rel":"saleable"
+              },
+              {
+                "href":"/saleables/packages/7",
+                "rel":"used-package"
+              }
+            ]
+          }
+        ],
         "links":[
           {
-            "href":"/customers/2",
-            "rel":"customer"
-          },
-          {
-            "href":"/regions/1",
-            "rel":"region"
-          },
-          {
-            "href":"/users/2",
-            "rel":"seller"
+            "href":"/customers/negotiations/10",
+            "rel":"negotiation"
           }
         ]
       },
-      "uri":"/rs/customers/negotiations/2"
+      "uri":"/rs/customers/negotiations/negotiated-items/12"
     }
   },
   {
-    "scenery": "should create a negotiation with all data",
+    "scenery": "Should create a negotiated with all data for a package saleable",
     "json": {
-        "deliveryForeCast":"2018-09-05T00:00:00Z",
-        "introduction":"introduction2 create",
-        "careOf":"Jose Luiz",
-        "seller": {
-            "id": 1
-        },
-        "region": {
-            "id": 4
-        }
-      }
+        "price": 10.25,
+        "originalPrice": 25.23,
+        "quantity": 4
+    }
+  },
+  {
+    "scenery": "data expected on create a negotiated item for a negotiation",
+    "json": {
+      "item":{
+        "id":14,
+        "price":10.25,
+        "originalPrice":25.23,
+        "quantity":4,
+        "saleableItems":[
+          {
+            "id":17,
+            "links":[
+              {
+                "href":"/customers/negotiations/negotiated-items/14",
+                "rel":"negotiated"
+              },
+              {
+                "href":"/saleables/2",
+                "rel":"saleable"
+              },
+              {
+                "href":"/saleables/packages/7",
+                "rel":"used-package"
+              }
+            ]
+          },
+          {
+            "id":18,
+            "links":[
+              {
+                "href":"/customers/negotiations/negotiated-items/14",
+                "rel":"negotiated"
+              },
+              {
+                "href":"/saleables/1",
+                "rel":"saleable"
+              },
+              {
+                "href":"/saleables/packages/7",
+                "rel":"used-package"
+              }
+            ]
+          }
+        ],
+        "links":[
+          {
+            "href":"/customers/negotiations/6",
+            "rel":"negotiation"
+          }
+        ]
+      },
+      "uri":"/rs/customers/negotiations/6/negotiated-items?forSaleable=7"
+    }
   },
   {
     "scenery": "should update a negotiation with all data",

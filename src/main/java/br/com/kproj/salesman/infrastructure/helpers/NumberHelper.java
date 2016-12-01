@@ -11,7 +11,7 @@ public class NumberHelper {
             return Boolean.FALSE;
         }
 
-        return base.compareTo(BigDecimal.ZERO) == 0 || base.compareTo(BigDecimal.ZERO) > 0 ;
+        return base.compareTo(BigDecimal.ZERO) == 0 || base.compareTo(BigDecimal.ZERO) > 0;
     }
 
     public static Boolean isNegativeNumber(BigDecimal base) {

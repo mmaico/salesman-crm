@@ -118,12 +118,13 @@
     <proposal_saleable_item id="9" saleable_id="2" business_proposal_item_id="9"/>
     <proposal_saleable_item id="10" saleable_id="2" business_proposal_item_id="10"/>
     <proposal_saleable_item id="11" saleable_id="2" business_proposal_item_id="11"/>
-    <proposal_saleable_item id="12" saleable_id="2" business_proposal_item_id="12"/>
 
     <proposal_saleable_item id="13" saleable_id="2" package_id="7" business_proposal_item_id="13"/>
     <proposal_saleable_item id="14" saleable_id="1" package_id="7" business_proposal_item_id="13"/>
     <proposal_saleable_item id="15" saleable_id="3" business_proposal_item_id="13"/>
 
+    <proposal_saleable_item id="12" saleable_id="1" business_proposal_item_id="12"/>
+    <proposal_saleable_item id="16" saleable_id="2" package_id="7" business_proposal_item_id="12"/>
 
     <!-- PERSONS -->
     <persons id="1" name="jose roberto" type="company" active="true"/>

@@ -30,7 +30,7 @@ public class NegotiatedInNegotiation {
         return saleable;
     }
 
-    public static NegotiatedInNegotiation create(Long negotiationId, Negotiated negotiated, Saleable saleable) {
+    public static NegotiatedInNegotiation negotiatedInNegotiation(Long negotiationId, Negotiated negotiated, Saleable saleable) {
         return new NegotiatedInNegotiation(negotiationId, negotiated, saleable);
     }
 }

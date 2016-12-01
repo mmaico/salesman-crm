@@ -33,9 +33,9 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
 
     private Map<RuleKey, CheckRule<NegotiatedVO>> persistRules = new HashMap<>();
     {
-        persistRules.put(rulePrice(), (negotiatedVO) -> isNotNegativeNumber(negotiatedVO.negotiated.getPrice()));
-        persistRules.put(ruleQuantity(), (negotiatedVO) -> negotiatedVO.negotiated.getQuantity() > 0);
-        persistRules.put(ruleOriginalPrice(), (negotiatedVO) -> negotiatedVO.negotiated.getOriginalPrice() != null);
+        persistRules.put(rulePrice(), (negotiatedVO) -> !isNotNegativeNumber(negotiatedVO.negotiated.getPrice()));
+        persistRules.put(ruleQuantity(), (negotiatedVO) -> !(negotiatedVO.negotiated.getQuantity() > 0));
+        persistRules.put(ruleOriginalPrice(), (negotiatedVO) -> negotiatedVO.negotiated.getOriginalPrice() == null);
 
         persistRules.put(ruleSaleable(), (negotiatedVO) -> !saleableRepository.findOne(negotiatedVO.saleable.getId()).isPresent());
 
