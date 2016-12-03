@@ -65,6 +65,25 @@ public class SaleableItemRepositoryHibernate extends BaseRespositoryImpl<Saleabl
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void delete(SaleableItem saleableItem) {
+        repository.delete(saleableItem.getId());
+    }
+
+    @Override
+    public Boolean alreadyExists(Negotiated negotiated, Saleable saleable, SaleablePackage saleablePackage) {
+        if (saleablePackage == null || saleablePackage.isNew()) {
+            return repository.alreadyExists(negotiated.getId(), saleable.getId());
+        } else {
+            return repository.alreadyExists(negotiated.getId(), saleable.getId(), saleablePackage.getId());
+        }
+    }
+
+    public Optional<SaleableItem> save(SaleableItem saleableItem) {
+        ProposalSaleableItemEntity entity = convert(saleableItem.getSaleable(), saleableItem.getNegotiated(), saleableItem.getUsedPackage());
+        return Optional.of(getConverter().convert(repository.save(entity)));
+    }
+
     private ProposalSaleableItemEntity convert(Saleable saleable, Negotiated negotiated, SaleablePackage sPackage) {
         ProposalSaleableItemEntity itemEntity = new ProposalSaleableItemEntity();
         itemEntity.setNegotiated(new BusinessProposalItemEntity(negotiated.getId()));

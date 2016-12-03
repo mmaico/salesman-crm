@@ -5,7 +5,9 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedRepository;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItem;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItemRepository;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.GenerateSaleableItemsService;
+import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.SaleableItemToNegotiatedService;
 import com.trex.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +21,9 @@ public class Seller extends ModelIdentifiable {
 
     @Autowired
     private NegotiatedRepository repository;
+
+    @Autowired
+    private SaleableItemRepository saleableItemRepository;
 
     public Seller() {
         AutowireHelper.autowire(this);
@@ -36,6 +41,13 @@ public class Seller extends ModelIdentifiable {
                     return negotiatedSaved;
                 })
         );
+    }
+
+    public SaleableItemToNegotiatedService save(SaleableItem saleableItem) {
+        return negotiated -> {
+            saleableItem.setNegotiated(negotiated);
+            return saleableItemRepository.save(saleableItem).get();
+        };
     }
 
     public Negotiated update(Negotiated negotiated) {

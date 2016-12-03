@@ -5,6 +5,7 @@ import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleab
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -58,5 +59,15 @@ public class SaleableItemResource extends Item {
 
     public void setNegotiated(NegotiatedResource negotiated) {
         this.negotiated = negotiated;
+    }
+
+    @JsonIgnore
+    public Long getSaleableId() {
+        return this.saleable == null ? null : this.saleable.getId();
+    }
+
+    @JsonIgnore
+    public Long getUsedPackageId() {
+        return this.usedPackage == null ? null : this.usedPackage.getId();
     }
 }

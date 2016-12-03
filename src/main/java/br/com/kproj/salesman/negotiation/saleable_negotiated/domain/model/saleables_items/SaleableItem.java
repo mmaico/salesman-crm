@@ -18,6 +18,11 @@ public class SaleableItem extends ModelIdentifiable {
 
     private Negotiated negotiated;
 
+    public SaleableItem() {}
+    public SaleableItem(Long id) {
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

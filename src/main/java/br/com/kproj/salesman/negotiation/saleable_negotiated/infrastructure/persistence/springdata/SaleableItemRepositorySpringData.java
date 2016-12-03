@@ -14,4 +14,12 @@ public interface SaleableItemRepositorySpringData extends BaseRepositoryLegacy<P
     @Query("SELECT item FROM ProposalSaleableItemEntity AS item WHERE item.negotiated.id = :negotiatedId")
     Collection<ProposalSaleableItemEntity> findAll(@Param("negotiatedId") Long negotiatedId);
 
+    @Query("SELECT CASE WHEN count(item) > 0 THEN true ELSE false END FROM ProposalSaleableItemEntity AS item " +
+            " WHERE item.negotiated.id = :negotiatedId AND item.saleable.id = :saleableId AND item.usedPackage = null")
+    Boolean alreadyExists(@Param("negotiatedId") Long negotiatedId, @Param("saleableId") Long saleableId);
+
+    @Query("SELECT CASE WHEN count(item) > 0 THEN true ELSE false END FROM ProposalSaleableItemEntity AS item " +
+            " WHERE item.negotiated.id = :negotiatedId AND item.saleable.id = :saleableId AND item.usedPackage.id = :packageId")
+    Boolean alreadyExists(@Param("negotiatedId") Long negotiatedId, @Param("saleableId") Long saleableId, @Param("packageId") Long packageId);
+
 }
