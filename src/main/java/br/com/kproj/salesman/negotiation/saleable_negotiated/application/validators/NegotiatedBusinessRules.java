@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators;
 
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.infrastructure.validators.IgnoreRules;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
@@ -15,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNotNegativeNumber;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.*;
@@ -74,16 +74,23 @@ public class NegotiatedBusinessRules implements NegotiatedValidate {
     public void checkRules(Negotiated negotiated, IgnoreRules ignoreRules) {
 
         NegotiatedVO negotiatedVO = new NegotiatedVO(negotiated, null);
+        negotiatedVO.getFields().addAll(negotiated.getFields());
+
         RulesExecute.runRules(persistRules, negotiatedVO, ignoreRules);
     }
 
-    private class NegotiatedVO {
+    private class NegotiatedVO extends ModelIdentifiable {
         private Negotiated negotiated;
         private Saleable saleable;
 
         public NegotiatedVO(Negotiated negotiated, Saleable saleable) {
             this.negotiated = negotiated;
             this.saleable = saleable;
+        }
+
+        @Override
+        public Long getId() {
+            return 99999l;
         }
     }
 }

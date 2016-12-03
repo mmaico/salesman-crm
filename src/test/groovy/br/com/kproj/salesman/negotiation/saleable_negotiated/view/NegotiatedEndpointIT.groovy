@@ -16,6 +16,7 @@ import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
 import static groovy.json.JsonOutput.toJson
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @ClassReference(NegotiatedEndpoint)
 class NegotiatedEndpointIT extends AbstractIntegrationTest {
@@ -192,6 +193,74 @@ class NegotiatedEndpointIT extends AbstractIntegrationTest {
                 .content(toJson(newNegotiated))).andReturn()
         then: "Should return a bad request"
             mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should update all data of negotiated"() {
+        given:
+            def uri = "/rs/customers/negotiations/negotiated-items/8"
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content('''{"price":300.45, "originalPrice":700.60, "quantity": 10}''')).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then: "Should update a new negotiated item"
+            jsonResult.uri == uri
+            jsonResult.item.id == 8
+            jsonResult.item.price == 300.45
+            jsonResult.item.originalPrice == 700.60
+            jsonResult.item.quantity == 10
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update only price of negotiated"() {
+        given:
+            def uri = "/rs/customers/negotiations/negotiated-items/7"
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content('''{"price":367.45}''')).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then: "Should update a new negotiated item"
+            jsonResult.uri == uri
+            jsonResult.item.id == 7
+            jsonResult.item.price == 367.45
+            jsonResult.item.originalPrice == 78.00
+            jsonResult.item.quantity == 4
+            mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update only quantity of negotiated"() {
+        given:
+        def uri = "/rs/customers/negotiations/negotiated-items/7"
+        when:
+        def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content('''{"quantity":100}''')).andReturn()
+
+        def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then: "Should update a new negotiated item"
+        jsonResult.uri == uri
+        jsonResult.item.id == 7
+        jsonResult.item.quantity == 100
+        mvcResult.response.status == HttpStatus.OK.value
+    }
+
+    @Unroll
+    def "Should update only original price of negotiated"() {
+        given:
+        def uri = "/rs/customers/negotiations/negotiated-items/7"
+        when:
+        def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content('''{"originalPrice":33.67}''')).andReturn()
+
+        def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+        then: "Should update a new negotiated item"
+        jsonResult.uri == uri
+        jsonResult.item.id == 7
+        jsonResult.item.originalPrice == 33.67
+        mvcResult.response.status == HttpStatus.OK.value
     }
 
 }

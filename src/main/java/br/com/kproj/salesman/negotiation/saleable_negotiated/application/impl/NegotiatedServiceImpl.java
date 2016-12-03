@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 
-import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.ignoreRules;
-import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.rulePackage;
-import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.ruleSaleable;
+import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.*;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.GenerateSaleableItems.generateSaleableItems;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.seller.Seller.seller;
 
@@ -51,7 +49,7 @@ public class NegotiatedServiceImpl extends BaseModelServiceImpl<Negotiated> impl
 
     @Override
     public Negotiated update(Negotiated negotiated) {
-        validate.checkRules(negotiated, ignoreRules(ruleSaleable(), rulePackage()));
+        validate.checkRules(negotiated, ignoreRules(ruleNegotiation(), ruleSaleable(), rulePackage()));
 
         return seller().update(negotiated);
     }
