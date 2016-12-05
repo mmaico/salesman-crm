@@ -29,4 +29,8 @@ public class User extends ModelIdentifiable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public static User user() {
+        return new User();
+    }
 }
