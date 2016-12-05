@@ -1,55 +1,52 @@
 package br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.predicates;
 
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity;
-import br.com.kproj.salesman.infrastructure.entity.delivery.QDeliveryEntity;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
+import br.com.kproj.salesman.infrastructure.helpers.DateHelper;
 import br.com.kproj.salesman.infrastructure.helpers.Filter;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.EntityPathBase;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.convertToISO8601;
+
 @Component
 public class ActivitityFiltersDefinition {
 
     private static Map<String, Map<Filter.Operator, PredicateOperation>> expressions = new HashMap<>();
 
-    private static Map<Filter.Operator, PredicateOperation> workersPredicate = new HashMap<>();
+    private static Map<Filter.Operator, PredicateOperation> startDatePredicate = new HashMap<>();
+    private static Map<Filter.Operator, PredicateOperation> endDatePredicate = new HashMap<>();
 
     static {
-        workersPredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
+        startDatePredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            //filter.getObject().toString()
-            return qActivity.startDate.goe(new Date());
+            return qActivity.startDate.goe(convertToISO8601(filter.getObject().toString()));
         });
 
-        workersPredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
+        startDatePredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            //filter.getObject().toString()
-            return qActivity.startDate.loe(new Date());
+            return qActivity.startDate.loe(convertToISO8601(filter.getObject().toString()));
         });
 
-        workersPredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
+        endDatePredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            //filter.getObject().toString()
-            return qActivity.endDate.goe(new Date());
+            return qActivity.endDate.goe(convertToISO8601(filter.getObject().toString()));
         });
 
-        workersPredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
+        endDatePredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            //filter.getObject().toString()
-            return qActivity.startDate.goe(new Date());
+            return qActivity.startDate.goe(convertToISO8601(filter.getObject().toString()));
         });
 
-
-
-        expressions.put("has-workers.size", workersPredicate);
+        expressions.put("startDate", startDatePredicate);
+        expressions.put("endDate", startDatePredicate);
 
     }
 

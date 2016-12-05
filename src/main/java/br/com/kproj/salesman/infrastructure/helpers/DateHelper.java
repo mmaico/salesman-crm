@@ -91,8 +91,17 @@ public class DateHelper {
 		if (date == null) {
 			return null;
 		}
-
         return DATE_TIME_FORMAT.format(date);
+	}
+
+	public static Date convertToISO8601(String date) {
+
+		try {
+			if (date == null) return null;
+			return DATE_TIME_FORMAT.parse(date);
+		} catch (ParseException e) {
+			return null;
+		}
 	}
 
     public static Date addDayToDate(Integer qtdDays, Date date) {
