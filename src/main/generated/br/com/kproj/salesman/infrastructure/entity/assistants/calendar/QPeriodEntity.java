@@ -24,7 +24,7 @@ public class QPeriodEntity extends EntityPathBase<PeriodEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final QCalendarActivity calendarActivity;
+    public final QCalendarActivityEntity calendarActivityEntity;
 
     public final DateTimePath<java.util.Date> endDate = createDateTime("endDate", java.util.Date.class);
 
@@ -52,7 +52,7 @@ public class QPeriodEntity extends EntityPathBase<PeriodEntity> {
 
     public QPeriodEntity(Class<? extends PeriodEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.calendarActivity = inits.isInitialized("calendarActivity") ? new QCalendarActivity(forProperty("calendarActivity"), inits.get("calendarActivity")) : null;
+        this.calendarActivityEntity = inits.isInitialized("calendarActivityEntity") ? new QCalendarActivityEntity(forProperty("calendarActivityEntity"), inits.get("calendarActivityEntity")) : null;
     }
 
 }

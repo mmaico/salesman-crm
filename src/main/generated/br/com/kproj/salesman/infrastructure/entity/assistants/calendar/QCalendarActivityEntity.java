@@ -11,53 +11,56 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QCalendarActivity is a Querydsl query type for CalendarActivity
+ * QCalendarActivityEntity is a Querydsl query type for CalendarActivityEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QCalendarActivity extends EntityPathBase<CalendarActivity> {
+public class QCalendarActivityEntity extends EntityPathBase<CalendarActivityEntity> {
 
-    private static final long serialVersionUID = 1944404083L;
+    private static final long serialVersionUID = 40152630L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QCalendarActivity calendarActivity = new QCalendarActivity("calendarActivity");
+    public static final QCalendarActivityEntity calendarActivityEntity = new QCalendarActivityEntity("calendarActivityEntity");
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
+
+    public final BooleanPath allDay = createBoolean("allDay");
 
     public final QCalendarEntity calendar;
 
     public final StringPath description = createString("description");
 
+    public final DateTimePath<java.util.Date> endDate = createDateTime("endDate", java.util.Date.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath location = createString("location");
 
-    public final QPeriodEntity period;
+    public final DateTimePath<java.util.Date> startDate = createDateTime("startDate", java.util.Date.class);
 
     public final StringPath title = createString("title");
 
     public final QActivityType type;
 
-    public QCalendarActivity(String variable) {
-        this(CalendarActivity.class, forVariable(variable), INITS);
+    public QCalendarActivityEntity(String variable) {
+        this(CalendarActivityEntity.class, forVariable(variable), INITS);
     }
 
-    public QCalendarActivity(Path<? extends CalendarActivity> path) {
+    public QCalendarActivityEntity(Path<? extends CalendarActivityEntity> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QCalendarActivity(PathMetadata metadata) {
+    public QCalendarActivityEntity(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QCalendarActivity(PathMetadata metadata, PathInits inits) {
-        this(CalendarActivity.class, metadata, inits);
+    public QCalendarActivityEntity(PathMetadata metadata, PathInits inits) {
+        this(CalendarActivityEntity.class, metadata, inits);
     }
 
-    public QCalendarActivity(Class<? extends CalendarActivity> type, PathMetadata metadata, PathInits inits) {
+    public QCalendarActivityEntity(Class<? extends CalendarActivityEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.calendar = inits.isInitialized("calendar") ? new QCalendarEntity(forProperty("calendar"), inits.get("calendar")) : null;
-        this.period = inits.isInitialized("period") ? new QPeriodEntity(forProperty("period"), inits.get("period")) : null;
         this.type = inits.isInitialized("type") ? new QActivityType(forProperty("type")) : null;
     }
 

@@ -1,16 +1,16 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 
 
-public class CalendarActivityBuilder extends AbstractBuilder<CalendarActivity> {
+public class CalendarActivityBuilder extends AbstractBuilder<CalendarActivityEntity> {
 
-	private CalendarActivity calendarActivity = new CalendarActivity();
+	private CalendarActivityEntity calendarActivityEntity = new CalendarActivityEntity();
 
     public CalendarActivityBuilder() {}
 
     public CalendarActivityBuilder(Long id) {
-        calendarActivity.setId(id);
+        calendarActivityEntity.setId(id);
     }
 
 
@@ -23,8 +23,8 @@ public class CalendarActivityBuilder extends AbstractBuilder<CalendarActivity> {
         return new CalendarActivityBuilder();
     }
 
-	public CalendarActivity build() {
-		return this.calendarActivity;
+	public CalendarActivityEntity build() {
+		return this.calendarActivityEntity;
 	}
 
 

@@ -3,12 +3,15 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="calendar_activity")
-public class CalendarActivity extends Identifiable {
+@Inheritance(strategy=InheritanceType.JOINED)
+public class CalendarActivityEntity extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -27,14 +30,22 @@ public class CalendarActivity extends Identifiable {
     @ExcludeField
     private CalendarEntity calendar;
 
-    @OneToOne(mappedBy = "calendarActivity", cascade = CascadeType.ALL)
-    private PeriodEntity period;
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/M/Y")
+    private Date startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/M/Y")
+    private Date endDate;
+
+    @Column(name="is_all_day")
+    private Boolean allDay = Boolean.FALSE;
 
     private String location;
 
-    public CalendarActivity(){}
+    public CalendarActivityEntity(){}
 
-    public CalendarActivity(Long id) {
+    public CalendarActivityEntity(Long id) {
         this.id = id;
     }
 
@@ -70,14 +81,6 @@ public class CalendarActivity extends Identifiable {
         this.description = description;
     }
 
-    public PeriodEntity getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(PeriodEntity period) {
-        this.period = period;
-    }
-
     public CalendarEntity getCalendar() {
         return calendar;
     }
@@ -92,5 +95,29 @@ public class CalendarActivity extends Identifiable {
 
     public void setType(ActivityType type) {
         this.type = type;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Boolean getAllDay() {
+        return allDay;
+    }
+
+    public void setAllDay(Boolean allDay) {
+        this.allDay = allDay;
     }
 }

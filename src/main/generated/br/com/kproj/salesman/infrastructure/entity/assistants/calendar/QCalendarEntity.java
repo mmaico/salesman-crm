@@ -24,7 +24,7 @@ public class QCalendarEntity extends EntityPathBase<CalendarEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<CalendarActivity, QCalendarActivity> activities = this.<CalendarActivity, QCalendarActivity>createList("activities", CalendarActivity.class, QCalendarActivity.class, PathInits.DIRECT2);
+    public final ListPath<CalendarActivityEntity, QCalendarActivityEntity> activities = this.<CalendarActivityEntity, QCalendarActivityEntity>createList("activities", CalendarActivityEntity.class, QCalendarActivityEntity.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

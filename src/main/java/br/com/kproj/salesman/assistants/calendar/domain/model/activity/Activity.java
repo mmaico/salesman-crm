@@ -4,20 +4,19 @@ package br.com.kproj.salesman.assistants.calendar.domain.model.activity;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
+import java.util.Date;
+
 @Model
 public class Activity extends ModelIdentifiable {
 
     private Long id;
-
     private String title;
-
     private String description;
-
     private String location;
+    private Date start;
+    private Date end;
+    private Boolean allDay = Boolean.FALSE;
 
-    private Type type;
-
-    private Period period;
 
     @Override
     public Long getId() {
@@ -52,19 +51,32 @@ public class Activity extends ModelIdentifiable {
         this.location = location;
     }
 
-    public Type getType() {
-        return type;
+    public Date getStart() {
+        return start;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public Period getPeriod() {
-        return period;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setPeriod(Period period) {
-        this.period = period;
+    public void setEnd(Date end) {
+        this.end = end;
     }
+
+    public Boolean getAllDay() {
+        return allDay;
+    }
+
+    public Boolean isAllDay() {
+        return allDay;
+    }
+
+    public void setAllDay(Boolean allDay) {
+        this.allDay = allDay;
+    }
+
 }

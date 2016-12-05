@@ -16,7 +16,7 @@ public class CalendarEntity extends Identifiable {
     private Long id;
 
     @OneToMany(mappedBy = "calendar")
-    private List<CalendarActivity> activities;
+    private List<CalendarActivityEntity> activities;
 
     @OneToOne(mappedBy = "calendar")
     @ExcludeField
@@ -36,11 +36,11 @@ public class CalendarEntity extends Identifiable {
         this.id = id;
     }
 
-    public List<CalendarActivity> getActivities() {
+    public List<CalendarActivityEntity> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<CalendarActivity> activities) {
+    public void setActivities(List<CalendarActivityEntity> activities) {
         this.activities = activities;
     }
 

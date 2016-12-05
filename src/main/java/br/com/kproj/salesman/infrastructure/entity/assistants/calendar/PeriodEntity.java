@@ -27,14 +27,14 @@ public class PeriodEntity extends Identifiable {
 
     @OneToOne
     @JoinColumn(name="calendar_activity_id")
-    private CalendarActivity calendarActivity;
+    private CalendarActivityEntity calendarActivityEntity;
 
-    public CalendarActivity getCalendarActivity() {
-        return calendarActivity;
+    public CalendarActivityEntity getCalendarActivityEntity() {
+        return calendarActivityEntity;
     }
 
-    public void setCalendarActivity(CalendarActivity calendarActivity) {
-        this.calendarActivity = calendarActivity;
+    public void setCalendarActivityEntity(CalendarActivityEntity calendarActivityEntity) {
+        this.calendarActivityEntity = calendarActivityEntity;
     }
 
     public Date getStartDate() {
