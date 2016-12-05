@@ -18,6 +18,7 @@ public class ActivityToCalendarActivityEntity implements Converter<Activity, Cal
         calendarActivityEntity.setLocation(activity.getLocation());
         calendarActivityEntity.setTitle(activity.getTitle());
 
+
         //calendarActivityEntity.setType(typeConverter.convert(activity.getType()));
         //calendarActivityEntity.setPeriod(periodConverter.convert(activity.getPeriod()));
 

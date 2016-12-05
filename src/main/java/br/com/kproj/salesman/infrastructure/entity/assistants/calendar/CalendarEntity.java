@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
-import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 
@@ -18,8 +17,8 @@ public class CalendarEntity extends Identifiable {
     @OneToMany(mappedBy = "calendar")
     private List<CalendarActivityEntity> activities;
 
-    @OneToOne(mappedBy = "calendar")
-    @ExcludeField
+    @OneToOne
+    @JoinColumn(name="user_id")
     private UserEntity user;
 
     public CalendarEntity(){}

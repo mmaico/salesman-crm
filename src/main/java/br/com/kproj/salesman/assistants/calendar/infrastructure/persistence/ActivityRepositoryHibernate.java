@@ -13,6 +13,7 @@ import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarE
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,20 +21,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.trex.clone.BusinessModelClone.from;
+
 @Repository("activityRepositoryHibernateCalendarModule")
 public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, CalendarActivityEntity> implements ActivityRepository {
 
 
     private CalendarActivityRepository repository;
     private CalendarActiityToActivity converter;
-    private ActivityToCalendarActivityEntity entityConverter;
 
     @Autowired
-    public ActivityRepositoryHibernate(CalendarActivityRepository repository, CalendarActiityToActivity converter,
-                                       ActivityToCalendarActivityEntity entityConverter) {
+    public ActivityRepositoryHibernate(CalendarActivityRepository repository, CalendarActiityToActivity converter) {
         this.repository = repository;
         this.converter = converter;
-        this.entityConverter = entityConverter;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, C
         Activity activity = newActivity.getActivity();
         Calendar calendar = newActivity.getCalendar();
 
-        CalendarActivityEntity calendarActivityEntity = entityConverter.convert(activity);
+        CalendarActivityEntity calendarActivityEntity = from(activity).convertTo(CalendarActivityEntity.class);
         calendarActivityEntity.setCalendar(new CalendarEntity(calendar.getId()));
 
         CalendarActivityEntity activitySaved = repository.save(calendarActivityEntity);

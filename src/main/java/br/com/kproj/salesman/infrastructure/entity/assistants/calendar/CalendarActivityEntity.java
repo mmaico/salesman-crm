@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,7 +11,6 @@ import java.util.Date;
 
 @Entity
 @Table(name="calendar_activity")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class CalendarActivityEntity extends Identifiable {
 
     @Id
@@ -21,9 +21,9 @@ public class CalendarActivityEntity extends Identifiable {
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name="activity_type_id")
-    private ActivityType type;
+//    @ManyToOne
+//    @JoinColumn(name="activity_type_id")
+//    private ActivityType type;
 
     @ManyToOne
     @JoinColumn(name="calendar_id")
@@ -42,6 +42,9 @@ public class CalendarActivityEntity extends Identifiable {
     private Boolean allDay = Boolean.FALSE;
 
     private String location;
+
+    @Enumerated(EnumType.STRING)
+    private CalendarActivityType specialization;
 
     public CalendarActivityEntity(){}
 
@@ -89,13 +92,13 @@ public class CalendarActivityEntity extends Identifiable {
         this.calendar = calendar;
     }
 
-    public ActivityType getType() {
-        return type;
-    }
-
-    public void setType(ActivityType type) {
-        this.type = type;
-    }
+//    public ActivityType getType() {
+//        return type;
+//    }
+//
+//    public void setType(ActivityType type) {
+//        this.type = type;
+//    }
 
     public Date getStartDate() {
         return startDate;
@@ -119,5 +122,13 @@ public class CalendarActivityEntity extends Identifiable {
 
     public void setAllDay(Boolean allDay) {
         this.allDay = allDay;
+    }
+
+    public CalendarActivityType getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(CalendarActivityType specialization) {
+        this.specialization = specialization;
     }
 }

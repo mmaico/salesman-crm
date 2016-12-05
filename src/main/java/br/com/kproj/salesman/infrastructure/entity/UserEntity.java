@@ -60,8 +60,7 @@ public class UserEntity extends Identifiable {
     @OneToOne(mappedBy = "approver")
     private ApproverEntity approverEntity;
 
-    @OneToOne
-    @JoinColumn(name="calendar_id")
+    @OneToOne(mappedBy = "user")
     private CalendarEntity calendar;
 
     @Transient

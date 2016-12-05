@@ -5,6 +5,7 @@
     <users id="1" login="mmaico" password="1234" name="Maico"/>
     <users id="2" login="mmaico1" password="1234" name="Maico1"/>
     <users id="3" login="mmaico2" password="1234" name="Maico2"/>
+    <users id="4" login="mmaico3" password="1234" name="Maico3"/>
 
     <!-- PRODUCTS - SERVICES - PACKAGES AND UNIT -->
     <measurement_unit id="1" name="Kilo"/>
@@ -248,6 +249,9 @@
     <notifications id="6" create_date="2015-01-22 00:00:00" user_notified_id="1" descriminator="approval_business_proposal_notification" proposal_id="2"/>
     <notifications id="7" create_date="2020-02-22 00:00:00" user_notified_id="1" descriminator="approval_business_proposal_notification" proposal_id="1"/>
 
-
+    <!-- CALENDARS -->
+    <calendars id="1" user_id="2"/>
+    <calendars id="2" user_id="1"/>
+    <calendars id="3" user_id="3"/>
 
 </dataset>

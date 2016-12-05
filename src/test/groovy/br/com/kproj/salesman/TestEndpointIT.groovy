@@ -4,6 +4,7 @@ import br.com.kproj.salesman.accounts.addresses.view.AddressesEndpoint
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.ActivityRepositoryHibernate
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.CalendarContactActivityRepository
+import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.CalendarEntityRepositorySpringdata
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityContactEntity
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
@@ -31,7 +32,7 @@ class TestEndpointIT extends AbstractIntegrationTest {
     def WebApplicationContext webApplicationContext
 
     @Autowired
-    def ActivityRepositoryHibernate repository
+    def CalendarEntityRepositorySpringdata repository
 
     @Autowired
     def CalendarContactActivityRepository contactActivityRepository
@@ -47,7 +48,7 @@ class TestEndpointIT extends AbstractIntegrationTest {
         activity.setDescription("teste")
         activity.setTitle("title")
 
-        def activitySaved = repository.save(activity).get()
+        def activitySaved = repository.save(activity)
 
         CalendarActivityContactEntity contactActivity = new CalendarActivityContactEntity()
         contactActivity.setId(activitySaved.getId())

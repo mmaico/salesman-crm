@@ -16,7 +16,7 @@ import java.util.Collection;
         "activities",
         "links"
 })
-@ResourceItem(name="activities", modelReference = Activity.class, parent = UserResource.class)
+@ResourceItem(name="calendars", modelReference = Activity.class, parent = UserResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CalendarResource extends Item {
 
@@ -36,7 +36,7 @@ public class CalendarResource extends Item {
     }
 
 
-    @Selectable(expression = "has-activities", externalLink = true)
+    @Selectable(expression = "has-activities")
     public Collection<ActivityResource> getActivities() {
         return activities;
     }
@@ -45,7 +45,7 @@ public class CalendarResource extends Item {
         this.activities = activities;
     }
 
-    @Selectable(expression = "of-user", externalLink = true)
+    @Selectable(expression = "owner", externalLink = true)
     public UserResource getOwner() {
         return owner;
     }
@@ -54,4 +54,7 @@ public class CalendarResource extends Item {
         this.owner = owner;
     }
 
+    public Long getOwnerId() {
+        return this.owner == null ? null : this.owner.getId();
+    }
 }

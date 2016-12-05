@@ -1,75 +1,54 @@
 package br.com.kproj.salesman.assistants.calendar.view;
 
 
-import br.com.kproj.salesman.delivery.tasks.application.TaskFacade;
-import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskBuilder;
-import br.com.kproj.salesman.delivery.tasks.view.support.builders.TaskResourceBuilder;
-import br.com.kproj.salesman.delivery.tasks.view.support.resources.TaskResource;
-import br.com.kproj.salesman.delivery.tasks.view.support.updates.TaskUpdateFields;
+import br.com.kproj.salesman.assistants.calendar.application.CalendarFacade;
+import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.domain.model.user.User;
+import br.com.kproj.salesman.assistants.calendar.view.support.build.CalendarResourceBuilder;
+import br.com.kproj.salesman.assistants.calendar.view.support.resource.CalendarResource;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
-import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 
-@RestController("calendar3EndpointCalendarModule")
+@RestController("calendarEndpointCalendarModule")
 public class CalendarEndpoint {
 
-    private TaskFacade service;
+    private CalendarFacade service;
 
-    private TaskResourceBuilder builder;
+    private CalendarResourceBuilder builder;
 
-    private TaskUpdateFields updateFields;
 
     @Autowired
-    public CalendarEndpoint(TaskFacade service, TaskResourceBuilder builder, TaskUpdateFields updateFields) {
+    public CalendarEndpoint(CalendarFacade service, CalendarResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
-        this.updateFields = updateFields;
     }
 
-    @RequestMapping(value = "/rs/deliveries/{deliveryId}/tasks", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/rs/users/calendars/{calendarId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems list(@PathVariable Long deliveryId, @PageableDefault(size = 100) Pageable pageable) {
-        Delivery delviery = new Delivery(deliveryId);
+    ResourceItem findOne(@PathVariable Long calendarId) {
 
-        Iterable<Task> rootTasks = service.findAll(delviery, pageable);
+        Optional<Calendar> calendarFound = service.getOne(calendarId);
+        Calendar calendar = calendarFound.orElseThrow(NotFoundException::new);
 
-        return builder.build(rootTasks);
-    }
-
-    @RequestMapping(value = "/rs/deliveries/tasks/{taskId}", method = RequestMethod.GET)
-    public @ResponseBody
-    ResourceItem findOne(@PathVariable Long taskId) {
-
-        Optional<Task> taskOptional = service.getOne(taskId);
-        Task task = taskOptional.orElseThrow(NotFoundException::new);
-
-        return builder.build(task);
+        return builder.build(calendar);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/deliveries/{deliveryId}/tasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/users/calendars", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@PathVariable Long deliveryId, @RequestBody TaskResource resource) {
+    ResourceItem create(@RequestBody CalendarResource resource) {
+        User user = new User(resource.getOwnerId());
 
-        Task task = TaskBuilder.createTask()
-                .withTitle(resource.getTitle())
-                .withDescription(resource.getDescription())
-                .withDeadline(resource.getDeadline())
-                .withDelivery(deliveryId).build();
+        Optional<Calendar> calendarSaved = service.registerFor(user);
 
-        Optional<Task> taskCreated = service.register(task);
-
-        return builder.build(taskCreated.get());
+        return builder.build(calendarSaved.get());
     }
 
 }

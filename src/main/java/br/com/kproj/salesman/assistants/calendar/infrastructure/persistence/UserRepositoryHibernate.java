@@ -13,10 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository("userRepositoryHibernateCalendarModule")
 public class UserRepositoryHibernate extends BaseRespositoryImpl<User, UserEntity> implements UserRepository {
 
-
-    @Autowired
     private UserRepositorySpringData repository;
 
+    @Autowired
+    public UserRepositoryHibernate(UserRepositorySpringData repository) {
+        this.repository = repository;
+    }
 
     @Override
     public BaseRepositoryLegacy<UserEntity, Long> getRepository() {

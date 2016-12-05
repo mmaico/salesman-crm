@@ -2,16 +2,12 @@ package br.com.kproj.salesman.assistants.calendar.view.support.resource;
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskStatus;
-import br.com.kproj.salesman.delivery.tasks.view.support.resources.ChecklistResource;
-import br.com.kproj.salesman.delivery.tasks.view.support.resources.DeliveryResource;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityType;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
-import br.com.uol.rest.infrastructure.annotations.Selectable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.util.Collection;
 import java.util.Date;
 
 @JsonPropertyOrder({
@@ -24,17 +20,18 @@ import java.util.Date;
         "allDay",
         "links"
 })
-@ResourceItem(name="activities", modelReference = Activity.class, parent = DeliveryResource.class)
+@ResourceItem(name="calendar-activities", modelReference = Activity.class, parent = CalendarResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ActivityResource extends Item {
 
     private Long id;
     private String title;
     private String description;
-    private Date deadline;
-    private TaskStatus status;
-    private Collection<ChecklistResource> checklists;
-    private DeliveryResource delivery;
+    private String location;
+    private Date start;
+    private Date end;
+    private Boolean allDay = Boolean.FALSE;
+    private ActivityType type;
 
 
     public Long getId() {
@@ -61,43 +58,43 @@ public class ActivityResource extends Item {
         this.description = description;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public String getLocation() {
+        return location;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public TaskStatus getStatus() {
-        return status;
+    public Date getStart() {
+        return start;
     }
 
-    public void setStatus(TaskStatus status) {
-        this.status = status;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    @Selectable(expression = "has-checklists", externalLink = true)
-    public Collection<ChecklistResource> getChecklists() {
-        return checklists;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setChecklists(Collection<ChecklistResource> checklists) {
-        this.checklists = checklists;
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
-    @Selectable(expression = "of-delivery", externalLink = true)
-    public DeliveryResource getDelivery() {
-        return delivery;
+    public Boolean getAllDay() {
+        return allDay;
     }
 
-    public void setDelivery(DeliveryResource delivery) {
-        this.delivery = delivery;
+    public void setAllDay(Boolean allDay) {
+        this.allDay = allDay;
     }
 
-    public Long getDeliveryId() {
-        if (delivery == null) return null;
+    public ActivityType getType() {
+        return type;
+    }
 
-        return delivery.getId();
+    public void setType(ActivityType type) {
+        this.type = type;
     }
 }

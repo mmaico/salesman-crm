@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.assistants.calendar.domain.model.activity;
 
 
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityType;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
@@ -16,6 +17,7 @@ public class Activity extends ModelIdentifiable {
     private Date start;
     private Date end;
     private Boolean allDay = Boolean.FALSE;
+    private ActivityType type;
 
 
     @Override
@@ -79,4 +81,11 @@ public class Activity extends ModelIdentifiable {
         this.allDay = allDay;
     }
 
+    public ActivityType getType() {
+        return type;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
+    }
 }

@@ -11,4 +11,6 @@ public interface CalendarRepository extends BaseRepository<Calendar, Long> {
 
     Optional<Calendar> registerFor(User user);
 
+    Boolean hasFor(User user);
+
 }
