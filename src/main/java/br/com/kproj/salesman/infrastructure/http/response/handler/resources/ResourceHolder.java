@@ -1,8 +1,10 @@
 package br.com.kproj.salesman.infrastructure.http.response.handler.resources;
 
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
 import org.springframework.data.domain.Page;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class ResourceHolder {
 

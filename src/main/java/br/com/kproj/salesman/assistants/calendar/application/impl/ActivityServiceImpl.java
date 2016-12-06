@@ -7,9 +7,12 @@ import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityI
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendarValidator;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.domain.model.user.User;
+import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -36,9 +39,10 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
     }
 
     @Override
-    public Iterable<Activity> findAll(Calendar calendar) {
-        return null;
+    public Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable) {
+        return user().getActivities().of(calendar).using(filters, pageable);
     }
+
 
     @Override
     public BaseRepository<Activity, Long> getRepository() {

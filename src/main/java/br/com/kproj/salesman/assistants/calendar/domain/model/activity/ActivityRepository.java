@@ -1,15 +1,18 @@
 package br.com.kproj.salesman.assistants.calendar.domain.model.activity;
 
 
+import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface ActivityRepository extends BaseRepository<Activity, Long> {
 
-    List<Activity> findAll(RangeDate range);
 
     Optional<Activity> register(NewActivity newActivity);
+
+    Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable);
 
 }

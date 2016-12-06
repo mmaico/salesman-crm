@@ -32,10 +32,12 @@ public class CalendarActivityEntity extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
+    @Column(name = "start_date")
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
+    @Column(name = "end_date")
     private Date endDate;
 
     @Column(name="is_all_day")
@@ -44,6 +46,7 @@ public class CalendarActivityEntity extends Identifiable {
     private String location;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "specialization")
     private CalendarActivityType specialization;
 
     public CalendarActivityEntity(){}

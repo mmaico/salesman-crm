@@ -4,7 +4,8 @@ package br.com.kproj.salesman.assistants.calendar.view;
 import br.com.kproj.salesman.assistants.calendar.application.CalendarFacade;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.assistants.calendar.domain.model.user.User;
-import br.com.kproj.salesman.assistants.calendar.view.support.build.CalendarResourceBuilder;
+
+import br.com.kproj.salesman.assistants.calendar.view.support.builder.CalendarResourceBuilder;
 import br.com.kproj.salesman.assistants.calendar.view.support.resource.CalendarResource;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;

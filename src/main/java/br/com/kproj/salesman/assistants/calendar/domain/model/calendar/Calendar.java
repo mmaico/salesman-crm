@@ -28,6 +28,10 @@ public class Calendar extends ModelIdentifiable {
     public Calendar(){
         autowire(this);
     }
+    public Calendar(Long id){
+        autowire(this);
+        this.id = id;
+    }
 
     @Override
     public Long getId() {

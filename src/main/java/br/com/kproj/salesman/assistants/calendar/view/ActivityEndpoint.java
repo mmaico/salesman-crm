@@ -2,9 +2,18 @@ package br.com.kproj.salesman.assistants.calendar.view;
 
 
 import br.com.kproj.salesman.assistants.calendar.application.ActivityFacade;
-import br.com.kproj.salesman.assistants.calendar.view.support.build.ActivityResourceBuilder;
+
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
+import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.view.support.builder.ActivityResourceBuilder;
+import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
+import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
+import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,13 +34,20 @@ public class ActivityEndpoint {
 
     @RequestMapping(value = "/rs/users/calendars/{calendarId}/calendar-activities", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItem findOne(@PathVariable Long calendarId) {
+    ResourceItems findAll(@PathVariable Long calendarId,
+                          @RequestParam(value="filter", required=false) String filter,
+                          @PageableDefault(size = 400) Pageable pageable) {
 
-//        Optional<Calendar> calendarFound = service.getOne(calendarId);
-//        Calendar calendar = calendarFound.orElseThrow(NotFoundException::new);
-//
-//        return builder.build(calendar);
-        return null;
+        FilterAggregator filters = FilterAggregator.build().generateFilters(filter);
+        Calendar calendar = new Calendar(calendarId);
+
+        Iterable<Activity> result = service.findAll(calendar, filters, pageable);
+
+        if (Iterables.isEmpty(result)) {
+            throw new NotFoundException("calendar.activities.not.found");
+        }
+
+        return builder.build(result);
     }
 
 //    @ResponseStatus(HttpStatus.CREATED)
