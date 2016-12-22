@@ -24,6 +24,8 @@ public class QCalendarActivityIncidentEntity extends EntityPathBase<CalendarActi
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
+    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity activity;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.QIncidentEntity incident;
@@ -46,6 +48,7 @@ public class QCalendarActivityIncidentEntity extends EntityPathBase<CalendarActi
 
     public QCalendarActivityIncidentEntity(Class<? extends CalendarActivityIncidentEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.activity = inits.isInitialized("activity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity(forProperty("activity"), inits.get("activity")) : null;
         this.incident = inits.isInitialized("incident") ? new br.com.kproj.salesman.infrastructure.entity.QIncidentEntity(forProperty("incident"), inits.get("incident")) : null;
     }
 

@@ -22,6 +22,8 @@ public class QCalendarActivityContactEntity extends EntityPathBase<CalendarActiv
 
     public static final QCalendarActivityContactEntity calendarActivityContactEntity = new QCalendarActivityContactEntity("calendarActivityContactEntity");
 
+    public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity activity;
+
     public final br.com.kproj.salesman.infrastructure.entity.QContactEntity contact;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -44,6 +46,7 @@ public class QCalendarActivityContactEntity extends EntityPathBase<CalendarActiv
 
     public QCalendarActivityContactEntity(Class<? extends CalendarActivityContactEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.activity = inits.isInitialized("activity") ? new br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity(forProperty("activity"), inits.get("activity")) : null;
         this.contact = inits.isInitialized("contact") ? new br.com.kproj.salesman.infrastructure.entity.QContactEntity(forProperty("contact"), inits.get("contact")) : null;
     }
 
