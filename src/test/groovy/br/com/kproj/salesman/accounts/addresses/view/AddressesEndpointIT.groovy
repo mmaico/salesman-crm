@@ -82,7 +82,7 @@ class AddressesEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.state == newAddress.state
             jsonResult.item.zipCode == newAddress.zipCode
             jsonResult.item.country == newAddress.country
-            jsonResult.item.type == newAddress.type
+            jsonResult.item.getRepresent == newAddress.type
 
             jsonResult.item.links.size == 1
             jsonResult.item.links.find{it.rel == "of-customer"}.href == "/customers/3"
@@ -109,7 +109,7 @@ class AddressesEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.state == addressWithDataToUpdate.state
             jsonResult.item.zipCode == addressWithDataToUpdate.zipCode
             jsonResult.item.country == addressWithDataToUpdate.country
-            jsonResult.item.type == addressWithDataToUpdate.type
+            jsonResult.item.getRepresent == addressWithDataToUpdate.type
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value
@@ -133,7 +133,7 @@ class AddressesEndpointIT extends AbstractIntegrationTest {
             jsonResult.item.state == addressWithDataToUpdate.state
             jsonResult.item.zipCode == addressWithDataToUpdate.zipCode
             jsonResult.item.country == addressWithDataToUpdate.country
-            jsonResult.item.type == "BILLING"
+            jsonResult.item.getRepresent == "BILLING"
 
             jsonResult.uri == uri
             mvcResult.response.status == HttpStatus.OK.value

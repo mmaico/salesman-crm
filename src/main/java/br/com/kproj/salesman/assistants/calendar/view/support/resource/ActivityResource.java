@@ -2,7 +2,6 @@ package br.com.kproj.salesman.assistants.calendar.view.support.resource;
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityType;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,7 +30,6 @@ public class ActivityResource extends Item {
     private Date start;
     private Date end;
     private Boolean allDay = Boolean.FALSE;
-    private ActivityType type;
 
 
     public Long getId() {
@@ -88,13 +86,5 @@ public class ActivityResource extends Item {
 
     public void setAllDay(Boolean allDay) {
         this.allDay = allDay;
-    }
-
-    public ActivityType getType() {
-        return type;
-    }
-
-    public void setType(ActivityType type) {
-        this.type = type;
     }
 }

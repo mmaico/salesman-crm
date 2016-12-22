@@ -41,6 +41,7 @@ public class CalendarEndpoint {
         return builder.build(calendar);
     }
 
+    //TODO:  fazer a correcao da url para criar usando /rs/users/1/calendars
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/rs/users/calendars", method = RequestMethod.POST)
     public @ResponseBody

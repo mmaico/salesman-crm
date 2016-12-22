@@ -8,6 +8,11 @@ public class Contact extends ModelIdentifiable {
 
     private Long id;
 
+    public Contact(){}
+    public Contact(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

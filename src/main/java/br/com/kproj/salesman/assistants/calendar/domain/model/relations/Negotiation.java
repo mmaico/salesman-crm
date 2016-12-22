@@ -9,6 +9,11 @@ public class Negotiation extends ModelIdentifiable {
 
     private Long id;
 
+    public Negotiation() {}
+    public Negotiation(Long id) {
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

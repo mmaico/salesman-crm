@@ -9,6 +9,12 @@ public class ActivityContact extends Activity {
 
     private Contact contact;
 
+    public ActivityContact(){}
+
+    public ActivityContact(Long id){
+        this.setId(id);
+    }
+
     public Contact getContact() {
         return contact;
     }
