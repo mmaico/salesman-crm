@@ -2,6 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.campaigns.CampaignEntity;
 
 import javax.persistence.*;
@@ -16,6 +17,10 @@ public class CalendarActivityCompaignEntity extends Identifiable {
     @ManyToOne
     @JoinColumn(name="compaign_id")
     private CampaignEntity campaign;
+
+    @OneToOne
+    @JoinColumn(name = "activity_id")
+    private CalendarActivityEntity activity;
 
 
     public CalendarActivityCompaignEntity(){}
@@ -35,5 +40,13 @@ public class CalendarActivityCompaignEntity extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public CalendarActivityEntity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(CalendarActivityEntity activity) {
+        this.activity = activity;
     }
 }

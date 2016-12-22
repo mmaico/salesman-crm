@@ -36,11 +36,11 @@ public class QCalendarActivityEntity extends EntityPathBase<CalendarActivityEnti
 
     public final StringPath location = createString("location");
 
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType> specialization = createEnum("specialization", br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType.class);
+
     public final DateTimePath<java.util.Date> startDate = createDateTime("startDate", java.util.Date.class);
 
     public final StringPath title = createString("title");
-
-    public final QActivityType type;
 
     public QCalendarActivityEntity(String variable) {
         this(CalendarActivityEntity.class, forVariable(variable), INITS);
@@ -61,7 +61,6 @@ public class QCalendarActivityEntity extends EntityPathBase<CalendarActivityEnti
     public QCalendarActivityEntity(Class<? extends CalendarActivityEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.calendar = inits.isInitialized("calendar") ? new QCalendarEntity(forProperty("calendar"), inits.get("calendar")) : null;
-        this.type = inits.isInitialized("type") ? new QActivityType(forProperty("type")) : null;
     }
 
 }

@@ -21,10 +21,6 @@ public class CalendarActivityEntity extends Identifiable {
 
     private String description;
 
-//    @ManyToOne
-//    @JoinColumn(name="activity_type_id")
-//    private ActivityType type;
-
     @ManyToOne
     @JoinColumn(name="calendar_id")
     @ExcludeField
@@ -94,14 +90,6 @@ public class CalendarActivityEntity extends Identifiable {
     public void setCalendar(CalendarEntity calendar) {
         this.calendar = calendar;
     }
-
-//    public ActivityType getType() {
-//        return type;
-//    }
-//
-//    public void setType(ActivityType type) {
-//        this.type = type;
-//    }
 
     public Date getStartDate() {
         return startDate;

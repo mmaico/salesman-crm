@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
+import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 
 import javax.persistence.*;
 
@@ -17,6 +18,9 @@ public class CalendarActivityIncidentEntity extends Identifiable {
     @JoinColumn(name="incident_id")
     private IncidentEntity incident;
 
+    @OneToOne
+    @JoinColumn(name = "activity_id")
+    private CalendarActivityEntity activity;
 
     public CalendarActivityIncidentEntity(){}
 
@@ -35,5 +39,13 @@ public class CalendarActivityIncidentEntity extends Identifiable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public CalendarActivityEntity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(CalendarActivityEntity activity) {
+        this.activity = activity;
     }
 }
