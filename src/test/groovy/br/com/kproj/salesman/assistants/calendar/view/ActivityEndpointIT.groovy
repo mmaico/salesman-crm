@@ -36,8 +36,20 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
             def resultJson = new JsonSlurper().parseText(mvcResult.response.contentAsString)
         then: "Should return all activities"
             mvcResult.response.status == HttpStatus.OK.value
+            resultJson.items.size == 10
+            resultJson.totalItems == 10
+            resultJson.pageSize == 400
+            resultJson.items[0].id == 1
+            resultJson.items[0].title == "Title 1"
+            resultJson.items[0].description == "Description 1"
+            resultJson.items[0].location == "location 1"
+            resultJson.items[0].start == "2015-02-10T02:00:00.000+0000"
+            resultJson.items[0].end == "2015-02-15T02:00:00.000+0000"
+            resultJson.items[0].allDay == true
+            resultJson.items[0].links.size == 1
 
-
+            resultJson.items[0].links[0].href == "/rs/users/calendars/calendar-activities/calendar-activities-contacts/1"
+            resultJson.items[0].links[0].rel == "calendar-activities-contact"
     }
 
 

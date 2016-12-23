@@ -2,9 +2,6 @@ package br.com.kproj.salesman.assistants.calendar.view.support.builder;
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityContact;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityNegotiation;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivitySaleable;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
 import br.com.kproj.salesman.assistants.calendar.view.support.resource.ActivityResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder;
@@ -31,19 +28,21 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 @Component
 public class ActivityResourceBuilder {
 
+    private static final String BASE_URI = "/rs/users/calendars/calendar-activities/calendar-activities-";
+
     private static Map<Represent, SelectLink> selectLink = new HashMap<>();
 
     static {
         selectLink.put(CONTACT, (activity ->
-            Link.createLink("contact", "/rs/contacts/" + ((ActivityContact) activity).getContact().getId())
+            Link.createLink("calendar-activities-contact", BASE_URI + "contacts/" + activity.getId())
         ));
 
         selectLink.put(NEGOTIATION, (activity ->
-                Link.createLink("negotiation", "/rs/customers/negotiations/" + ((ActivityNegotiation) activity).getNegotiation().getId())
+            Link.createLink("calendar-activities-negotiation", BASE_URI + "negotiations/" + activity.getId())
         ));
 
         selectLink.put(SALEABLE, (activity ->
-                Link.createLink("saleable", "/rs/saleables/" + ((ActivitySaleable) activity).getSaleable().getId())
+                Link.createLink("calendar-activities-saleable", BASE_URI + "saleables/" + activity.getId())
         ));
 
         selectLink.put(NO_REPRESENT, (activity -> null));
