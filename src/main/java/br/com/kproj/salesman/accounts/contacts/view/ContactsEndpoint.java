@@ -38,7 +38,7 @@ public class ContactsEndpoint {
         this.builder = builder;
         this.updateFields = updateFields;
     }
-
+    //TODO: colocar contatos como principal /rs/contacts
     @RequestMapping(value = "/rs/customers/{customerId}/contacts", method = RequestMethod.GET)
     public @ResponseBody
     ResourceItems list(@PathVariable Long customerId, @PageableDefault(size = 100) Pageable pageable) {

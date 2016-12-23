@@ -254,16 +254,16 @@
     <calendars id="2" user_id="1"/>
     <calendars id="3" user_id="3"/>
 
-    <calendar_activity id="1"  title="Title 1"  description="Description 1"  calendar_id="1" start_date="2015-02-10 00:00:00" end_date="2015-02-15 00:00:00" is_all_day="true"  location="location 1"  specialization="CONTACT"/>
-    <calendar_activity id="2"  title="Title 2"  description="Description 2"  calendar_id="1" start_date="2015-02-15 14:00:00" end_date="2015-02-15 15:00:00" is_all_day="false" location="location 2"  specialization="CONTACT"/>
-    <calendar_activity id="3"  title="Title 3"  description="Description 3"  calendar_id="1" start_date="2015-02-16 13:40:00" end_date="2015-02-16 18:00:00" is_all_day="false" location="location 3"  specialization="CONTACT"/>
-    <calendar_activity id="4"  title="Title 4"  description="Description 4"  calendar_id="1" start_date="2015-02-18 20:00:00" end_date="2015-02-18 23:00:00" is_all_day="false" location="location 4"  specialization="CONTACT"/>
-    <calendar_activity id="5"  title="Title 5"  description="Description 5"  calendar_id="1" start_date="2015-02-20 00:00:00" end_date="2015-02-21 00:00:00" is_all_day="true"  location="location 5"  specialization="SALEABLE"/>
-    <calendar_activity id="6"  title="Title 6"  description="Description 6"  calendar_id="1" start_date="2015-02-21 08:00:00" end_date="2015-02-21 09:00:00" is_all_day="false" location="location 6"  specialization="SALEABLE"/>
-    <calendar_activity id="7"  title="Title 7"  description="Description 7"  calendar_id="1" start_date="2015-02-21 11:00:00" end_date="2015-02-21 13:14:00" is_all_day="false" location="location 7"  specialization="SALEABLE"/>
-    <calendar_activity id="8"  title="Title 8"  description="Description 8"  calendar_id="1" start_date="2015-03-10 00:00:00" end_date="2015-03-15 00:00:00" is_all_day="true"  location="location 8"  specialization="SALEABLE"/>
-    <calendar_activity id="9"  title="Title 9"  description="Description 9"  calendar_id="1" start_date="2015-03-22 10:00:00" end_date="2015-03-22 13:00:00" is_all_day="false" location="location 9"  specialization="NEGOTIATION"/>
-    <calendar_activity id="10" title="Title 10" description="Description 10" calendar_id="1" start_date="2015-03-23 18:30:00" end_date="2015-03-23 19:00:00" is_all_day="false" location="location 10" specialization="NEGOTIATION"/>
+    <calendar_activity id="1"  title="Title 1"  description="Description 1"  calendar_id="1" start_date="2015-02-10 00:00:00" end_date="2015-02-15 00:00:00" is_all_day="true"  location="location 1"  represent="CONTACT"/>
+    <calendar_activity id="2"  title="Title 2"  description="Description 2"  calendar_id="1" start_date="2015-02-15 14:00:00" end_date="2015-02-15 15:00:00" is_all_day="false" location="location 2"  represent="CONTACT"/>
+    <calendar_activity id="3"  title="Title 3"  description="Description 3"  calendar_id="1" start_date="2015-02-16 13:40:00" end_date="2015-02-16 18:00:00" is_all_day="false" location="location 3"  represent="CONTACT"/>
+    <calendar_activity id="4"  title="Title 4"  description="Description 4"  calendar_id="1" start_date="2015-02-18 20:00:00" end_date="2015-02-18 23:00:00" is_all_day="false" location="location 4"  represent="CONTACT"/>
+    <calendar_activity id="5"  title="Title 5"  description="Description 5"  calendar_id="1" start_date="2015-02-20 00:00:00" end_date="2015-02-21 00:00:00" is_all_day="true"  location="location 5"  represent="SALEABLE"/>
+    <calendar_activity id="6"  title="Title 6"  description="Description 6"  calendar_id="1" start_date="2015-02-21 08:00:00" end_date="2015-02-21 09:00:00" is_all_day="false" location="location 6"  represent="SALEABLE"/>
+    <calendar_activity id="7"  title="Title 7"  description="Description 7"  calendar_id="1" start_date="2015-02-21 11:00:00" end_date="2015-02-21 13:14:00" is_all_day="false" location="location 7"  represent="SALEABLE"/>
+    <calendar_activity id="8"  title="Title 8"  description="Description 8"  calendar_id="1" start_date="2015-03-10 00:00:00" end_date="2015-03-15 00:00:00" is_all_day="true"  location="location 8"  represent="SALEABLE"/>
+    <calendar_activity id="9"  title="Title 9"  description="Description 9"  calendar_id="1" start_date="2015-03-22 10:00:00" end_date="2015-03-22 13:00:00" is_all_day="false" location="location 9"  represent="NEGOTIATION"/>
+    <calendar_activity id="10" title="Title 10" description="Description 10" calendar_id="1" start_date="2015-03-23 18:30:00" end_date="2015-03-23 19:00:00" is_all_day="false" location="location 10" represent="NEGOTIATION"/>
 
     <calendar_activity_contact id="1" contact_id="1" activity_id="1"/>
     <calendar_activity_contact id="2" contact_id="2" activity_id="2"/>

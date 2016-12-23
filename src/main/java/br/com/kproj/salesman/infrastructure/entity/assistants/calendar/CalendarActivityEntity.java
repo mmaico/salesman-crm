@@ -42,8 +42,8 @@ public class CalendarActivityEntity extends Identifiable {
     private String location;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "specialization")
-    private CalendarActivityType specialization;
+    @Column(name = "represent")
+    private CalendarActivityType represent;
 
     public CalendarActivityEntity(){}
 
@@ -115,11 +115,11 @@ public class CalendarActivityEntity extends Identifiable {
         this.allDay = allDay;
     }
 
-    public CalendarActivityType getSpecialization() {
-        return specialization;
+    public CalendarActivityType getRepresent() {
+        return represent;
     }
 
-    public void setSpecialization(CalendarActivityType specialization) {
-        this.specialization = specialization;
+    public void setRepresent(CalendarActivityType represent) {
+        this.represent = represent;
     }
 }

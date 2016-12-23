@@ -2,5 +2,5 @@ package br.com.kproj.salesman.assistants.calendar.domain.model.activity.speciali
 
 
 public enum Represent {
-    CAMPAIGN, CONTACT, INCIDENT, LEAD, NEGOTIATION, SALEABLE
+    CAMPAIGN, CONTACT, INCIDENT, LEAD, NEGOTIATION, SALEABLE, NO_REPRESENT
 }
