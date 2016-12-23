@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.tra
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityNegotiation;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
 import br.com.kproj.salesman.assistants.calendar.domain.model.relations.Negotiation;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.CalendarBusinessProposalActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.translate.ActivityEntityHolderConverter;
@@ -31,6 +32,7 @@ public class CalendarActiityNegotiationToActivityConverter implements Converter<
         CalendarActivityBusinessProposalEntity entity = repository.findOne(activityEntity.getId());
 
         ActivityNegotiation activity = new ActivityNegotiation();
+        activity.setRepresent(Represent.NEGOTIATION);
         converter.merge(activity, activityEntity);
         activity.setNegotiation(new Negotiation(entity.getProposal().getId()));
 

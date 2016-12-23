@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.tra
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivitySaleable;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
 import br.com.kproj.salesman.assistants.calendar.domain.model.relations.Saleable;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.CalendarActivitySaleableRepository;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.translate.ActivityEntityHolderConverter;
@@ -31,6 +32,7 @@ public class CalendarActiitySaleableToActivityConverter implements Converter<Cal
         CalendarActivitySaleableEntity entity = repository.findOne(activityEntity.getId());
 
         ActivitySaleable activity = new ActivitySaleable();
+        activity.setRepresent(Represent.SALEABLE);
         converter.merge(activity, activityEntity);
         activity.setSaleable(new Saleable(entity.getSaleable().getId()));
 

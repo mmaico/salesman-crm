@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.tra
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityContact;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
 import br.com.kproj.salesman.assistants.calendar.domain.model.relations.Contact;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.springdata.CalendarContactActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.infrastructure.persistence.translate.ActivityEntityHolderConverter;
@@ -31,6 +32,7 @@ public class CalendarActiityContactToActivityConverter implements Converter<Cale
         CalendarActivityContactEntity activityContactEntity = repository.findOne(activityEntity.getId());
 
         ActivityContact activity = new ActivityContact();
+        activity.setRepresent(Represent.CONTACT);
         converter.merge(activity, activityEntity);
         activity.setContact(new Contact(activityContactEntity.getContact().getId()));
 
