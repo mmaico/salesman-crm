@@ -65,6 +65,16 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, C
     }
 
     @Override
+    public Activity update(Activity activity) {
+
+        CalendarActivityEntity activityEntity = repository.findOne(activity.getId());
+
+        from(activity).merge(activityEntity);
+
+        return getConverter().convert(activityEntity);
+    }
+
+    @Override
     public Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable) {
         QCalendarActivityEntity calendarActivityEntity = QCalendarActivityEntity.calendarActivityEntity;
 

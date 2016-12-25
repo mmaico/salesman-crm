@@ -34,11 +34,11 @@ public class ActivityRulesDescription implements IgnoreRules {
     }
 
     public static RuleKey ruleStartDate() {
-        return RuleKey.key("calendar.activity.without.startdate", StringUtils.EMPTY);
+        return RuleKey.key("calendar.activity.without.startdate", "start");
     }
 
     public static RuleKey ruleEndDate() {
-        return RuleKey.key("calendar.activity.without.enddate", StringUtils.EMPTY);
+        return RuleKey.key("calendar.activity.without.enddate", "end");
     }
 
     public static RuleKey ruleRangeDate() {

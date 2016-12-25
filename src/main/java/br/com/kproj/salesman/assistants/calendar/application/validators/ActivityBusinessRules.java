@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.assistants.calendar.application.validators;
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendar;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendarValidator;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
@@ -21,8 +20,6 @@ import static br.com.kproj.salesman.assistants.calendar.application.utils.Greate
 import static br.com.kproj.salesman.assistants.calendar.application.utils.Than.than;
 import static br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription.*;
 import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.hasHourOrMinutesSet;
-import static br.com.kproj.salesman.infrastructure.model.ConditionalOperator.not;
-import static br.com.kproj.salesman.infrastructure.validators.RuleKey.key;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
@@ -39,10 +36,8 @@ public class ActivityBusinessRules implements ActivityInCalendarValidator {
 
     private Map<RuleKey, CheckRule<Activity>> rules = new HashMap<>();
     {
-        rules.put(activityNotExists(), (activity ->
-               not(activity.isNew())
-            && not(repository.findOne(activity.getId()).isPresent())
-        ));
+        rules.put(activityNotExists(), (activity -> activity.isNew()
+                || !repository.findOne(activity.getId()).isPresent()));
 
         rules.put(ruleCalendar(), (activity -> {
             Calendar calendar = activity.getCalendar();

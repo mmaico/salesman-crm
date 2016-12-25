@@ -68,6 +68,17 @@
       "end":"2015-02-10T15:00:00.00Z",
       "allDay":"false"
     }
+  },
+  {
+    "scenery": "Should update all data of calendar activity",
+    "json": {
+      "title":"Reuniao com o Jose update",
+      "description":"Reuniao para alinhamento do projeto update",
+      "location":"Faria Lima, 778 update",
+      "start":"2016-03-11T18:00:00.00Z",
+      "end":"2016-03-11T19:00:00.00Z",
+      "allDay":"false"
+    }
   }
 
 

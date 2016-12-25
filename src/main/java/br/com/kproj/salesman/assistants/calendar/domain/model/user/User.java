@@ -31,6 +31,10 @@ public class User extends ModelIdentifiable {
         return calendar -> calendar.addNew(activity);
     }
 
+    public Activity update(Activity activity) {
+        return repository.update(activity);
+    }
+
     public ActivityOfCalendarService getActivities() {
         return (calendar -> (filters, page) -> repository.findAll(calendar, filters, page));
     }

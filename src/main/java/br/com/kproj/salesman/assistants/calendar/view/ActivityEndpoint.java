@@ -2,13 +2,12 @@ package br.com.kproj.salesman.assistants.calendar.view;
 
 
 import br.com.kproj.salesman.assistants.calendar.application.ActivityFacade;
-
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityBuilder;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendar;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.assistants.calendar.view.support.builder.ActivityResourceBuilder;
 import br.com.kproj.salesman.assistants.calendar.view.support.resource.ActivityResource;
+import br.com.kproj.salesman.assistants.calendar.view.support.update.ActivityUpdateFields;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
@@ -32,11 +31,13 @@ public class ActivityEndpoint {
 
     private ActivityResourceBuilder builder;
 
+    private ActivityUpdateFields updateFields;
 
     @Autowired
-    public ActivityEndpoint(ActivityFacade service, ActivityResourceBuilder builder) {
+    public ActivityEndpoint(ActivityFacade service, ActivityResourceBuilder builder, ActivityUpdateFields updateFields) {
         this.service = service;
         this.builder = builder;
+        this.updateFields = updateFields;
     }
 
 
@@ -78,4 +79,22 @@ public class ActivityEndpoint {
         return builder.build(activityRegistered.get());
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rs/users/calendars/calendar-activities/{activityId}", method = RequestMethod.PUT)
+    public @ResponseBody
+    ResourceItem update(@PathVariable Long activityId, @RequestBody ActivityResource resource) {
+
+        Activity activity = createActivity(activityId)
+                .withAllDay(resource.getAllDay())
+                .withDescription(resource.getDescription())
+                .withTitle(resource.getTitle())
+                .withStart(resource.getStart())
+                .withEnd(resource.getEnd())
+                .withLocation(resource.getLocation()).build();
+
+        updateFields.addFieldsToUpdate(activity);
+        Activity activityUpdated = service.update(activity);
+
+        return builder.build(activityUpdated);
+    }
 }

@@ -15,6 +15,7 @@ import spock.lang.Unroll
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @ClassReference(ActivityEndpoint)
 class ActivityEndpointIT extends AbstractIntegrationTest {
@@ -197,5 +198,29 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
         then: "Should return a bad request"
             mvcResult.response.status == HttpStatus.BAD_REQUEST.value
     }
+
+    @Unroll
+    def "Should update all data of calendar acitivity"() {
+        given:
+            def uri = "/rs/users/calendars/calendar-activities/10"
+        when:
+            def mvcResult = mockMvc.perform(put(uri)
+                .content(scenery("Should update all data of calendar activity").json)
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+            def resultJson = new JsonSlurper().parseText(mvcResult.response.contentAsString)
+        then: "Should return a activity updated"
+            mvcResult.response.status == HttpStatus.OK.value
+            resultJson.item.id == 10
+            resultJson.item.title == "Reuniao com o Jose update"
+            resultJson.item.description == "Reuniao para alinhamento do projeto update"
+            resultJson.item.location == "Faria Lima, 778 update"
+            resultJson.item.start == "2016-03-11T18:00:00.000-0200"
+            resultJson.item.end == "2016-03-11T19:00:00.000-0200"
+            resultJson.item.allDay == false
+            resultJson.item.links.size == 2
+            resultJson.item.links.find{it.rel == "of-calendar" }.href == "/users/calendars/1"
+            resultJson.item.links.find{it.rel == "calendar-activities-negotiation"}.href == "/rs/users/calendars/calendar-activities/calendar-activities-negotiations/10"
+    }
+
 
 }

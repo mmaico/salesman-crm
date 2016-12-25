@@ -18,4 +18,6 @@ public interface ActivityFacade extends ModelFacade<Activity> {
 
     Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable);
 
+    Activity update(Activity activity);
+
 }

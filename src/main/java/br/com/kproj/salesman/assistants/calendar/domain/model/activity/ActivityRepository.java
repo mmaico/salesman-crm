@@ -13,6 +13,8 @@ public interface ActivityRepository extends BaseRepository<Activity, Long> {
 
     Optional<Activity> register(NewActivity newActivity);
 
+    Activity update(Activity activity);
+
     Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable);
 
 }

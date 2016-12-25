@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.application.impl;
 
 
 import br.com.kproj.salesman.assistants.calendar.application.ActivityFacade;
+import br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendar;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendarValidator;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription.activityNotExists;
+import static br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription.ignoreRules;
 import static br.com.kproj.salesman.assistants.calendar.domain.model.user.User.user;
 
 @Service
@@ -37,7 +40,7 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
         Calendar calendar = params.getCalendar();
         activity.setCalendar(calendar);
 
-        rules.checkRules(activity);
+        rules.checkRules(activity, ignoreRules(activityNotExists()));
 
         return user().addAn(activity).in(calendar);
     }
@@ -45,6 +48,14 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
     @Override
     public Iterable<Activity> findAll(Calendar calendar, FilterAggregator filters, Pageable pageable) {
         return user().getActivities().of(calendar).using(filters, pageable);
+    }
+
+    @Override
+    public Activity update(Activity activity) {
+
+        rules.checkRules(activity);
+
+        return user().update(activity);
     }
 
 
