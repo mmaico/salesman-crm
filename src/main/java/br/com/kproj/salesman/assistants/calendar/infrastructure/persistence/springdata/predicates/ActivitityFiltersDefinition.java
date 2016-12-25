@@ -24,26 +24,26 @@ public class ActivitityFiltersDefinition {
     static {
         startDatePredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            return qActivity.startDate.goe(convertToISO8601(filter.getObject().toString()));
+            return qActivity.start.goe(convertToISO8601(filter.getObject().toString()));
         });
 
         startDatePredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            return qActivity.startDate.loe(convertToISO8601(filter.getObject().toString()));
+            return qActivity.start.loe(convertToISO8601(filter.getObject().toString()));
         });
 
         endDatePredicate.put(Filter.Operator.GE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            return qActivity.endDate.goe(convertToISO8601(filter.getObject().toString()));
+            return qActivity.end.goe(convertToISO8601(filter.getObject().toString()));
         });
 
         endDatePredicate.put(Filter.Operator.LE, (filter, qEntity) -> {
             QCalendarActivityEntity  qActivity = (QCalendarActivityEntity) qEntity;
-            return qActivity.startDate.goe(convertToISO8601(filter.getObject().toString()));
+            return qActivity.end.goe(convertToISO8601(filter.getObject().toString()));
         });
 
-        expressions.put("startDate", startDatePredicate);
-        expressions.put("endDate", startDatePredicate);
+        expressions.put("start", startDatePredicate);
+        expressions.put("end", startDatePredicate);
 
     }
 

@@ -4,7 +4,6 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar;
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,14 +26,12 @@ public class CalendarActivityEntity extends Identifiable {
     private CalendarEntity calendar;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/M/Y")
     @Column(name = "start_date")
-    private Date startDate;
+    private Date start;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/M/Y")
     @Column(name = "end_date")
-    private Date endDate;
+    private Date end;
 
     @Column(name="is_all_day")
     private Boolean allDay = Boolean.FALSE;
@@ -91,20 +88,20 @@ public class CalendarActivityEntity extends Identifiable {
         this.calendar = calendar;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStart() {
+        return start;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     public Boolean getAllDay() {

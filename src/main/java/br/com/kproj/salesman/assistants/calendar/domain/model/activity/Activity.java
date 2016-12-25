@@ -2,6 +2,7 @@ package br.com.kproj.salesman.assistants.calendar.domain.model.activity;
 
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
+import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
@@ -18,6 +19,7 @@ public class Activity extends ModelIdentifiable {
     private Date end;
     private Boolean allDay = Boolean.FALSE;
     private Represent represent;
+    private Calendar calendar;
 
 
     @Override
@@ -87,5 +89,13 @@ public class Activity extends ModelIdentifiable {
 
     public void setRepresent(Represent represent) {
         this.represent = represent;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 }

@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.AND;
 import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.EMPTY;
+import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.OR;
 import static br.com.kproj.salesman.infrastructure.helpers.StringQueryUtils.getQueryValue;
 
 public class FilterQuery {
@@ -20,11 +22,11 @@ public class FilterQuery {
     private static Map<LogicalOperator, FilterBuild> filterStrategy = new HashMap<>();
 
     static {
-        filterStrategy.put(LogicalOperator.AND, ((expression, operator, value) ->
+        filterStrategy.put(AND, ((expression, operator, value) ->
             FilterAnd.build(expression, Filter.Operator.valueOf(operator.toUpperCase()), value)
         ));
 
-        filterStrategy.put(LogicalOperator.OR, ((expression, operator, value) ->
+        filterStrategy.put(OR, ((expression, operator, value) ->
             FilterOr.build(expression, Filter.Operator.valueOf(operator.toUpperCase()), value)
         ));
 

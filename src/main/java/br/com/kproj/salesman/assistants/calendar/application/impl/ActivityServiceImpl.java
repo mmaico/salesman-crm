@@ -33,9 +33,13 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
 
     @Override
     public Optional<Activity> register(ActivityInCalendar params) {
-        rules.checkRules(params);
+        Activity activity = params.getActivity();
+        Calendar calendar = params.getCalendar();
+        activity.setCalendar(calendar);
 
-        return user().addAn(params.getActivity()).in(params.getCalendar());
+        rules.checkRules(activity);
+
+        return user().addAn(activity).in(calendar);
     }
 
     @Override

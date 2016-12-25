@@ -1,0 +1,74 @@
+[
+  {
+    "scenery": "Should create a calendar activity with all data",
+    "json": {
+              "title":"Reuniao com o Jose",
+              "description":"Reuniao para alinhamento do projeto",
+              "location":"Faria Lima, 778",
+              "start":"2015-02-10T14:00:00.00Z",
+              "end":"2015-02-10T15:00:00.00Z",
+              "allDay":"false"
+          }
+  },
+  {
+    "scenery": "Should create a calendar activity with only required data",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "start":"2015-02-10T14:00:00.00Z",
+      "end":"2015-02-10T15:00:00.00Z",
+      "allDay":"false"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity without title",
+    "json": {
+      "start":"2015-02-10T14:00:00.00Z",
+      "end":"2015-02-10T15:00:00.00Z",
+      "allDay":"false"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity without start date",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "end":"2015-02-10T15:00:00.00Z",
+      "allDay":"false"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity without end date",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "start":"2015-02-10T14:00:00.00Z",
+      "allDay":"false"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity without allDay informed",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "start":"2015-02-10T14:00:00.00Z",
+      "end":"2015-02-10T15:00:00.00Z"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity with AllDay true  and start e end with hours",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "start":"2015-02-10T14:00:00.00Z",
+      "end":"2015-02-10T15:00:00.00Z",
+      "allDay":"true"
+    }
+  },
+  {
+    "scenery": "Should not create a calendar activity with start date greater than end date",
+    "json": {
+      "title":"Reuniao com o Jose",
+      "start":"2015-02-10T16:00:00.00Z",
+      "end":"2015-02-10T15:00:00.00Z",
+      "allDay":"false"
+    }
+  }
+
+
+]

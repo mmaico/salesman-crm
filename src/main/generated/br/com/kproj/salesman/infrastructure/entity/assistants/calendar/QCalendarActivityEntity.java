@@ -30,15 +30,15 @@ public class QCalendarActivityEntity extends EntityPathBase<CalendarActivityEnti
 
     public final StringPath description = createString("description");
 
-    public final DateTimePath<java.util.Date> endDate = createDateTime("endDate", java.util.Date.class);
+    public final DateTimePath<java.util.Date> end = createDateTime("end", java.util.Date.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath location = createString("location");
 
-    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType> specialization = createEnum("specialization", br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType.class);
+    public final EnumPath<br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType> represent = createEnum("represent", br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityType.class);
 
-    public final DateTimePath<java.util.Date> startDate = createDateTime("startDate", java.util.Date.class);
+    public final DateTimePath<java.util.Date> start = createDateTime("start", java.util.Date.class);
 
     public final StringPath title = createString("title");
 

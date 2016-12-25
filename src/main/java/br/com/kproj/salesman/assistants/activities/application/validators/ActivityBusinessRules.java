@@ -19,7 +19,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErro
 import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-@Component
+@Component("activityBusinessRulesCalendarModule")
 public class ActivityBusinessRules implements ActivityValidator {
 
     @Autowired

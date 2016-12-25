@@ -4,6 +4,8 @@ package br.com.kproj.salesman.assistants.calendar.view.support.resource;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
+import br.com.uol.rest.infrastructure.annotations.Selectable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -27,9 +29,15 @@ public class ActivityResource extends Item {
     private String title;
     private String description;
     private String location;
+
+    @JsonFormat(timezone = "GMT-2")
     private Date start;
+
+    @JsonFormat(timezone = "GMT-2")
     private Date end;
     private Boolean allDay = Boolean.FALSE;
+
+    private CalendarResource calendar;
 
 
     public Long getId() {
@@ -86,5 +94,14 @@ public class ActivityResource extends Item {
 
     public void setAllDay(Boolean allDay) {
         this.allDay = allDay;
+    }
+
+    @Selectable(expression = "of-calendar", externalLink = true)
+    public CalendarResource getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(CalendarResource calendar) {
+        this.calendar = calendar;
     }
 }

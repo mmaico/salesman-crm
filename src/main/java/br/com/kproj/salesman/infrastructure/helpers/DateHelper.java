@@ -24,6 +24,7 @@ public class DateHelper {
 	public static String DEFAULT_BRAZILIAN_PATTERN = "dd/MM/yyyy";
 
 	private static final FastDateFormat DATE_TIME_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	private static final FastDateFormat DATE_TIME_FORMAT2 = FastDateFormat.getInstance("yyyy-MM-dd'T'HH-mm-ss'Z'");
 
 	public static final Map<Integer, String> DAY_OF_WEEK_NAMES = new HashMap<>();
 
@@ -67,26 +68,6 @@ public class DateHelper {
 		return formatDate;
 	}
 
-    public static String convertToString(Date date) {
-        if (date == null) {
-            return null;
-        }
-
-        Format formatter = new SimpleDateFormat(DEFAULT_BRAZILIAN_PATTERN);
-
-        return formatter.format(date);
-    }
-
-	public static String convertToString(Date date, String pattern) {
-		if (date == null) {
-			return null;
-		}
-
-		Format formatter = new SimpleDateFormat(pattern);
-
-		return formatter.format(date);
-	}
-
 	public static String convertToISO8601(Date date) {
 		if (date == null) {
 			return null;
@@ -99,6 +80,16 @@ public class DateHelper {
 		try {
 			if (date == null) return null;
 			return DATE_TIME_FORMAT.parse(date);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
+
+	public static Date convertToISO86012(String date) {
+
+		try {
+			if (date == null) return null;
+			return DATE_TIME_FORMAT2.parse(date);
 		} catch (ParseException e) {
 			return null;
 		}
