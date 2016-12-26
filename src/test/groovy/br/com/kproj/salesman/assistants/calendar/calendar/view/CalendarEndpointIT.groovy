@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.assistants.calendar.calendar.view
 
-import br.com.kproj.salesman.assistants.calendar.calendar.view.CalendarEndpoint
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
 import groovy.json.JsonSlurper

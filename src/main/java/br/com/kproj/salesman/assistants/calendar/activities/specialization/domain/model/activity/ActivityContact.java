@@ -2,21 +2,18 @@ package br.com.kproj.salesman.assistants.calendar.activities.specialization.doma
 
 
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.contact.Contact;
-import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
 @Model
-public class ActivityContact extends ModelIdentifiable {
-
-    private Long id;
+public class ActivityContact extends Activity {
 
     private Contact contact;
 
-    public ActivityContact(Long id){
-        this.id = id;
+    public ActivityContact(){
     }
 
-    public ActivityContact(){
+    public ActivityContact(Long id) {
+        super.setId(id);
     }
 
     public Contact getContact() {
@@ -27,12 +24,4 @@ public class ActivityContact extends ModelIdentifiable {
         this.contact = contact;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

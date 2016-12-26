@@ -6,7 +6,13 @@ import com.trex.shared.annotations.Model;
 @Model
 public class Activity extends ModelIdentifiable {
 
+
     private Long id;
+
+    public Activity() {}
+    public Activity(Long id) {
+        this.id = id;
+    }
 
     @Override
     public Long getId() {

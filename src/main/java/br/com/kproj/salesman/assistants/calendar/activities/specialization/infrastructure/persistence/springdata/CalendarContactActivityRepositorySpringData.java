@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import org.springframework.stereotype.Repository;
 
 @Repository("calendarActivityContactRepositoryCalendarModule")
-public interface CalendarContactActivityRepository extends BaseRepositoryLegacy<CalendarActivityContactEntity, Long> {
+public interface CalendarContactActivityRepositorySpringData extends BaseRepositoryLegacy<CalendarActivityContactEntity, Long> {
 
 
 

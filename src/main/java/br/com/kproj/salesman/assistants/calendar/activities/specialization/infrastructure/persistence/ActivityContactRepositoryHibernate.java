@@ -6,7 +6,7 @@ import br.com.kproj.salesman.assistants.calendar.activities.specialization.domai
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.ActivityContactRepository;
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.contact.Contact;
 
-import br.com.kproj.salesman.assistants.calendar.activities.specialization.infrastructure.persistence.springdata.CalendarContactActivityRepository;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.infrastructure.persistence.springdata.CalendarContactActivityRepositorySpringData;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity_specialization.CalendarActivityContactEntity;
@@ -23,11 +23,11 @@ import java.util.Optional;
 public class ActivityContactRepositoryHibernate extends BaseRespositoryImpl<ActivityContact, CalendarActivityContactEntity> implements ActivityContactRepository {
 
 
-    private CalendarContactActivityRepository repository;
+    private CalendarContactActivityRepositorySpringData repository;
     private CalendarActivityRepository activityRepository;
 
     @Autowired
-    public ActivityContactRepositoryHibernate(CalendarContactActivityRepository repository,
+    public ActivityContactRepositoryHibernate(CalendarContactActivityRepositorySpringData repository,
                                               CalendarActivityRepository activityRepository) {
         this.repository = repository;
         this.activityRepository = activityRepository;
