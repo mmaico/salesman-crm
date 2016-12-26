@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.assistants.calendar.activities.specialization.view
 
-import br.com.kproj.salesman.assistants.calendar.activities.activity.view.ActivityEndpoint
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
 import br.com.kproj.salesman.infratest.SceneryLoaderHelper
@@ -56,5 +55,54 @@ class ActivityContactEndpointIT extends AbstractIntegrationTest {
             activityContactCreated.item.links.find{it.rel == "of-contact"}.href == "/contacts/3"
             activityContactCreated.item.links.find{it.rel == "parent"}.href == "/rs/users/calendars/calendar-activities/${activityCreated.item.id}"
     }
-    
+
+    @Unroll
+    def "Should not create a calendar activity contact with invalid contact"() {
+        given:
+            def uri = "/rs/users/calendars/1/calendar-activities"
+            def uriContact = "/rs/users/calendars/calendar-activities/{activityId}/calendar-activities-contacts"
+        when:
+            def resultActivity = mockMvc.perform(post(uri)
+                    .content(scenery("Should create a calendar activity with all data").json)
+                    .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+            def activityCreated = new JsonSlurper().parseText(resultActivity.response.contentAsString)
+
+            def resultActivityContact = mockMvc.perform(post(uriContact.replace("{activityId}", activityCreated.item.id.toString()))
+                    .content('''{}''')
+                    .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        then: "Should return a bad request"
+            resultActivityContact.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a calendar activity contact with invalid activity"() {
+        given:
+            def invalidActivityId = 9999
+            def uriContact = "/rs/users/calendars/calendar-activities/{activityId}/calendar-activities-contacts"
+        when:
+
+            def resultActivityContact = mockMvc.perform(post(uriContact.replace("{activityId}", invalidActivityId.toString()))
+                .content('''{"contact": {"id":3}}''')
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        then: "Should return a bad request"
+            resultActivityContact.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    def "Should not create a calendar activity contact when already exists"() {
+        given:
+            def activityId = 3
+            def uriContact = "/rs/users/calendars/calendar-activities/${activityId}/calendar-activities-contacts"
+        when:
+            def resultActivityContact = mockMvc.perform(post(uriContact)
+                .content('''{"contact": {"id":3}}''')
+                .contentType(MediaType.APPLICATION_JSON)).andReturn()
+
+        then: "Should return a bad request"
+            resultActivityContact.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
 }
