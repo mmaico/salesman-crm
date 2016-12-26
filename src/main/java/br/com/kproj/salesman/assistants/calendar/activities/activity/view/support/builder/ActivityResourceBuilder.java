@@ -1,9 +1,10 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.builder;
 
 
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent;
-import br.com.kproj.salesman.assistants.calendar.view.support.resource.ActivityResource;
+
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Represent;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.resource.ActivityResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
@@ -20,7 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.Represent.*;
+
+import static br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Represent.*;
 import static br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder.getUri;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;
 import static org.apache.commons.lang3.StringUtils.EMPTY;

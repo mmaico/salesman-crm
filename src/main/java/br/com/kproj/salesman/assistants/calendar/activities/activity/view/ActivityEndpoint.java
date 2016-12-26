@@ -1,13 +1,14 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.view;
 
 
-import br.com.kproj.salesman.assistants.calendar.application.ActivityFacade;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendar;
-import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
-import br.com.kproj.salesman.assistants.calendar.view.support.builder.ActivityResourceBuilder;
-import br.com.kproj.salesman.assistants.calendar.view.support.resource.ActivityResource;
-import br.com.kproj.salesman.assistants.calendar.view.support.update.ActivityUpdateFields;
+
+import br.com.kproj.salesman.assistants.calendar.activities.activity.application.ActivityFacade;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityInCalendar;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.builder.ActivityResourceBuilder;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.resource.ActivityResource;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.update.ActivityUpdateFields;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-import static br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityBuilder.createActivity;
+import static br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityBuilder.createActivity;
 
 
 @RestController("activityCalendarEndpointCalendarModule")
