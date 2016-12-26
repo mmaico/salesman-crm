@@ -1,6 +1,5 @@
-package br.com.kproj.salesman.assistants.calendar.activities.view
+package br.com.kproj.salesman.assistants.calendar.activities.activity.view
 
-import br.com.kproj.salesman.assistants.calendar.activities.activity.view.ActivityEndpoint
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
 import br.com.kproj.salesman.infratest.SceneryLoaderHelper
