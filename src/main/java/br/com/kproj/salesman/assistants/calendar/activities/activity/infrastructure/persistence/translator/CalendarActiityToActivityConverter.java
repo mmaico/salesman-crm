@@ -28,6 +28,8 @@ public class CalendarActiityToActivityConverter implements Converter<CalendarAct
 
         if (activityEntity.getRepresent() != null) {
             activity.setRepresent(Represent.valueOf(activityEntity.getRepresent().name()));
+        } else {
+            activity.setRepresent(Represent.NO_REPRESENT);
         }
 
         if (activityEntity.getCalendar() != null) {

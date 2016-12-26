@@ -1,15 +1,12 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.application.impl;
 
 
-
 import br.com.kproj.salesman.assistants.calendar.activities.activity.application.ActivityFacade;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityInCalendar;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityValidator;
-
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.Calendar;
-
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -19,9 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static br.com.kproj.salesman.assistants.calendar.activities.activity.application.validators.ActivityRulesDescription.activityNotExists;
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.application.validators.ActivityRulesDescription.ignoreRules;
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.user.User.user;
-import static br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription.activityNotExists;
 
 
 @Service

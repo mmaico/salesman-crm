@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.assistants.calendar.activities.specialization.view.support.builder;
 
 
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.view.support.resource.specialization.ActivityContactResource;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.ActivityContact;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.view.support.resource.ActivityContactResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
@@ -22,13 +22,13 @@ public class ActivityContactResourceBuilder {
     @Autowired
     private HttpServletRequest request;
 
-    public ResourceItem build(Activity activity) {
+    public ResourceItem build(ActivityContact activity) {
         ActivityContactResource resource = buildItem(activity);
 
         return new ResourceItem(resource, getUri(request));
     }
 
-    public ActivityContactResource buildItem(Activity activity) {
+    public ActivityContactResource buildItem(ActivityContact activity) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
 
         ActivityContactResource resource = new ActivityContactResource();

@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.assistants.calendar.calendar.domain.model.user;
+package br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.user;
 
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
@@ -15,6 +15,7 @@ public class User extends ModelIdentifiable {
     }
 
     public User() {
+
     }
 
     @Override

@@ -1,10 +1,11 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.application.validators;
 
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityRepository;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityValidator;
-import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
-import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.CalendarRepository;
+
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityRepository;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityValidator;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.CalendarRepository;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.infrastructure.validators.IgnoreRules;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
@@ -23,7 +24,7 @@ import static br.com.kproj.salesman.assistants.calendar.activities.activity.appl
 import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.hasHourOrMinutesSet;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-@Component
+@Component("activityBusinessRulesCalendarModule")
 public class ActivityBusinessRules implements ActivityValidator {
 
     private ActivityRepository repository;

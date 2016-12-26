@@ -1,8 +1,8 @@
-package br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.resource;
+package br.com.kproj.salesman.assistants.calendar.activities.specialization.view.support.resource;
 
 
 
-import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.Calendar;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.Activity;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
@@ -13,11 +13,9 @@ import java.util.Collection;
 
 @JsonPropertyOrder({
         "id",
-        "owner",
-        "activities",
         "links"
 })
-@ResourceItem(name="calendars", modelReference = Calendar.class, parent = UserResource.class)
+@ResourceItem(name="calendars", modelReference = Activity.class, parent = UserResource.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CalendarResource extends Item {
 
@@ -27,6 +25,7 @@ public class CalendarResource extends Item {
 
     private UserResource owner;
 
+
     public Long getId() {
         return id;
     }
@@ -34,6 +33,7 @@ public class CalendarResource extends Item {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     @Selectable(expression = "has-activities")
     public Collection<ActivityResource> getActivities() {

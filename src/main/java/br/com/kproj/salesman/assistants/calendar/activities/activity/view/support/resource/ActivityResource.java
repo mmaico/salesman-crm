@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.resource;
 
 
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.view.support.resource.CalendarResource;
+
+import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;

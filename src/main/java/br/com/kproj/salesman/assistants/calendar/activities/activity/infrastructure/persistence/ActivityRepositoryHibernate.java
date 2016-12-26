@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 import static com.trex.clone.BusinessModelClone.from;
 
-@Repository("activityRepositoryHibernateCalendarModule")
+@Repository("activityRepositoryHibernateCalendarActivityModule")
 public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, CalendarActivityEntity> implements ActivityRepository {
 
 

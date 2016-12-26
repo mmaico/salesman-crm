@@ -1,11 +1,12 @@
 package br.com.kproj.salesman.assistants.calendar.activities.specialization.view;
 
 
-import br.com.kproj.salesman.assistants.calendar.application.ActivityContactFacade;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityContact;
-import br.com.kproj.salesman.assistants.calendar.domain.model.relations.Contact;
-import br.com.kproj.salesman.assistants.calendar.view.support.builder.ActivityContactResourceBuilder;
-import br.com.kproj.salesman.assistants.calendar.view.support.resource.specialization.ActivityContactResource;
+
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.application.ActivityContactFacade;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.ActivityContact;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.contact.Contact;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.view.support.builder.ActivityContactResourceBuilder;
+import br.com.kproj.salesman.assistants.calendar.activities.specialization.view.support.resource.ActivityContactResource;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import org.springframework.beans.factory.annotation.Autowired;
