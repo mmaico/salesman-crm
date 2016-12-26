@@ -15,7 +15,7 @@ import java.util.Map;
 import static br.com.kproj.salesman.infrastructure.validators.RuleKey.key;
 
 
-@Component
+@Component("activityBusinessRulesSpecialization")
 public class ActivityBusinessRules implements ActivityValidator {
 
 

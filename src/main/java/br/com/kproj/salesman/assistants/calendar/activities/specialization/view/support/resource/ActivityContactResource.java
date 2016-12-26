@@ -6,8 +6,12 @@ import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
+@JsonPropertyOrder({
+        "id",
+        "links"
+})
 @ResourceItem(name="activities-contacts", modelReference = ActivityContact.class, parent = ActivityResource.class)
 public class ActivityContactResource extends Item {
 
