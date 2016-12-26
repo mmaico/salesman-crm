@@ -2,13 +2,14 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity
 
 
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
+import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="calendar_activity_contact")
-public class CalendarActivityContactEntity {
+public class CalendarActivityContactEntity extends Identifiable {
 
     @Id
     private Long id;

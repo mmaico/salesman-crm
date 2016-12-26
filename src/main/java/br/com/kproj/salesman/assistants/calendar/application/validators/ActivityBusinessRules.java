@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.assistants.calendar.application.validators;
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendarValidator;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityValidator;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.CalendarRepository;
@@ -23,7 +23,7 @@ import static br.com.kproj.salesman.infrastructure.helpers.DateHelper.hasHourOrM
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-public class ActivityBusinessRules implements ActivityInCalendarValidator {
+public class ActivityBusinessRules implements ActivityValidator {
 
     private ActivityRepository repository;
     private CalendarRepository calendarRepository;

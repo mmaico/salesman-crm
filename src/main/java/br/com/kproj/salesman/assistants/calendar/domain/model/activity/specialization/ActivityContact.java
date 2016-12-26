@@ -22,4 +22,5 @@ public class ActivityContact extends Activity {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
+
 }

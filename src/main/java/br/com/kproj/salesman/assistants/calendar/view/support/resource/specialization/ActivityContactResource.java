@@ -2,12 +2,14 @@ package br.com.kproj.salesman.assistants.calendar.view.support.resource.speciali
 
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.specialization.ActivityContact;
 import br.com.kproj.salesman.assistants.calendar.view.support.resource.ActivityResource;
+import br.com.kproj.salesman.assistants.calendar.view.support.resource.ContactResource;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.services.Service;
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableResource;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
 import br.com.uol.rest.infrastructure.annotations.SuperClass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @ResourceItem(name="activities-contacts", modelReference = ActivityContact.class, parent = ActivityResource.class)
@@ -17,6 +19,8 @@ public class ActivityContactResource extends Item {
 
     @SuperClass
     private ActivityResource activity;
+
+    private ContactResource contact;
 
     public Long getId() {
         return id;
@@ -33,6 +37,20 @@ public class ActivityContactResource extends Item {
 
     public void setActivity(ActivityResource activity) {
         this.activity = activity;
+    }
+
+    @Selectable(expression = "of-contact", externalLink = true)
+    public ContactResource getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactResource contact) {
+        this.contact = contact;
+    }
+
+    @JsonIgnore
+    public Long getContactId() {
+        return contact == null ? null : contact.getId();
     }
 
 }

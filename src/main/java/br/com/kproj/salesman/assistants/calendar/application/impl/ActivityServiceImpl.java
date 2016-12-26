@@ -2,13 +2,11 @@ package br.com.kproj.salesman.assistants.calendar.application.impl;
 
 
 import br.com.kproj.salesman.assistants.calendar.application.ActivityFacade;
-import br.com.kproj.salesman.assistants.calendar.application.validators.ActivityRulesDescription;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.Activity;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendar;
-import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityInCalendarValidator;
+import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityValidator;
 import br.com.kproj.salesman.assistants.calendar.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.assistants.calendar.domain.model.calendar.Calendar;
-import br.com.kproj.salesman.assistants.calendar.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -26,10 +24,10 @@ import static br.com.kproj.salesman.assistants.calendar.domain.model.user.User.u
 public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implements ActivityFacade {
 
     private ActivityRepository repository;
-    private ActivityInCalendarValidator rules;
+    private ActivityValidator rules;
 
     @Autowired
-    public ActivityServiceImpl(ActivityRepository repository, ActivityInCalendarValidator rules) {
+    public ActivityServiceImpl(ActivityRepository repository, ActivityValidator rules) {
         this.repository = repository;
         this.rules = rules;
     }
