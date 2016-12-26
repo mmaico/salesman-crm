@@ -44,14 +44,6 @@
     }
   },
   {
-    "scenery": "Should not create a calendar activity without allDay informed",
-    "json": {
-      "title":"Reuniao com o Jose",
-      "start":"2015-02-10T14:00:00.00Z",
-      "end":"2015-02-10T15:00:00.00Z"
-    }
-  },
-  {
     "scenery": "Should not create a calendar activity with AllDay true  and start e end with hours",
     "json": {
       "title":"Reuniao com o Jose",

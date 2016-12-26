@@ -164,18 +164,6 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a calendar activity without allDay informed"() {
-        given:
-            def uri = "/rs/users/calendars/1/calendar-activities"
-        when:
-            def mvcResult = mockMvc.perform(post(uri)
-                .content(scenery("Should not create a calendar activity without allDay informed").json)
-                .contentType(MediaType.APPLICATION_JSON)).andReturn()
-        then: "Should return a bad request"
-            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
-    }
-
-    @Unroll
     def "Should not create a calendar activity with AllDay true  and start e end with hours"() {
         given:
             def uri = "/rs/users/calendars/1/calendar-activities"
