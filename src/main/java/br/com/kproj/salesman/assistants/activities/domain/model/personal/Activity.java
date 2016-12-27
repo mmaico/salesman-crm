@@ -1,17 +1,11 @@
 package br.com.kproj.salesman.assistants.activities.domain.model.personal;
 
-import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
-import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Assigner;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
-import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @Model
 public class Activity extends ModelIdentifiable {
@@ -22,12 +16,9 @@ public class Activity extends ModelIdentifiable {
     private String description;
     private Date deadline;
     private Status status;
-
-    private List<SubActivity> activities;
-
     private Owner owner;
     private Assigner assigner;
-
+    private Represent represent;
 
 
     @Override
@@ -63,14 +54,6 @@ public class Activity extends ModelIdentifiable {
         this.deadline = deadline;
     }
 
-    public List<SubActivity> getActivities() {
-        return activities;
-    }
-
-    public void setActivities(List<SubActivity> activities) {
-        this.activities = activities;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -95,5 +78,11 @@ public class Activity extends ModelIdentifiable {
         this.assigner = assigner;
     }
 
+    public Represent getRepresent() {
+        return represent;
+    }
 
+    public void setRepresent(Represent represent) {
+        this.represent = represent;
+    }
 }

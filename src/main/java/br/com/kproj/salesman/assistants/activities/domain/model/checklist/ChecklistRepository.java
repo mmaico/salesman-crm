@@ -13,7 +13,7 @@ public interface ChecklistRepository extends BaseRepository<Checklist, Long> {
 
     Collection<Checklist> findAll(Activity activity);
 
-    void complete(Checklist checklist);
+    Checklist update(Checklist checklist);
 
     Optional<Checklist> newCheckList(Checklist checklist, Activity activity);
 }

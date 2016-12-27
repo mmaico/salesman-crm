@@ -24,9 +24,7 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
 
-    public final ListPath<PersonalActivityEntity, QPersonalActivityEntity> activitiesChildren = this.<PersonalActivityEntity, QPersonalActivityEntity>createList("activitiesChildren", PersonalActivityEntity.class, QPersonalActivityEntity.class, PathInits.DIRECT2);
-
-    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity assignment;
+    public final br.com.kproj.salesman.infrastructure.entity.QUserEntity assigner;
 
     public final ListPath<ActivityChecklistEntity, QActivityChecklistEntity> checklist = this.<ActivityChecklistEntity, QActivityChecklistEntity>createList("checklist", ActivityChecklistEntity.class, QActivityChecklistEntity.class, PathInits.DIRECT2);
 
@@ -38,13 +36,13 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity owner;
 
-    public final NumberPath<Long> parentId = createNumber("parentId", Long.class);
-
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus.class);
 
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
 
     public final StringPath title = createString("title");
+
+    public final EnumPath<ActivityTypeEntity> type = createEnum("type", ActivityTypeEntity.class);
 
     public QPersonalActivityEntity(String variable) {
         this(PersonalActivityEntity.class, forVariable(variable), INITS);
@@ -64,7 +62,7 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
 
     public QPersonalActivityEntity(Class<? extends PersonalActivityEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.assignment = inits.isInitialized("assignment") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assignment"), inits.get("assignment")) : null;
+        this.assigner = inits.isInitialized("assigner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assigner"), inits.get("assigner")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
         this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }

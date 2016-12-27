@@ -9,6 +9,7 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEn
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.trex.clone.BusinessModelClone.from;
 
 
 @Repository("checklistRepositoryHibernateActivitiesModule")
@@ -30,9 +33,12 @@ public class ChecklistRepositoryHibernate extends BaseRespositoryImpl<Checklist,
     }
 
     @Override
-    public void complete(Checklist checklist) {
+    public Checklist update(Checklist checklist) {
         ActivityChecklistEntity checklistEntity = checklistRepository.findOne(checklist.getId());
-        checklistEntity.setDone(Boolean.TRUE);
+        from(checklist).merge(checklistEntity);
+
+        checklistRepository.save(checklistEntity);
+        return getConverter().convert(checklistEntity);
     }
 
     @Override

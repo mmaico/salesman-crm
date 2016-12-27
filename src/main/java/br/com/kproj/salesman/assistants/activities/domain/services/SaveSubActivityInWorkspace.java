@@ -2,7 +2,7 @@ package br.com.kproj.salesman.assistants.activities.domain.services;
 
 
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SubActivity;
+import br.com.kproj.salesman.assistants.activities.domain.model.personal.subactivity.SubActivity;
 
 import java.util.Optional;
 

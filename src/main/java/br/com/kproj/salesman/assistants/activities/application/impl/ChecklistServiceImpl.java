@@ -5,7 +5,6 @@ import br.com.kproj.salesman.assistants.activities.domain.model.checklist.AddChe
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
-import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
+
+import static br.com.kproj.salesman.assistants.activities.domain.model.user.Owner.owner;
 
 @Service("checklistFacadeActivitiesModule")
 public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implements ChecklistFacade {
@@ -23,15 +24,14 @@ public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implem
 
     public Optional<Checklist> register(AddChecklistInActivity addChecklistInActivity) {
         Activity activity = addChecklistInActivity.getActivity();
-        Owner owner = addChecklistInActivity.getOwner();
         Checklist checklist = addChecklistInActivity.getChecklist();
 
-        return owner.add(checklist).in(activity);
+        return owner().add(checklist).in(activity);
     }
 
     @Override
-    public void completed(Owner owner, Checklist checklist) {
-        owner.marks(checklist).asCompleted();
+    public Checklist update(Checklist checklist) {
+        return owner().update(checklist);
     }
 
     @Override

@@ -6,7 +6,14 @@ import com.trex.shared.annotations.Model;
 @Model
 public class Assigner extends ModelIdentifiable {
 
+
+
     private Long id;
+
+    public Assigner() {}
+    public Assigner(Long id) {
+        this.id = id;
+    }
 
     @Override
     public Long getId() {

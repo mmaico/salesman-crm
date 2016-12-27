@@ -26,13 +26,6 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
     private String title;
     private String description;
 
-    @OneToMany(cascade =CascadeType.ALL)
-    @JoinColumn(name="parent_id")
-    private List<PersonalActivityEntity> activitiesChildren;
-
-    @Column(name = "parent_id", updatable =false, insertable = false)
-    private Long parentId;
-
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
     @NotNull(message = "personal.activity.deadline.not.informed")
@@ -49,12 +42,16 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
     private UserEntity owner;
 
     @ManyToOne
-    @JoinColumn(name="assignment_id")
-    private UserEntity assignment;
+    @JoinColumn(name="assigner_id")
+    private UserEntity assigner;
 
     @OneToOne
     @JoinColumn(name = "timeline_id")
     private Timeline timeline;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private ActivityTypeEntity type;
 
 
     @Transient
@@ -66,13 +63,6 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
     }
 
     public PersonalActivityEntity() {}
-
-    public void addChild(PersonalActivityEntity task) {
-        if (this.activitiesChildren == null) {
-            this.activitiesChildren = Lists.newArrayList();
-        }
-        this.activitiesChildren.add(task);
-    }
 
     public void addCheckList(ActivityChecklistEntity checklist) {
         if (this.checklist == null) {
@@ -106,14 +96,6 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
         this.description = description;
     }
 
-    public List<PersonalActivityEntity> getActivitiesChildren() {
-        return activitiesChildren;
-    }
-
-    public void setActivitiesChildren(List<PersonalActivityEntity> activitiesChildren) {
-        this.activitiesChildren = activitiesChildren;
-    }
-
     public Date getDeadline() {
         return deadline;
     }
@@ -138,24 +120,12 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
         this.timeline = timeline;
     }
 
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     public PersonalActivityEntity getParent() {
         return parent;
     }
 
     public void setParent(PersonalActivityEntity parent) {
         this.parent = parent;
-    }
-
-    public Boolean hasValidParent() {
-        return parent != null && !parent.isNew();
     }
 
     public PersonalAcvitityStatus getStatus() {
@@ -174,11 +144,19 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
         this.owner = owner;
     }
 
-    public UserEntity getAssignment() {
-        return assignment;
+    public UserEntity getAssigner() {
+        return assigner;
     }
 
-    public void setAssignment(UserEntity assignment) {
-        this.assignment = assignment;
+    public void setAssigner(UserEntity assigner) {
+        this.assigner = assigner;
+    }
+
+    public ActivityTypeEntity getType() {
+        return type;
+    }
+
+    public void setType(ActivityTypeEntity type) {
+        this.type = type;
     }
 }

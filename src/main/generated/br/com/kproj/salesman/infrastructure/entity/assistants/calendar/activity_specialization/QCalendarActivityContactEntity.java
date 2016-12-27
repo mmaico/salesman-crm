@@ -22,6 +22,8 @@ public class QCalendarActivityContactEntity extends EntityPathBase<CalendarActiv
 
     public static final QCalendarActivityContactEntity calendarActivityContactEntity = new QCalendarActivityContactEntity("calendarActivityContactEntity");
 
+    public final br.com.kproj.salesman.infrastructure.entity.QIdentifiable _super = new br.com.kproj.salesman.infrastructure.entity.QIdentifiable(this);
+
     public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarActivityEntity activity;
 
     public final br.com.kproj.salesman.infrastructure.entity.QContactEntity contact;
