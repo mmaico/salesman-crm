@@ -6,6 +6,7 @@ import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activit
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityValidator;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.SaveActivity;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
+import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,18 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
     }
 
     @Override
-    public Optional<Activity> register(SaveActivity activityToSave) {
-        Owner owner = activityToSave.getOwner();
-        Activity activity = activityToSave.getActivity();
+    public Optional<Activity> register(Activity activity) {
         activityRules.checkRules(activity);
 
-        return owner.save(activity);
+        return owner().save(activity);
     }
 
     @Override
     public Activity update(Activity activity) {
+
+        if (activity.isNew() || !repository.findOne(activity.getId()).isPresent()) {
+            throw new ValidationException("activity.not.found.on.update");
+        }
 
         return owner().update(activity);
     }

@@ -9,7 +9,6 @@ import br.com.uol.rest.infrastructure.annotations.Selectable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.util.Collection;
 import java.util.Date;
 
 @JsonPropertyOrder({
@@ -31,7 +30,6 @@ public class ActivityResource extends Item {
     private String description;
     private Date deadline;
     private Status status;
-    private Collection<ChecklistResource> checklists;
     private OwnerResource owner;
     private AssignerResource assigner;
 
@@ -75,15 +73,6 @@ public class ActivityResource extends Item {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    @Selectable(expression = "has-checklists", externalLink = true)
-    public Collection<ChecklistResource> getChecklists() {
-        return checklists;
-    }
-
-    public void setChecklists(Collection<ChecklistResource> checklists) {
-        this.checklists = checklists;
     }
 
     @Selectable(expression = "of-owner", externalLink = true)

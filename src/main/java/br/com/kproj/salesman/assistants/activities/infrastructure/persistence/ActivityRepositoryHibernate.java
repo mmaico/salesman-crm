@@ -4,6 +4,7 @@ import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activit
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.assistants.activities.infrastructure.persistence.springdata.PersonalAcvitityRepository;
+import br.com.kproj.salesman.assistants.activities.infrastructure.persistence.translate.ActivityEntityToActivityConverter;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
@@ -28,6 +29,9 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, P
 
     @Autowired
     private PersonalAcvitityRepository repository;
+
+    @Autowired
+    private ActivityEntityToActivityConverter converter;
 
 
     @Override
@@ -65,7 +69,7 @@ public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, P
 
     @Override
     public Converter<PersonalActivityEntity, Activity> getConverter() {
-        return null;
+        return converter;
     }
 
 

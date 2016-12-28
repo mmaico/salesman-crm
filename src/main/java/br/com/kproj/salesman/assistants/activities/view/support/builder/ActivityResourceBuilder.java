@@ -27,6 +27,8 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 @Component("activityResourceBuilderActivitiesModule")
 public class ActivityResourceBuilder {
 
+    private static final String URI_CHECKLISTS = "/rs/users/personal-activities/{activityId}/activities-checklists";
+
     @Autowired
     private HttpServletRequest request;
 
@@ -67,6 +69,7 @@ public class ActivityResourceBuilder {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
 
         selectLink.get(activity.getRepresent()).select(activity, context);
+        context.addLinkConf(ActivityResource.class, Link.createLink("has-checklists", URI_CHECKLISTS.replace("{activityId}", activity.getId().toString())));
 
         ActivityResource resource = new ActivityResource();
 

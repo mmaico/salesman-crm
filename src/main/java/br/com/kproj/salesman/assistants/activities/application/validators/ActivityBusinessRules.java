@@ -42,8 +42,11 @@ public class ActivityBusinessRules implements ActivityValidator {
                 || activity.getOwner().isNew()
                 || !ownerRepository.findOne(activity.getOwner().getId()).isPresent());
 
-        rules.put(key("activity.invalid.assignment", "assigner"), (activity) ->
-                activity.getAssigner() == null || activity.getAssigner().isNew() || !assignerRepository.findOne(activity.getAssigner().getId()).isPresent());
+        rules.put(key("activity.invalid.assignment", "assigner"), (activity) -> {
+            if (activity.getAssigner() == null && !activity.hasField("assigner")) return Boolean.FALSE;
+            return activity.getAssigner() == null
+                        || activity.getAssigner().isNew() || !assignerRepository.findOne(activity.getAssigner().getId()).isPresent();
+        });
     }
 
     @Override

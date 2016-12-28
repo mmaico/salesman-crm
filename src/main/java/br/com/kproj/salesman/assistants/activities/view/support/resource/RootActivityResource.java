@@ -15,7 +15,7 @@ import java.util.Collection;
 
 @JsonPropertyOrder({
         "id",
-        "task",
+        "activity",
         "links"
 })
 @ResourceItem(name="personal-root-activities", modelReference = RootActivity.class, parent = ActivityResource.class)
@@ -25,7 +25,7 @@ public class RootActivityResource extends Item {
     private Long id;
 
     @SuperClass
-    private ActivityResource task;
+    private ActivityResource activity;
 
     private Collection<SubActivityResource> children;
 
@@ -38,15 +38,15 @@ public class RootActivityResource extends Item {
     }
 
     @Selectable(expression = "is-a", expandByDefault = true)
-    public ActivityResource getTask() {
-        return task;
+    public ActivityResource getActivity() {
+        return activity;
     }
 
-    public void setTask(ActivityResource task) {
-        this.task = task;
+    public void setActivity(ActivityResource activity) {
+        this.activity = activity;
     }
 
-    @Selectable(expression = "children", externalLink = true, noExpandAnyWay = true)
+    //@Selectable(expression = "children", externalLink = true, noExpandAnyWay = true)
     public Collection<SubActivityResource> getChildren() {
         return children;
     }
@@ -57,6 +57,6 @@ public class RootActivityResource extends Item {
 
     @JsonIgnore
     public Long getTaskId() {
-        return this.task == null ? null : this.task.getId();
+        return this.activity == null ? null : this.activity.getId();
     }
 }

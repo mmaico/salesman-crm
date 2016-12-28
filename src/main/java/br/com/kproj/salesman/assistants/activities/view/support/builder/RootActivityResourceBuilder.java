@@ -3,12 +3,10 @@ package br.com.kproj.salesman.assistants.activities.view.support.builder;
 
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.rootactivity.RootActivity;
 import br.com.kproj.salesman.assistants.activities.view.support.resource.RootActivityResource;
-import br.com.kproj.salesman.delivery.tasks.view.support.resources.RootTaskResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.uol.rest.apiconverter.ConverterToResource;
-import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;
 import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
@@ -51,8 +49,7 @@ public class RootActivityResourceBuilder {
 
     private RootActivityResource buildItem(RootActivity rootActivity) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
-        context.addLinkConf(RootTaskResource.class, Link.createLink("children", URI_CHILDREN.replace("{rootActivityId}", rootActivity.getId().toString())));
-        context.addLinkConf(RootTaskResource.class, LinkRemoveConfig.createLinkRemoveConfig("children"));
+        context.addLinkConf(RootActivityResource.class, Link.createLink("children", URI_CHILDREN.replace("{rootActivityId}", rootActivity.getId().toString())));
 
         RootActivityResource resource = new RootActivityResource();
 

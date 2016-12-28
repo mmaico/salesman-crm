@@ -1,0 +1,85 @@
+[
+  {
+    "scenery": "Should create a activity with all data",
+    "json": {
+        "title":"Activity 0",
+        "description":"Activity One description 0",
+        "deadline":"2018-09-05T00:00:00Z"
+      }
+  },
+  {
+    "scenery": "Should not create a activity without title",
+    "json": {
+      "description":"Activity One description 0",
+      "deadline":"2018-09-05T00:00:00Z"
+    }
+  },
+  {
+    "scenery": "Should not create a activity with deadline less than current date",
+    "json": {
+      "title":"Activity 0",
+      "description":"Activity One description 0",
+      "deadline":"2016-04-05T00:00:00Z"
+    }
+  },
+  {
+    "scenery": "Should update a activity with all data",
+    "json": {
+      "title":"Activity updated",
+      "description":"Activity One description updated",
+      "deadline":"2019-09-05T00:00:00Z",
+      "status": "IN_PROGRESS"
+    }
+  },
+
+  {
+    "scenery": "Should update only title of activity",
+    "json": {
+      "title":"Activity updated 2"
+    }
+  },
+
+  {
+    "scenery": "Should update only status of activity",
+    "json": {
+      "status": "DONE"
+    }
+  },
+
+
+  {
+    "scenery": "Task com delivery invalido",
+    "json": {
+      "title":"SubTask 0",
+      "description":"Subtask One description 0",
+      "deadline":"2020-04-05T00:00:00Z"
+    }
+  },
+  {
+    "scenery": "Task com um novo titulo para atualizacao",
+    "json": {
+      "title":"Novo titulo para a task"
+    }
+  },
+  {
+    "scenery": "Task com novo status para atualizacao",
+    "json": {
+      "status": "PROBLEM"
+    }
+  },
+  {
+    "scenery": "Task com nova descricao para atualizacao",
+    "json": {
+      "description": "new Description to update"
+    }
+  },
+  {
+    "scenery": "Task com todos os dados alterados para atualizacao",
+    "json": {
+      "title":"Novo titulo para a task 0000",
+      "description": "new Description to update 0000",
+      "status": "PROBLEM",
+      "deadline":"2040-04-05T00:00:00Z"
+    }
+  }
+]

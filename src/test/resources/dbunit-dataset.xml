@@ -278,5 +278,19 @@
     <calendar_activity_business_proposal id="9" business_proposal_id="4" activity_id="9"/>
     <calendar_activity_business_proposal id="10" business_proposal_id="5" activity_id="10"/>
 
+    <!-- PERSON ACITITY -->
+    <personal_activity id="1" title="Title One" description="descritpion 1" deadline="2019-02-10 00:00:00" status="WAITING" owner_id="1" type="ROOTACTIVITY"/>
+    <personal_activity id="2" title="Title 2" description="descritpion 2" deadline="2019-02-10 00:00:00" status="IN_PROGRESS" owner_id="2" type="ROOTACTIVITY"/>
+    <personal_activity id="3" title="Title 3" description="descritpion 3" deadline="2019-02-10 00:00:00" status="IN_PROGRESS" owner_id="1" type="ROOTACTIVITY"/>
+    <personal_activity id="4" title="Title 4" description="descritpion 4" deadline="2019-02-10 00:00:00" status="DONE" owner_id="2" type="SUBACTIVITY"/>
+    <personal_activity id="5" title="Title 5" description="descritpion 5" deadline="2019-02-10 00:00:00" status="DONE" owner_id="2" type="SUBACTIVITY"/>
+
+    <personal_activity_root id="1" personal_activity_id="1"/>
+    <personal_activity_root id="2" personal_activity_id="2"/>
+    <personal_activity_root id="3" personal_activity_id="3"/>
+
+    <personal_activity_sub id="4" personal_activity_id="4" root_personal_activity_id="1"/>
+    <personal_activity_sub id="5" personal_activity_id="5" root_personal_activity_id="1"/>
+
 
 </dataset>
