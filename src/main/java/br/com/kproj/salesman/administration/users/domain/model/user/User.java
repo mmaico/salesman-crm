@@ -3,10 +3,11 @@ package br.com.kproj.salesman.administration.users.domain.model.user;
 import br.com.kproj.salesman.administration.users.domain.model.branch.Branch;
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.trex.shared.annotations.Model;
 
 import javax.validation.constraints.NotNull;
 
-
+@Model
 public class User extends ModelIdentifiable {
 
     private Long id;
