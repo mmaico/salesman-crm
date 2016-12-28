@@ -70,9 +70,10 @@ public class ChecklistRepositoryHibernate extends BaseRespositoryImpl<Checklist,
     public Converter<ActivityChecklistEntity, Checklist> getConverter() {
         return ((checklistEntity, args) -> {
             Checklist checklist = new Checklist();
-            checklist.setDone(checklistEntity.getIsDone());
+            checklist.setDone(checklistEntity.getDone());
             checklist.setName(checklistEntity.getName());
             checklist.setId(checklistEntity.getId());
+            checklist.setActivity(new Activity(checklistEntity.getActivity().getId()));
 
             return checklist;
         });

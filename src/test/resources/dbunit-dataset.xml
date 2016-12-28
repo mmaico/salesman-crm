@@ -292,5 +292,10 @@
     <personal_activity_sub id="4" personal_activity_id="4" root_personal_activity_id="1"/>
     <personal_activity_sub id="5" personal_activity_id="5" root_personal_activity_id="1"/>
 
+    <personal_activity_checklists id="1" name="Checkllist 1" is_done="true" personal_activity_id="1"/>
+    <personal_activity_checklists id="2" name="Checkllist 2" is_done="false" personal_activity_id="2"/>
+    <personal_activity_checklists id="3" name="Checkllist 3" is_done="true" personal_activity_id="2"/>
+    <personal_activity_checklists id="4" name="Checkllist 4" is_done="true" personal_activity_id="1"/>
+
 
 </dataset>

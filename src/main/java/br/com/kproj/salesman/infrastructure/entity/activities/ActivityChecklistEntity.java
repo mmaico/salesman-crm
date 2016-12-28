@@ -18,7 +18,7 @@ public class ActivityChecklistEntity extends Identifiable {
     private String name;
 
     @Column(name="is_done")
-    private Boolean isDone;
+    private Boolean done;
 
     @ManyToOne
     @JoinColumn(name="personal_activity_id")
@@ -41,20 +41,12 @@ public class ActivityChecklistEntity extends Identifiable {
         this.name = name;
     }
 
-    public Boolean getIsDone() {
-        return isDone;
-    }
-
-    public void setIsDone(Boolean isDone) {
-        this.isDone = isDone;
-    }
-
     public Boolean getDone() {
-        return isDone;
+        return this.done;
     }
 
     public void setDone(Boolean done) {
-        isDone = done;
+        this.done = done;
     }
 
     public PersonalActivityEntity getActivity() {

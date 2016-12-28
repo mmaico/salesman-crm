@@ -12,7 +12,7 @@ public class Checklist extends ModelIdentifiable {
 
     private String name;
 
-    private Boolean isDone;
+    private Boolean done;
 
     private Activity activity;
 
@@ -39,11 +39,11 @@ public class Checklist extends ModelIdentifiable {
     }
 
     public Boolean getDone() {
-        return isDone;
+        return done;
     }
 
     public void setDone(Boolean done) {
-        isDone = done;
+        this.done = done;
     }
 
     public Activity getActivity() {

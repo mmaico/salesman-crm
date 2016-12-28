@@ -4,6 +4,7 @@ import br.com.kproj.salesman.assistants.activities.application.ChecklistFacade;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.AddChecklistInActivity;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistRepository;
+import br.com.kproj.salesman.assistants.activities.domain.model.checklist.ChecklistValidator;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
@@ -20,17 +21,23 @@ public class ChecklistServiceImpl extends BaseModelServiceImpl<Checklist> implem
 
     @Autowired
     private ChecklistRepository repository;
+    @Autowired
+    private ChecklistValidator rules;
 
 
     public Optional<Checklist> register(AddChecklistInActivity addChecklistInActivity) {
         Activity activity = addChecklistInActivity.getActivity();
         Checklist checklist = addChecklistInActivity.getChecklist();
+        checklist.setActivity(activity);
+
+        rules.checkRules(checklist);
 
         return owner().add(checklist).in(activity);
     }
 
     @Override
     public Checklist update(Checklist checklist) {
+        rules.checkRules(checklist);
         return owner().update(checklist);
     }
 

@@ -20,6 +20,10 @@ public class Activity extends ModelIdentifiable {
     private Assigner assigner;
     private Represent represent;
 
+    public Activity(){}
+    public Activity(Long id){
+        this.id = id;
+    }
 
     @Override
     public Long getId() {
