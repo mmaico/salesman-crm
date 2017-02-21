@@ -21,8 +21,8 @@ public class UserEntityToUserConverter implements Converter<UserEntity, User> {
     @Override
     public User convert(UserEntity userEntity, Object... args) {
         User user = createUser(userEntity.getId())
+                .withEmail(userEntity.getEmail())
                 .withName(userEntity.getName())
-                .withAvatar(userEntity.getAvatar())
                 .withLastname(userEntity.getLastname())
                 .withLogin(userEntity.getLogin())
                 .withPassword(userEntity.getPassword()).build();

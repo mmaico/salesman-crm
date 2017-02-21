@@ -46,6 +46,11 @@ public class UserRepositoryHibernate extends BaseRespositoryImpl<User, UserEntit
     }
 
     @Override
+    public User update(User user) {
+        return null;
+    }
+
+    @Override
     public BaseRepositoryLegacy<UserEntity, Long> getRepository() {
         return repository;
     }

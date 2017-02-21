@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
-import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApproverEntity;
 import org.apache.commons.io.IOUtils;
@@ -42,12 +41,6 @@ public class UserEntity extends Identifiable {
     private String lastname;
 
     private String email;
-    
-    @Basic(fetch = FetchType.LAZY)
-	@Column(name = "avatar", length = 200000)
-	@Lob
-    @ExcludeField
-	private byte[] avatar;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="position_id")
@@ -127,14 +120,6 @@ public class UserEntity extends Identifiable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-	
-	public byte[] getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(byte[] avatar) {
-		this.avatar = avatar;
-	}
 
     public UserPositionEntity getPosition() {
         return position;

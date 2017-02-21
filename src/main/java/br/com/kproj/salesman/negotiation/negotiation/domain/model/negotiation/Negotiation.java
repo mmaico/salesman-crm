@@ -51,11 +51,7 @@ public class Negotiation extends ModelIdentifiable {
 //        return Temperature.CLOSED_WON.equals(negotiation.get().getTemperature());
 //    }
 //
-//    public void changeTemperatureFor(Temperature newTemperature) {
-//        Optional<Negotiation> negotiation = repository.findOne(this.getId());
-//        negotiation.get().setTemperature(newTemperature);
-//        repository.save(negotiation.get());
-//    }
+
 
     //getters and setters
 

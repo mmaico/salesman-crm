@@ -21,10 +21,10 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
 
     private static final String ACTIVITIES_CREATE = "/assistants/activities/activity-create.json"
 
-    def MockMvc mockMvc
+    MockMvc mockMvc
 
     @Autowired
-    def WebApplicationContext webApplicationContext
+    WebApplicationContext webApplicationContext
 
 
     def setup() {
@@ -33,7 +33,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should create a activity with all data"() {
+    "Should create a activity with all data"() {
         given:
             def uri = "/rs/users/2/personal-activities"
             def newActivity = new JsonSlurper().parseText(scenery("Should create a activity with all data").getJson())
@@ -60,7 +60,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a activity without title"() {
+    "Should not create a activity without title"() {
         given:
             def uri = "/rs/users/2/personal-activities"
             def newActivity = new JsonSlurper().parseText(scenery("Should not create a activity without title").getJson())
@@ -73,7 +73,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a activity with deadline less than current date"() {
+    "Should not create a activity with deadline less than current date"() {
         given:
             def uri = "/rs/users/2/personal-activities"
             def newActivity = new JsonSlurper()
@@ -87,7 +87,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a activity with invalid owner"() {
+    "Should not create a activity with invalid owner"() {
         given:
             def uri = "/rs/users/9999/personal-activities"
             def newTask = new JsonSlurper().parseText(scenery("Should create a activity with all data").getJson())
@@ -100,7 +100,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update a activity with all data"() {
+    "Should update a activity with all data"() {
         given:
             def uri = "/rs/users/personal-activities/4"
             def updateActivity = new JsonSlurper().parseText(scenery("Should update a activity with all data").getJson())
@@ -127,7 +127,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update only title of activity"() {
+    "Should update only title of activity"() {
         given:
             def uri = "/rs/users/personal-activities/4"
             def updateActivity = new JsonSlurper().parseText(scenery("Should update only title of activity").getJson())
@@ -151,7 +151,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update only status of activity"() {
+    "Should update only status of activity"() {
         given:
             def uri = "/rs/users/personal-activities/4"
             def updateActivity = new JsonSlurper().parseText(scenery("Should update only status of activity").getJson())
@@ -175,7 +175,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find activity by owner"() {
+    "Should find activity by owner"() {
         given:
             def uri = "/rs/users/1/personal-activities"
         when:
@@ -213,7 +213,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find a activity by ID"() {
+    "Should find a activity by ID"() {
         given:
             def uri = "/rs/users/personal-activities/2"
         when:

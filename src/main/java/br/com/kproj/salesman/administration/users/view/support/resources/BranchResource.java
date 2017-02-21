@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "name",
         "links"
 })
-@ResourceItem(name="branchs", modelReference = Branch.class)
+@ResourceItem(name="rs/branchs", modelReference = Branch.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BranchResource extends Item {
 

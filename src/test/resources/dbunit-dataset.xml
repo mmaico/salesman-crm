@@ -1,11 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
 
+    <!-- Branch -->
+    <branchs id="1" name="RJ"/>
+    <branchs id="2" name="SP"/>
+    <branchs id="3" name="RS"/>
+
+    <!-- Position -->
+    <users_position id="1" name="Administrador"/>
+    <users_position id="2" name="Atendente"/>
+    <users_position id="3" name="Contador"/>
+    <users_position id="4" name="Financeiro"/>
+
     <!-- USERS -->
-    <users id="1" login="mmaico" password="1234" name="Maico"/>
-    <users id="2" login="mmaico1" password="1234" name="Maico1"/>
-    <users id="3" login="mmaico2" password="1234" name="Maico2"/>
-    <users id="4" login="mmaico3" password="1234" name="Maico3"/>
+    <users id="1" login="mmaico" password="1234" name="Maico" lastname="marcelo" email="marcelo@gmail.com" position_id="1" branch_id="2"/>
+    <users id="2" login="mmaico1" password="1234" name="Maico1" lastname="marcelo1" email="marcelo1@gmail.com" position_id="2" branch_id="2"/>
+    <users id="3" login="mmaico2" password="1234" name="Maico2" lastname="marcelo2" email="marcelo2@gmail.com" position_id="2" branch_id="3"/>
+    <users id="4" login="mmaico3" password="1234" name="Maico3" lastname="marcelo3" email="marcelo3@gmail.com" position_id="2" branch_id="1"/>
 
     <!-- PRODUCTS - SERVICES - PACKAGES AND UNIT -->
     <measurement_unit id="1" name="Kilo"/>

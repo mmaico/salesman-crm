@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.administration.users.application.impl;
 
 import br.com.kproj.salesman.administration.users.application.UserFacade;
+import br.com.kproj.salesman.administration.users.domain.model.administrator.Administrator;
 import br.com.kproj.salesman.administration.users.domain.model.user.User;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserEventHandler;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
+import static br.com.kproj.salesman.administration.users.domain.model.administrator.Administrator.administrator;
 
 @Service
 public class UserServiceImpl extends BaseModelServiceImpl<User> implements UserFacade {
@@ -29,11 +32,9 @@ public class UserServiceImpl extends BaseModelServiceImpl<User> implements UserF
 
     @Override
     public Optional<User> register(User user) {
-
         validator.checkRules(user);
 
-        Optional<User> userSaved = repository.save(user);
-
+        Optional<User> userSaved = administrator().register(user);
         eventHandler.userChanged(userSaved.get());
 
         return userSaved;
@@ -43,9 +44,10 @@ public class UserServiceImpl extends BaseModelServiceImpl<User> implements UserF
     public User update(User user) {
         validator.checkRules(user);
 
+        User userUpdated = administrator().update(user);
         eventHandler.userChanged(user);
 
-        return user;
+        return userUpdated;
     }
 
     @Override

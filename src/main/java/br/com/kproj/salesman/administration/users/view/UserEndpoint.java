@@ -79,7 +79,7 @@ public class UserEndpoint {
     public @ResponseBody
     ResourceItem update(@PathVariable Long userId, @RequestBody UserResource resource) {
 
-        User user = UserBuilder.createUser()
+        User user = UserBuilder.createUser(userId)
                 .withName(resource.getName())
                 .withPassword(resource.getPassword())
                 .withEmail(resource.getEmail())

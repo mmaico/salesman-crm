@@ -33,7 +33,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should create a checklist of a person activity"() {
+    "Should create a checklist of a person activity"() {
         given:
             def uri = "/rs/users/personal-activities/1/activities-checklists"
         when:
@@ -55,7 +55,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a checklist of activity when not have name"() {
+    "Should not create a checklist of activity when not have name"() {
         given:
             def uri = "/rs/users/personal-activities/1/activities-checklists"
         when:
@@ -67,7 +67,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a checklist of activity when invalid activity"() {
+    "Should not create a checklist of activity when invalid activity"() {
         given:
             def uri = "/rs/users/personal-activities/9999/activities-checklists"
         when:
@@ -79,7 +79,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should return all checklist of activity"() {
+    "Should return all checklist of activity"() {
         given:
             def uri = "/rs/users/personal-activities/2/activities-checklists"
         when:
@@ -103,7 +103,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should return one checklist by ID"() {
+    "Should return one checklist by ID"() {
         given:
             def uri = "/rs/users/personal-activities/activities-checklists/2"
         when:
@@ -122,7 +122,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update only name of checklist"() {
+    "Should update only name of checklist"() {
         given:
             def uri = "/rs/users/personal-activities/activities-checklists/4"
         when:
@@ -142,7 +142,7 @@ class ChecklistEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update only status of checklist"() {
+    "Should update only status of checklist"() {
         given:
             def uri = "/rs/users/personal-activities/activities-checklists/4"
         when:

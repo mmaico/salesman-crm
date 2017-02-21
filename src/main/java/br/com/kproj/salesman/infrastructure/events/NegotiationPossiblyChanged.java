@@ -22,7 +22,7 @@ public class NegotiationPossiblyChanged {
         return message;
     }
 
-    public static NegotiationPossiblyChanged createNegotiationMessage(Object object) {
+    public static NegotiationPossiblyChanged possiblyChanged(Object object) {
         return new NegotiationPossiblyChanged(object);
     }
 }

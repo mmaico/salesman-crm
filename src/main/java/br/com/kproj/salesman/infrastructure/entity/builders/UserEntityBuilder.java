@@ -33,12 +33,7 @@ public class UserEntityBuilder extends AbstractBuilder<UserEntity>  {
 		this.entity.setLastname(lastname);
 		return this;
 	}
-	
-	public UserEntityBuilder withAvatar(byte[] avatar) {
-		this.entity.setAvatar(avatar);
-		return this;
-	}
-	
+
 	public static UserEntityBuilder createUser(Long id) {
 		return new UserEntityBuilder(id);
 	}

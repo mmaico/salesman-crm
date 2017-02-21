@@ -4,10 +4,7 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.negotiation.negotiation.application.NegotiationFacade;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Negotiation;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationRepository;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationValidate;
-import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Temperature;
+import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.*;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.Seller;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.SellerSaveNegotiation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +22,8 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
     private NegotiationRepository repository;
     private NegotiationValidate negotiationBusinessRules;
 
-//    @Autowired
-//    private NegotiationEventHandler eventHandler;
+    @Autowired
+    private NegotiationEventHandler eventHandler;
 
 
     @Autowired
@@ -51,27 +48,16 @@ public class NegotiationServiceImpl extends BaseModelServiceImpl<Negotiation> im
     public Negotiation update(Negotiation negotiation) {
         negotiationBusinessRules.checkRules(negotiation);
 
-        return seller().update(negotiation);
+        Negotiation negotiationUpdated = seller().update(negotiation);
+        eventHandler.possiblyChanged(negotiationUpdated);
+
+        return negotiationUpdated;
     }
 
     @Override
     public Collection<Negotiation> findOne(Customer customer) {
         return repository.findOne(customer);
     }
-
-//    @Override
-//    public void changeTemperature(Seller seller, NegotiationChangeTemperature negotiationToChange) {
-//
-//        businessRules.isValidBusinessRulesFor(seller, negotiationToChange);
-//        Negotiation negotiation = negotiationToChange.getNegotiation();
-//        Temperature newTemperature = negotiationToChange.getNewTemperature();
-//
-//        seller.changeTemperature(newTemperature).from(negotiation);
-//
-//        if (negotiation.temperatureWasClosedWon()) {
-//            eventHandler.negotiationClosedWon(negotiation);
-//        }
-//    }
 
     @Override
     public BaseRepository<Negotiation, Long> getRepository() {
