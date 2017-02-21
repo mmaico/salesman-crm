@@ -31,14 +31,27 @@ public class UserServiceImpl extends BaseModelServiceImpl<User> implements UserF
     public Optional<User> register(User user) {
 
         validator.checkRules(user);
+
         Optional<User> userSaved = repository.save(user);
 
         eventHandler.userChanged(userSaved.get());
+
         return userSaved;
+    }
+
+    @Override
+    public User update(User user) {
+        validator.checkRules(user);
+
+        eventHandler.userChanged(user);
+
+        return user;
     }
 
     @Override
     public BaseRepository<User, Long> getRepository() {
         return repository;
     }
+
+
 }

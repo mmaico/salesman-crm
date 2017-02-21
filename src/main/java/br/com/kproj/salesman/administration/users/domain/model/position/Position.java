@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.administration.users.domain.model.user;
+package br.com.kproj.salesman.administration.users.domain.model.position;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 
@@ -11,6 +11,13 @@ public class Position extends ModelIdentifiable {
 
     @NotNull(message = "position.name")
     private String name;
+
+    public Position(Long id) {
+        this.id = id;
+    }
+
+    public Position() {
+    }
 
     @Override
     public Long getId() {

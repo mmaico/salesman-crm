@@ -27,7 +27,6 @@ public class UserDomainValidator implements UserValidator {
 
     {
         persistRules.put(description("user.already.existis.with.login"), (user) ->
-
                 user.isNew() || user.getFields().contains("login")
                         ? userRepository.findByLogin(user.getLogin()).isPresent() && !userRepository.findByLogin(user.getLogin()).get().equals(user)
                         : Boolean.FALSE
@@ -35,13 +34,7 @@ public class UserDomainValidator implements UserValidator {
 
         persistRules.put(description("user.password.is.null"), (user) ->
                 !user.isNew() && user.getFields().contains("password")
-                        ? isBlank(user.getPassword()) || isBlank(user.getPasswordConfirm())
-                        : Boolean.FALSE
-        );
-
-        persistRules.put(description("user.password.not.equals"), (user) ->
-                !user.isNew() && user.getFields().contains("password")
-                        ? !user.getPassword().equals(user.getPasswordConfirm())
+                        ? isBlank(user.getPassword())
                         : Boolean.FALSE
         );
 

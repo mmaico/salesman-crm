@@ -6,6 +6,7 @@ import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Te
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import br.com.uol.rest.infrastructure.annotations.Selectable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.apache.commons.lang3.StringUtils;
@@ -125,14 +126,17 @@ public class NegotiationResource extends Item {
         this.seller = seller;
     }
 
+    @JsonIgnore
     public Long getCustomerId() {
         return this.customer == null ? null : this.customer.getId();
     }
 
+    @JsonIgnore
     public Long getRegionId() {
         return this.region == null ? null : this.region.getId();
     }
 
+    @JsonIgnore
     public Long getSellerId() {
         return this.seller == null ? null : this.seller.getId();
     }

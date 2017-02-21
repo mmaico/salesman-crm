@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.administration.users.domain.model.user;
 
 
+import br.com.kproj.salesman.administration.users.domain.model.branch.Branch;
+import br.com.kproj.salesman.administration.users.domain.model.position.Position;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 
 public class UserBuilder extends AbstractBuilder<User>  {
@@ -33,11 +35,26 @@ public class UserBuilder extends AbstractBuilder<User>  {
 		this.entity.setLastname(lastname);
 		return this;
 	}
-	
-	public UserBuilder withAvatar(byte[] avatar) {
-		this.entity.setAvatar(avatar);
+
+	public UserBuilder withEmail(String email) {
+		this.entity.setEmail(email);
 		return this;
 	}
+
+	public UserBuilder withBranch(Long branchId) {
+		if (branchId != null) {
+			this.entity.setBranch(new Branch(branchId));
+		}
+		return this;
+	}
+
+	public UserBuilder withPosition(Long positionId) {
+		if (positionId != null) {
+			this.entity.setPosition(new Position(positionId));
+		}
+		return this;
+	}
+
 	
 	public static UserBuilder createUser(Long id) {
 		return new UserBuilder(id);

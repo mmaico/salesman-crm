@@ -9,6 +9,12 @@ public class Branch extends ModelIdentifiable {
 
     private String name;
 
+    public Branch(){}
+
+    public Branch(Long id){
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -40,7 +40,7 @@ public class RootTaskEndpoint {
         this.service = service;
         this.request = request;
     }
-    // ajustar para buscar todas as roots de um saleable
+    //TODO ajustar para buscar todas as roots de um saleable
     @RequestMapping(value = "/rs/saleables/task-definitions/root-task-definitions", method = RequestMethod.GET)
     public @ResponseBody
     ResourceItems getRootTasksBy() {

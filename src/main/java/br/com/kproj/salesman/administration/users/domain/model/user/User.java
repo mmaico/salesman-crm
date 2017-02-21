@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.administration.users.domain.model.user;
 
 import br.com.kproj.salesman.administration.users.domain.model.branch.Branch;
-import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
+import br.com.kproj.salesman.administration.users.domain.model.position.Position;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
 
@@ -16,17 +16,12 @@ public class User extends ModelIdentifiable {
 
     private String password;
 
-    private String passwordConfirm;
-
     @NotNull(message = "user.name.cannot.be.null")
     private String name;
 
     private String lastname;
 
     private String email;
-
-    @ExcludeField
-    private byte[] avatar;
 
     private Branch branch;
 
@@ -58,14 +53,6 @@ public class User extends ModelIdentifiable {
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
     public String getName() {
         return name;
     }
@@ -88,14 +75,6 @@ public class User extends ModelIdentifiable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
     }
 
     public Branch getBranch() {

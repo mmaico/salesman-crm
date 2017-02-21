@@ -32,7 +32,7 @@ public class RequestApprovalServiceImpl extends BaseModelServiceImpl<RequestAppr
     private EvaluationRequestValidator evaluationCheckRules;
 
 
-
+    //refatorar porque o codigo nao esta claro o que esta fazendo
     @Override
     public Optional<RequestApproval> register(RequestApproval request) {
         checkRules.isValidToStartRequestApproval(request);

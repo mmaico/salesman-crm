@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.administration.users.domain.model.user;
+package br.com.kproj.salesman.administration.users.domain.model.position;
 
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;

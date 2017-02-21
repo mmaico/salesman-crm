@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.administration.users.infrastructure.persistence.translator;
 
-import br.com.kproj.salesman.administration.users.domain.model.user.Position;
-import br.com.kproj.salesman.administration.users.domain.model.user.PositionBuilder;
+import br.com.kproj.salesman.administration.users.domain.model.position.Position;
+import br.com.kproj.salesman.administration.users.domain.model.position.PositionBuilder;
 import br.com.kproj.salesman.infrastructure.entity.UserPositionEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.stereotype.Component;
