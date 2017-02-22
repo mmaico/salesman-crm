@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.negotiation.domain.model.seller;
 
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationRepository;
@@ -13,6 +14,7 @@ public class Seller extends ModelIdentifiable {
 
     private Long id;
 
+    @ExcludeField
     @Autowired
     private NegotiationRepository repository;
 

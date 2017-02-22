@@ -24,10 +24,10 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     private static final String NEGOTIATIONS = "/negotiation/negotiation/negotiations.json"
 
 
-    def MockMvc mockMvc
+    MockMvc mockMvc
 
     @Autowired
-    def WebApplicationContext webApplicationContext
+    WebApplicationContext webApplicationContext
 
 
     def setup() {
@@ -36,7 +36,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find all negotiations paginated"() {
+    "Should find all negotiations paginated"() {
         given:
             def uri = "/rs/customers/negotiations?page=0&size=2"
         when:
@@ -57,7 +57,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find one customer by ID"() {
+    "Should find one customer by ID"() {
         given:
             def uri = "/rs/customers/negotiations/2"
         when:
@@ -71,7 +71,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should return 404 when negotiation not exist"() {
+    "Should return 404 when negotiation not exist"() {
         given:
             def uri = "/rs/customers/negotiations/6666"
         when:
@@ -81,7 +81,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should create a negotiation with all data"() {
+    "Should create a negotiation with all data"() {
         given:
             def uri = "/rs/customers/3/negotiations"
             def newNegotiation = new JsonSlurper().parseText(scenery("should create a negotiation with all data").getJson())
@@ -105,7 +105,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a negotiation with invalid customer"() {
+    "Should not create a negotiation with invalid customer"() {
         given:
             def uri = "/rs/customers/6666/negotiations"
             def newNegotiation = new JsonSlurper().parseText(scenery("should create a negotiation with all data").getJson())
@@ -118,7 +118,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should create a negotiation only required data"() {
+    "Should create a negotiation only required data"() {
         given:
             def uri = "/rs/customers/3/negotiations"
         when:
@@ -139,7 +139,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should update a negotiation with all data"() {
+    "Should update a negotiation with all data"() {
         given:
             def uri = "/rs/customers/negotiations/5"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation with all data").getJson())
@@ -167,7 +167,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller"() {
+    "should update a negotiation without seller"() {
         given:
             def uri = "/rs/customers/negotiations/6"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller").getJson())
@@ -195,7 +195,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller, customer"() {
+    "should update a negotiation without seller, customer"() {
         given:
             def uri = "/rs/customers/negotiations/7"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer").getJson())
@@ -223,7 +223,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller, customer, region"() {
+    "should update a negotiation without seller, customer, region"() {
         given:
             def uri = "/rs/customers/negotiations/8"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region").getJson())
@@ -251,7 +251,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller, customer, region, temperature"() {
+    "should update a negotiation without seller, customer, region, temperature"() {
         given:
             def uri = "/rs/customers/negotiations/9"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region, temperature").getJson())
@@ -279,7 +279,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller, customer, region, temperature, ammountPayable"() {
+    "should update a negotiation without seller, customer, region, temperature, ammountPayable"() {
         given:
             def uri = "/rs/customers/negotiations/10"
             def dataToUpdateNegotiation = new JsonSlurper().parseText(scenery("should update a negotiation without seller, customer, region, temperature, ammountPayable").getJson())
@@ -307,7 +307,7 @@ class NegotiationEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount"() {
+    "should update a negotiation without seller, customer, region, temperature, ammountPayable, discount"() {
         given:
             def uri = "/rs/customers/negotiations/11"
             def dataToUpdateNegotiation = new JsonSlurper()

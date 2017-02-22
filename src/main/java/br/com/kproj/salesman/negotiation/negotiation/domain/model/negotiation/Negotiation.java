@@ -1,5 +1,6 @@
 package br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation;
 
+import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.operation.Region;
@@ -39,6 +40,7 @@ public class Negotiation extends ModelIdentifiable {
 
     private Temperature temperature;
 
+    @ExcludeField
     @Autowired
     private NegotiationRepository repository;
 

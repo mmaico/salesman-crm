@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.service;
 
 
-public interface Serializer {
+public interface SerializerObject {
 
     <T> T deserialize(String json, Class<T> clazz);
 

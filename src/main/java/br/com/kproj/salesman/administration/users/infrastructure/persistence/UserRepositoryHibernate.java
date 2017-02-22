@@ -8,6 +8,7 @@ import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +48,11 @@ public class UserRepositoryHibernate extends BaseRespositoryImpl<User, UserEntit
 
     @Override
     public User update(User user) {
-        return null;
+        UserEntity userEntity = repository.findOne(user.getId());
+        BusinessModelClone.from(user).merge(userEntity);
+        UserEntity userUpdated = repository.save(userEntity);
+
+        return getConverter().convert(userUpdated);
     }
 
     @Override

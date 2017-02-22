@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.sales.view;
 
 import br.com.kproj.salesman.infrastructure.events.NegotiationClosedWonMessage;
-import br.com.kproj.salesman.infrastructure.service.Serializer;
+import br.com.kproj.salesman.infrastructure.service.SerializerObject;
 import br.com.kproj.salesman.sales.application.SalesOrderFacade;
 import br.com.kproj.salesman.sales.application.dto.NegotiationDTO;
 import com.google.common.eventbus.Subscribe;
@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 public class NegotiationSubscriber {
 
 
-    private Serializer serializer;
+    private SerializerObject serializerObject;
     private SalesOrderFacade service;
 
     @Autowired
-    public NegotiationSubscriber(Serializer serializer, SalesOrderFacade service) {
-        this.serializer = serializer;
+    public NegotiationSubscriber(SerializerObject serializerObject, SalesOrderFacade service) {
+        this.serializerObject = serializerObject;
         this.service = service;
     }
 
     @Subscribe
     public void generateSalesOrder(NegotiationClosedWonMessage message) {
-        NegotiationDTO negotiationDTO = serializer.deserialize(message.getMessage(), NegotiationDTO.class);
+        NegotiationDTO negotiationDTO = serializerObject.deserialize(message.getMessage(), NegotiationDTO.class);
         service.generate(negotiationDTO);
     }
 }

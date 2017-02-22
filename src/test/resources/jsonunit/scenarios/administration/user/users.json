@@ -1,0 +1,43 @@
+[
+  {
+    "scenery": "should create a user with all data",
+    "json": {
+        "name":"Jose Luiz",
+        "login":"mmaico30",
+        "password":"123456",
+        "lastname":"Orlof",
+        "email":"jose.luiz@gmail.com",
+        "position": {
+            "id": 1
+        },
+        "branch": {
+            "id": 3
+        }
+      }
+  },
+  {
+    "scenery": "should create a user with only required fields",
+    "json": {
+      "name":"Jhon Snow",
+      "login":"logintest",
+      "password":"555666"
+    }
+  },
+  {
+    "scenery": "should update user with all data",
+    "json": {
+      "id": 5,
+      "name":"Friedrich Hayek",
+      "login":"friedrich_hayek",
+      "password":"passhayek",
+      "lastname":"Hayek",
+      "email":"friedrich_hayek@gmail.com",
+      "position": {
+        "id": 1
+      },
+      "branch": {
+        "id": 3
+      }
+    }
+  }
+]

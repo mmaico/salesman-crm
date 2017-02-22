@@ -6,12 +6,14 @@ import br.com.kproj.salesman.administration.users.domain.model.user.UserReposito
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.trex.shared.annotations.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 @Model
 public class Administrator extends ModelIdentifiable {
 
+    @Autowired
     private UserRepository repository;
 
     public Administrator() {

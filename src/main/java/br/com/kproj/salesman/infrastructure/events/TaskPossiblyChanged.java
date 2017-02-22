@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.events;
 
 
 import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
-import br.com.kproj.salesman.infrastructure.service.Serializer;
+import br.com.kproj.salesman.infrastructure.service.SerializerObject;
 
 public class TaskPossiblyChanged {
 
@@ -14,7 +14,7 @@ public class TaskPossiblyChanged {
     }
 
     public TaskPossiblyChanged(Object message) {
-        Serializer transportFormat = ServiceLocator.getBean(Serializer.class);
+        SerializerObject transportFormat = ServiceLocator.getBean(SerializerObject.class);
         this.message = transportFormat.serialize(message);
     }
 

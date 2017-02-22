@@ -1,12 +1,15 @@
 package br.com.kproj.salesman.infrastructure.events;
 
 
-import br.com.kproj.salesman.infrastructure.configuration.ServiceLocator;
-import br.com.kproj.salesman.infrastructure.service.Serializer;
+import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
+import br.com.kproj.salesman.infrastructure.service.SerializerObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class NegotiationPossiblyChanged {
 
     private final String message;
+    @Autowired
+    private SerializerObject serializer;
 
 
     public NegotiationPossiblyChanged(String message) {
@@ -14,8 +17,8 @@ public class NegotiationPossiblyChanged {
     }
 
     public NegotiationPossiblyChanged(Object message) {
-        Serializer transportFormat = ServiceLocator.getBean(Serializer.class);
-        this.message = transportFormat.serialize(message);
+        AutowireHelper.autowire(this);
+        this.message = serializer.serialize(message);
     }
 
     public String getMessage() {

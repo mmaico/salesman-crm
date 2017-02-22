@@ -24,13 +24,13 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     private static final String SUBTASK_LIST = "/products_catalog/task_definition/subtask-definitions.json"
     private static final String TASK_CREATE = "/products_catalog/task_definition/save/task-definition-create.json"
 
-    def MockMvc mockMvc
+    MockMvc mockMvc
 
     @Autowired
-    def WebApplicationContext webApplicationContext
+    WebApplicationContext webApplicationContext
 
     @Autowired
-    def SaleableUnitRepository repository
+    SaleableUnitRepository repository
 
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
@@ -39,33 +39,42 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should find all subtasks definitions by roottask in Endpoint"() {
+    "Should find all subtasks definitions by roottask in Endpoint"() {
         given:
             def uri = "/rs/saleables/task-definitions/root-task-definitions/2/subtask-definitions"
         when:
             def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
-            def jsonExpected = new JsonSlurper().parseText(scenery("Lista de todos as subtasks definitions de um roottask no subtaskEndpoint").json)
-
             def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
         then:
             mvcResult.response.status == HttpStatus.OK.value
             jsonResult.uri == uri
 
             jsonResult.items.sort{it.id}
-            jsonResult.items[0].links.sort{it.rel}
-            jsonResult.items[0] == jsonExpected.items[0]
+            jsonResult.items[0].id == 1
+            jsonResult.items[0].task.id == 1
+            jsonResult.items[0].task.title == "SubTask One"
+            jsonResult.items[0].task.description == "Subtask One description"
+            jsonResult.items[0].task.quantityDaysToFinish == 3
+            jsonResult.items[0].links.find{it.rel == "child-of"}.href == "/rs/saleables/task-definitions/root-task-definitions/2"
 
-            jsonResult.items[1].links.sort{it.rel}
-            jsonResult.items[1] == jsonExpected.items[1]
+            jsonResult.items[1].id == 3
+            jsonResult.items[1].task.id == 3
+            jsonResult.items[1].task.title == "SubTask Three"
+            jsonResult.items[1].task.description == "Subtask Three description"
+            jsonResult.items[1].task.quantityDaysToFinish == 2
+            jsonResult.items[1].links.find{it.rel == "child-of"}.href == "/rs/saleables/task-definitions/root-task-definitions/2"
 
-            jsonResult.items[2].links.sort{it.rel}
-            jsonResult.items[2] == jsonExpected.items[2]
-
+            jsonResult.items[2].id == 4
+            jsonResult.items[2].task.id == 4
+            jsonResult.items[2].task.title == "SubTask Four"
+            jsonResult.items[2].task.description == "Subtask Four description"
+            jsonResult.items[2].task.quantityDaysToFinish == 6
+            jsonResult.items[2].links.find{it.rel == "child-of"}.href == "/rs/saleables/task-definitions/root-task-definitions/2"
 
     }
 
     @Unroll
-    def "Should find one sub task definitions by ID using SubtaskEnpoint"() {
+    "Should find one sub task definitions by ID using SubtaskEnpoint"() {
 
         given:
             def uri = "/rs/saleables/task-definitions/root-task-definitions/subtask-definitions/4"
@@ -82,7 +91,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should create a specialization sub task definition"() {
+    "Should create a specialization sub task definition"() {
         given: "A task definition created"
             def taskJson = new JsonSlurper().parseText(scenery("Criando uma nova task definition com todos os dados validos").json)
             def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/2/task-definitions")
@@ -124,7 +133,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a specialization sub task definition with ID task with already with a specialization"() {
+    "Should not create a specialization sub task definition with ID task with already with a specialization"() {
         given: "A task definition created"
             def subTaskDefinitionAlreadySpecializationID = 3
 
@@ -146,7 +155,7 @@ class SubtaskEndpointIT extends AbstractIntegrationTest {
     }
 
     @Unroll
-    def "Should not create a specialization of sub task definition when invalid root task definition"() {
+    "Should not create a specialization of sub task definition when invalid root task definition"() {
         given: "A task definition created"
             def taskJson = new JsonSlurper().parseText(scenery("Criando uma nova task definition com todos os dados validos").json)
             def taskDefinitionCreated = mockMvc.perform(post("/rs/saleables/2/task-definitions")

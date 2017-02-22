@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SerializerImpl implements Serializer {
+public class SerializerObjectImpl implements SerializerObject {
 
     private Gson gson;
 
     @Autowired
-    public SerializerImpl(Gson gson) {
+    public SerializerObjectImpl(Gson gson) {
         this.gson = gson;
     }
 

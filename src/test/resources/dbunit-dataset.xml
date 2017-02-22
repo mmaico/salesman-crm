@@ -17,6 +17,7 @@
     <users id="2" login="mmaico1" password="1234" name="Maico1" lastname="marcelo1" email="marcelo1@gmail.com" position_id="2" branch_id="2"/>
     <users id="3" login="mmaico2" password="1234" name="Maico2" lastname="marcelo2" email="marcelo2@gmail.com" position_id="2" branch_id="3"/>
     <users id="4" login="mmaico3" password="1234" name="Maico3" lastname="marcelo3" email="marcelo3@gmail.com" position_id="2" branch_id="1"/>
+    <users id="5" login="login-update" password="update" name="name-update" lastname="lastname-update" email="update@gmail.com" position_id="2" branch_id="1"/>
 
     <!-- PRODUCTS - SERVICES - PACKAGES AND UNIT -->
     <measurement_unit id="1" name="Kilo"/>

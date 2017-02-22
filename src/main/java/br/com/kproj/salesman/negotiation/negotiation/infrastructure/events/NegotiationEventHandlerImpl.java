@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class NegotiationEventHandlerImpl implements NegotiationEventHandler {
 
-    @Autowired
     private EventBus eventBus;
+
+    @Autowired
+    public NegotiationEventHandlerImpl(EventBus eventBus) {
+        this.eventBus = eventBus;
+    }
 
     @Override
     public void possiblyChanged(Negotiation negotiation) {

@@ -2,7 +2,7 @@ package br.com.kproj.salesman.sales.infrastructure.event;
 
 
 import br.com.kproj.salesman.infrastructure.events.NewSalesOrderMessage;
-import br.com.kproj.salesman.infrastructure.service.Serializer;
+import br.com.kproj.salesman.infrastructure.service.SerializerObject;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrder;
 import br.com.kproj.salesman.sales.domain.model.sales.SalesOrderEventHandler;
 import com.google.common.eventbus.EventBus;
@@ -14,12 +14,12 @@ public class SalesOrderEventHandlerImpl implements SalesOrderEventHandler {
 
     private EventBus eventBus;
 
-    private Serializer serializer;
+    private SerializerObject serializerObject;
 
     @Autowired
-    public SalesOrderEventHandlerImpl(EventBus eventBus, Serializer serializer) {
+    public SalesOrderEventHandlerImpl(EventBus eventBus, SerializerObject serializerObject) {
         this.eventBus = eventBus;
-        this.serializer = serializer;
+        this.serializerObject = serializerObject;
     }
 
     @Override
