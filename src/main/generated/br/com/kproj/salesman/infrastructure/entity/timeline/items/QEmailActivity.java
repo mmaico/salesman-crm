@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -32,7 +31,7 @@ public class QEmailActivity extends EntityPathBase<EmailActivity> {
     public final StringPath description;
 
     //inherited
-    public final ListPath<AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFile> files;
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFileEntity> files;
 
     public final StringPath from = createString("from");
 

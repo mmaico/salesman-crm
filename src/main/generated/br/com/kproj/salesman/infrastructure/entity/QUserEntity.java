@@ -26,8 +26,6 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.QApproverEntity approverEntity;
 
-    public final ArrayPath<byte[], Byte> avatar = createArray("avatar", byte[].class);
-
     public final QBranchEntity branch;
 
     public final br.com.kproj.salesman.infrastructure.entity.assistants.calendar.QCalendarEntity calendar;

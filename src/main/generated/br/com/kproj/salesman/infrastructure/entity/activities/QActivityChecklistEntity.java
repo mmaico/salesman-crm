@@ -26,9 +26,9 @@ public class QActivityChecklistEntity extends EntityPathBase<ActivityChecklistEn
 
     public final QPersonalActivityEntity activity;
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final BooleanPath done = createBoolean("done");
 
-    public final BooleanPath isDone = createBoolean("isDone");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 

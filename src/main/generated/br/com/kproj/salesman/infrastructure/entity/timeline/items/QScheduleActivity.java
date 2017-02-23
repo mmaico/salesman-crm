@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -34,7 +33,7 @@ public class QScheduleActivity extends EntityPathBase<ScheduleActivity> {
     public final DateTimePath<java.util.Date> endDate = createDateTime("endDate", java.util.Date.class);
 
     //inherited
-    public final ListPath<AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFile> files;
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFileEntity> files;
 
     //inherited
     public final NumberPath<Long> id;

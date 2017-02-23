@@ -10,16 +10,18 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QAppFile is a Querydsl query type for AppFileEntity
+ * QAppFileEntity is a Querydsl query type for AppFileEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QAppFile extends EntityPathBase<AppFileEntity> {
+public class QAppFileEntity extends EntityPathBase<AppFileEntity> {
 
-    private static final long serialVersionUID = 1312831022L;
+    private static final long serialVersionUID = 740371377L;
 
-    public static final QAppFile appFile = new QAppFile("appFile");
+    public static final QAppFileEntity appFileEntity = new QAppFileEntity("appFileEntity");
 
     public final QIdentifiable _super = new QIdentifiable(this);
+
+    public final StringPath cdnUrl = createString("cdnUrl");
 
     public final DateTimePath<java.util.Date> creation = createDateTime("creation", java.util.Date.class);
 
@@ -35,17 +37,19 @@ public class QAppFile extends EntityPathBase<AppFileEntity> {
 
     public final NumberPath<Long> size = createNumber("size", Long.class);
 
+    public final StringPath systemname = createString("systemname");
+
     public final NumberPath<Integer> width = createNumber("width", Integer.class);
 
-    public QAppFile(String variable) {
+    public QAppFileEntity(String variable) {
         super(AppFileEntity.class, forVariable(variable));
     }
 
-    public QAppFile(Path<? extends AppFileEntity> path) {
+    public QAppFileEntity(Path<? extends AppFileEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QAppFile(PathMetadata metadata) {
+    public QAppFileEntity(PathMetadata metadata) {
         super(AppFileEntity.class, metadata);
     }
 

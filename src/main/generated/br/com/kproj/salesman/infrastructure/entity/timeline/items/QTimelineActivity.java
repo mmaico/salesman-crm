@@ -2,7 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -29,7 +28,7 @@ public class QTimelineActivity extends EntityPathBase<TimelineActivity> {
 
     public final StringPath description = createString("description");
 
-    public final ListPath<AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFile> files = this.<AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFile>createList("files", AppFileEntity.class, br.com.kproj.salesman.infrastructure.entity.QAppFile.class, PathInits.DIRECT2);
+    public final ListPath<br.com.kproj.salesman.infrastructure.entity.AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFileEntity> files = this.<br.com.kproj.salesman.infrastructure.entity.AppFileEntity, br.com.kproj.salesman.infrastructure.entity.QAppFileEntity>createList("files", br.com.kproj.salesman.infrastructure.entity.AppFileEntity.class, br.com.kproj.salesman.infrastructure.entity.QAppFileEntity.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
