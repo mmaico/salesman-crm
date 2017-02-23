@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 
@@ -29,7 +29,7 @@ public class TimelineItemBuilder extends AbstractBuilder<TimelineActivity>  {
         return this;
     }
 
-    public TimelineItemBuilder withFiles(List<AppFile> files) {
+    public TimelineItemBuilder withFiles(List<AppFileEntity> files) {
         this.entity.setFiles(files);
         return this;
     }

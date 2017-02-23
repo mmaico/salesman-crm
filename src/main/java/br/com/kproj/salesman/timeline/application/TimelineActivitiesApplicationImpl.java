@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.timeline.application;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
@@ -102,7 +102,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
     }
 
     private void saveActivity(TimelineActivity activity, Timeline timeline) {
-        List<AppFile> files = activity.getFiles();
+        List<AppFileEntity> files = activity.getFiles();
         TimelineActivity activitySaved = save(activity);
 
         timeline.addActivity(activitySaved);
@@ -110,7 +110,7 @@ public class TimelineActivitiesApplicationImpl extends BaseModelServiceLegacyImp
     }
 
     @Override
-    public byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile) {
+    public byte[] getActivityFile(TimelineActivity timelineActivity, AppFileEntity appfile) {
         if (timelineActivity.isNew() || appfile.isNew()) {
             return new byte[0];
         }

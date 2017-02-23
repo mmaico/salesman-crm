@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
@@ -66,7 +66,7 @@ public class ReflectionsHelperTest {
     public class ClassWithMediaAnnotation {
 
         @MediaStorage(name="files")
-        private AppFile app;
+        private AppFileEntity app;
     }
 
 }

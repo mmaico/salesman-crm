@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.ReflectionsHelper;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
@@ -40,12 +40,12 @@ public class FileSystemPathHelper {
 		return fullPath + object.getId();
 	}
 	
-	public String getPathFile(Identifiable base, AppFile appFile) {
+	public String getPathFile(Identifiable base, AppFileEntity appFileEntity) {
 		
 		String mountFilePath = mountBasePathFile(base);
 		String fullPath =  mountFilePath;
 		
-		return fullPath + "/"+ appFile.getId() + appFile.getExtension();
+		return fullPath + "/"+ appFileEntity.getId() + appFileEntity.getExtension();
 	}
 
 }

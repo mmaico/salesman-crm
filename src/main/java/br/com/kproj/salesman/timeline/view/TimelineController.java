@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.timeline.view;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import br.com.kproj.salesman.infrastructure.service.AppFileApplication;
@@ -31,7 +31,7 @@ public class TimelineController {
                          @PathVariable Long activityId, @PathVariable Long fileId) throws IOException {
 
         LogActivity activity = new LogActivity(activityId);
-        AppFile file = AppFileBuilder.create(fileId).build();
+        AppFileEntity file = AppFileBuilder.create(fileId).build();
 
         byte[] activityFile = this.service.getActivityFile(activity, file);
 
@@ -41,9 +41,9 @@ public class TimelineController {
     @RequestMapping("/file/{activityId}/app/{idAppFile}")
     public void getFile(HttpServletResponse response, @PathVariable Long activityId, @PathVariable Long idAppFile) throws IOException {
 
-        byte[] file = service.getActivityFile(new LogActivity(activityId), new AppFile(idAppFile));
+        byte[] file = service.getActivityFile(new LogActivity(activityId), new AppFileEntity(idAppFile));
 
-        Optional<AppFile> appfile = appFileApplication.getOne(idAppFile);
+        Optional<AppFileEntity> appfile = appFileApplication.getOne(idAppFile);
 
         if (!appfile.isPresent()) {
             return;

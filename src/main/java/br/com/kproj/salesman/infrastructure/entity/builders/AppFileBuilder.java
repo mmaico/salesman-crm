@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -12,9 +12,9 @@ import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.sa
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 
-public class AppFileBuilder extends AbstractBuilder<AppFile> {
+public class AppFileBuilder extends AbstractBuilder<AppFileEntity> {
 
-	private AppFile appfile = new AppFile();
+	private AppFileEntity appfile = new AppFileEntity();
 
     public AppFileBuilder() {}
 
@@ -83,7 +83,7 @@ public class AppFileBuilder extends AbstractBuilder<AppFile> {
                     .withSize(safe(multipart).getSize());
     }
 
-	public AppFile build() {
+	public AppFileEntity build() {
 		return this.appfile;
 	}
 

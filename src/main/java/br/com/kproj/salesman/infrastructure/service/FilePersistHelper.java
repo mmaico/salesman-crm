@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.service;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.helpers.files.FileSystemHelper;
@@ -27,22 +27,22 @@ public class FilePersistHelper {
 	private @Autowired
     AppFileValidator appFileValidator;
 	
-	public byte[] getFile(Identifiable entity, AppFile appFile) {
+	public byte[] getFile(Identifiable entity, AppFileEntity appFileEntity) {
 		
-		if (appFile == null || appFile.isNew() || entity == null || entity.isNew()) {
+		if (appFileEntity == null || appFileEntity.isNew() || entity == null || entity.isNew()) {
 			throw new IllegalArgumentException("invalid.arguments.entity.or.appfile.cannot.be.null");
 		}
 		
-		AppFile appFileLoaded = repository.findOne(appFile.getId());
+		AppFileEntity appFileEntityLoaded = repository.findOne(appFileEntity.getId());
 		
-		byte[] file = this.fileSystemHelper.getFile(entity, appFileLoaded);
+		byte[] file = this.fileSystemHelper.getFile(entity, appFileEntityLoaded);
 		
 		return file;
 	}
 
-	public void saveFile(Identifiable entity, AppFile appFile) {
+	public void saveFile(Identifiable entity, AppFileEntity appFileEntity) {
 
-		this.appFileValidator.hasFileAndRequiredInfos(appFile);
+		this.appFileValidator.hasFileAndRequiredInfos(appFileEntity);
 
 		if (entity == null || entity.isNew()) {
 			throw new ValidationException(Sets.newHashSet("add.file.entity.not.have.id"));
@@ -51,16 +51,16 @@ public class FilePersistHelper {
 		String basePath = this.fileSystemHelper.getBasePath(entity);
 		this.fileSystemHelper.mkdirs(basePath);
 		
-		String fullPathFile = this.fileSystemHelper.getPathFile(entity, appFile);
+		String fullPathFile = this.fileSystemHelper.getPathFile(entity, appFileEntity);
 		
-		this.fileSystemHelper.writeFile(fullPathFile, appFile.getFile());
+		this.fileSystemHelper.writeFile(fullPathFile, appFileEntity.getFile());
 	}
 
-	public void saveFile(Identifiable entity, List<AppFile> appFiles) {
+	public void saveFile(Identifiable entity, List<AppFileEntity> appFileEntities) {
 
-        if (isEmptySafe(appFiles)) return;
+        if (isEmptySafe(appFileEntities)) return;
 
-        appFiles.stream().forEach(e -> saveFile(entity, e));
+        appFileEntities.stream().forEach(e -> saveFile(entity, e));
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.service;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.AppFileRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
 
 @Service
-public class AppFileApplicationImpl extends BaseModelServiceLegacyImpl<AppFile> implements AppFileApplication {
+public class AppFileApplicationImpl extends BaseModelServiceLegacyImpl<AppFileEntity> implements AppFileApplication {
 
     @Autowired
     private AppFileRepository repository;
@@ -23,18 +23,18 @@ public class AppFileApplicationImpl extends BaseModelServiceLegacyImpl<AppFile> 
     @Autowired
     private AppFileValidator validator;
 
-    public AppFile save(Identifiable identifiable, AppFile appFile) {
+    public AppFileEntity save(Identifiable identifiable, AppFileEntity appFileEntity) {
 
-        hasErrors(validator.hasFileAndRequiredInfos(appFile))
+        hasErrors(validator.hasFileAndRequiredInfos(appFileEntity))
                 .throwing(ValidationException.class);
 
-        AppFile appFileSaved = super.save(appFile);
-        filePersist.saveFile(identifiable, appFileSaved);
-        return appFileSaved;
+        AppFileEntity appFileEntitySaved = super.save(appFileEntity);
+        filePersist.saveFile(identifiable, appFileEntitySaved);
+        return appFileEntitySaved;
     }
 
     @Override
-    public BaseRepositoryLegacy<AppFile, Long> getRepository() {
+    public BaseRepositoryLegacy<AppFileEntity, Long> getRepository() {
         return repository;
     }
 }

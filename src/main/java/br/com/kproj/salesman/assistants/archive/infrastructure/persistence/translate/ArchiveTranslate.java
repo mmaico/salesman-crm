@@ -3,7 +3,7 @@ package br.com.kproj.salesman.assistants.archive.infrastructure.persistence.tran
 import br.com.kproj.salesman.assistants.archive.domain.model.archive.Archive;
 import br.com.kproj.salesman.infrastructure.converters.Specification;
 import br.com.kproj.salesman.infrastructure.converters.TwoWayMerge;
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfoEntity;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class ArchiveTranslate implements TwoWayMerge<Archive, FileInfoEntity> {
         this.participantsTranslate.merge(source.getParticipants(), target.getSharedWith());
 
         if (source.getPhysical() != null && target.getFile() == null) {
-            target.setFile(new AppFile());
+            target.setFile(new AppFileEntity());
         }
 
         physicalFileTranslate.merge(source.getPhysical(), target.getFile());

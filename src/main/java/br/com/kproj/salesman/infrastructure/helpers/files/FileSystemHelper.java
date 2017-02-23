@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -48,9 +48,9 @@ public class FileSystemHelper {
 		return new File(fullPath);
 	}
 	
-	public byte[] getFile(Identifiable base, AppFile appFile) {
+	public byte[] getFile(Identifiable base, AppFileEntity appFileEntity) {
 		try {
-			String urlFile = pathUtils.getPathFile(base, appFile);
+			String urlFile = pathUtils.getPathFile(base, appFileEntity);
 			
 			FileInputStream fileInput = new FileInputStream(createFile(urlFile));
 			
@@ -77,7 +77,7 @@ public class FileSystemHelper {
 		return this.pathUtils.mountBasePathFile(object);
 	}
 	
-	public String getPathFile(Identifiable base, AppFile appFile) {
-		return this.pathUtils.getPathFile(base, appFile);
+	public String getPathFile(Identifiable base, AppFileEntity appFileEntity) {
+		return this.pathUtils.getPathFile(base, appFileEntity);
 	}
 }

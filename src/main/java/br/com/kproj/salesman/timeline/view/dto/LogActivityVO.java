@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.timeline.view.dto;
 
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.builders.AppFileBuilder;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.LogActivity;
 import com.google.common.collect.Lists;
@@ -27,21 +27,21 @@ public class LogActivityVO {
         this.files = files;
     }
 
-    public List<AppFile> getAppFiles() throws IOException {
+    public List<AppFileEntity> getAppFiles() throws IOException {
 
-        List<AppFile> items = Lists.newArrayList();
+        List<AppFileEntity> items = Lists.newArrayList();
 
         for (MultipartFile multipart : safeIterable(files)) {
 
-            AppFile appFile = new AppFileBuilder().withFile(safe(multipart).getBytes())
+            AppFileEntity appFileEntity = new AppFileBuilder().withFile(safe(multipart).getBytes())
                     .withMimeType(safe(multipart).getContentType())
                     .withOriginalName(safe(multipart).getOriginalFilename())
                     .withSize(safe(multipart).getSize())
                     .addDimensionsIfImage()
                     .build();
 
-            if (!appFile.isValid()) {
-                items.add(appFile);
+            if (!appFileEntity.isValid()) {
+                items.add(appFileEntity);
             }
         }
 

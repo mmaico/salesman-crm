@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.timeline.application;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.IncidentEntity;
 import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEntity;
@@ -29,6 +29,6 @@ public interface TimelineActivitiesApplication extends ModelLegacyService<Timeli
 
     Timeline register(LeadEntity leadEntity, TimelineActivity item);
 
-    byte[] getActivityFile(TimelineActivity timelineActivity, AppFile appfile);
+    byte[] getActivityFile(TimelineActivity timelineActivity, AppFileEntity appfile);
 
 }

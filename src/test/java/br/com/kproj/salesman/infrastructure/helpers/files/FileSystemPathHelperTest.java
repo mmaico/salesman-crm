@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
@@ -52,7 +52,7 @@ public class FileSystemPathHelperTest {
     @Test
     public void shouldReturnTheFullPathFile() {
         TestBuildPath test = new TestBuildPath(10l);
-        AppFile appfile = new AppFile(3l);
+        AppFileEntity appfile = new AppFileEntity(3l);
         appfile.setOriginalName("planilha.xls");
         appfile.setMimeType("application/vnd.ms-excel");
 
@@ -71,7 +71,7 @@ public class FileSystemPathHelperTest {
         private Long id;
 
         @MediaStorage(name="image")
-        private AppFile image;
+        private AppFileEntity image;
 
         public TestBuildPath(Long id) {
             this.setId(id);

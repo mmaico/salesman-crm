@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class AppFileValidator {
 
 
-	public Set<String> hasFileAndRequiredInfos(AppFile target) {
+	public Set<String> hasFileAndRequiredInfos(AppFileEntity target) {
 
 		Set<String> errors = new HashSet<>();
 

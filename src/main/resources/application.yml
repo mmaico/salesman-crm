@@ -44,6 +44,16 @@ logging.level.root: WARN
 logging.level.org.springframework.web: ERROR
 logging.level.org.hibernate: ERROR
 
+storage:
+  serviceTemplate: aws-s3://%s?region=%s&accessKey=%s&secretKey=%s&deleteAfterWrite=true #bucket,region,accessKey,secretKey
+  linkTemplate: https://s3-%s.amazonaws.com/%s/%s/%s ##region bucket/category/filename
+  region: sa-east-1
+  bucket: easytalk
+  credential:
+    client: AKIAICB67JEM7NXD3JQQ
+    secret: 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
+  category: storage
+
 ---
 spring:
   profiles: test
@@ -75,4 +85,14 @@ security:
 logging.level.root: WARN
 logging.level.org.springframework.web: ERROR
 logging.level.org.hibernate: ERROR
+
+storage:
+  serviceTemplate: aws-s3://%s?region=%s&accessKey=%s&secretKey=%s&deleteAfterWrite=true #bucket,region,accessKey,secretKey
+  linkTemplate: https://s3-%s.amazonaws.com/%s/%s/%s ##region bucket/category/filename
+  region: sa-east-1
+  bucket: easytalk
+  credential:
+    client: AKIAICB67JEM7NXD3JQQ
+    secret: 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
+  category: storage
 

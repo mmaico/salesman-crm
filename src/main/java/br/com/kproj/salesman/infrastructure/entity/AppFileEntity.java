@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="app_file")
-public class AppFile extends Identifiable {
+public class AppFileEntity extends Identifiable {
 
 	/**
 	 * 
@@ -18,7 +18,10 @@ public class AppFile extends Identifiable {
     @Id
     @GeneratedValue
     private Long id;
-	
+
+    @Column(name="system_name")
+    private String systemname;
+
 	@Column(name="original_name")
 	private String originalName;
 	
@@ -36,13 +39,15 @@ public class AppFile extends Identifiable {
     private Integer width;
 
     private Integer height;
+
+    private String cdnUrl;
 	
 	@Transient
 	private byte[] file;
 	
-	public AppFile(){}
+	public AppFileEntity(){}
 	
-	public AppFile(Long id) {
+	public AppFileEntity(Long id) {
 		this.setId(id);
 	}
 
@@ -116,7 +121,7 @@ public class AppFile extends Identifiable {
     }
 
     public Boolean isValid() {
-        //AppFile nullObject = new AppFile();
+        //AppFileEntity nullObject = new AppFileEntity();
         return file == null || file.length < 1 || size == null || size < 1;
         //return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
     }
@@ -127,5 +132,21 @@ public class AppFile extends Identifiable {
 
     public void setLasMotification(Date lasMotification) {
         this.lasMotification = lasMotification;
+    }
+
+    public String getSystemname() {
+        return systemname;
+    }
+
+    public void setSystemname(String systemname) {
+        this.systemname = systemname;
+    }
+
+    public String getCdnUrl() {
+        return cdnUrl;
+    }
+
+    public void setCdnUrl(String cdnUrl) {
+        this.cdnUrl = cdnUrl;
     }
 }

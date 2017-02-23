@@ -10,10 +10,10 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QAppFile is a Querydsl query type for AppFile
+ * QAppFile is a Querydsl query type for AppFileEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QAppFile extends EntityPathBase<AppFile> {
+public class QAppFile extends EntityPathBase<AppFileEntity> {
 
     private static final long serialVersionUID = 1312831022L;
 
@@ -38,15 +38,15 @@ public class QAppFile extends EntityPathBase<AppFile> {
     public final NumberPath<Integer> width = createNumber("width", Integer.class);
 
     public QAppFile(String variable) {
-        super(AppFile.class, forVariable(variable));
+        super(AppFileEntity.class, forVariable(variable));
     }
 
-    public QAppFile(Path<? extends AppFile> path) {
+    public QAppFile(Path<? extends AppFileEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QAppFile(PathMetadata metadata) {
-        super(AppFile.class, metadata);
+        super(AppFileEntity.class, metadata);
     }
 
 }

@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.assistants.archive;
 
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
@@ -37,7 +37,7 @@ public class FileInfoEntity extends Identifiable {
     @ManyToOne
     @JoinColumn(name="app_file_id")
     @MediaStorage(name="files")
-    private AppFile file;
+    private AppFileEntity file;
 
     @Override
     public Long getId() {
@@ -92,11 +92,11 @@ public class FileInfoEntity extends Identifiable {
         isPublic = aPublic;
     }
 
-    public AppFile getFile() {
+    public AppFileEntity getFile() {
         return file;
     }
 
-    public void setFile(AppFile file) {
+    public void setFile(AppFileEntity file) {
         this.file = file;
     }
 }

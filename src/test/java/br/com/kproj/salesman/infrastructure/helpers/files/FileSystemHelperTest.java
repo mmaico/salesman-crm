@@ -1,6 +1,6 @@
 package br.com.kproj.salesman.infrastructure.helpers.files;
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -72,12 +72,12 @@ public class FileSystemHelperTest {
         UserEntity entity = new UserEntity();
         entity.setId(2l);
 
-        AppFile appFile = new AppFile();
-        appFile.setId(3l);
+        AppFileEntity appFileEntity = new AppFileEntity();
+        appFileEntity.setId(3l);
 
         File newFolder = this.tempFolder.newFolder("tempFolder");
 
-        File newTempFileCreated = new File(newFolder, appFile.getId() + ".xls");
+        File newTempFileCreated = new File(newFolder, appFileEntity.getId() + ".xls");
 
         BufferedWriter out = new BufferedWriter(new FileWriter(newTempFileCreated));
         out.write("Write this message in file created.");
@@ -85,9 +85,9 @@ public class FileSystemHelperTest {
 
         newTempFileCreated.createNewFile();
 
-        given(this.pathUtils.getPathFile(eq(entity), eq(appFile))).willReturn(newTempFileCreated.getAbsolutePath());
+        given(this.pathUtils.getPathFile(eq(entity), eq(appFileEntity))).willReturn(newTempFileCreated.getAbsolutePath());
 
-        byte[] file = this.fileSystemUtils.getFile(entity, appFile);
+        byte[] file = this.fileSystemUtils.getFile(entity, appFileEntity);
 
         assertThat(file.length, is(35));
     }
@@ -98,12 +98,12 @@ public class FileSystemHelperTest {
         UserEntity entity = new UserEntity();
         entity.setId(2l);
 
-        AppFile appFile = new AppFile();
-        appFile.setId(3l);
+        AppFileEntity appFileEntity = new AppFileEntity();
+        appFileEntity.setId(3l);
 
-        given(this.pathUtils.getPathFile(eq(entity), eq(appFile))).willReturn("file-not-found");
+        given(this.pathUtils.getPathFile(eq(entity), eq(appFileEntity))).willReturn("file-not-found");
 
-        byte[] file = this.fileSystemUtils.getFile(entity, appFile);
+        byte[] file = this.fileSystemUtils.getFile(entity, appFileEntity);
 
         assertThat(file.length, is(0));
     }
@@ -126,14 +126,14 @@ public class FileSystemHelperTest {
         UserEntity entity = new UserEntity();
         entity.setId(2l);
 
-        AppFile appFile = new AppFile();
-        appFile.setId(3l);
+        AppFileEntity appFileEntity = new AppFileEntity();
+        appFileEntity.setId(3l);
 
         String pathExpected = "path/file/2/3.jpg";
 
-        given(this.pathUtils.getPathFile(eq(entity), eq(appFile))).willReturn(pathExpected);
+        given(this.pathUtils.getPathFile(eq(entity), eq(appFileEntity))).willReturn(pathExpected);
 
-        String basePath = this.fileSystemUtils.getPathFile(entity, appFile);
+        String basePath = this.fileSystemUtils.getPathFile(entity, appFileEntity);
 
         assertThat(basePath, is(pathExpected));
     }

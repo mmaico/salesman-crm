@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 
 
-import br.com.kproj.salesman.infrastructure.entity.AppFile;
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
@@ -39,7 +39,7 @@ public abstract class TimelineActivity extends Identifiable {
             inverseJoinColumns=@JoinColumn(name="appfile_id"))
     @OrderBy("creation ASC")
     @MediaStorage(name="files")
-    private List<AppFile> files;
+    private List<AppFileEntity> files;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -70,11 +70,11 @@ public abstract class TimelineActivity extends Identifiable {
         this.creation = creation;
     }
 
-    public List<AppFile> getFiles() {
+    public List<AppFileEntity> getFiles() {
         return files;
     }
 
-    public void setFiles(List<AppFile> files) {
+    public void setFiles(List<AppFileEntity> files) {
         this.files = files;
     }
 
