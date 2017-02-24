@@ -22,6 +22,10 @@ public class StorageIgnoreRules {
         return RuleKey.key("storage.invalid.name", "name");
     }
 
+    public static RuleKey ruleStorageName() {
+        return RuleKey.key("storage.invalid.space.in.name", "name");
+    }
+
     public List<String> getIgnoreRules() {
         return ignoreRules;
     }

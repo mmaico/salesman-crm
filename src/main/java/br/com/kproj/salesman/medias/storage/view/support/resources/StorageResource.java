@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "name",
         "links"
 })
-@ResourceItem(name="storage", modelReference = Storage.class)
+@ResourceItem(name="storages", modelReference = Storage.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StorageResource extends Item {
 

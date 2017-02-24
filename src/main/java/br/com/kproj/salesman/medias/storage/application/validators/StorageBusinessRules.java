@@ -10,8 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static br.com.kproj.salesman.medias.storage.application.validators.StorageIgnoreRules.ruleInvalidName;
+import static br.com.kproj.salesman.medias.storage.application.validators.StorageIgnoreRules.ruleStorageName;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -21,6 +23,8 @@ public class StorageBusinessRules implements StorageValidator {
     Map<RuleKey, CheckRule<Storage>> persistRules = new HashMap<>();
     {
         persistRules.put(ruleInvalidName(), (storage) -> isBlank(storage.getName()));
+
+        persistRules.put(ruleStorageName(), (storage) -> Pattern.compile("[$&+,:;=?@# ]").matcher(storage.getName()).find());
     }
 
     @Override

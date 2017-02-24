@@ -8,9 +8,7 @@ import java.util.Optional;
 
 public interface StorageFacade extends ModelFacade<Storage> {
 
-
-
-    Optional<Storage> register();
+    Optional<Storage> register(Storage storage);
 
     Storage update(Storage storage);
 }

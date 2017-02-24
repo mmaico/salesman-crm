@@ -7,12 +7,12 @@ import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.medias.storage.domain.model.definition.Storage;
 import br.com.kproj.salesman.medias.storage.domain.model.definition.StorageRepository;
 import br.com.kproj.salesman.medias.storage.persistence.springdata.StorageEntityRepositorySpringData;
-import br.com.kproj.salesman.medias.storage.persistence.translate.StorageEntityToStorageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+import static br.com.kproj.salesman.medias.storage.domain.model.definition.StorageBuilder.createStorage;
 import static com.trex.clone.BusinessModelClone.from;
 
 @Repository
@@ -20,12 +20,10 @@ public class StorageRepositoryHibernate extends BaseRespositoryImpl<Storage, Sto
 
     private StorageEntityRepositorySpringData repository;
 
-    private StorageEntityToStorageConverter converter;
 
     @Autowired
-    public StorageRepositoryHibernate(StorageEntityRepositorySpringData repository, StorageEntityToStorageConverter converter) {
+    public StorageRepositoryHibernate(StorageEntityRepositorySpringData repository) {
         this.repository = repository;
-        this.converter = converter;
     }
 
 
@@ -36,9 +34,9 @@ public class StorageRepositoryHibernate extends BaseRespositoryImpl<Storage, Sto
 
     @Override
     public Converter<StorageEntity, Storage> getConverter() {
-        return converter;
+        return (storageEntity, args) -> createStorage(storageEntity.getId())
+                    .withName(storageEntity.getName()).build();
     }
-
 
     @Override
     public Storage update(Storage storage) {
@@ -52,7 +50,6 @@ public class StorageRepositoryHibernate extends BaseRespositoryImpl<Storage, Sto
     @Override
     public Optional<Storage> save(Storage storage) {
         StorageEntity storageEntity = from(storage).convertTo(StorageEntity.class);
-        from(storage).merge(storageEntity);
 
         Storage storageSaved = getConverter().convert(repository.save(storageEntity));
 

@@ -1,6 +1,7 @@
 package br.com.kproj.salesman.medias.storage.view;
 
 
+import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.kproj.salesman.medias.storage.application.StorageFacade;
@@ -14,10 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
-import static br.com.kproj.salesman.infrastructure.helpers.RequestBody.body;
-import static br.com.kproj.salesman.infrastructure.model.ModelIdentifiable.When.when;
+import java.util.Optional;
 
 
 @RestController
@@ -33,56 +31,37 @@ public class StorageEndpoint {
         this.builder = builder;
     }
 
-    //@RequestMapping(value = "/rs/customders/{customerId}/contacts", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/storages", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems list(@PathVariable Long customerId, @PageableDefault(size = 100) Pageable pageable) {
-    //    Customer customer = new Customer(customerId);
+    ResourceItems list(@PageableDefault(size = 100) Pageable pageable) {
+        Iterable<Storage> storages = service.findAll(pageable);
 
-      //  Iterable<Storage> contacts = service.findAll(customer, pageable);
-
-        return null; //builder.build(contacts);
+        return builder.build(storages);
     }
 
-//    @RequestMapping(value = "/rs/customers/contacts/{contactId}", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ResourceItem findOne(@PathVariable Long contactId) {
-//
-//        Optional<Storage> resultContact = service.getOne(contactId);
-//        Storage storageDefinition = resultContact.orElseThrow(NotFoundException::new);
-//
-//        return builder.build(storageDefinition);
-//    }
-//
-//
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(value = "/rs/customers/{customerId}/contacts", method = RequestMethod.POST)
-//    public @ResponseBody
-//    ResourceItem create(@PathVariable Long customerId, @RequestBody StorageResource resource) {
-//
-//        Storage storageDefinition = StorageBuilder.createContact()
-//                .withPosition(resource.getPosition())
-//                .withName(resource.getName())
-//                .withPhone(resource.getPhone())
-//                .withEmail(resource.getEmail())
-//                .withPosition(resource.getPosition()).build();
-//
-//        Optional<Storage> contactCreated = null; //service.register(createContactToCustomer(customerId, storageDefinition));
-//
-//        return builder.build(contactCreated.get());
-//    }
-//
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/rs/storage/{storageId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rs/storages/{storageId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItem update(@PathVariable Long storageId, @RequestBody StorageResource resource) {
+    ResourceItem findOne(@PathVariable Long storageId) {
 
-        Storage storage = StorageBuilder.createStorage(storageId)
+        Optional<Storage> result = service.getOne(storageId);
+        Storage storageDefinition = result.orElseThrow(NotFoundException::new);
+
+        return builder.build(storageDefinition);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/rs/storages", method = RequestMethod.POST)
+    public @ResponseBody
+    ResourceItem create(@RequestBody StorageResource resource) {
+
+        Storage storageDefinition = StorageBuilder.createStorage()
                 .withName(resource.getName()).build();
 
-        Storage storageDefinitionSaved = service.update(storage);
+        Optional<Storage> contactCreated = service.register(storageDefinition);
 
-        return builder.build(storageDefinitionSaved);
+        return builder.build(contactCreated.get());
     }
+
 
 
 }

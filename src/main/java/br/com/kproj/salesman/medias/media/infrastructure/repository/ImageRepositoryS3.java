@@ -17,9 +17,12 @@ public class ImageRepositoryS3 {
 
     private static final String LOCAL_STORAGE = "sales-man";
 
+    private ProducerTemplate producerTemplate;
 
     @Autowired
-    private ProducerTemplate producerTemplate;
+    public ImageRepositoryS3(ProducerTemplate producerTemplate) {
+        this.producerTemplate = producerTemplate;
+    }
 
 
     public String store(FileContentRaw imageRaw) {

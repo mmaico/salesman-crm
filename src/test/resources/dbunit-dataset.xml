@@ -309,5 +309,10 @@
     <personal_activity_checklists id="3" name="Checkllist 3" is_done="true" personal_activity_id="2"/>
     <personal_activity_checklists id="4" name="Checkllist 4" is_done="true" personal_activity_id="1"/>
 
+    <!-- STORAGE -->
+    <storage_definition id="1" name="avatar"/>
+    <storage_definition id="2" name="timeline"/>
+    <storage_definition id="3" name="timeline-company"/>
+
 
 </dataset>
