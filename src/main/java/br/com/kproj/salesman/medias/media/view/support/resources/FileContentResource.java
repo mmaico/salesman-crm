@@ -2,7 +2,7 @@ package br.com.kproj.salesman.medias.media.view.support.resources;
 
 
 
-import br.com.kproj.salesman.medias.media.domain.FileContent;
+import br.com.kproj.salesman.medias.media.domain.media.FileContent;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

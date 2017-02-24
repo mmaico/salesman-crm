@@ -3,7 +3,7 @@ package br.com.kproj.salesman.medias.media.view.support.builders;
 
 
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
-import br.com.kproj.salesman.medias.media.domain.FileContent;
+import br.com.kproj.salesman.medias.media.domain.media.FileContent;
 import br.com.kproj.salesman.medias.media.view.support.resources.FileContentResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;

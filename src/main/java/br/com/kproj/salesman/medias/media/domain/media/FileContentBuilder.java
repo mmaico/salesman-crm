@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.medias.media.domain;
+package br.com.kproj.salesman.medias.media.domain.media;
 
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;

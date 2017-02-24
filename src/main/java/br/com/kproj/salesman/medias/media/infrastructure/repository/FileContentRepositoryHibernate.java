@@ -6,9 +6,10 @@ import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.medias.media.domain.FileContent;
-import br.com.kproj.salesman.medias.media.domain.FileContentRaw;
-import br.com.kproj.salesman.medias.media.domain.FileContentRepository;
+import br.com.kproj.salesman.medias.media.domain.media.FileContent;
+import br.com.kproj.salesman.medias.media.domain.media.FileContentRaw;
+import br.com.kproj.salesman.medias.media.domain.media.FileContentRepository;
+import br.com.kproj.salesman.medias.media.domain.storage.Storage;
 import br.com.kproj.salesman.medias.media.infrastructure.repository.springdata.FileContentRepositorySpringData;
 import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,13 @@ public class FileContentRepositoryHibernate extends BaseRespositoryImpl<FileCont
     }
 
     @Override
-    public FileContent store(FileContentRaw imageRaw) {
+    public FileContent store(FileContentRaw imageRaw, Storage storage) {
 
-        String urlCDN = s3.store(imageRaw);
+        String urlCDN = s3.store(imageRaw, storage.getName());
 
         AppFileEntity imageEntity = new AppFileEntity();
         imageEntity.setSystemname(UUID.randomUUID().toString());
-        imageEntity.setSize(new Long(imageRaw.getImage().getBytes().length));
+        imageEntity.setSize(new Long(imageRaw.getFile().getBytes().length));
         imageEntity.setCdnUrl(urlCDN);
 
         AppFileEntity imageEntitySaved = this.imageRepository.save(imageEntity);

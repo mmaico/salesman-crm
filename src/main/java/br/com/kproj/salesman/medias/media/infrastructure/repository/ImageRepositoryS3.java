@@ -2,7 +2,7 @@ package br.com.kproj.salesman.medias.media.infrastructure.repository;
 
 
 
-import br.com.kproj.salesman.medias.media.domain.FileContentRaw;
+import br.com.kproj.salesman.medias.media.domain.media.FileContentRaw;
 import br.com.kproj.salesman.medias.media.infrastructure.helpers.ImageBase64InfoHelper;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ import java.util.UUID;
 @Repository
 public class ImageRepositoryS3 {
 
-    private static final String LOCAL_STORAGE = "sales-man";
-
     private ProducerTemplate producerTemplate;
 
     @Autowired
@@ -25,16 +23,16 @@ public class ImageRepositoryS3 {
     }
 
 
-    public String store(FileContentRaw imageRaw) {
+    public String store(FileContentRaw imageRaw, String storage) {
         Map<String, Object> headers = new HashMap() {
             {
                 put("FileName", UUID.randomUUID().toString());
-                put("FileType", ImageBase64InfoHelper.getType(imageRaw.getImage()));
+                put("FileType", ImageBase64InfoHelper.getType(imageRaw.getFile()));
             }
         };
-        ImageBase64InfoHelper.decodeBase64(imageRaw.getImage());
+        ImageBase64InfoHelper.decodeBase64(imageRaw.getFile());
         final Object link = producerTemplate.requestBodyAndHeaders(
-                "direct:store-".concat(LOCAL_STORAGE), imageRaw.getImage(),  headers);
+                "direct:store-".concat(storage), imageRaw.getFile(),  headers);
 
         return link.toString();
     }
