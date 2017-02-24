@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.medias.media.infrastructure.repository;
 
 
-
 import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 public class FileContentRepositoryHibernate extends BaseRespositoryImpl<FileContent, AppFileEntity> implements FileContentRepository {
@@ -33,12 +31,12 @@ public class FileContentRepositoryHibernate extends BaseRespositoryImpl<FileCont
     @Override
     public FileContent store(FileContentRaw imageRaw, Storage storage) {
 
-        String urlCDN = s3.store(imageRaw, storage.getName());
+        S3Info s3Info = s3.store(imageRaw, storage.getName());
 
         AppFileEntity imageEntity = new AppFileEntity();
-        imageEntity.setSystemname(UUID.randomUUID().toString());
+        imageEntity.setSystemname(s3Info.getName());
         imageEntity.setSize(new Long(imageRaw.getFile().getBytes().length));
-        imageEntity.setCdnUrl(urlCDN);
+        imageEntity.setCdnUrl(s3Info.getUrl());
 
         AppFileEntity imageEntitySaved = this.imageRepository.save(imageEntity);
 

@@ -28,8 +28,7 @@ public class MediaService implements MediaFacade {
         FileContentRaw fileContentRaw = mediaInStorage.getFileContentRaw();
         Storage storage = mediaInStorage.getStorage();
 
-        //return repository.store(imageRaw);
-        return null;
+        return storage.thisFile(fileContentRaw);
     }
 
     @Override

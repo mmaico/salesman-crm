@@ -8,6 +8,7 @@ import org.apache.camel.ProducerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -23,18 +24,22 @@ public class ImageRepositoryS3 {
     }
 
 
-    public String store(FileContentRaw imageRaw, String storage) {
+    public S3Info store(FileContentRaw rawFile, String storage) {
+        final String fileName = UUID.randomUUID().toString();
+        final String type = ImageBase64InfoHelper.getType(rawFile.getFile());
+
         Map<String, Object> headers = new HashMap() {
             {
-                put("FileName", UUID.randomUUID().toString());
-                put("FileType", ImageBase64InfoHelper.getType(imageRaw.getFile()));
+                put("FileName", fileName);
+                put("FileType", type);
             }
         };
-        ImageBase64InfoHelper.decodeBase64(imageRaw.getFile());
-        final Object link = producerTemplate.requestBodyAndHeaders(
-                "direct:store-".concat(storage), imageRaw.getFile(),  headers);
+        ByteArrayInputStream inputStream = ImageBase64InfoHelper.decodeBase64(rawFile.getFile());
 
-        return link.toString();
+        final Object link = producerTemplate.requestBodyAndHeaders(
+                "direct:store-".concat(storage), inputStream,  headers);
+
+        return new S3Info(fileName, type, link.toString());
     }
 
 }
