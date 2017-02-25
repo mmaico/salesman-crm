@@ -1,4 +1,4 @@
-package br.com.kproj.salesman.medias.storage.persistence;
+package br.com.kproj.salesman.medias.storage.infrastructure.persistence;
 
 import br.com.kproj.salesman.infrastructure.entity.StorageEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
@@ -6,7 +6,7 @@ import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.medias.storage.domain.model.definition.Storage;
 import br.com.kproj.salesman.medias.storage.domain.model.definition.StorageRepository;
-import br.com.kproj.salesman.medias.storage.persistence.springdata.StorageEntityRepositorySpringData;
+import br.com.kproj.salesman.medias.storage.infrastructure.persistence.springdata.StorageEntityRepositorySpringData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

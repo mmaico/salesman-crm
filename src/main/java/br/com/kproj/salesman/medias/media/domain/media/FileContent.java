@@ -2,6 +2,7 @@ package br.com.kproj.salesman.medias.media.domain.media;
 
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import br.com.kproj.salesman.medias.media.domain.storage.Storage;
 
 public class FileContent extends ModelIdentifiable {
 
@@ -10,6 +11,7 @@ public class FileContent extends ModelIdentifiable {
     private Integer size;
     private String cdnUrl;
     private String mimeType;
+    private Storage storage;
 
     public Long getId() {
         return id;
@@ -49,5 +51,13 @@ public class FileContent extends ModelIdentifiable {
 
     public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 }

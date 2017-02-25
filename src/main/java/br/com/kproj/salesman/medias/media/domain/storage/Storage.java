@@ -12,13 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Model
 public class Storage extends ModelIdentifiable {
 
+    private Long id;
     private String name;
 
     @Autowired
     private FileContentRepository repository;
 
     public Storage(String name) {
+        this();
         this.name = name;
+    }
+    public Storage(Long id) {
+        this();
+        this.id = id;
     }
 
     public Storage() {
@@ -31,7 +37,11 @@ public class Storage extends ModelIdentifiable {
 
     @Override
     public Long getId() {
-        return null;
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

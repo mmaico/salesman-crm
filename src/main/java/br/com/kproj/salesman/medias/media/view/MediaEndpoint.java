@@ -31,6 +31,7 @@ public class MediaEndpoint {
         this.builder = builder;
     }
 
+    ///rs/storages/name=storage-name/medias
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/rs/storages/{name}/medias", method = RequestMethod.POST)
     public @ResponseBody
@@ -47,7 +48,7 @@ public class MediaEndpoint {
     public @ResponseBody
     ResourceItem findOne(@PathVariable Long mediaId) {
 
-        Optional<FileContent> result = service.findOne(mediaId) ;
+        Optional<FileContent> result = service.findOne(mediaId);
         FileContent fileContent = result.orElseThrow(NotFoundException::new);
 
         return builder.build(fileContent);

@@ -35,7 +35,9 @@ public class ImageResourceBuilder {
 
         FileContentResource resource = new FileContentResource();
         ConverterToResource.convert(fileContent, resource, context);
+
         resource.setUrl(fileContent.getCdnUrl());
+
 
         return resource;
     }

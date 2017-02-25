@@ -36,7 +36,7 @@ public class AppFileBuilder extends AbstractBuilder<AppFileEntity> {
 		return this;
 	}
 	
-	public AppFileBuilder withSize(Long size) {
+	public AppFileBuilder withSize(Integer size) {
 		this.appfile.setSize(size);
 		return this;
 	}
@@ -77,10 +77,11 @@ public class AppFileBuilder extends AbstractBuilder<AppFileEntity> {
     }
 
     public static AppFileBuilder create(MultipartFile multipart) throws IOException {
-        return new AppFileBuilder().withFile(safe(multipart).getBytes())
-                    .withMimeType(safe(multipart).getContentType())
-                    .withOriginalName(safe(multipart).getOriginalFilename())
-                    .withSize(safe(multipart).getSize());
+        return null;
+//        return new AppFileBuilder().withFile(safe(multipart).getBytes())
+//                    .withMimeType(safe(multipart).getContentType())
+//                    .withOriginalName(safe(multipart).getOriginalFilename())
+//                    .withSize(safe(multipart).getSize());
     }
 
 	public AppFileEntity build() {

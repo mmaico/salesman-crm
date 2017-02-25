@@ -34,16 +34,16 @@ public class BusinessProposalApprovalActivityVO {
 
         for (MultipartFile multipart : safeIterable(files)) {
 
-            AppFileEntity appFileEntity = new AppFileBuilder().withFile(safe(multipart).getBytes())
-                    .withMimeType(safe(multipart).getContentType())
-                    .withOriginalName(safe(multipart).getOriginalFilename())
-                    .withSize(safe(multipart).getSize())
-                    .addDimensionsIfImage()
-                    .build();
-
-            if (!appFileEntity.isValid()) {
-                items.add(appFileEntity);
-            }
+//            AppFileEntity appFileEntity = new AppFileBuilder().withFile(safe(multipart).getBytes())
+//                    .withMimeType(safe(multipart).getContentType())
+//                    .withOriginalName(safe(multipart).getOriginalFilename())
+//                    .withSize(safe(multipart).getSize())
+//                    .addDimensionsIfImage()
+//                    .build();
+//
+//            if (!appFileEntity.isValid()) {
+//                items.add(appFileEntity);
+//            }
         }
 
         return items;

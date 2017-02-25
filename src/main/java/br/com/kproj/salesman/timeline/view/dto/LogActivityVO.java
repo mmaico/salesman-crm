@@ -33,16 +33,17 @@ public class LogActivityVO {
 
         for (MultipartFile multipart : safeIterable(files)) {
 
-            AppFileEntity appFileEntity = new AppFileBuilder().withFile(safe(multipart).getBytes())
-                    .withMimeType(safe(multipart).getContentType())
-                    .withOriginalName(safe(multipart).getOriginalFilename())
-                    .withSize(safe(multipart).getSize())
-                    .addDimensionsIfImage()
-                    .build();
+//            AppFileEntity appFileEntity = new AppFileBuilder().withFile(safe(multipart).getBytes())
+//                    .withMimeType(safe(multipart).getContentType())
+//                    .withOriginalName(safe(multipart).getOriginalFilename())
+//                    .withSize(safe(multipart).getSize())
+//                    .addDimensionsIfImage()
+//                    .build();
 
-            if (!appFileEntity.isValid()) {
-                items.add(appFileEntity);
-            }
+
+//            if (!appFileEntity.isValid()) {
+//                items.add(appFileEntity);
+//            }
         }
 
         return items;

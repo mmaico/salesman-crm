@@ -3,6 +3,7 @@ package br.com.kproj.salesman.infrastructure.entity;
 import org.apache.commons.io.FilenameUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 
@@ -28,7 +29,7 @@ public class AppFileEntity extends Identifiable {
 	@Column(name="mime_type")
 	private String mimeType;
 
-	private Long size;
+	private Integer size;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creation;
@@ -40,7 +41,13 @@ public class AppFileEntity extends Identifiable {
 
     private Integer height;
 
+    @Column(name="cdn_url")
     private String cdnUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storage_id")
+    @NotNull
+    private StorageEntity storageEntity;
 	
 	@Transient
 	private byte[] file;
@@ -96,11 +103,11 @@ public class AppFileEntity extends Identifiable {
 		this.file = file;
 	}
 	
-	public Long getSize() {
+	public Integer getSize() {
 		return size;
 	}
 
-	public void setSize(Long size) {
+	public void setSize(Integer size) {
 		this.size = size;
 	}
 
@@ -118,12 +125,6 @@ public class AppFileEntity extends Identifiable {
 
     public void setHeight(Integer height) {
         this.height = height;
-    }
-
-    public Boolean isValid() {
-        //AppFileEntity nullObject = new AppFileEntity();
-        return file == null || file.length < 1 || size == null || size < 1;
-        //return EqualsBuilder.reflectionEquals(this, nullObject, Sets.newHashSet("size", "fields"));
     }
 
     public Date getLasMotification() {
@@ -148,5 +149,13 @@ public class AppFileEntity extends Identifiable {
 
     public void setCdnUrl(String cdnUrl) {
         this.cdnUrl = cdnUrl;
+    }
+
+    public StorageEntity getStorageEntity() {
+        return storageEntity;
+    }
+
+    public void setStorageEntity(StorageEntity storageEntity) {
+        this.storageEntity = storageEntity;
     }
 }
