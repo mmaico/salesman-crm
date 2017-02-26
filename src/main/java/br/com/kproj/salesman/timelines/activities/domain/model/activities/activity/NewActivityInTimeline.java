@@ -17,6 +17,8 @@ public class NewActivityInTimeline {
     }
 
     public Activity getActivity() {
+        activity.setUser(user);
+        activity.setTimeline(timeline);
         return activity;
     }
 
@@ -27,6 +29,8 @@ public class NewActivityInTimeline {
     public User getUser() {
         return user;
     }
+
+
 
     public static NewActivityInTimeline newActivity(Activity activity, Timeline timeline,
                                                     User user) {

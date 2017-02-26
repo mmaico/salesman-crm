@@ -9,6 +9,7 @@ import br.com.kproj.salesman.timelines.activities.domain.model.activities.activi
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityValidator;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.NewActivityInTimeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
+import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,13 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
 
     @Override
     public Activity register(NewActivityInTimeline newActivity) {
-        //user.createNew(activity).in(timeline)
-        return null;
+        validator.checkRules(newActivity.getActivity());
+
+        Activity activity = newActivity.getActivity();
+        Timeline timeline = newActivity.getTimeline();
+        User user = newActivity.getUser();
+
+        return user.createNew(activity).in(timeline);
     }
 
     @Override

@@ -5,36 +5,45 @@ import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityRepository;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityValidator;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.TimelineRepository;
+import br.com.kproj.salesman.timelines.activities.domain.model.user.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static br.com.kproj.salesman.delivery.tasks.application.validators.descriptions.TaskRulesDescription.ruleInvalidDelivery;
+import static br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription.*;
 
 @Component("activityBusinessRulesTimelineActivitiesModule")
 public class ActivityBusinessRules implements ActivityValidator {
 
     private TimelineRepository repository;
 
-    private ActivityRepository activityRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public ActivityBusinessRules(TimelineRepository repository, ActivityRepository activityRepository) {
+    public ActivityBusinessRules(TimelineRepository repository, UserRepository userRepository) {
         this.repository = repository;
-        this.activityRepository = activityRepository;
+        this.userRepository = userRepository;
     }
 
     private Map<RuleKey, CheckRule<Activity>> rules = new HashMap<>();
     {
-        rules.put(ruleInvalidDelivery(), activity -> {
+        rules.put(ruleValidDescription(), activity -> StringUtils.isBlank(activity.getDescription()));
 
-            return Boolean.TRUE;
-        });
+        rules.put(ruleTag(), activity -> activity.getTag() == null);
+
+        rules.put(ruleValidTimeline(), activity ->
+            activity.getTimeline() == null || activity.getTimeline().isNew() || !repository.findOne(activity.getTimeline().getId()).isPresent()
+        );
+
+        rules.put(ruleValidUser(), activity ->
+            activity.getUser() == null || activity.getUser().isNew() || !userRepository.findOne(activity.getUser().getId()).isPresent()
+        );
+
 
     }
 

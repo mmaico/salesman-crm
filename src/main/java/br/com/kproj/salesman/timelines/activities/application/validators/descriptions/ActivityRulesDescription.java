@@ -5,7 +5,6 @@ import br.com.kproj.salesman.infrastructure.validators.IgnoreRules;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Set;
 
@@ -21,20 +20,18 @@ public class ActivityRulesDescription implements IgnoreRules {
         return new ActivityRulesDescription(rule);
     }
 
-    public static RuleKey ruleInvalidDelivery() {
-        return RuleKey.key("task.invalid.timeline", "timeline");
+    public static RuleKey ruleValidTimeline() {
+        return RuleKey.key("activity.invalid.timeline", "timeline");
     }
-    public static RuleKey ruleInvalidDeadline() {
-        return RuleKey.key("task.deadline.great.than.or.equals.today", "deadline");
+    public static RuleKey ruleValidDescription() {
+        return RuleKey.key("activity.empty.description", "description");
     }
-    public static RuleKey ruleTaskWithoutTitle() {
-        return RuleKey.key("task.without.title", "title");
+    public static RuleKey ruleValidUser() {
+        return RuleKey.key("activity.invalid.user", "user");
     }
-    public static RuleKey ruleTaskWithoutStatus() {
-        return RuleKey.key("task.without.status", "status");
-    }
-    public static RuleKey ruleTaskNotFoundOnUpdate() {
-        return RuleKey.key("task.not.found.on.update", StringUtils.EMPTY);
+
+    public static RuleKey ruleTag() {
+        return RuleKey.key("activity.invalid.tag", "tag");
     }
 
     @Override

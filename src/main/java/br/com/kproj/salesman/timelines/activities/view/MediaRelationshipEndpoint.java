@@ -22,8 +22,8 @@ import java.util.Date;
 import java.util.Optional;
 
 
-@RestController("activitiesEndpointActivitiesModule")
-public class ActivityEndpoint {
+@RestController("mediaRelationshipEndpointActivitiesModule")
+public class MediaRelationshipEndpoint {
 
     private ActivityFacade service;
 
@@ -31,7 +31,7 @@ public class ActivityEndpoint {
 
 
     @Autowired
-    public ActivityEndpoint(ActivityFacade service, ActivityResourceBuilder builder) {
+    public MediaRelationshipEndpoint(ActivityFacade service, ActivityResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
     }

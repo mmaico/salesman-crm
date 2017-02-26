@@ -2,11 +2,14 @@ package br.com.kproj.salesman.timelines.activities.domain.model.activities.activ
 
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import br.com.kproj.salesman.timelines.activities.domain.model.media.Media;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
+import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;
 
 import java.util.Date;
+import java.util.List;
 
 @Model
 public class Activity extends ModelIdentifiable {
@@ -18,6 +21,7 @@ public class Activity extends ModelIdentifiable {
     private User user;
     private Timeline timeline;
     private Tag tag;
+    private List<Media> medias = Lists.newArrayList();
     private Represent represent;
 
     public Activity() {
@@ -86,5 +90,13 @@ public class Activity extends ModelIdentifiable {
 
     public void setTimeline(Timeline timeline) {
         this.timeline = timeline;
+    }
+
+    public List<Media> getMedias() {
+        return medias;
+    }
+
+    public void setMedias(List<Media> medias) {
+        this.medias = medias;
     }
 }

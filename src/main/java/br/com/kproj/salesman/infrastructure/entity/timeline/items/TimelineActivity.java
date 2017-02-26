@@ -15,6 +15,10 @@ import java.util.List;
 @Table(name="timeline_activities")
 public class TimelineActivity extends Identifiable {
 
+    public enum TagEntity {
+        CALL, NOTE, EMAIL, MEETING
+    }
+
     /**
 	 * 
 	 */
@@ -42,6 +46,10 @@ public class TimelineActivity extends Identifiable {
     @ManyToOne
     @JoinColumn(name="timeline_id")
     private TimelineEntity timeline;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name="TAG")
+    private TagEntity tag;
 
     @Override
     public Long getId() {
@@ -90,5 +98,14 @@ public class TimelineActivity extends Identifiable {
 
     public void setTimeline(TimelineEntity timeline) {
         this.timeline = timeline;
+    }
+
+
+    public TagEntity getTag() {
+        return tag;
+    }
+
+    public void setTag(TagEntity tag) {
+        this.tag = tag;
     }
 }

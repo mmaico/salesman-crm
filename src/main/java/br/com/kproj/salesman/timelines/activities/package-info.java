@@ -1,4 +1,4 @@
 /**
- * Created by mmaico on 2/25/17.
+ * Modulo resposavel pelas atividades postadas numa timeline
  */
 package br.com.kproj.salesman.timelines.activities;

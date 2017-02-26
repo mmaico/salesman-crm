@@ -2,6 +2,7 @@ package br.com.kproj.salesman.timelines.activities.domain.model.activities.activ
 
 
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
+import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
 
 import java.util.Date;
@@ -33,8 +34,18 @@ public class ActivityBuilder extends AbstractBuilder<Activity>  {
 		return this;
 	}
 
+	public ActivityBuilder withTimeline(Timeline timeline) {
+		this.entity.setTimeline(timeline);
+		return this;
+	}
+
 	public ActivityBuilder withTag(Tag tag) {
 		this.entity.setTag(tag);
+		return this;
+	}
+
+	public ActivityBuilder withTag(String tag) {
+		this.entity.setTag(Tag.valueOf(tag));
 		return this;
 	}
 

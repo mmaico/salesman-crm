@@ -9,4 +9,6 @@ public interface ActivityRepository extends BaseRepository<Activity, Long> {
 
     Iterable<Activity> findAll(Timeline timeline, Pageable pageable);
 
+    Activity register(Activity activity);
+
 }
