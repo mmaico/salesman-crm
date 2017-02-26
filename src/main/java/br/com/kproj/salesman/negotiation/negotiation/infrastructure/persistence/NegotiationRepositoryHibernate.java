@@ -11,7 +11,6 @@ import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.Ne
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.negotiation.NegotiationRepository;
 import br.com.kproj.salesman.negotiation.negotiation.infrastructure.persistence.springdata.BusinessProposalSpringData;
 import br.com.kproj.salesman.negotiation.negotiation.infrastructure.persistence.translate.BusinessProposalEntityToNegotiationConverter;
-import com.trex.shared.libraries.registers.PrimitiveTypeFields;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -56,7 +56,7 @@ public class QFileInfoEntity extends EntityPathBase<FileInfoEntity> {
 
     public QFileInfoEntity(Class<? extends FileInfoEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFileEntity(forProperty("file")) : null;
+        this.file = inits.isInitialized("file") ? new br.com.kproj.salesman.infrastructure.entity.QAppFileEntity(forProperty("file"), inits.get("file")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
     }
 

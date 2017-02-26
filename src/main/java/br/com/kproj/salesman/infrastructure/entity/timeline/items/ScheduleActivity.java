@@ -4,9 +4,9 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@DiscriminatorValue("schedule")
-public class ScheduleActivity extends TimelineActivity {
+//@Entity
+//@DiscriminatorValue("schedule")
+public class ScheduleActivity  {
 
     /**
 	 * 
@@ -15,12 +15,12 @@ public class ScheduleActivity extends TimelineActivity {
 
 	private String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="start_date")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name="start_date")
     private Date startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="end_date")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name="end_date")
     private Date endDate;
 
     public String getTitle() {

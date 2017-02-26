@@ -26,6 +26,7 @@ public class RequestBody {
     }
 
     public Boolean has(String attribute) {
+        if (jsonObject == null) return Boolean.TRUE;
         return jsonObject.get(attribute) != null;
     }
 }

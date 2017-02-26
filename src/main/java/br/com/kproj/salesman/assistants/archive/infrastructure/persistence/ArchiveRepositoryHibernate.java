@@ -11,7 +11,6 @@ import br.com.kproj.salesman.infrastructure.entity.assistants.archive.FileInfoEn
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import br.com.kproj.salesman.infrastructure.service.AppFileApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,12 +26,10 @@ public class ArchiveRepositoryHibernate extends BaseRespositoryImpl<Archive, Fil
 
 
     private FileInfoRepository repository;
-    private AppFileApplication appFileApplication;
 
     @Autowired
-    public ArchiveRepositoryHibernate(FileInfoRepository repository, AppFileApplication appFileApplication) {
+    public ArchiveRepositoryHibernate(FileInfoRepository repository) {
         this.repository = repository;
-        this.appFileApplication = appFileApplication;
     }
 
     @Override

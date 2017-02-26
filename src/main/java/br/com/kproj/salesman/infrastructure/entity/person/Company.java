@@ -1,8 +1,5 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import br.com.kproj.salesman.infrastructure.entity.person.client.ClientCompany;
-import br.com.kproj.salesman.infrastructure.entity.person.privider.ProviderCompany;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

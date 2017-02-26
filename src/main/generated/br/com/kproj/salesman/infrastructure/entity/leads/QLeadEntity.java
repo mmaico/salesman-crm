@@ -40,8 +40,6 @@ public class QLeadEntity extends EntityPathBase<LeadEntity> {
 
     public final StringPath position = createString("position");
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public QLeadEntity(String variable) {
         this(LeadEntity.class, forVariable(variable), INITS);
     }
@@ -61,7 +59,6 @@ public class QLeadEntity extends EntityPathBase<LeadEntity> {
     public QLeadEntity(Class<? extends LeadEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

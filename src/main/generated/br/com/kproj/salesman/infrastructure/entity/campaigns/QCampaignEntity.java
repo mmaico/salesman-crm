@@ -38,8 +38,6 @@ public class QCampaignEntity extends EntityPathBase<CampaignEntity> {
 
     public final EnumPath<CampaignEntity.CampaignStatus> status = createEnum("status", CampaignEntity.CampaignStatus.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public QCampaignEntity(String variable) {
         this(CampaignEntity.class, forVariable(variable), INITS);
     }
@@ -59,7 +57,6 @@ public class QCampaignEntity extends EntityPathBase<CampaignEntity> {
     public QCampaignEntity(Class<? extends CampaignEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.createdBy = inits.isInitialized("createdBy") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

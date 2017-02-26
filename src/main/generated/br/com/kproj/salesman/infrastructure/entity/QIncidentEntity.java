@@ -40,8 +40,6 @@ public class QIncidentEntity extends EntityPathBase<IncidentEntity> {
 
     public final EnumPath<IncidentEntity.IncidentStatus> status = createEnum("status", IncidentEntity.IncidentStatus.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public final StringPath title = createString("title");
 
     public QIncidentEntity(String variable) {
@@ -66,7 +64,6 @@ public class QIncidentEntity extends EntityPathBase<IncidentEntity> {
         this.contact = inits.isInitialized("contact") ? new QContactEntity(forProperty("contact"), inits.get("contact")) : null;
         this.createdBy = inits.isInitialized("createdBy") ? new QUserEntity(forProperty("createdBy"), inits.get("createdBy")) : null;
         this.responsible = inits.isInitialized("responsible") ? new QUserEntity(forProperty("responsible"), inits.get("responsible")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

@@ -16,9 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleChecklistNotExists;
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleNameNotPresent;
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleTaskNotExists;
+import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.*;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

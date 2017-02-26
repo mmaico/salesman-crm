@@ -9,7 +9,6 @@ import br.com.kproj.salesman.infrastructure.entity.activities.PersonalActivityEn
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import com.trex.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -17,12 +17,12 @@ public class WorkspaceUnit extends Identifiable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="sales_order_id")
-    @NotNull(message = "act.delivery.sales.order.is.null")
+    @NotNull(message = "act.timeline.sales.order.is.null")
 	private SalesOrderEntity salesOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
-    @NotNull(message = "act.delivery.user.is.null")
+    @NotNull(message = "act.timeline.user.is.null")
     private UserEntity user;
 
     @Override

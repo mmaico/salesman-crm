@@ -1,18 +1,10 @@
 package br.com.kproj.salesman.infrastructure.entity.person;
 
-import br.com.kproj.salesman.infrastructure.entity.Address;
-import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
-import br.com.kproj.salesman.infrastructure.entity.person.privider.Provider;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
-import com.google.common.collect.Lists;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 
 @Entity
@@ -44,8 +36,8 @@ public class Person extends Identifiable {
     @JoinColumn(name="profile_id")
     private PersonProfile profile;
 
-    @OneToOne(mappedBy = "person")
-    private Timeline timeline;
+//    @OneToOne(mappedBy = "person")
+//    private TimelineEntity timeline;
 
     public Person() {
         super();
@@ -128,13 +120,7 @@ public class Person extends Identifiable {
 //        this.addresses.add(address);
 //    }
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
 
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
 
     @Override
     public String toString() {

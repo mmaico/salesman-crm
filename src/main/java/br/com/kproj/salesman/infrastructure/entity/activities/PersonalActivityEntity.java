@@ -4,8 +4,6 @@ import br.com.kproj.salesman.infrastructure.configuration.annotations.IgnoreFiel
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import com.google.common.collect.Lists;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name="personal_activity")
-public class PersonalActivityEntity extends Identifiable implements TimelinePresent {
+public class PersonalActivityEntity extends Identifiable {
 
     @Id
     @GeneratedValue
@@ -44,10 +42,6 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
     @ManyToOne
     @JoinColumn(name="assigner_id")
     private UserEntity assigner;
-
-    @OneToOne
-    @JoinColumn(name = "timeline_id")
-    private Timeline timeline;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
@@ -112,13 +106,6 @@ public class PersonalActivityEntity extends Identifiable implements TimelinePres
         this.checklist = checklist;
     }
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
 
     public PersonalActivityEntity getParent() {
         return parent;

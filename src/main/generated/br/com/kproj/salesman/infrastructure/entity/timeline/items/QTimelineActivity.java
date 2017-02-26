@@ -32,6 +32,8 @@ public class QTimelineActivity extends EntityPathBase<TimelineActivity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimelineEntity timeline;
+
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;
 
     public QTimelineActivity(String variable) {
@@ -52,6 +54,7 @@ public class QTimelineActivity extends EntityPathBase<TimelineActivity> {
 
     public QTimelineActivity(Class<? extends TimelineActivity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimelineEntity(forProperty("timeline")) : null;
         this.user = inits.isInitialized("user") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("user"), inits.get("user")) : null;
     }
 

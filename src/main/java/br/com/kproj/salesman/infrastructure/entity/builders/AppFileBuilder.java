@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import static br.com.kproj.salesman.infrastructure.helpers.MultipartFileUtils.safe;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 

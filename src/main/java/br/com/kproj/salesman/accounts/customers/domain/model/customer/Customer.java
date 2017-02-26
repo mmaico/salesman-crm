@@ -6,7 +6,6 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import com.google.common.collect.Lists;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 

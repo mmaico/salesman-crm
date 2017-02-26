@@ -3,9 +3,6 @@ package br.com.kproj.salesman.assistants.activities.domain.model.personal;
 
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Assigner;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
-import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.TaskStatus;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 
 import java.util.Date;

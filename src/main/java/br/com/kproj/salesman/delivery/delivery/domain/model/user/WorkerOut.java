@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.delivery.delivery.domain.model.user;
 
 
-import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
-
 public class WorkerOut {
 
     private Long workerId;

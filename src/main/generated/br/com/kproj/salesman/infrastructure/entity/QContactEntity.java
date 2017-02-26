@@ -36,8 +36,6 @@ public class QContactEntity extends EntityPathBase<ContactEntity> {
 
     public final StringPath position = createString("position");
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public QContactEntity(String variable) {
         this(ContactEntity.class, forVariable(variable), INITS);
     }
@@ -57,7 +55,6 @@ public class QContactEntity extends EntityPathBase<ContactEntity> {
     public QContactEntity(Class<? extends ContactEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.customer = inits.isInitialized("customer") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("customer")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

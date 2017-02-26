@@ -1,14 +1,12 @@
 package br.com.kproj.salesman.assistants.calendar.calendar.view.support.builder;
 
 
-
 import br.com.kproj.salesman.assistants.calendar.calendar.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.assistants.calendar.calendar.view.support.resource.CalendarResource;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import br.com.uol.rest.apiconverter.ConverterToResource;
-import br.com.uol.rest.apiconverter.configs.LinkAddConfig;
 import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;

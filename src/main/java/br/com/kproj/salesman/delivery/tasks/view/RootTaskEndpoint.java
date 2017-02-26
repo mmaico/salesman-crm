@@ -5,7 +5,6 @@ import br.com.kproj.salesman.delivery.tasks.application.RootTaskFacade;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.roottask.RootTaskBuilder;
 import br.com.kproj.salesman.delivery.tasks.view.support.builders.RootTaskResourceBuilder;
-import br.com.kproj.salesman.delivery.tasks.view.support.resources.RootTaskResource;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;

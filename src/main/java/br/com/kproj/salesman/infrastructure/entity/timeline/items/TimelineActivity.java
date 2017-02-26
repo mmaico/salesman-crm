@@ -4,8 +4,7 @@ package br.com.kproj.salesman.infrastructure.entity.timeline.items;
 import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.helpers.files.annotations.Media;
-import br.com.kproj.salesman.infrastructure.helpers.files.annotations.MediaStorage;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelineEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,11 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Media(name="timelines")
 @Table(name="timeline_activities")
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="descriminator", discriminatorType=DiscriminatorType.STRING)
-public abstract class TimelineActivity extends Identifiable {
+public class TimelineActivity extends Identifiable {
 
     /**
 	 * 
@@ -32,18 +28,20 @@ public abstract class TimelineActivity extends Identifiable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/M/Y")
-    private Date creation = new Date();
+    private Date creation;
 
     @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinTable(name="timeline_item_files", joinColumns=@JoinColumn(name="timeline_item_id"),
             inverseJoinColumns=@JoinColumn(name="appfile_id"))
-    @OrderBy("creation ASC")
-    @MediaStorage(name="files")
     private List<AppFileEntity> files;
 
     @ManyToOne
     @JoinColumn(name="user_id")
     private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name="timeline_id")
+    private TimelineEntity timeline;
 
     @Override
     public Long getId() {
@@ -84,5 +82,13 @@ public abstract class TimelineActivity extends Identifiable {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public TimelineEntity getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(TimelineEntity timeline) {
+        this.timeline = timeline;
     }
 }

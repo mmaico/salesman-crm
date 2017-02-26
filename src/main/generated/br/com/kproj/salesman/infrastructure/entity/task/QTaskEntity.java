@@ -40,8 +40,6 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.TaskStatusEntity.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public final StringPath title = createString("title");
 
     public final EnumPath<TaskTypeEntity> type = createEnum("type", TaskTypeEntity.class);
@@ -66,7 +64,6 @@ public class QTaskEntity extends EntityPathBase<TaskEntity> {
         super(type, metadata, inits);
         this.delivery = inits.isInitialized("delivery") ? new br.com.kproj.salesman.infrastructure.entity.delivery.QDeliveryEntity(forProperty("delivery"), inits.get("delivery")) : null;
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

@@ -2,7 +2,6 @@ package br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistenc
 
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

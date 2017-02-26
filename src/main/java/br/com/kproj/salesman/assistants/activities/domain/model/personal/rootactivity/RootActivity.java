@@ -2,7 +2,6 @@ package br.com.kproj.salesman.assistants.activities.domain.model.personal.rootac
 
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.subactivity.SubActivity;
-
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import com.google.common.collect.Lists;
 import com.trex.shared.annotations.Model;

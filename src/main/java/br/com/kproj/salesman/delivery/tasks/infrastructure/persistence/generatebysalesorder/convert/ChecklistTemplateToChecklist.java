@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.generatebysalesorder.convert;
 
-import br.com.kproj.salesman.infrastructure.entity.builders.ChecklistBuilder;
 import br.com.kproj.salesman.infrastructure.entity.task.ChecklistEntity;
 import br.com.kproj.salesman.infrastructure.entity.task.TaskEntity;
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.ChecklistDefinitionEntity;

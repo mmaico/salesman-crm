@@ -7,7 +7,6 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.SubTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskBuilder;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskToRootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.SubtaskResourceBuilder;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.SubTaskResource;

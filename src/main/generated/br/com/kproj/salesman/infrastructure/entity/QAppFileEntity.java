@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -16,6 +17,8 @@ import com.querydsl.core.types.Path;
 public class QAppFileEntity extends EntityPathBase<AppFileEntity> {
 
     private static final long serialVersionUID = 740371377L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QAppFileEntity appFileEntity = new QAppFileEntity("appFileEntity");
 
@@ -35,22 +38,33 @@ public class QAppFileEntity extends EntityPathBase<AppFileEntity> {
 
     public final StringPath originalName = createString("originalName");
 
-    public final NumberPath<Long> size = createNumber("size", Long.class);
+    public final NumberPath<Integer> size = createNumber("size", Integer.class);
+
+    public final QStorageEntity storageEntity;
 
     public final StringPath systemname = createString("systemname");
 
     public final NumberPath<Integer> width = createNumber("width", Integer.class);
 
     public QAppFileEntity(String variable) {
-        super(AppFileEntity.class, forVariable(variable));
+        this(AppFileEntity.class, forVariable(variable), INITS);
     }
 
     public QAppFileEntity(Path<? extends AppFileEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QAppFileEntity(PathMetadata metadata) {
-        super(AppFileEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QAppFileEntity(PathMetadata metadata, PathInits inits) {
+        this(AppFileEntity.class, metadata, inits);
+    }
+
+    public QAppFileEntity(Class<? extends AppFileEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.storageEntity = inits.isInitialized("storageEntity") ? new QStorageEntity(forProperty("storageEntity")) : null;
     }
 
 }

@@ -1,9 +1,9 @@
 package br.com.kproj.salesman.delivery.tasks.infrastructure.persistence;
 
 
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscriberRepository;
-import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscribeTask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
 import br.com.kproj.salesman.delivery.tasks.infrastructure.persistence.springdata.TaskResponsibleRepositorySpringData;

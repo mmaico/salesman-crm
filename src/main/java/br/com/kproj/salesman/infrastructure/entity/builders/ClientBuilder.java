@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity.builders;
 
 
-import br.com.kproj.salesman.infrastructure.entity.person.Person;
 import br.com.kproj.salesman.infrastructure.entity.person.client.Client;
 
 public class ClientBuilder extends AbstractBuilder<Client>  {

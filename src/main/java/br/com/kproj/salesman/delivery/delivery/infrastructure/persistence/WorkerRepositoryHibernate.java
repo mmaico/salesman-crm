@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.delivery.delivery.infrastructure.persistence;
 
 import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
-import br.com.kproj.salesman.delivery.delivery.domain.model.user.User;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerRepository;
 import br.com.kproj.salesman.delivery.delivery.infrastructure.persistence.springdata.WorkerRepositorySpringdata;

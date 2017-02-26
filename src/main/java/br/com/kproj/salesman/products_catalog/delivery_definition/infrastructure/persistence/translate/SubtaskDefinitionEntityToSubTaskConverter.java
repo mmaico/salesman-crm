@@ -2,9 +2,9 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.infrastructur
 
 import br.com.kproj.salesman.infrastructure.entity.task_definitions.SubtaskDefinitionEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
+import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

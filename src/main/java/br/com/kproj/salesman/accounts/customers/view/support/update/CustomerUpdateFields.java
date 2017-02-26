@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.accounts.customers.view.support.update;
 
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

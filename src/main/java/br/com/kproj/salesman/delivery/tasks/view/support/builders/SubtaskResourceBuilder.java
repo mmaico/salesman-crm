@@ -8,7 +8,6 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

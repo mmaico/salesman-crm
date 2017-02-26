@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.medias.media.view.support.builders;
 
 
-
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.medias.media.domain.media.FileContent;
 import br.com.kproj.salesman.medias.media.view.support.resources.FileContentResource;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import static br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder.getUri;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;

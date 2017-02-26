@@ -1,13 +1,10 @@
 package br.com.kproj.salesman.products_catalog.catalog.view.support.resources;
 
-import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SaleableRelation;
 import br.com.uol.rest.apiconverter.resources.Item;
 import br.com.uol.rest.infrastructure.annotations.ResourceItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import java.math.BigDecimal;
 
 @JsonPropertyOrder({
         "id",

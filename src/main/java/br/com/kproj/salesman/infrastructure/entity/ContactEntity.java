@@ -2,8 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
 import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -12,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="contacts")
-public class ContactEntity extends Identifiable implements TimelinePresent {
+public class ContactEntity extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -29,9 +27,6 @@ public class ContactEntity extends Identifiable implements TimelinePresent {
     private String phone;
 
     private String position;
-
-    @OneToOne(mappedBy = "contact")
-    private Timeline timeline;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
@@ -100,11 +95,4 @@ public class ContactEntity extends Identifiable implements TimelinePresent {
         this.position = position;
     }
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
 }

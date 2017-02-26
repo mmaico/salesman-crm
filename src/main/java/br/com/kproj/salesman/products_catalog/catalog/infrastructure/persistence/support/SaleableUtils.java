@@ -5,8 +5,8 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.*;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.products.Product;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.catalog.domain.model.services.Service;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
+import br.com.kproj.salesman.products_catalog.catalog.domain.model.services.Service;
 
 import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.PRODUCT;
 import static br.com.kproj.salesman.infrastructure.entity.saleable.SaleableTypeEntity.SERVICE;

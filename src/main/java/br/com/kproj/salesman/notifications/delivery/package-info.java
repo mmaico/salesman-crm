@@ -1,8 +1,8 @@
 /**
  *  Modulo responsavel por enviar notificacoes provenientes do modulo
- *  de delivery (tasks com data proxima).
+ *  de timeline (activities com data proxima).
  *
- *  Esse modulo ira capturar as mensagens vindas do modulo de delivery e ira
+ *  Esse modulo ira capturar as mensagens vindas do modulo de timeline e ira
  *  prepara uma notificacoes para ser enviada.
  *
  */

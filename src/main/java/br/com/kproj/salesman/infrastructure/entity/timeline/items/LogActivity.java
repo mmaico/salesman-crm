@@ -10,10 +10,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Media(name="timelines")
-@DiscriminatorValue("logactivity")
-public class LogActivity extends TimelineActivity {
+//@Entity
+//@Media(name="timelines")
+//@DiscriminatorValue("logactivity")
+public class LogActivity {
 
 
     /**
@@ -21,15 +21,15 @@ public class LogActivity extends TimelineActivity {
 	 */
 	private static final long serialVersionUID = 2728388686834419769L;
 
-    @Enumerated(EnumType.STRING)
-    @NotNull
+//    @Enumerated(EnumType.STRING)
+//    @NotNull
     private LogActivityTypeEnum type;
 
     public LogActivity(){}
 
-    public LogActivity(Long id) {
-        this.setId(id);
-    }
+//    public LogActivity(Long id) {
+//        this.setId(id);
+//    }
 
     public LogActivityTypeEnum getType() {
         return type;

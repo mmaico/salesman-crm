@@ -3,8 +3,6 @@ package br.com.kproj.salesman.infrastructure.entity.task;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
 import javax.persistence.*;
 

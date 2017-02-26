@@ -14,7 +14,8 @@ import spock.lang.Unroll
 
 import static br.com.kproj.salesman.infratest.SceneryLoaderHelper.scenery
 import static groovy.json.JsonOutput.toJson
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @ClassReference(RootActivityEndpoint)
 class RootActivityEndpointIT extends AbstractIntegrationTest {

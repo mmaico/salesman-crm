@@ -5,8 +5,6 @@ import br.com.kproj.salesman.infrastructure.entity.OperationRegionEntity;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
 import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.entity.enums.ProposalTemperature;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "business_proposal")
-public class BusinessProposalEntity extends Identifiable implements TimelinePresent {
+public class BusinessProposalEntity extends Identifiable {
 
 
     /**
@@ -66,9 +64,6 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
 
     @Column(name = "ammount_payable")
     private BigDecimal ammountPayable;
-
-    @OneToOne(mappedBy = "proposal")
-    private Timeline timeline;
 
 
     public BusinessProposalEntity(){}
@@ -157,14 +152,6 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         this.proposalTemperature = proposalTemperature;
     }
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
-
     public BigDecimal getDiscount() {
         return discount;
     }
@@ -193,7 +180,4 @@ public class BusinessProposalEntity extends Identifiable implements TimelinePres
         return this.customer == null ? null : this.customer.getId();
     }
 
-    public Long getTimelineId() {
-        return this.timeline == null ? null : this.timeline.getId();
-    }
 }

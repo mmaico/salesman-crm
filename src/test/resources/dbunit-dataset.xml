@@ -164,9 +164,9 @@
     <sales_order_item id="7" saleable_id="1"  price="10.00" original_price="5.00" quantity="3" sales_order_id="4"/>
 
     <!-- TIMELINES -->
-    <timelines id="1" person_id="1"/>
-    <timelines id="3" business_proposal_id="1"/>
-    <timelines id="4" contact_id="2"/>
+    <timelines id="1" />
+    <timelines id="3" />
+    <timelines id="4" />
 
     <!-- TASKS DEFINITIONS -->
     <task_definitions id="1" title="SubTask One" saleable_unit_id="2" operation_region_id="1" description="Subtask One description" quantity_days_to_finish_after_signed_contract="3" type="SUBTASK"/>

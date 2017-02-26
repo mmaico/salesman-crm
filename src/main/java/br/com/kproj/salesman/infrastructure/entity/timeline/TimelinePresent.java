@@ -5,7 +5,7 @@ public interface TimelinePresent {
 
     Long getId();
 
-    Timeline getTimeline();
+    TimelineEntity getTimeline();
 
-    void setTimeline(Timeline timeline);
+    void setTimeline(TimelineEntity timeline);
 }

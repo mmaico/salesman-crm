@@ -48,8 +48,6 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity seller;
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public QBusinessProposalEntity(String variable) {
         this(BusinessProposalEntity.class, forVariable(variable), INITS);
     }
@@ -71,7 +69,6 @@ public class QBusinessProposalEntity extends EntityPathBase<BusinessProposalEnti
         this.customer = inits.isInitialized("customer") ? new br.com.kproj.salesman.infrastructure.entity.accounts.QCustomerEntity(forProperty("customer")) : null;
         this.region = inits.isInitialized("region") ? new br.com.kproj.salesman.infrastructure.entity.QOperationRegionEntity(forProperty("region")) : null;
         this.seller = inits.isInitialized("seller") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("seller"), inits.get("seller")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

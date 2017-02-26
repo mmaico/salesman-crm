@@ -1,11 +1,8 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.infrastructure.persistence;
 
 
-
-
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.Calendar;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.calendar.CalendarRepository;
-
 import br.com.kproj.salesman.assistants.calendar.activities.activity.infrastructure.persistence.springdata.CalendarEntityRepositorySpringdata;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;

@@ -48,7 +48,7 @@ public class WorkerServiceImpl extends BaseModelServiceImpl<Worker> implements W
     @Override
     public Collection<Worker> findAll(Delivery delivery) {
         if (delivery.isNew()) {
-            throw new ValidationException("delivery.with.invalid.id");
+            throw new ValidationException("timeline.with.invalid.id");
         }
         return repository.findAll(delivery);
     }

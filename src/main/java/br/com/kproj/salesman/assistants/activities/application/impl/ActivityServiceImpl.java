@@ -4,7 +4,6 @@ import br.com.kproj.salesman.assistants.activities.application.ActivityFacade;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityValidator;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SaveActivity;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;

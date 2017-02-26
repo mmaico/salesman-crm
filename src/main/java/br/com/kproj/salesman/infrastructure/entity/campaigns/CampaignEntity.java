@@ -2,7 +2,7 @@ package br.com.kproj.salesman.infrastructure.entity.campaigns;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
+import br.com.kproj.salesman.infrastructure.entity.timeline.TimelineEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,17 +44,6 @@ public class CampaignEntity extends Identifiable {
     @NotNull(message = "user.createdby.is.null")
     private UserEntity createdBy;
 
-    @OneToOne(mappedBy = "campaign")
-    private Timeline timeline;
-
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
 
     @Override
     public Long getId() {

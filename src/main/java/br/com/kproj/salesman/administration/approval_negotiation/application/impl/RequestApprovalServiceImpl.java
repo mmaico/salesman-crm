@@ -7,7 +7,6 @@ import br.com.kproj.salesman.administration.approval_negotiation.domain.model.ap
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -33,6 +32,7 @@ public class RequestApprovalServiceImpl extends BaseModelServiceImpl<RequestAppr
 
 
     //refatorar porque o codigo nao esta claro o que esta fazendo
+    // seller.request(approval).withAvailables(approvers)
     @Override
     public Optional<RequestApproval> register(RequestApproval request) {
         checkRules.isValidToStartRequestApproval(request);

@@ -8,7 +8,6 @@ import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactForCu
 import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactRepository;
 import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactValidator;
 import br.com.kproj.salesman.accounts.contacts.domain.model.customer.Customer;
-import br.com.kproj.salesman.accounts.contacts.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

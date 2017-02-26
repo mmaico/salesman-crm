@@ -1,6 +1,5 @@
 package br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators;
 
-import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.infrastructure.validators.IgnoreRules;
@@ -17,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.helpers.NumberHelper.isNotNegativeNumber;
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription.*;

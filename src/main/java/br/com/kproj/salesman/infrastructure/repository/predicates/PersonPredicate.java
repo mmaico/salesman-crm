@@ -8,7 +8,6 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
-
 import java.util.Collection;
 
 public class PersonPredicate {

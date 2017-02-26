@@ -1,8 +1,8 @@
 package br.com.kproj.salesman.delivery.tasks.application;
 
 
-import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscribeTask;
+import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.infrastructure.service.ModelFacade;
 import org.springframework.data.domain.Pageable;

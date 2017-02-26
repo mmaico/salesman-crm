@@ -11,10 +11,6 @@ import br.com.kproj.salesman.negotiation.negotiation.infrastructure.persistence.
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
-import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
-
 @Repository
 public class ApprovalProcessRepositoryHibernate extends BaseRespositoryImpl<RequestApproval, RequestApprovalEntity> implements ApprovalProcessRepository {
 

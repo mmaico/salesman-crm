@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ClassReference(TaskEndpoint)
 class TaskEndpointIT extends AbstractIntegrationTest {
 
-    private static final String TASK_LIST = "/products_catalog/task_definition/task-definition-list.json";
+    private static final String TASK_LIST = "/products_catalog/task_definition/task-definition-list.json"
 
     def MockMvc mockMvc
 

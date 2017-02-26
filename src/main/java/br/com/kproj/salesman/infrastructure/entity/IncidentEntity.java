@@ -1,8 +1,6 @@
 package br.com.kproj.salesman.infrastructure.entity;
 
 import br.com.kproj.salesman.infrastructure.entity.person.Person;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="incidents")
-public class IncidentEntity extends Identifiable implements TimelinePresent {
+public class IncidentEntity extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -44,8 +42,6 @@ public class IncidentEntity extends Identifiable implements TimelinePresent {
     @NotNull
 	private IncidentStatus status;
 
-    @OneToOne(mappedBy = "incident")
-    private Timeline timeline;
 
     //Colocar canal de origem (telefone, email, web)
 
@@ -77,15 +73,6 @@ public class IncidentEntity extends Identifiable implements TimelinePresent {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
     }
 
     public Person getClient() {

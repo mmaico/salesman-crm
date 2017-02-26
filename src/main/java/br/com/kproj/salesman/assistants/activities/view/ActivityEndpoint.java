@@ -4,7 +4,6 @@ package br.com.kproj.salesman.assistants.activities.view;
 import br.com.kproj.salesman.assistants.activities.application.ActivityFacade;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityBuilder;
-import br.com.kproj.salesman.assistants.activities.domain.model.personal.SaveActivity;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.assistants.activities.view.support.builder.ActivityResourceBuilder;
 import br.com.kproj.salesman.assistants.activities.view.support.resource.ActivityResource;

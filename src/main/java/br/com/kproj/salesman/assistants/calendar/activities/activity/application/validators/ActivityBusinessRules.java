@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.application.utils.DateUtils.is;
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.application.utils.Greater.greater;
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.application.utils.Than.than;

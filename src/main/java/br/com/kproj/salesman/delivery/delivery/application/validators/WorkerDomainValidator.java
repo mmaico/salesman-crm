@@ -6,8 +6,6 @@ import br.com.kproj.salesman.delivery.delivery.domain.model.user.Worker;
 import br.com.kproj.salesman.delivery.delivery.domain.model.user.WorkerValidator;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
-import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +15,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
 public class WorkerDomainValidator implements WorkerValidator {

@@ -38,8 +38,6 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
 
     public final EnumPath<br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus> status = createEnum("status", br.com.kproj.salesman.infrastructure.entity.enums.PersonalAcvitityStatus.class);
 
-    public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline timeline;
-
     public final StringPath title = createString("title");
 
     public final EnumPath<ActivityTypeEntity> type = createEnum("type", ActivityTypeEntity.class);
@@ -64,7 +62,6 @@ public class QPersonalActivityEntity extends EntityPathBase<PersonalActivityEnti
         super(type, metadata, inits);
         this.assigner = inits.isInitialized("assigner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("assigner"), inits.get("assigner")) : null;
         this.owner = inits.isInitialized("owner") ? new br.com.kproj.salesman.infrastructure.entity.QUserEntity(forProperty("owner"), inits.get("owner")) : null;
-        this.timeline = inits.isInitialized("timeline") ? new br.com.kproj.salesman.infrastructure.entity.timeline.QTimeline(forProperty("timeline"), inits.get("timeline")) : null;
     }
 
 }

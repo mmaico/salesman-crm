@@ -5,7 +5,6 @@ import br.com.kproj.salesman.accounts.customers.application.validators.CustomerI
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerRepository;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerValidator;
-import br.com.kproj.salesman.accounts.customers.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

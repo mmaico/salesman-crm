@@ -2,8 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.leads;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.UserEntity;
-import br.com.kproj.salesman.infrastructure.entity.timeline.Timeline;
-import br.com.kproj.salesman.infrastructure.entity.timeline.TimelinePresent;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -14,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name="leads")
-public class LeadEntity extends Identifiable implements TimelinePresent {
+public class LeadEntity extends Identifiable {
 
 	private static final long serialVersionUID = -7486201820229036695L;
 
@@ -43,9 +41,6 @@ public class LeadEntity extends Identifiable implements TimelinePresent {
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "lead")
     protected List<LeadPhone> phones;
 
-
-    @OneToOne(mappedBy = "lead")
-    private Timeline timeline;
 
     public LeadEntity() {}
 
@@ -84,14 +79,6 @@ public class LeadEntity extends Identifiable implements TimelinePresent {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
     }
 
     public List<LeadAddress> getAddresses() {

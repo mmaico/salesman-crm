@@ -5,7 +5,6 @@ import br.com.kproj.salesman.assistants.calendar.activities.activity.infrastruct
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.ActivityContact;
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.activity.ActivityContactRepository;
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.contact.Contact;
-
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.infrastructure.persistence.springdata.CalendarContactActivityRepositorySpringData;
 import br.com.kproj.salesman.infrastructure.entity.ContactEntity;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;

@@ -18,7 +18,7 @@ import java.util.Date;
         "deadline",
         "status",
         "checklists",
-        "delivery",
+        "timeline",
         "links"
 })
 @ResourceItem(name="personal-activities", modelReference = Activity.class, parent = OwnerResource.class)

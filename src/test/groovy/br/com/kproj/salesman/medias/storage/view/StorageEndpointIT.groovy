@@ -2,7 +2,6 @@ package br.com.kproj.salesman.medias.storage.view
 
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
-import br.com.kproj.salesman.infratest.SceneryLoaderHelper
 import br.com.kproj.salesman.negotiation.negotiation.view.NegotiationEndpoint
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Autowired

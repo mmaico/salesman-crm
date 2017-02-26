@@ -10,10 +10,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Media(name="timelines")
-@DiscriminatorValue("business_proposal_avaluation_activity")
-public class BusinessProposalApprovalActivity extends TimelineActivity {
+//@Entity
+//@Media(name="timelines")
+//@DiscriminatorValue("business_proposal_avaluation_activity")
+public class BusinessProposalApprovalActivity {
 
 
     /**
@@ -27,9 +27,9 @@ public class BusinessProposalApprovalActivity extends TimelineActivity {
 
     public BusinessProposalApprovalActivity(){}
 
-    public BusinessProposalApprovalActivity(Long id) {
-        this.setId(id);
-    }
+//    public BusinessProposalApprovalActivity(Long id) {
+//        this.setId(id);
+//    }
 
     public ApproverStatus getAvaluation() {
         return avaluation;

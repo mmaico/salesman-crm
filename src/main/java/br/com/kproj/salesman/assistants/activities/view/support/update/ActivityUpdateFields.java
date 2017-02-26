@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.assistants.activities.view.support.update;
 
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
-import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

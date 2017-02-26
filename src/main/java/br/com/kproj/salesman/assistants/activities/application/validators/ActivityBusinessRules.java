@@ -4,7 +4,6 @@ import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activit
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.ActivityValidator;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.AssignerRepository;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.OwnerRepository;
-import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
 import br.com.kproj.salesman.infrastructure.validators.RuleKey;
 import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
@@ -14,11 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import static br.com.kproj.salesman.infrastructure.helpers.HandlerErrors.hasErrors;
-import static br.com.kproj.salesman.infrastructure.helpers.RuleExpressionHelper.description;
 import static br.com.kproj.salesman.infrastructure.validators.RuleKey.key;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

@@ -4,7 +4,6 @@ package br.com.kproj.salesman.infrastructure.entity.assistants.calendar.activity
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.entity.assistants.calendar.CalendarActivityEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.BusinessProposalEntity;
-import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 
 import javax.persistence.*;
 

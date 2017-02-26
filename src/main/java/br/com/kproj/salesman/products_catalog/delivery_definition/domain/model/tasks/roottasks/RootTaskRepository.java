@@ -2,9 +2,6 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 
 
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
-
-import java.util.Optional;
 
 public interface RootTaskRepository extends BaseRepository<RootTask, Long> {
 

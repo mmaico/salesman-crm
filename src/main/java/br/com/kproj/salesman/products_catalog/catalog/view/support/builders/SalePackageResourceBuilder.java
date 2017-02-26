@@ -8,7 +8,6 @@ import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.Sal
 import br.com.kproj.salesman.products_catalog.catalog.view.support.resources.SaleableRelationResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.apiconverter.configs.LinkRemoveConfig;
-import br.com.uol.rest.apiconverter.configs.SelectableConfig;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

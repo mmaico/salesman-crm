@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleChecklistNotExists;
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleNameNotPresent;
-import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.ruleTaskNotExists;
+import static br.com.kproj.salesman.products_catalog.delivery_definition.application.validators.ChecklistIgnoreRules.*;
 import static br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.ChecklistToTask.createChecklistToTask;
 
 @Service("checklistDefinitionFacadeTaskTemplateModule")

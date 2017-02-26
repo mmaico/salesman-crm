@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.administration.users.application.impl;
 
 import br.com.kproj.salesman.administration.users.application.UserFacade;
-import br.com.kproj.salesman.administration.users.domain.model.administrator.Administrator;
 import br.com.kproj.salesman.administration.users.domain.model.user.User;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserEventHandler;
 import br.com.kproj.salesman.administration.users.domain.model.user.UserRepository;

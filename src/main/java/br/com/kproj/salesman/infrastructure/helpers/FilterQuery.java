@@ -8,9 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.AND;
-import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.EMPTY;
-import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.OR;
+import static br.com.kproj.salesman.infrastructure.helpers.FilterQuery.LogicalOperator.*;
 import static br.com.kproj.salesman.infrastructure.helpers.StringQueryUtils.getQueryValue;
 
 public class FilterQuery {

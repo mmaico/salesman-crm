@@ -8,11 +8,7 @@ import br.com.kproj.salesman.infrastructure.repository.Pager;
 import br.com.kproj.salesman.products_catalog.delivery_definition.application.RootTaskFacade;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTaskBuilder;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.Subtask;
-import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskToRootTask;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.RootTaskResourceBuilder;
-import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.RootTaskResource;
-import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.SubTaskResource;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
-
-import static br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.subtasks.SubtaskBuilder.createSubtask;
 
 
 @RestController("rootTaskEndpoinDefinitionModule")

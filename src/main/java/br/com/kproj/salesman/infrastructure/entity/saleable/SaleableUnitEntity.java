@@ -2,8 +2,6 @@ package br.com.kproj.salesman.infrastructure.entity.saleable;
 
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.hibernate.annotations.DiscriminatorOptions;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 

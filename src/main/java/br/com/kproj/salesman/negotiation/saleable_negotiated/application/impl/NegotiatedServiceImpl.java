@@ -3,7 +3,6 @@ package br.com.kproj.salesman.negotiation.saleable_negotiated.application.impl;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.application.SaleableNegotiatedFacade;
-import br.com.kproj.salesman.negotiation.saleable_negotiated.application.validators.NegotiatedRulesDescription;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedInNegotiation;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedRepository;

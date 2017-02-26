@@ -2,7 +2,6 @@ package br.com.kproj.salesman.auditing.delivery.domain.model.audit;
 
 
 import br.com.kproj.salesman.auditing.delivery.domain.model.task.Task;
-
 import br.com.kproj.salesman.auditing.delivery.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.entity.builders.AbstractBuilder;
 

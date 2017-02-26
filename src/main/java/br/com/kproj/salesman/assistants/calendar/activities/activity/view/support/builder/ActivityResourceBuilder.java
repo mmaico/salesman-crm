@@ -1,7 +1,6 @@
 package br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.builder;
 
 
-
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Represent;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.view.support.resource.ActivityResource;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 import static br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Represent.*;
 import static br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder.getUri;
