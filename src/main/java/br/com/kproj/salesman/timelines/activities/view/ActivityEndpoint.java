@@ -60,7 +60,6 @@ public class ActivityEndpoint {
     @RequestMapping(value = "/rs/timelines/{timelineId}/activities", method = RequestMethod.POST)
     public @ResponseBody
     ResourceItem create(@PathVariable Long timelineId, @RequestBody ActivityResource resource) {
-
         //pegar o usuario logado
         User user = new User(1l);
 

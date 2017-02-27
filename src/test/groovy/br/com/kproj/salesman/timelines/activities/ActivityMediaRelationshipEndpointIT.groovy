@@ -105,6 +105,6 @@ class ActivityMediaRelationshipEndpointIT extends AbstractIntegrationTest {
         then: "Should return a new media"
             mvcResult.response.status == HttpStatus.OK.value
     }
-    
+
 
 }

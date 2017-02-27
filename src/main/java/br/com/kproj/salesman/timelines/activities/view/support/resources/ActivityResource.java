@@ -15,8 +15,7 @@ import java.util.Date;
         "id",
         "description",
         "creation",
-        "status",
-        "timeline",
+        "tag",
         "links"
 })
 @ResourceItem(name="activities", modelReference = Activity.class, parent = TimelineResource.class)

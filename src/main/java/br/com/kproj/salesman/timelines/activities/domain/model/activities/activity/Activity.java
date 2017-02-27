@@ -3,6 +3,7 @@ package br.com.kproj.salesman.timelines.activities.domain.model.activities.activ
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.Media;
+import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationship;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
 import com.google.common.collect.Lists;
@@ -21,7 +22,7 @@ public class Activity extends ModelIdentifiable {
     private User user;
     private Timeline timeline;
     private Tag tag;
-    private List<Media> medias = Lists.newArrayList();
+    private List<MediaRelationship> medias = Lists.newArrayList();
     private Represent represent;
 
     public Activity() {
@@ -92,11 +93,11 @@ public class Activity extends ModelIdentifiable {
         this.timeline = timeline;
     }
 
-    public List<Media> getMedias() {
+    public List<MediaRelationship> getMedias() {
         return medias;
     }
 
-    public void setMedias(List<Media> medias) {
+    public void setMedias(List<MediaRelationship> medias) {
         this.medias = medias;
     }
 }

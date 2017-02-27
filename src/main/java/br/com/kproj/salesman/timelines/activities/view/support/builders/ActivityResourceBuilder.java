@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.http.response.handler.resources.Reso
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
 import br.com.kproj.salesman.timelines.activities.view.support.resources.ActivityResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
+import br.com.uol.rest.apiconverter.resources.Link;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -15,15 +16,17 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static br.com.uol.rest.apiconverter.resources.Link.createLink;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Component("activityResourceBuilderTimelineActivitiesModule")
 public class ActivityResourceBuilder {
 
+    private static final String URL_MEDIAS = "/rs/timelines/activities/{activityId}/activities-medias-relationships";
+
     @Autowired
     private HttpServletRequest request;
-
 
 
     public ResourceItem build(Activity activity) {
@@ -42,10 +45,11 @@ public class ActivityResourceBuilder {
 
     public ActivityResource buildItem(Activity activity) {
         ContextArguments context = ContextArguments.create(createEmpty(), EMPTY);
+        context.addLinkConf(ActivityResource.class, createLink("has-medias", URL_MEDIAS.replace("{activityId}", activity.getId().toString())));
 
         ActivityResource resource = new ActivityResource();
-
         ConverterToResource.convert(activity, resource, context);
+
         return resource;
     }
 
