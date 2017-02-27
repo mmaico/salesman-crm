@@ -11,8 +11,8 @@ public interface MediaRelationshipFacade extends ModelFacade<MediaRelationship> 
 
     Optional<MediaRelationship> register(MediaRelationship newRelationship);
 
-    void delete(MediaRelationship relationship);
+    void delete(Long relationId);
 
-    Collection<MediaRelationship> findAll(MediaRelationship relationship);
+    Collection<MediaRelationship> findAll(Long activityId);
 
 }

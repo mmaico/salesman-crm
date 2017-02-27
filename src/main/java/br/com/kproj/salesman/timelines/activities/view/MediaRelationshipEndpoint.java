@@ -4,95 +4,70 @@ package br.com.kproj.salesman.timelines.activities.view;
 import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
-import br.com.kproj.salesman.timelines.activities.application.ActivityFacade;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityBuilder;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.NewActivityInTimeline;
-import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
-import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
-import br.com.kproj.salesman.timelines.activities.view.support.builders.ActivityResourceBuilder;
-import br.com.kproj.salesman.timelines.activities.view.support.resources.ActivityResource;
+import br.com.kproj.salesman.timelines.activities.application.MediaRelationshipFacade;
+import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationship;
+import br.com.kproj.salesman.timelines.activities.domain.model.media.RelationshipBuilder;
+import br.com.kproj.salesman.timelines.activities.view.support.builders.MediaRelationshipResourceBuilder;
+import br.com.kproj.salesman.timelines.activities.view.support.resources.MediaRelationshipResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.Optional;
 
 
 @RestController("mediaRelationshipEndpointActivitiesModule")
 public class MediaRelationshipEndpoint {
 
-    private ActivityFacade service;
+    private MediaRelationshipFacade service;
 
-    private ActivityResourceBuilder builder;
+    private MediaRelationshipResourceBuilder builder;
 
 
     @Autowired
-    public MediaRelationshipEndpoint(ActivityFacade service, ActivityResourceBuilder builder) {
+    public MediaRelationshipEndpoint(MediaRelationshipFacade service, MediaRelationshipResourceBuilder builder) {
         this.service = service;
         this.builder = builder;
     }
 
-    @RequestMapping(value = "/rs/timelines/{timelineId}/activities", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/timelines/activities/{activityId}/activities-medias-relationships", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItems list(@PathVariable Long timelineId, @PageableDefault(size = 100) Pageable pageable) {
-        Timeline timeline = new Timeline(timelineId);
+    ResourceItems list(@PathVariable Long activityId) {
 
-        Iterable<Activity> activities = service.findAll(timeline, pageable);
+        Iterable<MediaRelationship> relationships = service.findAll(activityId);
 
-        return builder.build(activities);
+        return builder.build(relationships);
     }
 
-    @RequestMapping(value = "/rs/timelines/activities/{activityId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rs/timelines/activities/activities-medias-relationships/{relationId}", method = RequestMethod.GET)
     public @ResponseBody
-    ResourceItem findOne(@PathVariable Long activityId) {
+    ResourceItem findOne(@PathVariable Long relationId) {
 
-        Optional<Activity> activityOptional = service.getOne(activityId);
-        Activity activity = activityOptional.orElseThrow(NotFoundException::new);
+        Optional<MediaRelationship> relationshipOptional = service.getOne(relationId);
+        MediaRelationship relation = relationshipOptional.orElseThrow(NotFoundException::new);
 
-        return builder.build(activity);
+        return builder.build(relation);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/rs/timelines/{timelineId}/activities", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@PathVariable Long timelineId, @RequestBody ActivityResource resource) {
+    ResourceItem create(@PathVariable Long timelineId, @RequestBody MediaRelationshipResource resource) {
 
-        //pegar o usuario logado
-        User user = new User(1l);
+        MediaRelationship relationship = RelationshipBuilder.createRelationship()
+                .withActivity(resource.getActivityId())
+                .withMedia(resource.getMediaId()).build();
 
-        Activity activity = ActivityBuilder.createActivity()
-                .withCreation(new Date())
-                .withTag(resource.getTag())
-                .withDescription(resource.getDescription()).build();
+        Optional<MediaRelationship> mediaRelationship = service.register(relationship);
 
-        Timeline timeline = new Timeline(timelineId);
-
-        NewActivityInTimeline newActivity = NewActivityInTimeline.newActivity(activity, timeline, user);
-
-        Activity activityCreated = service.register(newActivity);
-
-        return builder.build(activityCreated);
+        return builder.build(mediaRelationship.get());
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/rs/timelines/activities/{activityId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rs/timelines/activities/activities-medias-relationships/{relationId}", method = RequestMethod.DELETE)
     public @ResponseBody
-    ResourceItem update(@PathVariable Long activityId, @RequestBody ActivityResource resource) {
-
-        Activity activity = ActivityBuilder.createActivity(activityId)
-                .withTag(resource.getTag())
-                .withDescription(resource.getDescription()).build();
-
-        activity.addFields("tag");
-        activity.addFields("description");
-
-        Activity activityUpdated = service.update(activity);
-
-        return builder.build(activityUpdated);
+    void delete(@PathVariable Long relationId) {
+        service.delete(relationId);
     }
 
 

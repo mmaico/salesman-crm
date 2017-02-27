@@ -4,8 +4,6 @@ package br.com.kproj.salesman.timelines.activities.application.impl;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.timelines.activities.application.MediaRelationshipFacade;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
-import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityValidator;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationship;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationshipRepository;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationshipValidator;
@@ -37,13 +35,13 @@ public class MediaRelationshipServiceImpl extends BaseModelServiceImpl<MediaRela
     }
 
     @Override
-    public void delete(MediaRelationship relationship) {
-        repository.delete(relationship.getId());
+    public void delete(Long relationId) {
+        repository.delete(relationId);
     }
 
     @Override
-    public Collection<MediaRelationship> findAll(MediaRelationship relationship) {
-        return null;
+    public Collection<MediaRelationship> findAll(Long activityId) {
+        return repository.findAll(activityId);
     }
 
     @Override
