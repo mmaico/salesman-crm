@@ -29,6 +29,11 @@ public class ActivityBuilder extends AbstractBuilder<Activity>  {
 		return this;
 	}
 
+	public ActivityBuilder withCreationNow() {
+		this.entity.setCreation(new Date());
+		return this;
+	}
+
 	public ActivityBuilder withUser(User user) {
 		this.entity.setUser(user);
 		return this;

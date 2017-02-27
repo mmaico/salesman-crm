@@ -64,7 +64,7 @@ public class ActivityEndpoint {
         User user = new User(1l);
 
         Activity activity = ActivityBuilder.createActivity()
-                .withCreation(new Date())
+                .withCreationNow()
                 .withTag(resource.getTag())
                 .withDescription(resource.getDescription()).build();
 

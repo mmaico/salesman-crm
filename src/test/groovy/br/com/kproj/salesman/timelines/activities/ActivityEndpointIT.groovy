@@ -77,16 +77,16 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.OK.value
     }
 
-//    @Unroll
-//    "should return 404 when not exists"() {
-//        given:
-//            def uri = "/rs/timelines/activities/activities-medias-relationships/6666"
-//        when:
-//            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
-//        then:
-//            mvcResult.response.status == HttpStatus.NOT_FOUND.value
-//    }
-//
+    @Unroll
+    "should return 404 when not exists"() {
+        given:
+            def uri = "/rs/timelines/activities/6666"
+        when:
+            def mvcResult = mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
+        then:
+            mvcResult.response.status == HttpStatus.NOT_FOUND.value
+    }
+
 //    @Unroll
 //    "Should create a new relation between activity and media"() {
 //        given:
