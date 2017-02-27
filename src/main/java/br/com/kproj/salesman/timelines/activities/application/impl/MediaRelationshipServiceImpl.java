@@ -31,7 +31,7 @@ public class MediaRelationshipServiceImpl extends BaseModelServiceImpl<MediaRela
     @Override
     public Optional<MediaRelationship> register(MediaRelationship relationship) {
         validator.checkRules(relationship);
-        return repository.save(relationship);
+        return Optional.of(repository.register(relationship));
     }
 
     @Override

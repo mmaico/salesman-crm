@@ -14,4 +14,6 @@ public interface MediaRelationshipRepository extends BaseRepository<MediaRelatio
 
     Collection<MediaRelationship> findAll(Long activityId);
 
+    MediaRelationship register(MediaRelationship relationship);
+
 }

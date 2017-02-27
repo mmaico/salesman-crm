@@ -1,5 +1,7 @@
 package br.com.kproj.salesman.timelines.activities.infrastructure.persistence;
 
+import br.com.kproj.salesman.infrastructure.entity.AppFileEntity;
+import br.com.kproj.salesman.infrastructure.entity.timeline.items.TimelineActivity;
 import br.com.kproj.salesman.infrastructure.entity.timeline.items.relationship.ActivityMediaRelationshipEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
@@ -42,6 +44,16 @@ public class MediaRelationshipRepositoryHibernate extends BaseRespositoryImpl<Me
         Collection<ActivityMediaRelationshipEntity> result = repository.findAll(activityId);
         return result.stream().map(entity -> getConverter()
                 .convert(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public MediaRelationship register(MediaRelationship relationship) {
+        ActivityMediaRelationshipEntity entity = new ActivityMediaRelationshipEntity();
+        entity.setActivity(new TimelineActivity(relationship.getActivity().getId()));
+        entity.setMedia(new AppFileEntity(relationship.getMedia().getId()));
+        ActivityMediaRelationshipEntity entitySaved = repository.save(entity);
+
+        return getConverter().convert(entitySaved);
     }
 
     @Override

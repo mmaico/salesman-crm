@@ -48,8 +48,14 @@ public class TimelineActivity extends Identifiable {
     private TimelineEntity timeline;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name="TAG")
+    @Column(name="tag")
     private TagEntity tag;
+
+    public TimelineActivity() {}
+    public TimelineActivity(Long id) {
+        this();
+        this.id = id;
+    }
 
     @Override
     public Long getId() {
