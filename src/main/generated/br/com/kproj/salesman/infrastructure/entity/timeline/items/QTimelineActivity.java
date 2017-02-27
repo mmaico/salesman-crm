@@ -32,6 +32,8 @@ public class QTimelineActivity extends EntityPathBase<TimelineActivity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final EnumPath<TimelineActivity.TagEntity> tag = createEnum("tag", TimelineActivity.TagEntity.class);
+
     public final br.com.kproj.salesman.infrastructure.entity.timeline.QTimelineEntity timeline;
 
     public final br.com.kproj.salesman.infrastructure.entity.QUserEntity user;

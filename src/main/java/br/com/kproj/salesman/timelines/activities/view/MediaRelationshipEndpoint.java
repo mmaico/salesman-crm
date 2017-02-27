@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 
-@RestController("mediaRelationshipEndpointActivitiesModule")
+@RestController("mediaRelationshipEndpointTimelineActivitiesModule")
 public class MediaRelationshipEndpoint {
 
     private MediaRelationshipFacade service;
@@ -50,12 +50,12 @@ public class MediaRelationshipEndpoint {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/rs/timelines/{timelineId}/activities", method = RequestMethod.POST)
+    @RequestMapping(value = "/rs/timelines/activities/{activityId}/activities-medias-relationships", method = RequestMethod.POST)
     public @ResponseBody
-    ResourceItem create(@PathVariable Long timelineId, @RequestBody MediaRelationshipResource resource) {
+    ResourceItem create(@PathVariable Long activityId, @RequestBody MediaRelationshipResource resource) {
 
         MediaRelationship relationship = RelationshipBuilder.createRelationship()
-                .withActivity(resource.getActivityId())
+                .withActivity(activityId)
                 .withMedia(resource.getMediaId()).build();
 
         Optional<MediaRelationship> mediaRelationship = service.register(relationship);
