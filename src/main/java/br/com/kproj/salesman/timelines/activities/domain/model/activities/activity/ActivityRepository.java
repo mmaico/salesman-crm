@@ -11,4 +11,6 @@ public interface ActivityRepository extends BaseRepository<Activity, Long> {
 
     Activity register(Activity activity);
 
+    Activity update(Activity activity);
+
 }

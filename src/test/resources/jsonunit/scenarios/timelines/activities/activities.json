@@ -3,7 +3,6 @@
   {
     "scenery": "should create a new activity",
     "json": {
-      "creation":"2018-09-05T00:00:00Z",
       "description":"introduction 5 created",
       "tag":"CALL"
     }
@@ -11,9 +10,15 @@
   {
     "scenery": "should not create with invalid tag",
     "json": {
-      "creation":"2018-09-05T00:00:00Z",
       "description":"introduction 5 created",
       "tag":"INVALID"
+    }
+  },
+  {
+    "scenery": "should update description and tag",
+    "json": {
+      "description":"introduction 10 updated",
+      "tag":"EMAIL"
     }
   }
 ]

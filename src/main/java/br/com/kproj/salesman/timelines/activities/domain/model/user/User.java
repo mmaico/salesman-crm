@@ -33,6 +33,10 @@ public class User extends ModelIdentifiable {
         };
     }
 
+    public Activity update(Activity activity) {
+        return repository.update(activity);
+    }
+
     @Override
     public Long getId() {
         return id;

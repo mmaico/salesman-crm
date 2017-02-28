@@ -15,6 +15,7 @@ import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @ClassReference(ActivityEndpoint)
 class ActivityEndpointIT extends AbstractIntegrationTest {
@@ -125,6 +126,29 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
 
         then: "Should return bad request"
             mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
+    @Unroll
+    "Should update a activity for timeline"() {
+        given:
+            def uri = "/rs/timelines/activities/4"
+        when:
+            def mvcResult = mockMvc.perform(put(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(SceneryLoaderHelper.scenery("should update description and tag").json)).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a updated activity"
+            jsonResult.item.id == 4
+            jsonResult.item.description == "introduction 10 updated"
+            jsonResult.item.creation != null
+            jsonResult.item.tag == "EMAIL"
+            jsonResult.item.links.find{it.rel == "of-user"}.href == "/rs/users/1"
+            jsonResult.item.links.find{it.rel == "of-timeline"}.href == "/rs/timelines/4"
+            jsonResult.item.links.find{it.rel == "has-medias"}.href == "/rs/timelines/activities/4/activities-medias-relationships"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.OK.value
     }
 
 

@@ -4,6 +4,7 @@ package br.com.kproj.salesman.timelines.activities.application.impl;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import br.com.kproj.salesman.timelines.activities.application.ActivityFacade;
+import br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityRepository;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityValidator;
@@ -15,6 +16,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
+import static br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription.ignoreRules;
+import static br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription.ruleValidUser;
+import static br.com.kproj.salesman.timelines.activities.domain.model.user.User.user;
 
 @Service("activityServiceImplTimelineActivitiesModule")
 public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implements ActivityFacade {
@@ -44,8 +49,9 @@ public class ActivityServiceImpl extends BaseModelServiceImpl<Activity> implemen
 
     @Override
     public Activity update(Activity activity) {
-        //user.update(activity)
-        return null;
+        validator.checkRules(activity, ignoreRules(ruleValidUser()));
+
+        return user().update(activity);
     }
 
     @Override
