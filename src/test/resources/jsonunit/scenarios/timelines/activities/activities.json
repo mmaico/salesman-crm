@@ -1,0 +1,19 @@
+[
+
+  {
+    "scenery": "should create a new activity",
+    "json": {
+      "creation":"2018-09-05T00:00:00Z",
+      "description":"introduction 5 created",
+      "tag":"CALL"
+    }
+  },
+  {
+    "scenery": "should not create with invalid tag",
+    "json": {
+      "creation":"2018-09-05T00:00:00Z",
+      "description":"introduction 5 created",
+      "tag":"INVALID"
+    }
+  }
+]

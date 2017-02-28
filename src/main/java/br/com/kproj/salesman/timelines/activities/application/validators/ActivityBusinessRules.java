@@ -6,6 +6,7 @@ import br.com.kproj.salesman.infrastructure.validators.RulesExecute;
 import br.com.kproj.salesman.timelines.activities.application.validators.descriptions.ActivityRulesDescription;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityValidator;
+import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Tag;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.TimelineRepository;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.UserRepository;
 import org.apache.commons.lang3.StringUtils;

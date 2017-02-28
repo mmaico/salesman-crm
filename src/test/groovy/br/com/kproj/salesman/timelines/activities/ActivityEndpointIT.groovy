@@ -2,6 +2,7 @@ package br.com.kproj.salesman.timelines.activities
 
 import br.com.kproj.salesman.infratest.AbstractIntegrationTest
 import br.com.kproj.salesman.infratest.ClassReference
+import br.com.kproj.salesman.infratest.SceneryLoaderHelper
 import br.com.kproj.salesman.timelines.activities.view.ActivityEndpoint
 import groovy.json.JsonSlurper
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,10 +13,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import spock.lang.Unroll
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @ClassReference(ActivityEndpoint)
 class ActivityEndpointIT extends AbstractIntegrationTest {
+
+    private static final String ACTIVITIES = "/timelines/activities/activities.json"
 
     MockMvc mockMvc
 
@@ -25,6 +29,7 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
 
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
+        SceneryLoaderHelper.load(ACTIVITIES)
     }
 
     @Unroll
@@ -87,34 +92,40 @@ class ActivityEndpointIT extends AbstractIntegrationTest {
             mvcResult.response.status == HttpStatus.NOT_FOUND.value
     }
 
-//    @Unroll
-//    "Should create a new relation between activity and media"() {
-//        given:
-//            def uri = "/rs/timelines/activities/2/activities-medias-relationships"
-//        when:
-//            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
-//                    .content("""{"media":{"id": 6}}""")).andReturn()
-//
-//            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
-//
-//        then: "Should return a new media"
-//            jsonResult.item.id != null
-//            jsonResult.item.links.find{it.rel == "activity"}.href == "/rs/timelines/activities/2"
-//            jsonResult.item.links.find{it.rel == "media"}.href == "/rs/storages/medias/6"
-//            jsonResult.uri == uri
-//
-//            mvcResult.response.status == HttpStatus.CREATED.value
-//    }
-//
-//    @Unroll
-//    "Should delete a relation between activity and media"() {
-//        given:
-//            def uri = "/rs/timelines/activities/activities-medias-relationships/4"
-//        when:
-//            def mvcResult = mockMvc.perform(delete(uri).contentType(MediaType.APPLICATION_JSON)).andReturn()
-//        then: "Should return a new media"
-//            mvcResult.response.status == HttpStatus.OK.value
-//    }
-//
+    @Unroll
+    "Should create a new activity for timeline"() {
+        given:
+            def uri = "/rs/timelines/1/activities"
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                    .content(SceneryLoaderHelper.scenery("should create a new activity").json)).andReturn()
+
+            def jsonResult = new JsonSlurper().parseText(mvcResult.response.getContentAsString())
+
+        then: "Should return a new activity"
+            jsonResult.item.id != null
+            jsonResult.item.description == "introduction 5 created"
+            jsonResult.item.creation != null
+            jsonResult.item.tag == "CALL"
+            jsonResult.item.links.find{it.rel == "of-user"}.href == "/rs/users/1"
+            jsonResult.item.links.find{it.rel == "of-timeline"}.href == "/rs/timelines/1"
+            jsonResult.item.links.find{it.rel == "has-medias"}.href == "/rs/timelines/activities/${jsonResult.item.id}/activities-medias-relationships"
+
+            jsonResult.uri == uri
+            mvcResult.response.status == HttpStatus.CREATED.value
+    }
+
+    @Unroll
+    "Should return error when invalid timeline"() {
+        given:
+            def uri = "/rs/timelines/9999/activities"
+        when:
+            def mvcResult = mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(SceneryLoaderHelper.scenery("should create a new activity").json)).andReturn()
+
+        then: "Should return bad request"
+            mvcResult.response.status == HttpStatus.BAD_REQUEST.value
+    }
+
 
 }

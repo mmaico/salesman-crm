@@ -2,7 +2,6 @@ package br.com.kproj.salesman.timelines.activities.domain.model.activities.activ
 
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import br.com.kproj.salesman.timelines.activities.domain.model.media.Media;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationship;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
@@ -23,7 +22,6 @@ public class Activity extends ModelIdentifiable {
     private Timeline timeline;
     private Tag tag;
     private List<MediaRelationship> medias = Lists.newArrayList();
-    private Represent represent;
 
     public Activity() {
         AutowireHelper.autowire(this);
@@ -50,15 +48,6 @@ public class Activity extends ModelIdentifiable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    public Represent getRepresent() {
-        return represent;
-    }
-
-    public void setRepresent(Represent represent) {
-        this.represent = represent;
     }
 
     public Date getCreation() {

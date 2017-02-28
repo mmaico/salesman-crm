@@ -23,13 +23,13 @@ class PackageEndpointIT extends AbstractIntegrationTest {
     private static final String PACKAGES_CREATED = "/products_catalog/catalog/packages-create.json";
     private static final String PACKAGES_ADDING_SALEABLE = "/products_catalog/catalog/packages-adding-saleable.json";
 
-    def MockMvc mockMvc
+    MockMvc mockMvc
 
     @Autowired
-    def WebApplicationContext webApplicationContext
+    WebApplicationContext webApplicationContext
 
     @Autowired
-    def SaleableUnitRepository repository
+    SaleableUnitRepository repository
 
     def setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build()
