@@ -13,7 +13,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/facility
     username: root
-    password: 102030Abc
+    password: root
     driverClassName: com.mysql.jdbc.Driver
     max-active: 100
     max-idle: 8

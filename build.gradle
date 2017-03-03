@@ -51,7 +51,7 @@ sourceSets {
 
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.5.1.RELEASE'
         querydslVersion = '4.1.4'
     }
     repositories {
@@ -80,7 +80,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-ws")
     compile('org.springframework.data:spring-data-jpa:1.10.4.RELEASE')
-    //compile("org.springframework.boot:spring-boot-starter-logging")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0')
+
 
 
     compile("com.google.guava:guava:18.0")
@@ -117,6 +119,8 @@ dependencies {
     testCompile('org.powermock:powermock-api-mockito:1.6.4') {
         exclude group: "org.hamcrest"
     }
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 
     querydslapt("com.querydsl:querydsl-apt:$querydslVersion") {
         exclude module: "guava"
