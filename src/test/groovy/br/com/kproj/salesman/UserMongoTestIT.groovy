@@ -9,6 +9,7 @@ import com.mongodb.WriteResult
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Example
+import org.springframework.data.mongodb.core.FindAndModifyOptions
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
@@ -44,17 +45,18 @@ class UserMongoTestIT extends AbstractIntegrationTest {
         when:
 
             Query query = new Query(Criteria.where("addresses.id").is(new ObjectId("58b70606bdeb4a449529a73d")))
-            //query.fields().include("addresses.\$")
+            query.fields().include("addresses.\$")
 
-//            def updateAddress = new Update().set("addresses.\$.street", "SET Street 4")
-//                                            .set("addresses.\$.city", "HH")
+            def updateAddress = new Update().set("addresses.\$.street", "SET Street 10")
+                                            .set("addresses.\$.city", "PP")
 
-            //def result = template.updateFirst(query, updateAddress, "users")
-            def user = template.findOne(query, UserMongo.class)
-            user.setBirth(new Date())
-            user.setName("Marcelo")
-            user.setLastName("Maico")
-            template.save(user)
+            def result = template.findAndModify(query, updateAddress, FindAndModifyOptions.options().returnNew(Boolean.TRUE), UserMongo)
+
+//            def user = template.findOne(query, UserMongo.class)
+//            user.setBirth(new Date())
+//            user.setName("Marcelo")
+//            user.setLastName("Maico")
+//            template.save(user)
 //            user.addresses.add(new AddressMongo("Street Teste", "City Teste"))
 //            user.addresses.add(new AddressMongo("Street Teste 2", "City Teste 2"))
 

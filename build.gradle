@@ -51,7 +51,7 @@ sourceSets {
 
 buildscript {
     ext {
-        springBootVersion = '1.5.1.RELEASE'
+        springBootVersion = '1.5.2.RELEASE'
         querydslVersion = '4.1.4'
     }
     repositories {
