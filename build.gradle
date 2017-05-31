@@ -75,10 +75,9 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-remote-shell")
     compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.boot:spring-boot-starter-velocity")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
-    compile("org.springframework.boot:spring-boot-starter-ws")
+    //compile("org.springframework.boot:spring-boot-starter-ws")
     compile('org.springframework.data:spring-data-jpa:1.10.4.RELEASE')
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0')

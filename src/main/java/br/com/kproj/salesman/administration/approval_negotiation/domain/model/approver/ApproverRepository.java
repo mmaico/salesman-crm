@@ -12,5 +12,9 @@ public interface ApproverRepository extends BaseRepository<Approver, Long> {
 
     Collection<Approver> getApproversAvailable();
 
+    Approver makeAvailable(Approver approver);
+
+    Approver makeUnavailable(Approver approver);
+
 }
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class HandlerErrors {
 
-	private Set<String> errors = new HashSet<String>();
+	private Set<String> errors = new HashSet<>();
 	
 	public HandlerErrors(Set<String> errors) {
 		

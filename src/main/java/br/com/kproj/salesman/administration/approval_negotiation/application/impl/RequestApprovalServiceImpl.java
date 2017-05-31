@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Optional;
 
+import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.requester.Requester.requester;
+
 @Service
 public class RequestApprovalServiceImpl extends BaseModelServiceImpl<RequestApproval> implements RequestApprovalFacade {
 
@@ -31,34 +33,33 @@ public class RequestApprovalServiceImpl extends BaseModelServiceImpl<RequestAppr
     private EvaluationRequestValidator evaluationCheckRules;
 
 
-    //refatorar porque o codigo nao esta claro o que esta fazendo
-    // seller.request(approval).withAvailables(approvers)
     @Override
-    public Optional<RequestApproval> register(RequestApproval request) {
-        checkRules.isValidToStartRequestApproval(request);
+    public Optional<RequestApproval> register(RequestApproval approval) {
+        checkRules.isValidToStartRequestApproval(approval);
 
-        Collection<Approver> approversAvailable = approverRepository.getApproversAvailable();
+        Collection<Approver> approvers = approverRepository.getApproversAvailable();
 
-        request.startWithApprovers(approversAvailable);
+        Optional<RequestApproval> result = requester().request(approval).withAvailable(approvers);
 
-        eventHandler.newRequestApproval(request);
-        return repository.save(request);
+        eventHandler.newRequestApproval(result.get());
+
+        return result;
     }
 
     @Override
-    public void makeEvaluation(EvaluationRequest request) {
+    public void doEvaluation(EvaluationRequest request) {
 
         evaluationCheckRules.hasValidInfoToEvaluation(request);
 
-        Optional<RequestApproval> poolApprovers = repository.findOne(request.getNegotiation());
+        Optional<RequestApproval> approvers = repository.findOne(request.getNegotiation());
 
-        Boolean needsEvaluation = poolApprovers.get().stillNeedsToBeEvaluationBy(request.getApprover());
+        Boolean needsEvaluation = approvers.get().stillNeedsToBeEvaluationBy(request.getApprover());
 
         if (needsEvaluation) {
-            poolApprovers.get().makeEvaluation(request.getApprover(), request.getStatus());
+            approvers.get().doEvaluation(request.getApprover(), request.getStatus());
 
-            if (poolApprovers.get().evaluationWasCompleted()) {
-                eventHandler.evaluationWasCompleted(poolApprovers.get());
+            if (approvers.get().evaluationWasCompleted()) {
+                eventHandler.evaluationWasCompleted(approvers.get());
             }
         }
     }

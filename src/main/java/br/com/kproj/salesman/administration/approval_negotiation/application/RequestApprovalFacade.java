@@ -11,6 +11,6 @@ public interface RequestApprovalFacade extends ModelFacade<RequestApproval> {
 
     Optional<RequestApproval> register(RequestApproval requestApproval);
 
-    void makeEvaluation(EvaluationRequest request);
+    void doEvaluation(EvaluationRequest request);
 
 }

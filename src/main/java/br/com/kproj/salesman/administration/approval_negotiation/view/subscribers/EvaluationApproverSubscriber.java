@@ -26,7 +26,7 @@ public class EvaluationApproverSubscriber {
         Approver approver = createApprover(message.getApproverId()).build();
         PersonApproval.Status status = PersonApproval.Status.get(message.getStatus());
 
-        application.makeEvaluation(createEvaluation(negotiation, approver, status));
+        application.doEvaluation(createEvaluation(negotiation, approver, status));
     }
 
 }

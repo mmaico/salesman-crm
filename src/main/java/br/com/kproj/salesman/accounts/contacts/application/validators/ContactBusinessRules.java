@@ -6,7 +6,8 @@ import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactValid
 import br.com.kproj.salesman.accounts.contacts.domain.model.customer.CustomerRepository;
 import br.com.kproj.salesman.infrastructure.exceptions.ValidationException;
 import br.com.kproj.salesman.infrastructure.validators.CheckRule;
-import org.apache.commons.validator.EmailValidator;
+
+import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,7 @@ public class ContactBusinessRules implements ContactValidator {
 
         persistRules.put(ruleInvalidEmail(), (contact) ->
                 contact.isNew()
-                        ? !isBlank(contact.getEmail()) && !EmailValidator.getInstance().isValid(contact.getEmail())
+                        ? !isBlank(contact.getEmail()) && !EmailValidator. .isValid(contact.getEmail())
                         : contact.hasField("email") && !isBlank(contact.getEmail()) && !EmailValidator.getInstance().isValid(contact.getEmail())
         );
     }

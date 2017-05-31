@@ -48,7 +48,7 @@ public class RequestApproval extends ModelIdentifiable {
         return approvers.needsToBeEvaluationBy(approver);
     }
 
-    public void makeEvaluation(Approver approver, PersonApproval.Status status) {
+    public void doEvaluation(Approver approver, PersonApproval.Status status) {
         Optional<PersonApproval> personApproval = approvers.getOne(approver);
 
         personApproval.get().setStatus(status);

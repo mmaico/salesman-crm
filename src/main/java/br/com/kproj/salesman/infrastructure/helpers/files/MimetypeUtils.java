@@ -5,10 +5,7 @@ import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.apache.commons.lang.StringUtils.EMPTY;
-import static org.apache.commons.lang.StringUtils.isBlank;
-
-
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 
 public class MimetypeUtils {
@@ -44,7 +41,7 @@ public class MimetypeUtils {
 		
 		String extension = mimes.get(mimeType);
 		
-		return isBlank(extension) ? EMPTY : extension;
+		return isBlank(extension) ? "" : extension;
 	}
 	
 	

@@ -42,26 +42,32 @@ class UserMongoTestIT extends AbstractIntegrationTest {
     "Should find all addresses by customer using paginated"() {
         given:
             def userOne = new UserMongo("Jhon 1", "Travolta 1", new Date())
+            def userTwo = new UserMongo("Joao Primeiro", "Indo One", new Date())
         when:
 
-            Query query = new Query(Criteria.where("addresses.id").is(new ObjectId("58b70606bdeb4a449529a73d")))
-            query.fields().include("addresses.\$")
-
-            def updateAddress = new Update().set("addresses.\$.street", "SET Street 10")
-                                            .set("addresses.\$.city", "PP")
-
-            def result = template.findAndModify(query, updateAddress, FindAndModifyOptions.options().returnNew(Boolean.TRUE), UserMongo)
+//            Query query = new Query(Criteria.where("addresses.id").is(new ObjectId("58b70606bdeb4a449529a73d")))
+//            query.fields().include("addresses.\$")
+//
+//            def updateAddress = new Update().set("addresses.\$.street", "SET Street 10")
+//                                            .set("addresses.\$.city", "PP")
+//
+//            def result = template.findAndModify(query, updateAddress, FindAndModifyOptions.options().returnNew(Boolean.TRUE), UserMongo)
 
 //            def user = template.findOne(query, UserMongo.class)
 //            user.setBirth(new Date())
 //            user.setName("Marcelo")
 //            user.setLastName("Maico")
 //            template.save(user)
-//            user.addresses.add(new AddressMongo("Street Teste", "City Teste"))
-//            user.addresses.add(new AddressMongo("Street Teste 2", "City Teste 2"))
+            userOne.addresses.add(new AddressMongo("Street Teste", "City Teste"))
+            userOne.addresses.add(new AddressMongo("Street Teste 2", "City Teste 2"))
 
-            //user.addresses.get(0).setCity("OO")
-            //template.save(user)
+            userTwo.addresses.add(new AddressMongo("Street One", "City One"))
+            userTwo.addresses.add(new AddressMongo("Street Two", "City Two"))
+            userTwo.addresses.add(new AddressMongo("Street Three", "City Three"))
+
+
+            template.save(userOne)
+            template.save(userTwo)
             def all = template.findAll(UserMongo.class)
 
             System.out.println("####################################")

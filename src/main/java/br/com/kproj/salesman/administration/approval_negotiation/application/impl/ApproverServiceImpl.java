@@ -3,39 +3,50 @@ package br.com.kproj.salesman.administration.approval_negotiation.application.im
 import br.com.kproj.salesman.administration.approval_negotiation.application.ApproverFacade;
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.Approver;
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.ApproverRepository;
+import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.ApproverValidator;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepository;
 import br.com.kproj.salesman.infrastructure.service.BaseModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Collection;
+
+import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.user.User.user;
 
 @Service
 public class ApproverServiceImpl extends BaseModelServiceImpl<Approver> implements ApproverFacade {
 
     private ApproverRepository repository;
 
+    private ApproverValidator validator;
+
     @Autowired
-    public ApproverServiceImpl(ApproverRepository repository) {
+    public ApproverServiceImpl(ApproverRepository repository, ApproverValidator validator) {
         this.repository = repository;
+        this.validator = validator;
     }
 
-    //TODO: refatorar codigo tirando a complexidade e dando mais expressao.
+
     @Override
-    public Optional<Approver> register(Approver approver) {
+    public Approver makeAvailable(Approver approver) {
+        validator.isValid(approver);
+        return user().makeAvailable(approver);
+    }
 
-        Optional<Approver> result = repository.findOne(approver.getId());
+    @Override
+    public Approver makeAnavailable(Approver approver) {
+        validator.exists(approver);
+        return user().makeUnavailable(approver);
+    }
 
-        if (result.isPresent()) {
-            result.get().setAvailable(approver.getAvailable());
-            return repository.save(result.get());
-        } else {
-            return repository.save(approver);
-        }
+    @Override
+    public Collection<Approver> getApprovers() {
+        return repository.getApproversAvailable();
     }
 
     @Override
     public BaseRepository<Approver, Long> getRepository() {
         return repository;
     }
+
 }

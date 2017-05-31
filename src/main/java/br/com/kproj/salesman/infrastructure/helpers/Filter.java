@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.infrastructure.helpers;
 
-import org.apache.commons.lang.WordUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.text.WordUtils;
 
 public class Filter<T> {
 	public enum Operator{EQ, GT, LT, LE, GE, NE}

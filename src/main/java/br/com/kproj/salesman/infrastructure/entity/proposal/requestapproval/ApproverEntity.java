@@ -21,6 +21,13 @@ public class ApproverEntity extends Identifiable {
     @Column(name = "available")
     private Boolean available;
 
+    public ApproverEntity() {}
+
+    public ApproverEntity(Long id) {
+        this();
+        this.id = id;
+    }
+
     @Override
     public Long getId() {
         return id;

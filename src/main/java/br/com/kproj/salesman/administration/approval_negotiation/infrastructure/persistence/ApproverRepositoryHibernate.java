@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.administration.approval_negotiation.domain.model.approver.ApproverBuilder.createApprover;
@@ -51,5 +52,29 @@ public class ApproverRepositoryHibernate extends BaseRespositoryImpl<Approver, A
                 .collect(Collectors.toList());
 
         return models;
+    }
+
+    @Override
+    public Approver makeAvailable(Approver approver) {
+
+        ApproverEntity approverEntity = repository.findOne(approver.getId());
+
+        if (approverEntity != null) {
+            approverEntity.setAvailable(Boolean.TRUE);
+            return getConverter().convert(repository.save(approverEntity));
+        } else {
+            ApproverEntity newApproverEntity = new ApproverEntity(approver.getId());
+            newApproverEntity.setAvailable(Boolean.TRUE);
+            return getConverter().convert(repository.save(newApproverEntity));
+        }
+    }
+
+    @Override
+    public Approver makeUnavailable(Approver approver) {
+
+        ApproverEntity approverEntity = repository.findOne(approver.getId());
+        approverEntity.setAvailable(Boolean.FALSE);
+
+        return getConverter().convert(repository.save(approverEntity));
     }
 }
