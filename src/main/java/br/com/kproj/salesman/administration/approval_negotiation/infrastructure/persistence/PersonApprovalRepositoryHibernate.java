@@ -11,7 +11,7 @@ import br.com.kproj.salesman.infrastructure.repository.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class PersonApprovalRepositoryHibernate extends BaseRespositoryImpl<PersonApproval, ApprovalItemEntity> implements PersonApprovalRepository {

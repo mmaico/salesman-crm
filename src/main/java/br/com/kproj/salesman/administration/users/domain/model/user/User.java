@@ -3,7 +3,8 @@ package br.com.kproj.salesman.administration.users.domain.model.user;
 import br.com.kproj.salesman.administration.users.domain.model.branch.Branch;
 import br.com.kproj.salesman.administration.users.domain.model.position.Position;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import javax.validation.constraints.NotNull;
 

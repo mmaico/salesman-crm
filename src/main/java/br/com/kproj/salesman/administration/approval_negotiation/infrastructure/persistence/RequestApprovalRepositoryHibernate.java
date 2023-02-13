@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.infrastructure.entity.builders.BusinessProposalBuilder.createBusinessProposal;
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class RequestApprovalRepositoryHibernate extends BaseRespositoryImpl<RequestApproval, RequestApprovalEntity> implements RequestApprovalRepository {

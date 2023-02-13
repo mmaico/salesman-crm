@@ -4,7 +4,8 @@ package br.com.kproj.salesman.administration.approval_negotiation.infrastructure
 import br.com.kproj.salesman.administration.approval_negotiation.domain.model.approval.PersonApproval;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApprovalItemEntity;
 import br.com.kproj.salesman.infrastructure.entity.proposal.requestapproval.ApprovalItemEntity.StatusEntity;
-import com.trex.shared.converters.AttributeEntityConverter;
+import com.github.mmaico.shared.converters.AttributeEntityConverter;
+
 
 public class StatusConverter implements AttributeEntityConverter<PersonApproval, ApprovalItemEntity> {
 
