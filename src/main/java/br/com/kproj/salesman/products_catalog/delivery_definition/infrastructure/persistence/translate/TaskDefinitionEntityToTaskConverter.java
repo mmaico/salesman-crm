@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 
 @Component

@@ -2,7 +2,8 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.roottasks.RootTask;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Subtask extends Task {

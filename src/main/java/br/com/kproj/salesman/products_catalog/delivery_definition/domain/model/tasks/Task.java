@@ -4,8 +4,9 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.checklist.Checklist;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.product.Saleable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.region.Region;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 
 import java.util.List;
 

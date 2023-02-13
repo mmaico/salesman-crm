@@ -2,7 +2,8 @@ package br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Checklist extends ModelIdentifiable {

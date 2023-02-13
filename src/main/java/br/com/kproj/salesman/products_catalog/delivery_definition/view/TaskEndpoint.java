@@ -10,11 +10,11 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.r
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.Task;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.TaskResourceBuilder;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.TaskResource;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Optional;
 

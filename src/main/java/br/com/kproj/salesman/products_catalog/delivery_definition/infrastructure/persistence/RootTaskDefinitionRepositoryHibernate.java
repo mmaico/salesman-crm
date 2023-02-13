@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.Optional;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository("rootTaskDefinitionRepositoryModule")
 public class RootTaskDefinitionRepositoryHibernate extends BaseRespositoryImpl<RootTask, RootTaskDefinitionEntity> implements RootTaskRepository {

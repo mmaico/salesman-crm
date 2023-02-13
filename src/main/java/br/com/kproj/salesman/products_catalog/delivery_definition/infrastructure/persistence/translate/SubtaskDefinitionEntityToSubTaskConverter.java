@@ -8,7 +8,7 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 
 @Component

@@ -11,11 +11,12 @@ import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.t
 import br.com.kproj.salesman.products_catalog.delivery_definition.domain.model.tasks.TaskBuilder;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.builders.ChecklistResourceBuilder;
 import br.com.kproj.salesman.products_catalog.delivery_definition.view.support.resources.ChecklistResource;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Optional;
 
