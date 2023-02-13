@@ -1,6 +1,8 @@
 package br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable;
 
-import com.trex.shared.annotations.Model;
+
+
+import com.github.mmaico.shared.annotations.Model;
 
 import java.util.List;
 

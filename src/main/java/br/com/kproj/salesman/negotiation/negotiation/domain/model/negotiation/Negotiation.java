@@ -5,7 +5,8 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.customer.Customer;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.operation.Region;
 import br.com.kproj.salesman.negotiation.negotiation.domain.model.seller.Seller;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;

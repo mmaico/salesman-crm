@@ -20,7 +20,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.NegotiatedBuilder.createSaleableItem;
-import static com.trex.clone.BusinessModelClone.from;
+
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository("negotiatedRepositoryNegotiatedSaleableModule")
 public class NegotiatedRepositoryHibernate extends BaseRespositoryImpl<Negotiated, BusinessProposalItemEntity> implements NegotiatedRepository {

@@ -8,7 +8,8 @@ import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleab
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleables_items.SaleableItemRepository;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.GenerateSaleableItemsService;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.services.SaleableItemToNegotiatedService;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

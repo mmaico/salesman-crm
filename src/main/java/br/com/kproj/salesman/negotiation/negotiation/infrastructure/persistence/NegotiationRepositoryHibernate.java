@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository("negotiationRepositoryNegotiationModule")
 public class NegotiationRepositoryHibernate extends BaseRespositoryImpl<Negotiation, BusinessProposalEntity> implements NegotiationRepository {

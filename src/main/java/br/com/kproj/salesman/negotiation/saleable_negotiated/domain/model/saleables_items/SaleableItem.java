@@ -5,7 +5,8 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.negotiated.Negotiated;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.Saleable;
 import br.com.kproj.salesman.negotiation.saleable_negotiated.domain.model.saleable.SaleablePackage;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class SaleableItem extends ModelIdentifiable {
