@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 import static br.com.kproj.salesman.medias.storage.domain.model.definition.StorageBuilder.createStorage;
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class StorageRepositoryHibernate extends BaseRespositoryImpl<Storage, StorageEntity> implements StorageRepository {

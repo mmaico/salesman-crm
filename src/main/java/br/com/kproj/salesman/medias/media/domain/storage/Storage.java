@@ -6,7 +6,8 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.medias.media.domain.media.FileContent;
 import br.com.kproj.salesman.medias.media.domain.media.FileContentRaw;
 import br.com.kproj.salesman.medias.media.domain.media.FileContentRepository;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Model

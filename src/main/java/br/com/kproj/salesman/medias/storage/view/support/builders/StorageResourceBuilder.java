@@ -9,10 +9,11 @@ import br.com.kproj.salesman.medias.storage.view.support.resources.StorageResour
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
 import com.google.common.collect.Lists;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
