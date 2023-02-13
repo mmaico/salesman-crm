@@ -2,7 +2,8 @@ package br.com.kproj.salesman.business_prospecting.campaigns.domain.model.campai
 
 import br.com.kproj.salesman.business_prospecting.campaigns.domain.model.author.Author;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 

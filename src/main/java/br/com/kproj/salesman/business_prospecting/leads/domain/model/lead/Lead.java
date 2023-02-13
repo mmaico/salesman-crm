@@ -5,7 +5,8 @@ import br.com.kproj.salesman.business_prospecting.leads.domain.model.address.Add
 import br.com.kproj.salesman.business_prospecting.leads.domain.model.phone.Phones;
 import br.com.kproj.salesman.business_prospecting.leads.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Lead extends ModelIdentifiable {
