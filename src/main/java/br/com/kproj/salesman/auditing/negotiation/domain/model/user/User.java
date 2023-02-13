@@ -7,7 +7,8 @@ import br.com.kproj.salesman.auditing.negotiation.domain.model.negotiation.Negot
 import br.com.kproj.salesman.auditing.negotiation.domain.service.NegotiationNewVersion;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import static br.com.kproj.salesman.auditing.negotiation.domain.model.audit.AuditingBuilder.createNewAudit;
 

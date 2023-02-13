@@ -3,7 +3,8 @@ package br.com.kproj.salesman.auditing.negotiation.domain.model.audit;
 import br.com.kproj.salesman.auditing.negotiation.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.auditing.negotiation.domain.model.user.User;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 

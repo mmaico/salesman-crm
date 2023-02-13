@@ -7,7 +7,8 @@ import br.com.kproj.salesman.auditing.delivery.domain.model.task.Task;
 import br.com.kproj.salesman.auditing.delivery.domain.service.TaskNewVersion;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static br.com.kproj.salesman.auditing.delivery.domain.model.audit.AuditingBuilder.createNewAudit;
