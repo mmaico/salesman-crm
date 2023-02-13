@@ -4,7 +4,7 @@ import br.com.kproj.salesman.infrastructure.entity.saleable.SalePackageEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SalePackage;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.salepackage.SaleableRelation;
-import com.trex.clone.BusinessModelClone;
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

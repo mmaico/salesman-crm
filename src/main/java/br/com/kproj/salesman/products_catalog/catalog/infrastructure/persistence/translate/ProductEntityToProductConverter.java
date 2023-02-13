@@ -3,7 +3,7 @@ package br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistenc
 import br.com.kproj.salesman.infrastructure.entity.saleable.ProductEntity;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.products.Product;
-import com.trex.clone.BusinessModelClone;
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

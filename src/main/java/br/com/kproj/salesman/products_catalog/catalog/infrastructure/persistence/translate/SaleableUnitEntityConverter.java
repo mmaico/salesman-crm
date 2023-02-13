@@ -3,7 +3,7 @@ package br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistenc
 import br.com.kproj.salesman.infrastructure.entity.saleable.SaleableUnitEntity;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.Represent;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
-import com.trex.clone.BusinessModelClone;
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

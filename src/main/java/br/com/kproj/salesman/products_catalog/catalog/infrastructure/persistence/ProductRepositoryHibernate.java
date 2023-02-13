@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
+
 
 @Repository
 public class ProductRepositoryHibernate extends BaseRespositoryImpl<Product, ProductEntity> implements ProductRepository {

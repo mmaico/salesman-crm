@@ -2,8 +2,8 @@ package br.com.kproj.salesman.products_catalog.catalog.domain.model.products;
 
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.saleables.SaleableUnit;
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.unit.Unit;
-import com.trex.shared.annotations.Attribute;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Attribute;
+import com.github.mmaico.shared.annotations.Model;
 
 
 @Model

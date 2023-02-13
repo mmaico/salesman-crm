@@ -10,13 +10,13 @@ import br.com.kproj.salesman.products_catalog.catalog.domain.model.services.Serv
 import br.com.kproj.salesman.products_catalog.catalog.domain.model.services.ServiceRepository;
 import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.springdata.SaleableUnitRepositorySpringData;
 import br.com.kproj.salesman.products_catalog.catalog.infrastructure.persistence.springdata.ServiceRepositorySpringData;
-import com.trex.clone.BusinessModelClone;
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class ServiceRepositoryHibernate extends BaseRespositoryImpl<Service, ServiceEntity> implements ServiceRepository {

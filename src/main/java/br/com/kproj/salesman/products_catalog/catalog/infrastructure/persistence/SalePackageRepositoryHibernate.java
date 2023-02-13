@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static br.com.kproj.salesman.infrastructure.helpers.AutowireHelper.autowire;
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class SalePackageRepositoryHibernate extends BaseRespositoryImpl<SalePackage, SalePackageEntity> implements SalePackageRepository {
