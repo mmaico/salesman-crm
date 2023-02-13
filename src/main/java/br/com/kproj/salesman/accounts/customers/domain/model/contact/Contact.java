@@ -2,7 +2,8 @@ package br.com.kproj.salesman.accounts.customers.domain.model.contact;
 
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Contact extends ModelIdentifiable {

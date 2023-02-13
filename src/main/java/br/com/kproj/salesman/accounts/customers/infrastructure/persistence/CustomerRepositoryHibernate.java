@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository("customerRepositoryHibernateAccountModule")
 public class CustomerRepositoryHibernate extends BaseRespositoryImpl<Customer, CustomerEntity> implements CustomerRepository {

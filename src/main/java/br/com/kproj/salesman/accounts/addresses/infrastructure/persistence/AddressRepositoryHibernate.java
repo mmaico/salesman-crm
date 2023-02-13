@@ -12,7 +12,7 @@ import br.com.kproj.salesman.infrastructure.entity.accounts.CustomerEntity;
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import com.trex.clone.BusinessModelClone;
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.trex.dsl.ConditionalSet.set;
+import static com.github.mmaico.dsl.ConditionalSet.set;
 
 @Repository
 public class AddressRepositoryHibernate extends BaseRespositoryImpl<Address, AddressEntity> implements AddressRepository {

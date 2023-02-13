@@ -5,7 +5,8 @@ import br.com.kproj.salesman.accounts.customers.domain.model.customer.Customer;
 import br.com.kproj.salesman.accounts.customers.domain.model.customer.CustomerRepository;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;

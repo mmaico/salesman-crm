@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.accounts.customers.domain.model.address;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
 
 
 @Model

@@ -6,7 +6,8 @@ import br.com.kproj.salesman.accounts.contacts.domain.model.contact.ContactRepos
 import br.com.kproj.salesman.accounts.contacts.domain.services.ContactToCustomerService;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Model
