@@ -4,8 +4,9 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.Task;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.Subtask;
 import br.com.kproj.salesman.delivery.tasks.domain.model.tasks.subtask.SubtaskRepository;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

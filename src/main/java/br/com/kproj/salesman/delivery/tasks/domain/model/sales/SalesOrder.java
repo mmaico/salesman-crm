@@ -1,8 +1,9 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.sales;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 
 import java.util.List;
 

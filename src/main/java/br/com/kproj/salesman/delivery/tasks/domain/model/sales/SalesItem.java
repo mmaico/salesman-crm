@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.delivery.tasks.domain.model.sales;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class SalesItem extends ModelIdentifiable {

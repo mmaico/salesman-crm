@@ -10,12 +10,13 @@ import br.com.kproj.salesman.infrastructure.exceptions.NotFoundException;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItem;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
 import com.google.common.collect.Iterables;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.SubscribeTask.createSubscriber;
 

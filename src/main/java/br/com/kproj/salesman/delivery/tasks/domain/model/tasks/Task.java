@@ -6,8 +6,9 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.tasks.domain.model.subscribe.Subscriber;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;

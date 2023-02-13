@@ -6,11 +6,12 @@ import br.com.kproj.salesman.delivery.delivery.domain.model.delivery.Delivery;
 import br.com.kproj.salesman.delivery.delivery.view.support.builders.DeliveryResourceBuilder;
 import br.com.kproj.salesman.infrastructure.helpers.FilterAggregator;
 import br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceItems;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController("deliveryEndpoinDeliveryModule")

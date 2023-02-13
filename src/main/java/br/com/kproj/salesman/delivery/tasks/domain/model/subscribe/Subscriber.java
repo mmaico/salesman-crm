@@ -11,7 +11,8 @@ import br.com.kproj.salesman.delivery.tasks.domain.model.user.User;
 import br.com.kproj.salesman.delivery.tasks.domain.services.AddChecklistInTask;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
