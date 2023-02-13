@@ -13,8 +13,7 @@ import br.com.kproj.salesman.sales.infrastructure.generatesale.convert.Negotiati
 import br.com.kproj.salesman.sales.infrastructure.persistence.springdata.SalesOrderRepositorySpringdata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import static com.trex.clone.BusinessModelClone.from;
+import static com.github.mmaico.clone.BusinessModelClone.from;
 
 @Repository
 public class SalesOrderRepositoryHibernate extends BaseRespositoryImpl<SalesOrder, SalesOrderEntity> implements SalesOrderRepository {

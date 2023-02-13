@@ -6,7 +6,8 @@ import br.com.kproj.salesman.sales.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.sales.domain.model.operation.Region;
 import br.com.kproj.salesman.sales.domain.model.payments.Installments;
 import br.com.kproj.salesman.sales.domain.model.seller.Seller;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 
