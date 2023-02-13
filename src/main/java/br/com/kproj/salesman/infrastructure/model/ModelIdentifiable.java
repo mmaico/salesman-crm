@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.infrastructure.model;
 
 import br.com.kproj.salesman.infrastructure.configuration.ExcludeField;
-import com.trex.shared.annotations.UpdateAttributes;
+
+import com.github.mmaico.shared.annotations.UpdateAttributes;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 

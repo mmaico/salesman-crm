@@ -30,7 +30,7 @@ public class MappingJackson2HttpMessageConverterCustom extends MappingJackson2Ht
 
             StreamUtils.copy(object.toString(), charset, outputMessage.getBody());
         } else {
-            super.writeInternal(object, type, outputMessage);
+            super.writeInternal(object, outputMessage);
         }
     }
 

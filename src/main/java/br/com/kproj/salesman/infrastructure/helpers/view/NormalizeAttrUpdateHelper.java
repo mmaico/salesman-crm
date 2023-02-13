@@ -1,7 +1,7 @@
 package br.com.kproj.salesman.infrastructure.helpers.view;
 
 
-import com.trex.clone.NormalizeAttributesUpdate;
+import com.github.mmaico.clone.NormalizeAttributesUpdate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

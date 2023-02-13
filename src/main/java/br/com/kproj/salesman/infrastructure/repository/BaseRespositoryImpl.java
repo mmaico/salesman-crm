@@ -3,7 +3,8 @@ package br.com.kproj.salesman.infrastructure.repository;
 
 import br.com.kproj.salesman.infrastructure.entity.Identifiable;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.clone.BusinessModelClone;
+
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
