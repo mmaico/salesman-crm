@@ -2,6 +2,7 @@
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml
+.DS_Store
 
 ## Directory-based project format:
 .idea/
@@ -89,6 +90,7 @@ local.properties
 
 # sbteclipse plugin
 .target
+target/
 
 # TeXlipse plugin
 .texlipse
