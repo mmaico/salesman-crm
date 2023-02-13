@@ -1,0 +1,4 @@
+error: Annotation processor 'com.mysema.query.apt.jdo.JDOAnnotationProcessor' not found
+warning: Annotation processing without compilation requested but no processors were found.
+1 error
+1 warning
