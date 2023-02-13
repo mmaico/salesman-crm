@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static br.com.kproj.salesman.infrastructure.helpers.CollectionsHelper.isEmptySafe;
-import static com.trex.dsl.ConditionalSet.set;
+import static com.github.mmaico.dsl.ConditionalSet.set;
 
 @Component
 public class ArchiveTranslate implements TwoWayMerge<Archive, FileInfoEntity> {

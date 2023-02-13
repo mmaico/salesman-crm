@@ -3,8 +3,9 @@ package br.com.kproj.salesman.assistants.activities.domain.model.personal.rootac
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.subactivity.SubActivity;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

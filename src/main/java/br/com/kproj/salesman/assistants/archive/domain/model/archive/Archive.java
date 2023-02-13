@@ -3,8 +3,9 @@ package br.com.kproj.salesman.assistants.archive.domain.model.archive;
 import br.com.kproj.salesman.assistants.archive.domain.model.owner.Owner;
 import br.com.kproj.salesman.assistants.archive.domain.model.participant.Participant;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Attribute;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Attribute;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.List;
 

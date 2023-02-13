@@ -2,7 +2,8 @@ package br.com.kproj.salesman.assistants.calendar.activities.specialization.doma
 
 
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.incident.Incident;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class ActivityIncident extends Activity {

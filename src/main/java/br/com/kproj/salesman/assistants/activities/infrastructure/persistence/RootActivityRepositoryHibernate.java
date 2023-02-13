@@ -13,7 +13,8 @@ import br.com.kproj.salesman.infrastructure.entity.activities.RootPersonalActivi
 import br.com.kproj.salesman.infrastructure.repository.BaseRepositoryLegacy;
 import br.com.kproj.salesman.infrastructure.repository.BaseRespositoryImpl;
 import br.com.kproj.salesman.infrastructure.repository.Converter;
-import com.trex.clone.BusinessModelClone;
+
+import com.github.mmaico.clone.BusinessModelClone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

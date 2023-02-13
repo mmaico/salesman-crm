@@ -2,7 +2,8 @@ package br.com.kproj.salesman.assistants.calendar.activities.specialization.doma
 
 
 import br.com.kproj.salesman.assistants.calendar.activities.specialization.domain.model.campaing.Compaing;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class ActivityCampaign extends Activity {

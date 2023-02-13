@@ -11,7 +11,7 @@ import br.com.kproj.salesman.assistants.activities.domain.services.AddChecklistI
 import br.com.kproj.salesman.assistants.activities.domain.services.SaveSubActivityInWorkspace;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;

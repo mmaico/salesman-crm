@@ -3,7 +3,8 @@ package br.com.kproj.salesman.assistants.activities.domain.model.personal;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Assigner;
 import br.com.kproj.salesman.assistants.activities.domain.model.user.Owner;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 

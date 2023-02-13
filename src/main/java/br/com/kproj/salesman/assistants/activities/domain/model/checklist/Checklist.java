@@ -3,7 +3,8 @@ package br.com.kproj.salesman.assistants.activities.domain.model.checklist;
 import br.com.kproj.salesman.assistants.activities.domain.model.personal.Activity;
 import br.com.kproj.salesman.infrastructure.helpers.AutowireHelper;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Checklist extends ModelIdentifiable {

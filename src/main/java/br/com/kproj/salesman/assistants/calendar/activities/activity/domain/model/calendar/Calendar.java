@@ -4,7 +4,8 @@ package br.com.kproj.salesman.assistants.calendar.activities.activity.domain.mod
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.Activity;
 import br.com.kproj.salesman.assistants.calendar.activities.activity.domain.model.activity.ActivityRepository;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
