@@ -6,9 +6,10 @@ import br.com.kproj.salesman.timelines.timeline.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.timeline.view.support.resources.TimelineResource;
 import br.com.uol.rest.apiconverter.ConverterToResource;
 import br.com.uol.rest.infrastructure.libraries.ContextArguments;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static br.com.kproj.salesman.infrastructure.http.response.handler.resources.ResourceHolder.getUri;
 import static br.com.uol.rest.infrastructure.libraries.SelectableArguments.createEmpty;

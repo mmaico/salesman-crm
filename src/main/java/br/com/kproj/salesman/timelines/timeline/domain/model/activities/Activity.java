@@ -1,7 +1,8 @@
 package br.com.kproj.salesman.timelines.timeline.domain.model.activities;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class Activity extends ModelIdentifiable {

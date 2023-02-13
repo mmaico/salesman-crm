@@ -2,8 +2,9 @@ package br.com.kproj.salesman.timelines.timeline.domain.model.timeline;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.timelines.timeline.domain.model.activities.Activity;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 
 import java.util.List;
 

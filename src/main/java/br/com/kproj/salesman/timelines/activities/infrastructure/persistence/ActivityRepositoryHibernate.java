@@ -13,8 +13,6 @@ import br.com.kproj.salesman.timelines.activities.domain.model.activities.activi
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
 import br.com.kproj.salesman.timelines.activities.infrastructure.persistence.springdata.ActivityRepositorySpringData;
-import com.trex.clone.BusinessModelClone;
-import com.trex.dsl.ConditionalSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,8 +22,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.trex.dsl.ConditionalSet.set;
-
+import static com.github.mmaico.dsl.ConditionalSet.set;
 
 @Repository("activityRepositoryHibernateTimelineActivitiesModule")
 public class ActivityRepositoryHibernate extends BaseRespositoryImpl<Activity, TimelineActivity> implements ActivityRepository {

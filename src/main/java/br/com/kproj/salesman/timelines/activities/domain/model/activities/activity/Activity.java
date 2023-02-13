@@ -5,8 +5,9 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.timelines.activities.domain.model.media.MediaRelationship;
 import br.com.kproj.salesman.timelines.activities.domain.model.timeline.Timeline;
 import br.com.kproj.salesman.timelines.activities.domain.model.user.User;
+import com.github.mmaico.shared.annotations.Model;
 import com.google.common.collect.Lists;
-import com.trex.shared.annotations.Model;
+
 
 import java.util.Date;
 import java.util.List;

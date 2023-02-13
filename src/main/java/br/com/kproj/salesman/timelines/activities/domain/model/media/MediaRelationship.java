@@ -2,7 +2,8 @@ package br.com.kproj.salesman.timelines.activities.domain.model.media;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 @Model
 public class MediaRelationship extends ModelIdentifiable {

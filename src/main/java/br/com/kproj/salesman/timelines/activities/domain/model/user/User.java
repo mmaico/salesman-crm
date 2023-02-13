@@ -5,7 +5,8 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.Activity;
 import br.com.kproj.salesman.timelines.activities.domain.model.activities.activity.ActivityRepository;
 import br.com.kproj.salesman.timelines.activities.domain.services.ActivityInTimelineService;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Model
