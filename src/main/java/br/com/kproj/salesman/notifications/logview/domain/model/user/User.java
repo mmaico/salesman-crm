@@ -4,7 +4,8 @@ import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.notifications.logview.domain.model.view.ViewInfo;
 import br.com.kproj.salesman.notifications.logview.domain.model.view.ViewInfoRepository;
 import br.com.kproj.salesman.notifications.logview.domain.service.SawNotificationTypeService;
-import com.trex.shared.annotations.Model;
+
+import com.github.mmaico.shared.annotations.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static br.com.kproj.salesman.infrastructure.helpers.AutowireHelper.autowire;

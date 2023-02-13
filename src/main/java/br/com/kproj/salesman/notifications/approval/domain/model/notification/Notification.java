@@ -3,7 +3,8 @@ package br.com.kproj.salesman.notifications.approval.domain.model.notification;
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.notifications.approval.domain.model.negotiation.Negotiation;
 import br.com.kproj.salesman.notifications.approval.domain.model.user.Receiver;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 

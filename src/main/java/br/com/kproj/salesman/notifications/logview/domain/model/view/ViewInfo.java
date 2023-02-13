@@ -2,7 +2,8 @@ package br.com.kproj.salesman.notifications.logview.domain.model.view;
 
 import br.com.kproj.salesman.infrastructure.model.ModelIdentifiable;
 import br.com.kproj.salesman.notifications.logview.domain.model.user.User;
-import com.trex.shared.annotations.Model;
+import com.github.mmaico.shared.annotations.Model;
+
 
 import java.util.Date;
 
