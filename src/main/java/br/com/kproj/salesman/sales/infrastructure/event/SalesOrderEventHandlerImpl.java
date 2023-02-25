@@ -9,6 +9,8 @@ import com.google.common.eventbus.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static br.com.kproj.salesman.infrastructure.events.NewSalesOrderMessage.*;
+
 @Component
 public class SalesOrderEventHandlerImpl implements SalesOrderEventHandler {
 
@@ -24,6 +26,6 @@ public class SalesOrderEventHandlerImpl implements SalesOrderEventHandler {
 
     @Override
     public void newSalesOrder(SalesOrder salesOrder) {
-        eventBus.post(NewSalesOrderMessage.create(salesOrder.getId(), salesOrder));
+        eventBus.post(create(salesOrder.getId(), salesOrder));
     }
 }
